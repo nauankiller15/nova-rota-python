@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a26e3f97-eaba-4e93-b926-f273e036d1e2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/nova-rota-python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/nova-rota-python.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/migrations/0002_alter_task_done.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/CSS/anims.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/CSS/assets/fonts/Pe-icon-7-stroke.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/CSS/assets/fonts/Pe-icon-7-stroke.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/CSS/assets/fonts/Pe-icon-7-stroke.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/CSS/assets/fonts/Pe-icon-7-stroke.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/CSS/assets/fonts/fa-solid-900.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/CSS/assets/fonts/fa-solid-900.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/CSS/assets/fonts/fa-solid-900.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/CSS/assets/fonts/fa-solid-900.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/CSS/assets/fonts/fa-solid-900.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/CSS/assets/images/avatars/user.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/CSS/cores.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/CSS/loader.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/CSS/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/CSS/submenus.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/JS/LIB/jquery-3.5.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/JS/LIB/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/JS/LIB/webpack-dev.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/JS/LIB/webpack-prod.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/JS/LIB/webpack.config-helper.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/JS/activemenu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/JS/topmenu-anim.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/paginas_data/alteracao-empresa.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/paginas_data/alteracao-titular-ativo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/paginas_data/backup/painel-analises---back.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/paginas_data/cancelamento-titular-ativo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/paginas_data/dados-cadastrais.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/paginas_data/dropdowns.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/paginas_data/exclusao-empresa.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/paginas_data/inclusao-empresa.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/paginas_data/lists-group.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/paginas_data/novo-titular-dependente.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/paginas_data/painel-analises.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/static/paginas_data/task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/templates/base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/templates/tasks/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo/asgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo/wsgi.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1rosFSHyZZvr8tpzu0mILMOQHKH" />
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="run.code.analysis.last.selected.profile" value="aDefault" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nauan\PycharmProjects\nova-rota-python\tarefas" />
+      <recent name="C:\Users\nauan\PycharmProjects\nova-rota-python\cad_titulares" />
+      <recent name="C:\Users\nauan\PycharmProjects\nova-rota-python" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nauan\PycharmProjects\nova-rota-python\novo_titular_dependente" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.runserver">
+    <configuration name="makemigrations" type="PythonConfigurationType" factoryName="Python">
+      <module name="nova-rota-python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/nova-rota-backend" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/nova-rota-backend/manage.py" />
+      <option name="PARAMETERS" value="makemigrations" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="migrate" type="PythonConfigurationType" factoryName="Python">
+      <module name="nova-rota-python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/nova-rota-backend" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/nova-rota-backend/manage.py" />
+      <option name="PARAMETERS" value="migrate" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="runserver" type="PythonConfigurationType" factoryName="Python">
+      <module name="nova-rota-python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/nova-rota-backend" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/nova-rota-backend/manage.py" />
+      <option name="PARAMETERS" value="runserver" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="settings" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="nova-rota-python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/nova-rota-backend/todo" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/todo/settings.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.makemigrations" />
+      <item itemvalue="Python.migrate" />
+      <item itemvalue="Python.runserver" />
+      <item itemvalue="Python.settings" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.settings" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a26e3f97-eaba-4e93-b926-f273e036d1e2" name="Default Changelist" comment="" />
+      <created>1619653674579</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1619653674579</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>
