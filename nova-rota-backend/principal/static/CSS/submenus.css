@@ -149,11 +149,12 @@
 
 .task-item {
   list-style: none;
-  font-size: 20px;
-  height: 55px;
-  padding-top: 12px;
+  font-size: 17px;
+  height: 48px;
+  padding-top: 15px;
   border-bottom: 1px #e2e2e2 solid;
   transition: 0.5s;
+  cursor: pointer;
 }
 
 .task-item:hover {

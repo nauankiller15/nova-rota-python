@@ -24,9 +24,10 @@ class Titular (models.Model):
                             blank=True, default="Selecione", null=False)
     estado_civil = models.CharField(
         max_length=25, choices=estado_civil_choice, default="Selecione", null=False)
+    anexo_doc_tit = models.ImageField(upload_to='anexo_titulares', blank=True, null=True)
     nome_mae = models.CharField("Nome da Mae", max_length=255)
     data_admissao = models.DateField(
-        "Data Admissiao", auto_now=False, auto_now_add=False, null=False)
+        "Data de Admissao", auto_now=False, auto_now_add=False, null=False)
     tipo_parentesco = models.CharField(
         "Tipo Parentesco", max_length=25, default="Sem Parentesco", editable=False)
     celular = models.CharField("Numero do Celular", max_length=100, null=True)

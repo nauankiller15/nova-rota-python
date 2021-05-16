@@ -1,6 +1,6 @@
 from django.db import models
 
-class Registro(models.Model):
+class Tarefa(models.Model):
 
     STATUS = (
         ('Fazendo', 'Fazendo'),
