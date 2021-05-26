@@ -1,2 +1,30 @@
-<p>tarefas-details works!</p>
-Tarefa carregada: {{ selected_tarefa.titulo }} - {{ selected_tarefa.descricao }}
+<div class="texto-overlay">
+  <a id="fechar-bt3">
+    <div class="fechar-button2">X</div>
+  </a>
+  <h2>
+    <input class="no-borda" type="text" [(ngModel)]="selected_tarefa.titulo" />
+  </h2>
+  <span>
+    <textarea
+      class="no-borda2"
+      style="min-height: 162px"
+      type="text"
+      [(ngModel)]="selected_tarefa.descricao"
+    ></textarea>
+  </span>
+  <select style="max-width: 80px" [(ngModel)]="selected_tarefa.feito">
+    <option value="Fazendo">Fazendo</option>
+    <option value="Feito">Feito</option>
+  </select>
+  <br />
+  <div class="posit-bottom">
+    <button class="edit-edit" (click)="update()">
+      <i class="fas fa-edit"></i> Atualizar
+    </button>
+    <button class="edit-trash" (click)="delete()">
+      <i class="fas fa-trash"></i> Deletar
+    </button>
+  </div>
+</div>
+<div id="over-text"></div>

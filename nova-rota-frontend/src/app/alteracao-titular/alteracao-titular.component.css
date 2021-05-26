@@ -1,0 +1,41 @@
+.voltar {
+  z-index: 104;
+  cursor: pointer;
+  margin-left: -36px;
+  padding: 14px 2px 1px 0px;
+  border-radius: 50%;
+  background-color: #ededefa8;
+  font-size: 23px;
+  width: 57px;
+  text-align: center;
+  display: inline-block;
+  transition: 0.3s;
+  height: 57px;
+}
+.voltar:hover {
+  background-color: var(--cor-tema);
+  color: var(--branco);
+  transform: translate(-2px, 0px);
+}
+
+.titular-ts {
+  border-bottom: 3px solid #ededefa8;
+}
+
+.cpf-ts {
+  font-size: 22px;
+  width: 100%;
+  margin-left: 36px;
+}
+
+.cpfinput {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #495057;
+}
+
+#titulares {
+  display: none;
+}
+

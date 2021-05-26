@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from cad_at.models import Titular
+from cad_emp.models import Empresa
 
-class TitularSerializer(serializers.ModelSerializer):
+class EmpresaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Titular
+        model = Empresa
         fields = '__all__'

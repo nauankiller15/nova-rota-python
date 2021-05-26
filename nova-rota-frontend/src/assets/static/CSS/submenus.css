@@ -1,7 +1,7 @@
 /*  CONTROLES MENUS */
 
 #tarefas {
-  z-index: 9999;
+  z-index: 995;
   width: 100%;
   height: 100%;
   position: fixed;
@@ -11,7 +11,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(5px);
 }
 
 #tarefas {
@@ -19,17 +18,16 @@
 }
 
 #config {
-  z-index: 9999;
+  z-index: 999;
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background-color: #0000005e;
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(5px);
 }
 
 #config {
@@ -40,31 +38,179 @@
   border-top: 4px solid var(--cor-tema);
   border-radius: 15px;
   background: var(--branco);
-  max-width: 120vh;
+  max-width: 125vh;
+  width: 110vh;
   min-height: 70vh;
-  margin: 14vh auto;
+  margin: 9vh auto;
+  z-index: 997;
+  position: fixed;
+  top: 40vh;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.box-text {
+  display: none;
 }
 
 .text-info-box {
-    margin: auto;
-    width: 85%;
-    margin-top: 13px;
-    padding: 5px;
+  margin: auto;
+  width: 85%;
+  margin-top: 13px;
+  padding: 5px;
 }
 
+/* TAREFA ABERTA */
+
+#over-text {
+  z-index: 1001;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0000005e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  z-index: 1017;
+}
+
+.texto-overlay {
+  border-radius: 15px;
+  background: var(--branco);
+  width: 81vh;
+  min-height: 28vh;
+  position: fixed;
+  padding: 20px;
+  border: 2px solid #00000027;
+  margin: 9vh auto;
+  position: fixed;
+  top: 36vh;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  z-index: 1018;
+}
+
+.texto-overlay h2 {
+  margin-bottom: 9px;
+  text-transform: uppercase;
+  font-size: 25px;
+  background: #ffffff;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dadada;
+}
+
+.no-borda {
+  width: 90%;
+  outline: none;
+  border: none;
+  padding: 0;
+  margin-top: -20px;
+}
+
+.no-borda2 {
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 10px;
+  max-height: 90px;
+  height: 60px;
+  background-color: #00000005;
+  border: 2px solid #0000000d;
+  padding: 10px;
+  resize: none;
+}
+
+.no-borda3 {
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 35px;
+  max-height: 90px;
+  height: 60px;
+  background-color: #00000005;
+  border: 2px solid #0000000d;
+  padding: 10px;
+  resize: none;
+}
+.texto-overlay span {
+  margin-bottom: 20px;
+  width: 100%;
+}
+/*  */
+
+/* NOVA TAREFA */
+
+#over-tarefa {
+  z-index: 1001;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0000005e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1005;
+}
+
+.nova-tarefa {
+  border-radius: 15px;
+  background: var(--branco);
+  width: 110vh;
+  min-height: 28vh;
+  position: fixed;
+  padding: 20px;
+  border: 2px solid #00000027;
+  margin: 9vh auto;
+  position: fixed;
+  top: 35vh;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  z-index: 1009;
+}
+
+.nova-tarefa h2 {
+  margin-bottom: 9px;
+  text-transform: uppercase;
+  font-size: 18px;
+  background: #ffffff;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dadada;
+}
+
+.nova-tarefa h3 {
+  margin-top: 9px;
+  margin-bottom: 9px;
+  text-transform: uppercase;
+  font-size: 25px;
+  background: #ffffff;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dadada;
+}
+/*  */
+
 .fechar-button {
-    cursor: pointer;
-    color: #696969;
-    font-size: 27px;
-    display: flex;
-    float: right;
-    border-radius: 50px;
-    background: var(--branco);
-    padding: 0px 12px 1px 12px;
-    margin-right: 15px;
-    margin-top: 11px;
-    font-weight: 600;
-    transition: 0.3s;
+  cursor: pointer;
+  color: #696969;
+  font-size: 27px;
+  display: flex;
+  float: right;
+  border-radius: 50px;
+  background: var(--branco);
+  padding: 0px 12px 1px 12px;
+  margin-right: 15px;
+  margin-top: 11px;
+  font-weight: 600;
+  transition: 0.3s;
 }
 
 .fechar-button:hover {
@@ -73,24 +219,46 @@
   transform: translate(0px, -4px);
 }
 
+.fechar-button2 {
+  cursor: pointer;
+  color: #696969;
+  font-size: 24px;
+  display: flex;
+  float: right;
+  border-radius: 50px;
+  background: var(--branco);
+  padding: 0px 12px 1px 12px;
+  margin-right: -9px;
+  margin-top: -8px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.fechar-button2:hover {
+  background: var(--cor-tema);
+  color: var(--branco);
+  transform: translate(0px, -4px);
+}
 /* LISTA DE TAREFAS - CSS */
 
 /* BOTÃO DE ADICIONAR */
 
 .add-div {
-    background-color: var(--cor-tema);
-    cursor: pointer;
-    display: inline-block;
-    color: var(--branco);
-    padding: 9px;
-    border-radius: 10px;
-    margin-right: 25px;
-    transition: 0.4s;
-    border: 3px solid #ced4da;
+  background-color: var(--cor-tema);
+  cursor: pointer;
+  display: inline-block;
+  color: var(--branco);
+  padding: 9px;
+  border-radius: 10px;
+  margin-right: 25px;
+  transition: 0.4s;
+  border: 3px solid #ced4da;
+  box-shadow: 0px 3px #0000004b;
 }
 
 .add-div:hover {
-  transform: translate(0px, -4px);
+  transform: translate(0px, 3px);
+  box-shadow: 0px 0px #0000004b;
   color: var(--branco);
   background-color: var(--cor-botao-hover);
   border-color: var(--cor-botao-hover);
@@ -115,9 +283,9 @@
   transition: 0.4s;
 }
 
-.edit-search:hover{
-    color: #007124;
-    transform: translate(0px, -2px);
+.edit-search:hover {
+  color: #007124;
+  transform: translate(0px, -2px);
 }
 
 .search-div {
@@ -139,12 +307,12 @@
 }
 
 .titulo-task {
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    font-size: 25px;
-    background: #ffffff;
-    padding: 10px;
-    border-bottom: 1px solid #dadada;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-size: 25px;
+  background: #ffffff;
+  padding: 10px;
+  border-bottom: 1px solid #dadada;
 }
 
 .task-item {
@@ -174,13 +342,23 @@
   list-style: none;
   cursor: pointer;
 }
+.posit-bottom {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
 
 .edit-trash {
   color: var(--cor-cancelar);
   transition: 0.4s;
   cursor: pointer;
   margin: 5px;
+  background-color: #fff;
   font-size: 20px;
+  float: right;
+  border: none;
+  outline: none;
+  margin-right: 5px;
   float: right;
 }
 
@@ -190,10 +368,13 @@
   cursor: pointer;
   margin: 5px;
   font-size: 20px;
+  border: none;
+  outline: none;
+  background-color: #fff;
   float: right;
 }
 
 .edit-trash:hover,
 .edit-edit:hover {
-  transform: translate(0px, -2px);
+  transform: translate(0px, -3px);
 }

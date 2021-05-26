@@ -1,60 +1,125 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './api.service';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
 
 declare var $: any;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  template: '<menu></menu><router-outlet></router-outlet>',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  ngOnInit() {
-    $('[data-load-page]').unbind('click');
-    $('[data-load-page]').click(function () {
-      var page = $(this).attr('data-load-page');
-      if (!$(this).find('a').hasClass('mm-active')) {
-        $('#conteudo').load(page);
-      }
+  // 
+  dependente: any[];
+  titular: any[];
 
+  ngOnInit() {
+    // MENU PRINCIPAL ANIMAÇÕES
+    $('[routerLink]').click(function () {
       $('.vertical-nav-menu li a').removeClass('mm-active');
       $(this).find('a').addClass('mm-active');
     });
 
+    // $("#btnEditar").on('click', function() {
+    //   $('input[name="edit"]').removeAttr('readonly');
+    // });
     // TAREFAS ANIM
 
+    // ABRIR TELA DE TAREFAS
     $('#tarefas-bt').on('click', function () {
-      $('#tarefas').fadeIn('500');
+      $('#tarefas').fadeIn('100');
+      $('.box-text').fadeIn('100');
     });
 
     $('#fechar-bt').on('click', function () {
-      $('#tarefas').fadeOut('500');
+      $('#tarefas').fadeOut('100');
+      $('.box-text').fadeOut('100');
+    });
+    //
+
+    //
+    $('#tarefas').on('click', function () {
+      $('#tarefas').fadeOut('100');
+      $('.box-text').fadeOut('100');
     });
 
     // CONFIG ANIM
 
     $('#config-bt').on('click', function () {
-      $('#config').fadeIn('500');
+      $('#config').fadeIn('100');
     });
 
     $('#fechar-bt2').on('click', function () {
-      $('#config').fadeOut('500');
+      $('#config').fadeOut('100');
     });
   }
+
   title = 'nova-rota-frontend';
 
-  selected_tarefa = { id: 0, titulo: '', descricao: '', feito: ''};
 
-  tarefas = [
-    { id: 1, titulo: 'Exemplo de Frase 1' },
-    { id: 2, titulo: 'Exemplo de Titulo 2' },
-    { id: 3, titulo: 'Exemplo de Texto 3' },
-  ];
+  selected_titular = {
+    id: 0,
+    CPF: '',
+    cod_empresa: '',
+    data_recebimento: '',
+    tipo: '',
+    nome_benef: '',
+    data_nascimento: '',
+    sexo: '',
+    estado_civil: '',
+    anexo_doc_tit: '',
+    nome_mae: '',
+    data_admissao: '',
+    data_casamento: '',
+    tipo_parentesco: '',
+    CEP: '',
+    celular: '',
+    cidade: '',
+    estado: '',
+    declaracao_saude: '',
+    status: '',
+    desc_declarao_saude: '',
+    observacoes: '',
+  };
 
-  constructor(private api: ApiService) {
+  selected_dependente = {
+    id: 0,
+    CPF: '',
+    cod_empresa: '',
+    data_recebimento: '',
+    tipo: '',
+    nome_benef: '',
+    data_nascimento: '',
+    sexo: '',
+    estado_civil: '',
+    anexo_doc_tit: '',
+    nome_mae: '',
+    data_admissao: '',
+    data_casamento: '',
+    tipo_parentesco: '',
+    CEP: '',
+    celular: '',
+    cidade: '',
+    estado: '',
+    declaracao_saude: '',
+    status: '',
+    desc_declarao_saude: '',
+    observacoes: '',
+  };
+
+  tarefas = [{ id: '', titulo: '' }];
+  selected_tarefa = { id: 0, titulo: '', descricao: '', feito: '' };
+
+  constructor(
+    private api: ApiService,
+    private router: Router,
+    private toastr: ToastrService  ) {
     this.getTarefas();
   }
+  selected_id: any;
 
   getTarefas = () => {
     this.api.getAlltarefas().subscribe(
@@ -62,19 +127,21 @@ export class AppComponent implements OnInit {
         this.tarefas = data;
       },
       (error) => {
-        console.log('Aconteceu um Erro!', error.message);
+        this.toastr.error('Aconteceu um Erro!', error.message);
       }
     );
   };
-  tarefaClicked = (tarefa) => {
-    this.api.getTarefa(tarefa.id).subscribe(
-      (data) => {
-        console.log(data);
-        this.selected_tarefa = data;
-      },
-      (error) => {
-        console.log('Aconteceu um Erro!', error.message);
-      }
-    );
+
+  tarefaClicked = (tarefa: { id: any }) => {
+    $('#over-text').fadeIn('100');
+    $('.texto-overlay').fadeIn('100');
+    this.router.navigate(['tarefas-detail', tarefa.id]);
   };
+
+  // ABRIR NOVA TAREFA
+  novaTarefa() {
+    $('#over-tarefa').fadeIn('100');
+    $('.nova-tarefa').fadeIn('100');
+    this.router.navigate(['nova-tarefa']);
+  }
 }

@@ -18,15 +18,8 @@ $('#fechar-bt2').on('click', function() {
     $('#config').fadeOut('500');
 })
 
+$('#fechar-bt3').on('click', function () {
+  $('#over-text').fadeOut('500');
+});
 
-
-function SubMenu() {
-    $("[data-load-sub]").unbind("click");
-    $("[data-load-sub]").click(function () {
-      var page = $(this).attr("data-load-page");
-      if (!$(this).find("a").hasClass("mm-active")) {
-        $("#sub-conteudo").load(page);
-      }
-    });
-  }
   

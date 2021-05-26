@@ -1,3 +1,4 @@
+<!--  -->
 <div
   class="
     app-container app-theme-white
@@ -175,14 +176,19 @@
           </button>
         </span>
       </div>
+
+      <!-- MENU PRINCIPAL -->
       <div class="scrollbar-sidebar">
         <div class="app-sidebar__inner">
           <ul class="vertical-nav-menu">
             <li class="app-sidebar__heading">Navegação</li>
-            <li
-              data-load-page="./assets/static/paginas_data/painel-analises.html"
-            >
-              <a> <i class="metismenu-icon fas fa-chart-bar"></i> Dashboard </a>
+
+            <li routerLink="/dashboard" routerLinkActive="mm-active">
+              <a>
+                <i class="metismenu-icon fas fa-chart-bar"></i> Painel de
+                Analises
+              </a>
+              <ul style="display: none"></ul>
             </li>
 
             <li>
@@ -194,10 +200,11 @@
                 ></i>
               </a>
               <ul>
-                <li
-                  data-load-page="./assets/static/paginas_data/novo-titular-dependente.html"
-                >
-                  <a> <i class="metismenu-icon"> </i>Novo Pedido </a>
+                <li routerLink="/novo-titular" routerLinkActive="mm-active">
+                  <a> <i class="metismenu-icon"> </i>Novo Titular </a>
+                </li>
+                <li routerLink="/novo-dependente" routerLinkActive="mm-active">
+                  <a> <i class="metismenu-icon"> </i>Novo Dependente </a>
                 </li>
               </ul>
             </li>
@@ -221,23 +228,25 @@
 
             <li>
               <a>
-                <i class="metismenu-icon fas fa-edit"></i> Alteração Titular
-                Ativo
+                <i class="metismenu-icon fas fa-edit"></i> Alteração Titular e
+                Dependente
                 <i
                   class="metismenu-state-icon fas fa-chevron-down caret-left"
                 ></i>
               </a>
               <ul>
                 <li
-                  data-load-page="./assets/static/paginas_data/alteracao-titular-ativo.html"
+                  routerLink="/alteracao-titular"
+                  routerLinkActive="mm-active"
                 >
-                  <a> <i class="metismenu-icon"> </i>Alterar Pedido </a>
+                  <a> <i class="metismenu-icon"> </i>Alterar Titular </a>
                 </li>
 
                 <li
-                  data-load-page="./assets/static/paginas_data/dados-cadastrais.html"
+                  routerLink="/alteracao-dependente"
+                  routerLinkActive="mm-active"
                 >
-                  <a> <i class="metismenu-icon"> </i>Dados Cadastrais </a>
+                  <a> <i class="metismenu-icon"> </i>Alterar Dependente </a>
                 </li>
               </ul>
             </li>
@@ -273,49 +282,54 @@
           </ul>
         </div>
       </div>
+
+      <!--  -->
     </div>
     <!-- APPS APARECERAO AQUI -->
-    <div id="tarefas">
-      <div class="box-text">
-        <a id="fechar-bt">
-          <div class="fechar-button">X</div>
-        </a>
-        <div class="text-info-box">
-          <h2 class="titulo-task">
-            <i class="fas fa-edit"></i> Lista de Tarefas
-          </h2>
-          <div class="col-2 add-div">
-            <i class="edit-plus fas fa-plus"></i> Adicionar tarefa
-          </div>
-          <div class="col-9 search-div">
-            <input
-              class="form-control"
-              type="text"
-              id="search"
-              name="search"
-              placeholder="Digite o nome da tarefa para buscar"
-            />
-            <i class="edit-search fas fa-search"></i>
-          </div>
-          <ul class="task-list">
-            <span
-              ><li
-                class="task-item"
-                *ngFor="let tarefa of tarefas"
-                (click)="tarefaClicked(tarefa)"
-              >
-                {{ tarefa.id }} - {{ tarefa.titulo }}
-              </li>
-              <!-- <p>{{ selected_tarefa.titulo }}</p>
+
+    <div id="conteudo"></div>
+
+    <div class="box-text">
+      <a id="fechar-bt">
+        <div class="fechar-button">X</div>
+      </a>
+      <div class="text-info-box">
+        <h2 class="titulo-task">
+          <i class="fas fa-edit"></i> Lista de Tarefas
+        </h2>
+        <div class="col-2 add-div" (click)="novaTarefa()">
+          <i class="edit-plus fas fa-plus"></i> Adicionar tarefa
+        </div>
+        <div class="col-9 search-div">
+          <input
+            class="form-control"
+            type="text"
+            id="search"
+            name="search"
+            placeholder="Digite o nome da tarefa para buscar"
+          />
+          <i class="edit-search fas fa-search"></i>
+        </div>
+        <ul class="task-list">
+          <span
+            ><li
+              class="task-item"
+              *ngFor="let tarefa of tarefas"
+              (click)="tarefaClicked(tarefa)"
+            >
+              {{ tarefa.id }} - {{ tarefa.titulo }}
+            </li>
+            <!-- <p>{{ selected_tarefa.titulo }}</p>
               <p>{{ selected_tarefa.descricao }}</p>
               <p>{{ selected_tarefa.feito }}</p> -->
-              <router-outlet></router-outlet>
-            </span>
-          </ul>
-        </div>
+          </span>
+        </ul>
       </div>
     </div>
+    <div id="tarefas"></div>
+    <!-- INSERT AND DELETE -->
+
     <!--  -->
-    <div id="conteudo"></div>
+    <router-outlet></router-outlet>
   </div>
 </div>

@@ -1,6 +1,12 @@
-{% extends 'base.html' %} {% block title %}Sistema Nova Rota Seguros{% endblock %}
-{% block content %}
-<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+{% extends 'base.html' %} {% block title %}Sistema Nova Rota Seguros{% endblock
+%} {% block content %}
+<div
+  class="
+    app-container app-theme-white
+    body-tabs-shadow
+    fixed-sidebar fixed-header
+  "
+>
   <div class="app-header header-shadow">
     <div class="app-header__logo">
       <div class="logo-src"></div>
@@ -9,7 +15,8 @@
           <button
             type="button"
             class="hamburger close-sidebar-btn hamburger--elastic"
-            data-class="closed-sidebar">
+            data-class="closed-sidebar"
+          >
             <span class="hamburger-box">
               <span class="hamburger-inner"></span>
             </span>
@@ -21,7 +28,8 @@
       <div>
         <button
           type="button"
-          class="hamburger hamburger--elastic mobile-toggle-nav">
+          class="hamburger hamburger--elastic mobile-toggle-nav"
+        >
           <span class="hamburger-box">
             <span class="hamburger-inner"></span>
           </span>
@@ -32,7 +40,10 @@
       <span>
         <button
           type="button"
-          class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav"
+          class="
+            btn-icon btn-icon-only btn btn-primary btn-sm
+            mobile-toggle-header-nav
+          "
         >
           <span class="btn-icon-wrapper">
             <i class="fa fa-ellipsis-v fa-w-6"></i>
@@ -44,8 +55,10 @@
       <div class="app-header-left">
         <ul class="header-menu nav">
           <li class="btn-group nav-item">
-            <a id="tarefas-bt" class="nav-link">
-              <i class="nav-link-icon fa fa-edit"></i> Lista de Tarefas
+            <a class="nav-link">
+              <button class="botaoAbrir" onclick="$('div.tarefas').fadeIn('500')">
+                <i class="nav-link-icon fa fa-edit"></i> Lista de Tarefas
+              </button>
             </a>
           </li>
           <li class="dropdown nav-item">
@@ -105,7 +118,12 @@
               <div class="widget-content-right header-user-info ml-3">
                 <button
                   type="button"
-                  class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example"
+                  class="
+                    btn-shadow
+                    p-1
+                    btn btn-primary btn-sm
+                    show-toastr-example
+                  "
                 >
                   <i class="fa text-white fa-calendar pr-1 pl-1"></i>
                 </button>
@@ -150,7 +168,10 @@
         <span>
           <button
             type="button"
-            class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav"
+            class="
+              btn-icon btn-icon-only btn btn-primary btn-sm
+              mobile-toggle-header-nav
+            "
           >
             <span class="btn-icon-wrapper">
               <i class="fa fa-ellipsis-v fa-w-6"></i>
@@ -230,15 +251,21 @@
                 ></i>
               </a>
               <ul>
-                <li data-load-page="../static/paginas_data/inclusao-empresa.html">
+                <li
+                  data-load-page="../static/paginas_data/inclusao-empresa.html"
+                >
                   <a> <i class="metismenu-icon"> </i>Inclusão </a>
                 </li>
 
-                <li data-load-page="../static/paginas_data/alteracao-empresa.html">
+                <li
+                  data-load-page="../static/paginas_data/alteracao-empresa.html"
+                >
                   <a> <i class="metismenu-icon"> </i>Alteração </a>
                 </li>
 
-                <li data-load-page="../static/paginas_data/exclusao-empresa.html">
+                <li
+                  data-load-page="../static/paginas_data/exclusao-empresa.html"
+                >
                   <a> <i class="metismenu-icon"> </i>Exclusão </a>
                 </li>
               </ul>

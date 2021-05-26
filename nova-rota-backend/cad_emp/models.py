@@ -1,45 +1,29 @@
 from django.db import models
 
-class Titular (models.Model):
-    sexo_choice = (
-        ('Masculino', 'Masculino'),
-        ('Feminino', 'Feminino'),
-    )
+class Empresa (models.Model):
 
-    estado_civil_choice = (
-        ('Solteiro(a)', 'Solteiro(a)'),
-        ('Casado(a)', 'Casado(a)'),
-        ('Convivente', 'Convivente'),
-    )
-    CNPJ = models.CharField("CNPJ", max_length=11, null=False)
-    cod_empresa = models.CharField("Codigo Empresa", max_length=25, null=False)
+    CNPJ = models.CharField("CNPJ", null=False, max_length=18, unique=True)
+    cod_empresa = models.CharField("Codigo Empresa", max_length=25, null=False, unique=True)
     data_recebimento = models.DateField(
         "Data Recebimento", auto_now=False, auto_now_add=False, blank=True, null=False)
     tipo_contrato = models.CharField("Tipo Cadastro", max_length=25,
-                            default="Inclusão de Titular", editable=False)
+                                     default="Inclusão de Titular", editable=False)
     razao_social = models.CharField("Razão Social", max_length=255)
-    data_nascimento = models.DateField(
-        "Data Nascimento", auto_now_add=False, auto_now=False, blank=True, null=False)
-    sexo = models.CharField(max_length=25, choices=sexo_choice,
-                            blank=True, default="Selecione", null=False)
-    estado_civil = models.CharField(
-        max_length=25, choices=estado_civil_choice, default="Selecione", null=False)
-    anexo_doc_tit = models.ImageField(upload_to='anexo_titulares', blank=True, null=True)
-    nome_mae = models.CharField("Nome da Mae", max_length=255)
-    data_admissao = models.DateField(
-        "Data de Admissao", auto_now=False, auto_now_add=False, null=False)
-    tipo_parentesco = models.CharField(
-        "Tipo Parentesco", max_length=25, default="Sem Parentesco", editable=False)
-    celular = models.CharField("Numero do Celular", max_length=100, null=True)
-    cidade = models.CharField("Cidade", max_length=150)
+    anexo_doc_emp = models.ImageField(upload_to='anexo_empresa', blank=True, null=True)
+    vencimento_boleto = models.DateField(
+        "Vencimento do Boleto", auto_now=False, auto_now_add=False, null=False)
+    inicio_vigencia = models.DateField(
+        "Inicio de Vigência", auto_now=False, auto_now_add=False, null=False)
+    historico_reajuste = models.CharField("Histórico de Reajuste", max_length=100, null=True)
+    historico_sinistro = models.CharField("Histórico de Sinistralidade", max_length=100, null=True)
     declaracao_saude = models.CharField("Declaracao Saude", max_length=255)
     status = models.CharField("Status", max_length=25,
                               default="OK", editable=False)
-    desc_declarao_saude = models.CharField(
-        "Desc. Declaracao Saude", max_length=255)
+    cod_apolice = models.CharField(
+        "Código ou Apólice", max_length=255)
     observacoes = models.TextField("Obs.", blank=True, null=True)
     criado_em = models.DateTimeField("criado em", auto_now_add=True)
     atualizado_em = models.DateTimeField("atualizado", auto_now=True)
 
     def __str__(self):
-        return f'{self.nome_benef} - CPF: {self.CPF}'
+        return f'{self.razao_social} - CNPJ: {self.CNPJ}'

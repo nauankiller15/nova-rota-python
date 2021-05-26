@@ -1,0 +1,470 @@
+<div class="fadeIn app-main">
+  <div class="app-main__outer">
+    <div class="app-main__inner">
+      <div class="app-page-title">
+        <div class="page-title-wrapper">
+          <div class="page-title-heading">
+            <div class="page-title-icon">
+              <i class="fas fa-address-card icon-gradient bg-mean-fruit"> </i>
+            </div>
+            <div>
+              Alteração Dependente Ativo
+              <div class="page-title-subheading">
+                Alteração de dados - Dependente Ativo.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="consulta2" class="main-card mb-3 card">
+        <div class="card-body">
+          <h5 class="card-title">Consultar o Dependente</h5>
+          <form class="needs-validation">
+            <div class="form-row">
+              <div class="col-md-2 mb-2">
+                <label for="validationCustom01">CPF</label>
+                <input
+                  (keypress)="numberOnly($event)"
+                  [(ngModel)]="CPF"
+                  [ngModelOptions]="{ standalone: true }"
+                  (input)="searchCPF()"
+                  class="form-control cpf"
+                  type="text"
+                  id="search_cpf"
+                  placeholder="Pesquise por CPF"
+                />
+              </div>
+              <!-- (keypress)="textOnly($event)" -->
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom01">Nome do Dependente</label>
+                <input
+                  [(ngModel)]="nome_dependente"
+                  (input)="searchNomeBenef()"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o nome do Dependente"
+                />
+              </div>
+            </div>
+            <div class="titulares">
+              <li
+                *ngFor="
+                  let dependente of dependentes
+                    | paginate: { itemsPerPage: 5, currentPage: p }
+                "
+                (click)="dependenteClicked(dependente)"
+              >
+                CPF: {{ dependente.CPF }} - {{ dependente.nome_dependente }}
+                <i
+                  style="float: right; margin-top: 4px"
+                  class="fas fa-external-link-alt"
+                ></i>
+              </li>
+            </div>
+            <pagination-controls class="paginacao"
+              previousLabel="Anterior"
+              nextLabel="Seguinte"
+              directionLinks="true"
+              autoHide="true"
+              responsive="true"
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </form>
+        </div>
+      </div>
+      <div id="dependentes" class="main-card mb-3 card">
+        <h1 class="titular-ts" style="margin-left: 20px; padding-top: 20px">
+          <div id="voltardadosdep" class="voltar">
+            <i class="fas fa-chevron-left"></i>
+          </div>
+          {{ selected_dependente.nome_dependente }}
+          <p class="cpf-ts">
+            Inscrito(a) sob CPF:
+            {{ selected_dependente.CPF }}
+          </p>
+          <p class="cpf-ts">
+            Dependente de:
+            {{ selected_dependente.titular }}
+          </p>
+        </h1>
+        <div class="card-body">
+          <h5 class="card-title">ALTERE OS CAMPOS ABAIXO:</h5>
+          <form class="needs-validation">
+            <div class="form-row">
+              <div class="col-md-2 mb-2">
+                <label for="validationCustom01">CPF</label>
+                <input
+                  maxlength="11"
+                  [(ngModel)]="selected_dependente.CPF"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="text"
+                  class="form-control cpf"
+                  placeholder="Número de CPF"
+                />
+
+                <div class="invalid-feedback">
+                  Por favor informe o número do CPF corretamente.
+                </div>
+              </div>
+
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom01">Código Empresa</label>
+                <input
+                  [(ngModel)]="selected_dependente.cod_empresa"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="text"
+                  class="form-control"
+                  placeholder="Código da Empresa"
+                  required
+                />
+
+                <div class="invalid-feedback">
+                  Por favor informe o número do Código corretamente.
+                </div>
+              </div>
+
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom01">Data de Recebimento</label>
+                <input
+                  [(ngModel)]="selected_dependente.data_recebimento"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="date"
+                  class="form-control"
+                  placeholder="Informe a data de recebimento"
+                  required
+                />
+
+                <div class="invalid-feedback">
+                  Por favor informe o número da data de recebimento
+                  corretamente.
+                </div>
+              </div>
+
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom01">Prioridade</label>
+                <input
+                  readonly="True"
+                  type="text"
+                  class="form-control"
+                  placeholder="Prioridade"
+                  required
+                />
+
+                <div class="invalid-feedback">
+                  Por favor informe o número da data de recebimento
+                  corretamente.
+                </div>
+              </div>
+
+              <div class="col-md-3 mb-3">
+                <label for="validationCustom01">Tipo</label>
+                <input
+                  [(ngModel)]="selected_dependente.tipo"
+                  [ngModelOptions]="{ standalone: true }"
+                  readonly="“true”"
+                  type="text"
+                  class="form-control"
+                  required
+                />
+
+                <div class="invalid-feedback">
+                  Por favor informe o número do CPF corretamente.
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom01">Nome do Dependente</label>
+                <input
+                  [(ngModel)]="selected_dependente.nome_dependente"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o nome do Dependente"
+                  required
+                />
+              </div>
+
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom01">Data de Nascimento</label>
+                <input
+                  [(ngModel)]="selected_dependente.data_nascimento"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="date"
+                  class="form-control"
+                  placeholder="Informe a data de nascimento"
+                  required
+                />
+
+                <div class="invalid-feedback">
+                  Por favor informe o número do CPF corretamente.
+                </div>
+              </div>
+
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom02">Sexo</label>
+                <select
+                  [(ngModel)]="selected_dependente.sexo"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control"
+                  name="sexo"
+                  required
+                >
+                  <option value="Masculino">Masculino</option>
+                  <option value="Feminino">Feminino</option>
+                </select>
+              </div>
+
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom02">Estado Civil</label>
+                <select
+                  [(ngModel)]="selected_dependente.estado_civil"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control"
+                  name="estado_civil"
+                  required
+                >
+                  <option value="Solteiro(a)">Solteiro(a)</option>
+                  <option value="Casado(a)">Casado(a)</option>
+                  <option value="Convivente">Convivente</option>
+                </select>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom01">Nome da Mãe</label>
+                <input
+                  [(ngModel)]="selected_dependente.nome_mae"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o nome da Mãe"
+                  required
+                />
+              </div>
+
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom05">Data de Admissão</label>
+                <input
+                  [(ngModel)]="selected_dependente.data_admissao"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="date"
+                  class="form-control"
+                  placeholder="Informe a data de admissão"
+                  required
+                />
+              </div>
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom05">Data de Casamento</label>
+                <input
+                  [(ngModel)]="selected_dependente.data_casamento"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="date"
+                  class="form-control"
+                  placeholder="Informe a data do casamento"
+                  required
+                />
+              </div>
+
+              <div class="col-md-2 mb-2">
+                <label for="validationCustom01">Parentesco</label>
+                <input
+                  [(ngModel)]="selected_dependente.tipo_parentesco"
+                  [ngModelOptions]="{ standalone: true }"
+                  readonly="“true”"
+                  type="text"
+                  class="form-control"
+                  placeholder="Sem Parentesco"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-2 mb-2">
+                <label for="validationCustom01">CEP</label>
+                <input
+                  [(ngModel)]="selected_dependente.CEP"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="text"
+                  class="form-control cep"
+                  placeholder="Informe o CEP"
+                  required
+                />
+              </div>
+
+              <div class="col-md-2 mb-2">
+                <label for="validationCustom01">Celular</label>
+                <input
+                  [(ngModel)]="selected_dependente.celular"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="text"
+                  class="form-control phone_with_ddd"
+                  placeholder="Informe o Celular"
+                  required
+                />
+              </div>
+
+              <div class="col-md-2 mb-2">
+                <label for="validationCustom03">Cidade</label>
+                <input
+                  [(ngModel)]="selected_dependente.cidade"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="text"
+                  class="form-control"
+                  placeholder="Cidade"
+                  required
+                />
+              </div>
+
+              <div class="col-md-1 mb-1">
+                <label for="validationCustom02">Estado UF</label>
+                <select
+                  [(ngModel)]="selected_dependente.estado"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control"
+                  name="estado_uf"
+                  required
+                >
+                  <option value="AL">AL</option>
+                  <option value="AP">AP</option>
+                  <option value="AM">AM</option>
+                  <option value="BA">BA</option>
+                  <option value="CE">CE</option>
+                  <option value="DF">DF</option>
+                  <option value="ES">ES</option>
+                  <option value="GO">GO</option>
+                  <option value="MA">MA</option>
+                  <option value="MT">MT</option>
+                  <option value="MS">MS</option>
+                  <option value="MG">MG</option>
+                  <option value="PB">PB</option>
+                  <option value="PR">PR</option>
+                  <option value="PE">PE</option>
+                  <option value="PI">PI</option>
+                  <option value="RJ">RJ</option>
+                  <option value="RN">RN</option>
+                  <option value="RS">RS</option>
+                  <option value="RO">RO</option>
+                  <option value="RR">RR</option>
+                  <option value="SC">SC</option>
+                  <option value="SP">SP</option>
+                  <option value="SE">SE</option>
+                  <option value="TO">TO</option>
+                </select>
+              </div>
+
+              <div class="col-md-2 mb-2">
+                <label for="validationCustom03">Declaração de Saúde</label>
+                <input
+                  [(ngModel)]="selected_dependente.declaracao_saude"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="text"
+                  class="form-control"
+                  id="validationCustom09"
+                  placeholder="Declaração de Saúde"
+                  required
+                />
+              </div>
+
+              <div class="col-md-2 mb-2">
+                <label for="validationCustom04">Status Sistema</label>
+                <input
+                  readonly="true"
+                  [(ngModel)]="selected_dependente.status"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="text"
+                  class="form-control"
+                  id="validationCustom10"
+                  placeholder="OK"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Por favor informe o estado corretamente.
+                </div>
+              </div>
+              <div class="col-md-4 mb-4">
+                <label for="validationCustom05"
+                  >Descrição da Declaração de Saúde</label
+                >
+                <input
+                  [(ngModel)]="selected_dependente.desc_declarao_saude"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="text"
+                  class="form-control"
+                  id="validationCustom12"
+                  placeholder="Informe aqui exatamente como está na declaração"
+                  required
+                />
+              </div>
+
+              <div class="col-md-5 mb-5">
+                <label for="validationCustom05">Observações</label>
+                <input
+                  [(ngModel)]="selected_dependente.observacoes"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="text"
+                  class="form-control"
+                  id="validationCustom11"
+                  placeholder="Informe aqui aspectos importantes para o movimentação"
+                  required
+                />
+              </div>
+
+              <div class="col-md-5 mb-5">
+                <label for="validationCustom05">Titular Vinculado</label>
+                <input
+                  [(ngModel)]="selected_dependente.titular"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="text"
+                  class="form-control"
+                />
+              </div>
+              <!--  -->
+            </div>
+            <button class="btn btn-primary" (click)="updateDependente()">
+              Alterar Dependente
+            </button>
+            <button class="btn btn-cancelar" type="submit">Apagar dados</button>
+          </form>
+        </div>
+
+        <!--  -->
+      </div>
+    </div>
+    <div class="app-wrapper-footer">
+      <div class="app-footer">
+        <div class="app-footer__inner">
+          <div class="app-footer-left">
+            <ul class="nav">
+              <li class="nav-item">
+                <a href="javascript:void(0);" class="nav-link"> Ajuda </a>
+              </li>
+              <li class="nav-item">
+                <a href="javascript:void(0);" class="nav-link">
+                  Relatar Problema
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="app-footer-right">
+            <ul class="nav">
+              <li class="nav-item">
+                <a href="javascript:void(0);" class="nav-link"> Outros </a>
+              </li>
+              <li class="nav-item">
+                <a href="javascript:void(0);" class="nav-link">
+                  <div class="badge badge-success mr-1 ml-0"></div>
+                  Outros
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.title = "Alteração Dependente Ativo";
+</script>

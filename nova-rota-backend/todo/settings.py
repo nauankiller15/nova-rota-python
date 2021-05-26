@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'principal',
     'cad_bp',
     'cad_at',
+    'cad_emp',
+    'cad_emp_filial',
     'tarefas',
 ]
 

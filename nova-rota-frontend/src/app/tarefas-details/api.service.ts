@@ -10,9 +10,26 @@ export class ApiService {
   httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient) {}
-
-  getTarefa(id): Observable<any> {
+  
+  getTarefa(id: string | number): Observable<any> {
     return this.http.get(this.baseUrl + 'tarefas/' + id + '/', {
+      headers: this.httpHeaders,
+    });
+  }
+
+  updateTarefa(tarefa: {
+    titulo?: string;
+    descricao?: string;
+    feito?: string;
+    id?: any;
+  }): Observable<any> {
+    return this.http.put(this.baseUrl + 'tarefas/' + tarefa.id + '/', tarefa, {
+      headers: this.httpHeaders,
+    });
+  }
+
+  deleteTarefa(id: string): Observable<any> {
+    return this.http.delete(this.baseUrl + 'tarefas/' + id + '/', {
       headers: this.httpHeaders,
     });
   }

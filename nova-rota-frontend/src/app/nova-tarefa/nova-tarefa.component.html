@@ -1,0 +1,29 @@
+<div class="nova-tarefa">
+  <a id="fechar-bt4">
+    <div class="fechar-button2">X</div>
+  </a>
+  <h2><i class="fas fa-edit"></i> Nova Tarefa</h2>
+  <h3>
+    <input
+      class="no-borda"
+      type="text"
+      [(ngModel)]="tarefa.titulo"
+      placeholder="Digte aqui o Título da Tarefa"
+    />
+  </h3>
+  <span>
+    <textarea
+      class="no-borda3"
+      style="min-height: 162px"
+      type="text"
+      [(ngModel)]="tarefa.descricao"
+      placeholder="Digite aqui a descrição da Tarefa"
+    ></textarea>
+  </span>
+ 
+  <br />
+  <button class="edit-edit" (click)="save()">
+    <i class="fas fa-plus"></i> Nova tarefa
+  </button>
+</div>
+<div id="over-tarefa"></div>
