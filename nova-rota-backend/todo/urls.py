@@ -11,7 +11,7 @@ from tarefas.api.viewsets import TarefaViewSet
 
 router = routers.DefaultRouter()
 router.register(r'titular', TitularViewSet)
-router.register(r'^parentesco/{pk}$', ParentescoViewSet)
+router.register(r'parentesco', ParentescoViewSet)
 router.register(r'tarefas', TarefaViewSet)
 router.register(r'empresa', EmpresaViewSet)
 

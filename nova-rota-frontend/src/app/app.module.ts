@@ -59,6 +59,7 @@ import { AltDependenteDetailsComponent } from './alt-dependente-details/alt-depe
     ToastrModule.forRoot({
       timeOut: 2500,
       closeButton: true,
+      positionClass: 'toast-bottom-right',
     }),
   ],
   providers: [],

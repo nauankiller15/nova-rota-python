@@ -112,7 +112,9 @@ export class NovoDependenteComponent implements OnInit {
 
     $('#vincular-tit').click(function () {
       $('#vinc-titular').fadeIn('200');
-      
+    });
+    $('#vinc-titular').click(function () {
+      $('#vinc-titular').fadeOut('200');
     });
   }
 
@@ -140,6 +142,9 @@ export class NovoDependenteComponent implements OnInit {
   }
 
   titularClickedDependente = (titular: any) => {
+    $('#vinc-titular').fadeOut('200');
+    $('#encounter-tit').slideDown('200');
+
     this.api.getTitular(titular.id).subscribe(
       (data) => {
         this.dependente.titular = titular.id;

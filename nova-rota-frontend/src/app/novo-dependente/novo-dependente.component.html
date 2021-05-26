@@ -301,7 +301,7 @@
                     <i style="margin-right: 5px" class="fas fa-id-badge"></i>
                     Vincular Titular
                   </button>
-                  <p>{{ dependente.nome_benef }}</p>
+                  <p id="encounter-tit" style="display: none;">Titular vinculado: <b>{{ dependente.nome_benef }}</b></p>
                 </div>
               </div>
 
@@ -319,7 +319,7 @@
                         placeholder="Buscar Titular pelo Nome"
                       />
                     </div>
-                    <em for="validationCustom05">Titular Encontrado:</em>
+                    <em for="validationCustom05">Titulares Encontrados:</em>
                     <input
                       style="display: none"
                       value=""
@@ -333,7 +333,7 @@
                         value="{{ titular.id }}"
                         *ngFor="
                           let titular of titulares
-                            | paginate: { itemsPerPage: 5, currentPage: p }
+                            | paginate: { itemsPerPage: 8, currentPage: p }
                         "
                         (click)="titularClickedDependente(titular)"
                       >
