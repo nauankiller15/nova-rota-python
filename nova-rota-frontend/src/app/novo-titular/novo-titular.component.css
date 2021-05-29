@@ -1,0 +1,40 @@
+/* TELA DE ANEXO CASADO */
+#vinc-anexo-casado {
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #0000005e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #vinc-anexo-casado {
+    display: none;
+  }
+  
+  .anexo-info-box-titular-vinc {
+    margin: auto;
+    width: 80%;
+    margin-top: 29px;
+    padding: 10px;
+  }
+  
+  .box-anexo {
+    border-top: 4px solid var(--cor-tema);
+    border-radius: 15px;
+    background: #ffffff;
+    max-width: 125vh;
+    width: 70vh;
+    min-height: 30vh;
+    margin: 10vh auto;
+    z-index: 997;
+    position: fixed;
+    top: 40vh;
+    left: 58%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}

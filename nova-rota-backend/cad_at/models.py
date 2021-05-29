@@ -15,7 +15,8 @@ class Titular (models.Model):
         ('Convivente', 'Convivente'),
     )
     CPF = BRCPFField("CPF", max_length=14, null=False, unique=True)
-    cod_empresa = models.CharField("Codigo Empresa", max_length=25, null=False)
+    cod_empresa = models.CharField("Codigo Empresa", max_length=25, null=False, blank=False)
+    carteirinha = models.CharField("Numero da Carteirinha", max_length=35, null=False, blank=False, unique=True)
     data_recebimento = models.DateField(
         "Data Recebimento", auto_now=False, auto_now_add=False, blank=True, null=False)
     tipo = models.CharField("Tipo Cadastro", max_length=25,
@@ -24,17 +25,16 @@ class Titular (models.Model):
     data_nascimento = models.DateField(
         "Data Nascimento", auto_now_add=False, auto_now=False, blank=False, null=False)
     data_casamento = models.DateField(
-        "Data Casamento", auto_now_add=False, auto_now=False, blank=True)
+        "Data Casamento", auto_now_add=False, auto_now=False, blank=True, null=True, default="0000-00-00")
     sexo = models.CharField(max_length=25, choices=sexo_choice,
-                            blank=True, default="Selecione", null=False)
+                            blank=False, default="Selecione", null=False)
     estado_civil = models.CharField(
         max_length=25, choices=estado_civil_choice, default="Selecione", null=False, blank=False)
-    anexo_doc_tit = models.ImageField(upload_to='anexo_titulares', blank=True, null=True)
+    anexo_doc_casamento = models.ImageField(upload_to='anexo_tit_casamento', blank=True, null=True)
     nome_mae = models.CharField("Nome da Mae", max_length=255, blank=False)
     data_admissao = models.DateField(
         "Data de Admissao", auto_now=False, auto_now_add=False, null=False)
-    tipo_parentesco = models.CharField(
-        "Tipo Parentesco", max_length=25, default="Sem Parentesco", editable=False)
+
     CEP = BRPostalCodeField("Código Postal", max_length=14,null=False)
     celular = models.CharField("Numero do Celular", max_length=100, null=True)
     cidade = models.CharField("Cidade", max_length=150, blank=False, null=False)
@@ -46,7 +46,7 @@ class Titular (models.Model):
         "Desc. Declaracao Saude", max_length=255)
     observacoes = models.TextField("Obs.", blank=True, null=True)
     criado_em = models.DateTimeField("criado em", auto_now_add=True)
-    atualizado_em = models.DateTimeField("atualizado", auto_now=True)
+    atualizado_em = models.DateTimeField("atualizado em", auto_now=True)
 
     def __str__(self):
         return f'{self.nome_benef} - CPF: {self.CPF}'

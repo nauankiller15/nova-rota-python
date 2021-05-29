@@ -19,12 +19,14 @@ export class AlteracaoTitularComponent implements OnInit {
     tipo: '',
     nome_benef: '',
     data_nascimento: '',
+    carteirinha: '',
     sexo: '',
     estado_civil: '',
     anexo_doc_tit: '',
     nome_mae: '',
     data_admissao: '',
     data_casamento: '',
+    anexo_doc_casamento: '',
     tipo_parentesco: '',
     CEP: '',
     celular: '',
@@ -105,9 +107,18 @@ export class AlteracaoTitularComponent implements OnInit {
     //
     // VOLTAR ALTERAÇÃO DE DADOS
     $('#voltardados').click(function () {
-      $('#titulares').fadeOut('200');
+      $('#titularesappear').fadeOut('200');
       $('#consulta').slideDown('200');
     });
+
+    $('#abrirAnexoAlt').click(function () {
+      $('#vinc-anexo-casadoAlt').fadeIn('100');
+    });
+
+    $('#fecharAnexoAlt').click(function () {
+      $('#vinc-anexo-casadoAlt').fadeOut('100');
+    });
+
   }
 
   searchCPF() {
@@ -156,7 +167,7 @@ export class AlteracaoTitularComponent implements OnInit {
 
   titularClicked = (titular: { id: string }) => {
     $('#consulta').fadeOut('200');
-    $('#titulares').fadeIn('20');
+    $('#titularesappear').fadeIn('200');
     this.api.getTitular(titular.id).subscribe(
       (data) => {
         this.selected_titular = data;
@@ -178,11 +189,13 @@ export class AlteracaoTitularComponent implements OnInit {
         nome_benef: string;
         data_nascimento: string;
         sexo: string;
+        carteirinha: string;
         estado_civil: string;
         anexo_doc_tit: string;
         nome_mae: string;
         data_admissao: string;
         data_casamento: string;
+        anexo_doc_casamento: any;
         tipo_parentesco: string;
         CEP: string;
         celular: string;
@@ -192,6 +205,7 @@ export class AlteracaoTitularComponent implements OnInit {
         status: string;
         desc_declarao_saude: string;
         observacoes: string;
+
       }) => {
         this.selected_titular = data;
         this.toastr.success('Atualizado com sucesso!');

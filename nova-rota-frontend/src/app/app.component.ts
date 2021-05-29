@@ -113,13 +113,17 @@ export class AppComponent implements OnInit {
   tarefas = [{ id: '', titulo: '' }];
   selected_tarefa = { id: 0, titulo: '', descricao: '', feito: '' };
 
+  titulo: string;
+  p: number = 1;
+  selected_id: any;
+
+
   constructor(
     private api: ApiService,
     private router: Router,
     private toastr: ToastrService  ) {
     this.getTarefas();
   }
-  selected_id: any;
 
   getTarefas = () => {
     this.api.getAlltarefas().subscribe(
@@ -131,6 +135,16 @@ export class AppComponent implements OnInit {
       }
     );
   };
+
+  searchTarefa() {
+    if (this.titulo != '') {
+      this.tarefas = this.tarefas.filter((res) => {
+        return res.titulo.toLocaleLowerCase().match(this.titulo.toLocaleLowerCase());
+      });
+    } else if (this.titulo == '') {
+      this.getTarefas();
+    }
+  }
 
   tarefaClicked = (tarefa: { id: any }) => {
     $('#over-text').fadeIn('100');

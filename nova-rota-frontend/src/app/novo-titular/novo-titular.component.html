@@ -10,7 +10,7 @@
             <div>
               Inclusão de Titular
               <div class="page-title-subheading">
-                Novo Titular - Titular Ativo.
+                Novo Titular Ativo.
               </div>
             </div>
           </div>
@@ -21,7 +21,7 @@
       <div class="main-card mb-3 card">
         <div class="card-body">
           <h5 class="card-title">Preencha os campos abaixo:</h5>
-          <form class="needs-validation">
+          <form class="needs-validation" novalidate>
             <div class="form-row">
               <div class="col-md-2 mb-2">
                 <label for="validationCustom01">CPF</label>
@@ -32,6 +32,7 @@
                   type="text"
                   class="form-control cpf"
                   placeholder="Número de CPF"
+                  required
                 />
               </div>
 
@@ -43,6 +44,7 @@
                   type="text"
                   class="form-control"
                   placeholder="Código da Empresa"
+                  required
                 />
               </div>
 
@@ -63,10 +65,23 @@
                   type="text"
                   class="form-control"
                   placeholder="Prioridade"
+                  readonly="ture"
                 />
               </div>
 
-              <div class="col-md-3 mb-3">
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom01">Número da Carteirinha</label>
+                <input
+                  [(ngModel)]="titular.carteirinha"
+                  maxlength="9"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o número"
+                />
+              </div>
+
+              <div class="col-md-3 mb-3" style="display: none">
                 <label for="validationCustom01">Tipo</label>
                 <input
                   [(ngModel)]="titular.tipo"
@@ -74,7 +89,7 @@
                   readonly="“true”"
                   type="text"
                   class="form-control"
-                  placeholder="Inclusão de Titular"
+                  placeholder="Inclusão de Dependente"
                 />
               </div>
 
@@ -116,17 +131,57 @@
 
               <div class="col-md-2 mb-3">
                 <label for="validationCustom02">Estado Civil</label>
+                <!-- BOTÃO REANEXAR CASADO -->
+                <div id="reanexar" style="display: none">
+                  <button
+                    style="position: absolute; right: -46px"
+                    class="btn btn-primary"
+                    id="abrirAnexo"
+                  >
+                    <i class="fas fa-file-image" style="font-size: 15px"></i>
+                  </button>
+                </div>
                 <select
+                  id="estado_civil"
                   class="form-control"
-                  name="estado_civil"
                   [(ngModel)]="titular.estado_civil"
                   [ngModelOptions]="{ standalone: true }"
                 >
-                  <option value="">Selecione aqui</option>
+                  <option value="">Selecione</option>
                   <option value="Solteiro(a)">Solteiro(a)</option>
                   <option value="Casado(a)">Casado(a)</option>
                   <option value="Convivente">Convivente</option>
                 </select>
+
+                <!-- VINCULAR ANEXO DE CASADO -->
+                <div id="vinc-anexo-casado">
+                  <div class="box-anexo">
+                    <div class="anexo-info-box-titular-vinc">
+                      <label for="avatar">Escolha um imagem para anexar:</label>
+
+                      <input
+                        type="file"
+                        id="imagemCasado"
+                        accept="image/png, image/jpeg"
+                        [(ngModel)]="titular.anexo_doc_casamento"
+                        [ngModelOptions]="{ standalone: true }"
+                      />
+
+                      <button
+                        style="
+                          display: flex;
+                          position: absolute;
+                          right: 20px;
+                          bottom: 20px;
+                        "
+                        class="btn btn-primary"
+                        id="fecharAnexo"
+                      >
+                        Anexar Arquivo
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div class="col-md-4 mb-3">
@@ -147,34 +202,17 @@
                   [ngModelOptions]="{ standalone: true }"
                   type="date"
                   class="form-control"
-                  placeholder="Informe a data de admissão"
                 />
-                <div class="invalid-feedback">
-                  Por favor informe o código postal corretamente.
-                </div>
               </div>
-              <div class="col-md-2 mb-3">
+              <div id="datacasamento" style="display: none;" class="col-md-2 mb-3">
                 <label for="validationCustom05">Data de Casamento</label>
                 <input
                   [(ngModel)]="titular.data_casamento"
                   [ngModelOptions]="{ standalone: true }"
                   type="date"
                   class="form-control"
-                  placeholder="Informe a data do casamento"
-                />
-                <div class="invalid-feedback">
-                  Por favor informe o código postal corretamente.
-                </div>
-              </div>
-
-              <div class="col-md-2 mb-2">
-                <label for="validationCustom01">Parentesco</label>
-                <input
-                  [(ngModel)]="titular.tipo_parentesco"
-                  [ngModelOptions]="{ standalone: true }"
-                  type="text"
-                  class="form-control"
-                  placeholder="Informe aqui"
+                  placeholder="0000-00-00"
+                  default="0000-00-00"
                 />
               </div>
             </div>
@@ -220,7 +258,6 @@
                   [ngModelOptions]="{ standalone: true }"
                   class="form-control"
                   name="estado_uf"
-                  required
                 >
                   <option value="">Selecione</option>
                   <option value="AL">AL</option>
@@ -285,9 +322,6 @@
                   class="form-control"
                   placeholder="Informe aqui exatamente como está na declaração"
                 />
-                <div class="invalid-feedback">
-                  Por favor informe o código postal corretamente.
-                </div>
               </div>
 
               <div class="col-md-5 mb-5">
@@ -299,16 +333,13 @@
                   class="form-control"
                   placeholder="Informe aqui aspectos importantes para o movimentação"
                 />
-                <div class="invalid-feedback">
-                  Por favor informe o código postal corretamente.
-                </div>
               </div>
             </div>
 
             <button class="btn btn-primary" (click)="newTitular()">
-              Gravar
+              Gravar informações
             </button>
-            <button class="btn btn-cancelar">Apagar tudo</button>
+            <button type="reset" class="btn btn-cancelar">Apagar tudo</button>
           </form>
         </div>
       </div>
@@ -335,8 +366,7 @@
               </li>
               <li class="nav-item">
                 <a href="javascript:void(0);" class="nav-link">
-                  <div class="badge badge-success mr-1 ml-0">
-                  </div>
+                  <div class="badge badge-success mr-1 ml-0"></div>
                   Outros
                 </a>
               </li>

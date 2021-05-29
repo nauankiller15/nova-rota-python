@@ -38,11 +38,6 @@
   transform: translate(0px, -3px);
 }
 /* ---------------------- */
-
-.paginacao /deep/ .ngx-pagination .current {
-  background: var(--cor-tema);
-}
-
 .ngx-pagination .current {
   padding: 0.1875rem 0.625rem;
   background: var(--cor-tema) !important;

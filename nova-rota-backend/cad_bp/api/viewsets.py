@@ -1,18 +1,14 @@
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from cad_at.models import Titular
 from cad_bp.models import Parentesco
 from .serializers import ParentescoSerializer
 
 
 class ParentescoViewSet(ModelViewSet):
-    queryset = Titular.objects.all()
+    queryset = Parentesco.objects.all()
     serializer_class = ParentescoSerializer
 
-    def list(self, request):
-        print(self.queryset)
-        titular = Titular.objects.filter(id=1).last()
-        queryset = titular.parentesco_set.all()
+    def list(self, request, *args, **kwargs):
+        queryset = Parentesco.objects.all()
         serializer = ParentescoSerializer(queryset, many=True)
         return Response(serializer.data)
-

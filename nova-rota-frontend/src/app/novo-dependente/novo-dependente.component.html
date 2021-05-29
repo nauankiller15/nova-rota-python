@@ -10,7 +10,7 @@
             <div>
               Inclusão de Dependente
               <div class="page-title-subheading">
-                Novo Dependente - Dependente Ativo.
+                Novo Dependente Ativo.
               </div>
             </div>
           </div>
@@ -63,10 +63,23 @@
                   type="text"
                   class="form-control"
                   placeholder="Prioridade"
+                  readonly="true"
                 />
               </div>
 
-              <div class="col-md-3 mb-3">
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom01">Número da Carteirinha</label>
+                <input
+                  [(ngModel)]="dependente.carteirinha"
+                  maxlength="9"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o número"
+                />
+              </div>
+
+              <div class="col-md-3 mb-3" style="display: none">
                 <label for="validationCustom01">Tipo</label>
                 <input
                   [(ngModel)]="dependente.tipo"
@@ -116,17 +129,59 @@
 
               <div class="col-md-2 mb-3">
                 <label for="validationCustom02">Estado Civil</label>
+                <!-- BOTÃO REANEXAR CASADO -->
+                <div id="reanexar3" style="display: none">
+                  <button
+                    style="position: absolute; right: -46px"
+                    class="btn btn-primary"
+                    id="abrirAnexo3"
+                  >
+                    <i class="fas fa-file-image" style="font-size: 15px"></i>
+                  </button>
+                </div>
+
                 <select
+                  id="estado_civil2"
                   class="form-control"
-                  name="estado_civil"
                   [(ngModel)]="dependente.estado_civil"
                   [ngModelOptions]="{ standalone: true }"
                 >
-                  <option value="">Selecione aqui</option>
+                  <option value="">Selecione</option>
                   <option value="Solteiro(a)">Solteiro(a)</option>
                   <option value="Casado(a)">Casado(a)</option>
                   <option value="Convivente">Convivente</option>
                 </select>
+
+                <!-- VINCULAR ANEXO DE CASADO -->
+                <div id="vinc-anexo-casado">
+                  <div class="box-anexo">
+                    <div class="anexo-info-box-titular-vinc">
+                      <label for="avatar"
+                        >Escolha um arquivo para anexar:</label
+                      >
+
+                      <input
+                        type="file"
+                        id="avatar"
+                        name="avatar"
+                        accept="image/png, image/jpeg"
+                      />
+
+                      <button
+                        style="
+                          display: flex;
+                          position: absolute;
+                          right: 20px;
+                          bottom: 20px;
+                        "
+                        class="btn btn-primary"
+                        id="fecharAnexo3"
+                      >
+                        Anexar Arquivo
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div class="col-md-4 mb-3">
@@ -150,7 +205,11 @@
                   placeholder="Informe a data de admissão"
                 />
               </div>
-              <div class="col-md-2 mb-3">
+              <div
+                id="datacasamentoDep"
+                style="display: none"
+                class="col-md-2 mb-3"
+              >
                 <label for="validationCustom05">Data de Casamento</label>
                 <input
                   [(ngModel)]="dependente.data_casamento"
@@ -161,15 +220,59 @@
                 />
               </div>
 
-              <div class="col-md-2 mb-2">
-                <label for="validationCustom01">Parentesco</label>
-                <input
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom02">Tipo Parentesco</label>
+                <!-- BOTÃO REANEXAR CASADO -->
+                <div id="reanexar2" style="display: none">
+                  <button
+                    style="position: absolute; right: -46px"
+                    class="btn btn-primary"
+                    id="abrirAnexo2"
+                  >
+                    <i class="fas fa-file-image" style="font-size: 15px"></i>
+                  </button>
+                </div>
+
+                <select
+                  id="filhoConjuge"
+                  class="form-control"
                   [(ngModel)]="dependente.tipo_parentesco"
                   [ngModelOptions]="{ standalone: true }"
-                  type="text"
-                  class="form-control"
-                  placeholder="Informe aqui"
-                />
+                >
+                  <option value="">Selecione</option>
+                  <option value="Filho(a)">Filho(a)</option>
+                  <option value="Conjuge">Conjuge</option>
+                </select>
+
+                <!-- VINCULAR ANEXO DE CASADO -->
+                <div id="vinc-anexo-conjugeFilho">
+                  <div class="box-anexo">
+                    <div class="anexo-info-box-titular-vinc">
+                      <label for="imagemCasado"
+                        >Escolha uma imagem para anexar:</label
+                      >
+
+                      <input
+                        type="file"
+                        id="imagemCasado"
+                        accept="image/png, image/jpeg"
+                      />
+
+                      <button
+                        style="
+                          display: flex;
+                          position: absolute;
+                          right: 20px;
+                          bottom: 20px;
+                        "
+                        class="btn btn-primary"
+                        id="fecharAnexo2"
+                      >
+                        Anexar Arquivo
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -301,7 +404,9 @@
                     <i style="margin-right: 5px" class="fas fa-id-badge"></i>
                     Vincular Titular
                   </button>
-                  <p id="encounter-tit" style="display: none;">Titular vinculado: <b>{{ dependente.nome_benef }}</b></p>
+                  <p id="encounter-tit" style="display: none">
+                    Titular vinculado: <b>{{ dependente.nome_benef }}</b>
+                  </p>
                 </div>
               </div>
 
@@ -319,6 +424,7 @@
                         placeholder="Buscar Titular pelo Nome"
                       />
                     </div>
+
                     <em for="validationCustom05">Titulares Encontrados:</em>
                     <input
                       style="display: none"
@@ -333,7 +439,12 @@
                         value="{{ titular.id }}"
                         *ngFor="
                           let titular of titulares
-                            | paginate: { itemsPerPage: 8, currentPage: p }
+                            | paginate
+                              : {
+                                  id: 'titularvinculo',
+                                  itemsPerPage: 8,
+                                  currentPage: p
+                                }
                         "
                         (click)="titularClickedDependente(titular)"
                       >
@@ -341,7 +452,8 @@
                       </li>
                     </div>
                     <pagination-controls
-                      class="paginacao"
+                      id="titularvinculo"
+                      class="paginacao-tit"
                       previousLabel="Anterior"
                       nextLabel="Seguinte"
                       directionLinks="true"
@@ -355,9 +467,9 @@
             </div>
 
             <button class="btn btn-primary" (click)="newDependente()">
-              Gravar
+              Gravar informações
             </button>
-            <button class="btn btn-cancelar">Apagar tudo</button>
+            <button type="reset" class="btn btn-cancelar">Apagar tudo</button>
           </form>
         </div>
       </div>

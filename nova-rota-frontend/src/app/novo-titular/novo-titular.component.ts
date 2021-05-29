@@ -20,11 +20,12 @@ export class NovoTitularComponent implements OnInit {
     nome_benef: '',
     data_nascimento: '',
     sexo: '',
+    carteirinha: '',
     estado_civil: '',
     nome_mae: '',
     data_admissao: '',
-    data_casamento: '',
-    tipo_parentesco: '',
+    data_casamento: null,
+    anexo_doc_casamento: null,
     CEP: '',
     celular: '',
     cidade: '',
@@ -32,7 +33,7 @@ export class NovoTitularComponent implements OnInit {
     declaracao_saude: '',
     status: '',
     desc_declarao_saude: '',
-    observacoes: '',
+    observacoes: null,
   };
 
   titulares = [
@@ -42,6 +43,8 @@ export class NovoTitularComponent implements OnInit {
       nome_benef: '',
     },
   ];
+
+  anex_doc_casamento: any;
 
   constructor(
     private toastr: ToastrService,
@@ -93,6 +96,37 @@ export class NovoTitularComponent implements OnInit {
       });
       $('.selectonfocus').mask('00/00/0000', { selectOnFocus: true });
     });
+
+    // TELA DE ANEXO ESTADO CIVIL
+
+    $('#estado_civil').on('change', function () {
+      'Casado(a)' === $(this).val()
+        ? $('#vinc-anexo-casado').fadeIn('100')
+        : $('#vinc-anexo-casado').fadeOut('100');
+      //
+      'Selecione' === $(this).val();
+      $('#reanexar').fadeOut('100');
+      $('#datacasamento').fadeOut('100');
+      //
+      'Solteiro' === $(this).val();
+      $('#reanexar').fadeOut('100');
+      $('#datacasamento').fadeOut('100');
+      //
+      'Convivente' === $(this).val();
+      $('#reanexar').fadeOut('100');
+      $('#datacasamento').fadeOut('100');
+    });
+
+    $('#fecharAnexo').click(function () {
+      $('#vinc-anexo-casado').fadeOut('100');
+      $('#reanexar').fadeIn('100');
+      $('#datacasamento').fadeIn('100');
+    });
+
+    $('#abrirAnexo').click(function () {
+      $('#vinc-anexo-casado').fadeIn('100');
+    });
+    //
   }
 
   newTitular() {

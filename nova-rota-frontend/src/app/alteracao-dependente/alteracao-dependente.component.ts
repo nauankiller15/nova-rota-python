@@ -58,6 +58,7 @@ export class AlteracaoDependenteComponent implements OnInit {
     desc_declarao_saude: '',
     observacoes: '',
     titular: '',
+    carteirinha: '',
   };
 
   dependentes = [
@@ -129,7 +130,7 @@ export class AlteracaoDependenteComponent implements OnInit {
     //
     // VOLTAR ALTERAÇÃO DE DADOS
     $('#voltardadosdep').click(function () {
-      $('#dependentes').fadeOut('200');
+      $('#dependentesappear').fadeOut('200');
       $('#consulta2').slideDown('200');
     });
   }
@@ -191,7 +192,7 @@ export class AlteracaoDependenteComponent implements OnInit {
 
   dependenteClicked = (dependentes: { id: string }) => {
     $('#consulta2').fadeOut('200');
-    $('#dependentes').fadeIn('20');
+    $('#dependentesappear').fadeIn('20');
     this.api.getDependente(dependentes.id).subscribe(
       (data) => {
         this.selected_dependente = data;
@@ -229,6 +230,7 @@ export class AlteracaoDependenteComponent implements OnInit {
         desc_declarao_saude: string;
         observacoes: string;
         titular: string;
+        carteirinha: string;
       }) => {
         this.selected_dependente = data;
         this.toastr.success('Atualizado com sucesso!');

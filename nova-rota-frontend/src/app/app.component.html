@@ -304,8 +304,9 @@
           <input
             class="form-control"
             type="text"
-            id="search"
-            name="search"
+            id="searchTarefa"
+            [(ngModel)]="titulo"
+            (input)="searchTarefa()"
             placeholder="Digite o nome da tarefa para buscar"
           />
           <i class="edit-search fas fa-search"></i>
@@ -314,15 +315,26 @@
           <span
             ><li
               class="task-item"
-              *ngFor="let tarefa of tarefas"
+              *ngFor="
+                let tarefa of tarefas
+                  | paginate: { id: 'tarefa', itemsPerPage: 6, currentPage: p }
+              "
               (click)="tarefaClicked(tarefa)"
             >
-              {{ tarefa.id }} - {{ tarefa.titulo }}
+              {{ tarefa.titulo }}
             </li>
-            <!-- <p>{{ selected_tarefa.titulo }}</p>
-              <p>{{ selected_tarefa.descricao }}</p>
-              <p>{{ selected_tarefa.feito }}</p> -->
           </span>
+          <pagination-controls
+            id="tarefa"
+            class="paginacao-tarefas"
+            previousLabel="Anterior"
+            maxSize="7"
+            autoHide="true"
+            nextLabel="Seguinte"
+            directionLinks="true"
+            responsive="true"
+            (pageChange)="p = $event"
+          ></pagination-controls>
         </ul>
       </div>
     </div>

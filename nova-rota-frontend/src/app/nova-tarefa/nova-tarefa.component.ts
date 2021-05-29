@@ -7,7 +7,7 @@ import { AppComponent } from '../app.component';
 declare var $: any;
 
 @Component({
-  selector: 'app-nova-tarefa',
+  selector: 'nova-tarefa',
   templateUrl: './nova-tarefa.component.html',
   styleUrls: ['./nova-tarefa.component.css'],
 })

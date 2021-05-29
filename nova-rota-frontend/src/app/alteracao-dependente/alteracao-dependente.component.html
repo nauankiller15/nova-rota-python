@@ -49,10 +49,12 @@
               </div>
             </div>
             <div class="titulares">
+              Dependentes Encontrados:
               <li
                 *ngFor="
                   let dependente of dependentes
-                    | paginate: { itemsPerPage: 5, currentPage: p }
+                    | paginate
+                      : { id: 'dependentes', itemsPerPage: 7, currentPage: p }
                 "
                 (click)="dependenteClicked(dependente)"
               >
@@ -63,7 +65,11 @@
                 ></i>
               </li>
             </div>
-            <pagination-controls class="paginacao"
+            <pagination-controls
+              id="dependentes"
+              class="paginacao"
+              maxSize="7"
+              autoHide="true"
               previousLabel="Anterior"
               nextLabel="Seguinte"
               directionLinks="true"
@@ -74,8 +80,11 @@
           </form>
         </div>
       </div>
-      <div id="dependentes" class="main-card mb-3 card">
-        <h1 class="titular-ts" style="margin-left: 20px; margin-right: 20px; padding-top: 20px">
+      <div id="dependentesappear" class="main-card mb-3 card">
+        <h1
+          class="titular-ts"
+          style="margin-left: 20px; margin-right: 20px; padding-top: 20px"
+        >
           <div id="voltardadosdep" class="voltar">
             <i class="fas fa-chevron-left"></i>
           </div>
@@ -158,7 +167,18 @@
                 </div>
               </div>
 
-              <div class="col-md-3 mb-3">
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom01">Número da Carteirinha</label>
+                <input
+                  [(ngModel)]="selected_dependente.carteirinha"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o número"
+                />
+              </div>
+
+              <div class="col-md-3 mb-3" style="display: none">
                 <label for="validationCustom01">Tipo</label>
                 <input
                   [(ngModel)]="selected_dependente.tipo"
@@ -166,40 +186,8 @@
                   readonly="“true”"
                   type="text"
                   class="form-control"
-                  required
+                  placeholder="Inclusão de Dependente"
                 />
-
-                <div class="invalid-feedback">
-                  Por favor informe o número do CPF corretamente.
-                </div>
-              </div>
-
-              <div class="col-md-4 mb-3">
-                <label for="validationCustom01">Nome do Dependente</label>
-                <input
-                  [(ngModel)]="selected_dependente.nome_dependente"
-                  [ngModelOptions]="{ standalone: true }"
-                  type="text"
-                  class="form-control"
-                  placeholder="Digite aqui o nome do Dependente"
-                  required
-                />
-              </div>
-
-              <div class="col-md-2 mb-3">
-                <label for="validationCustom01">Data de Nascimento</label>
-                <input
-                  [(ngModel)]="selected_dependente.data_nascimento"
-                  [ngModelOptions]="{ standalone: true }"
-                  type="date"
-                  class="form-control"
-                  placeholder="Informe a data de nascimento"
-                  required
-                />
-
-                <div class="invalid-feedback">
-                  Por favor informe o número do CPF corretamente.
-                </div>
               </div>
 
               <div class="col-md-2 mb-3">
@@ -425,7 +413,7 @@
             <button class="btn btn-primary" (click)="updateDependente()">
               Alterar Dependente
             </button>
-            <button class="btn btn-cancelar" type="submit">Apagar dados</button>
+            <button type="reset" class="btn btn-cancelar">Apagar dados</button>
           </form>
         </div>
 

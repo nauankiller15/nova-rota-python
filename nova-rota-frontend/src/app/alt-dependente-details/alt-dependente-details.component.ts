@@ -35,6 +35,7 @@ export class AltDependenteDetailsComponent implements OnInit {
     desc_declarao_saude: '',
     observacoes: '',
     titular: '',
+    carteirinha: '',
   };
 
   constructor(

@@ -11,7 +11,6 @@ declare var $: any;
   styleUrls: ['./novo-dependente.component.css'],
 })
 export class NovoDependenteComponent implements OnInit {
-
   titulares = [
     {
       id: 0,
@@ -28,10 +27,11 @@ export class NovoDependenteComponent implements OnInit {
     nome_dependente: '',
     data_nascimento: '',
     sexo: '',
+    carteirinha: '',
     estado_civil: '',
     nome_mae: '',
     data_admissao: '',
-    data_casamento: '',
+    data_casamento: null,
     tipo_parentesco: '',
     CEP: '',
     celular: '',
@@ -40,9 +40,9 @@ export class NovoDependenteComponent implements OnInit {
     declaracao_saude: '',
     status: '',
     desc_declarao_saude: '',
-    observacoes: '',
+    observacoes: null,
     titular: '',
-    nome_benef: ''
+    nome_benef: '',
   };
 
   dependentes = [
@@ -113,9 +113,60 @@ export class NovoDependenteComponent implements OnInit {
     $('#vincular-tit').click(function () {
       $('#vinc-titular').fadeIn('200');
     });
-    $('#vinc-titular').click(function () {
-      $('#vinc-titular').fadeOut('200');
+
+    // TELA DE ANEXO ESTADO CIVIL
+
+    $('#estado_civil2').on('change', function () {
+      'Casado(a)' === $(this).val()
+        ? $('#vinc-anexo-casado').fadeIn('100')
+        : $('#vinc-anexo-casado').fadeOut('100');
+      //
+      'Selecione' === $(this).val();
+      $('#reanexar3').fadeOut('100');
+      $('imagemCasado').val('');
+      $('#datacasamentoDep').fadeOut('100');
+      //
+      'Solteiro' === $(this).val();
+      $('#reanexar3').fadeOut('100');
+      $('imagemCasado').val('');
+      $('#datacasamentoDep').fadeOut('100');
+      //
+      'Convivente' === $(this).val();
+      $('#reanexar3').fadeOut('100');
+      $('imagemCasado').val('');
+      $('#datacasamentoDep').fadeOut('100');
     });
+
+    $('#fecharAnexo3').click(function () {
+      $('#vinc-anexo-casado').fadeOut('100');
+      $('#reanexar3').fadeIn('100');
+      $('#datacasamentoDep').fadeIn('100');
+      this.toastr.success('Anexo vinculado com sucesso!');
+    });
+
+    $('#abrirAnexo3').click(function () {
+      $('#vinc-anexo-casado').fadeIn('100');
+    });
+
+    //
+
+    // TELA DE ANEXO FILHO OU CONJUGE
+
+    $('#filhoConjuge').on('change', function () {
+      'Filho(a), Conjuge' === $(this).val();
+      $('#vinc-anexo-conjugeFilho').fadeIn('100');
+    });
+
+    $('#fecharAnexo2').click(function () {
+      $('#vinc-anexo-conjugeFilho').fadeOut('100');
+      $('#reanexar2').fadeIn('100');
+    });
+
+    $('#abrirAnexo2').click(function () {
+      $('#vinc-anexo-conjugeFilho').fadeIn('100');
+    });
+
+    //
   }
 
   getTitulares = () => {

@@ -20,7 +20,7 @@
       <div id="consulta" class="main-card mb-3 card">
         <div class="card-body">
           <h5 class="card-title">Consultar o Titular</h5>
-          <form class="needs-validation">
+          <form class="needs-validation" novalidate>
             <div class="form-row">
               <div class="col-md-2 mb-2">
                 <label for="validationCustom01">CPF</label>
@@ -51,7 +51,8 @@
               <li
                 *ngFor="
                   let titular of titulares
-                    | paginate: { itemsPerPage: 7, currentPage: p }
+                    | paginate
+                      : { id: 'alttitulares', itemsPerPage: 7, currentPage: p }
                 "
                 (click)="titularClicked(titular)"
               >
@@ -63,7 +64,10 @@
               </li>
             </div>
             <pagination-controls
+              id="alttitulares"
               class="paginacao"
+              maxSize="7"
+              autoHide="true"
               previousLabel="Anterior"
               nextLabel="Seguinte"
               directionLinks="true"
@@ -74,7 +78,7 @@
           </form>
         </div>
       </div>
-      <div id="titulares" class="main-card mb-3 card">
+      <div id="titularesappear" class="main-card mb-3 card">
         <h1
           class="titular-ts"
           style="margin-left: 20px; margin-right: 20px; padding-top: 20px"
@@ -82,15 +86,84 @@
           <div id="voltardados" class="voltar">
             <i class="fas fa-chevron-left"></i>
           </div>
-          {{ selected_titular.nome_benef }}
+          <s style="margin-left: 12px; width: 975px; text-decoration: none">{{
+            selected_titular.nome_benef
+          }}</s>
           <p class="cpf-ts">
             Inscrito(a) sob CPF:
             {{ selected_titular.CPF }}
           </p>
+
+          <div class="botao-anexosAlt">
+            <button
+              class="btn btn-primary"
+              style="font-weight: bold; font-size: 16px"
+              id="abrirAnexoAlt"
+            >
+              <i style="margin-right: 6px;" class="fas fa-file-image"></i>Abrir Anexos
+            </button>
+          </div>
         </h1>
+
+        <!-- TELA DE ANEXOS DE CASAMENTO -->
+        <div id="vinc-anexo-casadoAlt">
+          <div class="box-anexo">
+            <div class="anexo-info-box-titular-vinc">
+              <label
+                for="avatar"
+                style="
+                  display: flex;
+                  font-size: 18px;
+                  margin-top: 10px;
+                  margin-bottom: 10px;
+                "
+                >Anexos vinculados:</label
+              >
+
+              <img
+                style="width: 250px"
+                src="{{ selected_titular.anexo_doc_casamento }}"
+                alt="Certidão de Casamento de {{ selected_titular.nome_benef }}"
+              />
+              <label
+                for="avatar"
+                style="
+                  display: flex;
+                  font-size: 17px;
+                  margin-top: 25px;
+                  margin-bottom: 10px;
+                "
+                >Escolha uma outra imagem para anexar:</label
+              >
+
+              <input
+                type="file"
+                id="imagemCasado"
+                accept="image/png, image/jpeg"
+                [(ngModel)]="selected_titular.anexo_doc_casamento"
+                [ngModelOptions]="{ standalone: true }"
+                ng-required="false"
+              />
+
+              <button
+                style="
+                  display: flex;
+                  position: absolute;
+                  right: 20px;
+                  bottom: 20px;
+                "
+                class="btn btn-primary"
+                id="fecharAnexoAlt"
+              >
+                Fechar tela
+              </button>
+            </div>
+          </div>
+        </div>
+        <!--  -->
         <div class="card-body">
           <h5 class="card-title">ALTERE OS CAMPOS ABAIXO:</h5>
-          <form class="needs-validation">
+          <form class="needs-validation" novalidate>
             <div class="form-row">
               <div class="col-md-2 mb-2">
                 <label for="validationCustom01">CPF</label>
@@ -144,7 +217,7 @@
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Prioridade</label>
                 <input
-                  readonly="True"
+                  readonly="true"
                   type="text"
                   class="form-control"
                   placeholder="Prioridade"
@@ -157,7 +230,18 @@
                 </div>
               </div>
 
-              <div class="col-md-3 mb-3">
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom01">Número da Carteirinha</label>
+                <input
+                  [(ngModel)]="selected_titular.carteirinha"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o número"
+                />
+              </div>
+
+              <div class="col-md-3 mb-3" style="display: none">
                 <label for="validationCustom01">Tipo</label>
                 <input
                   [(ngModel)]="selected_titular.tipo"
@@ -165,12 +249,8 @@
                   readonly="“true”"
                   type="text"
                   class="form-control"
-                  required
+                  placeholder="Inclusão de Dependente"
                 />
-
-                <div class="invalid-feedback">
-                  Por favor informe o número do CPF corretamente.
-                </div>
               </div>
 
               <div class="col-md-4 mb-3">
@@ -261,7 +341,7 @@
                   type="date"
                   class="form-control"
                   placeholder="Informe a data do casamento"
-                  required
+                  ng-required="false"
                 />
               </div>
 
@@ -413,7 +493,7 @@
             <button class="btn btn-primary" (click)="updateTit()">
               Alterar Titular
             </button>
-            <button class="btn btn-cancelar" type="submit">Apagar dados</button>
+            <button type="reset" class="btn btn-cancelar">Apagar dados</button>
           </form>
         </div>
 
