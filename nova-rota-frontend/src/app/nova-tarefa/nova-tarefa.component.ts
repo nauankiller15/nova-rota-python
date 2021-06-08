@@ -12,7 +12,7 @@ declare var $: any;
   styleUrls: ['./nova-tarefa.component.css'],
 })
 export class NovaTarefaComponent implements OnInit {
-  tarefa = { titulo: '', descricao: '', feito: 'Fazendo' };
+  tarefa = { titulo: '', descricao: '', status_tarefa: true };
 
   constructor(
     private api: ApiService,

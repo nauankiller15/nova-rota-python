@@ -40,6 +40,7 @@ class Parentesco (models.Model):
                                        blank=False, default="Selecione", null=False)
     anexo_doc_parentesco = models.ImageField(upload_to='anexo_parentescos', blank=True, null=True)
     anexo_doc_casamento = models.ImageField(upload_to='anexo_parentesco_casamento', blank=True, null=True)
+    anexo_doc_nascimento = models.ImageField(upload_to='anexo_parentesco_nascimento', blank=True, null=True)
     nome_mae = models.CharField("Nome da Mae", max_length=255)
     data_admissao = models.DateField(
         "Data de Admissão", auto_now=False, auto_now_add=False, null=False)

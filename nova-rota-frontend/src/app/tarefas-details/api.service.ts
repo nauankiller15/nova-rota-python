@@ -20,7 +20,7 @@ export class ApiService {
   updateTarefa(tarefa: {
     titulo?: string;
     descricao?: string;
-    feito?: string;
+    status_tarefa?: string;
     id?: any;
   }): Observable<any> {
     return this.http.put(this.baseUrl + 'tarefas/' + tarefa.id + '/', tarefa, {

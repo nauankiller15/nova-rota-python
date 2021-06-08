@@ -12,7 +12,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getDependente(id: string): Observable<any> {
-    return this.http.get(this.baseUrl + 'parentesco/' + id + '/', {
+    return this.http.get(this.baseUrl + 'lista-parentesco/' + id + '/', {
       headers: this.httpHeaders,
     });
   }

@@ -116,6 +116,13 @@ export class ApiService {
     });
   }
 
+  getDependenteTitular(id: string): Observable<any> {
+    return this.http.get(this.baseUrl + 'titular/' + id + '/', {
+      headers: this.httpHeaders,
+    });
+  }
+
+
   // TRAZENDO TAREFAS
 
   getAlltarefas(): Observable<any> {
@@ -132,7 +139,7 @@ export class ApiService {
   saveNewTarefa(tarefa: {
     titulo: string;
     descricao: string;
-    feito: string;
+    status_tarefa: any;
   }): Observable<any> {
     return this.http.post(this.baseUrl + 'tarefas/', tarefa, {
       headers: this.httpHeaders,
@@ -144,8 +151,8 @@ export class ApiService {
   updateTarefa(tarefa: {
     titulo?: string;
     descricao?: string;
-    feito?: string;
-    id?: any;
+    status_tarefa?: any;
+    id?: number;
   }): Observable<any> {
     return this.http.put(this.baseUrl + 'tarefas/' + tarefa.id + '/', tarefa, {
       headers: this.httpHeaders,

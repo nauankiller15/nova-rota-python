@@ -31,10 +31,10 @@ class Titular (models.Model):
     estado_civil = models.CharField(
         max_length=25, choices=estado_civil_choice, default="Selecione", null=False, blank=False)
     anexo_doc_casamento = models.ImageField(upload_to='anexo_tit_casamento', blank=True, null=True)
+    anexo_doc_empregaticio = models.ImageField(upload_to='anexo_tit_empregaticio', blank=True, null=True)
     nome_mae = models.CharField("Nome da Mae", max_length=255, blank=False)
     data_admissao = models.DateField(
         "Data de Admissao", auto_now=False, auto_now_add=False, null=False)
-
     CEP = BRPostalCodeField("Código Postal", max_length=14,null=False)
     celular = models.CharField("Numero do Celular", max_length=100, null=True)
     cidade = models.CharField("Cidade", max_length=150, blank=False, null=False)

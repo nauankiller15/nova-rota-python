@@ -315,6 +315,7 @@
           <span
             ><li
               class="task-item"
+              [ngClass]="tarefa.status_tarefa ? 'tarefa-completed' : ''"
               *ngFor="
                 let tarefa of tarefas
                   | paginate: { id: 'tarefa', itemsPerPage: 6, currentPage: p }

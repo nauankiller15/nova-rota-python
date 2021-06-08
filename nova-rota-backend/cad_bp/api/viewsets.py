@@ -5,7 +5,7 @@ from .serializers import ParentescoSerializer
 
 
 class ParentescoViewSet(ModelViewSet):
-    queryset = Parentesco.objects.all()
+    queryset = Parentesco.objects.all().order_by('criado_em')
     serializer_class = ParentescoSerializer
 
     def list(self, request, *args, **kwargs):

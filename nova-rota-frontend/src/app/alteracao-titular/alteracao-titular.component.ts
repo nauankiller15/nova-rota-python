@@ -13,7 +13,7 @@ declare var $: any;
 export class AlteracaoTitularComponent implements OnInit {
   selected_titular = {
     id: 0,
-    CPF: '',
+    CPF: '000.000.000-00',
     cod_empresa: '',
     data_recebimento: '',
     tipo: '',
@@ -26,7 +26,8 @@ export class AlteracaoTitularComponent implements OnInit {
     nome_mae: '',
     data_admissao: '',
     data_casamento: '',
-    anexo_doc_casamento: '',
+    anexo_doc_casamento: null,
+    anexo_doc_empregaticio: null,
     tipo_parentesco: '',
     CEP: '',
     celular: '',
@@ -118,7 +119,6 @@ export class AlteracaoTitularComponent implements OnInit {
     $('#fecharAnexoAlt').click(function () {
       $('#vinc-anexo-casadoAlt').fadeOut('100');
     });
-
   }
 
   searchCPF() {
@@ -189,13 +189,14 @@ export class AlteracaoTitularComponent implements OnInit {
         nome_benef: string;
         data_nascimento: string;
         sexo: string;
-        carteirinha: string;
+        carteirinha: any;
         estado_civil: string;
         anexo_doc_tit: string;
         nome_mae: string;
         data_admissao: string;
         data_casamento: string;
         anexo_doc_casamento: any;
+        anexo_doc_empregaticio: any;
         tipo_parentesco: string;
         CEP: string;
         celular: string;
@@ -205,7 +206,6 @@ export class AlteracaoTitularComponent implements OnInit {
         status: string;
         desc_declarao_saude: string;
         observacoes: string;
-
       }) => {
         this.selected_titular = data;
         this.toastr.success('Atualizado com sucesso!');

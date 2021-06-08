@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from '../app.component';
@@ -26,6 +27,7 @@ export class NovoTitularComponent implements OnInit {
     data_admissao: '',
     data_casamento: null,
     anexo_doc_casamento: null,
+    anexo_doc_empregaticio: null,
     CEP: '',
     celular: '',
     cidade: '',
@@ -45,11 +47,13 @@ export class NovoTitularComponent implements OnInit {
   ];
 
   anex_doc_casamento: any;
+  CPF: any;
 
   constructor(
     private toastr: ToastrService,
     private api: ApiService,
-    private appComponent: AppComponent
+    private appComponent: AppComponent,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -127,9 +131,31 @@ export class NovoTitularComponent implements OnInit {
       $('#vinc-anexo-casado').fadeIn('100');
     });
     //
+
+    // TELA DE VINCULO EMPREGATICIO
+    $('#dataAdmissao').keyup(function () {
+      if ($(this).val().length >= 9)
+        $('#vinc-anexo-empregaticio').fadeIn('100');
+    });
+
+    $('#fecharAnexo4').click(function () {
+      $('#vinc-anexo-empregaticio').fadeOut('100');
+      $('#reanexar4').fadeIn('100');
+    });
+
+    $('#abrirAnexo4').click(function () {
+      $('#vinc-anexo-empregaticio').fadeIn('100');
+    });
   }
 
+  // selectedFile: File = null;
+  // onFileSelected(event: any) {
+  //   this.selectedFile = <File>event.target.files[0];
+  // }
+
   newTitular() {
+    // const fd = new FormData();
+    // fd.append('image', this.selectedFile, this.selectedFile.name);
     this.api.saveNewTitular(this.titular).subscribe(
       (data) => {
         this.toastr.success('Titular inserido com sucesso!');

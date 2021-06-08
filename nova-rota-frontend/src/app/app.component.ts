@@ -111,7 +111,7 @@ export class AppComponent implements OnInit {
   };
 
   tarefas = [{ id: '', titulo: '' }];
-  selected_tarefa = { id: 0, titulo: '', descricao: '', feito: '' };
+  selected_tarefa = { id: 0, titulo: '', descricao: '', status_tarefa: '' };
 
   titulo: string;
   p: number = 1;

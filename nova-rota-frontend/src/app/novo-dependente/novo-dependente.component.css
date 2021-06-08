@@ -224,3 +224,15 @@ em {
   margin-right: -50%;
   transform: translate(-50%, -50%);
 }
+
+
+.was-validated .form-control:valid,
+.form-control.is-valid {
+  border-color: #3ac47d;
+  padding-right: 1.25rem !important;
+}
+
+.was-validated .form-control:invalid, .form-control.is-invalid {
+  border-color: #d92550;
+  padding-right: 1.85rem;
+}

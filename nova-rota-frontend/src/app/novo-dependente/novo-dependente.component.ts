@@ -32,6 +32,8 @@ export class NovoDependenteComponent implements OnInit {
     nome_mae: '',
     data_admissao: '',
     data_casamento: null,
+    anexo_doc_casamento: null,
+    anexo_doc_nascimento: null,
     tipo_parentesco: '',
     CEP: '',
     celular: '',
@@ -41,8 +43,8 @@ export class NovoDependenteComponent implements OnInit {
     status: '',
     desc_declarao_saude: '',
     observacoes: null,
-    titular: '',
-    nome_benef: '',
+    titular: null,
+    nome_benef: null,
   };
 
   dependentes = [
@@ -123,12 +125,10 @@ export class NovoDependenteComponent implements OnInit {
       //
       'Selecione' === $(this).val();
       $('#reanexar3').fadeOut('100');
-      $('imagemCasado').val('');
       $('#datacasamentoDep').fadeOut('100');
       //
       'Solteiro' === $(this).val();
       $('#reanexar3').fadeOut('100');
-      $('imagemCasado').val('');
       $('#datacasamentoDep').fadeOut('100');
       //
       'Convivente' === $(this).val();
@@ -141,7 +141,6 @@ export class NovoDependenteComponent implements OnInit {
       $('#vinc-anexo-casado').fadeOut('100');
       $('#reanexar3').fadeIn('100');
       $('#datacasamentoDep').fadeIn('100');
-      this.toastr.success('Anexo vinculado com sucesso!');
     });
 
     $('#abrirAnexo3').click(function () {
@@ -153,8 +152,16 @@ export class NovoDependenteComponent implements OnInit {
     // TELA DE ANEXO FILHO OU CONJUGE
 
     $('#filhoConjuge').on('change', function () {
-      'Filho(a), Conjuge' === $(this).val();
-      $('#vinc-anexo-conjugeFilho').fadeIn('100');
+      'Filho(a)' === $(this).val()
+      ? $('#vinc-anexo-conjugeFilho').fadeIn('100')
+      : $('#vinc-anexo-conjugeFilho').fadeOut('100');
+    //
+    'Conjuge' === $(this).val();
+      $('#reanexar2').fadeOut('100');
+      //
+      'Solteiro' === $(this).val();
+      $('#reanexar2').fadeOut('100');
+      //
     });
 
     $('#fecharAnexo2').click(function () {

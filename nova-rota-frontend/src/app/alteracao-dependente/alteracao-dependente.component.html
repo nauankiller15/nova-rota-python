@@ -58,7 +58,8 @@
                 "
                 (click)="dependenteClicked(dependente)"
               >
-                CPF: {{ dependente.CPF }} - {{ dependente.nome_dependente }}
+                CPF: {{ dependente.CPF | mask: "000.000.000-99" }} -
+                {{ dependente.nome_dependente }}
                 <i
                   style="float: right; margin-top: 4px"
                   class="fas fa-external-link-alt"
@@ -91,7 +92,7 @@
           {{ selected_dependente.nome_dependente }}
           <p class="cpf-ts">
             Inscrito(a) sob CPF:
-            {{ selected_dependente.CPF }}
+            {{ selected_dependente.CPF | mask: "000.000.000-99" }}
           </p>
           <p class="cpf-ts">
             Dependente de:
@@ -106,6 +107,8 @@
                 <label for="validationCustom01">CPF</label>
                 <input
                   maxlength="11"
+                  autocomplete="off"
+                  mask="000.000.000-00"
                   [(ngModel)]="selected_dependente.CPF"
                   [ngModelOptions]="{ standalone: true }"
                   type="text"
@@ -121,6 +124,7 @@
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Código Empresa</label>
                 <input
+                  autocomplete="off"
                   [(ngModel)]="selected_dependente.cod_empresa"
                   [ngModelOptions]="{ standalone: true }"
                   type="text"
@@ -170,6 +174,7 @@
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Número da Carteirinha</label>
                 <input
+                  autocomplete="off"
                   [(ngModel)]="selected_dependente.carteirinha"
                   [ngModelOptions]="{ standalone: true }"
                   type="text"
@@ -314,6 +319,7 @@
                   name="estado_uf"
                   required
                 >
+                  <option value="AC">AC</option>
                   <option value="AL">AL</option>
                   <option value="AP">AP</option>
                   <option value="AM">AM</option>
@@ -326,6 +332,7 @@
                   <option value="MT">MT</option>
                   <option value="MS">MS</option>
                   <option value="MG">MG</option>
+                  <option value="PA">PA</option>
                   <option value="PB">PB</option>
                   <option value="PR">PR</option>
                   <option value="PE">PE</option>

@@ -17,7 +17,9 @@ export class TarefasDetailsComponent implements OnInit {
     private toastr: ToastrService,
     private appComponent: AppComponent
   ) {}
-  selected_tarefa = { titulo: '', descricao: '', feito: '' };
+  selected_tarefa = { titulo: '', descricao: '', status_tarefa: '' };
+  update_tarefa = { titulo: '', descricao: '', status_tarefa: true };
+
   selected_id;
 
   ngOnInit(): void {
@@ -64,7 +66,7 @@ export class TarefasDetailsComponent implements OnInit {
     this.api.updateTarefa(this.selected_tarefa).subscribe(
       (data) => {
         this.toastr.success('Atualizado com sucesso!');
-        this.selected_tarefa = data;
+        this.update_tarefa = data;
         $('.texto-overlay').fadeOut('100');
         $('#over-text').fadeOut('100');
       },

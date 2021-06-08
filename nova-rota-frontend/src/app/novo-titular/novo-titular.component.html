@@ -9,9 +9,7 @@
             </div>
             <div>
               Inclusão de Titular
-              <div class="page-title-subheading">
-                Novo Titular Ativo.
-              </div>
+              <div class="page-title-subheading">Novo Titular Ativo.</div>
             </div>
           </div>
         </div>
@@ -21,26 +19,53 @@
       <div class="main-card mb-3 card">
         <div class="card-body">
           <h5 class="card-title">Preencha os campos abaixo:</h5>
-          <form class="needs-validation" novalidate>
+
+          <form
+            class="needs-validation"
+            #titularForm="ngForm"
+            ENCTYPE="multipart/form-data"
+            novalidate
+            
+          >
+
             <div class="form-row">
               <div class="col-md-2 mb-2">
                 <label for="validationCustom01">CPF</label>
                 <input
-                  maxlength="11"
+                  #CPF="ngModel"
+                  autocomplete="off"
+                  [class.is-invalid]="CPF.invalid && CPF.touched"
+                  [class.is-valid]="CPF.valid && CPF.touched"
+                  pattern="^\d{3}\.\d{3}\.\d{3}\-\d{2}$"
                   [(ngModel)]="titular.CPF"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="CPF"
                   type="text"
                   class="form-control cpf"
                   placeholder="Número de CPF"
                   required
                 />
+
+                <div *ngIf="CPF.errors && (CPF.valid || CPF.touched)">
+                  <small class="text-danger" *ngIf="CPF.errors.required"
+                    >CPF Necessário!</small
+                  >
+                  <small class="text-danger" *ngIf="CPF.errors.pattern"
+                    >CPF Digitos Incompletos!</small
+                  >
+                </div>
               </div>
 
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Código Empresa</label>
                 <input
+                  #cod_empresa="ngModel"
+                  autocomplete="off"
+                  [class.is-invalid]="
+                    cod_empresa.invalid && cod_empresa.touched
+                  "
+                  [class.is-valid]="cod_empresa.valid && cod_empresa.touched"
                   [(ngModel)]="titular.cod_empresa"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="cod_empresa"
                   type="text"
                   class="form-control"
                   placeholder="Código da Empresa"
@@ -49,13 +74,21 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom01">Data de Recebimento</label>
+                <label for="validationCustom01">Data Recebimento</label>
                 <input
+                  #data_recebimento="ngModel"
+                  [class.is-invalid]="
+                    data_recebimento.invalid && data_recebimento.touched
+                  "
+                  [class.is-valid]="
+                    data_recebimento.valid && data_recebimento.touched
+                  "
                   [(ngModel)]="titular.data_recebimento"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="data_recebimento"
                   type="date"
                   class="form-control"
-                  placeholder="Informe a data de recebimento"
+                  placeholder="Código da Empresa"
+                  required
                 />
               </div>
 
@@ -65,19 +98,25 @@
                   type="text"
                   class="form-control"
                   placeholder="Prioridade"
-                  readonly="ture"
+                  readonly="true"
                 />
               </div>
 
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Número da Carteirinha</label>
                 <input
+                  #carteirinha="ngModel"
+                  autocomplete="off"
+                  [class.is-invalid]="
+                    carteirinha.invalid && carteirinha.touched
+                  "
+                  [class.is-valid]="carteirinha.valid && carteirinha.touched"
                   [(ngModel)]="titular.carteirinha"
-                  maxlength="9"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="carteirinha"
                   type="text"
                   class="form-control"
-                  placeholder="Digite aqui o número"
+                  placeholder="Código da Empresa"
+                  required
                 />
               </div>
 
@@ -85,7 +124,7 @@
                 <label for="validationCustom01">Tipo</label>
                 <input
                   [(ngModel)]="titular.tipo"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="tipo"
                   readonly="“true”"
                   type="text"
                   class="form-control"
@@ -96,32 +135,53 @@
               <div class="col-md-4 mb-3">
                 <label for="validationCustom01">Nome do Beneficiário</label>
                 <input
+                  #nome_benef="ngModel"
+                  [class.is-invalid]="nome_benef.invalid && nome_benef.touched"
+                  [class.is-valid]="nome_benef.valid && nome_benef.touched"
                   [(ngModel)]="titular.nome_benef"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="nome_benef"
                   type="text"
                   class="form-control"
-                  placeholder="Digite aqui o nome do Beneficiário"
+                  placeholder="Digite aqui o Nome do Beneficiário"
+                  required
                 />
+                <small
+                  class="text-danger"
+                  [class.d-none]="nome_benef.valid || nome_benef.untouched"
+                >
+                  Nome do Beneficiário Necessário!</small
+                >
               </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom01">Data de Nascimento</label>
+                <label for="validationCustom01">Data Nascimento</label>
                 <input
+                  #data_nascimento="ngModel"
+                  [class.is-invalid]="
+                    data_nascimento.invalid && data_nascimento.touched
+                  "
+                  [class.is-valid]="
+                    data_nascimento.valid && data_nascimento.touched
+                  "
                   [(ngModel)]="titular.data_nascimento"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="data_nascimento"
                   type="date"
                   class="form-control"
-                  placeholder="Informe a data de nascimento"
+                  placeholder="Código da Empresa"
+                  required
                 />
               </div>
 
               <div class="col-md-2 mb-3">
                 <label for="validationCustom02">Sexo</label>
                 <select
+                  #sexo="ngModel"
+                  [class.is-invalid]="sexo.invalid && sexo.touched"
+                  [class.is-valid]="sexo.valid && sexo.touched"
                   class="form-control"
                   name="sexo"
                   [(ngModel)]="titular.sexo"
-                  [ngModelOptions]="{ standalone: true }"
+                  required
                 >
                   <option value="">Selecione aqui</option>
                   <option value="Masculino">Masculino</option>
@@ -134,18 +194,25 @@
                 <!-- BOTÃO REANEXAR CASADO -->
                 <div id="reanexar" style="display: none">
                   <button
-                    style="position: absolute; right: -46px"
+                    style="position: absolute; right: -45px; top: 31px"
                     class="btn btn-primary"
                     id="abrirAnexo"
                   >
                     <i class="fas fa-file-image" style="font-size: 15px"></i>
                   </button>
                 </div>
+                <!--  -->
                 <select
+                  #estado_civil="ngModel"
+                  [class.is-invalid]="
+                    estado_civil.invalid && estado_civil.touched
+                  "
+                  [class.is-valid]="estado_civil.valid && estado_civil.touched"
+                  required
                   id="estado_civil"
                   class="form-control"
                   [(ngModel)]="titular.estado_civil"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="estado_civil"
                 >
                   <option value="">Selecione</option>
                   <option value="Solteiro(a)">Solteiro(a)</option>
@@ -157,14 +224,27 @@
                 <div id="vinc-anexo-casado">
                   <div class="box-anexo">
                     <div class="anexo-info-box-titular-vinc">
-                      <label for="avatar">Escolha um imagem para anexar:</label>
+                      <h1
+                        style="
+                          font-size: 20px;
+                          display: flex;
+                          margin-top: -15px;
+                          margin-bottom: 15px;
+                        "
+                      >
+                        Anexar Certidão de Casamento
+                      </h1>
+                      <label for="avatar"
+                        >Escolha uma imagem para anexar:</label
+                      >
 
                       <input
                         type="file"
                         id="imagemCasado"
                         accept="image/png, image/jpeg"
                         [(ngModel)]="titular.anexo_doc_casamento"
-                        [ngModelOptions]="{ standalone: true }"
+                        name="cert_casamento"
+                        ngControl="inputFile"
                       />
 
                       <button
@@ -182,37 +262,113 @@
                     </div>
                   </div>
                 </div>
+
+                <!-- VINCULAR ANEXO DE VINCULO EMPREGATICIO -->
+                <div id="vinc-anexo-empregaticio">
+                  <div class="box-anexo">
+                    <div class="anexo-info-box-titular-vinc">
+                      <h1
+                        style="
+                          font-size: 20px;
+                          display: flex;
+                          margin-top: -15px;
+                          margin-bottom: 15px;
+                        "
+                      >
+                        Anexar Vínculo Empregatício
+                      </h1>
+                      <label for="avatar"
+                        >Escolha uma imagem para anexar:</label
+                      >
+
+                      <input
+                        type="file"
+                        id="imagemEmpregaticio"
+                        accept=".png, .jpg, .jpeg"
+                        [(ngModel)]="titular.anexo_doc_empregaticio"
+                        name="vinculo_empregaticio"
+                      />
+
+                      <button
+                        style="
+                          display: flex;
+                          position: absolute;
+                          right: 20px;
+                          bottom: 20px;
+                        "
+                        class="btn btn-primary"
+                        id="fecharAnexo4"
+                      >
+                        Anexar Arquivo
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div class="col-md-4 mb-3">
                 <label for="validationCustom01">Nome da Mãe</label>
                 <input
+                  #nome_mae="ngModel"
+                  [class.is-invalid]="nome_mae.invalid && nome_mae.touched"
+                  [class.is-valid]="nome_mae.valid && nome_mae.touched"
                   [(ngModel)]="titular.nome_mae"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="nome_mae"
                   type="text"
                   class="form-control"
-                  placeholder="Digite aqui o nome da Mãe"
+                  placeholder="Digite aqui o Nome do Beneficiário"
+                  required
                 />
+                <small
+                  class="text-danger"
+                  [class.d-none]="nome_mae.valid || nome_mae.untouched"
+                >
+                  Nome da Mãe Necessário!</small
+                >
               </div>
 
               <div class="col-md-2 mb-3">
                 <label for="validationCustom05">Data de Admissão</label>
                 <input
+                  #data_admissao="ngModel"
+                  [class.is-invalid]="
+                    data_admissao.invalid && data_admissao.touched
+                  "
+                  [class.is-valid]="
+                    data_admissao.valid && data_admissao.touched
+                  "
                   [(ngModel)]="titular.data_admissao"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="data_admissao"
                   type="date"
+                  id="dataAdmissao"
                   class="form-control"
+                  required
                 />
+
+                <!-- BOTÃO REANEXAR VINCIULO EMPREGATICIO -->
+                <div id="reanexar4" style="display: none">
+                  <button
+                    style="position: absolute; right: -44px; top: 31px"
+                    class="btn btn-primary"
+                    id="abrirAnexo4"
+                  >
+                    <i class="fas fa-file-image" style="font-size: 15px"></i>
+                  </button>
+                </div>
+                <!--  -->
               </div>
-              <div id="datacasamento" style="display: none;" class="col-md-2 mb-3">
+
+              <div
+                id="datacasamento"
+                class="col-md-2 mb-3"
+                style="margin-left: 40px; display: none"
+              >
                 <label for="validationCustom05">Data de Casamento</label>
                 <input
                   [(ngModel)]="titular.data_casamento"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="data_casamento"
                   type="date"
                   class="form-control"
-                  placeholder="0000-00-00"
-                  default="0000-00-00"
                 />
               </div>
             </div>
@@ -221,8 +377,12 @@
               <div class="col-md-2 mb-2">
                 <label for="validationCustom01">CEP</label>
                 <input
+                  #CEP="ngModel"
+                  [class.is-invalid]="CEP.invalid && CEP.touched"
+                  [class.is-valid]="CEP.valid && CEP.touched"
+                  required
                   [(ngModel)]="titular.CEP"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="CEP"
                   type="text"
                   class="form-control cep"
                   placeholder="Informe o CEP"
@@ -232,8 +392,12 @@
               <div class="col-md-2 mb-2">
                 <label for="validationCustom01">Celular</label>
                 <input
+                  #celular="ngModel"
+                  [class.is-invalid]="celular.invalid && celular.touched"
+                  [class.is-valid]="celular.valid && celular.touched"
+                  required
                   [(ngModel)]="titular.celular"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="celular"
                   type="text"
                   class="form-control phone_with_ddd"
                   placeholder="Informe o Celular"
@@ -243,8 +407,12 @@
               <div class="col-md-2 mb-2">
                 <label for="validationCustom03">Cidade</label>
                 <input
+                  #cidade="ngModel"
+                  [class.is-invalid]="cidade.invalid && cidade.touched"
+                  [class.is-valid]="cidade.valid && cidade.touched"
+                  required
                   [(ngModel)]="titular.cidade"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="cidade"
                   type="text"
                   class="form-control"
                   placeholder="Cidade"
@@ -254,12 +422,17 @@
               <div class="col-md-1 mb-1">
                 <label for="validationCustom02">Estado UF</label>
                 <select
+                  #estado="ngModel"
+                  [class.is-invalid]="estado.invalid && estado.touched"
+                  [class.is-valid]="estado.valid && estado.touched"
+                  required
                   [(ngModel)]="titular.estado"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="estado_uf"
                   class="form-control"
                   name="estado_uf"
                 >
                   <option value="">Selecione</option>
+                  <option value="AC">AC</option>
                   <option value="AL">AL</option>
                   <option value="AP">AP</option>
                   <option value="AM">AM</option>
@@ -272,6 +445,7 @@
                   <option value="MT">MT</option>
                   <option value="MS">MS</option>
                   <option value="MG">MG</option>
+                  <option value="PA">PA</option>
                   <option value="PB">PB</option>
                   <option value="PR">PR</option>
                   <option value="PE">PE</option>
@@ -291,8 +465,16 @@
               <div class="col-md-2 mb-2">
                 <label for="validationCustom03">Declaração de Saúde</label>
                 <input
+                  #declaracao_saude="ngModel"
+                  [class.is-invalid]="
+                    declaracao_saude.invalid && declaracao_saude.touched
+                  "
+                  [class.is-valid]="
+                    declaracao_saude.valid && declaracao_saude.touched
+                  "
+                  required
                   [(ngModel)]="titular.declaracao_saude"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="declaracao_saude"
                   type="text"
                   class="form-control"
                   placeholder="Declaração de Saúde"
@@ -307,17 +489,22 @@
                   class="form-control"
                   placeholder="OK"
                 />
-                <div class="invalid-feedback">
-                  Por favor informe o estado corretamente.
-                </div>
               </div>
               <div class="col-md-4 mb-4">
                 <label for="validationCustom05"
                   >Descrição da Declaração de Saúde</label
                 >
                 <input
+                  #desc_declarao_saude="ngModel"
+                  [class.is-invalid]="
+                    desc_declarao_saude.invalid && desc_declarao_saude.touched
+                  "
+                  [class.is-valid]="
+                    desc_declarao_saude.valid && desc_declarao_saude.touched
+                  "
+                  required
                   [(ngModel)]="titular.desc_declarao_saude"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="desc_declarao_saude"
                   type="text"
                   class="form-control"
                   placeholder="Informe aqui exatamente como está na declaração"
@@ -328,7 +515,7 @@
                 <label for="validationCustom05">Observações</label>
                 <input
                   [(ngModel)]="titular.observacoes"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="observacoes"
                   type="text"
                   class="form-control"
                   placeholder="Informe aqui aspectos importantes para o movimentação"
@@ -336,7 +523,12 @@
               </div>
             </div>
 
-            <button class="btn btn-primary" (click)="newTitular()">
+            <button
+              [disabled]="titularForm.form.invalid"
+              name="enviar"
+              class="btn btn-primary"
+              (click)="newTitular()"
+            >
               Gravar informações
             </button>
             <button type="reset" class="btn btn-cancelar">Apagar tudo</button>

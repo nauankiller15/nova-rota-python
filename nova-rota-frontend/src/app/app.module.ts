@@ -19,6 +19,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NovoDependenteComponent } from './novo-dependente/novo-dependente.component';
 import { AlteracaoDependenteComponent } from './alteracao-dependente/alteracao-dependente.component';
 import { AltDependenteDetailsComponent } from './alt-dependente-details/alt-dependente-details.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+
+const maskConfigFunction: () => Partial<IConfig> = () => {
+  return {
+    validation: false,
+  };
+};
 
 @NgModule({
   declarations: [
@@ -36,6 +43,7 @@ import { AltDependenteDetailsComponent } from './alt-dependente-details/alt-depe
   ],
   imports: [
     BrowserModule,
+    NgxMaskModule.forRoot(maskConfigFunction),
     RouterModule.forRoot([
       // titulares
       { path: 'alteracao-titular', component: AlteracaoTitularComponent },

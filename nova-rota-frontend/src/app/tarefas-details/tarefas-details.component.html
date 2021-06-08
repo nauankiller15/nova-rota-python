@@ -13,10 +13,17 @@
       [(ngModel)]="selected_tarefa.descricao"
     ></textarea>
   </span>
-  <select style="max-width: 80px" [(ngModel)]="selected_tarefa.feito">
+  <input
+    [(ngModel)]="selected_tarefa.status_tarefa"
+    type="checkbox"
+    id="status_tarefa"
+    name="status_tarefa"
+    value="Feito"
+  /> Completar Tarefa
+  <!-- <select style="max-width: 80px" [(ngModel)]="selected_tarefa.status_tarefa">
     <option value="Fazendo">Fazendo</option>
     <option value="Feito">Feito</option>
-  </select>
+  </select> -->
   <br />
   <div class="posit-bottom">
     <button class="edit-edit" (click)="update()">

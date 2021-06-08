@@ -1,4 +1,3 @@
-import { ValueTransformer } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -48,6 +47,8 @@ export class AlteracaoDependenteComponent implements OnInit {
     nome_mae: '',
     data_admissao: '',
     data_casamento: '',
+    anexo_doc_casamento: null,
+    anexo_doc_nascimento: null,
     tipo_parentesco: '',
     CEP: '',
     celular: '',
@@ -68,6 +69,7 @@ export class AlteracaoDependenteComponent implements OnInit {
       nome_dependente: '',
     },
   ];
+
   p: number = 1;
   fileToUpload: File = null;
   CPF: string;
@@ -190,13 +192,12 @@ export class AlteracaoDependenteComponent implements OnInit {
     );
   }
 
-  dependenteClicked = (dependentes: { id: string }) => {
+  dependenteClicked = (dependentes: { id: any }) => {
     $('#consulta2').fadeOut('200');
     $('#dependentesappear').fadeIn('20');
     this.api.getDependente(dependentes.id).subscribe(
       (data) => {
         this.selected_dependente = data;
-        console.log(data);
       },
       (error) => {
         this.toastr.error('Aconteceu um Erro!', error.message);
@@ -220,6 +221,8 @@ export class AlteracaoDependenteComponent implements OnInit {
         nome_mae: string;
         data_admissao: string;
         data_casamento: string;
+        anexo_doc_casamento: any;
+        anexo_doc_nascimento: any;
         tipo_parentesco: string;
         CEP: string;
         celular: string;
