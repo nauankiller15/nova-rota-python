@@ -1,5 +1,10 @@
+# back-end
+.idea
 venv
 db.sqlite3
 imagens
 __pycache__
+migrations
+
+# Front-end
 
