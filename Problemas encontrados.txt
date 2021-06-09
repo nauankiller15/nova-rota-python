@@ -1,0 +1,2 @@
+* ao cadastrar o titular não há nenhum redirect ou mudança de tela
+* ao digitar uma data inválida no campo data recebimento não é mostrado o motivo do erro; tambem aqui está aparecendo pela metade a data

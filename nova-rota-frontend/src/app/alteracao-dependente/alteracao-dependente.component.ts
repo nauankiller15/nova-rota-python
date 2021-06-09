@@ -59,6 +59,7 @@ export class AlteracaoDependenteComponent implements OnInit {
     desc_declarao_saude: '',
     observacoes: '',
     titular: '',
+    titular_nome: '',
     carteirinha: '',
   };
 
@@ -233,6 +234,7 @@ export class AlteracaoDependenteComponent implements OnInit {
         desc_declarao_saude: string;
         observacoes: string;
         titular: string;
+        titular_nome: string;
         carteirinha: string;
       }) => {
         this.selected_dependente = data;
