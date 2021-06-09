@@ -4,7 +4,7 @@ venv
 db.sqlite3
 imagens
 __pycache__
-migrations
+migrations/
 
 # Front-end
 
