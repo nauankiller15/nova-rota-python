@@ -13,8 +13,10 @@ import { NovoDependenteComponent } from './novo-dependente/novo-dependente.compo
 // tarefas
 import { NovaTarefaComponent } from './nova-tarefa/nova-tarefa.component';
 import { TarefasDetailsComponent } from './tarefas-details/tarefas-details.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
   // ==== TELA DE TAREFAS ====
   { path: 'tarefas-detail/:id', component: TarefasDetailsComponent },
   { path: 'nova-tarefa', component: NovaTarefaComponent },
@@ -49,6 +51,7 @@ export class AppRoutingModule {
 
 export const routingComponentes = [
   TarefasDetailsComponent,
+  LoginComponent,
   // --------------------
   AlteracaoTitularComponent,
   AltTitularDetailsComponent,
