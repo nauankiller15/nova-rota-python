@@ -1,5 +1,8 @@
-# back-end
+# Geral
 .idea
+.vscode
+
+# back-end
 venv
 db.sqlite3
 imagens
