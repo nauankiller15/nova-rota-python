@@ -13,6 +13,9 @@ import { NovoDependenteComponent } from './novo-dependente/novo-dependente.compo
 // tarefas
 import { NovaTarefaComponent } from './nova-tarefa/nova-tarefa.component';
 import { TarefasDetailsComponent } from './tarefas-details/tarefas-details.component';
+import { NovaEmpresaComponent } from './nova-empresa/nova-empresa.component';
+import { AlteracaoEmpresaComponent } from './alteracao-empresa/alteracao-empresa.component';
+import { AltEmpresaDetailsComponent } from './alt-empresa-details/alt-empresa-details.component';
 
 const routes: Routes = [
   // ==== TELA DE TAREFAS ====
@@ -32,6 +35,14 @@ const routes: Routes = [
   {
     path: 'alt-dependente-details/:id',
     component: AltDependenteDetailsComponent,
+  },
+  // === CADASTRO DE EMPRESAS (PRINCIPAL) ====
+  { path: 'nova-empresa', component: NovaEmpresaComponent },
+  // ==== ALTERACAO EMPRESAS ====
+  { path: 'alteracao-empresa', component: AlteracaoEmpresaComponent },
+  {
+    path: 'alt-empresa-details/:id',
+    component: AltEmpresaDetailsComponent,
   },
 ];
 
