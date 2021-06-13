@@ -98,25 +98,24 @@
                 <div class="col-md-2 mb-3">
                   <label for="validationCustom01">Vencimento do Boleto</label>
                   <input
-                    #data_nascimento="ngModel"
+                    #vencimento_boleto="ngModel"
                     [class.is-invalid]="
-                      data_nascimento.invalid && data_nascimento.touched
+                      vencimento_boleto.invalid && vencimento_boleto.touched
                     "
                     [class.is-valid]="
-                      data_nascimento.valid && data_nascimento.touched
+                      vencimento_boleto.valid && vencimento_boleto.touched
                     "
-                    [(ngModel)]="empresa.data_nascimento"
-                    name="data_nascimento"
+                    [(ngModel)]="empresa.vencimento_boleto"
+                    name="vencimento_boleto"
                     type="date"
                     class="form-control"
-                    placeholder="Código da Empresa"
                     required
                   />
                 </div>
   
                 <div class="col-md-2 mb-3">
-                  <!-- VINCULAR ANEXO DE VINCULO EMPREGATICIO -->
-                  <div id="vinc-anexo-empregaticio">
+                  <!-- VINCULAR ANEXO DO DOCUMENTO DA EMPRESA -->
+                  <div id="vinc-anexo-empresa">
                     <div class="box-anexo">
                       <div class="anexo-info-box-empresa-vinc">
                         <h1
@@ -127,7 +126,7 @@
                             margin-bottom: 15px;
                           "
                         >
-                          Anexar Vínculo Empregatício
+                          Anexar Documento da Empresa:
                         </h1>
                         <label for="avatar"
                           >Escolha uma imagem para anexar:</label
@@ -149,7 +148,7 @@
                             bottom: 20px;
                           "
                           class="btn btn-primary"
-                          id="fecharAnexo4"
+                          id="fecharAnexo5"
                         >
                           Anexar Arquivo
                         </button>
@@ -159,35 +158,105 @@
                 </div>
   
                 <div class="col-md-2 mb-3">
-                  <label for="validationCustom05">Data de Admissão</label>
-                  <input
-                    #data_admissao="ngModel"
-                    [class.is-invalid]="
-                      data_admissao.invalid && data_admissao.touched
-                    "
-                    [class.is-valid]="
-                      data_admissao.valid && data_admissao.touched
-                    "
-                    [(ngModel)]="empresa.data_admissao"
-                    name="data_admissao"
-                    type="date"
-                    id="dataAdmissao"
-                    class="form-control"
-                    required
-                  />
+                    <label for="validationCustom05">Inicio de Vigência</label>
+                    <input
+                      #inicio_vigencia="ngModel"
+                      [class.is-invalid]="
+                        inicio_vigencia.invalid && inicio_vigencia.touched
+                      "
+                      [class.is-valid]="
+                        inicio_vigencia.valid && inicio_vigencia.touched
+                      "
+                      [(ngModel)]="empresa.inicio_vigencia"
+                      name="inicio_vigencia"
+                      type="date"
+                      id="dataVigencia"
+                      class="form-control"
+                      required
+                    />
+    
+                    <!-- BOTÃO REABRIR VIGENCIA -->
+                    <div id="reanexar5" style="display: none">
+                      <button
+                        style="position: absolute; right: -44px; top: 31px"
+                        class="btn btn-primary"
+                        id="abrirAnexo6"
+                      >
+                        <i class="fas fa-file-image" style="font-size: 15px"></i>
+                      </button>
+                    </div>
   
-                  <!-- BOTÃO REANEXAR VINCIULO EMPREGATICIO -->
-                  <div id="reanexar4" style="display: none">
-                    <button
-                      style="position: absolute; right: -44px; top: 31px"
-                      class="btn btn-primary"
-                      id="abrirAnexo4"
-                    >
-                      <i class="fas fa-file-image" style="font-size: 15px"></i>
-                    </button>
+                    <!--  -->
                   </div>
-                  <!--  -->
-                </div>
+
+                  <div class="col-md-2 mb-3">
+                    <!-- VINCULAR INICIO DA VIGÊNCIA -->
+                    <div id="vinc-vigencia">
+                      <div class="box-anexo">
+                        <div class="anexo-info-box-empresa-vinc">
+                          <h1
+                            style="
+                              font-size: 20px;
+                              display: flex;
+                              margin-top: -15px;
+                              margin-bottom: 15px;
+                            "
+                          >
+                            Histórico de Reajustes:
+                          </h1>
+                          <label for="avatar"
+                            >Informe aqui os reajustes:</label
+                          >
+    
+                          <button
+                            style="
+                              display: flex;
+                              position: absolute;
+                              right: 20px;
+                              bottom: 20px;
+                            "
+                            class="btn btn-primary"
+                            id="fecharAnexo6"
+                          >
+                            Fechar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-2 mb-3">
+                    <label for="validationCustom05">Data de Recebimento</label>
+                    <input
+                      #data_recebimento="ngModel"
+                      [class.is-invalid]="
+                        data_recebimento.invalid && data_recebimento.touched
+                      "
+                      [class.is-valid]="
+                        data_recebimento.valid && data_recebimento.touched
+                      "
+                      [(ngModel)]="empresa.data_recebimento"
+                      name="data_recebimento"
+                      type="date"
+                      id="dataRecebimento"
+                      class="form-control"
+                      required
+                    />
+  
+                    <!-- BOTÃO REANEXAR DOCUMENTO DA EMPRESA -->
+                    <div id="reanexar5" style="display: none">
+                      <button
+                        style="position: absolute; right: -44px; top: 31px"
+                        class="btn btn-primary"
+                        id="abrirAnexo5"
+                      >
+                        <i class="fas fa-file-image" style="font-size: 15px"></i>
+                      </button>
+                    </div>
+  
+                    <!--  -->
+                  </div>
+  
                
               </div>
   
@@ -294,27 +363,7 @@
                     placeholder="OK"
                   />
                 </div>
-                <div class="col-md-4 mb-4">
-                  <label for="validationCustom05"
-                    >Descrição da Declaração de Saúde</label
-                  >
-                  <input
-                    #desc_declarao_saude="ngModel"
-                    [class.is-invalid]="
-                      desc_declarao_saude.invalid && desc_declarao_saude.touched
-                    "
-                    [class.is-valid]="
-                      desc_declarao_saude.valid && desc_declarao_saude.touched
-                    "
-                    required
-                    [(ngModel)]="empresa.desc_declarao_saude"
-                    name="desc_declarao_saude"
-                    type="text"
-                    class="form-control"
-                    placeholder="Informe aqui exatamente como está na declaração"
-                  />
-                </div>
-  
+               
                 <div class="col-md-5 mb-5">
                   <label for="validationCustom05">Observações</label>
                   <input

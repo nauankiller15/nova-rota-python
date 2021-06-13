@@ -133,11 +133,14 @@ export class NovoTitularComponent implements OnInit {
     //
 
     // TELA DE VINCULO EMPREGATICIO
-    $('#dataAdmissao').keyup(function () {
-      if ($(this).val().length >= 9)
-        $('#vinc-anexo-empregaticio').fadeIn('100');
+    $('#dataAdmissao').on('blur', function () {
+      $('#vinc-anexo-empregaticio').fadeIn('100');
     });
-
+    $('#dataAdmissao').on('focus', function () {
+      $(this).siblings('#vinc-anexo-empregaticio').fadeIn('100');
+    });
+    $('#vinc-anexo-empregaticio').hide();
+    //
     $('#fecharAnexo4').click(function () {
       $('#vinc-anexo-empregaticio').fadeOut('100');
       $('#reanexar4').fadeIn('100');
@@ -162,6 +165,7 @@ export class NovoTitularComponent implements OnInit {
         this.appComponent.titular.push(data);
       },
       (error: { message: string }) => {
+        this.toastr.error('Dados necessários em branco!', error.message);
         this.toastr.error('Dados necessários em branco!', error.message);
       }
     );

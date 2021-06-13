@@ -18,10 +18,9 @@ export class NovaEmpresaComponent implements OnInit {
     cod_empresa: '',
     razao_social: '',
     tipo: '',
-    data_nascimento: '',
-    sexo: '',
-    data_admissao: '',
-    data_casamento: null,
+    vencimento_boleto: '',
+    inicio_vigencia: '',
+    data_recebimento: '',
     anexo_doc_casamento: null,
     anexo_doc_empregaticio: null,
     celular: '',
@@ -29,7 +28,6 @@ export class NovaEmpresaComponent implements OnInit {
     estado: '',
     cod_apolice: '',
     status: '',
-    desc_declarao_saude: '',
     observacoes: null,
   };
 
@@ -96,53 +94,40 @@ export class NovaEmpresaComponent implements OnInit {
       $('.selectonfocus').mask('00/00/0000', { selectOnFocus: true });
     });
 
-    // TELA DE ANEXO ESTADO CIVIL
-
-    $('#estado_civil').on('change', function () {
-      'Casado(a)' === $(this).val()
-        ? $('#vinc-anexo-casado').fadeIn('100')
-        : $('#vinc-anexo-casado').fadeOut('100');
-      //
-      'Selecione' === $(this).val();
-      $('#reanexar').fadeOut('100');
-      $('#datacasamento').fadeOut('100');
-      //
-      'Solteiro' === $(this).val();
-      $('#reanexar').fadeOut('100');
-      $('#datacasamento').fadeOut('100');
-      //
-      'Convivente' === $(this).val();
-      $('#reanexar').fadeOut('100');
-      $('#datacasamento').fadeOut('100');
+    // TELA DE ANEXO DO DOCUMENTO DA EMPRESA
+    $('#dataRecebimento').on('blur', function () {
+      $('#vinc-anexo-empresa').fadeIn('100');
     });
-
-    $('#fecharAnexo').click(function () {
-      $('#vinc-anexo-casado').fadeOut('100');
-      $('#reanexar').fadeIn('100');
-      $('#datacasamento').fadeIn('100');
+    $('#dataRecebimento').on('focus', function () {
+      $(this).siblings('#vinc-anexo-empresa').fadeIn('100');
     });
-
-    $('#abrirAnexo').click(function () {
-      $('#vinc-anexo-casado').fadeIn('100');
-    });
+    $('#vinc-anexo-empresa').hide();
     //
-
-    // TELA DE VINCULO EMPREGATICIO
-    $('#dataAdmissao').on('blur', function () {
-      $('#vinc-anexo-empregaticio').fadeIn('100');
-    });
-    $('#dataAdmissao').on('focus', function () {
-      $(this).siblings('#vinc-anexo-empregaticio').fadeOut('100');
-    });
-    $('#vinc-anexo-empregaticio').hide();
-
-    $('#fecharAnexo4').click(function () {
-      $('#vinc-anexo-empregaticio').fadeOut('100');
-      $('#reanexar4').fadeIn('100');
+    $('#fecharAnexo5').click(function () {
+      $('#vinc-anexo-empresa').fadeOut('100');
+      $('#reanexar5').fadeIn('100');
     });
 
-    $('#abrirAnexo4').click(function () {
-      $('#vinc-anexo-empregaticio').fadeIn('100');
+    $('#abrirAnexo5').click(function () {
+      $('#vinc-anexo-empresa').fadeIn('100');
+    });
+
+    // TELA DE VIGÊNCIA
+    $('#dataVigencia').on('blur', function () {
+      $('#vinc-vigencia').fadeIn('100');
+    });
+    $('#dataVigencia').on('focus', function () {
+      $(this).siblings('#vinc-vigencia').fadeIn('100');
+    });
+    $('#vinc-vigencia').hide();
+    //
+    $('#fecharAnexo6').click(function () {
+      $('#vinc-vigencia').fadeOut('100');
+      $('#reanexar5').fadeIn('100');
+    });
+
+    $('#abrirAnexo6').click(function () {
+      $('#vinc-vigencia').fadeIn('100');
     });
   }
 
