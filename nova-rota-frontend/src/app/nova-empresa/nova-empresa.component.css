@@ -58,6 +58,22 @@
   transform: translate(-50%, -50%);
 }
 
+.box-vigencia {
+  border-top: 4px solid var(--cor-tema);
+  border-radius: 15px;
+  background: #ffffff;
+  max-width: 125vh;
+  width: 70vh;
+  min-height: 30vh;
+  margin: 10vh auto;
+  z-index: 997;
+  position: fixed;
+  top: 20vh;
+  left: 58%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
 .was-validated .form-control:valid,
 .form-control.is-valid {
   border-color: #3ac47d;

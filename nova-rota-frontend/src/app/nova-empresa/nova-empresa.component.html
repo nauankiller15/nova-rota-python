@@ -155,9 +155,44 @@
                       </div>
                     </div>
                   </div>
+
+                   <!-- VINCULAR INICIO DA VIGÊNCIA -->
+                   <div id="vinc-vigencia">
+                    <div class="box-vigencia">
+                      <div class="anexo-info-box-empresa-vinc">
+                        <h1
+                          style="
+                            font-size: 20px;
+                            display: flex;
+                            margin-top: -15px;
+                            margin-bottom: 15px;
+                          "
+                        >
+                          Histórico de Reajustes:
+                        </h1>
+                        <label for="reajuste"
+                          >Informe aqui os reajustes:</label
+                        >
+  
+                        <button
+                          style="
+                            display: flex;
+                            position: absolute;
+                            right: 20px;
+                            bottom: 20px;
+                          "
+                          class="btn btn-primary"
+                          id="fecharAnexo6"
+                        >
+                          Fechar
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
   
-                <div class="col-md-2 mb-3">
+                <div class="col-md-2 mb-3" style="margin-right:40px;">
                     <label for="validationCustom05">Inicio de Vigência</label>
                     <input
                       #inicio_vigencia="ngModel"
@@ -176,53 +211,17 @@
                     />
     
                     <!-- BOTÃO REABRIR VIGENCIA -->
-                    <div id="reanexar5" style="display: none">
+                    <div id="vigenciaTela" style="display: none; z-index: 999;">
                       <button
-                        style="position: absolute; right: -44px; top: 31px"
+                        style="position: absolute; right: -44px; top: 31px;"
                         class="btn btn-primary"
-                        id="abrirAnexo6"
+                        id="abrirVigencia"
                       >
-                        <i class="fas fa-file-image" style="font-size: 15px"></i>
+                        <i class="fas fa-building" style="font-size: 15px"></i>
                       </button>
                     </div>
   
                     <!--  -->
-                  </div>
-
-                  <div class="col-md-2 mb-3">
-                    <!-- VINCULAR INICIO DA VIGÊNCIA -->
-                    <div id="vinc-vigencia">
-                      <div class="box-anexo">
-                        <div class="anexo-info-box-empresa-vinc">
-                          <h1
-                            style="
-                              font-size: 20px;
-                              display: flex;
-                              margin-top: -15px;
-                              margin-bottom: 15px;
-                            "
-                          >
-                            Histórico de Reajustes:
-                          </h1>
-                          <label for="avatar"
-                            >Informe aqui os reajustes:</label
-                          >
-    
-                          <button
-                            style="
-                              display: flex;
-                              position: absolute;
-                              right: 20px;
-                              bottom: 20px;
-                            "
-                            class="btn btn-primary"
-                            id="fecharAnexo6"
-                          >
-                            Fechar
-                          </button>
-                        </div>
-                      </div>
-                    </div>
                   </div>
 
                   <div class="col-md-2 mb-3">

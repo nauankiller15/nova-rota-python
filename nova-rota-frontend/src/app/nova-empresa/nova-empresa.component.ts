@@ -123,10 +123,10 @@ export class NovaEmpresaComponent implements OnInit {
     //
     $('#fecharAnexo6').click(function () {
       $('#vinc-vigencia').fadeOut('100');
-      $('#reanexar5').fadeIn('100');
+      $('#vigenciaTela').fadeIn('100');
     });
 
-    $('#abrirAnexo6').click(function () {
+    $('#abrirVigencia').click(function () {
       $('#vinc-vigencia').fadeIn('100');
     });
   }
