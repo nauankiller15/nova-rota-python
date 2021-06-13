@@ -20,9 +20,18 @@ class Parentesco (models.Model):
         ('Casado(a)', 'Casado(a)'),
         ('Convivente', 'Convivente'),
     )
+
+    prioridade_choice = (
+        ('Sem Prioridade', 'Sem Prioridade'),
+        ('Recem Nascido', 'Recem Nascido'),
+        ('Recem Casado', 'Casado(a)'),
+    )
+
     CPF = BRCPFField("Número CPF", max_length=14, null=False, unique=True)
     cod_empresa = models.CharField("Codigo Empresa", max_length=25, null=False, blank=False)
     carteirinha = models.CharField("Numero da Carteirinha", max_length=35, null=False, blank=False, unique=True)
+    prioridade = models.CharField(max_length=25, choices=prioridade_choice,
+                            blank=True, default="Selecione", null=False)
     data_recebimento = models.DateField(
         "Data Recebimento", auto_now=False, auto_now_add=False, null=False)
     tipo = models.CharField("Tipo Cadastro", max_length=25,
