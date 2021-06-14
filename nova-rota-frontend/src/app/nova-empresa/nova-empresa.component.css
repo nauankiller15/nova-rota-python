@@ -1,21 +1,3 @@
-/* TELA DE VIGÊNCIA */
-#vinc-vigencia {
-  z-index: 999;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #0000005e;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#vinc-vinc-vigencia {
-  display: none;
-}
-
 /* TELA DE ANEXO DE DOCUMENTO DA EMPRESA */
 #vinc-anexo-empresa {
   z-index: 999;
@@ -58,21 +40,40 @@
   transform: translate(-50%, -50%);
 }
 
+/* TELA DE VIGÊNCIA */
+#vinc-vigencia {
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0000005e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#vinc-vigencia {
+  display: block;
+}
+
 .box-vigencia {
   border-top: 4px solid var(--cor-tema);
   border-radius: 15px;
   background: #ffffff;
   max-width: 125vh;
-  width: 70vh;
+  width: 100vh;
   min-height: 30vh;
   margin: 10vh auto;
   z-index: 997;
   position: fixed;
-  top: 20vh;
+  top: 32vh;
   left: 58%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
 }
+
 
 .was-validated .form-control:valid,
 .form-control.is-valid {
