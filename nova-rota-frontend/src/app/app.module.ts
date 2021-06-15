@@ -20,6 +20,9 @@ import { NovoDependenteComponent } from './novo-dependente/novo-dependente.compo
 import { AlteracaoDependenteComponent } from './alteracao-dependente/alteracao-dependente.component';
 import { AltDependenteDetailsComponent } from './alt-dependente-details/alt-dependente-details.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { NovaEmpresaComponent } from './nova-empresa/nova-empresa.component';
+import { AlteracaoEmpresaComponent } from './alteracao-empresa/alteracao-empresa.component';
+import { AltEmpresaDetailsComponent } from './alt-empresa-details/alt-empresa-details.component';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -40,6 +43,9 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     NovoDependenteComponent,
     AlteracaoDependenteComponent,
     AltDependenteDetailsComponent,
+    NovaEmpresaComponent,
+    AlteracaoEmpresaComponent,
+    AltEmpresaDetailsComponent,
   ],
   imports: [
     BrowserModule,

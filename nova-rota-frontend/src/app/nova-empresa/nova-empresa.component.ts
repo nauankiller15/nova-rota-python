@@ -7,47 +7,44 @@ import { ApiService } from './api.service';
 declare var $: any;
 
 @Component({
-  selector: 'app-novo-titular',
-  templateUrl: './novo-titular.component.html',
-  styleUrls: ['./novo-titular.component.css'],
+  selector: 'app-nova-empresa',
+  templateUrl: './nova-empresa.component.html',
+  styleUrls: ['./nova-empresa.component.css'],
 })
-export class NovoTitularComponent implements OnInit {
-  titular = {
+export class NovaEmpresaComponent implements OnInit {
+  empresa = {
     id: 0,
-    CPF: '',
+    CNPJ: '',
     cod_empresa: '',
-    data_recebimento: '',
+    razao_social: '',
     tipo: '',
-    nome_benef: '',
-    data_nascimento: '',
-    sexo: '',
-    carteirinha: '',
-    estado_civil: '',
-    nome_mae: '',
-    data_admissao: '',
-    data_casamento: null,
+    vencimento_boleto: '',
+    inicio_vigencia: '',
+    ano_vigencia: '',
+    sinistralidade: '',
+    tecnico: '',
+    negociado: '',
+    data_recebimento: '',
     anexo_doc_casamento: null,
     anexo_doc_empregaticio: null,
-    CEP: '',
     celular: '',
     cidade: '',
     estado: '',
-    declaracao_saude: '',
+    cod_apolice: '',
     status: '',
-    desc_declarao_saude: '',
     observacoes: null,
   };
 
-  titulares = [
+  empresas = [
     {
       id: 0,
-      CPF: '',
-      nome_benef: '',
+      CNPJ: '',
+      razao_social: '',
     },
   ];
 
   anex_doc_casamento: any;
-  CPF: any;
+  CNPJ: any;
 
   constructor(
     private toastr: ToastrService,
@@ -66,7 +63,7 @@ export class NovoTitularComponent implements OnInit {
       $('.phone_with_ddd').mask('(00) 00000-0000');
       $('.phone_us').mask('(000) 000-0000');
       $('.mixed').mask('AAA 000-S0S');
-      $('.cpf').mask('000.000.000-00', { reverse: false });
+      $('.CNPJ').mask('000.000.000-00', { reverse: false });
       $('.cnpj').mask('00.000.000/0000-00', { reverse: false });
       $('.money').mask('000.000.000.000.000,00', { reverse: true });
       $('.money2').mask('#.##0,00', { reverse: true });
@@ -101,53 +98,40 @@ export class NovoTitularComponent implements OnInit {
       $('.selectonfocus').mask('00/00/0000', { selectOnFocus: true });
     });
 
-    // TELA DE ANEXO ESTADO CIVIL
-
-    $('#estado_civil').on('change', function () {
-      'Casado(a)' === $(this).val()
-        ? $('#vinc-anexo-casado').fadeIn('100')
-        : $('#vinc-anexo-casado').fadeOut('100');
-      //
-      'Selecione' === $(this).val();
-      $('#reanexar').fadeOut('100');
-      $('#datacasamento').fadeOut('100');
-      //
-      'Solteiro' === $(this).val();
-      $('#reanexar').fadeOut('100');
-      $('#datacasamento').fadeOut('100');
-      //
-      'Convivente' === $(this).val();
-      $('#reanexar').fadeOut('100');
-      $('#datacasamento').fadeOut('100');
+    // TELA DE ANEXO DO DOCUMENTO DA EMPRESA
+    $('#dataRecebimento').on('blur', function () {
+      $('#vinc-anexo-empresa').fadeIn('100');
     });
-
-    $('#fecharAnexo').click(function () {
-      $('#vinc-anexo-casado').fadeOut('100');
-      $('#reanexar').fadeIn('100');
-      $('#datacasamento').fadeIn('100');
+    $('#dataRecebimento').on('focus', function () {
+      $(this).siblings('#vinc-anexo-empresa').fadeIn('100');
     });
-
-    $('#abrirAnexo').click(function () {
-      $('#vinc-anexo-casado').fadeIn('100');
-    });
+    $('#vinc-anexo-empresa').hide();
     //
+    $('#fecharAnexo5').click(function () {
+      $('#vinc-anexo-empresa').fadeOut('100');
+      $('#reanexar5').fadeIn('100');
+    });
 
-    // TELA DE VINCULO EMPREGATICIO
-    $('#dataAdmissao').on('blur', function () {
-      $('#vinc-anexo-empregaticio').fadeIn('100');
+    $('#abrirAnexo5').click(function () {
+      $('#vinc-anexo-empresa').fadeIn('100');
     });
-    $('#dataAdmissao').on('focus', function () {
-      $(this).siblings('#vinc-anexo-empregaticio').fadeIn('100');
+
+    // TELA DE VIGÊNCIA
+    $('#dataVigencia').on('blur', function () {
+      $('#vinc-vigencia').fadeIn('100');
     });
-    $('#vinc-anexo-empregaticio').hide();
+    $('#dataVigencia').on('focus', function () {
+      $(this).siblings('#vinc-vigencia').fadeIn('100');
+    });
+    $('#vinc-vigencia').hide();
     //
-    $('#fecharAnexo4').click(function () {
-      $('#vinc-anexo-empregaticio').fadeOut('100');
-      $('#reanexar4').fadeIn('100');
+    $('#fecharAnexo6').click(function () {
+      $('#vinc-vigencia').fadeOut('100');
+      $('#vigenciaTela').fadeIn('100');
     });
 
-    $('#abrirAnexo4').click(function () {
-      $('#vinc-anexo-empregaticio').fadeIn('100');
+    $('#abrirVigencia').click(function () {
+      $('#vinc-vigencia').fadeIn('100');
     });
   }
 
@@ -156,16 +140,15 @@ export class NovoTitularComponent implements OnInit {
   //   this.selectedFile = <File>event.target.files[0];
   // }
 
-  newTitular() {
+  newEmpresa() {
     // const fd = new FormData();
     // fd.append('image', this.selectedFile, this.selectedFile.name);
-    this.api.saveNewTitular(this.titular).subscribe(
+    this.api.saveNewEmpresa(this.empresa).subscribe(
       (data) => {
-        this.toastr.success('Titular inserido com sucesso!');
+        this.toastr.success('Empresa incluída com sucesso!');
         this.appComponent.titular.push(data);
       },
       (error: { message: string }) => {
-        this.toastr.error('Dados necessários em branco!', error.message);
         this.toastr.error('Dados necessários em branco!', error.message);
       }
     );

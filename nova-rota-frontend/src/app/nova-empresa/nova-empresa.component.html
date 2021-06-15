@@ -1,0 +1,513 @@
+<div class="fadeIn app-main">
+  <div class="app-main__outer">
+    <div class="app-main__inner">
+      <div class="app-page-title">
+        <div class="page-title-wrapper">
+          <div class="page-title-heading">
+            <div class="page-title-icon">
+              <i class="fas fa-address-card icon-gradient bg-mean-fruit"> </i>
+            </div>
+            <div>
+              Inclusão de Empresa
+              <div class="page-title-subheading">Nova Empresa Ativa.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+
+      <div class="main-card mb-3 card">
+        <div class="card-body">
+          <h5 class="card-title">Preencha os campos abaixo:</h5>
+
+          <form
+            class="needs-validation"
+            #empresaForm="ngForm"
+            ENCTYPE="multipart/form-data"
+            novalidate
+          >
+            <div class="form-row">
+              <div class="col-md-2 mb-2">
+                <label for="validationCustom01">CNPJ</label>
+                <input
+                  #CNPJ="ngModel"
+                  autocomplete="off"
+                  [class.is-invalid]="CNPJ.invalid && CNPJ.touched"
+                  [class.is-valid]="CNPJ.valid && CNPJ.touched"
+                  pattern="^\d{3}\.\d{3}\.\d{3}\-\d{2}$"
+                  [(ngModel)]="empresa.CNPJ"
+                  name="CNPJ"
+                  type="text"
+                  class="form-control cnpj"
+                  placeholder="Número de CNPJ"
+                  required
+                />
+
+                <div *ngIf="CNPJ.errors && (CNPJ.valid || CNPJ.touched)">
+                  <small class="text-danger" *ngIf="CNPJ.errors.required"
+                    >CNPJ Necessário!</small
+                  >
+                  <small class="text-danger" *ngIf="CNPJ.errors.pattern"
+                    >CNPJ Digitos Incompletos!</small
+                  >
+                </div>
+              </div>
+
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom01">Código Empresa</label>
+                <input
+                  #cod_empresa="ngModel"
+                  autocomplete="off"
+                  [class.is-invalid]="
+                    cod_empresa.invalid && cod_empresa.touched
+                  "
+                  [class.is-valid]="cod_empresa.valid && cod_empresa.touched"
+                  [(ngModel)]="empresa.cod_empresa"
+                  name="cod_empresa"
+                  type="text"
+                  class="form-control"
+                  placeholder="Código da Empresa"
+                  required
+                />
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom01">Razão Social</label>
+                <input
+                  #razao_social="ngModel"
+                  [class.is-invalid]="
+                    razao_social.invalid && razao_social.touched
+                  "
+                  [class.is-valid]="razao_social.valid && razao_social.touched"
+                  [(ngModel)]="empresa.razao_social"
+                  name="razao_social"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui a Razão Social"
+                  required
+                />
+                <small
+                  class="text-danger"
+                  [class.d-none]="razao_social.valid || razao_social.untouched"
+                >
+                  Razão Social Necessária!</small
+                >
+              </div>
+
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom01">Vencimento do Boleto</label>
+                <input
+                  #vencimento_boleto="ngModel"
+                  [class.is-invalid]="
+                    vencimento_boleto.invalid && vencimento_boleto.touched
+                  "
+                  [class.is-valid]="
+                    vencimento_boleto.valid && vencimento_boleto.touched
+                  "
+                  [(ngModel)]="empresa.vencimento_boleto"
+                  name="vencimento_boleto"
+                  type="date"
+                  class="form-control"
+                  required
+                />
+              </div>
+
+              <div class="col-md-2 mb-3">
+                <!-- VINCULAR ANEXO DO DOCUMENTO DA EMPRESA -->
+                <div id="vinc-anexo-empresa">
+                  <div class="box-anexo">
+                    <div class="anexo-info-box-empresa-vinc">
+                      <h1
+                        style="
+                          font-size: 20px;
+                          display: flex;
+                          margin-top: -15px;
+                          margin-bottom: 15px;
+                        "
+                      >
+                        Anexar Documento da Empresa:
+                      </h1>
+                      <label for="avatar"
+                        >Escolha uma imagem para anexar:</label
+                      >
+
+                      <input
+                        type="file"
+                        id="imagemEmpregaticio"
+                        accept=".png, .jpg, .jpeg"
+                        [(ngModel)]="empresa.anexo_doc_empregaticio"
+                        name="vinculo_empregaticio"
+                      />
+
+                      <button
+                        style="
+                          display: flex;
+                          position: absolute;
+                          right: 20px;
+                          bottom: 20px;
+                        "
+                        class="btn btn-primary"
+                        id="fecharAnexo5"
+                      >
+                        Anexar Arquivo
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- VINCULAR INICIO DA VIGÊNCIA -->
+                <div id="vinc-vigencia">
+                  <div class="box-vigencia">
+                    <div class="anexo-info-box-empresa-vinc">
+                      <h1
+                        style="
+                          font-size: 20px;
+                          display: flex;
+                          margin-top: -15px;
+                          margin-bottom: 15px;
+                        "
+                      >
+                        Histórico de Reajustes:
+                      </h1>
+                      <label for="reajuste">Informe aqui os reajustes:</label>
+                      <div style="width: 100%"></div>
+                      <div class="form-row">
+                        <!-- ANO -->
+                        <div class="col-md-5 mb-5">
+                          <label for="validationCustom01">Ano</label>
+                          <input
+                            #ano_vigencia="ngModel"
+                            [class.is-invalid]="
+                              ano_vigencia.invalid && ano_vigencia.touched
+                            "
+                            [class.is-valid]="ano_vigencia.valid && ano_vigencia.touched"
+                            required
+                            [(ngModel)]="empresa.ano_vigencia"
+                            name="ano_vigencia"
+                            type="text"
+                            class="form-control"
+                            style="
+                              border-top: none;
+                              border-left: none;
+                              border-right: none;
+                            "
+                            placeholder="Informe o ano da negociação"
+                          />
+                        </div>
+                        <!--  -->
+
+                        <!-- SINISTRALIDADE -->
+                        <div class="col-md-5 mb-5">
+                          <label for="validationCustom01">Sinistralidade</label>
+                          <input
+                            #sinistralidade="ngModel"
+                            [class.is-invalid]="
+                              sinistralidade.invalid && sinistralidade.touched
+                            "
+                            [class.is-valid]="sinistralidade.valid && sinistralidade.touched"
+                            required
+                            [(ngModel)]="empresa.sinistralidade"
+                            name="sinistralidade"
+                            type="text"
+                            class="form-control"
+                            style="
+                              border-top: none;
+                              border-left: none;
+                              border-right: none;
+                            "
+                            placeholder="Informe a sinistralidade"
+                          />
+                        </div>
+                        <!--  -->
+
+                        <!-- TÉCNICO -->
+                        <div class="col-md-5 mb-5">
+                          <label for="validationCustom01">Técnico</label>
+                          <input
+                            #tecnico="ngModel"
+                            [class.is-invalid]="
+                              tecnico.invalid && tecnico.touched
+                            "
+                            [class.is-valid]="tecnico.valid && tecnico.touched"
+                            required
+                            [(ngModel)]="empresa.tecnico"
+                            name="tecnico"
+                            type="text"
+                            class="form-control"
+                            style="
+                              border-top: none;
+                              border-left: none;
+                              border-right: none;
+                            "
+                            placeholder="Informe a porcentagem"
+                          />
+                        </div>
+                        <!--  -->
+
+                          <!-- NEGOCIADO -->
+                          <div class="col-md-5 mb-5">
+                            <label for="validationCustom01">Negociado</label>
+                            <input
+                              #negociado="ngModel"
+                              [class.is-invalid]="
+                                negociado.invalid && negociado.touched
+                              "
+                              [class.is-valid]="negociado.valid && negociado.touched"
+                              required
+                              [(ngModel)]="empresa.negociado"
+                              name="negociado"
+                              type="text"
+                              class="form-control"
+                              style="
+                                border-top: none;
+                                border-left: none;
+                                border-right: none;
+                              "
+                              placeholder="Informe a porcentagem"
+                            />
+                          </div>
+                          <!--  -->
+                        <button
+                          style="
+                            display: flex;
+                            position: absolute;
+                            right: 20px;
+                            bottom: 20px;
+                          "
+                          class="btn btn-primary"
+                          id="fecharAnexo6"
+                        >
+                          Fechar
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-2 mb-3" style="margin-right: 40px">
+                <label for="validationCustom05">Inicio de Vigência</label>
+                <input
+                  #inicio_vigencia="ngModel"
+                  [class.is-invalid]="
+                    inicio_vigencia.invalid && inicio_vigencia.touched
+                  "
+                  [class.is-valid]="
+                    inicio_vigencia.valid && inicio_vigencia.touched
+                  "
+                  [(ngModel)]="empresa.inicio_vigencia"
+                  name="inicio_vigencia"
+                  type="date"
+                  id="dataVigencia"
+                  class="form-control"
+                  required
+                />
+
+                <!-- BOTÃO REABRIR VIGENCIA -->
+                <div id="vigenciaTela" style="display: none; z-index: 999">
+                  <button
+                    style="position: absolute; right: -44px; top: 31px"
+                    class="btn btn-primary"
+                    id="abrirVigencia"
+                  >
+                    <i class="fas fa-building" style="font-size: 15px"></i>
+                  </button>
+                </div>
+
+                <!--  -->
+              </div>
+
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom05">Data de Recebimento</label>
+                <input
+                  #data_recebimento="ngModel"
+                  [class.is-invalid]="
+                    data_recebimento.invalid && data_recebimento.touched
+                  "
+                  [class.is-valid]="
+                    data_recebimento.valid && data_recebimento.touched
+                  "
+                  [(ngModel)]="empresa.data_recebimento"
+                  name="data_recebimento"
+                  type="date"
+                  id="dataRecebimento"
+                  class="form-control"
+                  required
+                />
+
+                <!-- BOTÃO REANEXAR DOCUMENTO DA EMPRESA -->
+                <div id="reanexar5" style="display: none">
+                  <button
+                    style="position: absolute; right: -44px; top: 31px"
+                    class="btn btn-primary"
+                    id="abrirAnexo5"
+                  >
+                    <i class="fas fa-file-image" style="font-size: 15px"></i>
+                  </button>
+                </div>
+
+                <!--  -->
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-2 mb-2">
+                <label for="validationCustom01">Celular</label>
+                <input
+                  #celular="ngModel"
+                  [class.is-invalid]="celular.invalid && celular.touched"
+                  [class.is-valid]="celular.valid && celular.touched"
+                  required
+                  [(ngModel)]="empresa.celular"
+                  name="celular"
+                  type="text"
+                  class="form-control phone_with_ddd"
+                  placeholder="Informe o Celular"
+                />
+              </div>
+
+              <div class="col-md-2 mb-2">
+                <label for="validationCustom03">Cidade</label>
+                <input
+                  #cidade="ngModel"
+                  [class.is-invalid]="cidade.invalid && cidade.touched"
+                  [class.is-valid]="cidade.valid && cidade.touched"
+                  required
+                  [(ngModel)]="empresa.cidade"
+                  name="cidade"
+                  type="text"
+                  class="form-control"
+                  placeholder="Cidade"
+                />
+              </div>
+
+              <div class="col-md-1 mb-1">
+                <label for="validationCustom02">Estado UF</label>
+                <select
+                  #estado="ngModel"
+                  [class.is-invalid]="estado.invalid && estado.touched"
+                  [class.is-valid]="estado.valid && estado.touched"
+                  required
+                  [(ngModel)]="empresa.estado"
+                  name="estado_uf"
+                  class="form-control"
+                  name="estado_uf"
+                >
+                  <option value="">Selecione</option>
+                  <option value="AC">AC</option>
+                  <option value="AL">AL</option>
+                  <option value="AP">AP</option>
+                  <option value="AM">AM</option>
+                  <option value="BA">BA</option>
+                  <option value="CE">CE</option>
+                  <option value="DF">DF</option>
+                  <option value="ES">ES</option>
+                  <option value="GO">GO</option>
+                  <option value="MA">MA</option>
+                  <option value="MT">MT</option>
+                  <option value="MS">MS</option>
+                  <option value="MG">MG</option>
+                  <option value="PA">PA</option>
+                  <option value="PB">PB</option>
+                  <option value="PR">PR</option>
+                  <option value="PE">PE</option>
+                  <option value="PI">PI</option>
+                  <option value="RJ">RJ</option>
+                  <option value="RN">RN</option>
+                  <option value="RS">RS</option>
+                  <option value="RO">RO</option>
+                  <option value="RR">RR</option>
+                  <option value="SC">SC</option>
+                  <option value="SP">SP</option>
+                  <option value="SE">SE</option>
+                  <option value="TO">TO</option>
+                </select>
+              </div>
+
+              <div class="col-md-2 mb-2">
+                <label for="validationCustom03">Código Apolice</label>
+                <input
+                  #declaracao_saude="ngModel"
+                  [class.is-invalid]="
+                    declaracao_saude.invalid && declaracao_saude.touched
+                  "
+                  [class.is-valid]="
+                    declaracao_saude.valid && declaracao_saude.touched
+                  "
+                  required
+                  [(ngModel)]="empresa.cod_apolice"
+                  name="declaracao_saude"
+                  type="text"
+                  class="form-control"
+                  placeholder="Declaração de Saúde"
+                />
+              </div>
+
+              <div class="col-md-2 mb-2">
+                <label for="validationCustom04">Status Sistema</label>
+                <input
+                  readonly="true"
+                  type="text"
+                  class="form-control"
+                  placeholder="OK"
+                />
+              </div>
+
+              <div class="col-md-5 mb-5">
+                <label for="validationCustom05">Observações</label>
+                <input
+                  [(ngModel)]="empresa.observacoes"
+                  name="observacoes"
+                  type="text"
+                  class="form-control"
+                  placeholder="Informe aqui aspectos importantes para o movimentação"
+                />
+              </div>
+            </div>
+
+            <button
+              [disabled]="empresaForm.form.invalid"
+              name="enviar"
+              class="btn btn-primary"
+              (click)="newEmpresa()"
+            >
+              Gravar informações
+            </button>
+            <button type="reset" class="btn btn-cancelar">Apagar tudo</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="app-wrapper-footer">
+      <div class="app-footer">
+        <div class="app-footer__inner">
+          <div class="app-footer-left">
+            <ul class="nav">
+              <li class="nav-item">
+                <a href="javascript:void(0);" class="nav-link"> Ajuda </a>
+              </li>
+              <li class="nav-item">
+                <a href="javascript:void(0);" class="nav-link">
+                  Relatar Problema
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="app-footer-right">
+            <ul class="nav">
+              <li class="nav-item">
+                <a href="javascript:void(0);" class="nav-link"> Outros </a>
+              </li>
+              <li class="nav-item">
+                <a href="javascript:void(0);" class="nav-link">
+                  <div class="badge badge-success mr-1 ml-0"></div>
+                  Outros
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'cad_emp',
     'cad_emp_filial',
     'tarefas',
-    'input_mask',
 ]
 
 MIDDLEWARE = [
