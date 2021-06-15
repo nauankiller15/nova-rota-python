@@ -1,19 +1,27 @@
 from django.db import models
+from localflavor.br.models import BRStateField, BRCNPJField
+
 
 class Empresa (models.Model):
 
-    CNPJ = models.CharField("CNPJ", null=False, max_length=18, unique=True)
+    contrato_choice = (
+        ('Masculino', 'Masculino'),
+        ('Feminino', 'Feminino'),
+    )
+
+    CNPJ = BRCNPJField("Número CPF", max_length=14, null=False, unique=True)
     cod_empresa = models.CharField("Codigo Empresa", max_length=25, null=False, unique=True)
     data_recebimento = models.DateField(
         "Data Recebimento", auto_now=False, auto_now_add=False, blank=True, null=False)
-    tipo_contrato = models.CharField("Tipo Cadastro", max_length=25,
-                                     default="Inclusão de Titular", editable=False)
+    tipo_contrato = models.CharField(max_length=25, choices=contrato_choice,
+                            blank=True, default="Selecione", null=False)
     razao_social = models.CharField("Razão Social", max_length=255)
     anexo_doc_emp = models.ImageField(upload_to='anexo_empresa', blank=True, null=True)
     vencimento_boleto = models.DateField(
         "Vencimento do Boleto", auto_now=False, auto_now_add=False, null=False)
     inicio_vigencia = models.DateField(
         "Inicio de Vigência", auto_now=False, auto_now_add=False, null=False)
+    estado = BRStateField("Estado UF", max_length=150, blank=False, null=False)
     historico_reajuste = models.CharField("Histórico de Reajuste", max_length=100, null=True)
     historico_sinistro = models.CharField("Histórico de Sinistralidade", max_length=100, null=True)
     declaracao_saude = models.CharField("Declaracao Saude", max_length=255)
