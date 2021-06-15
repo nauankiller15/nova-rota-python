@@ -23,6 +23,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { NovaEmpresaComponent } from './nova-empresa/nova-empresa.component';
 import { AlteracaoEmpresaComponent } from './alteracao-empresa/alteracao-empresa.component';
 import { AltEmpresaDetailsComponent } from './alt-empresa-details/alt-empresa-details.component';
+import { LoginComponent } from './login/login.component';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -46,6 +47,7 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     NovaEmpresaComponent,
     AlteracaoEmpresaComponent,
     AltEmpresaDetailsComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
