@@ -20,8 +20,8 @@
         <div class="card-body">
           <h5 class="card-title">Preencha os campos abaixo:</h5>
 
-          <span style="color:red;">* Obrigatório</span>
-          <div style="height: 5px;"></div>
+          <span style="color: red">* Obrigatório</span>
+          <div style="height: 5px"></div>
 
           <form
             class="needs-validation"
@@ -31,7 +31,9 @@
           >
             <div class="form-row">
               <div class="col-md-2 mb-2">
-                <label for="validationCustom01">CPF <span style="color:red;">*</span></label>
+                <label for="validationCustom01"
+                  >CPF <span style="color: red">*</span></label
+                >
                 <input
                   #CPF="ngModel"
                   autocomplete="off"
@@ -56,7 +58,9 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom01">Código Empresa <span style="color:red;">*</span></label>
+                <label for="validationCustom01"
+                  >Código Empresa <span style="color: red">*</span></label
+                >
                 <input
                   #cod_empresa="ngModel"
                   autocomplete="off"
@@ -103,7 +107,10 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom01">Número da Carteirinha <span style="color:red;">*</span></label>
+                <label for="validationCustom01"
+                  >Número da Carteirinha
+                  <span style="color: red">*</span></label
+                >
                 <input
                   #carteirinha="ngModel"
                   autocomplete="off"
@@ -134,7 +141,9 @@
               </div>
 
               <div class="col-md-4 mb-3">
-                <label for="validationCustom01">Nome do Dependente <span style="color:red;">*</span></label>
+                <label for="validationCustom01"
+                  >Nome do Dependente <span style="color: red">*</span></label
+                >
                 <input
                   #nome_dependente="ngModel"
                   [class.is-invalid]="
@@ -161,7 +170,9 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom01">Data de Nascimento <span style="color:red;">*</span></label>
+                <label for="validationCustom01"
+                  >Data de Nascimento <span style="color: red">*</span></label
+                >
                 <input
                   #data_nascimento="ngModel"
                   [class.is-invalid]="
@@ -181,7 +192,9 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom02">Sexo <span style="color:red;">*</span></label>
+                <label for="validationCustom02"
+                  >Sexo <span style="color: red">*</span></label
+                >
                 <select
                   #sexo="ngModel"
                   [class.is-invalid]="sexo.invalid && sexo.touched"
@@ -198,7 +211,9 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom02">Estado Civil <span style="color:red;">*</span></label>
+                <label for="validationCustom02"
+                  >Estado Civil <span style="color: red">*</span></label
+                >
                 <!-- BOTÃO REANEXAR CASADO -->
                 <div id="reanexar3" style="display: none">
                   <button
@@ -245,14 +260,14 @@
                       <label for="avatar"
                         >Escolha um arquivo para anexar:</label
                       >
-
+                      <div style="height: 10px; width: 100%"></div>
                       <input
                         type="file"
                         id="avatar"
                         name="avatar"
                         [(ngModel)]="titular.anexo_doc_casamento"
                         accept=".png, .jpg, .jpeg"
-                        ngControl="inputFile" 
+                        ngControl="inputFile"
                       />
 
                       <button
@@ -273,7 +288,9 @@
               </div>
 
               <div class="col-md-4 mb-3">
-                <label for="validationCustom01">Nome da Mãe <span style="color:red;">*</span></label>
+                <label for="validationCustom01"
+                  >Nome da Mãe <span style="color: red">*</span></label
+                >
                 <input
                   #nome_mae="ngModel"
                   [class.is-invalid]="nome_mae.invalid && nome_mae.touched"
@@ -294,7 +311,9 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom05">Data de Admissão <span style="color:red;">*</span></label>
+                <label for="validationCustom05"
+                  >Data de Admissão <span style="color: red">*</span></label
+                >
                 <input
                   #data_admissao="ngModel"
                   [class.is-invalid]="
@@ -327,7 +346,9 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom02">Tipo Parentesco <span style="color:red;">*</span></label>
+                <label for="validationCustom02"
+                  >Tipo Parentesco <span style="color: red">*</span></label
+                >
                 <!-- BOTÃO REANEXAR CASADO -->
                 <div id="reanexar2" style="display: none">
                   <button
@@ -373,13 +394,14 @@
                         Anexar Certidão de Nascimento
                       </h1>
                       <label for="imagemCasado"
-                        >Escolha uma imagem para anexar:</label
+                        >Escolha um arquivo para anexar:</label
                       >
+                      <div style="height: 10px; width: 100%"></div>
 
                       <input
                         type="file"
                         id="imagemCasado"
-                        ngControl="inputFile" 
+                        ngControl="inputFile"
                         accept=".png, .jpg, .jpeg"
                         [(ngModel)]="dependente.anexo_doc_nascimento"
                       />
@@ -404,7 +426,9 @@
 
             <div class="form-row">
               <div class="col-md-2 mb-2">
-                <label for="validationCustom01">CEP <span style="color:red;">*</span></label>
+                <label for="validationCustom01"
+                  >CEP <span style="color: red">*</span></label
+                >
                 <input
                   #CEP="ngModel"
                   [class.is-invalid]="CEP.invalid && CEP.touched"
@@ -434,7 +458,9 @@
               </div>
 
               <div class="col-md-2 mb-2">
-                <label for="validationCustom03">Cidade <span style="color:red;">*</span></label>
+                <label for="validationCustom03"
+                  >Cidade <span style="color: red">*</span></label
+                >
                 <input
                   #cidade="ngModel"
                   [class.is-invalid]="cidade.invalid && cidade.touched"
@@ -449,7 +475,9 @@
               </div>
 
               <div class="col-md-1 mb-1">
-                <label for="validationCustom02">Estado UF <span style="color:red;">*</span></label>
+                <label for="validationCustom02"
+                  >Estado UF <span style="color: red">*</span></label
+                >
                 <select
                   #estado="ngModel"
                   [class.is-invalid]="estado.invalid && estado.touched"
@@ -491,7 +519,9 @@
               </div>
 
               <div class="col-md-2 mb-2">
-                <label for="validationCustom03">Declaração de Saúde <span style="color:red;">*</span></label>
+                <label for="validationCustom03"
+                  >Declaração de Saúde <span style="color: red">*</span></label
+                >
                 <input
                   #declaracao_saude="ngModel"
                   [class.is-invalid]="
@@ -521,7 +551,8 @@
 
               <div class="col-md-4 mb-4">
                 <label for="validationCustom05"
-                  >Descrição da Declaração de Saúde <span style="color:red;">*</span></label
+                  >Descrição da Declaração de Saúde
+                  <span style="color: red">*</span></label
                 >
                 <input
                   #desc_declarao_saude="ngModel"

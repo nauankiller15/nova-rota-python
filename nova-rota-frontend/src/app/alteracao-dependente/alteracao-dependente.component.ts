@@ -136,6 +136,20 @@ export class AlteracaoDependenteComponent implements OnInit {
       $('#dependentesappear').fadeOut('200');
       $('#consulta2').slideDown('200');
     });
+
+     // VOLTAR ALTERAÇÃO DE DADOS
+     $('#voltardadosDependente').click(function () {
+      $('#Dependentesappear').fadeOut('200');
+      $('#consulta').slideDown('200');
+    });
+
+    $('#abrirAnexoAltDependente').click(function () {
+      $('#vinc-anexo-casadoAlt').fadeIn('100');
+    });
+
+    $('#fecharAnexoAltDependente').click(function () {
+      $('#vinc-anexo-casadoAlt').fadeOut('100');
+    });
   }
 
   searchCPF() {

@@ -98,7 +98,77 @@
             Dependente de:
             {{ selected_dependente.titular_nome }}
           </p>
+
+          <div class="botao-anexosAlt">
+            <button
+              class="btn btn-primary"
+              style="font-weight: bold; font-size: 16px"
+              id="abrirAnexoAltDependente"
+            >
+              <i style="margin-right: 6px" class="fas fa-file-image"></i>Abrir
+              Anexos
+            </button>
+          </div>
         </h1>
+
+         <!-- TELA DE ANEXOS DE CASAMENTO -->
+         <div id="vinc-anexo-casadoAlt">
+          <div class="box-anexo">
+            <div class="anexo-info-box-titular-vinc">
+              <label
+                for="avatar"
+                style="
+                  display: flex;
+                  font-size: 18px;
+                  margin-top: 10px;
+                  margin-bottom: 10px;
+                "
+                >Anexos vinculados:</label
+              >
+
+              <img
+                style="width: 250px"
+                src="{{ selected_dependente.anexo_doc_casamento }}"
+                alt="Certidão de Casamento de {{ selected_dependente.nome_dependente}}"
+              />
+              <label
+                for="avatar"
+                style="
+                  display: flex;
+                  font-size: 17px;
+                  margin-top: 25px;
+                  margin-bottom: 10px;
+                "
+                >Escolha uma outra imagem para anexar:</label
+              >
+
+              <input
+                type="file"
+                id="imagemCasado"
+                accept="image/png, image/jpeg"
+                [(ngModel)]="selected_dependente.anexo_doc_casamento"
+                [ngModelOptions]="{ standalone: true }"
+                ng-required="false"
+              />
+
+              <button
+                style="
+                  display: flex;
+                  position: absolute;
+                  right: 20px;
+                  bottom: 20px;
+                "
+                class="btn btn-primary"
+                id="fecharAnexoAltDependente"
+              >
+                Fechar tela
+              </button>
+            </div>
+          </div>
+        </div>
+        <!--  -->
+        
+
         <div class="card-body">
           <h5 class="card-title">ALTERE OS CAMPOS ABAIXO:</h5>
           <form class="needs-validation">

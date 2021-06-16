@@ -1,41 +1,88 @@
 .voltar {
-    z-index: 104;
-    cursor: pointer;
-    margin-left: -36px;
-    padding: 14px 2px 1px 0px;
-    border-radius: 50%;
-    background-color: #ededefa8;
-    font-size: 23px;
-    width: 57px;
-    text-align: center;
-    display: inline-block;
-    transition: 0.3s;
-    height: 57px;
-  }
-  .voltar:hover {
-    background-color: var(--cor-tema);
-    color: var(--branco);
-    transform: translate(-2px, 0px);
-  }
-  
-  .titular-ts {
-    border-bottom: 3px solid #ededefa8;
-  }
-  
-  .cpf-ts {
-    font-size: 22px;
-    width: 88%;
-    margin-left: 36px;
-  }
-  
-  .cpfinput {
-    border: none;
-    outline: none;
-    cursor: pointer;
-    color: #495057;
-  }
-  
-  #dependentesappear {
-    display: none;
-  }
-  
+  z-index: 104;
+  cursor: pointer;
+  margin-left: -36px;
+  padding: 14px 2px 1px 0px;
+  border-radius: 50%;
+  background-color: #ededefa8;
+  font-size: 23px;
+  width: 57px;
+  text-align: center;
+  display: inline-block;
+  transition: 0.3s;
+  height: 57px;
+}
+.voltar:hover {
+  background-color: var(--cor-tema);
+  color: var(--branco);
+  transform: translate(-2px, 0px);
+}
+
+.titular-ts {
+  border-bottom: 3px solid #ededefa8;
+}
+
+.cpf-ts {
+  font-size: 22px;
+  width: 88%;
+  margin-left: 36px;
+}
+
+.cpfinput {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #495057;
+}
+
+#dependentesappear {
+  display: none;
+}
+
+/* TELA DE ANEXO CASADO */
+#vinc-anexo-casadoAlt {
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0000005e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#vinc-anexo-casadoAlt {
+  display: none;
+}
+
+.anexo-info-box-titular-vinc {
+  margin: auto;
+  width: 80%;
+  margin-top: 29px;
+  padding: 10px;
+}
+
+.box-anexo {
+  border-top: 4px solid var(--cor-tema);
+  border-radius: 15px;
+  background: #ffffff;
+  width: 90vh;
+  min-height: 65vh;
+  margin: 10vh auto;
+  z-index: 997;
+  position: fixed;
+  top: 40vh;
+  left: 58%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.botao-anexosAlt {
+  position: absolute;
+  right: 20px;
+  border: 1px solid #ededefa8;
+  padding: 0px 6px 9px 12px;
+  top: 20px;
+}
