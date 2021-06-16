@@ -13,11 +13,19 @@ import { NovoDependenteComponent } from './novo-dependente/novo-dependente.compo
 // tarefas
 import { NovaTarefaComponent } from './nova-tarefa/nova-tarefa.component';
 import { TarefasDetailsComponent } from './tarefas-details/tarefas-details.component';
+// 
+// empresa principal
 import { NovaEmpresaComponent } from './nova-empresa/nova-empresa.component';
 import { AlteracaoEmpresaComponent } from './alteracao-empresa/alteracao-empresa.component';
 import { AltEmpresaDetailsComponent } from './alt-empresa-details/alt-empresa-details.component';
+//
+// login
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
+  // ==== TELA DE LOGIN ====
+  { path: 'login', component: LoginComponent },
+  //]\
   // ==== TELA DE TAREFAS ====
   { path: 'tarefas-detail/:id', component: TarefasDetailsComponent },
   { path: 'nova-tarefa', component: NovaTarefaComponent },
