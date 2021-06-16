@@ -25,7 +25,7 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   // ==== TELA DE LOGIN ====
   { path: 'login', component: LoginComponent },
-  //]
+  //]\
   // ==== TELA DE TAREFAS ====
   { path: 'tarefas-detail/:id', component: TarefasDetailsComponent },
   { path: 'nova-tarefa', component: NovaTarefaComponent },
