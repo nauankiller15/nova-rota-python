@@ -255,6 +255,7 @@ export class AlteracaoDependenteComponent implements OnInit {
     this.api.getDependente(dependentes.id).subscribe(
       (data) => {
         this.selected_dependente = data;
+        console.log(data);
       },
       (error) => {
         this.toastr.error('Aconteceu um Erro!', error.message);
@@ -291,14 +292,13 @@ export class AlteracaoDependenteComponent implements OnInit {
         observacoes: string;
         titular: number;
         titular_nome: string;
-        carteirinha: string;
+        carteirinha: any;
         nome_benef: string;
       }) => {
         this.selected_dependente = data;
         this.toastr.success('Atualizado com sucesso!');
       },
       (error: { message: string }) => {
-        console.log(error);
         this.toastr.error('Aconteceu um Erro!', error.message);
       }
     );
