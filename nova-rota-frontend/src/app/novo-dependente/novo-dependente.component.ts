@@ -112,7 +112,8 @@ export class NovoDependenteComponent implements OnInit {
       $('.selectonfocus').mask('00/00/0000', { selectOnFocus: true });
     });
 
-    $('#vincular-tit').click(function () {
+    // VINCULAR TITULAR
+    $('#vincular-titular-btn').click(function () {
       $('#vinc-titular').fadeIn('200');
     });
 
@@ -174,6 +175,17 @@ export class NovoDependenteComponent implements OnInit {
     });
 
     //
+
+
+      // CONFIRMAÇÃO DECLARAÇÃO SAÚDE
+
+      $('#declaracaoSaudeDependente').on('change', function () {
+        'Sim' === $(this).val()
+          ? $('#descDeclaracaoSaudeDepedente').fadeIn('100')
+          : $('#descDeclaracaoSaudeDependente').fadeOut('100');
+      });
+        //
+
   }
 
   getTitulares = () => {

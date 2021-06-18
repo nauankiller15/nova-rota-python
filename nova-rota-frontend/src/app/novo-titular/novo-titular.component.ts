@@ -149,6 +149,15 @@ export class NovoTitularComponent implements OnInit {
     $('#abrirAnexo4').click(function () {
       $('#vinc-anexo-empregaticio').fadeIn('100');
     });
+
+     // CONFIRMAÇÃO DECLARAÇÃO SAÚDE
+
+     $('#declaracaoSaudeTitular').on('change', function () {
+      'Sim' === $(this).val()
+        ? $('#descDeclaracaoSaudeTitular').fadeIn('100')
+        : $('#descDeclaracaoSaudeTitular').fadeOut('100');
+    });
+      //
   }
 
   // selectedFile: File = null;

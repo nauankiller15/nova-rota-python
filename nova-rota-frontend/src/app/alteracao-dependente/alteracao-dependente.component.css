@@ -39,6 +39,153 @@
   display: none;
 }
 
+
+/*  */
+
+.titulares-checkbox {
+  width: 480px;
+  margin: 4px 1px 6px 0px;
+  padding: 5px;
+  width: 585px;
+  font-size: 16px;
+  list-style: none;
+}
+
+.titulares-checkbox li {
+  cursor: pointer;
+  transition: 0.3s;
+  border-bottom: 1px solid #ccc;
+  padding: 3px;
+}
+.titulares-checkbox li:hover {
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+}
+
+em {
+  display: flex;
+  font-size: 16px;
+  list-style: none;
+  text-decoration: none;
+}
+
+.form-control-tit {
+  display: block;
+  width: 585px;
+  height: calc(2.25rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: var(--branco);
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control-tit:focus {
+  color: #495057;
+  background-color: var(--branco);
+  border-color: #a9bcee;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn-vincular {
+  width: 230px;
+  padding: 11px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--cor-botao);
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  transform: translate(28%, -23%);
+}
+
+.btn-vincular:hover {
+  background-color: var(--cor-botao-hover);
+}
+
+.vinc-tit {
+  margin-top: -20px;
+  display: flex;
+  width: 100%;
+}
+
+.posit-btn {
+  margin: auto;
+  width: 360px;
+}
+
+.vinc-tit p {
+  margin-top: 5px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  padding: 16px 6px 16px 7px;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* ----------------- */
+
+/* TELA DE VINCULAR TITULAR */
+
+#alterar-titular {
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0000005e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#alterar-titular {
+  display: none;
+}
+
+.text-info-box-titular-vinc {
+  margin: auto;
+  width: 80%;
+  margin-top: 29px;
+  padding: 10px;
+}
+
+.box-titular {
+  border-top: 4px solid var(--cor-tema);
+  border-radius: 15px;
+  background: #ffffff;
+  max-width: 125vh;
+  width: 110vh;
+  min-height: 70vh;
+  margin: 10vh auto;
+  z-index: 997;
+  position: fixed;
+  top: 40vh;
+  left: 58%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.box-text {
+  display: none;
+}
+
+.paginacao-tit {
+  position: absolute;
+  bottom: 20px;
+  margin-left: 125px;
+}
+
+
 /* TELA DE ANEXO CASADO */
 #vinc-anexo-casadoAlt {
   z-index: 999;

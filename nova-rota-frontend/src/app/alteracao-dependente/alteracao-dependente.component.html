@@ -476,15 +476,85 @@
                 />
               </div>
 
-              <div class="col-md-5 mb-5">
-                <label for="validationCustom05">Titular Vinculado</label>
-                <input
-                  [(ngModel)]="selected_dependente.titular"
-                  [ngModelOptions]="{ standalone: true }"
-                  type="text"
-                  class="form-control"
-                />
+                <!--  -->
+                <small
+                class="text-danger"
+                [class.d-none]="titular.valid || titular.untouched"
+              >
+                <i class="fas fa-times"></i> Titular Vinculado
+                Necessário!</small
+              >
+              <div class="vinc-tit">
+                <div class="posit-btn">
+                  <button id="alterar-titular-btn" class="btn-vincular">
+                    <i style="margin-right: 5px" class="fas fa-id-badge"></i>
+                    Vincular outro Titular
+                  </button>
+                  <p id="encounter-tit" style="display: none">
+                    Titular vinculado: <b>{{ selected_dependente.nome_benef }}</b>
+                  </p>
+                </div>
               </div>
+
+              <div id="alterar-titular">
+                <div class="box-titular">
+                  <div class="text-info-box-titular-vinc">
+                    <label for="validationCustom05">Vincular outro Titular</label>
+                    <div class="col-md-4 mb-3">
+                      <input
+                        [(ngModel)]="nome_benef"
+                        (input)="searchNomeTitDep()"
+                        name="nome_benef"
+                        type="text"
+                        class="form-control-tit"
+                        placeholder="Buscar Titular pelo Nome"
+                      />
+                    </div>
+
+                    <em for="validationCustom05">Titulares Encontrados:</em>
+                    <input
+                      #titular="ngModel"
+                      style="display: none"
+                      value=""
+                      class="titulares-checkbox"
+                      name="titulares"
+                      [(ngModel)]="selected_dependente.titular"
+                      name="titular"
+                      [class.is-invalid]="titular.invalid && titular.touched"
+                      [class.is-valid]="titular.valid && titular.touched"
+                      required
+                    />
+                    <div class="titulares-checkbox">
+                      <li
+                        value="{{ titular.id }}"
+                        *ngFor="
+                          let titular of titulares
+                            | paginate
+                              : {
+                                  id: 'titularvinculo',
+                                  itemsPerPage: 8,
+                                  currentPage: p
+                                }
+                        "
+                        (click)="titularClickedDependente(titular)"
+                      >
+                        {{ titular.CPF }} - {{ titular.nome_benef }}
+                      </li>
+                    </div>
+                    <pagination-controls
+                      id="titularvinculo"
+                      class="paginacao-tit"
+                      previousLabel="Anterior"
+                      nextLabel="Seguinte"
+                      directionLinks="true"
+                      autoHide="true"
+                      responsive="true"
+                      (pageChange)="p = $event"
+                    ></pagination-controls>
+                  </div>
+                </div>
+              </div>
+
               <!--  -->
             </div>
             <button class="btn btn-primary" (click)="updateDependente()">

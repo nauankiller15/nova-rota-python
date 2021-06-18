@@ -14,6 +14,12 @@ class Titular (models.Model):
         ('Casado(a)', 'Casado(a)'),
         ('Convivente', 'Convivente'),
     )
+
+    declaracao_saude_choice = (
+        ('Sim', 'Sim'),
+        ('Nao', 'Nao'),
+    )
+
     CPF = BRCPFField("CPF", max_length=14, null=False, unique=True)
     cod_empresa = models.CharField("Codigo Empresa", max_length=25, null=False, blank=False)
     carteirinha = models.CharField("Numero da Carteirinha", max_length=35, null=False, blank=False, unique=True)
@@ -39,9 +45,8 @@ class Titular (models.Model):
     celular = models.CharField("Numero do Celular", max_length=100, null=True)
     cidade = models.CharField("Cidade", max_length=150, blank=False, null=False)
     estado = BRStateField("Estado UF", max_length=150, blank=False, null=False)
-    declaracao_saude = models.CharField("Declaracao Saude", max_length=255, blank=False)
-    status = models.CharField("Status", max_length=25,
-                              default="OK", editable=False)
+    declaracao_saude = models.CharField(max_length=25, choices=declaracao_saude_choice,
+                            blank=False, default="Selecione", null=False)
     desc_declarao_saude = models.CharField(
         "Desc. Declaracao Saude", max_length=255)
     observacoes = models.TextField("Obs.", blank=True, null=True)

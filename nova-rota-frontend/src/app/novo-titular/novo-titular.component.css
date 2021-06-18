@@ -60,11 +60,14 @@
 
 .was-validated .form-control:valid,
 .form-control.is-valid {
+  padding-left: 8px;
   border-color: #3ac47d;
-  padding-right: 1.25rem !important;
+  padding-right: 0.35rem !important;
 }
 
-.was-validated .form-control:invalid, .form-control.is-invalid {
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+  padding-left: 8px;
   border-color: #d92550;
-  padding-right: 1.85rem;
+  padding-right: 1.25rem;
 }

@@ -465,23 +465,22 @@
                 </select>
               </div>
 
-              <div class="col-md-2 mb-2">
-                <label for="validationCustom03">Declaração de Saúde <span style="color:red;">*</span></label>
-                <input
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom02">Declaração de Saúde <span style="color:red;">*</span></label>
+                <select
+                id="declaracaoSaudeTitular"
                   #declaracao_saude="ngModel"
-                  [class.is-invalid]="
-                    declaracao_saude.invalid && declaracao_saude.touched
-                  "
-                  [class.is-valid]="
-                    declaracao_saude.valid && declaracao_saude.touched
-                  "
-                  required
-                  [(ngModel)]="titular.declaracao_saude"
-                  name="declaracao_saude"
-                  type="text"
+                  [class.is-invalid]="declaracao_saude.invalid && declaracao_saude.touched"
+                  [class.is-valid]="declaracao_saude.valid && declaracao_saude.touched"
                   class="form-control"
-                  placeholder="Declaração de Saúde"
-                />
+                  name="declaracao_saude"
+                  [(ngModel)]="titular.declaracao_saude"
+                  required
+                >
+                  <option value="">Selecione aqui</option>
+                  <option value="Sim">Sim</option>
+                  <option value="Nao">Não</option>
+                </select>
               </div>
 
               <div class="col-md-2 mb-2">
@@ -493,7 +492,8 @@
                   placeholder="OK"
                 />
               </div>
-              <div class="col-md-4 mb-4">
+
+              <div class="col-md-4 mb-4" style="display: none;" id="descDeclaracaoSaudeTitular">
                 <label for="validationCustom05"
                   >Descrição da Declaração de Saúde <span style="color:red;">*</span></label
                 >

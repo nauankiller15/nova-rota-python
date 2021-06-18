@@ -29,7 +29,7 @@ export class AlteracaoDependenteComponent implements OnInit {
     {
       id: 0,
       CPF: '',
-      nome_dependente: '',
+      nome_benef: '',
     },
   ];
 
@@ -61,6 +61,7 @@ export class AlteracaoDependenteComponent implements OnInit {
     titular: '',
     titular_nome: '',
     carteirinha: '',
+    nome_benef: null,
   };
 
   dependentes = [
@@ -76,6 +77,8 @@ export class AlteracaoDependenteComponent implements OnInit {
   CPF: string;
   nome_dependente: string;
   nome_benef: string;
+  selected_titular: any;
+
 
   constructor(
     private toastr: ToastrService,
@@ -83,6 +86,7 @@ export class AlteracaoDependenteComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.getDependentes();
+    this.getTitulares();
   }
 
   ngOnInit(): void {
@@ -131,14 +135,20 @@ export class AlteracaoDependenteComponent implements OnInit {
       $('.selectonfocus').mask('00/00/0000', { selectOnFocus: true });
     });
     //
+
+    // ALTERAR O TITULAR
+    $('#alterar-titular-btn').click(function () {
+      $('#alterar-titular').fadeIn('200');
+    });
+
     // VOLTAR ALTERAÇÃO DE DADOS
     $('#voltardadosdep').click(function () {
       $('#dependentesappear').fadeOut('200');
       $('#consulta2').slideDown('200');
     });
 
-     // VOLTAR ALTERAÇÃO DE DADOS
-     $('#voltardadosDependente').click(function () {
+    // VOLTAR ALTERAÇÃO DE DADOS
+    $('#voltardadosDependente').click(function () {
       $('#Dependentesappear').fadeOut('200');
       $('#consulta').slideDown('200');
     });
@@ -207,6 +217,38 @@ export class AlteracaoDependenteComponent implements OnInit {
     );
   }
 
+  // VINCULAR DEPENDENTE
+
+  searchNomeTitDep() {
+    if (this.nome_benef != '') {
+      this.titulares = this.titulares.filter((res) => {
+        return res.nome_benef
+          .toLocaleLowerCase()
+          .match(this.nome_benef.toLocaleLowerCase());
+      });
+    } else if (this.nome_benef == '') {
+      this.getTitulares();
+    }
+  }
+
+  titularClickedDependente = (titular: any) => {
+    $('#alterar-titular').fadeOut('200');
+    $('#encounter-tit').slideDown('200');
+
+    this.api.getTitular(titular.id).subscribe(
+      (data) => {
+        this.selected_dependente.titular = titular.id;
+        this.selected_dependente.nome_benef = titular.nome_benef;
+
+        this.toastr.success('Titular vinculado com sucesso!');
+      },
+      (error) => {
+        this.toastr.error('Aconteceu um Erro!', error.message);
+      }
+    );
+  };
+
+
   dependenteClicked = (dependentes: { id: any }) => {
     $('#consulta2').fadeOut('200');
     $('#dependentesappear').fadeIn('20');
@@ -250,6 +292,7 @@ export class AlteracaoDependenteComponent implements OnInit {
         titular: string;
         titular_nome: string;
         carteirinha: string;
+        nome_benef: string;
       }) => {
         this.selected_dependente = data;
         this.toastr.success('Atualizado com sucesso!');

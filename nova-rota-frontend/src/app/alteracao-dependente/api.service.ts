@@ -16,6 +16,18 @@ export class ApiService {
       headers: this.httpHeaders,
     });
   }
+
+  getTitular(id: string): Observable<any> {
+    return this.http.get(this.baseUrl + 'titular/' + id + '/', {
+      headers: this.httpHeaders,
+    });
+  }
+  
+  getAlltitulares(): Observable<any> {
+    return this.http.get(this.baseUrl + 'titular/', {
+      headers: this.httpHeaders,
+    });
+  }
   
   updateDependente(parentesco: any): Observable<any> {
     return this.http.put(
