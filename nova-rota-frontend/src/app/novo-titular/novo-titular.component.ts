@@ -164,9 +164,11 @@ export class NovoTitularComponent implements OnInit {
         this.toastr.success('Titular inserido com sucesso!');
         this.appComponent.titular.push(data);
       },
-      (error: { message: string }) => {
-        this.toastr.error('Dados necessários em branco!', error.message);
-        this.toastr.error('Dados necessários em branco!', error.message);
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
       }
     );
   }
