@@ -58,7 +58,7 @@ export class AlteracaoDependenteComponent implements OnInit {
     status: '',
     desc_declarao_saude: '',
     observacoes: '',
-    titular: '',
+    titular: null,
     titular_nome: '',
     carteirinha: '',
     nome_benef: null,
@@ -289,7 +289,7 @@ export class AlteracaoDependenteComponent implements OnInit {
         status: string;
         desc_declarao_saude: string;
         observacoes: string;
-        titular: string;
+        titular: number;
         titular_nome: string;
         carteirinha: string;
         nome_benef: string;
@@ -298,6 +298,7 @@ export class AlteracaoDependenteComponent implements OnInit {
         this.toastr.success('Atualizado com sucesso!');
       },
       (error: { message: string }) => {
+        console.log(error);
         this.toastr.error('Aconteceu um Erro!', error.message);
       }
     );

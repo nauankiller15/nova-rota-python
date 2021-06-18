@@ -620,7 +620,6 @@
                       style="display: none"
                       value=""
                       class="titulares-checkbox"
-                      name="titulares"
                       [(ngModel)]="dependente.titular"
                       name="titular"
                       [class.is-invalid]="titular.invalid && titular.touched"
@@ -634,7 +633,7 @@
                           let titular of titulares
                             | paginate
                               : {
-                                  id: 'titularvinculo',
+                                  id: 'titularvinculoAlterar',
                                   itemsPerPage: 8,
                                   currentPage: p
                                 }
@@ -645,7 +644,7 @@
                       </li>
                     </div>
                     <pagination-controls
-                      id="titularvinculo"
+                      id="titularvinculoAlterar"
                       class="paginacao-tit"
                       previousLabel="Anterior"
                       nextLabel="Seguinte"

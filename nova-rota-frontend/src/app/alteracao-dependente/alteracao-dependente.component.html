@@ -27,7 +27,7 @@
                 <input
                   (keypress)="numberOnly($event)"
                   [(ngModel)]="CPF"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="CPF"
                   (input)="searchCPF()"
                   class="form-control cpf"
                   type="text"
@@ -41,7 +41,7 @@
                 <input
                   [(ngModel)]="nome_dependente"
                   (input)="searchNomeBenef()"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="nome_dependente"
                   type="text"
                   class="form-control"
                   placeholder="Digite aqui o nome do Dependente"
@@ -147,7 +147,7 @@
                 id="imagemCasado"
                 accept="image/png, image/jpeg"
                 [(ngModel)]="selected_dependente.anexo_doc_casamento"
-                [ngModelOptions]="{ standalone: true }"
+                name="anexo_doc_casamento"
                 ng-required="false"
               />
 
@@ -180,7 +180,7 @@
                   autocomplete="off"
                   mask="000.000.000-00"
                   [(ngModel)]="selected_dependente.CPF"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="CPF"
                   type="text"
                   class="form-control cpf"
                   placeholder="Número de CPF"
@@ -196,7 +196,7 @@
                 <input
                   autocomplete="off"
                   [(ngModel)]="selected_dependente.cod_empresa"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="cod_empresa"
                   type="text"
                   class="form-control"
                   placeholder="Código da Empresa"
@@ -212,17 +212,12 @@
                 <label for="validationCustom01">Data de Recebimento</label>
                 <input
                   [(ngModel)]="selected_dependente.data_recebimento"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="data_recebimento"
                   type="date"
                   class="form-control"
                   placeholder="Informe a data de recebimento"
                   required
                 />
-
-                <div class="invalid-feedback">
-                  Por favor informe o número da data de recebimento
-                  corretamente.
-                </div>
               </div>
 
               <div class="col-md-2 mb-3">
@@ -234,11 +229,6 @@
                   placeholder="Prioridade"
                   required
                 />
-
-                <div class="invalid-feedback">
-                  Por favor informe o número da data de recebimento
-                  corretamente.
-                </div>
               </div>
 
               <div class="col-md-2 mb-3">
@@ -246,7 +236,7 @@
                 <input
                   autocomplete="off"
                   [(ngModel)]="selected_dependente.carteirinha"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="carteirinha"
                   type="text"
                   class="form-control"
                   placeholder="Digite aqui o número"
@@ -257,7 +247,7 @@
                 <label for="validationCustom01">Tipo</label>
                 <input
                   [(ngModel)]="selected_dependente.tipo"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="tipo"
                   readonly="“true”"
                   type="text"
                   class="form-control"
@@ -269,7 +259,7 @@
                 <label for="validationCustom02">Sexo</label>
                 <select
                   [(ngModel)]="selected_dependente.sexo"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="sexo"
                   class="form-control"
                   name="sexo"
                   required
@@ -283,7 +273,7 @@
                 <label for="validationCustom02">Estado Civil</label>
                 <select
                   [(ngModel)]="selected_dependente.estado_civil"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="estado_civil"
                   class="form-control"
                   name="estado_civil"
                   required
@@ -298,7 +288,7 @@
                 <label for="validationCustom01">Nome da Mãe</label>
                 <input
                   [(ngModel)]="selected_dependente.nome_mae"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="nome_mae"
                   type="text"
                   class="form-control"
                   placeholder="Digite aqui o nome da Mãe"
@@ -310,7 +300,7 @@
                 <label for="validationCustom05">Data de Admissão</label>
                 <input
                   [(ngModel)]="selected_dependente.data_admissao"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="data_admissao"
                   type="date"
                   class="form-control"
                   placeholder="Informe a data de admissão"
@@ -321,7 +311,7 @@
                 <label for="validationCustom05">Data de Casamento</label>
                 <input
                   [(ngModel)]="selected_dependente.data_casamento"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="data_casamento"
                   type="date"
                   class="form-control"
                   placeholder="Informe a data do casamento"
@@ -333,7 +323,7 @@
                 <label for="validationCustom01">Parentesco</label>
                 <input
                   [(ngModel)]="selected_dependente.tipo_parentesco"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="tipo_parentesco"
                   readonly="“true”"
                   type="text"
                   class="form-control"
@@ -348,7 +338,7 @@
                 <label for="validationCustom01">CEP</label>
                 <input
                   [(ngModel)]="selected_dependente.CEP"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="CEP"
                   type="text"
                   class="form-control cep"
                   placeholder="Informe o CEP"
@@ -360,7 +350,7 @@
                 <label for="validationCustom01">Celular</label>
                 <input
                   [(ngModel)]="selected_dependente.celular"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="celular"
                   type="text"
                   class="form-control phone_with_ddd"
                   placeholder="Informe o Celular"
@@ -372,7 +362,7 @@
                 <label for="validationCustom03">Cidade</label>
                 <input
                   [(ngModel)]="selected_dependente.cidade"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="cidade"
                   type="text"
                   class="form-control"
                   placeholder="Cidade"
@@ -384,7 +374,7 @@
                 <label for="validationCustom02">Estado UF</label>
                 <select
                   [(ngModel)]="selected_dependente.estado"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="estado_uf"
                   class="form-control"
                   name="estado_uf"
                   required
@@ -419,17 +409,22 @@
                 </select>
               </div>
 
-              <div class="col-md-2 mb-2">
-                <label for="validationCustom03">Declaração de Saúde</label>
-                <input
-                  [(ngModel)]="selected_dependente.declaracao_saude"
-                  [ngModelOptions]="{ standalone: true }"
-                  type="text"
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom02">Declaração de Saúde <span style="color:red;">*</span></label>
+                <select
+                id="declaracaoSaudeDependente"
+                  #declaracao_saude="ngModel"
+                  [class.is-invalid]="declaracao_saude.invalid && declaracao_saude.touched"
+                  [class.is-valid]="declaracao_saude.valid && declaracao_saude.touched"
                   class="form-control"
-                  id="validationCustom09"
-                  placeholder="Declaração de Saúde"
+                  name="declaracao_saude"
+                  [(ngModel)]="selected_dependente.declaracao_saude"
                   required
-                />
+                >
+                  <option value="">Selecione aqui</option>
+                  <option value="Sim">Sim</option>
+                  <option value="Nao">Não</option>
+                </select>
               </div>
 
               <div class="col-md-2 mb-2">
@@ -437,24 +432,22 @@
                 <input
                   readonly="true"
                   [(ngModel)]="selected_dependente.status"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="status"
                   type="text"
                   class="form-control"
                   id="validationCustom10"
                   placeholder="OK"
                   required
                 />
-                <div class="invalid-feedback">
-                  Por favor informe o estado corretamente.
-                </div>
               </div>
+
               <div class="col-md-4 mb-4">
                 <label for="validationCustom05"
                   >Descrição da Declaração de Saúde</label
                 >
                 <input
                   [(ngModel)]="selected_dependente.desc_declarao_saude"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="desc_declarao_saude"
                   type="text"
                   class="form-control"
                   id="validationCustom12"
@@ -467,7 +460,7 @@
                 <label for="validationCustom05">Observações</label>
                 <input
                   [(ngModel)]="selected_dependente.observacoes"
-                  [ngModelOptions]="{ standalone: true }"
+                  name="observacoes"
                   type="text"
                   class="form-control"
                   id="validationCustom11"
@@ -514,10 +507,9 @@
                     <em for="validationCustom05">Titulares Encontrados:</em>
                     <input
                       #titular="ngModel"
-                      style="display: none"
+                      style="display: block"
                       value=""
                       class="titulares-checkbox"
-                      name="titulares"
                       [(ngModel)]="selected_dependente.titular"
                       name="titular"
                       [class.is-invalid]="titular.invalid && titular.touched"
