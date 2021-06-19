@@ -32,6 +32,7 @@ export class ApiService {
       CPF: titular.CPF,
       cod_empresa: titular.cod_empresa,
       data_recebimento: titular.data_recebimento,
+      carteirinha: titular.carteirinha,
       tipo: titular.tipo,
       nome_benef: titular.nome_benef,
       data_nascimento: titular.data_nascimento,
@@ -59,6 +60,8 @@ export class ApiService {
   updateDependente(dependente: any): Observable<any> {
     let body = {
       CPF: dependente.CPF,
+      titular: dependente.titular,
+      carteirinha: dependente.carteirinha,
       cod_empresa: dependente.cod_empresa,
       data_recebimento: dependente.data_recebimento,
       tipo: dependente.tipo,

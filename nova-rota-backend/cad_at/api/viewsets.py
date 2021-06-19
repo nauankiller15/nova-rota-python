@@ -16,6 +16,11 @@ class TitularViewSet(ModelViewSet):
         serializer = TitularSerializer(queryset, many=True)
         return Response(serializer.data)
 
+    def update(self, request, *args, **kwargs):
+        print(request)
+        print(args)
+        print(kwargs)
+        return super().update(request, *args, **kwargs)
 
 class TitularParentescos(ViewSet):
 

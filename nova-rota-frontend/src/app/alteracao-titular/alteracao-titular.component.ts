@@ -179,6 +179,7 @@ export class AlteracaoTitularComponent implements OnInit {
   };
 
   updateTit() {
+    console.log(this.selected_titular)
     this.api.updateTitular(this.selected_titular).subscribe(
       (data: {
         id: number;
@@ -189,7 +190,7 @@ export class AlteracaoTitularComponent implements OnInit {
         nome_benef: string;
         data_nascimento: string;
         sexo: string;
-        carteirinha: any;
+        carteirinha: string;
         estado_civil: string;
         anexo_doc_tit: string;
         nome_mae: string;
@@ -207,11 +208,14 @@ export class AlteracaoTitularComponent implements OnInit {
         desc_declarao_saude: string;
         observacoes: string;
       }) => {
-        this.selected_titular = data;
+        console.log(data)
         this.toastr.success('Atualizado com sucesso!');
       },
-      (error: { message: string }) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
       }
     );
   }
