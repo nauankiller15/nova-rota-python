@@ -8,7 +8,7 @@ from cad_at.api.viewsets import TitularViewSet
 from cad_at.api.viewsets import TitularParentescos
 from cad_bp.api.viewsets import ParentescoViewSet
 from cad_emp.api.viewsets import EmpresaViewSet
-from cad_emp_filial.api.viewsets import EmpresaFilialViewSet
+from cad_emp.api.viewsets import FilialViewSet
 from tarefas.api.viewsets import TarefaViewSet
 
 router = routers.DefaultRouter()
@@ -17,7 +17,7 @@ router.register(r'lista-parentesco', TitularParentescos, basename='lista-parente
 router.register(r'parentesco', ParentescoViewSet)
 router.register(r'tarefas', TarefaViewSet)
 router.register(r'empresa', EmpresaViewSet)
-router.register(r'empresa-filial', EmpresaFilialViewSet)
+router.register(r'filal', FilialViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
