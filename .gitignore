@@ -4,6 +4,7 @@
 venv
 __pycache__
 migrations
+variaveis_de_ambiente.py
 
 # Banco
 db.sqlite3
