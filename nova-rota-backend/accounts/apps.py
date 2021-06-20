@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class CadEmpFilialConfig(AppConfig):
+class AccountsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'cad_emp_filial'
+    name = 'accounts'

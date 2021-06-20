@@ -39,14 +39,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts.apps.AccountsConfig',
+    'public.apps.PublicConfig',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'principal',
     'cad_bp',
     'cad_at',
     'cad_emp',
-    'cad_emp_filial',
-    'tarefas',
+    'tarefas'
 ]
 
 MIDDLEWARE = [
@@ -143,4 +145,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",
+    "http://127.0.0.1:4200",
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
+
+# LOGIN_REDIRECT_URL = '/'
