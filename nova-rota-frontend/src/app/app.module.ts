@@ -23,7 +23,11 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { NovaEmpresaComponent } from './nova-empresa/nova-empresa.component';
 import { AlteracaoEmpresaComponent } from './alteracao-empresa/alteracao-empresa.component';
 import { AltEmpresaDetailsComponent } from './alt-empresa-details/alt-empresa-details.component';
-import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
+import { ProfileComponent } from './profile/profile.component';
+import { CreateAccountComponent } from './account/create-account/create-account.component';
+import { LoginComponent } from './account/login/login.component';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -47,6 +51,10 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     NovaEmpresaComponent,
     AlteracaoEmpresaComponent,
     AltEmpresaDetailsComponent,
+    HomeComponent,
+    AuthenticationComponent,
+    ProfileComponent,
+    CreateAccountComponent,
     LoginComponent,
   ],
   imports: [

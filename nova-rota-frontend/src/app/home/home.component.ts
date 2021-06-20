@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from './api.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PublicService } from './services/public.service';
 import { Subscriber } from 'rxjs';
+import { ApiService } from './api.service';
 
 declare var $: any;
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
+  selector: 'app-home',
+  templateUrl: './home.component.html',
   template: '<menu></menu><router-outlet></router-outlet>',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./home.component.css']
 })
-export class AppComponent implements OnInit {
+
+
+export class HomeComponent implements OnInit {
   //
   dependente: any[];
   titular: any[];
@@ -122,7 +123,6 @@ export class AppComponent implements OnInit {
     $('#fechar-bt2').on('click', function () {
       $('#config').fadeOut('100');
     });
-    this.showMessage();
 
   }
 
@@ -130,20 +130,10 @@ export class AppComponent implements OnInit {
     private api: ApiService,
     private router: Router,
     private toastr: ToastrService,
-    private pService: PublicService
   ) {
     this.getTarefas();
 
   }
-  message = null;
-    
-  showMessage() {
-    this.pService.getMessage().subscribe((message: any) => {
-      this.message = message;
-      console.log(this.message);
-    });
-  }
-
 
   getTarefas = () => {
     this.api.getAlltarefas().subscribe(

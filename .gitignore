@@ -1,5 +1,16 @@
+# sistema
+.idea
+.vscode
 venv
-db.sqlite3
-imagens
 __pycache__
+migrations
+variaveis_de_ambiente.py
+
+# Banco
+db.sqlite3
+db.sqlite3-backup
+
+# Usuario
+imagens
+
 

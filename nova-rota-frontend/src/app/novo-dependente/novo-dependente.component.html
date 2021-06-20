@@ -404,6 +404,7 @@
                         ngControl="inputFile"
                         accept=".png, .jpg, .jpeg"
                         [(ngModel)]="dependente.anexo_doc_nascimento"
+                        name="anexo_doc_nascimento"
                       />
 
                       <button
@@ -519,12 +520,18 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom02">Declaração de Saúde <span style="color:red;">*</span></label>
+                <label for="validationCustom02"
+                  >Declaração de Saúde <span style="color: red">*</span></label
+                >
                 <select
-                id="declaracaoSaudeDependente"
+                  id="declaracaoSaudeDependente"
                   #declaracao_saude="ngModel"
-                  [class.is-invalid]="declaracao_saude.invalid && declaracao_saude.touched"
-                  [class.is-valid]="declaracao_saude.valid && declaracao_saude.touched"
+                  [class.is-invalid]="
+                    declaracao_saude.invalid && declaracao_saude.touched
+                  "
+                  [class.is-valid]="
+                    declaracao_saude.valid && declaracao_saude.touched
+                  "
                   class="form-control"
                   name="declaracao_saude"
                   [(ngModel)]="dependente.declaracao_saude"
@@ -546,7 +553,11 @@
                 />
               </div>
 
-              <div class="col-md-4 mb-4" style="display: none;" id="descDeclaracaoSaudeDependente">
+              <div
+                class="col-md-4 mb-4"
+                style="display: none"
+                id="descDeclaracaoSaudeDependente"
+              >
                 <label for="validationCustom05"
                   >Descrição da Declaração de Saúde
                   <span style="color: red">*</span></label

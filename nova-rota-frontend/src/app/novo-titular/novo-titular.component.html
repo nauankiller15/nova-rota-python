@@ -19,9 +19,9 @@
       <div class="main-card mb-3 card">
         <div class="card-body">
           <h5 class="card-title">Preencha os campos abaixo:</h5>
-          
-          <span style="color:red;">* Obrigatório</span>
-          <div style="height: 5px;"></div>
+
+          <span style="color: red">* Obrigatório</span>
+          <div style="height: 5px"></div>
 
           <form
             class="needs-validation"
@@ -31,7 +31,9 @@
           >
             <div class="form-row">
               <div class="col-md-2 mb-2">
-                <label for="validationCustom01">CPF  <span style="color:red;">*</span></label>
+                <label for="validationCustom01"
+                  >CPF <span style="color: red">*</span></label
+                >
                 <input
                   #CPF="ngModel"
                   autocomplete="off"
@@ -57,7 +59,9 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom01">Código Empresa <span style="color:red;">*</span></label>
+                <label for="validationCustom01"
+                  >Código Empresa <span style="color: red">*</span></label
+                >
                 <input
                   #cod_empresa="ngModel"
                   autocomplete="off"
@@ -75,7 +79,9 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom01">Data Recebimento <span style="color:red;">*</span></label>
+                <label for="validationCustom01"
+                  >Data Recebimento <span style="color: red">*</span></label
+                >
                 <input
                   #data_recebimento="ngModel"
                   [class.is-invalid]="
@@ -103,7 +109,10 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom01">Número da Carteirinha <span style="color:red;">*</span></label>
+                <label for="validationCustom01"
+                  >Número da Carteirinha
+                  <span style="color: red">*</span></label
+                >
                 <input
                   #carteirinha="ngModel"
                   autocomplete="off"
@@ -133,7 +142,9 @@
               </div>
 
               <div class="col-md-4 mb-3">
-                <label for="validationCustom01">Nome do Beneficiário <span style="color:red;">*</span></label>
+                <label for="validationCustom01"
+                  >Nome do Beneficiário <span style="color: red">*</span></label
+                >
                 <input
                   #nome_benef="ngModel"
                   [class.is-invalid]="nome_benef.invalid && nome_benef.touched"
@@ -154,7 +165,9 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom01">Data Nascimento <span style="color:red;">*</span></label>
+                <label for="validationCustom01"
+                  >Data Nascimento <span style="color: red">*</span></label
+                >
                 <input
                   #data_nascimento="ngModel"
                   [class.is-invalid]="
@@ -173,7 +186,9 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom02">Sexo <span style="color:red;">*</span></label>
+                <label for="validationCustom02"
+                  >Sexo <span style="color: red">*</span></label
+                >
                 <select
                   #sexo="ngModel"
                   [class.is-invalid]="sexo.invalid && sexo.touched"
@@ -190,7 +205,9 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom02">Estado Civil <span style="color:red;">*</span></label>
+                <label for="validationCustom02"
+                  >Estado Civil <span style="color: red">*</span></label
+                >
                 <!-- BOTÃO REANEXAR CASADO -->
                 <div id="reanexar" style="display: none">
                   <button
@@ -239,15 +256,18 @@
                       >
                       <div style="height: 10px; width: 100%"></div>
 
-                      <input
-                        type="file"
-                        id="imagemCasado"
-                        accept="image/png, image/jpeg"
-                        [(ngModel)]="titular.anexo_doc_casamento"
-                        name="cert_casamento"
-                        ngControl="inputFile"
-                      />
-
+                      
+                      <div class="mb-3">
+                        <input
+                          type="file"
+                          id="imagemCasado"
+                          accept="image/png, image/jpeg"
+                          [(ngModel)]="titular.anexo_doc_casamento"
+                          name="cert_casamento"
+                          ngControl="inputFile"
+                        />
+                      </div>
+                      
                       <button
                         style="
                           display: flex;
@@ -309,7 +329,9 @@
               </div>
 
               <div class="col-md-4 mb-3">
-                <label for="validationCustom01">Nome da Mãe <span style="color:red;">*</span></label>
+                <label for="validationCustom01"
+                  >Nome da Mãe <span style="color: red">*</span></label
+                >
                 <input
                   #nome_mae="ngModel"
                   [class.is-invalid]="nome_mae.invalid && nome_mae.touched"
@@ -330,7 +352,9 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom05">Data de Admissão <span style="color:red;">*</span></label>
+                <label for="validationCustom05"
+                  >Data de Admissão <span style="color: red">*</span></label
+                >
                 <input
                   #data_admissao="ngModel"
                   [class.is-invalid]="
@@ -377,7 +401,9 @@
 
             <div class="form-row">
               <div class="col-md-2 mb-2">
-                <label for="validationCustom01">CEP <span style="color:red;">*</span></label>
+                <label for="validationCustom01"
+                  >CEP <span style="color: red">*</span></label
+                >
                 <input
                   #CEP="ngModel"
                   [class.is-invalid]="CEP.invalid && CEP.touched"
@@ -407,7 +433,9 @@
               </div>
 
               <div class="col-md-2 mb-2">
-                <label for="validationCustom03">Cidade <span style="color:red;">*</span></label>
+                <label for="validationCustom03"
+                  >Cidade <span style="color: red">*</span></label
+                >
                 <input
                   #cidade="ngModel"
                   [class.is-invalid]="cidade.invalid && cidade.touched"
@@ -422,7 +450,9 @@
               </div>
 
               <div class="col-md-1 mb-1">
-                <label for="validationCustom02">Estado UF <span style="color:red;">*</span></label>
+                <label for="validationCustom02"
+                  >Estado UF <span style="color: red">*</span></label
+                >
                 <select
                   #estado="ngModel"
                   [class.is-invalid]="estado.invalid && estado.touched"
@@ -465,12 +495,18 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom02">Declaração de Saúde <span style="color:red;">*</span></label>
+                <label for="validationCustom02"
+                  >Declaração de Saúde <span style="color: red">*</span></label
+                >
                 <select
-                id="declaracaoSaudeTitular"
+                  id="declaracaoSaudeTitular"
                   #declaracao_saude="ngModel"
-                  [class.is-invalid]="declaracao_saude.invalid && declaracao_saude.touched"
-                  [class.is-valid]="declaracao_saude.valid && declaracao_saude.touched"
+                  [class.is-invalid]="
+                    declaracao_saude.invalid && declaracao_saude.touched
+                  "
+                  [class.is-valid]="
+                    declaracao_saude.valid && declaracao_saude.touched
+                  "
                   class="form-control"
                   name="declaracao_saude"
                   [(ngModel)]="titular.declaracao_saude"
@@ -492,9 +528,14 @@
                 />
               </div>
 
-              <div class="col-md-4 mb-4" style="display: none;" id="descDeclaracaoSaudeTitular">
+              <div
+                class="col-md-4 mb-4"
+                style="display: none"
+                id="descDeclaracaoSaudeTitular"
+              >
                 <label for="validationCustom05"
-                  >Descrição da Declaração de Saúde <span style="color:red;">*</span></label
+                  >Descrição da Declaração de Saúde
+                  <span style="color: red">*</span></label
                 >
                 <input
                   #desc_declarao_saude="ngModel"
