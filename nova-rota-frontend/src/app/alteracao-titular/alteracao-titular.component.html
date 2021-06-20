@@ -445,15 +445,16 @@
 
               <div class="col-md-2 mb-2">
                 <label for="validationCustom03">Declaração de Saúde</label>
-                <input
+                <select
                   [(ngModel)]="selected_titular.declaracao_saude"
                   [ngModelOptions]="{ standalone: true }"
-                  type="text"
                   class="form-control"
                   id="validationCustom09"
-                  placeholder="Declaração de Saúde"
                   required
-                />
+                >
+                  <option value="Sim">Sim</option>
+                  <option value="Nao">Não</option>
+                </select>
               </div>
 
               <div class="col-md-2 mb-2">

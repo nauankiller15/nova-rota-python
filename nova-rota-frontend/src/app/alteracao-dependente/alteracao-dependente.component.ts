@@ -292,14 +292,17 @@ export class AlteracaoDependenteComponent implements OnInit {
         observacoes: string;
         titular: number;
         titular_nome: string;
-        carteirinha: any;
+        carteirinha: string;
         nome_benef: string;
       }) => {
         this.selected_dependente = data;
         this.toastr.success('Atualizado com sucesso!');
       },
-      (error: { message: string }) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
       }
     );
   }
