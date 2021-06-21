@@ -55,7 +55,7 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     AuthenticationComponent,
     ProfileComponent,
     CreateAccountComponent,
-    LoginComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
