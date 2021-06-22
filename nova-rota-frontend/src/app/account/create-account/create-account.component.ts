@@ -14,7 +14,7 @@ export class CreateAccountComponent implements OnInit {
     
     $('#criar-conta').on('click', function () {
       $('#criar-conta').fadeOut('100');
-      $('.box-criar-conta').fadeOut('100');
+      $('.box-criar-conta').slideUp('100');
     });
   }
 

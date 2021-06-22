@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
     $('#register').on('click', function () {
       $('#criar-conta').fadeIn('100');
-      $('.box-criar-conta').fadeIn('100');
+      $('.box-criar-conta').slideDown('100');
     });
 
 
