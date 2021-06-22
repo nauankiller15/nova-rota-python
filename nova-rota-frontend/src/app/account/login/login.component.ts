@@ -15,8 +15,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
 
     $('#politica-abrir').on('click', function () {
-      $('.box-tela-privacidade').fadeIn('100');
       $('#politica').fadeIn('100');
+      $('.box-tela-privacidade').slideDown('500');
 
     });
 

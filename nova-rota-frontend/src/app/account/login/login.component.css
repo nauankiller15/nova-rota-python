@@ -11021,6 +11021,21 @@ h5,
   padding: 10px;
 }
 
+@keyframes subir {
+  from {
+      transform: translateX(-1200px);
+      opacity: 1;
+  }
+  to {
+      transform: translateX(0);
+      opacity: 0;
+  }
+}
+
+.subir{
+  animation: subir 1.0s;
+}
+
 .box-tela-privacidade {
   background: #fff;
   border-top: 3px solid var(--cor-tema);
