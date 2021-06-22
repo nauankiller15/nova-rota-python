@@ -25,6 +25,12 @@ export class LoginComponent implements OnInit {
       $('.box-tela-privacidade').fadeOut('100');
     });
 
+    $('#register').on('click', function () {
+      $('#criar-conta').fadeIn('100');
+      $('.box-criar-conta').fadeIn('100');
+    });
+
+
   }
 
 }
