@@ -35,7 +35,7 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [
-      { path: '', component: DashboardComponent },
+      { path: '', component: HomeComponent },
       // ==== TELA DE PEFIL ====
       { path: 'profile', component: ProfileComponent },
       //]
