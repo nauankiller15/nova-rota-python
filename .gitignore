@@ -2,8 +2,8 @@
 .idea
 .vscode
 venv
-__pycache__
-migrations
+__pycache__/
+migrations/
 variaveis_de_ambiente.py
 
 # Banco
