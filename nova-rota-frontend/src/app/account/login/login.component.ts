@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ApiService } from '../../api.service';
 
 declare var $: any;
 
@@ -10,7 +12,15 @@ declare var $: any;
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router,) { }
+  usuario = {
+    username: '',
+    password: ''
+  };
+
+  constructor(
+    private toastr: ToastrService,
+    private api: ApiService,
+    private router: Router,) { }
 
   ngOnInit(): void {
 
@@ -33,4 +43,20 @@ export class LoginComponent implements OnInit {
 
   }
 
+  login() {
+    console.log(this.usuario);
+    this.api.login(this.usuario).subscribe(
+      (data) => {
+        const token = data['token']
+        localStorage.setItem('token', token)
+        this.router.navigate(['']);
+      },
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
+      }
+    );
+  }
 }

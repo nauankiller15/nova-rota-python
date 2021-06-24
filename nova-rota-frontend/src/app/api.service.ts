@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router, ɵangular_packages_router_router_n } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -8,16 +9,37 @@ import { Observable } from 'rxjs';
 export class ApiService {
   baseUrl = 'http://localhost:8000/api/';
   httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
-  getTitulares: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient) {
+    
+    const token = localStorage.getItem('token');
+    console.log('api-service','token: ', token);
+    if (token) {
+      console.log(this.httpHeaders['headers'])
+      this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `JWT ${token}`});
+    }
+  }
 
+  // LOGIN
+  login(usuario: any): Observable<any> {
+    if (this.httpHeaders['Authorization']) {
+      console.log('autorizado')
+      this.router.navigate(['dashboard']);
+    } else {
+      console.log('nao autorizado')
+      return this.http.post(this.baseUrl + 'login/', usuario, {
+        headers: this.httpHeaders,
+      });
+    }
+  }
+  
   // CRIAR TITULAR
   saveNewTitular(titular: any): Observable<any> {
     return this.http.post(this.baseUrl + 'titular/', titular, {
       headers: this.httpHeaders,
     });
   }
+
 
   // CRIAR DEPENDNETE
   saveNewDependente(dependente: any): Observable<any> {
@@ -94,6 +116,8 @@ export class ApiService {
   // TRAZENDO TITULARES
 
   getAlltitulares(): Observable<any> {
+    console.log(this.httpHeaders)
+    console.log('trazendo titulares')
     return this.http.get(this.baseUrl + 'titular/', {
       headers: this.httpHeaders,
     });

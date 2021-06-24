@@ -37,10 +37,12 @@
                   <h3 class="mb-4">Acessar o sistema</h3>
                 </div>
               </div>
-              <form action="#" class="signin-form">
+              <form class="signin-form" (submit)="login()">
                 <div class="form-group mb-3">
-                  <label class="label" for="name">Usuário</label>
+                  <label class="label" for="username">Usuário</label>
                   <input
+                    [(ngModel)]="usuario.username"
+                    name="username"
                     type="text"
                     class="form-control"
                     placeholder="Digite seu usuário"
@@ -50,6 +52,8 @@
                 <div class="form-group mb-3">
                   <label class="label" for="password">Senha</label>
                   <input
+                  [(ngModel)]="usuario.password"
+                    name="password"
                     type="password"
                     class="form-control"
                     placeholder="Digite sua senha"
