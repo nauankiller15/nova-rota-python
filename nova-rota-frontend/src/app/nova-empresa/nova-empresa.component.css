@@ -107,7 +107,6 @@
 .menuVigencia .menuItems li:hover {
   display: block;
   transform: translate(0px, -4px);
-  color: #495057;
   transition: all 0.2s ease-in-out;
 }
 .menuVigencia .menuItems li::before {

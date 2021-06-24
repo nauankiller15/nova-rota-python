@@ -23,6 +23,7 @@ class Titular (models.Model):
     CPF = BRCPFField("CPF", max_length=14, null=False, unique=True)
     cod_empresa = models.CharField("Codigo Empresa", max_length=25, null=False, blank=False)
     carteirinha = models.CharField("Numero da Carteirinha", max_length=35, null=False, blank=False, unique=True)
+    prioridade = models.CharField(max_length=25, blank=False, default="Prioridade", null=False)
     data_recebimento = models.DateField(
         "Data Recebimento", auto_now=False, auto_now_add=False, blank=True, null=False)
     tipo = models.CharField("Tipo Cadastro", max_length=25,
@@ -48,7 +49,7 @@ class Titular (models.Model):
     declaracao_saude = models.CharField(max_length=25, choices=declaracao_saude_choice,
                             blank=False, default="Selecione", null=False)
     desc_declarao_saude = models.CharField(
-        "Desc. Declaracao Saude", max_length=255)
+        "Desc. Declaracao Saude", max_length=255, blank=True)
     observacoes = models.TextField("Obs.", blank=True, null=True)
     criado_em = models.DateTimeField("criado em", auto_now_add=True)
     atualizado_em = models.DateTimeField("atualizado em", auto_now=True)
