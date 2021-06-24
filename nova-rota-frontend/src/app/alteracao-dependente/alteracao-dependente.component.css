@@ -39,7 +39,6 @@
   display: none;
 }
 
-
 /*  */
 
 .titulares-checkbox {
@@ -55,8 +54,13 @@
   cursor: pointer;
   transition: 0.3s;
   border-bottom: 1px solid #ccc;
-  padding: 3px;
+  padding: 4px;
 }
+
+.titulares-checkbox > li:nth-of-type(odd) {
+  background: rgb(240, 240, 240);
+}
+
 .titulares-checkbox li:hover {
   font-weight: bold;
   border-bottom: 1px solid #ccc;
@@ -184,7 +188,6 @@ em {
   bottom: 20px;
   margin-left: 125px;
 }
-
 
 /* TELA DE ANEXO CASADO */
 #vinc-anexo-casadoAlt {

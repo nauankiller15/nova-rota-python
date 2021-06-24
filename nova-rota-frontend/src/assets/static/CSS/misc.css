@@ -25,6 +25,11 @@
   color: #6c757d;
   cursor: pointer;
 }
+
+.titulares > li:nth-of-type(odd) {
+  background: rgb(240, 240, 240);
+}
+
 .titulares li.ativo {
   display: block;
   color: var(--branco);
@@ -50,4 +55,3 @@
   width: 400px !important;
   margin: 10px auto !important;
 }
-

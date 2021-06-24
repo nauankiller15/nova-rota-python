@@ -22,8 +22,12 @@
           <h5 class="card-title">Consultar o Dependente</h5>
           <form class="needs-validation">
             <div class="form-row">
-              <div class="col-md-2 mb-2">
-                <label for="validationCustom01">CPF</label>
+              <div class="input-group col-md-2 mb3">
+                <label for="validationCustom01">CPF:</label>
+                <div style="width: 100%"></div>
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="fas fa-id-card"></i
+                ></span>
                 <input
                   (keypress)="numberOnly($event)"
                   [(ngModel)]="CPF"
@@ -36,8 +40,12 @@
                 />
               </div>
               <!-- (keypress)="textOnly($event)" -->
-              <div class="col-md-4 mb-3">
-                <label for="validationCustom01">Nome do Dependente</label>
+              <div class="input-group col-md-4 mb3">
+                <label for="validationCustom01">Nome do Dependente:</label>
+                <div style="width: 100%"></div>
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="fas fa-user-plus"></i
+                ></span>
                 <input
                   [(ngModel)]="nome_dependente"
                   (input)="searchNomeBenef()"
@@ -54,10 +62,23 @@
                 *ngFor="
                   let dependente of dependentes
                     | paginate
-                      : { id: 'dependentes', itemsPerPage: 7, currentPage: p }
+                      : { id: 'dependentes', itemsPerPage: 14, currentPage: p }
                 "
                 (click)="dependenteClicked(dependente)"
               >
+                <i
+                  style="
+                    font-size: 18px;
+                    margin-left: 9px;
+                    margin-right: 1px;
+                    background-color: #eff9ff;
+                    border: 1px solid #ced4da;
+                    border-radius: 0.25rem;
+                    padding: 3px;
+                    color: #434343;
+                  "
+                  class="fas fa-user-plus"
+                ></i>
                 CPF: {{ dependente.CPF | mask: "000.000.000-99" }} -
                 {{ dependente.nome_dependente }}
                 <i
@@ -96,7 +117,28 @@
           </p>
           <p class="cpf-ts">
             Dependente de:
-            {{ selected_dependente.titular_nome }}
+            <i
+              style="
+                font-size: 18px;
+                margin-left: 9px;
+                margin-right: 1px;
+                background-color: #eff9ff;
+                border: 1px solid #ced4da;
+                border-radius: 0.25rem;
+                padding: 7px;
+              "
+              class="fas fa-user-tie"
+            ></i>
+            <b
+              style="
+                padding-right: 5px;
+                padding-bottom: 4px;
+                border: 1px solid #ced4da;
+                border-radius: 0.25rem;
+              "
+            >
+              {{ selected_dependente.titular_nome }}
+            </b>
           </p>
 
           <div class="botao-anexosAlt">
@@ -111,8 +153,8 @@
           </div>
         </h1>
 
-         <!-- TELA DE ANEXOS DE CASAMENTO -->
-         <div id="vinc-anexo-casadoAlt">
+        <!-- TELA DE ANEXOS DE CASAMENTO -->
+        <div id="vinc-anexo-casadoAlt">
           <div class="box-anexo">
             <div class="anexo-info-box-titular-vinc">
               <label
@@ -129,7 +171,9 @@
               <img
                 style="width: 250px"
                 src="{{ selected_dependente.anexo_doc_casamento }}"
-                alt="Certidão de Casamento de {{ selected_dependente.nome_dependente}}"
+                alt="Certidão de Casamento de {{
+                  selected_dependente.nome_dependente
+                }}"
               />
               <label
                 for="avatar"
@@ -167,7 +211,6 @@
           </div>
         </div>
         <!--  -->
-        
 
         <div class="card-body">
           <h5 class="card-title">ALTERE OS CAMPOS ABAIXO:</h5>
@@ -410,12 +453,18 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom02">Declaração de Saúde <span style="color:red;">*</span></label>
+                <label for="validationCustom02"
+                  >Declaração de Saúde <span style="color: red">*</span></label
+                >
                 <select
-                id="declaracaoSaudeDependente"
+                  id="declaracaoSaudeDependente"
                   #declaracao_saude="ngModel"
-                  [class.is-invalid]="declaracao_saude.invalid && declaracao_saude.touched"
-                  [class.is-valid]="declaracao_saude.valid && declaracao_saude.touched"
+                  [class.is-invalid]="
+                    declaracao_saude.invalid && declaracao_saude.touched
+                  "
+                  [class.is-valid]="
+                    declaracao_saude.valid && declaracao_saude.touched
+                  "
                   class="form-control"
                   name="declaracao_saude"
                   [(ngModel)]="selected_dependente.declaracao_saude"
@@ -469,8 +518,8 @@
                 />
               </div>
 
-                <!--  -->
-                <small
+              <!--  -->
+              <small
                 class="text-danger"
                 [class.d-none]="titular.valid || titular.untouched"
               >
@@ -480,11 +529,12 @@
               <div class="vinc-tit">
                 <div class="posit-btn">
                   <button id="alterar-titular-btn" class="btn-vincular">
-                    <i style="margin-right: 5px" class="fas fa-id-badge"></i>
+                    <i style="margin-right: 5px" class="fas fa-user-tie"></i>
                     Vincular outro Titular
                   </button>
                   <p id="encounter-tit" style="display: none">
-                    Titular vinculado: <b>{{ selected_dependente.nome_benef }}</b>
+                    Titular vinculado:
+                    <b>{{ selected_dependente.nome_benef }}</b>
                   </p>
                 </div>
               </div>
@@ -492,17 +542,24 @@
               <div id="alterar-titular">
                 <div class="box-titular">
                   <div class="text-info-box-titular-vinc">
-                    <label for="validationCustom05">Vincular outro Titular</label>
-                    <div class="col-md-4 mb-3">
+                    <label for="validationCustom05"
+                      >Vincular outro Titular</label
+                    >
+                    <div class="input-group col-md-5 mb4">
+                      <span class="input-group-text" id="basic-addon1"
+                        ><i class="fas fa-id-card"></i
+                      ></span>
                       <input
                         [(ngModel)]="nome_benef"
                         (input)="searchNomeTitDep()"
                         name="nome_benef"
                         type="text"
-                        class="form-control-tit"
+                        class="form-control"
                         placeholder="Buscar Titular pelo Nome"
+                        autocomplete="off"
                       />
                     </div>
+                    <div style="width: 100%; height: 15px"></div>
 
                     <em for="validationCustom05">Titulares Encontrados:</em>
                     <input
@@ -524,13 +581,26 @@
                             | paginate
                               : {
                                   id: 'titularvinculo',
-                                  itemsPerPage: 8,
+                                  itemsPerPage: 12,
                                   currentPage: p
                                 }
                         "
                         (click)="titularClickedDependente(titular)"
                       >
-                        {{ titular.CPF }} - {{ titular.nome_benef }}
+                      <i
+                      style="
+                        font-size: 18px;
+                        margin-left: 9px;
+                        margin-right: 1px;
+                        background-color: #eff9ff;
+                        border: 1px solid #ced4da;
+                        border-radius: 0.25rem;
+                        padding: 3px;
+                        color: #434343;
+                      "
+                      class="fas fa-user-tie"
+                    ></i>
+                        CPF: {{ titular.CPF | mask: "000.000.000-99" }} - {{ titular.nome_benef }}
                       </li>
                     </div>
                     <pagination-controls

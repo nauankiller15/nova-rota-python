@@ -601,7 +601,7 @@
               <div class="vinc-tit">
                 <div class="posit-btn">
                   <button id="vincular-titular-btn" class="btn-vincular">
-                    <i style="margin-right: 5px" class="fas fa-id-badge"></i>
+                    <i style="margin-right: 5px" class="fas fa-user-tie"></i>
                     Vincular Titular
                   </button>
                   <p id="encounter-tit" style="display: none">
@@ -614,17 +614,21 @@
                 <div class="box-titular">
                   <div class="text-info-box-titular-vinc">
                     <label for="validationCustom05">Vincular Titular</label>
-                    <div class="col-md-4 mb-3">
+                    <div class="input-group col-md-5 mb4">
+                      <span class="input-group-text" id="basic-addon1"
+                        ><i class="fas fa-id-card"></i
+                      ></span>
                       <input
                         [(ngModel)]="nome_benef"
                         (input)="searchNomeTitDep()"
                         name="nome_benef"
                         type="text"
-                        class="form-control-tit"
+                        class="form-control"
                         placeholder="Buscar Titular pelo Nome"
+                        autocomplete="off"
                       />
                     </div>
-
+                    <div style="width: 100%; height: 15px"></div>
                     <em for="validationCustom05">Titulares Encontrados:</em>
                     <input
                       #titular="ngModel"
@@ -645,13 +649,26 @@
                             | paginate
                               : {
                                   id: 'titularvinculoAlterar',
-                                  itemsPerPage: 8,
+                                  itemsPerPage: 12,
                                   currentPage: p
                                 }
                         "
                         (click)="titularClickedDependente(titular)"
                       >
-                        {{ titular.CPF }} - {{ titular.nome_benef }}
+                      <i
+                      style="
+                        font-size: 18px;
+                        margin-left: 9px;
+                        margin-right: 1px;
+                        background-color: #eff9ff;
+                        border: 1px solid #ced4da;
+                        border-radius: 0.25rem;
+                        padding: 3px;
+                        color: #434343;
+                      "
+                      class="fas fa-user-tie"
+                    ></i>
+                       CPF: {{ titular.CPF }} - {{ titular.nome_benef }}
                       </li>
                     </div>
                     <pagination-controls
