@@ -181,7 +181,7 @@ export class NovoDependenteComponent implements OnInit {
 
       $('#declaracaoSaudeDependente').on('change', function () {
         'Sim' === $(this).val()
-          ? $('#descDeclaracaoSaudeDepedente').fadeIn('100')
+          ? $('#descDeclaracaoSaudeDependente').fadeIn('100')
           : $('#descDeclaracaoSaudeDependente').fadeOut('100');
       });
         //

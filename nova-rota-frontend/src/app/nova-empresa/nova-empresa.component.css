@@ -55,7 +55,7 @@
 }
 
 #vinc-vigencia {
-  display: block;
+  display: none;
 }
 
 .box-vigencia {
@@ -65,7 +65,7 @@
   max-width: 125vh;
   width: 100vh;
   min-height: 30vh;
-  margin: 10vh auto;
+  margin: 12vh auto;
   z-index: 997;
   position: fixed;
   top: 32vh;
@@ -74,6 +74,62 @@
   transform: translate(-50%, -50%);
 }
 
+.menuVigencia {
+  display: block;
+  left: 10px;
+  border-bottom: 2px solid var(--cor-tema);
+  margin-bottom: 24px;
+}
+.menuVigencia .menuItems {
+  margin-bottom: -2px;
+  list-style: none;
+  display: flex;
+  margin-left: -41px;
+}
+.menuVigencia .menuItems li {
+  display: block;
+  font-weight: 500;
+  padding: 21px;
+  text-decoration: none;
+  color: #495057;
+  font-size: 17px;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  cursor: pointer;
+}
+.menuVigencia .menuItems li.active {
+  display: block;
+  background-color: var(--cor-tema);
+  padding: 21px;
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+}
+.menuVigencia .menuItems li:hover {
+  display: block;
+  transform: translate(0px, -4px);
+  color: #495057;
+  transition: all 0.2s ease-in-out;
+}
+.menuVigencia .menuItems li::before {
+  display: block;
+  content: attr(data-item);
+  transition: 0.2s;
+  position: absolute;
+  top: 21px;
+  bottom: 0;
+  left: 21px;
+  right: 0;
+  width: 0;
+  overflow: hidden;
+  cursor: pointer;
+  color: var(--branco)
+}
+.menuVigencia .menuItems li:hover::before {
+  display: block;
+  width: 67%;
+  height: 130%;
+  transition: all 0.59s ease-in-out;
+}
 
 .was-validated .form-control:valid,
 .form-control.is-valid {

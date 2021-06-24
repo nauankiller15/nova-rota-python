@@ -5,7 +5,7 @@
         <div class="page-title-wrapper">
           <div class="page-title-heading">
             <div class="page-title-icon">
-              <i class="fas fa-address-card icon-gradient bg-mean-fruit"> </i>
+              <i class="fas fa-building icon-gradient bg-mean-fruit"> </i>
             </div>
             <div>
               Inclusão de Empresa
@@ -71,29 +71,7 @@
                 />
               </div>
 
-              <div class="col-md-4 mb-3">
-                <label for="validationCustom01">Razão Social</label>
-                <input
-                  #razao_social="ngModel"
-                  [class.is-invalid]="
-                    razao_social.invalid && razao_social.touched
-                  "
-                  [class.is-valid]="razao_social.valid && razao_social.touched"
-                  [(ngModel)]="empresa.razao_social"
-                  name="razao_social"
-                  type="text"
-                  class="form-control"
-                  placeholder="Digite aqui a Razão Social"
-                  required
-                />
-                <small
-                  class="text-danger"
-                  [class.d-none]="razao_social.valid || razao_social.untouched"
-                >
-                  Razão Social Necessária!</small
-                >
-              </div>
-
+             
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Vencimento do Boleto</label>
                 <input
@@ -112,180 +90,45 @@
                 />
               </div>
 
-              <div class="col-md-2 mb-3">
-                <!-- VINCULAR ANEXO DO DOCUMENTO DA EMPRESA -->
-                <div id="vinc-anexo-empresa">
-                  <div class="box-anexo">
-                    <div class="anexo-info-box-empresa-vinc">
-                      <h1
-                        style="
-                          font-size: 20px;
-                          display: flex;
-                          margin-top: -15px;
-                          margin-bottom: 15px;
-                        "
-                      >
-                        Anexar Documento da Empresa:
-                      </h1>
-                      <label for="avatar"
-                        >Escolha um arquivo para anexar:</label
-                      >
-                      <div style="height: 10px; width: 100%"></div>
-
-                      <input
-                        type="file"
-                        id="imagemEmpregaticio"
-                        accept=".png, .jpg, .jpeg"
-                        [(ngModel)]="empresa.anexo_doc_empregaticio"
-                        name="vinculo_empregaticio"
-                      />
-
-                      <button
-                        style="
-                          display: flex;
-                          position: absolute;
-                          right: 20px;
-                          bottom: 20px;
-                        "
-                        class="btn btn-primary"
-                        id="fecharAnexo5"
-                      >
-                        Anexar Arquivo
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- VINCULAR INICIO DA VIGÊNCIA -->
-                <div id="vinc-vigencia">
-                  <div class="box-vigencia">
-                    <div class="anexo-info-box-empresa-vinc">
-                      <h1
-                        style="
-                          font-size: 20px;
-                          display: flex;
-                          margin-top: -15px;
-                          margin-bottom: 15px;
-                        "
-                      >
-                        Histórico de Reajustes:
-                      </h1>
-                      <label for="reajuste">Informe aqui os reajustes:</label>
-                      <div style="width: 100%"></div>
-                      <div class="form-row">
-                        <!-- ANO -->
-                        <div class="col-md-5 mb-5">
-                          <label for="validationCustom01">Ano</label>
-                          <input
-                            #ano_vigencia="ngModel"
-                            [class.is-invalid]="
-                              ano_vigencia.invalid && ano_vigencia.touched
-                            "
-                            [class.is-valid]="ano_vigencia.valid && ano_vigencia.touched"
-                            required
-                            [(ngModel)]="empresa.ano_vigencia"
-                            name="ano_vigencia"
-                            type="text"
-                            class="form-control"
-                            style="
-                              border-top: none;
-                              border-left: none;
-                              border-right: none;
-                            "
-                            placeholder="Informe o ano da negociação"
-                          />
-                        </div>
-                        <!--  -->
-
-                        <!-- SINISTRALIDADE -->
-                        <div class="col-md-5 mb-5">
-                          <label for="validationCustom01">Sinistralidade</label>
-                          <input
-                            #sinistralidade="ngModel"
-                            [class.is-invalid]="
-                              sinistralidade.invalid && sinistralidade.touched
-                            "
-                            [class.is-valid]="sinistralidade.valid && sinistralidade.touched"
-                            required
-                            [(ngModel)]="empresa.sinistralidade"
-                            name="sinistralidade"
-                            type="text"
-                            class="form-control"
-                            style="
-                              border-top: none;
-                              border-left: none;
-                              border-right: none;
-                            "
-                            placeholder="Informe a sinistralidade"
-                          />
-                        </div>
-                        <!--  -->
-
-                        <!-- TÉCNICO -->
-                        <div class="col-md-5 mb-5">
-                          <label for="validationCustom01">Técnico</label>
-                          <input
-                            #tecnico="ngModel"
-                            [class.is-invalid]="
-                              tecnico.invalid && tecnico.touched
-                            "
-                            [class.is-valid]="tecnico.valid && tecnico.touched"
-                            required
-                            [(ngModel)]="empresa.tecnico"
-                            name="tecnico"
-                            type="text"
-                            class="form-control"
-                            style="
-                              border-top: none;
-                              border-left: none;
-                              border-right: none;
-                            "
-                            placeholder="Informe a porcentagem"
-                          />
-                        </div>
-                        <!--  -->
-
-                          <!-- NEGOCIADO -->
-                          <div class="col-md-5 mb-5">
-                            <label for="validationCustom01">Negociado</label>
-                            <input
-                              #negociado="ngModel"
-                              [class.is-invalid]="
-                                negociado.invalid && negociado.touched
-                              "
-                              [class.is-valid]="negociado.valid && negociado.touched"
-                              required
-                              [(ngModel)]="empresa.negociado"
-                              name="negociado"
-                              type="text"
-                              class="form-control"
-                              style="
-                                border-top: none;
-                                border-left: none;
-                                border-right: none;
-                              "
-                              placeholder="Informe a porcentagem"
-                            />
-                          </div>
-                          <!--  -->
-                        <button
-                          style="
-                            display: flex;
-                            position: absolute;
-                            right: 20px;
-                            bottom: 20px;
-                          "
-                          class="btn btn-primary"
-                          id="fecharAnexo6"
-                        >
-                          Fechar
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div class="col-md-2 mb-2">
+                <label for="validationCustom04">Status Sistema</label>
+                <input
+                  readonly="true"
+                  type="text"
+                  class="form-control"
+                  placeholder="OK"
+                />
               </div>
 
+
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom01">Razão Social</label>
+                <input
+                  #razao_social="ngModel"
+                  [class.is-invalid]="
+                    razao_social.invalid && razao_social.touched
+                  "
+                  [class.is-valid]="razao_social.valid && razao_social.touched"
+                  [(ngModel)]="empresa.razao_social"
+                  name="razao_social"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui a Razão Social"
+                  required
+                />
+                <small
+                  class="text-danger"
+                  [class.d-none]="razao_social.valid || razao_social.untouched"
+                  >Razão Social Necessária!</small
+                >
+              </div>
+            </div>
+
+            <div class="form-row">
+              
               <div class="col-md-2 mb-3" style="margin-right: 40px">
                 <label for="validationCustom05">Inicio de Vigência</label>
                 <input
@@ -352,6 +195,261 @@
             </div>
 
             <div class="form-row">
+              <!-- VINCULAR ANEXO DO DOCUMENTO DA EMPRESA -->
+              <div id="vinc-anexo-empresa">
+                <div class="box-anexo">
+                  <div class="anexo-info-box-empresa-vinc">
+                    <h1
+                      style="
+                        font-size: 20px;
+                        display: flex;
+                        margin-top: -15px;
+                        margin-bottom: 15px;
+                      "
+                    >
+                      Anexar Documento da Empresa:
+                    </h1>
+                    <label for="avatar">Escolha um arquivo para anexar:</label>
+                    <div style="height: 10px; width: 100%"></div>
+
+                    <input
+                      type="file"
+                      id="imagemEmpregaticio"
+                      accept=".png, .jpg, .jpeg"
+                      [(ngModel)]="empresa.anexo_doc_empregaticio"
+                      name="vinculo_empregaticio"
+                    />
+
+                    <button
+                      style="
+                        display: flex;
+                        position: absolute;
+                        right: 20px;
+                        bottom: 20px;
+                      "
+                      class="btn btn-primary"
+                      id="fecharAnexo5"
+                    >
+                      Anexar Arquivo
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- VINCULAR INICIO DA VIGÊNCIA -->
+              <div id="vinc-vigencia">
+                <div class="box-vigencia">
+                  <div class="anexo-info-box-empresa-vinc">
+                    <div style="margin: 0 auto 10px auto; width: 100%">
+                      <nav class="menuVigencia">
+                        <ul class="menuItems">
+                          <!-- BOTÃO REAJUSTE -->
+                          <li id="reajusteBtn" class="active">Reajuste</li>
+
+                          <!-- BOTÃO SINISTRALIDADE -->
+                          <li id="sinistralidadeBtn">Sinistralidade</li>
+                        </ul>
+                      </nav>
+                    </div>
+                    <div id="reajusTab">
+                      <h1
+                        style="
+                          font-size: 20px;
+                          display: flex;
+                          margin-bottom: 15px;
+                        "
+                      >
+                        Histórico de Reajustes:
+                      </h1>
+                      <label for="reajuste">Informe aqui os reajustes:</label>
+                      <div style="width: 100%"></div>
+                      <div class="form-row">
+                        <!-- ANO -->
+                        <div class="col-md-5 mb-5">
+                          <label for="validationCustom01">Ano</label>
+                          <input
+                            #ano_vigencia="ngModel"
+                            [class.is-invalid]="
+                              ano_vigencia.invalid && ano_vigencia.touched
+                            "
+                            [class.is-valid]="
+                              ano_vigencia.valid && ano_vigencia.touched
+                            "
+                            required
+                            [(ngModel)]="empresa.ano_vigencia"
+                            name="ano_vigencia"
+                            type="text"
+                            class="form-control"
+                            style="
+                              border-top: none;
+                              border-left: none;
+                              border-right: none;
+                            "
+                            placeholder="Informe o ano da negociação"
+                          />
+                        </div>
+                        <!--  -->
+
+                        <!-- SINISTRALIDADE -->
+                        <div class="col-md-5 mb-5">
+                          <label for="validationCustom01">Sinistralidade</label>
+                          <input
+                            #sinistralidade="ngModel"
+                            [class.is-invalid]="
+                              sinistralidade.invalid && sinistralidade.touched
+                            "
+                            [class.is-valid]="
+                              sinistralidade.valid && sinistralidade.touched
+                            "
+                            required
+                            [(ngModel)]="empresa.sinistralidade"
+                            name="sinistralidade"
+                            type="text"
+                            class="form-control"
+                            style="
+                              border-top: none;
+                              border-left: none;
+                              border-right: none;
+                            "
+                            placeholder="Informe a sinistralidade"
+                          />
+                        </div>
+                        <!--  -->
+
+                        <!-- TÉCNICO -->
+                        <div class="col-md-5 mb-5">
+                          <label for="validationCustom01">Técnico</label>
+                          <input
+                            #tecnico="ngModel"
+                            [class.is-invalid]="
+                              tecnico.invalid && tecnico.touched
+                            "
+                            [class.is-valid]="tecnico.valid && tecnico.touched"
+                            required
+                            [(ngModel)]="empresa.tecnico"
+                            name="tecnico"
+                            type="text"
+                            class="form-control"
+                            style="
+                              border-top: none;
+                              border-left: none;
+                              border-right: none;
+                            "
+                            placeholder="Informe a porcentagem"
+                          />
+                        </div>
+                        <!--  -->
+
+                        <!-- NEGOCIADO -->
+                        <div class="col-md-5 mb-5">
+                          <label for="validationCustom01">Negociado</label>
+                          <input
+                            #negociado="ngModel"
+                            [class.is-invalid]="
+                              negociado.invalid && negociado.touched
+                            "
+                            [class.is-valid]="
+                              negociado.valid && negociado.touched
+                            "
+                            required
+                            [(ngModel)]="empresa.negociado"
+                            name="negociado"
+                            type="text"
+                            class="form-control"
+                            style="
+                              border-top: none;
+                              border-left: none;
+                              border-right: none;
+                            "
+                            placeholder="Informe a porcentagem"
+                          />
+                        </div>
+                        <!--  -->
+                      </div>
+                    </div>
+
+                    <div id="sinisTab" style="display: none">
+                      <h1
+                        style="
+                          font-size: 20px;
+                          display: flex;
+                          margin-bottom: 15px;
+                        "
+                      >
+                        Histórico de Sinistralidade:
+                      </h1>
+                      <label for="reajuste">Informe aqui os reajustes:</label>
+                      <div style="width: 100%"></div>
+                      <div class="form-row">
+                        <!-- ANO -->
+                        <div class="col-md-5 mb-5">
+                          <label for="validationCustom01">Ano</label>
+                          <input
+                            #ano_vigencia="ngModel"
+                            [class.is-invalid]="
+                              ano_vigencia.invalid && ano_vigencia.touched
+                            "
+                            [class.is-valid]="
+                              ano_vigencia.valid && ano_vigencia.touched
+                            "
+                            required
+                            [(ngModel)]="empresa.ano_vigencia"
+                            name="ano_vigencia"
+                            type="text"
+                            class="form-control"
+                            style="
+                              border-top: none;
+                              border-left: none;
+                              border-right: none;
+                            "
+                            placeholder="Informe o ano da negociação"
+                          />
+                        </div>
+                        <!--  -->
+
+                        <!-- SINISTRALIDADE -->
+                        <div class="col-md-5 mb-5">
+                          <label for="validationCustom01">Sinistralidade</label>
+                          <input
+                            #sinistralidade="ngModel"
+                            [class.is-invalid]="
+                              sinistralidade.invalid && sinistralidade.touched
+                            "
+                            [class.is-valid]="
+                              sinistralidade.valid && sinistralidade.touched
+                            "
+                            required
+                            [(ngModel)]="empresa.sinistralidade"
+                            name="sinistralidade"
+                            type="text"
+                            class="form-control"
+                            style="
+                              border-top: none;
+                              border-left: none;
+                              border-right: none;
+                            "
+                            placeholder="Informe a sinistralidade"
+                          />
+                        </div>
+                        <!--  -->
+                      </div>
+                    </div>
+                    <button
+                      style="
+                        display: flex;
+                        position: absolute;
+                        right: 20px;
+                        bottom: 20px;
+                      "
+                      class="btn btn-primary"
+                      id="fecharVigencia"
+                    >
+                      Fechar
+                    </button>
+                  </div>
+                </div>
+              </div>
+
               <div class="col-md-2 mb-2">
                 <label for="validationCustom01">Celular</label>
                 <input
@@ -440,20 +538,12 @@
                   name="declaracao_saude"
                   type="text"
                   class="form-control"
-                  placeholder="Declaração de Saúde"
+                  placeholder="Informe o código"
                 />
               </div>
+            </div>
 
-              <div class="col-md-2 mb-2">
-                <label for="validationCustom04">Status Sistema</label>
-                <input
-                  readonly="true"
-                  type="text"
-                  class="form-control"
-                  placeholder="OK"
-                />
-              </div>
-
+            <div class="form-row">
               <div class="col-md-5 mb-5">
                 <label for="validationCustom05">Observações</label>
                 <input
@@ -464,7 +554,7 @@
                   placeholder="Informe aqui aspectos importantes para o movimentação"
                 />
               </div>
-            </div>
+             </div>
 
             <button
               [disabled]="empresaForm.form.invalid"
@@ -512,3 +602,5 @@
     </div>
   </div>
 </div>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

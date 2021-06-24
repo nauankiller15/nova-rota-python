@@ -1,0 +1,19 @@
+#setaLado {
+    width: 100vh;
+    min-height: 70vh;
+    margin: 20vh auto;
+    z-index: 997;
+    position: absolute;
+    top: 17vh;
+    left: 38%;
+    margin-right: -50%;
+    transform: translate(-60%, -50%);
+}
+  .setaEsquerda {
+    background: url(https://1.bp.blogspot.com/-1zz2UBlsDvQ/YNPoubxaO_I/AAAAAAAAHOg/o_tLdfJX35c2PnA03QafTkzHXDVG73UjQCLcBGAsYHQ/s0/seta%2Bpara%2Bo%2Blado.png);
+    width: 100%;
+    height:  44vh;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    opacity: 0.079;
+}

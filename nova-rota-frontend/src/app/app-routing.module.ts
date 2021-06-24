@@ -28,6 +28,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './account/shared/auth.guard';
 import { LoginComponent } from './account/login/login.component';
 import { CreateAccountComponent } from './account/create-account/create-account.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 //
 
 const routes: Routes = [
@@ -35,7 +36,9 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [
-      { path: '', component: HomeComponent },
+      { path: '', component: WelcomeComponent },
+      // ==== TELA DE BEM VINDO ====
+      { path: 'bem-vindo', component: WelcomeComponent },
       // ==== TELA DE PEFIL ====
       { path: 'profile', component: ProfileComponent },
       //]
