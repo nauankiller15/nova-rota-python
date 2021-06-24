@@ -133,12 +133,13 @@ export class ApiService {
       headers: this.httpHeaders,
     });
   }
-  getTarefa(id: string): Observable<any> {
+
+  getTarefa(id: string | number): Observable<any> {
     return this.http.get(this.baseUrl + 'tarefas/' + id + '/', {
       headers: this.httpHeaders,
     });
   }
-
+  
   saveNewTarefa(tarefa: {
     titulo: string;
     descricao: string;

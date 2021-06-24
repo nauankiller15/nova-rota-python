@@ -130,6 +130,7 @@ export class ApiService {
       headers: this.httpHeaders,
     });
   }
+  
   getTarefa(id: string): Observable<any> {
     return this.http.get(this.baseUrl + 'tarefas/' + id + '/', {
       headers: this.httpHeaders,
@@ -151,15 +152,13 @@ export class ApiService {
   updateTarefa(tarefa: {
     titulo?: string;
     descricao?: string;
-    status_tarefa?: any;
-    id?: number;
+    status_tarefa?: string;
+    id?: any;
   }): Observable<any> {
     return this.http.put(this.baseUrl + 'tarefas/' + tarefa.id + '/', tarefa, {
       headers: this.httpHeaders,
     });
   }
-
-  // DELETANDO TAREFAS
 
   deleteTarefa(id: string): Observable<any> {
     return this.http.delete(this.baseUrl + 'tarefas/' + id + '/', {

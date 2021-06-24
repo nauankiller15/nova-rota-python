@@ -230,6 +230,49 @@ em {
   transform: translate(-50%, -50%);
 }
 
+/* CONFIRMAÇÃO DE CADASTRO */
+
+#confirmacaoDependente {
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0000005e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#confirmacaoDependente {
+  display: none;
+}
+
+.confirmacao-texto {
+  margin: auto;
+  width: 80%;
+  margin-top: 29px;
+  padding: 10px;
+}
+
+.box-confirmacao {
+  border-top: 4px solid var(--cor-tema);
+  border-radius: 15px;
+  background: #ffffff;
+  max-width: 125vh;
+  width: 75vh;
+  min-height: 26vh;
+  margin: 10vh auto;
+  z-index: 997;
+  position: fixed;
+  top: 40vh;
+  left: 58%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+/*  */
+
 .was-validated .form-control:valid,
 .form-control.is-valid {
   padding-left: 8px;

@@ -255,7 +255,6 @@ export class AlteracaoDependenteComponent implements OnInit {
     this.api.getDependente(dependentes.id).subscribe(
       (data) => {
         this.selected_dependente = data;
-        console.log(data);
       },
       (error) => {
         this.toastr.error('Aconteceu um Erro!', error.message);

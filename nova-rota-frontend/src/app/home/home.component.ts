@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscriber } from 'rxjs';
 import { ApiService } from './api.service';
+import { AppComponent } from '../app.component';
 
 declare var $: any;
 
@@ -10,10 +11,8 @@ declare var $: any;
   selector: 'app-home',
   templateUrl: './home.component.html',
   template: '<menu></menu><router-outlet></router-outlet>',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
-
-
 export class HomeComponent implements OnInit {
   //
   dependente: any[];
@@ -78,11 +77,12 @@ export class HomeComponent implements OnInit {
   };
 
   tarefas = [{ id: '', titulo: '' }];
-  selected_tarefa = { id: 0, titulo: '', descricao: '', status_tarefa: '' };
+  selected_tarefa = { id: '', titulo: '', descricao: '', status_tarefa: '' };
 
   titulo: string;
   p: number = 1;
   selected_id: any;
+  update_tarefa: any;
 
   ngOnInit() {
     // MENU PRINCIPAL ANIMAÇÕES
@@ -124,15 +124,38 @@ export class HomeComponent implements OnInit {
       $('#config').fadeOut('100');
     });
 
+    // DETAILS TAREFAS
+    $('#fechar-bt3').on('click', function () {
+      $('#over-text').fadeOut('100');
+      $('.texto-overlay').fadeOut('100');
+      $('#tarefas').fadeIn('100');
+      $('.box-text').fadeIn('100');
+    });
+    $('#over-text').on('click', function () {
+      $('#over-text').fadeOut('100');
+      $('.texto-overlay').fadeOut('100');
+      $('#tarefas').fadeIn('100');
+      $('.box-text').fadeIn('100');
+    });
+    $('#config-bt').on('click', function () {
+      $('#config').fadeIn('100');
+    });
+    $('#tarefas').on('click', function () {
+      $('.texto-overlay').fadeOut('100');
+      $('#over-text').fadeOut('100');
+    });
+    $('#fechar-bt2').on('click', function () {
+      $('#config').fadeOut('100');
+    });
   }
 
   constructor(
     private api: ApiService,
     private router: Router,
     private toastr: ToastrService,
+    private appComponent: AppComponent
   ) {
     this.getTarefas();
-
   }
 
   getTarefas = () => {
@@ -158,6 +181,22 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  // tarefaClicked = (tarefa: { id: string }) => {
+  //   $('.texto-overlay').fadeIn('200');
+  //   $('#over-text').fadeIn('200');
+  //   $('#consulta').fadeOut('200');
+  //   $('#titularesappear').fadeIn('200');
+  //   this.api.getTarefa(tarefa.id).subscribe(
+  //     (data) => {
+  //       this.selected_tarefa = data;
+  //       console.log(data);
+  //     },
+  //     (error) => {
+  //       this.toastr.error('Aconteceu um Erro!', error.message);
+  //     }
+  //   );
+  // };
+
   tarefaClicked = (tarefa: { id: any }) => {
     $('#over-text').fadeIn('100');
     $('.texto-overlay').fadeIn('100');
@@ -168,6 +207,48 @@ export class HomeComponent implements OnInit {
   novaTarefa() {
     $('#over-tarefa').fadeIn('100');
     $('.nova-tarefa').fadeIn('100');
-    this.router.navigate(['nova-tarefa']);
+    $('#abrirTarefa').fadeIn('100');
+  }
+
+  loadTarefa(id: string) {
+    this.api.getTarefa(id).subscribe(
+      (data) => {
+        this.selected_tarefa = data;
+      },
+      (error) => {
+        this.toastr.error('Aconteceu um Erro!', error.message);
+      }
+    );
+  }
+  update() {
+    this.api.updateTarefa(this.selected_tarefa).subscribe(
+      (data) => {
+        this.toastr.success('Atualizado com sucesso!');
+        this.update_tarefa = data;
+        $('.texto-overlay').fadeOut('100');
+        $('#over-text').fadeOut('100');
+      },
+      (error) => {
+        this.toastr.error('Aconteceu um Erro!', error.message);
+      }
+    );
+  }
+  delete() {
+    this.api.deleteTarefa(this.selected_id).subscribe(
+      (data) => {
+        this.toastr.success('Deletado com sucesso!');
+        let index: number;
+
+        this.appComponent.tarefas.forEach((e, i) => {
+          if (e.id == this.selected_id) index = i;
+        });
+        this.appComponent.tarefas.splice(index, 1);
+        $('.texto-overlay').fadeOut('100');
+        $('#over-text').fadeOut('100');
+      },
+      (error) => {
+        this.toastr.error('Esta Tarefa não existe mais!', error.message);
+      }
+    );
   }
 }

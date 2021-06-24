@@ -288,11 +288,12 @@
       </a>
       <div class="text-info-box">
         <h2 class="titulo-task">
-          <i class="fas fa-edit"></i> Lista de Tarefas
+          <i class="fas fa-edit"></i> Lista de Tarefas:
         </h2>
-        <div class="col-2 add-div" (click)="novaTarefa()">
+        <div id="abrirTarefa" class="col-2 add-div" (click)="novaTarefa()">
           <i class="edit-plus fas fa-plus"></i> Adicionar tarefa
         </div>
+        <nova-tarefa></nova-tarefa>
         <div class="col-9 search-div">
           <input
             class="form-control"
@@ -311,7 +312,7 @@
               [ngClass]="tarefa.status_tarefa ? 'tarefa-completed' : ''"
               *ngFor="
                 let tarefa of tarefas
-                  | paginate: { id: 'tarefa', itemsPerPage: 6, currentPage: p }
+                  | paginate: { id: 'tarefa', itemsPerPage: 9, currentPage: p }
               "
               (click)="tarefaClicked(tarefa)"
             >

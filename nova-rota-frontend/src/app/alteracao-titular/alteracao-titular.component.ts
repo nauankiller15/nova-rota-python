@@ -208,7 +208,6 @@ export class AlteracaoTitularComponent implements OnInit {
         desc_declarao_saude: string;
         observacoes: string;
       }) => {
-        console.log(data)
         this.toastr.success('Atualizado com sucesso!');
       },
       (error) => {

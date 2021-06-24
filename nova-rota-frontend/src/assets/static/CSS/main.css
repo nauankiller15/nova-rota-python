@@ -23188,7 +23188,7 @@ button.toast-close-button {
 }
 
 .toast-success {
-  background-color: #3ac47d;
+  background-color: var(--cor-tema);
 }
 
 .toast-error {

@@ -101,6 +101,7 @@
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Prioridade</label>
                 <input
+                  [(ngModel)]="titular.prioridade"
                   type="text"
                   class="form-control"
                   placeholder="Prioridade"
@@ -256,7 +257,6 @@
                       >
                       <div style="height: 10px; width: 100%"></div>
 
-                      
                       <div class="mb-3">
                         <input
                           type="file"
@@ -267,7 +267,7 @@
                           ngControl="inputFile"
                         />
                       </div>
-                      
+
                       <button
                         style="
                           display: flex;
@@ -545,7 +545,6 @@
                   [class.is-valid]="
                     desc_declarao_saude.valid && desc_declarao_saude.touched
                   "
-                  required
                   [(ngModel)]="titular.desc_declarao_saude"
                   name="desc_declarao_saude"
                   type="text"
@@ -574,6 +573,45 @@
             >
               Gravar informações
             </button>
+
+            <div id="confirmacaoTitular">
+              <div class="box-confirmacao">
+                <div class="confirmacao-texto">
+                  <div style="position: absolute; right: 70px; top: 66px">
+                    <img
+                      style="width: 85px; height: 85px"
+                      src="https://1.bp.blogspot.com/-eC39C3T4rsI/YNUTDdEUSeI/AAAAAAAAHPI/nbUgYyth4y4ZHUxzm-PVHquQ7XEVY1qegCLcBGAsYHQ/s0/checked.png"
+                    />
+                  </div>
+                  <h1
+                    style="
+                      font-size: 22px;
+                      margin-top: 5px;
+                      margin-bottom: 15px;
+                    "
+                  >
+                    Você cadastrou: <b>{{ titular.nome_benef }}</b>
+                    <div style="width: 100%; height: 12px"></div>
+                    sob CPF: <b>{{ titular.CPF }}</b>
+                  </h1>
+                  <button
+                    class="btn btn-primary"
+                    type="reset"
+                    id="fecharTelaTitular"
+                    style="
+                      bottom: 27px;
+                      margin: auto;
+                      width: 200px;
+                      position: absolute;
+                      margin-left: 25%;
+                    "
+                  >
+                    Cadastrar outro
+                  </button>
+                </div>
+              </div>
+            </div>
+
             <button type="reset" class="btn btn-cancelar">Apagar tudo</button>
           </form>
         </div>
