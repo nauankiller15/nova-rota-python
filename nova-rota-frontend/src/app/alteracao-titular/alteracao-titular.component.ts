@@ -144,7 +144,7 @@ export class AlteracaoTitularComponent implements OnInit {
   }
 
   getTitulares = () => {
-    this.api.getAlltitulares().subscribe(
+    this.api.conectar('titular/').subscribe(
       (data) => {
         this.titulares = data;
       },
@@ -155,7 +155,7 @@ export class AlteracaoTitularComponent implements OnInit {
   };
 
   loadTitular(id: string) {
-    this.api.getTitular(id).subscribe(
+    this.api.conectar('titular/', null, id).subscribe(
       (data) => {
         this.selected_titular = data;
       },
@@ -168,7 +168,7 @@ export class AlteracaoTitularComponent implements OnInit {
   titularClicked = (titular: { id: string }) => {
     $('#consulta').fadeOut('200');
     $('#titularesappear').fadeIn('200');
-    this.api.getTitular(titular.id).subscribe(
+    this.api.conectar('titular/', null, titular.id).subscribe(
       (data) => {
         this.selected_titular = data;
       },
@@ -179,35 +179,8 @@ export class AlteracaoTitularComponent implements OnInit {
   };
 
   updateTit() {
-    console.log(this.selected_titular)
-    this.api.updateTitular(this.selected_titular).subscribe(
-      (data: {
-        id: number;
-        CPF: string;
-        cod_empresa: string;
-        data_recebimento: string;
-        tipo: string;
-        nome_benef: string;
-        data_nascimento: string;
-        sexo: string;
-        carteirinha: string;
-        estado_civil: string;
-        anexo_doc_tit: string;
-        nome_mae: string;
-        data_admissao: string;
-        data_casamento: string;
-        anexo_doc_casamento: any;
-        anexo_doc_empregaticio: any;
-        tipo_parentesco: string;
-        CEP: string;
-        celular: string;
-        cidade: string;
-        estado: string;
-        declaracao_saude: string;
-        status: string;
-        desc_declarao_saude: string;
-        observacoes: string;
-      }) => {
+    this.api.atualizar('titular/', this.selected_titular).subscribe(
+      (data) => {
         console.log(data)
         this.toastr.success('Atualizado com sucesso!');
       },

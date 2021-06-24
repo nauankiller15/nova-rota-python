@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscriber } from 'rxjs';
-import { ApiService } from './api.service';
+import { ApiService } from '../api.service';
 
 declare var $: any;
 
@@ -136,7 +136,7 @@ export class HomeComponent implements OnInit {
   }
 
   getTarefas = () => {
-    this.api.getAlltarefas().subscribe(
+    this.api.conectar('tarefas/').subscribe(
       (data) => {
         this.tarefas = data;
       },

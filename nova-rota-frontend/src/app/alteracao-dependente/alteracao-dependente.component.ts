@@ -185,7 +185,7 @@ export class AlteracaoDependenteComponent implements OnInit {
   }
 
   getDependentes = () => {
-    this.api.getAlldependentes().subscribe(
+    this.api.conectar('parentesco/').subscribe(
       (data) => {
         this.dependentes = data;
       },
@@ -196,7 +196,7 @@ export class AlteracaoDependenteComponent implements OnInit {
   };
 
   getTitulares = () => {
-    this.api.getAlltitulares().subscribe(
+    this.api.conectar('titular/').subscribe(
       (data) => {
         this.titulares = data;
       },
@@ -207,7 +207,7 @@ export class AlteracaoDependenteComponent implements OnInit {
   };
 
   loadDependente(id: string) {
-    this.api.getDependente(id).subscribe(
+    this.api.conectar('parentesco/', null, id).subscribe(
       (data) => {
         this.selected_dependente = data;
       },
@@ -235,7 +235,7 @@ export class AlteracaoDependenteComponent implements OnInit {
     $('#alterar-titular').fadeOut('200');
     $('#encounter-tit').slideDown('200');
 
-    this.api.getTitular(titular.id).subscribe(
+    this.api.conectar('titular/', null, titular.id).subscribe(
       (data) => {
         this.selected_dependente.titular = titular.id;
         this.selected_dependente.nome_benef = titular.nome_benef;
@@ -252,10 +252,9 @@ export class AlteracaoDependenteComponent implements OnInit {
   dependenteClicked = (dependentes: { id: any }) => {
     $('#consulta2').fadeOut('200');
     $('#dependentesappear').fadeIn('20');
-    this.api.getDependente(dependentes.id).subscribe(
+    this.api.conectar('parentesco/', null, dependentes.id).subscribe(
       (data) => {
         this.selected_dependente = data;
-        console.log(data);
       },
       (error) => {
         this.toastr.error('Aconteceu um Erro!', error.message);
@@ -264,37 +263,8 @@ export class AlteracaoDependenteComponent implements OnInit {
   };
 
   updateDependente() {
-    this.api.updateDependente(this.selected_dependente).subscribe(
-      (data: {
-        id: number;
-        CPF: string;
-        cod_empresa: string;
-        data_recebimento: string;
-        tipo: string;
-        nome_dependente: string;
-        data_nascimento: string;
-        sexo: string;
-        estado_civil: string;
-        anexo_doc_tit: string;
-        nome_mae: string;
-        data_admissao: string;
-        data_casamento: string;
-        anexo_doc_casamento: any;
-        anexo_doc_nascimento: any;
-        tipo_parentesco: string;
-        CEP: string;
-        celular: string;
-        cidade: string;
-        estado: string;
-        declaracao_saude: string;
-        status: string;
-        desc_declarao_saude: string;
-        observacoes: string;
-        titular: number;
-        titular_nome: string;
-        carteirinha: string;
-        nome_benef: string;
-      }) => {
+    this.api.conectar('parentesco/', this.selected_dependente).subscribe(
+      (data) => {
         this.selected_dependente = data;
         this.toastr.success('Atualizado com sucesso!');
       },

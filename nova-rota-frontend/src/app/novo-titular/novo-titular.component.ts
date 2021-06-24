@@ -168,7 +168,7 @@ export class NovoTitularComponent implements OnInit {
   newTitular() {
     // const fd = new FormData();
     // fd.append('image', this.selectedFile, this.selectedFile.name);
-    this.api.saveNewTitular(this.titular).subscribe(
+    this.api.conectar('titular/', this.titular).subscribe(
       (data) => {
         this.toastr.success('Titular inserido com sucesso!');
         this.appComponent.titular.push(data);

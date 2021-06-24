@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     console.log(this.usuario);
-    this.api.login(this.usuario).subscribe(
+    this.api.conectar('login/', this.usuario).subscribe(
       (data) => {
         const token = data['token']
         localStorage.setItem('token', token)

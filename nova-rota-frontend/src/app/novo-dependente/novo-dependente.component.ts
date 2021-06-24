@@ -189,7 +189,7 @@ export class NovoDependenteComponent implements OnInit {
   }
 
   getTitulares = () => {
-    this.api.getAlltitulares().subscribe(
+    this.api.conectar('titular/').subscribe(
       (data) => {
         this.titulares = data;
       },
@@ -215,7 +215,7 @@ export class NovoDependenteComponent implements OnInit {
     $('#vinc-titular').fadeOut('200');
     $('#encounter-tit').slideDown('200');
 
-    this.api.getTitular(titular.id).subscribe(
+    this.api.conectar('titular/', null, titular.id).subscribe(
       (data) => {
         this.dependente.titular = titular.id;
         this.dependente.nome_benef = titular.nome_benef;
@@ -229,7 +229,7 @@ export class NovoDependenteComponent implements OnInit {
   };
 
   newDependente() {
-    this.api.saveNewDependente(this.dependente).subscribe(
+    this.api.conectar('parentesco/', this.dependente).subscribe(
       (data) => {
         this.toastr.success('Dependente inserido com sucesso!');
         this.appComponent.dependente.push(data);

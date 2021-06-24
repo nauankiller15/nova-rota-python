@@ -146,7 +146,7 @@ export class AppComponent implements OnInit {
 
 
   getTarefas = () => {
-    this.api.getAlltarefas().subscribe(
+    this.api.conectar('tarefas/').subscribe(
       (data) => {
         this.tarefas = data;
       },

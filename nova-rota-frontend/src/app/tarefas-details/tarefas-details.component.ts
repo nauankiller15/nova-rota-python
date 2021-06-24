@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from '../app.component';
-import { ApiService } from './api.service';
+import { ApiService } from '../api.service';
 
 declare var $: any;
 @Component({
@@ -53,7 +53,7 @@ export class TarefasDetailsComponent implements OnInit {
   }
 
   loadTarefa(id: number) {
-    this.api.getTarefa(id).subscribe(
+    this.api.conectar('tarefas/', id).subscribe(
       (data) => {
         this.selected_tarefa = data;
       },
@@ -63,7 +63,7 @@ export class TarefasDetailsComponent implements OnInit {
     );
   }
   update() {
-    this.api.updateTarefa(this.selected_tarefa).subscribe(
+    this.api.conectar('tarefas/', this.selected_tarefa).subscribe(
       (data) => {
         this.toastr.success('Atualizado com sucesso!');
         this.update_tarefa = data;
@@ -76,7 +76,7 @@ export class TarefasDetailsComponent implements OnInit {
     );
   }
   delete() {
-    this.api.deleteTarefa(this.selected_id).subscribe(
+    this.api.apagar('tarefas/', this.selected_id).subscribe(
       (data) => {
         this.toastr.success('Deletado com sucesso!');
         let index: number;
