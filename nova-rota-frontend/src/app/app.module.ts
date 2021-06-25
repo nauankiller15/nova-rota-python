@@ -29,6 +29,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CreateAccountComponent } from './account/create-account/create-account.component';
 import { LoginComponent } from './account/login/login.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { NovidadesDetailsComponent } from './novidades-details/novidades-details.component';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -57,7 +58,8 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     ProfileComponent,
     CreateAccountComponent,
     LoginComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    NovidadesDetailsComponent,
   ],
   imports: [
     BrowserModule,

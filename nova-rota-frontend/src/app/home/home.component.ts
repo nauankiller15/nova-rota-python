@@ -76,9 +76,13 @@ export class HomeComponent implements OnInit {
     nome_benef: null,
   };
 
+  // tarefas
   tarefas = [{ id: '', titulo: '' }];
   selected_tarefa = { id: '', titulo: '', descricao: '', status_tarefa: '' };
-
+  // novidades
+  novidades = [{ id: '', titulo: '' }];
+  selected_novidade = { id: '', titulo: '', descricao: '' };
+  //
   titulo: string;
   p: number = 1;
   selected_id: any;
@@ -220,6 +224,18 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+
+  loadNovidade(id: string) {
+    this.api.getNovidades(id).subscribe(
+      (data) => {
+        this.selected_novidade = data;
+      },
+      (error) => {
+        this.toastr.error('Aconteceu um Erro!', error.message);
+      }
+    );
+  }
+
   update() {
     this.api.updateTarefa(this.selected_tarefa).subscribe(
       (data) => {

@@ -102,6 +102,21 @@ export class ApiService {
     });
   }
 
+  // TRAZENDO NOVIDADES
+
+  getAllNovidades(): Observable<any> {
+    return this.http.get(this.baseUrl + 'novidades/', {
+      headers: this.httpHeaders,
+    });
+  }
+
+  getNovidades(id: string): Observable<any> {
+    return this.http.get(this.baseUrl + 'novidades/' + id + '/', {
+      headers: this.httpHeaders,
+    });
+  }
+
+
   // TRAZENDO DEPENDENTES
 
   getAlldependentes(): Observable<any> {

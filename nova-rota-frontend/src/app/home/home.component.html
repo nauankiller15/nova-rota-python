@@ -306,16 +306,16 @@
           <i class="edit-search fas fa-search"></i>
         </div>
         <ul class="task-list">
-          <span
+          <span 
+          class="task-item"
             ><li
-              class="task-item"
               [ngClass]="tarefa.status_tarefa ? 'tarefa-completed' : ''"
               *ngFor="
                 let tarefa of tarefas
                   | paginate: { id: 'tarefa', itemsPerPage: 9, currentPage: p }
               "
               (click)="tarefaClicked(tarefa)"
-            >
+            > <i class="fas fa-edit" aria-hidden="true"></i>
               {{ tarefa.titulo }}
             </li>
           </span>

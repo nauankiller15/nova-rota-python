@@ -29,6 +29,7 @@ import { AuthGuard } from './account/shared/auth.guard';
 import { LoginComponent } from './account/login/login.component';
 import { CreateAccountComponent } from './account/create-account/create-account.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { NovidadesDetailsComponent } from './novidades-details/novidades-details.component';
 //
 
 const routes: Routes = [
@@ -39,6 +40,7 @@ const routes: Routes = [
       { path: '', component: WelcomeComponent },
       // ==== TELA DE BEM VINDO ====
       { path: 'bem-vindo', component: WelcomeComponent },
+      { path: 'novidade-details', component: NovidadesDetailsComponent },
       // ==== TELA DE PEFIL ====
       { path: 'profile', component: ProfileComponent },
       //]
