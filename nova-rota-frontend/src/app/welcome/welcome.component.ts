@@ -25,12 +25,12 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit(): void {
     $('#fechar-novidade').on('click', function () {
-      $('.box-novidade').fadeOut('100');
+      $('.box-novidade').slideUp('100');
       $('#novidadeAberta').fadeOut('100');
     });
 
     $('#novidadeAberta').on('click', function () {
-      $('.box-novidade').fadeOut('100');
+      $('.box-novidade').slideUp('100');
       $('#novidadeAberta').fadeOut('100');
     });
   }
@@ -66,7 +66,7 @@ export class WelcomeComponent implements OnInit {
 
   novidadeClicked = (novidade: { id: any }) => {
     $('#novidadeAberta').fadeIn('100');
-    $('.box-novidade').fadeIn('100');
+    $('.box-novidade').slideDown('100');
     this.api.getNovidades(novidade.id).subscribe(
       (data) => {
         this.selected_novidade = data;

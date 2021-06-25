@@ -82,3 +82,11 @@
 .box-novidade {
   display: none;
 }
+
+.paginacao-novidades {
+  position: absolute;
+  bottom: 7px;
+  margin-left: 9%;
+  width: 250px;
+  font-size: 15px;
+}

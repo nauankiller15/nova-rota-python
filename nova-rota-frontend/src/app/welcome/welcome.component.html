@@ -21,10 +21,25 @@
               <div class="novidades">
                 <div class="box-novidades">
                   <h3>
-                    <b>Novidades no sistema:</b>
+                    <b
+                      ><i
+                        style="
+                          color: rgb(255, 255, 255);
+                          background-color: var(--cor-tema);
+                          padding: 7px;
+                          font-size: 20px;
+                          border-radius: 50%;
+                          position: absolute;
+                          top: 9px;
+                          right: 14px;
+                        "
+                        class="fas fa-bell"
+                      ></i>
+                      Novidades do sistema:</b
+                    >
                   </h3>
                   <div class="page-title-subheading" style="font-size: 18px">
-                    Últimas novidades do sistema detalhadas.
+                    Últimas novidades/alterações do sistema detalhadas.
                   </div>
                   <div
                     style="
@@ -32,7 +47,7 @@
                       overflow-y: scroll;
                       margin-top: 20px;
                       font-size: 17px;
-                      max-height: 45vh;
+                      height: 34vh;
                     "
                   >
                     <div class="task-item">
@@ -48,20 +63,24 @@
                         "
                         (click)="novidadeClicked(novidade)"
                       >
+                        <i
+                          style="padding: 3px; font-size: 15px"
+                          class="fas fa-bell"
+                        ></i>
                         {{ novidade.titulo }}
                       </li>
-                      <pagination-controls
-                        id="novidades"
-                        class="paginacao-novidades"
-                        previousLabel="Anterior"
-                        maxSize="7"
-                        autoHide="true"
-                        nextLabel="Seguinte"
-                        directionLinks="true"
-                        responsive="true"
-                        (pageChange)="p = $event"
-                      ></pagination-controls>
                     </div>
+                    <pagination-controls
+                    id="novidades"
+                    class="paginacao-novidades"
+                    previousLabel="Anterior"
+                    maxSize="7"
+                    autoHide="true"
+                    nextLabel="Seguinte"
+                    directionLinks="true"
+                    responsive="true"
+                    (pageChange)="p = $event"
+                  ></pagination-controls>
                     <!-- NOVIDADES -->
                     <!-- NOVIDADE ABERTA -->
                     <div class="box-novidade">
@@ -69,7 +88,22 @@
                         <div class="fechar-button">X</div>
                       </a>
                       <div class="text-novidade">
-                        <h2>{{ selected_novidade.titulo }}</h2>
+                        <h2>
+                          <i
+                            style="
+                              color: rgb(255, 255, 255);
+                              background-color: var(--cor-tema);
+                              padding: 11px;
+                              font-size: 23px;
+                              border-radius: 50%;
+                              position: absolute;
+                              top: 11px;
+                              left: 9px;
+                            "
+                            class="fas fa-bell"
+                          ></i>
+                          {{ selected_novidade.titulo }}
+                        </h2>
                         <div style="width: 100%; height: 20px"></div>
                         <div>
                           {{ selected_novidade.descricao }}
