@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'cad_bp',
     'cad_at',
     'cad_emp',
-    'tarefas'
+    'tarefas',
+    'novidades'
 ]
 
 MIDDLEWARE = [
