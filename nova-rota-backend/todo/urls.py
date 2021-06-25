@@ -11,6 +11,7 @@ from cad_at.api.viewsets import TitularViewSet
 from cad_at.api.viewsets import TitularParentescos
 from cad_bp.api.viewsets import ParentescoViewSet
 from cad_emp.api.viewsets import EmpresaViewSet
+from novidades.api.viewsets import NovidadesViewSet
 from tarefas.api.viewsets import TarefaViewSet
 
 router = routers.DefaultRouter()
@@ -19,6 +20,7 @@ router.register(r'lista-parentesco', TitularParentescos, basename='lista-parente
 router.register(r'parentesco', ParentescoViewSet)
 router.register(r'tarefas', TarefaViewSet)
 router.register(r'empresa', EmpresaViewSet)
+router.register(r'novidades', NovidadesViewSet)
 
 urlpatterns = [
     path('api/login/', obtain_jwt_token),

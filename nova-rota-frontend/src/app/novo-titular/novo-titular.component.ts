@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from '../app.component';
 import { ApiService } from '../api.service';
@@ -18,6 +19,7 @@ export class NovoTitularComponent implements OnInit {
     cod_empresa: '',
     data_recebimento: '',
     tipo: '',
+    prioridade: 'Prioridade',
     nome_benef: '',
     data_nascimento: '',
     sexo: '',
@@ -53,7 +55,8 @@ export class NovoTitularComponent implements OnInit {
     private toastr: ToastrService,
     private api: ApiService,
     private appComponent: AppComponent,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -150,14 +153,18 @@ export class NovoTitularComponent implements OnInit {
       $('#vinc-anexo-empregaticio').fadeIn('100');
     });
 
-     // CONFIRMAÇÃO DECLARAÇÃO SAÚDE
+    // CONFIRMAÇÃO DECLARAÇÃO SAÚDE
 
-     $('#declaracaoSaudeTitular').on('change', function () {
+    $('#declaracaoSaudeTitular').on('change', function () {
       'Sim' === $(this).val()
         ? $('#descDeclaracaoSaudeTitular').fadeIn('100')
         : $('#descDeclaracaoSaudeTitular').fadeOut('100');
     });
-      //
+    //
+
+    $('#fecharTelaTitular').click(function () {
+      $('#confirmacaoTitular').fadeOut('100');
+    });
   }
 
   // selectedFile: File = null;
@@ -170,7 +177,7 @@ export class NovoTitularComponent implements OnInit {
     // fd.append('image', this.selectedFile, this.selectedFile.name);
     this.api.conectar('titular/', this.titular).subscribe(
       (data) => {
-        this.toastr.success('Titular inserido com sucesso!');
+        $('#confirmacaoTitular').fadeIn('100');
         this.appComponent.titular.push(data);
       },
       (error) => {

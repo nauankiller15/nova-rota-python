@@ -6,7 +6,7 @@ import { ApiService } from '../api.service';
 
 declare var $: any;
 @Component({
-  selector: 'app-tarefas-details',
+  selector: 'tarefas-details',
   templateUrl: './tarefas-details.component.html',
   styleUrls: ['./tarefas-details.component.css'],
 })
@@ -15,7 +15,7 @@ export class TarefasDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private api: ApiService,
     private toastr: ToastrService,
-    private appComponent: AppComponent
+    private homeComponent: HomeComponent
   ) {}
   selected_tarefa = { titulo: '', descricao: '', status_tarefa: '' };
   update_tarefa = { titulo: '', descricao: '', status_tarefa: true };
@@ -81,10 +81,10 @@ export class TarefasDetailsComponent implements OnInit {
         this.toastr.success('Deletado com sucesso!');
         let index: number;
 
-        this.appComponent.tarefas.forEach((e, i) => {
+        this.homeComponent.tarefas.forEach((e, i) => {
           if (e.id == this.selected_id) index = i;
         });
-        this.appComponent.tarefas.splice(index, 1);
+        this.homeComponent.tarefas.splice(index, 1);
         $('.texto-overlay').fadeOut('100');
         $('#over-text').fadeOut('100');
       },

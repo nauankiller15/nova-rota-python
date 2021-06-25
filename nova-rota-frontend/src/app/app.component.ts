@@ -168,16 +168,5 @@ export class AppComponent implements OnInit {
     }
   }
 
-  tarefaClicked = (tarefa: { id: any }) => {
-    $('#over-text').fadeIn('100');
-    $('.texto-overlay').fadeIn('100');
-    this.router.navigate(['tarefas-detail', tarefa.id]);
-  };
 
-  // ABRIR NOVA TAREFA
-  novaTarefa() {
-    $('#over-tarefa').fadeIn('100');
-    $('.nova-tarefa').fadeIn('100');
-    this.router.navigate(['nova-tarefa']);
-  }
 }

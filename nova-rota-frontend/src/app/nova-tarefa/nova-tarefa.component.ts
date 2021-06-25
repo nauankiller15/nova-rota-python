@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { from } from 'rxjs';
 import { ApiService } from '../api.service';
-import { AppComponent } from '../app.component';
+import { HomeComponent } from '../home/home.component';
 
 declare var $: any;
 
@@ -12,12 +12,12 @@ declare var $: any;
   styleUrls: ['./nova-tarefa.component.css'],
 })
 export class NovaTarefaComponent implements OnInit {
-  tarefa = { titulo: '', descricao: '', status_tarefa: true };
+  tarefa = { titulo: '', descricao: '', status_tarefa: false };
 
   constructor(
     private api: ApiService,
     private toastr: ToastrService,
-    private appComponent: AppComponent
+    private homeComponent: HomeComponent
   ) {}
 
   ngOnInit(): void {
@@ -39,7 +39,7 @@ export class NovaTarefaComponent implements OnInit {
   save() {
     this.api.conectar('tarefas/', this.tarefa).subscribe(
       (data) => {
-        this.appComponent.tarefas.push(data);
+        this.homeComponent.tarefas.push(data);
         this.toastr.success('Tarefa criada com sucesso!', data.message);
         $('.nova-tarefa').fadeOut('100');
         $('#over-tarefa').fadeOut('100');

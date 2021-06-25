@@ -181,7 +181,6 @@ export class AlteracaoTitularComponent implements OnInit {
   updateTit() {
     this.api.atualizar('titular/', this.selected_titular).subscribe(
       (data) => {
-        console.log(data)
         this.toastr.success('Atualizado com sucesso!');
       },
       (error) => {

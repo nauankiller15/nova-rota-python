@@ -125,7 +125,7 @@ export class NovaEmpresaComponent implements OnInit {
     });
     $('#vinc-vigencia').hide();
     //
-    $('#fecharAnexo6').click(function () {
+    $('#fecharVigencia').click(function () {
       $('#vinc-vigencia').fadeOut('100');
       $('#vigenciaTela').fadeIn('100');
     });
@@ -133,6 +133,23 @@ export class NovaEmpresaComponent implements OnInit {
     $('#abrirVigencia').click(function () {
       $('#vinc-vigencia').fadeIn('100');
     });
+
+    // SLIDE LEFT AND RIGHT AJUSTES
+    $('#sinistralidadeBtn').click(function () {
+      $('#sinisTab').slideDown('100');
+      $('#reajusTab').slideUp('100');
+
+    });
+    $('#reajusteBtn').click(function () {
+      $('#reajusTab').slideDown('100');
+      $('#sinisTab').slideUp('100');
+    });
+
+    // BOTÕES
+    $('.menuItems li').on('click', function() {
+      $(this).addClass('active');
+      $(this).siblings().removeClass('active');
+  });
   }
 
   // selectedFile: File = null;

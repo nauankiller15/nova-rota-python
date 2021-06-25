@@ -24,6 +24,7 @@ export class NovoDependenteComponent implements OnInit {
     cod_empresa: '',
     data_recebimento: '',
     tipo: '',
+    prioridade: 'Prioridade',
     nome_dependente: '',
     data_nascimento: '',
     sexo: '',
@@ -174,6 +175,11 @@ export class NovoDependenteComponent implements OnInit {
       $('#vinc-anexo-conjugeFilho').fadeIn('100');
     });
 
+    $('#fecharTelaDependente').click(function () {
+      $('#confirmacaoDependente').fadeOut('100');
+    });
+
+
     //
 
 
@@ -181,7 +187,7 @@ export class NovoDependenteComponent implements OnInit {
 
       $('#declaracaoSaudeDependente').on('change', function () {
         'Sim' === $(this).val()
-          ? $('#descDeclaracaoSaudeDepedente').fadeIn('100')
+          ? $('#descDeclaracaoSaudeDependente').fadeIn('100')
           : $('#descDeclaracaoSaudeDependente').fadeOut('100');
       });
         //
@@ -231,7 +237,8 @@ export class NovoDependenteComponent implements OnInit {
   newDependente() {
     this.api.conectar('parentesco/', this.dependente).subscribe(
       (data) => {
-        this.toastr.success('Dependente inserido com sucesso!');
+        $('#confirmacaoDependente').fadeIn('100');
+        $('#encounter-tit').fadeOut('100');
         this.appComponent.dependente.push(data);
       },
       (error: { message: string }) => {
