@@ -21,20 +21,18 @@
               <div class="novidades">
                 <div class="box-novidades">
                   <h3>
-                    <b
-                      ><i
+                    <b>
+                      <div
                         style="
-                          color: rgb(255, 255, 255);
-                          background-color: var(--cor-tema);
-                          padding: 7px;
-                          font-size: 20px;
-                          border-radius: 50%;
                           position: absolute;
-                          top: 9px;
-                          right: 14px;
+                          top: -10px;
+                          right: -42px;
+                          font-size: 31px;
                         "
-                        class="fas fa-bell"
-                      ></i>
+                        class="page-title-icon"
+                      >
+                        <i class="fas fa-bell icon-gradient bg-mean-fruit"> </i>
+                      </div>
                       Novidades do sistema:</b
                     >
                   </h3>
@@ -53,34 +51,36 @@
                     <div class="task-item">
                       <li
                         *ngFor="
-                          let novidade of novidades | orderBy:'created_at':false 
+                          let novidade of novidades
+                            | orderBy: 'created_at':false
                             | paginate
                               : {
                                   id: 'novidades',
                                   itemsPerPage: 5,
                                   currentPage: p
-                                } let i = index
+                                };
+                          let i = index
                         "
                         (click)="novidadeClicked(novidade)"
                       >
                         <i
                           style="padding: 3px; font-size: 15px"
-                          class="fas fa-bell"
+                          class="fas fa-angle-double-right"
                         ></i>
                         {{ novidade.titulo }}
                       </li>
                     </div>
                     <pagination-controls
-                    id="novidades"
-                    class="paginacao-novidades"
-                    previousLabel="Anterior"
-                    maxSize="7"
-                    autoHide="true"
-                    nextLabel="Seguinte"
-                    directionLinks="true"
-                    responsive="true"
-                    (pageChange)="p = $event"
-                  ></pagination-controls>
+                      id="novidades"
+                      class="paginacao-novidades"
+                      previousLabel="Anterior"
+                      maxSize="7"
+                      autoHide="true"
+                      nextLabel="Seguinte"
+                      directionLinks="true"
+                      responsive="true"
+                      (pageChange)="p = $event"
+                    ></pagination-controls>
                     <!-- NOVIDADES -->
                     <!-- NOVIDADE ABERTA -->
                     <div class="box-novidade">
