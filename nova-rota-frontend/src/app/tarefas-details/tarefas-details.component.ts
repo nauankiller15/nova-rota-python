@@ -53,7 +53,7 @@ export class TarefasDetailsComponent implements OnInit {
   }
 
   loadTarefa(id: number) {
-    this.api.conectar('tarefas/', id).subscribe(
+    this.api.selecionar('tarefas/', id).subscribe(
       (data) => {
         this.selected_tarefa = data;
       },
@@ -63,7 +63,7 @@ export class TarefasDetailsComponent implements OnInit {
     );
   }
   update() {
-    this.api.conectar('tarefas/', this.selected_tarefa).subscribe(
+    this.api.atualizar('tarefas/', this.selected_tarefa).subscribe(
       (data) => {
         this.toastr.success('Atualizado com sucesso!');
         this.update_tarefa = data;
