@@ -53,13 +53,13 @@
                     <div class="task-item">
                       <li
                         *ngFor="
-                          let novidade of novidades
+                          let novidade of novidades | orderBy:'created_at':false 
                             | paginate
                               : {
                                   id: 'novidades',
                                   itemsPerPage: 5,
                                   currentPage: p
-                                }
+                                } let i = index
                         "
                         (click)="novidadeClicked(novidade)"
                       >

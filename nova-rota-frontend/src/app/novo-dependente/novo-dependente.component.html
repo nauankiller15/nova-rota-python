@@ -645,7 +645,7 @@
                       <li
                         value="{{ titular.id }}"
                         *ngFor="
-                          let titular of titulares
+                          let titular of titulares | orderBy:'created_at':false
                             | paginate
                               : {
                                   id: 'titularvinculoAlterar',

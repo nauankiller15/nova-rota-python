@@ -311,7 +311,7 @@
             ><li
               [ngClass]="tarefa.status_tarefa ? 'tarefa-completed' : ''"
               *ngFor="
-                let tarefa of tarefas
+                let tarefa of tarefas | orderBy:'created_at':false
                   | paginate: { id: 'tarefa', itemsPerPage: 9, currentPage: p }
               "
               (click)="tarefaClicked(tarefa)"

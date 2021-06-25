@@ -60,7 +60,7 @@
               Dependentes Encontrados:
               <li
                 *ngFor="
-                  let dependente of dependentes
+                  let dependente of dependentes | orderBy:'created_at':false
                     | paginate
                       : { id: 'dependentes', itemsPerPage: 14, currentPage: p }
                 "
@@ -577,8 +577,8 @@
                       <li
                         value="{{ titular.id }}"
                         *ngFor="
-                          let titular of titulares
-                            | paginate
+                          let titular of titulares | orderBy:'created_at':false
+                            | paginate 
                               : {
                                   id: 'titularvinculo',
                                   itemsPerPage: 12,

@@ -61,7 +61,7 @@
               Titulares Encontrados:
               <li
                 *ngFor="
-                  let titular of titulares
+                  let titular of titulares | orderBy:'created_at':false
                     | paginate
                       : { id: 'alttitulares', itemsPerPage: 14, currentPage: p }
                 "
