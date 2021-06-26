@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +11,12 @@ export class ApiService {
   getTitulares: any;
 
   constructor(private http: HttpClient) {}
+
+  private _refreshNeeded$ = new Subject<void>();
+
+  get refreshNeeded$() {
+    return this._refreshNeeded$;
+  }
 
   // CRIAR TITULAR
   saveNewTitular(titular: any): Observable<any> {
@@ -81,6 +87,7 @@ export class ApiService {
       status: dependente.status,
       desc_declarao_saude: dependente.desc_declarao_saude,
       observacoes: dependente.observacoes,
+      titular_nome: dependente.titular_nome,
     };
     return this.http.put(
       this.baseUrl + 'parentesco/' + dependente.id + '/',
@@ -125,7 +132,6 @@ export class ApiService {
     });
   }
 
-
   // TRAZENDO TAREFAS
 
   getAlltarefas(): Observable<any> {
@@ -139,7 +145,7 @@ export class ApiService {
       headers: this.httpHeaders,
     });
   }
-  
+
   saveNewTarefa(tarefa: {
     titulo: string;
     descricao: string;

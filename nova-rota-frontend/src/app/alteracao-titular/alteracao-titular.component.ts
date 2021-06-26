@@ -12,13 +12,13 @@ declare var $: any;
 })
 export class AlteracaoTitularComponent implements OnInit {
  // CARREGADOR
- animation = 'pulse';
- contentLoaded = false;
- count = 2;
- widthHeightSizeInPixels = 50;
+  animation = 'pulse';
+  contentLoaded = false;
+  count = 2;
+  widthHeightSizeInPixels = 50;
 
- intervalId: number | null = null;
- //
+  intervalId: number | null = null;
+  //
   
   selected_titular = {
     id: 0,
@@ -74,7 +74,7 @@ export class AlteracaoTitularComponent implements OnInit {
     // CARREGADOR TIMEOUT
     setTimeout(() => {
       this.contentLoaded = true;
-    }, 2000);
+    }, 3000);
 
     this.intervalId = window.setInterval(() => {
       this.animation = this.animation === 'pulse' ? 'progress-dark' : 'pulse';

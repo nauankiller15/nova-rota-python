@@ -19,11 +19,34 @@ export class NovidadesDetailsComponent implements OnInit {
     private toastr: ToastrService,
   ) {}
 
+   // CARREGADOR
+   animation = 'pulse';
+   contentLoaded = false;
+   count = 10;
+   widthHeightSizeInPixels = 50;
+ 
+   intervalId: number | null = null;
+   //
+
   selected_novidade = { titulo: '', descricao: '' };
 
   selected_id;
 
   ngOnInit(): void {
+
+     // CARREGADOR TIMEOUT
+     setTimeout(() => {
+      this.contentLoaded = true;
+    }, 3000);
+
+    this.intervalId = window.setInterval(() => {
+      this.animation = this.animation === 'pulse' ? 'progress-dark' : 'pulse';
+      this.count = this.count === 2 ? 5 : 2;
+      this.widthHeightSizeInPixels =
+        this.widthHeightSizeInPixels === 50 ? 100 : 50;
+    }, 5000);
+    //---------------
+    
     this.route.paramMap.subscribe((param: ParamMap) => {
       let id = parseInt(param.get('id'));
       this.selected_id = id;

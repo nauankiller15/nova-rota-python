@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,12 @@ export class ApiService {
   getTitulares: any;
 
   constructor(private http: HttpClient) {}
+
+  get refreshNeeded$() {
+    return this._refreshNeeded$;
+  }
+
+  private _refreshNeeded$ = new Subject<void>();
 
   // CRIAR TITULAR
   saveNewTitular(titular: any): Observable<any> {
@@ -116,27 +123,40 @@ export class ApiService {
     });
   }
 
-
   // TRAZENDO DEPENDENTES
 
   getAlldependentes(): Observable<any> {
     return this.http.get(this.baseUrl + 'parentesco/', {
       headers: this.httpHeaders,
-    });
+    })
+    .pipe(
+      tap(() => {
+        this._refreshNeeded$.next();
+      })
+    );
   }
 
   getDependente(id: string): Observable<any> {
     return this.http.get(this.baseUrl + 'parentesco/' + id + '/', {
       headers: this.httpHeaders,
-    });
+    })
+    .pipe(
+      tap(() => {
+        this._refreshNeeded$.next();
+      })
+    );
   }
 
   getDependenteTitular(id: string): Observable<any> {
     return this.http.get(this.baseUrl + 'titular/' + id + '/', {
       headers: this.httpHeaders,
-    });
+    })
+    .pipe(
+      tap(() => {
+        this._refreshNeeded$.next();
+      })
+    );
   }
-
 
   // TRAZENDO TAREFAS
 
@@ -145,7 +165,7 @@ export class ApiService {
       headers: this.httpHeaders,
     });
   }
-  
+
   getTarefa(id: string): Observable<any> {
     return this.http.get(this.baseUrl + 'tarefas/' + id + '/', {
       headers: this.httpHeaders,

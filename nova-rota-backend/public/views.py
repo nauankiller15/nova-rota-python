@@ -7,6 +7,6 @@ class IndexView(APIView):
 
     def get(self, request, format=None):
         content = {
-            'wmsg': 'Bem vindo ao FullStack Development'
+            'wmsg': 'Bem vindo ao Nova Rota Seguros'
         }
         return Response(content)

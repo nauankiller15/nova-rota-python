@@ -18,7 +18,7 @@ export class WelcomeComponent implements OnInit {
   // CARREGADOR
   animation = 'pulse';
   contentLoaded = false;
-  count = 2;
+  count = 10;
   widthHeightSizeInPixels = 50;
 
   intervalId: number | null = null;
@@ -35,7 +35,7 @@ export class WelcomeComponent implements OnInit {
     // CARREGADOR TIMEOUT
     setTimeout(() => {
       this.contentLoaded = true;
-    }, 2000);
+    }, 3000);
 
     this.intervalId = window.setInterval(() => {
       this.animation = this.animation === 'pulse' ? 'progress-dark' : 'pulse';

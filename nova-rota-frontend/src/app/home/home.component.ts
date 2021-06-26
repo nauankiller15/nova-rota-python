@@ -30,7 +30,6 @@ export class HomeComponent implements OnInit {
   dependente: any[];
   titular: any[];
 
-  msg: any;
   title = 'nova-rota-frontend';
 
   selected_titular = {
@@ -103,7 +102,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.contentLoaded = true;
-    }, 2000);
+    }, 3000);
 
     this.intervalId = window.setInterval(() => {
       this.animation = this.animation === 'pulse' ? 'progress-dark' : 'pulse';
