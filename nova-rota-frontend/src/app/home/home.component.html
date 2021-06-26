@@ -1,4 +1,5 @@
 <!--  -->
+
 <div
   class="
     app-container app-theme-white
@@ -306,8 +307,20 @@
           <i class="edit-search fas fa-search"></i>
         </div>
         <ul class="task-list">
+          <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '100%', height: '40px'}" animation="progress">
+          </ngx-skeleton-loader>
+          <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '100%', height: '40px'}" animation="progress">
+          </ngx-skeleton-loader>
+          <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '100%', height: '40px'}" animation="progress">
+          </ngx-skeleton-loader>
+          <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '100%', height: '40px'}" animation="progress">
+          </ngx-skeleton-loader>
+          <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '100%', height: '40px'}" animation="progress">
+          </ngx-skeleton-loader>
+          <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '100%', height: '40px'}" animation="progress">
+          </ngx-skeleton-loader>
           <span 
-          class="task-item"
+          class="task-item" *ngIf="contentLoaded"
             ><li
               [ngClass]="tarefa.status_tarefa ? 'tarefa-completed' : ''"
               *ngFor="

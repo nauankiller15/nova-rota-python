@@ -30,6 +30,7 @@ import { CreateAccountComponent } from './account/create-account/create-account.
 import { LoginComponent } from './account/login/login.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NovidadesDetailsComponent } from './novidades-details/novidades-details.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -62,6 +63,7 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     NovidadesDetailsComponent,
   ],
   imports: [
+    NgxSkeletonLoaderModule.forRoot(),
     BrowserModule,
     NgxMaskModule.forRoot(maskConfigFunction),
     RouterModule.forRoot([

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscriber } from 'rxjs';
 import { ApiService } from './api.service';
 import { AppComponent } from '../app.component';
+import { WelcomeComponent } from '../welcome/welcome.component';
 
 declare var $: any;
 
@@ -13,7 +14,18 @@ declare var $: any;
   template: '<menu></menu><router-outlet></router-outlet>',
   styleUrls: ['./home.component.css'],
 })
+
 export class HomeComponent implements OnInit {
+
+   // carregador
+   animation = 'pulse';
+   contentLoaded = false;
+   count = 2;
+   widthHeightSizeInPixels = 50;
+ 
+   intervalId: number | null = null;
+ // 
+
   //
   dependente: any[];
   titular: any[];
@@ -89,6 +101,17 @@ export class HomeComponent implements OnInit {
   update_tarefa: any;
 
   ngOnInit() {
+    setTimeout(() => {
+      this.contentLoaded = true;
+    }, 2000);
+
+    this.intervalId = window.setInterval(() => {
+      this.animation = this.animation === 'pulse' ? 'progress-dark' : 'pulse';
+      this.count = this.count === 2 ? 5 : 2;
+      this.widthHeightSizeInPixels =
+        this.widthHeightSizeInPixels === 50 ? 100 : 50;
+    }, 5000);
+
     // MENU PRINCIPAL ANIMAÇÕES
     $('[routerLink]').click(function () {
       $('.vertical-nav-menu li a').removeClass('mm-active');
@@ -157,7 +180,7 @@ export class HomeComponent implements OnInit {
     private api: ApiService,
     private router: Router,
     private toastr: ToastrService,
-    private appComponent: AppComponent
+    private appComponent: AppComponent,
   ) {
     this.getTarefas();
   }

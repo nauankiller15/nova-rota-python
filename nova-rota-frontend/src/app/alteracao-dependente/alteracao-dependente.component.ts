@@ -11,6 +11,16 @@ declare var $: any;
   styleUrls: ['./alteracao-dependente.component.css'],
 })
 export class AlteracaoDependenteComponent implements OnInit {
+
+   // carregador
+   animation = 'pulse';
+   contentLoaded = false;
+   count = 2;
+   widthHeightSizeInPixels = 50;
+ 
+   intervalId: number | null = null;
+ // 
+
   numberOnly(event): boolean {
     const charCode = event.which ? event.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
@@ -90,6 +100,20 @@ export class AlteracaoDependenteComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    // CARREGADOR TIMEOUT
+    setTimeout(() => {
+      this.contentLoaded = true;
+    }, 2000);
+
+    this.intervalId = window.setInterval(() => {
+      this.animation = this.animation === 'pulse' ? 'progress-dark' : 'pulse';
+      this.count = this.count === 2 ? 5 : 2;
+      this.widthHeightSizeInPixels =
+        this.widthHeightSizeInPixels === 50 ? 100 : 50;
+    }, 5000);
+    //---------------
+    
     // MÁSCARAS DE INPUT
     $(document).ready(() => {
       $('.date').mask('00/00/0000');

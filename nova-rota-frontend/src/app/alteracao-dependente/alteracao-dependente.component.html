@@ -56,36 +56,96 @@
                 />
               </div>
             </div>
-            <div class="titulares">
-              Dependentes Encontrados:
-              <li
-                *ngFor="
-                  let dependente of dependentes | orderBy:'created_at':false
-                    | paginate
-                      : { id: 'dependentes', itemsPerPage: 14, currentPage: p }
-                "
-                (click)="dependenteClicked(dependente)"
-              >
-                <i
-                  style="
-                    font-size: 18px;
-                    margin-left: 9px;
-                    margin-right: 1px;
-                    background-color: #eff9ff;
-                    border: 1px solid #ced4da;
-                    border-radius: 0.25rem;
-                    padding: 3px;
-                    color: #434343;
+            <div style="width: 100%; height: 20px"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div *ngIf="contentLoaded">
+              <div class="titulares">
+                Dependentes Encontrados:
+                <li
+                  *ngFor="
+                    let dependente of dependentes
+                      | orderBy: 'created_at':false
+                      | paginate
+                        : {
+                            id: 'dependentes',
+                            itemsPerPage: 14,
+                            currentPage: p
+                          }
                   "
-                  class="fas fa-user-plus"
-                ></i>
-                CPF: {{ dependente.CPF | mask: "000.000.000-99" }} -
-                {{ dependente.nome_dependente }}
-                <i
-                  style="float: right; margin-top: 4px"
-                  class="fas fa-external-link-alt"
-                ></i>
-              </li>
+                  (click)="dependenteClicked(dependente)"
+                >
+                  <i
+                    style="
+                      font-size: 18px;
+                      margin-left: 9px;
+                      margin-right: 1px;
+                      background-color: #eff9ff;
+                      border: 1px solid #ced4da;
+                      border-radius: 0.25rem;
+                      padding: 3px;
+                      color: #434343;
+                    "
+                    class="fas fa-user-plus"
+                  ></i>
+                  CPF: {{ dependente.CPF | mask: "000.000.000-99" }} -
+                  {{ dependente.nome_dependente }}
+                  <i
+                    style="float: right; margin-top: 4px"
+                    class="fas fa-external-link-alt"
+                  ></i>
+                </li>
+              </div>
             </div>
             <pagination-controls
               id="dependentes"
@@ -562,6 +622,14 @@
                     <div style="width: 100%; height: 15px"></div>
 
                     <em for="validationCustom05">Titulares Encontrados:</em>
+                    <div style="width: 100%; height: 12px;"></div>
+                    <ngx-skeleton-loader
+                      *ngIf="!contentLoaded"
+                      [theme]="{ width: '100%', height: '40px' }"
+                      animation="progress"
+                    >
+                    </ngx-skeleton-loader>
+                    <div style="width: 100%"></div>
                     <input
                       #titular="ngModel"
                       style="display: none"
@@ -573,12 +641,13 @@
                       [class.is-valid]="titular.valid && titular.touched"
                       required
                     />
-                    <div class="titulares-checkbox">
+                    <div *ngIf="contentLoaded" class="titulares-checkbox">
                       <li
                         value="{{ titular.id }}"
                         *ngFor="
-                          let titular of titulares | orderBy:'created_at':false
-                            | paginate 
+                          let titular of titulares
+                            | orderBy: 'created_at':false
+                            | paginate
                               : {
                                   id: 'titularvinculo',
                                   itemsPerPage: 12,
@@ -587,20 +656,21 @@
                         "
                         (click)="titularClickedDependente(titular)"
                       >
-                      <i
-                      style="
-                        font-size: 18px;
-                        margin-left: 9px;
-                        margin-right: 1px;
-                        background-color: #eff9ff;
-                        border: 1px solid #ced4da;
-                        border-radius: 0.25rem;
-                        padding: 3px;
-                        color: #434343;
-                      "
-                      class="fas fa-user-tie"
-                    ></i>
-                        CPF: {{ titular.CPF | mask: "000.000.000-99" }} - {{ titular.nome_benef }}
+                        <i
+                          style="
+                            font-size: 18px;
+                            margin-left: 9px;
+                            margin-right: 1px;
+                            background-color: #eff9ff;
+                            border: 1px solid #ced4da;
+                            border-radius: 0.25rem;
+                            padding: 3px;
+                            color: #434343;
+                          "
+                          class="fas fa-user-tie"
+                        ></i>
+                        CPF: {{ titular.CPF | mask: "000.000.000-99" }} -
+                        {{ titular.nome_benef }}
                       </li>
                     </div>
                     <pagination-controls

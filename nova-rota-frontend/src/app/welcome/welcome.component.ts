@@ -15,6 +15,14 @@ export class WelcomeComponent implements OnInit {
   selected_novidade = { id: '', titulo: '', descricao: '' };
   p: number = 1;
 
+  // CARREGADOR
+  animation = 'pulse';
+  contentLoaded = false;
+  count = 2;
+  widthHeightSizeInPixels = 50;
+
+  intervalId: number | null = null;
+  //
   constructor(
     private toastr: ToastrService,
     private api: ApiService,
@@ -24,6 +32,19 @@ export class WelcomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // CARREGADOR TIMEOUT
+    setTimeout(() => {
+      this.contentLoaded = true;
+    }, 2000);
+
+    this.intervalId = window.setInterval(() => {
+      this.animation = this.animation === 'pulse' ? 'progress-dark' : 'pulse';
+      this.count = this.count === 2 ? 5 : 2;
+      this.widthHeightSizeInPixels =
+        this.widthHeightSizeInPixels === 50 ? 100 : 50;
+    }, 5000);
+    //---------------
+
     $('#fechar-novidade').on('click', function () {
       $('.box-novidade').slideUp('100');
       $('#novidadeAberta').fadeOut('100');
@@ -33,6 +54,12 @@ export class WelcomeComponent implements OnInit {
       $('.box-novidade').slideUp('100');
       $('#novidadeAberta').fadeOut('100');
     });
+  }
+
+  ngOnDestroy() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
   }
 
   getNovidades = () => {
