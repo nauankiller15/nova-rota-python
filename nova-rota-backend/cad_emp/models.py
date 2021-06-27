@@ -5,8 +5,15 @@ from localflavor.br.models import BRStateField, BRCNPJField
 class Empresa (models.Model):
 
     contrato_choice = (
-        ('Masculino', 'Masculino'),
-        ('Feminino', 'Feminino'),
+        ('Operadora', 'Operadora'),
+        ('Seguradora', 'Seguradora'),
+    )
+    operadora_choice = (
+        ('Saude', 'Saude'),
+        ('Odonto', 'Odonto'),
+    )
+    seguradora_choice = (
+        ('Seguro de Vida', 'Seguro de Vida'),
     )
 
     CNPJ = BRCNPJField("Número CPF", max_length=14, null=False, unique=True)
@@ -14,7 +21,11 @@ class Empresa (models.Model):
     data_recebimento = models.DateField(
         "Data Recebimento", auto_now=False, auto_now_add=False, blank=True, null=False)
     tipo_contrato = models.CharField(max_length=25, choices=contrato_choice,
-                            blank=True, default="Selecione", null=False)
+                            blank=False, default="Selecione", null=False)
+    operadora = models.CharField(max_length=25, choices=operadora_choice,
+                                     blank=False, default="Selecione", null=False)
+    seguradora = models.CharField(max_length=25, choices=seguradora_choice,
+                                     blank=False, default="Selecione", null=False)
     razao_social = models.CharField("Razão Social", max_length=255)
     anexo_doc_emp = models.ImageField(upload_to='anexo_empresa', blank=True, null=True)
     vencimento_boleto = models.DateField(
@@ -27,8 +38,8 @@ class Empresa (models.Model):
     declaracao_saude = models.CharField("Declaracao Saude", max_length=255)
     status = models.CharField("Status", max_length=25,
                               default="OK", editable=False)
-    cod_apolice = models.CharField(
-        "Código ou Apólice", max_length=255)
+    apolice = models.CharField("Codigo Empresa", max_length=100, null=False, unique=True)
+    codigo = models.CharField("Codigo Empresa", max_length=100, null=False, unique=True)
     observacoes = models.TextField("Obs.", blank=True, null=True)
     criado_em = models.DateTimeField("criado em", auto_now_add=True)
     atualizado_em = models.DateTimeField("atualizado", auto_now=True)

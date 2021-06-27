@@ -6,7 +6,7 @@ ALLOWED_HOSTS = []
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'nrs-sistema',
+        'NAME': 'nrsdata',
         'USER': 'postgres',
         'PASSWORD': 'bananaverde1234',
         'HOST': 'localhost',
