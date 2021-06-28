@@ -17,6 +17,11 @@ export class NovaEmpresaComponent implements OnInit {
     CNPJ: '',
     cod_empresa: '',
     razao_social: '',
+    tipo_contrato: '',
+    operadora: '',
+    operadora_nome: '',
+    seguradora: 'Seguro de Vida',
+    seguradora_nome: '',
     tipo: '',
     vencimento_boleto: '',
     inicio_vigencia: '',
@@ -30,7 +35,8 @@ export class NovaEmpresaComponent implements OnInit {
     celular: '',
     cidade: '',
     estado: '',
-    cod_apolice: '',
+    codigo: '',
+    apolice: '',
     status: '',
     observacoes: null,
   };
@@ -138,7 +144,6 @@ export class NovaEmpresaComponent implements OnInit {
     $('#sinistralidadeBtn').click(function () {
       $('#sinisTab').slideDown('100');
       $('#reajusTab').slideUp('100');
-
     });
     $('#reajusteBtn').click(function () {
       $('#reajusTab').slideDown('100');
@@ -146,10 +151,41 @@ export class NovaEmpresaComponent implements OnInit {
     });
 
     // BOTÕES
-    $('.menuItems li').on('click', function() {
+    $('.menuItems li').on('click', function () {
       $(this).addClass('active');
       $(this).siblings().removeClass('active');
-  });
+    });
+
+    // OPÇÕES
+
+    $('input, select, textarea').keypress(function (event: {
+      which: number;
+      preventDefault: () => void;
+    }) {
+      if (event.which == 13) {
+        event.preventDefault();
+      }
+    });
+
+    $('#tipo_contrato').on('change', function () {
+      if ('Operadora' === $(this).val()) {
+        $('#operadoras').fadeIn('100');
+        $('#seguradoras').hide();
+        $('#nome_operadora').fadeIn('100');
+        $('#nome_seguradora').fadeOut('100');
+        $('#codigo').fadeIn('100');
+        $('#apolice').fadeOut('100');
+      } else {
+        'Seguradora' === $(this).val();
+        $('#seguradoras').fadeIn('100');
+        $('#operadoras').hide();
+        $('#nome_seguradora').fadeIn('100');
+        $('#nome_operadora').fadeOut('100');
+        $('#apolice').fadeIn('100');
+        $('#codigo').fadeOut('100');
+      }
+      //
+    });
   }
 
   // selectedFile: File = null;

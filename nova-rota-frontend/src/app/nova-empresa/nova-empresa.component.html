@@ -71,7 +71,6 @@
                 />
               </div>
 
-             
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Vencimento do Boleto</label>
                 <input
@@ -99,8 +98,6 @@
                   placeholder="OK"
                 />
               </div>
-
-
             </div>
 
             <div class="form-row">
@@ -125,10 +122,130 @@
                   >Razão Social Necessária!</small
                 >
               </div>
+
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom02">Tipo de Contrato</label>
+                <select
+                  #tipo_contrato="ngModel"
+                  [class.is-invalid]="
+                    tipo_contrato.invalid && tipo_contrato.touched
+                  "
+                  [class.is-valid]="
+                    tipo_contrato.valid && tipo_contrato.touched
+                  "
+                  [(ngModel)]="empresa.tipo_contrato"
+                  name="sexo"
+                  class="form-control"
+                  name="tipo_contrato"
+                  id="tipo_contrato"
+                  required
+                >
+                  <option value="">Selecione aqui</option>
+                  <option value="Operadora">Operadora</option>
+                  <option value="Seguradora">Seguradora</option>
+                </select>
+              </div>
+
+              <div id="operadoras" style="display: none" class="col-md-2 mb-3">
+                <label for="validationCustom02">Operadoras</label>
+                <select
+                  #operadora="ngModel"
+                  [class.is-invalid]="operadora.invalid && operadora.touched"
+                  [class.is-valid]="operadora.valid && operadora.touched"
+                  [(ngModel)]="empresa.operadora"
+                  name="sexo"
+                  class="form-control"
+                  name="sexo"
+                  required
+                >
+                  <option value="">Selecione aqui</option>
+                  <option value="Saude">Saúde</option>
+                  <option value="Odonto">Odonto</option>
+                </select>
+              </div>
+
+              <div id="seguradoras" style="display: none" class="col-md-2 mb-3">
+                <label for="validationCustom02">Seguradoras</label>
+                <input
+                  #seguradora="ngModel"
+                  [class.is-invalid]="seguradora.invalid && seguradora.touched"
+                  [class.is-valid]="seguradora.valid && seguradora.touched"
+                  [(ngModel)]="empresa.seguradora"
+                  name="seguradora"
+                  type="text"
+                  class="form-control"
+                  placeholder="Seguro de Vida"
+                  value="Seguro de Vida"
+                  readonly="true"
+                />
+              </div>
             </div>
 
             <div class="form-row">
-              
+              <!-- NOME DA SEGURADORA (SEGURO DE VIDA) -->
+              <div
+                style="display: none"
+                id="nome_seguradora"
+                class="col-md-4 mb-3"
+              >
+                <label for="validationCustom01">Nome da Seguradora</label>
+                <input
+                  #seguradora_nome="ngModel"
+                  [class.is-invalid]="
+                    seguradora_nome.invalid && seguradora_nome.touched
+                  "
+                  [class.is-valid]="
+                    seguradora_nome.valid && seguradora_nome.touched
+                  "
+                  [(ngModel)]="empresa.seguradora_nome"
+                  name="seguradora_nome"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o Nome da Seguradora"
+                  required
+                />
+                <small
+                  class="text-danger"
+                  [class.d-none]="
+                    seguradora_nome.valid || seguradora_nome.untouched
+                  "
+                  >Nome da Seguradora Necessária!</small
+                >
+              </div>
+
+              <!-- NOME DA OPERADORA  -->
+              <div
+                style="display: none"
+                id="nome_operadora"
+                class="col-md-4 mb-3"
+              >
+                <label for="validationCustom01">Nome da Seguradora</label>
+                <input
+                  #operadora_nome="ngModel"
+                  [class.is-invalid]="
+                    operadora_nome.invalid && operadora_nome.touched
+                  "
+                  [class.is-valid]="
+                    operadora_nome.valid && operadora_nome.touched
+                  "
+                  [(ngModel)]="empresa.operadora_nome"
+                  name="operadora_nome"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o Nome da Seguradora"
+                  required
+                />
+                <small
+                  class="text-danger"
+                  [class.d-none]="
+                    operadora_nome.valid || operadora_nome.untouched
+                  "
+                  >Nome da Seguradora Necessária!</small
+                >
+              </div>
+            </div>
+
+            <div class="form-row">
               <div class="col-md-2 mb-3" style="margin-right: 40px">
                 <label for="validationCustom05">Inicio de Vigência</label>
                 <input
@@ -523,22 +640,41 @@
                 </select>
               </div>
 
-              <div class="col-md-2 mb-2">
-                <label for="validationCustom03">Código Apolice</label>
+              <div id="codigo" style="display: none;" class="col-md-2 mb-2">
+                <label for="validationCustom03">Código</label>
                 <input
-                  #declaracao_saude="ngModel"
+                  #codigo="ngModel"
                   [class.is-invalid]="
-                    declaracao_saude.invalid && declaracao_saude.touched
+                    codigo.invalid && codigo.touched
                   "
                   [class.is-valid]="
-                    declaracao_saude.valid && declaracao_saude.touched
+                    codigo.valid && codigo.touched
                   "
                   required
-                  [(ngModel)]="empresa.cod_apolice"
-                  name="declaracao_saude"
+                  [(ngModel)]="empresa.codigo"
+                  name="codigo"
                   type="text"
                   class="form-control"
                   placeholder="Informe o código"
+                />
+              </div>
+
+              <div id="apolice" style="display: none;" class="col-md-2 mb-2">
+                <label for="validationCustom03">Apólice</label>
+                <input
+                  #apolice="ngModel"
+                  [class.is-invalid]="
+                    apolice.invalid && apolice.touched
+                  "
+                  [class.is-valid]="
+                    apolice.valid && apolice.touched
+                  "
+                  required
+                  [(ngModel)]="empresa.apolice"
+                  name="apolice"
+                  type="text"
+                  class="form-control"
+                  placeholder="Informe a apólice"
                 />
               </div>
             </div>
@@ -554,7 +690,7 @@
                   placeholder="Informe aqui aspectos importantes para o movimentação"
                 />
               </div>
-             </div>
+            </div>
 
             <button
               [disabled]="empresaForm.form.invalid"

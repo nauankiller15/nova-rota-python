@@ -120,6 +120,12 @@ export class NovoDependenteComponent implements OnInit {
 
     // TELA DE ANEXO ESTADO CIVIL
 
+    $("input, select, textarea").keypress(function (event: { which: number; preventDefault: () => void; }) {
+      if (event.which == 13) {
+          event.preventDefault();
+      }
+  });
+
     $('#estado_civil2').on('change', function () {
       'Casado(a)' === $(this).val()
         ? $('#vinc-anexo-casado').fadeIn('100')

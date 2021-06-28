@@ -12,6 +12,7 @@ class Empresa (models.Model):
         ('Saude', 'Saude'),
         ('Odonto', 'Odonto'),
     )
+
     seguradora_choice = (
         ('Seguro de Vida', 'Seguro de Vida'),
     )
@@ -27,6 +28,8 @@ class Empresa (models.Model):
     seguradora = models.CharField(max_length=25, choices=seguradora_choice,
                                      blank=False, default="Selecione", null=False)
     razao_social = models.CharField("Razão Social", max_length=255)
+    seguradora_nome = models.CharField("Nome da Seguradora", max_length=255)
+    operadora_nome = models.CharField("Nome da Seguradora", max_length=255)
     anexo_doc_emp = models.ImageField(upload_to='anexo_empresa', blank=True, null=True)
     vencimento_boleto = models.DateField(
         "Vencimento do Boleto", auto_now=False, auto_now_add=False, null=False)
