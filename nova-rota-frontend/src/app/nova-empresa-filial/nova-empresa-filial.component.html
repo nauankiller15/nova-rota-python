@@ -8,8 +8,8 @@
               <i class="fas fa-building icon-gradient bg-mean-fruit"> </i>
             </div>
             <div>
-              Inclusão de Empresa Principal
-              <div class="page-title-subheading">Nova Empresa Principal Ativa.</div>
+              Inclusão de Empresa Filial
+              <div class="page-title-subheading">Nova Empresa Filial Ativa.</div>
             </div>
           </div>
         </div>
@@ -137,7 +137,7 @@
                   name="sexo"
                   class="form-control"
                   name="tipo_contrato"
-                  id="tipo_contrato"
+                  id="tipo_contrato-filial"
                   required
                 >
                   <option value="">Selecione aqui</option>
@@ -146,7 +146,7 @@
                 </select>
               </div>
 
-              <div id="operadoras" style="display: none" class="col-md-2 mb-3">
+              <div id="operadoras-filial" style="display: none" class="col-md-2 mb-3">
                 <label for="validationCustom02">Operadoras</label>
                 <select
                   #operadora="ngModel"
@@ -164,7 +164,7 @@
                 </select>
               </div>
 
-              <div id="seguradoras" style="display: none" class="col-md-2 mb-3">
+              <div id="seguradoras-filial" style="display: none" class="col-md-2 mb-3">
                 <label for="validationCustom02">Seguradoras</label>
                 <input
                   #seguradora="ngModel"
@@ -185,7 +185,7 @@
               <!-- NOME DA SEGURADORA (SEGURO DE VIDA) -->
               <div
                 style="display: none"
-                id="nome_seguradora"
+                id="nome_seguradora-filial"
                 class="col-md-4 mb-3"
               >
                 <label for="validationCustom01">Nome da Seguradora</label>
@@ -216,7 +216,7 @@
               <!-- NOME DA OPERADORA  -->
               <div
                 style="display: none"
-                id="nome_operadora"
+                id="nome_operadora-filial"
                 class="col-md-4 mb-3"
               >
                 <label for="validationCustom01">Nome da Operadora</label>
@@ -259,17 +259,17 @@
                   [(ngModel)]="empresa.inicio_vigencia"
                   name="inicio_vigencia"
                   type="date"
-                  id="dataVigencia"
+                  id="dataVigencia-filial"
                   class="form-control"
                   required
                 />
 
                 <!-- BOTÃO REABRIR VIGENCIA -->
-                <div id="vigenciaTela" style="display: none; z-index: 999">
+                <div id="vigenciaTela-filial" style="display: none; z-index: 999">
                   <button
                     style="position: absolute; right: -44px; top: 31px"
                     class="btn btn-primary"
-                    id="abrirVigencia"
+                    id="abrirVigencia-filial"
                   >
                     <i class="fas fa-building" style="font-size: 15px"></i>
                   </button>
@@ -291,17 +291,17 @@
                   [(ngModel)]="empresa.data_recebimento"
                   name="data_recebimento"
                   type="date"
-                  id="dataRecebimento"
+                  id="dataRecebimento-filial"
                   class="form-control"
                   required
                 />
 
                 <!-- BOTÃO REANEXAR DOCUMENTO DA EMPRESA -->
-                <div id="reanexar5" style="display: none">
+                <div id="reanexar-filial" style="display: none">
                   <button
                     style="position: absolute; right: -44px; top: 31px"
                     class="btn btn-primary"
-                    id="abrirAnexo5"
+                    id="abrirAnexo-filial"
                   >
                     <i class="fas fa-file-image" style="font-size: 15px"></i>
                   </button>
@@ -313,7 +313,7 @@
 
             <div class="form-row">
               <!-- VINCULAR ANEXO DO DOCUMENTO DA EMPRESA -->
-              <div id="vinc-anexo-empresa">
+              <div id="vinc-anexo-empresa-filial">
                 <div class="box-anexo">
                   <div class="anexo-info-box-empresa-vinc">
                     <h1
@@ -345,7 +345,7 @@
                         bottom: 20px;
                       "
                       class="btn btn-primary"
-                      id="fecharAnexo5"
+                      id="fecharAnexo-filial"
                     >
                       Anexar Arquivo
                     </button>
@@ -354,21 +354,21 @@
               </div>
 
               <!-- VINCULAR INICIO DA VIGÊNCIA -->
-              <div id="vinc-vigencia">
-                <div class="box-vigencia">
+              <div id="vinc-vigencia-filial">
+                <div class="box-vigencia-filial">
                   <div class="anexo-info-box-empresa-vinc">
                     <div style="margin: 0 auto 10px auto; width: 100%">
                       <nav class="menuVigencia">
                         <ul class="menuItems">
                           <!-- BOTÃO REAJUSTE -->
-                          <li id="reajusteBtn" class="active">Reajuste</li>
+                          <li id="reajusteBtn-filial" class="active">Reajuste</li>
 
                           <!-- BOTÃO SINISTRALIDADE -->
-                          <li id="sinistralidadeBtn">Sinistralidade</li>
+                          <li id="sinistralidadeBtn-filial">Sinistralidade</li>
                         </ul>
                       </nav>
                     </div>
-                    <div id="reajusTab">
+                    <div id="reajusTab-filial">
                       <h1
                         style="
                           font-size: 20px;
@@ -485,7 +485,7 @@
                       </div>
                     </div>
 
-                    <div id="sinisTab" style="display: none">
+                    <div id="sinisTab-filial" style="display: none">
                       <h1
                         style="
                           font-size: 20px;
@@ -559,7 +559,7 @@
                         bottom: 20px;
                       "
                       class="btn btn-primary"
-                      id="fecharVigencia"
+                      id="fecharVigencia-filial"
                     >
                       Fechar
                     </button>
@@ -640,7 +640,7 @@
                 </select>
               </div>
 
-              <div id="codigo" style="display: none;" class="col-md-2 mb-2">
+              <div id="codigo-filial" style="display: none;" class="col-md-2 mb-2">
                 <label for="validationCustom03">Código</label>
                 <input
                   #codigo="ngModel"
@@ -659,7 +659,7 @@
                 />
               </div>
 
-              <div id="apolice" style="display: none;" class="col-md-2 mb-2">
+              <div id="apolice-filial" style="display: none;" class="col-md-2 mb-2">
                 <label for="validationCustom03">Apólice</label>
                 <input
                   #apolice="ngModel"

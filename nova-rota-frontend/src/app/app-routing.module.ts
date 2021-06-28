@@ -14,8 +14,9 @@ import { NovoDependenteComponent } from './novo-dependente/novo-dependente.compo
 import { NovaTarefaComponent } from './nova-tarefa/nova-tarefa.component';
 import { TarefasDetailsComponent } from './tarefas-details/tarefas-details.component';
 //
-// empresa principal
+// empresa principal e filial
 import { NovaEmpresaComponent } from './nova-empresa/nova-empresa.component';
+import { NovaEmpresaFilialComponent } from './nova-empresa-filial/nova-empresa-filial.component';
 import { AlteracaoEmpresaComponent } from './alteracao-empresa/alteracao-empresa.component';
 import { AltEmpresaDetailsComponent } from './alt-empresa-details/alt-empresa-details.component';
 //
@@ -68,8 +69,15 @@ const routes: Routes = [
         path: 'alt-dependente-details/:id',
         component: AltDependenteDetailsComponent,
       },
-      // === CADASTRO DE EMPRESAS (PRINCIPAL) ====
+      // 
+      // 
+      // === CADASTRO DE EMPRESAS PRINCIPAIS (PRINCIPAL) ====
       { path: 'nova-empresa', component: NovaEmpresaComponent },
+      // 
+      // === CADASTRO DE EMPRESAS FILIAIS (FILIAL) ====
+      { path: 'nova-empresa-filial', component: NovaEmpresaFilialComponent },
+      // 
+      // 
       // ==== ALTERACAO EMPRESAS ====
       { path: 'alteracao-empresa', component: AlteracaoEmpresaComponent },
       {

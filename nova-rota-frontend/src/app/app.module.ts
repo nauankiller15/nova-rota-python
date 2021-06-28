@@ -32,6 +32,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { NovidadesDetailsComponent } from './novidades-details/novidades-details.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { RodapeComponent } from './rodape/rodape.component';
+import { NovaEmpresaFilialComponent } from './nova-empresa-filial/nova-empresa-filial.component';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -63,6 +64,7 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     WelcomeComponent,
     NovidadesDetailsComponent,
     RodapeComponent,
+    NovaEmpresaFilialComponent,
   ],
   imports: [
     NgxSkeletonLoaderModule.forRoot(),
