@@ -11,7 +11,7 @@ declare var $: any;
   styleUrls: ['./alteracao-titular.component.css'],
 })
 export class AlteracaoTitularComponent implements OnInit {
- // CARREGADOR
+  // CARREGADOR
   animation = 'pulse';
   contentLoaded = false;
   count = 2;
@@ -19,7 +19,7 @@ export class AlteracaoTitularComponent implements OnInit {
 
   intervalId: number | null = null;
   //
-  
+
   selected_titular = {
     id: 0,
     CPF: '000.000.000-00',
@@ -70,11 +70,10 @@ export class AlteracaoTitularComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     // CARREGADOR TIMEOUT
     setTimeout(() => {
       this.contentLoaded = true;
-    }, 3000);
+    }, 2500);
 
     this.intervalId = window.setInterval(() => {
       this.animation = this.animation === 'pulse' ? 'progress-dark' : 'pulse';
@@ -201,7 +200,6 @@ export class AlteracaoTitularComponent implements OnInit {
   };
 
   updateTit() {
-    console.log(this.selected_titular)
     this.api.updateTitular(this.selected_titular).subscribe(
       (data: {
         id: number;

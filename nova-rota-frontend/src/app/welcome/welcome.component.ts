@@ -35,11 +35,11 @@ export class WelcomeComponent implements OnInit {
     // CARREGADOR TIMEOUT
     setTimeout(() => {
       this.contentLoaded = true;
-    }, 3000);
+    }, 2500);
 
     this.intervalId = window.setInterval(() => {
       this.animation = this.animation === 'pulse' ? 'progress-dark' : 'pulse';
-      this.count = this.count === 2 ? 5 : 2;
+      this.count = this.count === 4 ? 5 : 4;
       this.widthHeightSizeInPixels =
         this.widthHeightSizeInPixels === 50 ? 100 : 50;
     }, 5000);

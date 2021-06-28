@@ -102,7 +102,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.contentLoaded = true;
-    }, 3000);
+    }, 2500);
 
     this.intervalId = window.setInterval(() => {
       this.animation = this.animation === 'pulse' ? 'progress-dark' : 'pulse';

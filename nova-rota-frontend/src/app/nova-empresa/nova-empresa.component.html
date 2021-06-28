@@ -9,7 +9,9 @@
             </div>
             <div>
               Inclusão de Empresa Principal
-              <div class="page-title-subheading">Nova Empresa Principal Ativa.</div>
+              <div class="page-title-subheading">
+                Nova Empresa Principal Ativa.
+              </div>
             </div>
           </div>
         </div>
@@ -34,7 +36,7 @@
                   autocomplete="off"
                   [class.is-invalid]="CNPJ.invalid && CNPJ.touched"
                   [class.is-valid]="CNPJ.valid && CNPJ.touched"
-                  pattern="^\d{3}\.\d{3}\.\d{3}\-\d{2}$"
+                  pattern="^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$"
                   [(ngModel)]="empresa.CNPJ"
                   name="CNPJ"
                   type="text"
@@ -156,7 +158,6 @@
                   name="sexo"
                   class="form-control"
                   name="sexo"
-                  required
                 >
                   <option value="">Selecione aqui</option>
                   <option value="Saude">Saúde</option>
@@ -202,7 +203,6 @@
                   type="text"
                   class="form-control"
                   placeholder="Digite aqui o Nome da Seguradora"
-                  required
                 />
                 <small
                   class="text-danger"
@@ -233,7 +233,6 @@
                   type="text"
                   class="form-control"
                   placeholder="Digite aqui o Nome da Operadora"
-                  required
                 />
                 <small
                   class="text-danger"
@@ -640,17 +639,12 @@
                 </select>
               </div>
 
-              <div id="codigo" style="display: none;" class="col-md-2 mb-2">
+              <div id="codigo" style="display: none" class="col-md-2 mb-2">
                 <label for="validationCustom03">Código</label>
                 <input
                   #codigo="ngModel"
-                  [class.is-invalid]="
-                    codigo.invalid && codigo.touched
-                  "
-                  [class.is-valid]="
-                    codigo.valid && codigo.touched
-                  "
-                  required
+                  [class.is-invalid]="codigo.invalid && codigo.touched"
+                  [class.is-valid]="codigo.valid && codigo.touched"
                   [(ngModel)]="empresa.codigo"
                   name="codigo"
                   type="text"
@@ -659,17 +653,12 @@
                 />
               </div>
 
-              <div id="apolice" style="display: none;" class="col-md-2 mb-2">
+              <div id="apolice" style="display: none" class="col-md-2 mb-2">
                 <label for="validationCustom03">Apólice</label>
                 <input
                   #apolice="ngModel"
-                  [class.is-invalid]="
-                    apolice.invalid && apolice.touched
-                  "
-                  [class.is-valid]="
-                    apolice.valid && apolice.touched
-                  "
-                  required
+                  [class.is-invalid]="apolice.invalid && apolice.touched"
+                  [class.is-valid]="apolice.valid && apolice.touched"
                   [(ngModel)]="empresa.apolice"
                   name="apolice"
                   type="text"
@@ -704,6 +693,7 @@
           </form>
         </div>
       </div>
+      
     </div>
     <app-rodape></app-rodape>
   </div>

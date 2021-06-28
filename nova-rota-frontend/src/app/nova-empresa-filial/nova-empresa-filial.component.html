@@ -34,7 +34,7 @@
                   autocomplete="off"
                   [class.is-invalid]="CNPJ.invalid && CNPJ.touched"
                   [class.is-valid]="CNPJ.valid && CNPJ.touched"
-                  pattern="^\d{3}\.\d{3}\.\d{3}\-\d{2}$"
+                  pattern="^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$"
                   [(ngModel)]="empresa.CNPJ"
                   name="CNPJ"
                   type="text"
@@ -156,7 +156,6 @@
                   name="sexo"
                   class="form-control"
                   name="sexo"
-                  required
                 >
                   <option value="">Selecione aqui</option>
                   <option value="Saude">Saúde</option>
@@ -202,7 +201,6 @@
                   type="text"
                   class="form-control"
                   placeholder="Digite aqui o Nome da Seguradora"
-                  required
                 />
                 <small
                   class="text-danger"
@@ -233,7 +231,6 @@
                   type="text"
                   class="form-control"
                   placeholder="Digite aqui o Nome da Operadora"
-                  required
                 />
                 <small
                   class="text-danger"
@@ -650,7 +647,6 @@
                   [class.is-valid]="
                     codigo.valid && codigo.touched
                   "
-                  required
                   [(ngModel)]="empresa.codigo"
                   name="codigo"
                   type="text"
@@ -669,7 +665,6 @@
                   [class.is-valid]="
                     apolice.valid && apolice.touched
                   "
-                  required
                   [(ngModel)]="empresa.apolice"
                   name="apolice"
                   type="text"
