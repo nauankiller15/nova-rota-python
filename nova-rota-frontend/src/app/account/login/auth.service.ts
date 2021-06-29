@@ -22,8 +22,7 @@ export class AuthService {
     }).toPromise();
     
     if (resp && resp['token']) {
-      localStorage.setItem('token', resp['token']);
-      this.router.navigate(['/'])      
+      localStorage.setItem('token', resp['token']);     
       return true;
     }
 

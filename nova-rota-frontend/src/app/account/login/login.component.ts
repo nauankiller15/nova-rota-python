@@ -51,6 +51,8 @@ export class LoginComponent implements OnInit {
       const resp = await this.authService.autenticar(this.usuario);
       if (resp === true) {
         this.toastr.success('ok', 'login efetuado')
+        // this.router.navigate(['/'])
+        window.location.href = '/'
       }
     } catch (error) {
       this.toastr.error('erro', 'erro ao efetuar login')
