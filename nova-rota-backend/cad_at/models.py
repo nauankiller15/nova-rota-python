@@ -32,7 +32,7 @@ class Titular (models.Model):
     data_nascimento = models.DateField(
         "Data Nascimento", auto_now_add=False, auto_now=False, blank=False, null=False)
     data_casamento = models.DateField(
-        "Data Casamento", auto_now_add=False, auto_now=False, blank=True, null=True, default="0000-00-00")
+        "Data Casamento", auto_now_add=False, auto_now=False, blank=True, null=True)
     sexo = models.CharField(max_length=25, choices=sexo_choice,
                             blank=False, default="Selecione", null=False)
     estado_civil = models.CharField(
