@@ -12,16 +12,18 @@ declare var $: any;
   styleUrls: ['./tarefas-details.component.css'],
 })
 export class TarefasDetailsComponent implements OnInit {
+  
+  selected_tarefa = { titulo: '', descricao: '', status_tarefa: '' };
+  update_tarefa = { titulo: '', descricao: '', status_tarefa: true };
+
+  selected_id;
+
   constructor(
     private route: ActivatedRoute,
     private api: ApiService,
     private toastr: ToastrService,
     private homeComponent: HomeComponent
   ) {}
-  selected_tarefa = { titulo: '', descricao: '', status_tarefa: '' };
-  update_tarefa = { titulo: '', descricao: '', status_tarefa: true };
-
-  selected_id;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((param: ParamMap) => {

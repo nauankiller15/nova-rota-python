@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscriber } from 'rxjs';
+import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { AppComponent } from '../app.component';
 import { User } from '../account/login/models';
@@ -15,15 +14,24 @@ declare var $: any;
   template: '<menu></menu><router-outlet></router-outlet>',
   styleUrls: ['./home.component.css'],
 })
+
 export class HomeComponent implements OnInit {
 
   usuario: User;
+
+  // carregador
+  animation = 'pulse';
+  contentLoaded = false;
+  count = 2;
+  widthHeightSizeInPixels = 50;
+
+  intervalId: number | null = null;
+  // 
 
   //
   dependente: any[];
   titular: any[];
 
-  msg: any;
   title = 'nova-rota-frontend';
 
   selected_titular = {
@@ -102,9 +110,20 @@ export class HomeComponent implements OnInit {
   ) {
     this.getTarefas();
   }
-
+  
   ngOnInit() {
     this.usuario = this.authService.getUser();
+    
+    setTimeout(() => {
+      this.contentLoaded = true;
+    }, 2500);
+
+    this.intervalId = window.setInterval(() => {
+      this.animation = this.animation === 'pulse' ? 'progress-dark' : 'pulse';
+      this.count = this.count === 2 ? 5 : 2;
+      this.widthHeightSizeInPixels =
+        this.widthHeightSizeInPixels === 50 ? 100 : 50;
+    }, 5000);
 
     // MENU PRINCIPAL ANIMAÇÕES
     $('[routerLink]').click(function () {
@@ -170,6 +189,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  logout() {
+    localStorage.removeItem('token');
+  }
 
   getTarefas = () => {
     this.api.listar('tarefas/').subscribe(

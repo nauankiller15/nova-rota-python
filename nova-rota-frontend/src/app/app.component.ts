@@ -17,7 +17,6 @@ export class AppComponent implements OnInit {
   dependente: any[];
   titular: any[];
 
-  msg: any;
   title = 'nova-rota-frontend';
 
   selected_titular = {

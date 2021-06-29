@@ -30,9 +30,11 @@ import { CreateAccountComponent } from './account/create-account/create-account.
 import { LoginComponent } from './account/login/login.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NovidadesDetailsComponent } from './novidades-details/novidades-details.component';
-import { AuthService } from './account/login/auth.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './http-interceptors/auth-interceptor';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { RodapeComponent } from './rodape/rodape.component';
+import { NovaEmpresaFilialComponent } from './nova-empresa-filial/nova-empresa-filial.component';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -63,8 +65,11 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     CreateAccountComponent,
     WelcomeComponent,
     NovidadesDetailsComponent,
+    RodapeComponent,
+    NovaEmpresaFilialComponent,
   ],
   imports: [
+    NgxSkeletonLoaderModule.forRoot(),
     BrowserModule,
     NgxMaskModule.forRoot(maskConfigFunction),
     RouterModule.forRoot([

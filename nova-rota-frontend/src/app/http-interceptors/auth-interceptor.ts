@@ -43,7 +43,7 @@ export class AuthInterceptor implements HttpInterceptor {
     } else if (error.error['detail'] == "Signature has expired.") {
       
       // em implementacao
-      this.router.navigate(['/']);
+      this.toastr.error('Sessão expirada', 'Por favor faça login novamente');
       
       // Erro retornando pelo backend
     } else {

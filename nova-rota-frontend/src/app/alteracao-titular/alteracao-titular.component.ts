@@ -11,6 +11,15 @@ declare var $: any;
   styleUrls: ['./alteracao-titular.component.css'],
 })
 export class AlteracaoTitularComponent implements OnInit {
+  // CARREGADOR
+  animation = 'pulse';
+  contentLoaded = false;
+  count = 2;
+  widthHeightSizeInPixels = 50;
+
+  intervalId: number | null = null;
+  //
+
   selected_titular = {
     id: 0,
     CPF: '000.000.000-00',
@@ -61,6 +70,18 @@ export class AlteracaoTitularComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // CARREGADOR TIMEOUT
+    setTimeout(() => {
+      this.contentLoaded = true;
+    }, 2500);
+
+    this.intervalId = window.setInterval(() => {
+      this.animation = this.animation === 'pulse' ? 'progress-dark' : 'pulse';
+      this.count = this.count === 2 ? 5 : 2;
+      this.widthHeightSizeInPixels =
+        this.widthHeightSizeInPixels === 50 ? 100 : 50;
+    }, 5000);
+    //---------------
     // MÁSCARAS DE INPUT
     $(document).ready(() => {
       $('.date').mask('00/00/0000');

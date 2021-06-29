@@ -1,17 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { AppComponent } from '../app.component';
 import { ApiService } from '../api.service';
+import { AppComponent } from '../app.component';
 
 declare var $: any;
 
 @Component({
-  selector: 'app-nova-empresa',
-  templateUrl: './nova-empresa.component.html',
-  styleUrls: ['./nova-empresa.component.css'],
+  selector: 'app-nova-empresa-filial',
+  templateUrl: './nova-empresa-filial.component.html',
+  styleUrls: ['./nova-empresa-filial.component.css'],
 })
-export class NovaEmpresaComponent implements OnInit {
+export class NovaEmpresaFilialComponent implements OnInit {
   empresa = {
     id: 0,
     CNPJ: '',
@@ -105,49 +105,49 @@ export class NovaEmpresaComponent implements OnInit {
     });
 
     // TELA DE ANEXO DO DOCUMENTO DA EMPRESA
-    $('#dataRecebimento').on('blur', function () {
-      $('#vinc-anexo-empresa').fadeIn('100');
+    $('#dataRecebimento-filial').on('blur', function () {
+      $('#vinc-anexo-empresa-filial').fadeIn('100');
     });
-    $('#dataRecebimento').on('focus', function () {
-      $(this).siblings('#vinc-anexo-empresa').fadeIn('100');
+    $('#dataRecebimento-filial').on('focus', function () {
+      $(this).siblings('#vinc-anexo-empresa-filial').fadeIn('100');
     });
-    $('#vinc-anexo-empresa').hide();
+    $('#vinc-anexo-empresa-filial').hide();
     //
-    $('#fecharAnexo5').click(function () {
-      $('#vinc-anexo-empresa').fadeOut('100');
-      $('#reanexar5').fadeIn('100');
+    $('#fecharAnexo-filial').click(function () {
+      $('#vinc-anexo-empresa-filial').fadeOut('100');
+      $('#reanexar-filial').fadeIn('100');
     });
 
-    $('#abrirAnexo5').click(function () {
-      $('#vinc-anexo-empresa').fadeIn('100');
+    $('#abrirAnexo-filial').click(function () {
+      $('#vinc-anexo-empresa-filial').fadeIn('100');
     });
 
     // TELA DE VIGÊNCIA
-    $('#dataVigencia').on('blur', function () {
-      $('#vinc-vigencia').fadeIn('100');
+    $('#dataVigencia-filial').on('blur', function () {
+      $('#vinc-vigencia-filial').fadeIn('100');
     });
-    $('#dataVigencia').on('focus', function () {
+    $('#dataVigencia-filial').on('focus', function () {
       $(this).siblings('#vinc-vigencia').fadeIn('100');
     });
-    $('#vinc-vigencia').hide();
+    $('#vinc-vigencia-filial').hide();
     //
-    $('#fecharVigencia').click(function () {
-      $('#vinc-vigencia').fadeOut('100');
-      $('#vigenciaTela').fadeIn('100');
+    $('#fecharVigencia-filial').click(function () {
+      $('#vinc-vigencia-filial').fadeOut('100');
+      $('#vigenciaTela-filial').fadeIn('100');
     });
 
-    $('#abrirVigencia').click(function () {
-      $('#vinc-vigencia').fadeIn('100');
+    $('#abrirVigencia-filial').click(function () {
+      $('#vinc-vigencia-filial').fadeIn('100');
     });
 
     // SLIDE LEFT AND RIGHT AJUSTES
-    $('#sinistralidadeBtn').click(function () {
-      $('#sinisTab').slideDown('100');
-      $('#reajusTab').slideUp('100');
+    $('#sinistralidadeBtn-filial').click(function () {
+      $('#sinisTab-filial').slideDown('100');
+      $('#reajusTab-filial').slideUp('100');
     });
-    $('#reajusteBtn').click(function () {
-      $('#reajusTab').slideDown('100');
-      $('#sinisTab').slideUp('100');
+    $('#reajusteBtn-filial').click(function () {
+      $('#reajusTab-filial').slideDown('100');
+      $('#sinisTab-filial').slideUp('100');
     });
 
     // BOTÕES
@@ -167,22 +167,22 @@ export class NovaEmpresaComponent implements OnInit {
       }
     });
 
-    $('#tipo_contrato').on('change', function () {
+    $('#tipo_contrato-filial').on('change', function () {
       if ('Operadora' === $(this).val()) {
-        $('#operadoras').fadeIn('100');
-        $('#seguradoras').hide();
-        $('#nome_operadora').fadeIn('100');
-        $('#nome_seguradora').fadeOut('100');
-        $('#codigo').fadeIn('100');
-        $('#apolice').fadeOut('100');
+        $('#operadoras-filial').fadeIn('100');
+        $('#seguradoras-filial').hide();
+        $('#nome_operadora-filial').fadeIn('100');
+        $('#nome_seguradora-filial').fadeOut('100');
+        $('#codigo-filial').fadeIn('100');
+        $('#apolice-filial').fadeOut('100');
       } else {
         'Seguradora' === $(this).val();
-        $('#seguradoras').fadeIn('100');
-        $('#operadoras').hide();
-        $('#nome_seguradora').fadeIn('100');
-        $('#nome_operadora').fadeOut('100');
-        $('#apolice').fadeIn('100');
-        $('#codigo').fadeOut('100');
+        $('#seguradoras-filial').fadeIn('100');
+        $('#operadoras-filial').hide();
+        $('#nome_seguradora-filial').fadeIn('100');
+        $('#nome_operadora-filial').fadeOut('100');
+        $('#apolice-filial').fadeIn('100');
+        $('#codigo-filial').fadeOut('100');
       }
       //
     });
@@ -201,8 +201,8 @@ export class NovaEmpresaComponent implements OnInit {
         this.toastr.success('Empresa incluída com sucesso!');
         this.appComponent.titular.push(data);
       },
-      (error) => {
-        this.toastr.error('Dados necessários em branco!', error.error);
+      (error: { message: string }) => {
+        this.toastr.error('Dados necessários em branco!', error.message);
       }
     );
   }

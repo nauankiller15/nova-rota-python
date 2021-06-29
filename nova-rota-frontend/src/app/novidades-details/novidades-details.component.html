@@ -1,9 +1,13 @@
 <!-- NOVIDADE ABERTA -->
 <div class="box-novidade">
     <div class="text-novidade">
-      <h2> {{ selected_novidade.titulo }} </h2>
+      <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '100%', height: '40px'}" animation="progress">
+      </ngx-skeleton-loader>
+      <h2 *ngIf="contentLoaded"> {{ selected_novidade.titulo }} </h2>
 
-      <div>
+      <div *ngIf="contentLoaded">
+        <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '100%', height: '40px'}" animation="progress">
+        </ngx-skeleton-loader>
           {{ selected_novidade.descricao }}
       </div>
     </div>

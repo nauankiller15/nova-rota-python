@@ -66,10 +66,10 @@ section {
 }
 
 .logo-principal {
-  background: url("https://1.bp.blogspot.com/-aLdKyRfZPDg/YND7dEzmqhI/AAAAAAAAHOE/ov1oPxzgr8svSxCjSQ5N4Zg_OCrNpcY0QCLcBGAsYHQ/s0/logo%2Bsem%2Bfundo.png");
+  background: url(https://1.bp.blogspot.com/-kUrkmnu_WVQ/YNdl9cPczXI/AAAAAAAAHP4/vn53ZqrxPsMp7oe-vTZM0a70bOrpPL05ACLcBGAsYHQ/s0/logo%2Bbranca.png);
   background-repeat: no-repeat;
   background-size: 100%;
-  height: 200px;
+  height: 121px;
 }
 
 .fundo-login {
@@ -406,7 +406,7 @@ h6,
 .h6 {
   margin-bottom: 0.5rem;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 0.7;
 }
 
 h1,
@@ -416,7 +416,7 @@ h1,
 
 h2,
 .h2 {
-  font-size: 2rem;
+  font-size: 22px;
   margin-top: 10px;
 }
 
@@ -10673,7 +10673,7 @@ h5,
 .h3,
 .h4,
 .h5 {
-  line-height: 1.5;
+  line-height: 1;
   font-weight: 400;
   font-family: "Lato", Arial, sans-serif;
   color: #000;
@@ -10729,23 +10729,15 @@ h5,
 }
 
 .text-wrap {
-  background: #007124;
-  background: -moz-linear-gradient(-45deg, #007124 0%, #007124 100%);
-  background: -webkit-gradient(
-    left top,
-    right bottom,
-    color-stop(0%, #007124),
-    color-stop(100%, #007124)
-  );
-  background: -webkit-linear-gradient(-45deg, #007124 0%, #007124 100%);
-  background: -o-linear-gradient(-45deg, #007124 0%, #007124 100%);
-  background: -ms-linear-gradient(-45deg, #007124 0%, #007124 100%);
-  background: -webkit-linear-gradient(315deg, #007124 0%, #007124 100%);
-  background: -o-linear-gradient(315deg, #007124 0%, #007124 100%);
-  background: linear-gradient(135deg, #007124 0%, #007124 100%);
+  background: url(https://1.bp.blogspot.com/-37lNr8KmrfY/YNdrHWH1X0I/AAAAAAAAHQM/Ue3QmMiikSUMqmXmBQ8UIkh6Yu7KbhlIgCLcBGAsYHQ/s0/shield.png);
+  background-color: #007124;
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007124', endColorstr='#007124', GradientType=1 );
   color: #fff;
+  background-size: 87%;
+  background-repeat: no-repeat;
+  background-position: -14vh 30vh;
 }
+
 .text-wrap .text h2 {
   font-weight: 200;
   color: #fff;
@@ -11023,17 +11015,17 @@ h5,
 
 @keyframes subir {
   from {
-      transform: translateX(-1200px);
-      opacity: 1;
+    transform: translateX(-1200px);
+    opacity: 1;
   }
   to {
-      transform: translateX(0);
-      opacity: 0;
+    transform: translateX(0);
+    opacity: 0;
   }
 }
 
-.subir{
-  animation: subir 1.0s;
+.subir {
+  animation: subir 1s;
 }
 
 .box-tela-privacidade {

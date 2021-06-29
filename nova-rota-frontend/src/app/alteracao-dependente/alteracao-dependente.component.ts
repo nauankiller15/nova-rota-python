@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../api.service';
+import { HomeComponent } from '../home/home.component';
 
 declare var $: any;
 
@@ -11,6 +12,15 @@ declare var $: any;
   styleUrls: ['./alteracao-dependente.component.css'],
 })
 export class AlteracaoDependenteComponent implements OnInit {
+  // carregador
+  animation = 'pulse';
+  contentLoaded = false;
+  count = 2;
+  widthHeightSizeInPixels = 50;
+
+  intervalId: number | null = null;
+  //
+
   numberOnly(event): boolean {
     const charCode = event.which ? event.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
@@ -79,10 +89,10 @@ export class AlteracaoDependenteComponent implements OnInit {
   nome_benef: string;
   selected_titular: any;
 
-
   constructor(
     private toastr: ToastrService,
     private api: ApiService,
+    private homeComponent: HomeComponent,
     private route: ActivatedRoute
   ) {
     this.getDependentes();
@@ -90,6 +100,19 @@ export class AlteracaoDependenteComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // CARREGADOR TIMEOUT
+    setTimeout(() => {
+      this.contentLoaded = true;
+    }, 2500);
+
+    this.intervalId = window.setInterval(() => {
+      this.animation = this.animation === 'pulse' ? 'progress-dark' : 'pulse';
+      this.count = this.count === 2 ? 5 : 2;
+      this.widthHeightSizeInPixels =
+        this.widthHeightSizeInPixels === 50 ? 100 : 50;
+    }, 5000);
+    //---------------
+
     // MÁSCARAS DE INPUT
     $(document).ready(() => {
       $('.date').mask('00/00/0000');
@@ -248,8 +271,8 @@ export class AlteracaoDependenteComponent implements OnInit {
     );
   };
 
-
   dependenteClicked = (dependentes: { id: any }) => {
+    $('#encounter-tit').fadeOut('100');
     $('#consulta2').fadeOut('200');
     $('#dependentesappear').fadeIn('20');
     this.api.selecionar('parentesco/', dependentes.id).subscribe(

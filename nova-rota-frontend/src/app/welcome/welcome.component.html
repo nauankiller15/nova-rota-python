@@ -36,19 +36,30 @@
                       Novidades do sistema:</b
                     >
                   </h3>
-                  <div class="page-title-subheading" style="font-size: 18px">
+                 
+                  <div  class="page-title-subheading item" style="font-size: 18px">
+                  
                     Últimas novidades/alterações do sistema detalhadas.
                   </div>
                   <div
                     style="
                       padding-top: 3px;
-                      overflow-y: scroll;
                       margin-top: 20px;
                       font-size: 17px;
                       height: 34vh;
                     "
                   >
-                    <div class="task-item">
+                  <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '100%', height: '40px'}" animation="progress">
+                  </ngx-skeleton-loader>
+                  <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '100%', height: '40px'}" animation="progress">
+                  </ngx-skeleton-loader>
+                  <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '100%', height: '40px'}" animation="progress">
+                  </ngx-skeleton-loader>
+                  <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '100%', height: '40px'}" animation="progress">
+                  </ngx-skeleton-loader>
+                  <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '100%', height: '40px'}" animation="progress">
+                  </ngx-skeleton-loader>
+                    <div *ngIf="contentLoaded" class="task-item item"> 
                       <li
                         *ngFor="
                           let novidade of novidades
@@ -88,7 +99,9 @@
                         <div class="fechar-button">X</div>
                       </a>
                       <div class="text-novidade">
-                        <h2>
+                        <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '100%', height: '40px'}" animation="progress">
+                        </ngx-skeleton-loader>
+                        <h2 *ngIf="contentLoaded">
                           <i
                             style="
                               color: rgb(255, 255, 255);
@@ -105,7 +118,9 @@
                           {{ selected_novidade.titulo }}
                         </h2>
                         <div style="width: 100%; height: 20px"></div>
-                        <div>
+                        <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '100%', height: '40px'}" animation="progress">
+                        </ngx-skeleton-loader>
+                        <div *ngIf="contentLoaded">
                           {{ selected_novidade.descricao }}
                         </div>
                       </div>
@@ -122,37 +137,7 @@
         </div>
       </div>
     </div>
-    <div class="app-wrapper-footer">
-      <div class="app-footer">
-        <div class="app-footer__inner">
-          <div class="app-footer-left">
-            <ul class="nav">
-              <li class="nav-item">
-                <a href="javascript:void(0);" class="nav-link"> Ajuda </a>
-              </li>
-              <li class="nav-item">
-                <a href="javascript:void(0);" class="nav-link">
-                  Relatar Problema
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="app-footer-right">
-            <ul class="nav">
-              <li class="nav-item">
-                <a href="javascript:void(0);" class="nav-link"> Outros </a>
-              </li>
-              <li class="nav-item">
-                <a href="javascript:void(0);" class="nav-link">
-                  <div class="badge badge-success mr-1 ml-0"></div>
-                  Outros
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+    <app-rodape></app-rodape>
   </div>
 </div>
 <script>

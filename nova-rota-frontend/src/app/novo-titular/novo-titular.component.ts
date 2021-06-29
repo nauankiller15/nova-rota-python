@@ -106,6 +106,12 @@ export class NovoTitularComponent implements OnInit {
 
     // TELA DE ANEXO ESTADO CIVIL
 
+    $("input, select, textarea").keypress(function (event: { which: number; preventDefault: () => void; }) {
+      if (event.which == 13) {
+          event.preventDefault();
+      }
+  });
+
     $('#estado_civil').on('change', function () {
       'Casado(a)' === $(this).val()
         ? $('#vinc-anexo-casado').fadeIn('100')
@@ -122,6 +128,19 @@ export class NovoTitularComponent implements OnInit {
       'Convivente' === $(this).val();
       $('#reanexar').fadeOut('100');
       $('#datacasamento').fadeOut('100');
+    });
+
+    $('#filhoConjuge').on('change', function () {
+      'Filho(a)' === $(this).val()
+        ? $('#vinc-anexo-conjugeFilho').fadeIn('100')
+        : $('#vinc-anexo-conjugeFilho').fadeOut('100');
+      //
+      'Conjuge' === $(this).val();
+      $('#reanexar2').fadeOut('100');
+      //
+      'Solteiro' === $(this).val();
+      $('#reanexar2').fadeOut('100');
+      //
     });
 
     $('#fecharAnexo').click(function () {

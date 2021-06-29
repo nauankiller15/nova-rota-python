@@ -18,6 +18,7 @@ export class NovoDependenteComponent implements OnInit {
       nome_benef: '',
     },
   ];
+  
   dependente = {
     id: 0,
     CPF: '',
@@ -119,6 +120,12 @@ export class NovoDependenteComponent implements OnInit {
     });
 
     // TELA DE ANEXO ESTADO CIVIL
+
+    $("input, select, textarea").keypress(function (event: { which: number; preventDefault: () => void; }) {
+      if (event.which == 13) {
+          event.preventDefault();
+      }
+  });
 
     $('#estado_civil2').on('change', function () {
       'Casado(a)' === $(this).val()

@@ -104,6 +104,7 @@
                   [(ngModel)]="titular.prioridade"
                   placeholder="Prioridade"
                   readonly="true"
+                  name="prioridade"
                 />
               </div>
 
@@ -619,13 +620,13 @@
                         ><i class="fas fa-id-card"></i
                       ></span>
                       <input
+                        autocomplete="off"
                         [(ngModel)]="nome_benef"
                         (input)="searchNomeTitDep()"
                         name="nome_benef"
                         type="text"
                         class="form-control"
                         placeholder="Buscar Titular pelo Nome"
-                        autocomplete="off"
                       />
                     </div>
                     <div style="width: 100%; height: 15px"></div>
@@ -645,7 +646,8 @@
                       <li
                         value="{{ titular.id }}"
                         *ngFor="
-                          let titular of titulares | orderBy:'created_at':false
+                          let titular of titulares
+                            | orderBy: 'created_at':false
                             | paginate
                               : {
                                   id: 'titularvinculoAlterar',
@@ -738,36 +740,6 @@
         </div>
       </div>
     </div>
-    <div class="app-wrapper-footer">
-      <div class="app-footer">
-        <div class="app-footer__inner">
-          <div class="app-footer-left">
-            <ul class="nav">
-              <li class="nav-item">
-                <a href="javascript:void(0);" class="nav-link"> Ajuda </a>
-              </li>
-              <li class="nav-item">
-                <a href="javascript:void(0);" class="nav-link">
-                  Relatar Problema
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="app-footer-right">
-            <ul class="nav">
-              <li class="nav-item">
-                <a href="javascript:void(0);" class="nav-link"> Outros </a>
-              </li>
-              <li class="nav-item">
-                <a href="javascript:void(0);" class="nav-link">
-                  <div class="badge badge-success mr-1 ml-0"></div>
-                  Outros
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+    <app-rodape></app-rodape>
   </div>
 </div>
