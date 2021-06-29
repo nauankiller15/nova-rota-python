@@ -74,7 +74,7 @@ export class AuthService {
     }
 
     if (tokenDecode['email']) {
-      usuario.username = tokenDecode['email'];
+      usuario.email = tokenDecode['email'];
     }
 
     return usuario

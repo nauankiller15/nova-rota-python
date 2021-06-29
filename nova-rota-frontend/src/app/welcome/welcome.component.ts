@@ -32,6 +32,7 @@ export class WelcomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     // CARREGADOR TIMEOUT
     setTimeout(() => {
       this.contentLoaded = true;
