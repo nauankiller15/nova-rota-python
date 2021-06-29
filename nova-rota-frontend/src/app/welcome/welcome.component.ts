@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from './api.service';
+import { Router } from '@angular/router';
+import { ApiService } from '../api.service';
 
 declare var $: any;
 @Component({
@@ -26,7 +26,6 @@ export class WelcomeComponent implements OnInit {
   constructor(
     private toastr: ToastrService,
     private api: ApiService,
-    private router: Router
   ) {
     this.getNovidades();
   }
@@ -63,7 +62,7 @@ export class WelcomeComponent implements OnInit {
   }
 
   getNovidades = () => {
-    this.api.getAllNovidades().subscribe(
+    this.api.listar('novidades/').subscribe(
       (data) => {
         this.novidades = data;
       },
@@ -74,7 +73,7 @@ export class WelcomeComponent implements OnInit {
   };
 
   loadNovidade(id: string) {
-    this.api.getNovidades(id).subscribe(
+    this.api.selecionar('novidades/', id).subscribe(
       (data) => {
         this.selected_novidade = data;
       },
@@ -94,7 +93,7 @@ export class WelcomeComponent implements OnInit {
   novidadeClicked = (novidade: { id: any }) => {
     $('#novidadeAberta').fadeIn('100');
     $('.box-novidade').slideDown('100');
-    this.api.getNovidades(novidade.id).subscribe(
+    this.api.selecionar('novidades/', novidade.id).subscribe(
       (data) => {
         this.selected_novidade = data;
       },
