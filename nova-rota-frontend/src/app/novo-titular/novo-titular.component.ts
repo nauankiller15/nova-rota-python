@@ -36,7 +36,7 @@ export class NovoTitularComponent implements OnInit {
       if (event.which == 13) {
           event.preventDefault();
       }
-  });
+    });
 
     $('#estado_civil').on('change', function () {
       'Casado(a)' === $(this).val()
@@ -126,7 +126,6 @@ export class NovoTitularComponent implements OnInit {
         this.appComponent.titular.push(data);
       },
       (error) => {
-        console.log('erros', error)
         let mensagens = error.error;
         for (let campo in mensagens) {
           this.toastr.error(mensagens[campo], 'Erro no ' + campo);
