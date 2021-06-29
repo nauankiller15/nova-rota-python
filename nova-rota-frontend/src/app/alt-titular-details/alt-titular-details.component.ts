@@ -49,7 +49,7 @@ export class AltTitularDetailsComponent implements OnInit {
 
   loadTitular() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.api.conectar('titular/', null, id).subscribe(
+    this.api.selecionar('titular/', id).subscribe(
       (data) => {
         this.selected_titular = data;
       },

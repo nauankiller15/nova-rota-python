@@ -21,6 +21,7 @@
     "@angular/router": "~11.2.13",
     "angular-window-component": "^0.3.6",
     "jquery-mask-plugin": "^1.14.16",
+    "jwt-decode": "^3.1.2",
     "ng2-completer": "^9.0.1",
     "ng2-order-pipe": "^0.1.5",
     "ng2-search-filter": "^0.5.1",

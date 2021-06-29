@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ApiService } from '../../api.service';
+import { AuthService } from './auth.service';
+import { Login } from './models';
 
 declare var $: any;
 
@@ -12,17 +13,19 @@ declare var $: any;
 })
 export class LoginComponent implements OnInit {
 
-  usuario = {
-    username: '',
-    password: ''
-  };
-
+  public usuario: Login = new Login;
+  
   constructor(
     private toastr: ToastrService,
-    private api: ApiService,
+    private authService: AuthService,
     private router: Router,) { }
 
   ngOnInit(): void {
+
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.router.navigate(['/'])
+    }
 
     $('#politica-abrir').on('click', function () {
       $('#politica').fadeIn('100');
@@ -43,20 +46,14 @@ export class LoginComponent implements OnInit {
 
   }
 
-  login() {
-    console.log(this.usuario);
-    this.api.conectar('login/', this.usuario).subscribe(
-      (data) => {
-        const token = data['token']
-        localStorage.setItem('token', token)
-        this.router.navigate(['']);
-      },
-      (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+  async login() {
+    try{
+      const resp = await this.authService.autenticar(this.usuario);
+      if (resp === true) {
+        this.toastr.success('ok', 'login efetuado')
       }
-    );
+    } catch (error) {
+      this.toastr.error('erro', 'erro ao efetuar login')
+    }
   }
 }

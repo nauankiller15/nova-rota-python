@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from './api.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PublicService } from './services/public.service';
 import { Subscriber } from 'rxjs';
 
 declare var $: any;
@@ -130,7 +129,6 @@ export class AppComponent implements OnInit {
     private api: ApiService,
     private router: Router,
     private toastr: ToastrService,
-    private pService: PublicService
   ) {
     this.getTarefas();
 
@@ -138,7 +136,7 @@ export class AppComponent implements OnInit {
   message = null;
     
   showMessage() {
-    this.pService.getMessage().subscribe((message: any) => {
+    this.api.listar('mensagens/').subscribe((message: any) => {
       this.message = message;
       console.log(this.message);
     });
@@ -146,7 +144,7 @@ export class AppComponent implements OnInit {
 
 
   getTarefas = () => {
-    this.api.conectar('tarefas/').subscribe(
+    this.api.listar('tarefas/').subscribe(
       (data) => {
         this.tarefas = data;
       },

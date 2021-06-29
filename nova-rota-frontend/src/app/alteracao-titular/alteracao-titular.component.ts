@@ -144,18 +144,21 @@ export class AlteracaoTitularComponent implements OnInit {
   }
 
   getTitulares = () => {
-    this.api.conectar('titular/').subscribe(
+    this.api.listar('titular/').subscribe(
       (data) => {
         this.titulares = data;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        const mensagens = error.error;
+        for (let mensagem in mensagens) {
+          this.toastr.error(mensagem, mensagens[mensagem]);
+        } 
       }
     );
   };
 
   loadTitular(id: string) {
-    this.api.conectar('titular/', null, id).subscribe(
+    this.api.selecionar('titular/', id).subscribe(
       (data) => {
         this.selected_titular = data;
       },
@@ -168,7 +171,7 @@ export class AlteracaoTitularComponent implements OnInit {
   titularClicked = (titular: { id: string }) => {
     $('#consulta').fadeOut('200');
     $('#titularesappear').fadeIn('200');
-    this.api.conectar('titular/', null, titular.id).subscribe(
+    this.api.selecionar('titular/', titular.id).subscribe(
       (data) => {
         this.selected_titular = data;
       },

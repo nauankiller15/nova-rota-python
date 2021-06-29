@@ -185,7 +185,7 @@ export class AlteracaoDependenteComponent implements OnInit {
   }
 
   getDependentes = () => {
-    this.api.conectar('parentesco/').subscribe(
+    this.api.listar('parentesco/').subscribe(
       (data) => {
         this.dependentes = data;
       },
@@ -196,7 +196,7 @@ export class AlteracaoDependenteComponent implements OnInit {
   };
 
   getTitulares = () => {
-    this.api.conectar('titular/').subscribe(
+    this.api.listar('titular/').subscribe(
       (data) => {
         this.titulares = data;
       },
@@ -207,7 +207,7 @@ export class AlteracaoDependenteComponent implements OnInit {
   };
 
   loadDependente(id: string) {
-    this.api.conectar('parentesco/', null, id).subscribe(
+    this.api.selecionar('parentesco/', id).subscribe(
       (data) => {
         this.selected_dependente = data;
       },
@@ -235,7 +235,7 @@ export class AlteracaoDependenteComponent implements OnInit {
     $('#alterar-titular').fadeOut('200');
     $('#encounter-tit').slideDown('200');
 
-    this.api.conectar('titular/', null, titular.id).subscribe(
+    this.api.selecionar('titular/', titular.id).subscribe(
       (data) => {
         this.selected_dependente.titular = titular.id;
         this.selected_dependente.nome_benef = titular.nome_benef;
@@ -252,7 +252,7 @@ export class AlteracaoDependenteComponent implements OnInit {
   dependenteClicked = (dependentes: { id: any }) => {
     $('#consulta2').fadeOut('200');
     $('#dependentesappear').fadeIn('20');
-    this.api.conectar('parentesco/', null, dependentes.id).subscribe(
+    this.api.selecionar('parentesco/', dependentes.id).subscribe(
       (data) => {
         this.selected_dependente = data;
       },
@@ -263,7 +263,7 @@ export class AlteracaoDependenteComponent implements OnInit {
   };
 
   updateDependente() {
-    this.api.conectar('parentesco/', this.selected_dependente).subscribe(
+    this.api.atualizar('parentesco/', this.selected_dependente).subscribe(
       (data) => {
         this.selected_dependente = data;
         this.toastr.success('Atualizado com sucesso!');

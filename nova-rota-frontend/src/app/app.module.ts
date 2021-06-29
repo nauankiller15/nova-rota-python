@@ -30,6 +30,9 @@ import { CreateAccountComponent } from './account/create-account/create-account.
 import { LoginComponent } from './account/login/login.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NovidadesDetailsComponent } from './novidades-details/novidades-details.component';
+import { AuthService } from './account/login/auth.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './http-interceptors/auth-interceptor';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -40,6 +43,7 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
     TarefasDetailsComponent,
     NovaTarefaComponent,
     NovoTitularComponent,
@@ -57,7 +61,6 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     AuthenticationComponent,
     ProfileComponent,
     CreateAccountComponent,
-    LoginComponent,
     WelcomeComponent,
     NovidadesDetailsComponent,
   ],
@@ -90,7 +93,9 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
       positionClass: 'toast-bottom-right',
     }),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

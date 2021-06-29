@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from '../app.component';
 import { ApiService } from '../api.service';
+import { HomeComponent } from '../home/home.component';
 
 declare var $: any;
 @Component({

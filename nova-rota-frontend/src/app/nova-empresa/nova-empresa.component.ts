@@ -160,7 +160,7 @@ export class NovaEmpresaComponent implements OnInit {
   newEmpresa() {
     // const fd = new FormData();
     // fd.append('image', this.selectedFile, this.selectedFile.name);
-    this.api.conectar('empresa/', this.empresa).subscribe(
+    this.api.inserir('empresa/', this.empresa).subscribe(
       (data) => {
         this.toastr.success('Empresa incluída com sucesso!');
         this.appComponent.titular.push(data);
