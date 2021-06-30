@@ -21,10 +21,12 @@
               <div class="text w-100">
                 <div class="logo-principal"></div>
 
-                <div style="height: 5px; width: 50px;"></div>
+                <div style="height: 5px; width: 50px"></div>
                 <h2>Seja bem vindo</h2>
                 <h2>Acesso seguro</h2>
-                <h2 style="font-size:40px"><i class="fas fa-shield-alt"></i></h2>
+                <h2 style="font-size: 40px">
+                  <i class="fas fa-shield-alt"></i>
+                </h2>
 
                 <!-- <p>Primeiro acesso?</p> -->
                 <!-- <a
@@ -42,7 +44,7 @@
                   <h3 class="mb-4">Acessar o sistema</h3>
                 </div>
               </div>
-              <form class="signin-form" (submit)="login()">
+              <form #loginForm="ngForm" class="signin-form" (submit)="login()">
                 <div class="form-group mb-3">
                   <label class="label" for="username">Usuário</label>
                   <input
@@ -68,6 +70,7 @@
                 <div style="height: 20px"></div>
                 <div class="form-group">
                   <button
+                    [disabled]="loginForm.form.invalid"
                     type="submit"
                     class="form-control btn btn-primary submit px-3"
                   >
@@ -100,10 +103,13 @@
                     >Politica de Privacidade</a
                   >
                 </div>
-              <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+                <ngx-loading
+                  [show]="loading"
+                  [config]="{ backdropBorderRadius: '3px' }"
+                  [template]="customLoadingTemplate"
+                ></ngx-loading>
               </form>
-              <ng-template #customLoadingTemplate>
-            </ng-template>
+              <ng-template #customLoadingTemplate> </ng-template>
             </div>
           </div>
         </div>
@@ -193,7 +199,10 @@
       aprender sobre o comportamento dos usuários e reunir informações
       demográficas sobre nossa base de usuários como um todo.
 
-      <h2 style="margin-top: 50px; margin-bottom: 50px;">Ao adentrar o sistema, concordo com todos os termos de politica de privacidade.</h2>
+      <h2 style="margin-top: 50px; margin-bottom: 50px">
+        Ao adentrar o sistema, concordo com todos os termos de politica de
+        privacidade.
+      </h2>
     </div>
   </div>
 </div>
