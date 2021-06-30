@@ -9,29 +9,28 @@ declare var $: any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  public usuario: Login = new Login();
+  public loading = false;
 
-  public usuario: Login = new Login;
-  
   constructor(
     private toastr: ToastrService,
     private authService: AuthService,
-    private router: Router,) { }
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-
     const token = localStorage.getItem('token');
     if (token) {
       // this.router.navigate(['/'])
-      window.location.href = '/'
+      window.location.href = '/';
     }
 
     $('#politica-abrir').on('click', function () {
       $('#politica').fadeIn('100');
       $('.box-tela-privacidade').slideDown('500');
-
     });
 
     $('#politica').on('click', function () {
@@ -43,18 +42,19 @@ export class LoginComponent implements OnInit {
       $('#criar-conta').fadeIn('100');
       $('.box-criar-conta').slideDown('100');
     });
-
-
   }
 
   async login() {
-    try{
+    this.loading = true;
+    try {
       const resp = await this.authService.autenticar(this.usuario);
       if (resp === true) {
-        this.toastr.success('ok', 'login efetuado')
+        this.toastr.success('ok', 'login efetuado');
+        this.loading = false;
       }
     } catch (error) {
-      this.toastr.error('erro', 'erro ao efetuar login')
+      this.toastr.error('erro', 'erro ao efetuar login');
+      this.loading = false;
     }
   }
 }

@@ -100,7 +100,10 @@
                     >Politica de Privacidade</a
                   >
                 </div>
+              <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
               </form>
+              <ng-template #customLoadingTemplate>
+            </ng-template>
             </div>
           </div>
         </div>
