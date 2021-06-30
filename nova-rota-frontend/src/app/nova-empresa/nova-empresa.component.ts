@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from '../app.component';
-import { ApiService } from './api.service';
+import { ApiService } from '../api.service';
 
 declare var $: any;
 
@@ -196,13 +196,13 @@ export class NovaEmpresaComponent implements OnInit {
   newEmpresa() {
     // const fd = new FormData();
     // fd.append('image', this.selectedFile, this.selectedFile.name);
-    this.api.saveNewEmpresa(this.empresa).subscribe(
+    this.api.inserir('empresa/', this.empresa).subscribe(
       (data) => {
         this.toastr.success('Empresa incluída com sucesso!');
         this.appComponent.titular.push(data);
       },
-      (error: { message: string }) => {
-        this.toastr.error('Dados necessários em branco!', error.message);
+      (error) => {
+        this.toastr.error('Dados necessários em branco!', error.error);
       }
     );
   }

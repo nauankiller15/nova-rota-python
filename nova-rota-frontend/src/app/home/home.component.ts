@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscriber } from 'rxjs';
-import { ApiService } from './api.service';
+import { Router } from '@angular/router';
+import { ApiService } from '../api.service';
 import { AppComponent } from '../app.component';
-import { WelcomeComponent } from '../welcome/welcome.component';
+import { User } from '../account/login/models';
+import { AuthService } from '../account/login/auth.service';
 
 declare var $: any;
 
@@ -17,14 +17,16 @@ declare var $: any;
 
 export class HomeComponent implements OnInit {
 
-   // carregador
-   animation = 'pulse';
-   contentLoaded = false;
-   count = 2;
-   widthHeightSizeInPixels = 50;
- 
-   intervalId: number | null = null;
- // 
+  usuario: User;
+
+  // carregador
+  animation = 'pulse';
+  contentLoaded = false;
+  count = 2;
+  widthHeightSizeInPixels = 50;
+
+  intervalId: number | null = null;
+  // 
 
   //
   dependente: any[];
@@ -98,8 +100,20 @@ export class HomeComponent implements OnInit {
   p: number = 1;
   selected_id: any;
   update_tarefa: any;
-
+  
+  constructor(
+    private api: ApiService,
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService,
+    private appComponent: AppComponent
+  ) {
+    this.getTarefas();
+  }
+  
   ngOnInit() {
+    this.usuario = this.authService.getUser();
+    
     setTimeout(() => {
       this.contentLoaded = true;
     }, 2500);
@@ -175,17 +189,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  constructor(
-    private api: ApiService,
-    private router: Router,
-    private toastr: ToastrService,
-    private appComponent: AppComponent,
-  ) {
-    this.getTarefas();
+  logout() {
+    localStorage.removeItem('token');
   }
 
   getTarefas = () => {
-    this.api.getAlltarefas().subscribe(
+    this.api.listar('tarefas/').subscribe(
       (data) => {
         this.tarefas = data;
       },
@@ -237,7 +246,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadTarefa(id: string) {
-    this.api.getTarefa(id).subscribe(
+    this.api.selecionar('tarefas/', id).subscribe(
       (data) => {
         this.selected_tarefa = data;
       },
@@ -248,7 +257,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadNovidade(id: string) {
-    this.api.getNovidades(id).subscribe(
+    this.api.selecionar('novidades/', id).subscribe(
       (data) => {
         this.selected_novidade = data;
       },
@@ -259,7 +268,7 @@ export class HomeComponent implements OnInit {
   }
 
   update() {
-    this.api.updateTarefa(this.selected_tarefa).subscribe(
+    this.api.atualizar('tarefas/', this.selected_tarefa).subscribe(
       (data) => {
         this.toastr.success('Atualizado com sucesso!');
         this.update_tarefa = data;
@@ -272,7 +281,7 @@ export class HomeComponent implements OnInit {
     );
   }
   delete() {
-    this.api.deleteTarefa(this.selected_id).subscribe(
+    this.api.apagar('tarefas/', this.selected_id).subscribe(
       (data) => {
         this.toastr.success('Deletado com sucesso!');
         let index: number;

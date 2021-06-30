@@ -16,17 +16,11 @@ $(document).ajaxStop(function () {
 //
 // ---------------
 
-function MenuAtivo() {
-  $("[data-load-page]").unbind("click");
-  $("[data-load-page]").click(function () {
-    var page = $(this).attr("data-load-page");
-    if (!$(this).find("a").hasClass("mm-active")) {
-      $("#conteudo").load(page);
-    }
-
-    $(".vertical-nav-menu li a").removeClass("mm-active");
-    $(this).find("a").addClass("mm-active");
-  });
+window.onload = function () {
+ $('[routerLink]').click(function () {
+      $('.vertical-nav-menu li a').removeClass('mm-active');
+      $(this).find('a').addClass('mm-active');
+    });
 }
 
 

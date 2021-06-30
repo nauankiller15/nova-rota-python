@@ -1,0 +1,3 @@
+* MODEL CADASTRO DO BENEFICIARIO E DO TITULAR
+o campo do declaracao_saude é nescessario?
+a gente pode deixar a esse campo só no front-end e deixar a descricao de declaracao de saude somente.

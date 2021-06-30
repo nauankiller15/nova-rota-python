@@ -50,7 +50,7 @@ export class AltDependenteDetailsComponent implements OnInit {
 
   loadDependente() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.api.getDependente(id).subscribe(
+    this.api.selecionar('parentesco/', id).subscribe(
       (data) => {
         this.selected_dependente = data;
       },

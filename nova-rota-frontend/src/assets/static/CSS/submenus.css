@@ -339,6 +339,9 @@
   background: var(--cor-tema);
 }
 
+.task-item li:focus{
+  background: var(--cor-tema);
+}
 .posit-bottom {
   position: absolute;
   bottom: 10px;

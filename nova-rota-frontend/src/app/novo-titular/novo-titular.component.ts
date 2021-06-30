@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from '../app.component';
-import { ApiService } from './api.service';
+import { ApiService } from '../api.service';
 
 declare var $: any;
 
@@ -194,7 +194,7 @@ export class NovoTitularComponent implements OnInit {
   newTitular() {
     // const fd = new FormData();
     // fd.append('image', this.selectedFile, this.selectedFile.name);
-    this.api.saveNewTitular(this.titular).subscribe(
+    this.api.inserir('titular/', this.titular).subscribe(
       (data) => {
         $('#confirmacaoTitular').fadeIn('100');
         this.appComponent.titular.push(data);

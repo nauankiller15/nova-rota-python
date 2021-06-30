@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from '../app.component';
-import { ApiService } from './api.service';
+import { ApiService } from '../api.service';
 
 declare var $: any;
 
@@ -18,6 +18,7 @@ export class NovoDependenteComponent implements OnInit {
       nome_benef: '',
     },
   ];
+  
   dependente = {
     id: 0,
     CPF: '',
@@ -201,7 +202,7 @@ export class NovoDependenteComponent implements OnInit {
   }
 
   getTitulares = () => {
-    this.api.getAlltitulares().subscribe(
+    this.api.listar('titular/').subscribe(
       (data) => {
         this.titulares = data;
       },
@@ -227,7 +228,7 @@ export class NovoDependenteComponent implements OnInit {
     $('#vinc-titular').fadeOut('200');
     $('#encounter-tit').slideDown('200');
 
-    this.api.getTitular(titular.id).subscribe(
+    this.api.selecionar('titular/', titular.id).subscribe(
       (data) => {
         this.dependente.titular = titular.id;
         this.dependente.nome_benef = titular.nome_benef;
@@ -241,7 +242,7 @@ export class NovoDependenteComponent implements OnInit {
   };
 
   newDependente() {
-    this.api.saveNewDependente(this.dependente).subscribe(
+    this.api.inserir('parentesco/', this.dependente).subscribe(
       (data) => {
         $('#confirmacaoDependente').fadeIn('100');
         $('#encounter-tit').fadeOut('100');

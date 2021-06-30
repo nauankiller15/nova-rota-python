@@ -30,9 +30,12 @@ import { CreateAccountComponent } from './account/create-account/create-account.
 import { LoginComponent } from './account/login/login.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NovidadesDetailsComponent } from './novidades-details/novidades-details.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './http-interceptors/auth-interceptor';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { RodapeComponent } from './rodape/rodape.component';
 import { NovaEmpresaFilialComponent } from './nova-empresa-filial/nova-empresa-filial.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -43,6 +46,7 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
     TarefasDetailsComponent,
     NovaTarefaComponent,
     NovoTitularComponent,
@@ -60,11 +64,11 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     AuthenticationComponent,
     ProfileComponent,
     CreateAccountComponent,
-    LoginComponent,
     WelcomeComponent,
     NovidadesDetailsComponent,
     RodapeComponent,
     NovaEmpresaFilialComponent,
+    SidebarComponent,
   ],
   imports: [
     NgxSkeletonLoaderModule.forRoot(),
@@ -96,7 +100,9 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
       positionClass: 'toast-bottom-right',
     }),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

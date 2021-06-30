@@ -37,7 +37,7 @@ export class NovaTarefaComponent implements OnInit {
     //
   }
   save() {
-    this.api.saveNewTarefa(this.tarefa).subscribe(
+    this.api.inserir('tarefas/', this.tarefa).subscribe(
       (data) => {
         this.homeComponent.tarefas.push(data);
         this.toastr.success('Tarefa criada com sucesso!', data.message);

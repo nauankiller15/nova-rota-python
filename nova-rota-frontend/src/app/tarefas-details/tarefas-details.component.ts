@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from '../app.component';
+import { ApiService } from '../api.service';
 import { HomeComponent } from '../home/home.component';
-import { ApiService } from './api.service';
 
 declare var $: any;
 @Component({
@@ -12,16 +12,18 @@ declare var $: any;
   styleUrls: ['./tarefas-details.component.css'],
 })
 export class TarefasDetailsComponent implements OnInit {
+  
+  selected_tarefa = { titulo: '', descricao: '', status_tarefa: '' };
+  update_tarefa = { titulo: '', descricao: '', status_tarefa: true };
+
+  selected_id;
+
   constructor(
     private route: ActivatedRoute,
     private api: ApiService,
     private toastr: ToastrService,
     private homeComponent: HomeComponent
   ) {}
-  selected_tarefa = { titulo: '', descricao: '', status_tarefa: '' };
-  update_tarefa = { titulo: '', descricao: '', status_tarefa: true };
-
-  selected_id;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((param: ParamMap) => {
@@ -54,7 +56,7 @@ export class TarefasDetailsComponent implements OnInit {
   }
 
   loadTarefa(id: number) {
-    this.api.getTarefa(id).subscribe(
+    this.api.selecionar('tarefas/', id).subscribe(
       (data) => {
         this.selected_tarefa = data;
       },
@@ -64,7 +66,7 @@ export class TarefasDetailsComponent implements OnInit {
     );
   }
   update() {
-    this.api.updateTarefa(this.selected_tarefa).subscribe(
+    this.api.atualizar('tarefas/', this.selected_tarefa).subscribe(
       (data) => {
         this.toastr.success('Atualizado com sucesso!');
         this.update_tarefa = data;
@@ -77,7 +79,7 @@ export class TarefasDetailsComponent implements OnInit {
     );
   }
   delete() {
-    this.api.deleteTarefa(this.selected_id).subscribe(
+    this.api.apagar('tarefas/', this.selected_id).subscribe(
       (data) => {
         this.toastr.success('Deletado com sucesso!');
         let index: number;

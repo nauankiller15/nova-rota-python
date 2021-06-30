@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { ApiService } from '../api.service';
 import { AppComponent } from '../app.component';
-import { ApiService } from './api.service';
 
 declare var $: any;
 
@@ -196,7 +196,7 @@ export class NovaEmpresaFilialComponent implements OnInit {
   newEmpresa() {
     // const fd = new FormData();
     // fd.append('image', this.selectedFile, this.selectedFile.name);
-    this.api.saveNewEmpresa(this.empresa).subscribe(
+    this.api.inserir('empresa/', this.empresa).subscribe(
       (data) => {
         this.toastr.success('Empresa incluída com sucesso!');
         this.appComponent.titular.push(data);

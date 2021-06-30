@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from './auth.service';
+import { Login } from './models';
 
 declare var $: any;
 
@@ -10,9 +13,20 @@ declare var $: any;
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router,) { }
+  public usuario: Login = new Login;
+  
+  constructor(
+    private toastr: ToastrService,
+    private authService: AuthService,
+    private router: Router,) { }
 
   ngOnInit(): void {
+
+    const token = localStorage.getItem('token');
+    if (token) {
+      // this.router.navigate(['/'])
+      window.location.href = '/'
+    }
 
     $('#politica-abrir').on('click', function () {
       $('#politica').fadeIn('100');
@@ -33,4 +47,14 @@ export class LoginComponent implements OnInit {
 
   }
 
+  async login() {
+    try{
+      const resp = await this.authService.autenticar(this.usuario);
+      if (resp === true) {
+        this.toastr.success('ok', 'login efetuado')
+      }
+    } catch (error) {
+      this.toastr.error('erro', 'erro ao efetuar login')
+    }
+  }
 }
