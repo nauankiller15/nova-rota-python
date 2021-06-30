@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit {
 
     const token = localStorage.getItem('token');
     if (token) {
-      this.router.navigate(['/'])
+      // this.router.navigate(['/'])
+      window.location.href = '/'
     }
 
     $('#politica-abrir').on('click', function () {

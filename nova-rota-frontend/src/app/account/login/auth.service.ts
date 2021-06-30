@@ -23,7 +23,8 @@ export class AuthService {
     
     if (resp && resp['token']) {
       localStorage.setItem('token', resp['token']);
-      this.router.navigate(['/'])      
+      // this.router.navigate(['/'])      
+      window.location.href = '/'
       return true;
     }
 
