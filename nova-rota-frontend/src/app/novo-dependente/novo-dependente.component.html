@@ -455,8 +455,9 @@
                   [(ngModel)]="dependente.celular"
                   name="celular"
                   type="text"
-                  class="form-control phone_with_ddd"
+                  class="form-control celular"
                   placeholder="Informe o Celular"
+                  pattern="^\(\d{2}\)\ \9\d{4}\-\d{4}$"
                 />
               </div>
 
@@ -621,9 +622,7 @@
                       ></span>
                       <input
                         autocomplete="off"
-                        [(ngModel)]="nome_benef"
-                        (input)="searchNomeTitDep()"
-                        name="nome_benef"
+                        (input)="searchNomeTitDep($event.taget)"
                         type="text"
                         class="form-control"
                         placeholder="Buscar Titular pelo Nome"
@@ -646,7 +645,7 @@
                       <li
                         value="{{ titular.id }}"
                         *ngFor="
-                          let titular of titulares
+                          let titular of busca
                             | orderBy: 'created_at':false
                             | paginate
                               : {
