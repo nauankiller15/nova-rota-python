@@ -5,11 +5,17 @@
         <div class="page-title-wrapper">
           <div class="page-title-heading">
             <div class="page-title-icon">
-              <i class="fas fa-building icon-gradient bg-mean-fruit"> </i>
+              <i class="fas fa-building icon-gradient bg-mean-fruit"> </i
+              ><i
+              style="font-size: 16px;margin-top: 5px;margin-left: 0px;font-weight: bold;"
+                class="fas fa-plus icon-gradient bg-mean-fruit"
+              ></i>
             </div>
             <div>
               Inclusão de Empresa Filial
-              <div class="page-title-subheading">Nova Empresa Filial Ativa.</div>
+              <div class="page-title-subheading">
+                Nova Empresa Filial Ativa.
+              </div>
             </div>
           </div>
         </div>
@@ -146,7 +152,11 @@
                 </select>
               </div>
 
-              <div id="operadoras-filial" style="display: none" class="col-md-2 mb-3">
+              <div
+                id="operadoras-filial"
+                style="display: none"
+                class="col-md-2 mb-3"
+              >
                 <label for="validationCustom02">Operadoras</label>
                 <select
                   #operadora="ngModel"
@@ -163,7 +173,11 @@
                 </select>
               </div>
 
-              <div id="seguradoras-filial" style="display: none" class="col-md-2 mb-3">
+              <div
+                id="seguradoras-filial"
+                style="display: none"
+                class="col-md-2 mb-3"
+              >
                 <label for="validationCustom02">Seguradoras</label>
                 <input
                   #seguradora="ngModel"
@@ -262,7 +276,10 @@
                 />
 
                 <!-- BOTÃO REABRIR VIGENCIA -->
-                <div id="vigenciaTela-filial" style="display: none; z-index: 999">
+                <div
+                  id="vigenciaTela-filial"
+                  style="display: none; z-index: 999"
+                >
                   <button
                     style="position: absolute; right: -44px; top: 31px"
                     class="btn btn-primary"
@@ -358,7 +375,9 @@
                       <nav class="menuVigencia">
                         <ul class="menuItems">
                           <!-- BOTÃO REAJUSTE -->
-                          <li id="reajusteBtn-filial" class="active">Reajuste</li>
+                          <li id="reajusteBtn-filial" class="active">
+                            Reajuste
+                          </li>
 
                           <!-- BOTÃO SINISTRALIDADE -->
                           <li id="sinistralidadeBtn-filial">Sinistralidade</li>
@@ -637,16 +656,16 @@
                 </select>
               </div>
 
-              <div id="codigo-filial" style="display: none;" class="col-md-2 mb-2">
+              <div
+                id="codigo-filial"
+                style="display: none"
+                class="col-md-2 mb-2"
+              >
                 <label for="validationCustom03">Código</label>
                 <input
                   #codigo="ngModel"
-                  [class.is-invalid]="
-                    codigo.invalid && codigo.touched
-                  "
-                  [class.is-valid]="
-                    codigo.valid && codigo.touched
-                  "
+                  [class.is-invalid]="codigo.invalid && codigo.touched"
+                  [class.is-valid]="codigo.valid && codigo.touched"
                   [(ngModel)]="empresa.codigo"
                   name="codigo"
                   type="text"
@@ -655,16 +674,16 @@
                 />
               </div>
 
-              <div id="apolice-filial" style="display: none;" class="col-md-2 mb-2">
+              <div
+                id="apolice-filial"
+                style="display: none"
+                class="col-md-2 mb-2"
+              >
                 <label for="validationCustom03">Apólice</label>
                 <input
                   #apolice="ngModel"
-                  [class.is-invalid]="
-                    apolice.invalid && apolice.touched
-                  "
-                  [class.is-valid]="
-                    apolice.valid && apolice.touched
-                  "
+                  [class.is-invalid]="apolice.invalid && apolice.touched"
+                  [class.is-valid]="apolice.valid && apolice.touched"
                   [(ngModel)]="empresa.apolice"
                   name="apolice"
                   type="text"

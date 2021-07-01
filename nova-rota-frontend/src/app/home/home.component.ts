@@ -100,6 +100,7 @@ export class HomeComponent implements OnInit {
   p: number = 1;
   selected_id: any;
   update_tarefa: any;
+  public loading = false;
   
   constructor(
     private api: ApiService,
@@ -116,14 +117,14 @@ export class HomeComponent implements OnInit {
     
     setTimeout(() => {
       this.contentLoaded = true;
-    }, 2500);
+    }, 2000);
 
     this.intervalId = window.setInterval(() => {
       this.animation = this.animation === 'pulse' ? 'progress-dark' : 'pulse';
       this.count = this.count === 2 ? 5 : 2;
       this.widthHeightSizeInPixels =
         this.widthHeightSizeInPixels === 50 ? 100 : 50;
-    }, 5000);
+    }, 2000);
 
     // MENU PRINCIPAL ANIMAÇÕES
     $('[routerLink]').click(function () {
@@ -257,12 +258,15 @@ export class HomeComponent implements OnInit {
   }
 
   loadNovidade(id: string) {
+    this.loading = true;
     this.api.selecionar('novidades/', id).subscribe(
       (data) => {
         this.selected_novidade = data;
+        this.loading = false;
       },
       (error) => {
         this.toastr.error('Aconteceu um Erro!', error.message);
+        this.loading = false;
       }
     );
   }

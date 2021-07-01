@@ -14,6 +14,7 @@ export class WelcomeComponent implements OnInit {
   novidades = [{ id: '', titulo: '' }];
   selected_novidade = { id: '', titulo: '', descricao: '' };
   p: number = 1;
+  public loading = false;
 
   // CARREGADOR
   animation = 'pulse';
@@ -63,12 +64,15 @@ export class WelcomeComponent implements OnInit {
   }
 
   getNovidades = () => {
+    this.loading = true;
     this.api.listar('novidades/').subscribe(
       (data) => {
         this.novidades = data;
+        this.loading = false;
       },
       (error) => {
         this.toastr.error('Aconteceu um Erro!', error.message);
+        this.loading = false;
       }
     );
   };
