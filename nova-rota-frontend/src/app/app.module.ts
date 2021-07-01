@@ -35,6 +35,7 @@ import { AuthInterceptor } from './http-interceptors/auth-interceptor';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { RodapeComponent } from './rodape/rodape.component';
 import { NovaEmpresaFilialComponent } from './nova-empresa-filial/nova-empresa-filial.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -67,6 +68,7 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     NovidadesDetailsComponent,
     RodapeComponent,
     NovaEmpresaFilialComponent,
+    SidebarComponent,
   ],
   imports: [
     NgxSkeletonLoaderModule.forRoot(),

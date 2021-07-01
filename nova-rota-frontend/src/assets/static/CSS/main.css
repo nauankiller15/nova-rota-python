@@ -10533,6 +10533,7 @@ button,
   > .header-btn-lg
   .widget-subheading {
   color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
 }
 
 .app-header.header-text-light
@@ -16150,6 +16151,8 @@ legend {
 .widget-content .widget-content-left .widget-heading {
   opacity: 0.8;
   font-weight: bold;
+  text-transform: capitalize;
+  letter-spacing: normal;
 }
 
 .widget-content .widget-content-left .widget-subheading {

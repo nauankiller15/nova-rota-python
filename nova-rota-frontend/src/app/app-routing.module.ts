@@ -31,6 +31,7 @@ import { LoginComponent } from './account/login/login.component';
 import { CreateAccountComponent } from './account/create-account/create-account.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NovidadesDetailsComponent } from './novidades-details/novidades-details.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 //
 
 const routes: Routes = [
@@ -91,6 +92,8 @@ const routes: Routes = [
     path: '',
     component: AuthenticationComponent,
     children: [
+      { path: 'sidebar', component: SidebarComponent },
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: CreateAccountComponent },
     ],

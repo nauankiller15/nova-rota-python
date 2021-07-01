@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './api.service';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscriber } from 'rxjs';
 
 declare var $: any;
 
@@ -79,15 +80,7 @@ export class AppComponent implements OnInit {
   titulo: string;
   p: number = 1;
   selected_id: any;
-  
-  constructor(
-    private api: ApiService,
-    private router: Router,
-    private toastr: ToastrService,
-  ) {
-    this.getTarefas();
-  }
-  
+
   ngOnInit() {
     // MENU PRINCIPAL ANIMAÇÕES
     $('[routerLink]').click(function () {
@@ -131,6 +124,14 @@ export class AppComponent implements OnInit {
 
   }
 
+  constructor(
+    private api: ApiService,
+    private router: Router,
+    private toastr: ToastrService,
+  ) {
+    this.getTarefas();
+
+  }
   message = null;
     
   showMessage() {
