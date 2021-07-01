@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     const token = localStorage.getItem('token');
     if (token) {
-      // this.router.navigate(['/'])
       window.location.href = '/';
     }
 
@@ -49,6 +48,7 @@ export class LoginComponent implements OnInit {
     try {
       const resp = await this.authService.autenticar(this.usuario);
       if (resp === true) {
+        window.location.href = '/';
         this.toastr.success('sucesso', 'Login efetuado');
         this.loading = false;
       }

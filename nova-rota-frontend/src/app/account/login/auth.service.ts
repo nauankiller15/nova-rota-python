@@ -23,11 +23,8 @@ export class AuthService {
     
     if (resp && resp['token']) {
       localStorage.setItem('token', resp['token']);
-      // this.router.navigate(['/'])      
-      window.location.href = '/'
       return true;
     }
-
     return false;
   }
 
@@ -40,7 +37,7 @@ export class AuthService {
         return true;
       }
     }
-    
+    localStorage.removeItem('token');
     return false;
   }
 
