@@ -122,7 +122,6 @@ export class NovoTitularComponent implements OnInit {
     this.api.inserir('titular/', this.titular).subscribe(
       (data) => {
         $('#confirmacaoTitular').fadeIn('100');
-        this.appComponent.titular.push(data);
       },
       (error) => {
         let mensagens = error.error;

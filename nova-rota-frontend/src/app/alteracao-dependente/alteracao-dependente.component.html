@@ -353,6 +353,18 @@
                 />
               </div>
 
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom01">Nome do Dependente</label>
+                <input
+                  [(ngModel)]="selected_dependente.nome_dependente"
+                  [ngModelOptions]="{ standalone: true }"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o nome do Beneficiário"
+                  required
+                />
+              </div>
+
               <div class="col-md-3 mb-3" style="display: none">
                 <label for="validationCustom01">Tipo</label>
                 <input
