@@ -217,7 +217,7 @@
               *ngFor="
                 let tarefa of tarefas
                   | orderBy: 'created_at':false
-                  | paginate: { id: 'tarefa', itemsPerPage: 9, currentPage: p }
+                  | paginate: { id: 'tarefa', itemsPerPage: 8, currentPage: p }
               "
               (click)="tarefaClicked(tarefa)"
             >
@@ -245,7 +245,11 @@
         <div class="fechar-button2">X</div>
       </a>
       <h2>
-        <input class="no-borda" type="text" [(ngModel)]="selected_tarefa.titulo" />
+        <input
+          class="no-borda"
+          type="text"
+          [(ngModel)]="selected_tarefa.titulo"
+        />
       </h2>
       <span>
         <textarea
@@ -261,7 +265,10 @@
         id="status_tarefa"
         name="status_tarefa"
         value="Feito"
-      /> <label style="margin-left: 5px;" for="status_tarefa">Completar Tarefa</label>
+      />
+      <label style="margin-left: 5px" for="status_tarefa"
+        >Completar Tarefa</label
+      >
       <!-- <select style="max-width: 80px" [(ngModel)]="selected_tarefa.status_tarefa">
         <option value="Fazendo">Fazendo</option>
         <option value="Feito">Feito</option>
@@ -276,8 +283,8 @@
         </button>
       </div>
     </div>
-    <div  id="over-text"></div>
-    
+    <div id="over-text"></div>
+
     <!-- INSERT AND DELETE -->
 
     <!--  -->
