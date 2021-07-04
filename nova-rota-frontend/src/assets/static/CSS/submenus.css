@@ -408,7 +408,7 @@
   transition: 0.4s;
   cursor: pointer;
   margin: 5px;
-  background-color: #fff;
+  background-color: transparent;
   font-size: 20px;
   float: right;
   border: none;
@@ -424,7 +424,7 @@
   font-size: 20px;
   border: none;
   outline: none;
-  background-color: #fff;
+  background-color: transparent;
   float: right;
 }
 
