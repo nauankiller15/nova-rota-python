@@ -36,7 +36,6 @@
   font-size: 24px;
 }
 
-
 /* TELA DE NOVIDADES */
 
 #novidadeAberta {
@@ -52,7 +51,7 @@
   align-items: center;
 }
 
-#novidadeAberta{
+#novidadeAberta {
   display: none;
 }
 
@@ -61,6 +60,13 @@
   width: 80%;
   margin-top: 29px;
   padding: 10px;
+}
+
+.titulo-novi {
+  border-bottom: 2px solid #e2e2e280;
+  border-radius: 5px;
+  line-height: 60px;
+  margin-bottom: 15px;
 }
 
 .box-novidade {

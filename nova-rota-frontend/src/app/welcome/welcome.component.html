@@ -127,23 +127,23 @@
                           animation="progress"
                         >
                         </ngx-skeleton-loader>
-                        <h2 *ngIf="contentLoaded">
-                          <i
-                            style="
-                              color: rgb(255, 255, 255);
-                              background-color: var(--cor-tema);
-                              padding: 11px;
-                              font-size: 23px;
-                              border-radius: 50%;
-                              position: absolute;
-                              top: 11px;
-                              left: 9px;
-                            "
-                            class="fas fa-bell"
-                          ></i>
+                        <i
+                          style="
+                            color: rgb(255, 255, 255);
+                            background-color: var(--cor-tema);
+                            padding: 11px;
+                            font-size: 23px;
+                            border-radius: 50%;
+                            position: absolute;
+                            top: 11px;
+                            left: 9px;
+                          "
+                          class="fas fa-bell"
+                        ></i>
+                        <h2 class="titulo-novi" *ngIf="contentLoaded">
                           {{ selected_novidade.titulo }}
                         </h2>
-                        <div style="width: 100%; height: 20px"></div>
+
                         <ngx-loading
                           [show]="loading"
                           [config]="{ backdropBorderRadius: '3px' }"
