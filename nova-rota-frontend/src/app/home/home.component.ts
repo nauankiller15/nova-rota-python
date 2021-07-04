@@ -98,7 +98,7 @@ export class HomeComponent implements OnInit {
   //
   titulo: string;
   p: number = 1;
-  selected_id: any;
+  selected_id: string;
   update_tarefa: any;
   public loading = false;
   
@@ -217,27 +217,26 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  // tarefaClicked = (tarefa: { id: string }) => {
-  //   $('.texto-overlay').fadeIn('200');
-  //   $('#over-text').fadeIn('200');
-  //   $('#consulta').fadeOut('200');
-  //   $('#titularesappear').fadeIn('200');
-  //   this.api.getTarefa(tarefa.id).subscribe(
-  //     (data) => {
-  //       this.selected_tarefa = data;
-  //       console.log(data);
-  //     },
-  //     (error) => {
-  //       this.toastr.error('Aconteceu um Erro!', error.message);
-  //     }
-  //   );
-  // };
-
-  tarefaClicked = (tarefa: { id: any }) => {
-    $('#over-text').fadeIn('100');
-    $('.texto-overlay').fadeIn('100');
-    this.router.navigate(['tarefas-detail', tarefa.id]);
+  tarefaClicked = (tarefa: { id: string }) => {
+    $('.texto-overlay').fadeIn('200');
+    $('#over-text').fadeIn('200');
+    $('#consulta').fadeOut('200');
+    $('#titularesappear').fadeIn('200');
+    this.api.getTarefas(tarefa.id).subscribe(
+      (data) => {
+        this.selected_tarefa = data;
+      },
+      (error) => {
+        this.toastr.error('Aconteceu um Erro!', error.message);
+      }
+    );
   };
+
+  // tarefaClicked = (tarefa: { id: any }) => {
+  //   $('#over-text').fadeIn('100');
+  //   $('.texto-overlay').fadeIn('100');
+  //   this.router.navigate(['tarefas-detail', tarefa.id]);
+  // };
 
   // ABRIR NOVA TAREFA
   novaTarefa() {
@@ -271,7 +270,7 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  update() {
+  updateTarefa() {
     this.api.atualizar('tarefas/', this.selected_tarefa).subscribe(
       (data) => {
         this.toastr.success('Atualizado com sucesso!');
@@ -284,7 +283,8 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-  delete() {
+
+  deleteTarefa() {
     this.api.apagar('tarefas/', this.selected_id).subscribe(
       (data) => {
         this.toastr.success('Deletado com sucesso!');

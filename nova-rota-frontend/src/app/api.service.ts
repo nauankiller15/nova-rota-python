@@ -40,4 +40,11 @@ export class ApiService {
       headers: this.httpHeaders,
     });
   }
+
+  getTarefas(id: string): Observable<any> {
+    return this.http.get(this.baseUrl + 'tarefas/' + id + '/', {
+      headers: this.httpHeaders,
+    });
+  }
+
 }

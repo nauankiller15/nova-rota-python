@@ -240,6 +240,44 @@
       </div>
     </div>
     <div id="tarefas"></div>
+    <div class="texto-overlay">
+      <a id="fechar-bt3">
+        <div class="fechar-button2">X</div>
+      </a>
+      <h2>
+        <input class="no-borda" type="text" [(ngModel)]="selected_tarefa.titulo" />
+      </h2>
+      <span>
+        <textarea
+          class="no-borda2"
+          style="min-height: 162px"
+          type="text"
+          [(ngModel)]="selected_tarefa.descricao"
+        ></textarea>
+      </span>
+      <input
+        [(ngModel)]="selected_tarefa.status_tarefa"
+        type="checkbox"
+        id="status_tarefa"
+        name="status_tarefa"
+        value="Feito"
+      /> <label style="margin-left: 5px;" for="status_tarefa">Completar Tarefa</label>
+      <!-- <select style="max-width: 80px" [(ngModel)]="selected_tarefa.status_tarefa">
+        <option value="Fazendo">Fazendo</option>
+        <option value="Feito">Feito</option>
+      </select> -->
+      <br />
+      <div class="posit-bottom">
+        <button class="edit-edit" (click)="updateTarefa()">
+          <i class="fas fa-edit"></i> Atualizar
+        </button>
+        <button class="edit-trash" (click)="deleteTarefa()">
+          <i class="fas fa-trash"></i> Deletar
+        </button>
+      </div>
+    </div>
+    <div  id="over-text"></div>
+    
     <!-- INSERT AND DELETE -->
 
     <!--  -->

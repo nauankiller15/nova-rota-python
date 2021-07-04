@@ -77,10 +77,14 @@
   z-index: 1017;
 }
 
+#over-text {
+  display: none;
+}
+
 .texto-overlay {
   border-radius: 15px;
   background: var(--branco);
-  width: 81vh;
+  width: 100vh;
   min-height: 28vh;
   position: fixed;
   padding: 20px;
@@ -94,6 +98,10 @@
   z-index: 1018;
 }
 
+.texto-overlay {
+  display: none;
+}
+
 .texto-overlay h2 {
   margin-bottom: 9px;
   text-transform: uppercase;
@@ -105,6 +113,14 @@
 
 .no-borda {
   width: 90%;
+  outline: none;
+  border: none;
+  padding: 0;
+  margin-top: -20px;
+}
+
+.no-borda4 {
+  width: 100%;
   outline: none;
   border: none;
   padding: 0;
@@ -163,14 +179,14 @@
 .nova-tarefa {
   border-radius: 15px;
   background: var(--branco);
-  width: 110vh;
+  width: 100vh;
   min-height: 28vh;
   position: fixed;
   padding: 20px;
   border: 2px solid #00000027;
   margin: 9vh auto;
   position: fixed;
-  top: 15vh;
+  top: 20vh;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
@@ -314,7 +330,7 @@
   border-bottom: 1px solid #dadada;
 }
 
-.loadit{
+.loadit {
   animation: fadeIn 0.5s ease-in-out;
 }
 
@@ -368,7 +384,6 @@
   margin-bottom: 5px;
 }
 
-
 .task-item > li:nth-of-type(odd) {
   background: rgb(250, 248, 248);
 }
@@ -379,7 +394,7 @@
   background: var(--cor-tema);
 }
 
-.task-item li:focus{
+.task-item li:focus {
   background: var(--cor-tema);
 }
 .posit-bottom {
@@ -399,7 +414,6 @@
   border: none;
   outline: none;
   margin-right: 5px;
-  float: right;
 }
 
 .edit-edit {
