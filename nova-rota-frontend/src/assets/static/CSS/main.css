@@ -10440,6 +10440,11 @@ button,
   background-size: 48%;
   background: url(https://1.bp.blogspot.com/-HEKOPUUsJR8/YGZYzdXaxlI/AAAAAAAAG9s/_tom1G6Zx1oIo53zLzrTJ5ngoc_zMH39QCLcBGAsYHQ/s0/Logo%2BNova%2BRota%2BSeguros.png)
     no-repeat;
+    cursor: pointer;
+    transition: 0.4s;
+}
+.logo-src:hover{
+  transform: rotate(-6deg);
 }
 
 .app-header__menu,
