@@ -211,7 +211,7 @@
             animation="progress"
           >
           </ngx-skeleton-loader>
-          <span class="task-item" *ngIf="contentLoaded"
+          <span class="task-item loadit" *ngIf="contentLoaded"
             ><li
               [ngClass]="tarefa.status_tarefa ? 'tarefa-completed' : ''"
               *ngFor="

@@ -142,6 +142,40 @@ export class AlteracaoEmpresaComponent implements OnInit {
     $('#fecharAnexoEmp').click(function () {
       $('#vinc-anexo-emp').fadeOut('100');
     });
+
+    // TELA DE VIGÊNCIA
+    $('#dataVigencia').on('blur', function () {
+      $('#vinc-vigenciaAlt').fadeIn('100');
+    });
+    $('#dataVigencia').on('focus', function () {
+      $(this).siblings('#vinc-vigenciaAlt').fadeIn('100');
+    });
+    $('#vinc-vigenciaAlt').hide();
+    //
+    $('#fecharVigencia').click(function () {
+      $('#vinc-vigenciaAlt').fadeOut('100');
+      $('#vigenciaTela').fadeIn('100');
+    });
+
+    $('#abrirVigenciaAlt').click(function () {
+      $('#vinc-vigenciaAlt').fadeIn('100');
+    });
+
+    // SLIDE LEFT AND RIGHT AJUSTES
+    $('#sinistralidadeBtn').click(function () {
+      $('#sinisTab').slideDown('100');
+      $('#reajusTab').slideUp('100');
+    });
+    $('#reajusteBtn').click(function () {
+      $('#reajusTab').slideDown('100');
+      $('#sinisTab').slideUp('100');
+    });
+
+    // BOTÕES
+    $('.menuItems li').on('click', function () {
+      $(this).addClass('active');
+      $(this).siblings().removeClass('active');
+    });
   }
 
   searchCNPJ() {
