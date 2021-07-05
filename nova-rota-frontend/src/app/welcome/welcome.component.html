@@ -102,6 +102,7 @@
                         ></i>
                         {{ novidade.titulo }}
                       </li>
+                      <div *ngIf="novidades.length === 0">Nada encontrado</div>
                     </div>
                     <pagination-controls
                       id="novidades"

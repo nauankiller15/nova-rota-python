@@ -153,6 +153,12 @@
                   class="fas fa-external-link-alt"
                 ></i>
               </li>
+              <h4
+              style="margin-top: 20px;"
+              *ngIf="empresas.length === 0"
+            >
+              Nada encontrado
+            </h4>
             </div>
             <pagination-controls
               id="altEmpresas"

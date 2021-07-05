@@ -220,8 +220,6 @@ export class HomeComponent implements OnInit {
   tarefaClicked = (tarefa: { id: string }) => {
     $('.texto-overlay').fadeIn('200');
     $('#over-text').fadeIn('200');
-    $('#consulta').fadeOut('200');
-    $('#titularesappear').fadeIn('200');
     this.api.getTarefas(tarefa.id).subscribe(
       (data) => {
         this.selected_tarefa = data;

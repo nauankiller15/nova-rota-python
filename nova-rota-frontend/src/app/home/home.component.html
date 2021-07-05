@@ -224,6 +224,12 @@
               <i class="fas fa-edit" aria-hidden="true"></i>
               {{ tarefa.titulo }}
             </li>
+            <h4
+              style="margin-top: 20px; margin-left: 5px;"
+              *ngIf="tarefas.length === 0"
+            >
+              Nada encontrado
+            </h4>
           </span>
           <pagination-controls
             id="tarefa"
