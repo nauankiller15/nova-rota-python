@@ -35,7 +35,7 @@
                   class="btn btn-white btn-outline-white"
                   >Criar um acesso agora</a
                 > -->
-            </div>
+              </div>
             </div>
             <div class="login-wrap p-4 p-lg-5">
               <div style="margin-top: 3.5em"></div>
@@ -49,6 +49,10 @@
                 <div class="form-group mb-3">
                   <label class="label" for="username">Usuário</label>
                   <input
+                    #username="ngModel"
+                    [class.is-invalid]="username.invalid && username.touched"
+                    [class.is-valid]="username.valid && username.touched"
+                    required
                     [(ngModel)]="usuario.username"
                     name="username"
                     type="text"
@@ -60,6 +64,10 @@
                 <div class="form-group mb-3">
                   <label class="label" for="password">Senha</label>
                   <input
+                    #password="ngModel"
+                    [class.is-invalid]="password.invalid && password.touched"
+                    [class.is-valid]="password.valid && password.touched"
+                    required
                     [(ngModel)]="usuario.password"
                     name="password"
                     type="password"
@@ -92,9 +100,7 @@
                     </div>
                   </div>
                 </div>
-                <div
-                  class="politicaPst"
-                >
+                <div class="politicaPst">
                   <a class="btn btn-green btn-outline-green" id="politica-abrir"
                     >Politica de Privacidade</a
                   >
