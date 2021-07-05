@@ -213,6 +213,7 @@
           </ngx-skeleton-loader>
           <span class="task-item loadit" *ngIf="contentLoaded"
             ><li
+              class="loadit"
               [ngClass]="tarefa.status_tarefa ? 'tarefa-completed' : ''"
               *ngFor="
                 let tarefa of tarefas
@@ -225,7 +226,8 @@
               {{ tarefa.titulo }}
             </li>
             <h4
-              style="margin-top: 20px; margin-left: 5px;"
+              class="loadit"
+              style="margin-top: 20px; margin-left: 5px"
               *ngIf="tarefas.length === 0"
             >
               Nada encontrado

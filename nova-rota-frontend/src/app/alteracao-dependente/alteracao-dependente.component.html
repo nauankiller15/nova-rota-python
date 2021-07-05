@@ -122,7 +122,7 @@
             <div *ngIf="contentLoaded">
               <div class="titulares">
                 Dependentes Encontrados:
-                <li
+                <li class="loadit"
                   *ngFor="
                     let dependente of dependentes
                       | orderBy: 'created_at':false
@@ -155,7 +155,7 @@
                     class="fas fa-external-link-alt"
                   ></i>
                 </li>
-                <h4
+                <h4 class="loadit"
                 style="margin-top: 20px;"
                 *ngIf="dependentes.length === 0"
               >

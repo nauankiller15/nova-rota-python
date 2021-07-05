@@ -124,7 +124,7 @@
             <div style="width: 100%"></div>
             <div *ngIf="contentLoaded" class="titulares fadeIn">
               Empresas Encontradas:
-              <li
+              <li class="loadit"
                 *ngFor="
                   let empresa of empresas
                     | orderBy: 'created_at':false
@@ -153,7 +153,7 @@
                   class="fas fa-external-link-alt"
                 ></i>
               </li>
-              <h4
+              <h4 class="loadit"
               style="margin-top: 20px;"
               *ngIf="empresas.length === 0"
             >

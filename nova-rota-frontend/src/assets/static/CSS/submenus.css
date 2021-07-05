@@ -370,10 +370,10 @@
   }
 }
 
+
 .task-item li {
   list-style: none;
   font-size: 17px;
-  height: 48px;
   padding-top: 15px;
   border-bottom: 1px #e2e2e2 solid;
   transition: 0.5s;
@@ -385,12 +385,12 @@
 }
 
 .task-item > li:nth-of-type(odd) {
-  background: rgb(250, 248, 248);
+  background: #eff1f6 ;
 }
 
 .task-item li:hover {
   color: #fff;
-  transform: translate(0px, -5px);
+  transform: translate(0px, -3px);
   background: var(--cor-tema);
 }
 

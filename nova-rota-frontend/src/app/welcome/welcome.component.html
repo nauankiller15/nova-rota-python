@@ -81,8 +81,12 @@
                       animation="progress"
                     >
                     </ngx-skeleton-loader>
-                    <div *ngIf="contentLoaded" class="task-item loadit">
-                      <li
+                    <div
+                      *ngIf="contentLoaded"
+                      for="datanovidade"
+                      class="novidade-item loadit"
+                    >
+                      <li class="loadit"
                         *ngFor="
                           let novidade of novidades
                             | orderBy: 'created_at':false
@@ -101,8 +105,14 @@
                           class="fas fa-angle-double-right"
                         ></i>
                         {{ novidade.titulo }}
+                        <div id="datanovidade" class="data-novTit">
+                          <i class="far fa-calendar"></i>
+                          {{ novidade.data }}
+                        </div>
                       </li>
-                      <div *ngIf="novidades.length === 0">Nada encontrado</div>
+                      <h4 class="loadit" *ngIf="novidades.length === 0">
+                        Nada encontrado
+                      </h4>
                     </div>
                     <pagination-controls
                       id="novidades"
@@ -144,6 +154,19 @@
                         <h2 class="titulo-novi" *ngIf="contentLoaded">
                           {{ selected_novidade.titulo }}
                         </h2>
+                        <div
+                          style="
+                            background-color: #e2e2e280;
+                            height: 2px;
+                            width: 100%;
+                            border-radius: 5px;
+                            margin-bottom: 12px;
+                          "
+                        ></div>
+                        <div class="data-novAbrt">
+                          <i class="far fa-calendar"></i>
+                          {{ selected_novidade.data }}
+                        </div>
 
                         <ngx-loading
                           [show]="loading"
