@@ -25,8 +25,6 @@ export class NovaEmpresaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.empresa);
-    console.log(this.contratoSeguradora);
     $(document).ready(() => {
       $('.cep').mask('00000-000');
       $('.celular').mask('(00) 00000-0000');
@@ -37,8 +35,12 @@ export class NovaEmpresaComponent implements OnInit {
     $('#filial').on('change', function () {
       if ($(this).is(":checked") == true) {
         $('#divFilial').fadeIn('100');
+        $('#CNPJ_empresa_principal').prop('required', 'required');
+        $('#razao_social_principal').prop('required', 'required');
       } else {
         $('#divFilial').hide();
+        $('#CNPJ_empresa_principal').prop('required', '');
+        $('#razao_social_principal').prop('required', '');
       }
     });
 

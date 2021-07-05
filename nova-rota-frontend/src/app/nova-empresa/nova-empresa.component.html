@@ -42,9 +42,8 @@
                   [class.is-invalid]="CNPJ_empresa_principal.invalid && CNPJ_empresa_principal.touched"
                   [class.is-valid]="CNPJ_empresa_principal.valid && CNPJ_empresa_principal.touched" 
                   pattern="^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$"
-                  name="CNPJ_empresa_principal" type="text" class="form-control cnpj"
-                  placeholder="Número de CNPJ" 
-                  required 
+                  id="CNPJ_empresa_principal" name="CNPJ_empresa_principal" type="text" class="form-control cnpj"
+                  placeholder="Número de CNPJ"  
                 >
                 <div *ngIf="CNPJ_empresa_principal.errors && (CNPJ_empresa_principal.valid || CNPJ_empresa_principal.touched)">
                   <small class="text-danger" *ngIf="CNPJ_empresa_principal.errors.required">CNPJ Necessário!</small>
@@ -59,9 +58,8 @@
                   [(ngModel)]="empresa.razao_social_principal"
                   [class.is-invalid]="razao_social_principal.invalid && razao_social_principal.touched" 
                   [class.is-valid]="razao_social_principal.valid && razao_social_principal.touched" 
-                  name="razao_social_principal" type="text" class="form-control" 
-                  placeholder="Digite aqui a Razão Social"
-                  required 
+                  id="razao_social_principal" name="razao_social_principal" type="text" class="form-control" 
+                  placeholder="Digite aqui a Razão Social" 
                 />
                 <small class="text-danger" [class.d-none]="razao_social_principal.valid || razao_social_principal.untouched">
                   Razão SocialNecessária!
@@ -434,10 +432,10 @@
                     <div class="col-md-5 mb-5">
                       <label for="validationCustom01">Sinistralidade</label>
                       <input 
-                        #sinistralidade="ngModel" 
+                        #reajuste_sinistralidade="ngModel" 
                         [(ngModel)]="reajuste.sinistralidade" name="sinistralidade" type="text"
-                        [class.is-invalid]="sinistralidade.invalid && sinistralidade.touched" 
-                        [class.is-valid]="sinistralidade.valid && sinistralidade.touched"
+                        [class.is-invalid]="reajuste_sinistralidade.invalid && reajuste_sinistralidade.touched" 
+                        [class.is-valid]="reajuste_sinistralidade.valid && reajuste_sinistralidade.touched"
                         [disabled]="!enviarReajuste" 
                         class="form-control" 
                         style="
@@ -541,10 +539,10 @@
                     <div class="col-md-5 mb-5">
                       <label for="validationCustom01">Sinistralidade</label>
                       <input 
-                        #sinistralidade="ngModel" 
+                        #sinistralidade_sinistralidade="ngModel" 
                         [(ngModel)]="sinistralidade.sinistralidade" 
-                        [class.is-invalid]="sinistralidade.invalid && sinistralidade.touched"
-                        [class.is-valid]="sinistralidade.valid && sinistralidade.touched"
+                        [class.is-invalid]="sinistralidade_sinistralidade.invalid && sinistralidade_sinistralidade.touched"
+                        [class.is-valid]="sinistralidade_sinistralidade.valid && sinistralidade_sinistralidade.touched"
                         [disabled]="!enviarSinistralidade"
                         name="sinistralidade" type="text" class="form-control" 
                         style="

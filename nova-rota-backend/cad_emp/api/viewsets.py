@@ -29,6 +29,6 @@ class ReajusteViewSet(ModelViewSet):
     serializer_class = ReajusteSerializer
 
 
-class SinistroViewSet(ModelViewSet):
+class SinistralidadeViewSet(ModelViewSet):
     queryset = Sinistralidade.objects.all()
     serializer_class = SinistralidadeSerializer
