@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from cad_bp.models import Parentesco
 from django.http import Http404
 from rest_framework.response import Response
@@ -11,16 +12,6 @@ class TitularViewSet(ModelViewSet):
     queryset = Titular.objects.all()
     serializer_class = TitularSerializer
 
-    def list(self, request, *args, **kwargs):
-        queryset = Titular.objects.all()
-        serializer = TitularSerializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def update(self, request, *args, **kwargs):
-        print(request)
-        print(args)
-        print(kwargs)
-        return super().update(request, *args, **kwargs)
 
 class TitularParentescos(ViewSet):
 
@@ -33,10 +24,10 @@ class TitularParentescos(ViewSet):
         try:
             return Titular.objects.get(pk=pk)
         except Titular.DoesNotExist:
-            raise Http404
+            raise ValidationError({'Titular': 'Titular não encontrado'})
 
     def retrieve(self, request, pk=None):
         titular = self.get_titular(pk)
         queryset = titular.parentesco_set.all()
         serializer = ParentescoSerializer(queryset, many=True)
-        return Response(serializer.data)
+        return Response(request, serializer.data)

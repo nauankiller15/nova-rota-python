@@ -1,3 +1,5 @@
+from rest_framework.exceptions import ValidationError
+from cad_emp.models import Empresa
 from django.db import models
 from localflavor.br.models import BRCPFField, BRStateField, BRPostalCodeField
 from cad_at.models import Titular
@@ -64,6 +66,12 @@ class Parentesco (models.Model):
     criado_em = models.DateTimeField("Criado em", auto_now_add=True)
     atualizado_em = models.DateTimeField("Atualizado em", auto_now=True)
 
+    def save(self, *args, **kwargs):
+        empresa = Empresa.objects.filter(cod_empresa=self.cod_empresa).last()
+        if empresa == None:
+            raise ValidationError({'Código da Empresa': 'Nenhuma empresa cadastrada com esse código'})
+
+        return super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.nome_dependente} - CPF: {self.CPF}'

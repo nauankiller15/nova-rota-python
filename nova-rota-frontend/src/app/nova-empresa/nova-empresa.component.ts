@@ -98,14 +98,18 @@ export class NovaEmpresaComponent implements OnInit {
 
     // OPÇÕES
 
-    $('input, select, textarea').keypress(function (event: {
-      which: number;
-      preventDefault: () => void;
-    }) {
-      if (event.which == 13) {
-        event.preventDefault();
+    $('input, select, textarea').keypress(
+      function (
+        event: {
+          which: number;
+          preventDefault: () => void;
+        }
+      ) {
+        if (event.which == 13) {
+          event.preventDefault();
+        }
       }
-    });
+    );
 
     $('#tipo_contrato').on('change', function () {
       if ('Operadora' === $(this).val()) {
