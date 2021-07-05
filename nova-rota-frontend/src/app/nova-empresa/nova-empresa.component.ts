@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { AppComponent } from '../app.component';
 import { ApiService } from '../api.service';
 import { ContratoOperadora, ContratoSeguradora, Empresa, Reajuste, Sinistralidade } from './models';
 
@@ -17,12 +15,13 @@ export class NovaEmpresaComponent implements OnInit {
   contratoSeguradora: ContratoSeguradora = new ContratoSeguradora;
   contratoOperadora: ContratoOperadora = new ContratoOperadora;
   sinistralidade: Sinistralidade = new Sinistralidade;
+  enviarSinistralidade = false;
   reajuste: Reajuste = new Reajuste;
+  enviarReajuste = false;
 
   constructor(
     private toastr: ToastrService,
     private api: ApiService,
-    private appComponent: AppComponent,
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +31,15 @@ export class NovaEmpresaComponent implements OnInit {
       $('.cep').mask('00000-000');
       $('.celular').mask('(00) 00000-0000');
       $('.cnpj').mask('00.000.000/0000-00', { reverse: false });
+    });
+
+    // DADOS DA EMPRESA PRINCIPAL
+    $('#filial').on('change', function () {
+      if ($(this).is(":checked") == true) {
+        $('#divFilial').fadeIn('100');
+      } else {
+        $('#divFilial').hide();
+      }
     });
 
     // TELA DE ANEXO DO DOCUMENTO DA EMPRESA
@@ -114,23 +122,48 @@ export class NovaEmpresaComponent implements OnInit {
         $('#operadora').hide();
         $('#seguradora').hide();
       }
-      //
     });
   }
 
-  // selectedFile: File = null;
-  // onFileSelected(event: any) {
-  //   this.selectedFile = <File>event.target.files[0];
-  // }
 
   newEmpresa() {
-    console.log(this.empresa);
-    console.log(this.contratoOperadora);
-    console.log(this.contratoSeguradora);
-    console.log(this.sinistralidade);
-    console.log(this.reajuste);
+    
+    let urlEmpresa = 'empresa/';
+    if (this.empresa.is_filial == true) {
+      urlEmpresa = 'filial/'
+      console.log(this.empresa);
+    }
 
-    this.api.inserir('empresa/', this.empresa).subscribe(
+    this.api.inserir(urlEmpresa, this.empresa).subscribe(
+      (data) => {
+        this.empresa.id = data.id;
+        this.newContrato();
+        this.newReajuste();
+        this.newSinistralidade();
+      },
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
+      }
+    );  
+  }
+
+  newContrato() {
+    let urlTipo: string;
+    let dados: any;
+    if (this.empresa.tipo_contrato == 'Operadora') {
+      urlTipo = 'contrato-operadora/';
+      dados = this.contratoOperadora;
+    } else {
+      urlTipo = 'contrato-seguradora/'
+      dados = this.contratoSeguradora;
+    }
+
+    dados.empresa = this.empresa.id
+    console.log(dados)
+    this.api.inserir(urlTipo, dados).subscribe(
       (data) => {
         this.toastr.success('Empresa incluída com sucesso!');
       },
@@ -141,23 +174,35 @@ export class NovaEmpresaComponent implements OnInit {
         }
       }
     );
+  }
 
-    if (this.empresa.tipo_contrato == 'Operadora') {
-      this.api.inserir('contrato-operadora/', this.contratoOperadora).subscribe(
+  newSinistralidade() {
+
+    if (this.enviarSinistralidade == true) {
+      this.sinistralidade.empresa = this.empresa.id;
+      console.log(this.sinistralidade);
+      this.api.inserir('sinistralidade/', this.sinistralidade).subscribe(
         (data) => {
-          this.toastr.success('Empresa incluída com sucesso!');
+          this.toastr.success('Sinistralidade incluída com sucesso!');
         },
         (error) => {
           let mensagens = error.error;
-          for (let campo in mensagens) {
-            this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-          }
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
         }
+      }
       );
-    } else {
-      this.api.inserir('contrato-operadora/', this.contratoSeguradora).subscribe(
+    }  
+  }
+
+  newReajuste() {
+   
+    if (this.enviarReajuste == true) {
+
+      this.reajuste.empresa = this.empresa.id;
+      this.api.inserir('reajuste/', this.reajuste).subscribe(
         (data) => {
-          this.toastr.success('Empresa incluída com sucesso!');
+          this.toastr.success('Reajuste incluído com sucesso!');
         },
         (error) => {
           let mensagens = error.error;

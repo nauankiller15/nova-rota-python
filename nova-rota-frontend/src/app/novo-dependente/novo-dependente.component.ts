@@ -12,8 +12,8 @@ declare var $: any;
   styleUrls: ['./novo-dependente.component.css'],
 })
 export class NovoDependenteComponent implements OnInit {
-  titulares: Array<Titular>;
-  busca: Array<Titular>;
+  titulares: Titular[];
+  busca: Titular[];
   dependente: Dependente = new Dependente;
   p: number = 1;
 

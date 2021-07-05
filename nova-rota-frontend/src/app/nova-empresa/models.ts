@@ -13,6 +13,10 @@ export class Empresa {
     cidade: string;
     estado: string;
     observacoes: string;
+    is_filial:boolean;
+    // campos de filial
+    CNPJ_empresa_principal: string;
+    razao_social_principal: string;
 }
 
 export class ContratoOperadora {
@@ -31,7 +35,7 @@ export class ContratoSeguradora {
 
 export class Reajuste{
     empresa: number;
-    ano: number;
+    ano_vigencia: number;
     sinistralidade: number;
     tecnico: number;
     negociado: number;
@@ -40,8 +44,5 @@ export class Reajuste{
 export class Sinistralidade {
     empresa: number;
     ano: number;
-    tipo: string;
-    sinistralidade: number;
-    tecnico: number;
-    negociado: number;
+    sinistralidade: string;
 }

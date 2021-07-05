@@ -27,7 +27,7 @@ router.register(r'filial', FilialViewSet)
 router.register(r'contrato-operadora', ContratoOperadoraViewSet)
 router.register(r'contrato-seguradora', ContratoSeguradoraViewSet)
 router.register(r'reajuste', ReajusteViewSet)
-router.register(r'sinistro', SinistroViewSet)
+router.register(r'sinistralidade', SinistroViewSet)
 router.register(r'novidades', NovidadesViewSet)
 
 urlpatterns = [

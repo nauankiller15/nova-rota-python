@@ -32,7 +32,7 @@ class Empresa (models.Model):
     celular = models.CharField("Numero do Celular", max_length=100, null=True)
     cidade = models.CharField("Cidade", max_length=150, blank=False, null=False)
     estado = BRStateField("Estado UF", max_length=150, blank=False, null=False)
-
+    is_filial = models.BooleanField()
     status = models.CharField("Status", max_length=25,
                               default="OK", editable=False)
     observacoes = models.TextField("Obs.", blank=True, null=True)
@@ -43,12 +43,17 @@ class Empresa (models.Model):
         return f'{self.razao_social} - CNPJ: {self.CNPJ}'
 
 class Filial(Empresa):
-    empresa_principal = models.ForeignKey(Empresa, related_name='principal', on_delete=models.CASCADE)
+    CNPJ_empresa_principal = BRCNPJField(max_length=14)
+    razao_social_principal = models.CharField(max_length=255)
+
 
 class Reajuste(models.Model):
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     ano_vigencia = models.PositiveIntegerField()
-    reajuste = models.CharField( max_length=100)
+    sinistralidade = models.CharField( max_length=100)
+    tecnico = models.DecimalField(max_digits=3, decimal_places=2)
+    negociado = models.DecimalField(max_digits=3, decimal_places=2)
+
 
 class Sinistralidade(models.Model):
     tipo_choice = (
@@ -58,9 +63,7 @@ class Sinistralidade(models.Model):
     
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     ano = models.PositiveIntegerField(blank=True)
-    sinistralidade = models.DecimalField(max_digits=3, decimal_places=2)
-    tecnico = models.DecimalField(max_digits=3, decimal_places=2)
-    negociado = models.DecimalField(max_digits=3, decimal_places=2)
+    sinistralidade = models.CharField(max_length=255)
 
 
 class ContratoOperadora(models.Model):
