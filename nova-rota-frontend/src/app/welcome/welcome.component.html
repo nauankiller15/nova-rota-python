@@ -81,8 +81,12 @@
                       animation="progress"
                     >
                     </ngx-skeleton-loader>
-                    <div *ngIf="contentLoaded" class="task-item item">
-                      <li
+                    <div
+                      *ngIf="contentLoaded"
+                      for="datanovidade"
+                      class="novidade-item loadit"
+                    >
+                      <li class="loadit"
                         *ngFor="
                           let novidade of novidades
                             | orderBy: 'created_at':false
@@ -101,7 +105,14 @@
                           class="fas fa-angle-double-right"
                         ></i>
                         {{ novidade.titulo }}
+                        <div id="datanovidade" class="data-novTit">
+                          <i class="far fa-calendar"></i>
+                          {{ novidade.data }}
+                        </div>
                       </li>
+                      <h4 class="loadit" *ngIf="novidades.length === 0">
+                        Nada encontrado
+                      </h4>
                     </div>
                     <pagination-controls
                       id="novidades"
@@ -127,23 +138,36 @@
                           animation="progress"
                         >
                         </ngx-skeleton-loader>
-                        <h2 *ngIf="contentLoaded">
-                          <i
-                            style="
-                              color: rgb(255, 255, 255);
-                              background-color: var(--cor-tema);
-                              padding: 11px;
-                              font-size: 23px;
-                              border-radius: 50%;
-                              position: absolute;
-                              top: 11px;
-                              left: 9px;
-                            "
-                            class="fas fa-bell"
-                          ></i>
+                        <i
+                          style="
+                            color: rgb(255, 255, 255);
+                            background-color: var(--cor-tema);
+                            padding: 11px;
+                            font-size: 23px;
+                            border-radius: 50%;
+                            position: absolute;
+                            top: 11px;
+                            left: 9px;
+                          "
+                          class="fas fa-bell"
+                        ></i>
+                        <h2 class="titulo-novi" *ngIf="contentLoaded">
                           {{ selected_novidade.titulo }}
                         </h2>
-                        <div style="width: 100%; height: 20px"></div>
+                        <div
+                          style="
+                            background-color: #e2e2e280;
+                            height: 2px;
+                            width: 100%;
+                            border-radius: 5px;
+                            margin-bottom: 12px;
+                          "
+                        ></div>
+                        <div class="data-novAbrt">
+                          <i class="far fa-calendar"></i>
+                          {{ selected_novidade.data }}
+                        </div>
+
                         <ngx-loading
                           [show]="loading"
                           [config]="{ backdropBorderRadius: '3px' }"

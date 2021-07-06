@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
-    'principal',
     'cad_bp',
     'cad_at',
     'cad_emp',
@@ -146,10 +145,27 @@ STATIC_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+ALLOWED_HOSTS = ['192.168.10.21', '192.168.10.21:4200' '192.168.10.21:8000', '192.168.10.21:8000/login', 'localhost', '127.0.0.1']
+
 CORS_ALLOWED_ORIGINS = [
+    "http://192.168.10.21:8000",
+    "http://192.168.10.21:8000",
+    "http://192.168.10.21",
+    "http://192.168.10.21:4200",
     "http://localhost:4200",
     "http://127.0.0.1:4200",
 ]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
+CORS_URLS_REGEX = r'^/api/.*$'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (

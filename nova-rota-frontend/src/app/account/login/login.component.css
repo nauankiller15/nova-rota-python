@@ -10721,21 +10721,117 @@ h5,
 .login-wrap {
   width: 57%;
 }
-@media (max-width: 991.98px) {
+
+.politicaPst {
+  position: absolute;
+  bottom: 25px;
+  width: 90%;
+  text-align: center;
+}
+
+/* TELA DE POLITICA DE PRIVACIDADE */
+
+#politica {
+  z-index: 900;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0000005e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#politica {
+  display: none;
+}
+
+.text-info-box {
+  margin: auto;
+  width: 80%;
+  margin-top: 29px;
+  padding: 10px;
+}
+
+@keyframes subir {
+  from {
+    transform: translateX(-1200px);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 0;
+  }
+}
+
+.subir {
+  animation: subir 1s;
+}
+
+.box-tela-privacidade {
+  background: #fff;
+  border-top: 3px solid var(--cor-tema);
+  border-radius: 15px;
+  max-width: 125vh;
+  width: 110vh;
+  min-height: 70vh;
+  margin: 10vh auto;
+  z-index: 997;
+  position: fixed;
+  top: 40vh;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  padding: 0px 0px 30px 0px;
+}
+
+.box-tela-privacidade {
+  display: none;
+}
+
+.text-privacidade {
+  overflow-y: scroll;
+  height: 90vh;
+  padding: 15px 33px 6px 33px;
+}
+
+.box-text {
+  display: none;
+}
+
+@media (max-width: 1100.98px) {
+  .box-tela-privacidade {
+    width: 95%;
+  }
+  .ftco-section {
+    padding: 2em 0;
+  }
   .text-wrap,
   .login-wrap {
     width: 100%;
+    background-color: var(--cor-tema);
+  }
+  .bg-gradient {
+    display: none;
+  }
+  .politicaPst {
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    margin-top: 40px;
   }
 }
 
 .text-wrap {
-  
-  background: url(https://1.bp.blogspot.com/-37lNr8KmrfY/YNdrHWH1X0I/AAAAAAAAHQM/Ue3QmMiikSUMqmXmBQ8UIkh6Yu7KbhlIgCLcBGAsYHQ/s0/shield.png);
-  background-color: #007124;
   color: #fff;
-  background-size: 87%;
+  background-image: url(https://1.bp.blogspot.com/-37lNr8KmrfY/YNdrHWH1X0I/AAAAAAAAHQM/Ue3QmMiikSUMqmXmBQ8UIkh6Yu7KbhlIgCLcBGAsYHQ/s0/shield.png);
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: -14vh 30vh;
+  z-index: 99;
 }
 
 .text-wrap .text h2 {
@@ -10743,10 +10839,21 @@ h5,
   color: #fff;
 }
 
+.bg-gradient {
+  background: linear-gradient(0deg, #093516 0%, #02882d 100%);
+  width: 60vh;
+  height: 70vh;
+  position: absolute;
+  right: 15px;
+  z-index: 1;
+}
+
 .login-wrap {
   position: relative;
   background: #fff;
+  z-index: 99;
 }
+
 .login-wrap h3 {
   font-weight: 300;
 }
@@ -10983,75 +11090,4 @@ h5,
   border: 1px solid transparent;
   background: #007124;
   color: #fff;
-}
-
-/* Criar conta */
-
-/* TELA DE VINCULAR TITULAR */
-
-#politica {
-  z-index: 900;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #0000005e;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#politica {
-  display: none;
-}
-
-.text-info-box {
-  margin: auto;
-  width: 80%;
-  margin-top: 29px;
-  padding: 10px;
-}
-
-@keyframes subir {
-  from {
-    transform: translateX(-1200px);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 0;
-  }
-}
-
-.subir {
-  animation: subir 1s;
-}
-
-.box-tela-privacidade {
-  background: #fff;
-  border-top: 3px solid var(--cor-tema);
-  border-radius: 15px;
-  max-width: 125vh;
-  width: 110vh;
-  min-height: 70vh;
-  margin: 10vh auto;
-  z-index: 997;
-  position: fixed;
-  top: 40vh;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-  overflow-y: scroll;
-  height: 90vh;
-  z-index: 999;
-  padding: 0px 0px 30px 0px;
-}
-
-.box-tela-privacidade {
-  display: none;
-}
-
-.box-text {
-  display: none;
 }

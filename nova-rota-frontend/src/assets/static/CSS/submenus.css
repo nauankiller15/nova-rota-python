@@ -40,7 +40,7 @@
   background: var(--branco);
   max-width: 125vh;
   width: 110vh;
-  min-height: 70vh;
+  min-height: 80vh;
   margin: 9vh auto;
   z-index: 997;
   position: fixed;
@@ -77,10 +77,14 @@
   z-index: 1017;
 }
 
+#over-text {
+  display: none;
+}
+
 .texto-overlay {
   border-radius: 15px;
   background: var(--branco);
-  width: 81vh;
+  width: 100vh;
   min-height: 28vh;
   position: fixed;
   padding: 20px;
@@ -94,6 +98,10 @@
   z-index: 1018;
 }
 
+.texto-overlay {
+  display: none;
+}
+
 .texto-overlay h2 {
   margin-bottom: 9px;
   text-transform: uppercase;
@@ -105,6 +113,14 @@
 
 .no-borda {
   width: 90%;
+  outline: none;
+  border: none;
+  padding: 0;
+  margin-top: -20px;
+}
+
+.no-borda4 {
+  width: 100%;
   outline: none;
   border: none;
   padding: 0;
@@ -163,14 +179,14 @@
 .nova-tarefa {
   border-radius: 15px;
   background: var(--branco);
-  width: 110vh;
+  width: 100vh;
   min-height: 28vh;
   position: fixed;
   padding: 20px;
   border: 2px solid #00000027;
   margin: 9vh auto;
   position: fixed;
-  top: 15vh;
+  top: 20vh;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
@@ -314,10 +330,50 @@
   border-bottom: 1px solid #dadada;
 }
 
+.loadit {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
 .task-item li {
   list-style: none;
   font-size: 17px;
-  height: 48px;
   padding-top: 15px;
   border-bottom: 1px #e2e2e2 solid;
   transition: 0.5s;
@@ -328,18 +384,17 @@
   margin-bottom: 5px;
 }
 
-
 .task-item > li:nth-of-type(odd) {
-  background: rgb(250, 248, 248);
+  background: #eff1f6 ;
 }
 
 .task-item li:hover {
   color: #fff;
-  transform: translate(0px, -5px);
+  transform: translate(0px, -3px);
   background: var(--cor-tema);
 }
 
-.task-item li:focus{
+.task-item li:focus {
   background: var(--cor-tema);
 }
 .posit-bottom {
@@ -353,13 +408,12 @@
   transition: 0.4s;
   cursor: pointer;
   margin: 5px;
-  background-color: #fff;
+  background-color: transparent;
   font-size: 20px;
   float: right;
   border: none;
   outline: none;
   margin-right: 5px;
-  float: right;
 }
 
 .edit-edit {
@@ -370,7 +424,7 @@
   font-size: 20px;
   border: none;
   outline: none;
-  background-color: #fff;
+  background-color: transparent;
   float: right;
 }
 

@@ -8,6 +8,7 @@
       <div class="row justify-content-center">
         <div class="col-md-12 col-lg-10">
           <div class="wrap d-md-flex">
+            <div class="bg-gradient"></div>
             <div
               class="
                 text-wrap
@@ -18,13 +19,13 @@
                 order-md-last
               "
             >
-              <div class="text w-100">
+              <div class="text w-100 bg-img">
                 <div class="logo-principal"></div>
 
                 <div style="height: 5px; width: 50px"></div>
                 <h2>Seja bem vindo</h2>
                 <h2>Acesso seguro</h2>
-                <h2 style="font-size: 40px">
+                <h2 style="font-size: 25px">
                   <i class="fas fa-shield-alt"></i>
                 </h2>
 
@@ -48,6 +49,10 @@
                 <div class="form-group mb-3">
                   <label class="label" for="username">Usuário</label>
                   <input
+                    #username="ngModel"
+                    [class.is-invalid]="username.invalid && username.touched"
+                    [class.is-valid]="username.valid && username.touched"
+                    required
                     [(ngModel)]="usuario.username"
                     name="username"
                     type="text"
@@ -59,6 +64,10 @@
                 <div class="form-group mb-3">
                   <label class="label" for="password">Senha</label>
                   <input
+                    #password="ngModel"
+                    [class.is-invalid]="password.invalid && password.touched"
+                    [class.is-valid]="password.valid && password.touched"
+                    required
                     [(ngModel)]="usuario.password"
                     name="password"
                     type="password"
@@ -91,14 +100,7 @@
                     </div>
                   </div>
                 </div>
-                <div
-                  style="
-                    position: absolute;
-                    bottom: 25px;
-                    width: 90%;
-                    text-align: center;
-                  "
-                >
+                <div class="politicaPst">
                   <a class="btn btn-green btn-outline-green" id="politica-abrir"
                     >Politica de Privacidade</a
                   >
@@ -117,7 +119,7 @@
     </div>
   </section>
   <div class="box-tela-privacidade">
-    <div class="text-info-box">
+    <div class="text-privacidade">
       <h2>Medidas de Segurança</h2>
       A segurança de seus dados pessoais é importante para nós. Seguimos os
       padrões aceitos no ramo para proteger as suas informações pessoais que nos

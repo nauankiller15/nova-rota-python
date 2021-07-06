@@ -11,8 +11,8 @@ declare var $: any;
 })
 export class WelcomeComponent implements OnInit {
   // novidades
-  novidades = [{ id: '', titulo: '' }];
-  selected_novidade = { id: '', titulo: '', descricao: '' };
+  novidades = [{ id: '', titulo: '', data: '' }];
+  selected_novidade = { id: '', titulo: '', descricao: '', data: '' };
   p: number = 1;
   public loading = false;
 

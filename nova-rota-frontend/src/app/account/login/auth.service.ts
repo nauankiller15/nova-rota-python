@@ -39,7 +39,7 @@ export class AuthService {
         localStorage.removeItem('token');
       }
     }
-    
+    localStorage.removeItem('token');
     return false;
   }
 

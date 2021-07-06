@@ -76,18 +76,7 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     BrowserModule,
     NgxMaskModule.forRoot(maskConfigFunction),
     NgxLoadingModule.forRoot({}),
-    RouterModule.forRoot([
-      // titulares
-      { path: 'alteracao-titular', component: AlteracaoTitularComponent },
-      { path: 'novo-titular', component: NovoTitularComponent },
-      // dependente
-      { path: 'novo-dependente', component: NovoTitularComponent },
-      { path: 'alteracao-dependente', component: AlteracaoDependenteComponent },
-      // dashboard
-      { path: 'dashboard', component: DashboardComponent },
-      //
-      { path: '', redirectTo: '/', pathMatch: 'full' },
-    ]),
+    RouterModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,

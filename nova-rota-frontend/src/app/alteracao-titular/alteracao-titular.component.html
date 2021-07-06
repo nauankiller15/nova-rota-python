@@ -22,7 +22,10 @@
           <h5 class="card-title">Consultar o Titular</h5>
           <form class="needs-validation" novalidate>
             <div class="form-row">
-              <div class="input-group col-md-2 mb3">
+              <div
+                class="input-group mb3"
+                style="flex: 0 0 19%; max-width: 19%"
+              >
                 <label for="validationCustom01">CPF:</label>
                 <div style="width: 100%"></div>
                 <span class="input-group-text" id="basic-addon1"
@@ -37,8 +40,6 @@
                   type="text"
                   id="search_cpf"
                   placeholder="Pesquise por CPF"
-                  aria-label="Username"
-                  aria-describedby="basic-addon1"
                 />
               </div>
               <div class="input-group col-md-4 mb3">
@@ -122,7 +123,7 @@
             <div style="width: 100%"></div>
             <div *ngIf="contentLoaded" class="titulares">
               Titulares Encontrados:
-              <li
+              <li class="loadit"
                 *ngFor="
                   let titular of titulares
                     | orderBy: 'created_at':false
@@ -151,6 +152,12 @@
                   class="fas fa-external-link-alt"
                 ></i>
               </li>
+              <h4 class="loadit"
+            style="margin-top: 20px;"
+            *ngIf="titulares.length === 0"
+          >
+            Nada encontrado
+          </h4>
             </div>
             <pagination-controls
               id="alttitulares"
@@ -302,10 +309,6 @@
                   required
                 />
 
-                <div class="invalid-feedback">
-                  Por favor informe o número da data de recebimento
-                  corretamente.
-                </div>
               </div>
 
               <div class="col-md-2 mb-3">
@@ -318,10 +321,6 @@
                   required
                 />
 
-                <div class="invalid-feedback">
-                  Por favor informe o número da data de recebimento
-                  corretamente.
-                </div>
               </div>
 
               <div class="col-md-2 mb-3">
