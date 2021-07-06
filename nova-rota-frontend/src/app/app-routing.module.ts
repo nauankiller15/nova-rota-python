@@ -16,7 +16,6 @@ import { TarefasDetailsComponent } from './tarefas-details/tarefas-details.compo
 //
 // empresa principal e filial
 import { NovaEmpresaComponent } from './nova-empresa/nova-empresa.component';
-import { NovaEmpresaFilialComponent } from './nova-empresa-filial/nova-empresa-filial.component';
 import { AlteracaoEmpresaComponent } from './alteracao-empresa/alteracao-empresa.component';
 import { AltEmpresaDetailsComponent } from './alt-empresa-details/alt-empresa-details.component';
 //
@@ -72,12 +71,8 @@ const routes: Routes = [
       },
       // 
       // 
-      // === CADASTRO DE EMPRESAS PRINCIPAIS (PRINCIPAL) ====
+      // === CADASTRO DE EMPRESAS ====
       { path: 'nova-empresa', component: NovaEmpresaComponent },
-      // 
-      // === CADASTRO DE EMPRESAS FILIAIS (FILIAL) ====
-      { path: 'nova-empresa-filial', component: NovaEmpresaFilialComponent },
-      // 
       // 
       // ==== ALTERACAO EMPRESAS ====
       { path: 'alteracao-empresa', component: AlteracaoEmpresaComponent },

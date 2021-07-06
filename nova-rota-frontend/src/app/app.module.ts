@@ -34,7 +34,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './http-interceptors/auth-interceptor';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { RodapeComponent } from './rodape/rodape.component';
-import { NovaEmpresaFilialComponent } from './nova-empresa-filial/nova-empresa-filial.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NgxLoadingModule } from 'ngx-loading';
 
@@ -68,7 +67,6 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     WelcomeComponent,
     NovidadesDetailsComponent,
     RodapeComponent,
-    NovaEmpresaFilialComponent,
     SidebarComponent,
   ],
   imports: [

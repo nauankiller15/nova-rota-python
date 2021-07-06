@@ -229,6 +229,7 @@
 
                 <select
                   #estado_civil="ngModel"
+                  [(ngModel)]="dependente.estado_civil"
                   [class.is-invalid]="
                     estado_civil.invalid && estado_civil.touched
                   "
@@ -236,7 +237,6 @@
                   required
                   id="estado_civil2"
                   class="form-control"
-                  [(ngModel)]="dependente.estado_civil"
                   name="estado_civil"
                 >
                   <option value="">Selecione</option>
