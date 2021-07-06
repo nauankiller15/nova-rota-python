@@ -40,7 +40,7 @@
   background: var(--branco);
   max-width: 125vh;
   width: 110vh;
-  min-height: 70vh;
+  min-height: 80vh;
   margin: 9vh auto;
   z-index: 997;
   position: fixed;

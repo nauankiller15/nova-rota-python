@@ -24616,7 +24616,7 @@ a.fc-more:hover {
 
 @media only screen and (max-width: 1320px) {
   .header-user-info {
-    display: none;
+    display: block;
   }
 }
 
