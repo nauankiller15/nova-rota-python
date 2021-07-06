@@ -11,6 +11,11 @@ from cad_at.api.viewsets import TitularViewSet
 from cad_at.api.viewsets import TitularParentescos
 from cad_bp.api.viewsets import ParentescoViewSet
 from cad_emp.api.viewsets import EmpresaViewSet
+from cad_emp.api.viewsets import FilialViewSet
+from cad_emp.api.viewsets import ContratoOperadoraViewSet
+from cad_emp.api.viewsets import ContratoSeguradoraViewSet
+from cad_emp.api.viewsets import ReajusteViewSet
+from cad_emp.api.viewsets import SinistralidadeViewSet
 from novidades.api.viewsets import NovidadesViewSet
 from tarefas.api.viewsets import TarefaViewSet
 
@@ -20,7 +25,13 @@ router.register(r'lista-parentesco', TitularParentescos, basename='lista-parente
 router.register(r'parentesco', ParentescoViewSet)
 router.register(r'tarefas', TarefaViewSet)
 router.register(r'empresa', EmpresaViewSet)
+router.register(r'filial', FilialViewSet)
+router.register(r'contrato-operadora', ContratoOperadoraViewSet)
+router.register(r'contrato-seguradora', ContratoSeguradoraViewSet)
+router.register(r'reajuste', ReajusteViewSet)
+router.register(r'sinistralidade', SinistralidadeViewSet)
 router.register(r'novidades', NovidadesViewSet)
+
 
 urlpatterns = [
     path('api/login/', obtain_jwt_token),

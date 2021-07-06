@@ -1,9 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from '../app.component';
 import { ApiService } from '../api.service';
+import { Titular } from './models';
 
 declare var $: any;
 
@@ -13,95 +12,21 @@ declare var $: any;
   styleUrls: ['./novo-titular.component.css'],
 })
 export class NovoTitularComponent implements OnInit {
-  titular = {
-    id: 0,
-    CPF: '',
-    cod_empresa: '',
-    data_recebimento: '',
-    tipo: '',
-    prioridade: 'Prioridade',
-    nome_benef: '',
-    data_nascimento: '',
-    sexo: '',
-    carteirinha: '',
-    estado_civil: '',
-    nome_mae: '',
-    data_admissao: '',
-    data_casamento: null,
-    anexo_doc_casamento: null,
-    anexo_doc_empregaticio: null,
-    CEP: '',
-    celular: '',
-    cidade: '',
-    estado: '',
-    declaracao_saude: '',
-    status: '',
-    desc_declarao_saude: '',
-    observacoes: null,
-  };
-
-  titulares = [
-    {
-      id: 0,
-      CPF: '',
-      nome_benef: '',
-    },
-  ];
-
-  anex_doc_casamento: any;
-  CPF: any;
+  titular: Titular = new Titular
 
   constructor(
     private toastr: ToastrService,
     private api: ApiService,
     private appComponent: AppComponent,
-    private http: HttpClient,
-    private router: Router
   ) {}
 
   ngOnInit(): void {
     $(document).ready(() => {
-      $('.date').mask('00/00/0000');
-      $('.time').mask('00:00:00');
-      $('.date_time').mask('00/00/0000 00:00:00');
       $('.cep').mask('00000-000');
-      $('.phone').mask('0000-0000');
-      $('.phone_with_ddd').mask('(00) 00000-0000');
-      $('.phone_us').mask('(000) 000-0000');
-      $('.mixed').mask('AAA 000-S0S');
-      $('.cpf').mask('000.000.000-00', { reverse: false });
-      $('.cnpj').mask('00.000.000/0000-00', { reverse: false });
-      $('.money').mask('000.000.000.000.000,00', { reverse: true });
-      $('.money2').mask('#.##0,00', { reverse: true });
-      $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
-        translation: {
-          Z: {
-            pattern: /[0-9]/,
-            optional: true,
-          },
-        },
+      $('.celular').mask('(00) 00000-0000');
+      $('.cpf').mask('000.000.000-00', { 
+        reverse: false,
       });
-      $('.ip_address').mask('099.099.099.099');
-      $('.percent').mask('##0,00%', { reverse: true });
-      $('.clear-if-not-match').mask('00/00/0000', { clearIfNotMatch: true });
-      $('.placeholder').mask('00/00/0000', {
-        translation: {
-          placeholder: '__/__/____',
-        },
-      });
-      $('.placeholder2').mask('00/00/0000', {
-        placeholder: '__/__/____',
-      });
-      $('.fallback').mask('00r00r0000', {
-        translation: {
-          r: {
-            pattern: /[\/]/,
-            fallback: '/',
-          },
-          placeholder: '__/__/____',
-        },
-      });
-      $('.selectonfocus').mask('00/00/0000', { selectOnFocus: true });
     });
 
     // TELA DE ANEXO ESTADO CIVIL
@@ -110,7 +35,7 @@ export class NovoTitularComponent implements OnInit {
       if (event.which == 13) {
           event.preventDefault();
       }
-  });
+    });
 
     $('#estado_civil').on('change', function () {
       'Casado(a)' === $(this).val()
@@ -197,7 +122,6 @@ export class NovoTitularComponent implements OnInit {
     this.api.inserir('titular/', this.titular).subscribe(
       (data) => {
         $('#confirmacaoTitular').fadeIn('100');
-        this.appComponent.titular.push(data);
       },
       (error) => {
         let mensagens = error.error;

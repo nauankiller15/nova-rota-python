@@ -35,6 +35,8 @@ export class AuthService {
       const expirado = this.tokenExpirado(token);
       if (!expirado) {
         return true;
+      } else {
+        localStorage.removeItem('token');
       }
     }
     localStorage.removeItem('token');

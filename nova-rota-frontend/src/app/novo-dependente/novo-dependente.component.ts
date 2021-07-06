@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from '../app.component';
 import { ApiService } from '../api.service';
+import { Dependente, Titular } from './models';
 
 declare var $: any;
 
@@ -11,54 +12,9 @@ declare var $: any;
   styleUrls: ['./novo-dependente.component.css'],
 })
 export class NovoDependenteComponent implements OnInit {
-  titulares = [
-    {
-      id: 0,
-      CPF: '',
-      nome_benef: '',
-    },
-  ];
-  
-  dependente = {
-    id: 0,
-    CPF: '',
-    cod_empresa: '',
-    data_recebimento: '',
-    tipo: '',
-    prioridade: 'Prioridade',
-    nome_dependente: '',
-    data_nascimento: '',
-    sexo: '',
-    carteirinha: '',
-    estado_civil: '',
-    nome_mae: '',
-    data_admissao: '',
-    data_casamento: null,
-    anexo_doc_casamento: null,
-    anexo_doc_nascimento: null,
-    tipo_parentesco: '',
-    CEP: '',
-    celular: '',
-    cidade: '',
-    estado: '',
-    declaracao_saude: '',
-    status: '',
-    desc_declarao_saude: '',
-    observacoes: null,
-    titular: null,
-    nome_benef: null,
-  };
-
-  dependentes = [
-    {
-      id: 0,
-      CPF: '',
-      nome_dependente: '',
-    },
-  ];
-  nome_benef: string;
-  selected_titular: any;
-  id: number;
+  titulares: Titular[];
+  busca: Titular[];
+  dependente: Dependente = new Dependente;
   p: number = 1;
 
   constructor(
@@ -71,47 +27,9 @@ export class NovoDependenteComponent implements OnInit {
 
   ngOnInit(): void {
     $(document).ready(() => {
-      $('.date').mask('00/00/0000');
-      $('.time').mask('00:00:00');
-      $('.date_time').mask('00/00/0000 00:00:00');
       $('.cep').mask('00000-000');
-      $('.phone').mask('0000-0000');
-      $('.phone_with_ddd').mask('(00) 00000-0000');
-      $('.phone_us').mask('(000) 000-0000');
-      $('.mixed').mask('AAA 000-S0S');
+      $('.celular').mask('(00) 00000-0000');
       $('.cpf').mask('000.000.000-00', { reverse: false });
-      $('.cnpj').mask('00.000.000/0000-00', { reverse: false });
-      $('.money').mask('000.000.000.000.000,00', { reverse: true });
-      $('.money2').mask('#.##0,00', { reverse: true });
-      $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
-        translation: {
-          Z: {
-            pattern: /[0-9]/,
-            optional: true,
-          },
-        },
-      });
-      $('.ip_address').mask('099.099.099.099');
-      $('.percent').mask('##0,00%', { reverse: true });
-      $('.clear-if-not-match').mask('00/00/0000', { clearIfNotMatch: true });
-      $('.placeholder').mask('00/00/0000', {
-        translation: {
-          placeholder: '__/__/____',
-        },
-      });
-      $('.placeholder2').mask('00/00/0000', {
-        placeholder: '__/__/____',
-      });
-      $('.fallback').mask('00r00r0000', {
-        translation: {
-          r: {
-            pattern: /[\/]/,
-            fallback: '/',
-          },
-          placeholder: '__/__/____',
-        },
-      });
-      $('.selectonfocus').mask('00/00/0000', { selectOnFocus: true });
     });
 
     // VINCULAR TITULAR
@@ -205,6 +123,7 @@ export class NovoDependenteComponent implements OnInit {
     this.api.listar('titular/').subscribe(
       (data) => {
         this.titulares = data;
+        this.busca = data;
       },
       (error) => {
         this.toastr.error('Aconteceu um Erro!', error.message);
@@ -212,34 +131,26 @@ export class NovoDependenteComponent implements OnInit {
     );
   };
 
-  searchNomeTitDep() {
-    if (this.nome_benef != '') {
-      this.titulares = this.titulares.filter((res) => {
+  searchNomeTitDep(nome) {
+    if (nome != '') {
+      this.busca = this.titulares.filter((res) => {
         return res.nome_benef
           .toLocaleLowerCase()
-          .match(this.nome_benef.toLocaleLowerCase());
+          .match(nome.toLocaleLowerCase());
       });
-    } else if (this.nome_benef == '') {
-      this.getTitulares();
+    } else {
+      this.busca = this.titulares;
     }
   }
 
-  titularClickedDependente = (titular: any) => {
+  titularClickedDependente = (titular: Titular) => {
     $('#vinc-titular').fadeOut('200');
     $('#encounter-tit').slideDown('200');
 
-    this.api.selecionar('titular/', titular.id).subscribe(
-      (data) => {
-        this.dependente.titular = titular.id;
-        this.dependente.nome_benef = titular.nome_benef;
-
-        this.toastr.success('Titular vinculado com sucesso!');
-      },
-      (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
-      }
-    );
-  };
+    this.dependente.titular = titular.id;
+    this.dependente.nome_benef = titular.nome_benef;
+    this.toastr.success('Titular vinculado com sucesso!');
+  }
 
   newDependente() {
     this.api.inserir('parentesco/', this.dependente).subscribe(
@@ -248,8 +159,11 @@ export class NovoDependenteComponent implements OnInit {
         $('#encounter-tit').fadeOut('100');
         this.appComponent.dependente.push(data);
       },
-      (error: { message: string }) => {
-        this.toastr.error('Dados necessários em branco!', error.message);
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
       }
     );
   }

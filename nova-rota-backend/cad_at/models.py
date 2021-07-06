@@ -1,3 +1,5 @@
+from rest_framework.exceptions import ValidationError
+from cad_emp.models import Empresa
 from django.db import models
 from localflavor.br.models import BRCPFField, BRPostalCodeField, BRStateField
 
@@ -32,7 +34,7 @@ class Titular (models.Model):
     data_nascimento = models.DateField(
         "Data Nascimento", auto_now_add=False, auto_now=False, blank=False, null=False)
     data_casamento = models.DateField(
-        "Data Casamento", auto_now_add=False, auto_now=False, blank=True, null=True, default="0000-00-00")
+        "Data Casamento", auto_now_add=False, auto_now=False, blank=True, null=True)
     sexo = models.CharField(max_length=25, choices=sexo_choice,
                             blank=False, default="Selecione", null=False)
     estado_civil = models.CharField(
@@ -53,6 +55,13 @@ class Titular (models.Model):
     observacoes = models.TextField("Obs.", blank=True, null=True)
     criado_em = models.DateTimeField("criado em", auto_now_add=True)
     atualizado_em = models.DateTimeField("atualizado em", auto_now=True)
+
+    def save(self, *args, **kwargs):
+        empresa = Empresa.objects.filter(cod_empresa=self.cod_empresa).last()
+        if empresa == None:
+            raise ValidationError({'Código da Empresa': 'Nenhuma empresa cadastrada com esse código'})
+
+        return super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.nome_benef} - CPF: {self.CPF}'

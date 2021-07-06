@@ -39,7 +39,6 @@
                   autocomplete="off"
                   [class.is-invalid]="CPF.invalid && CPF.touched"
                   [class.is-valid]="CPF.valid && CPF.touched"
-                  pattern="^\d{3}\.\d{3}\.\d{3}\-\d{2}$"
                   [(ngModel)]="titular.CPF"
                   name="CPF"
                   type="text"
@@ -428,7 +427,7 @@
                   [(ngModel)]="titular.celular"
                   name="celular"
                   type="text"
-                  class="form-control phone_with_ddd"
+                  class="form-control celular"
                   placeholder="Informe o Celular"
                 />
               </div>

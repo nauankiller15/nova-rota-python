@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ApiService } from '../api.service';
 import { AppComponent } from '../app.component';
 import { User } from '../account/login/models';
 import { AuthService } from '../account/login/auth.service';
 import { NgIf } from '@angular/common';
+import { ApiService } from '../api.service';
 
 declare var $: any;
 
@@ -16,7 +16,7 @@ declare var $: any;
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  usuario: User;
+  usuario: User = new User();
 
   // carregador
   animation = 'pulse';
@@ -219,7 +219,7 @@ export class HomeComponent implements OnInit {
   tarefaClicked = (tarefa: { id: string }) => {
     $('.texto-overlay').fadeIn('200');
     $('#over-text').fadeIn('200');
-    this.api.getTarefas(tarefa.id).subscribe(
+    this.api.selecionar('tarefas/', tarefa.id).subscribe(
       (data) => {
         this.selected_tarefa = data;
       },
@@ -286,7 +286,7 @@ export class HomeComponent implements OnInit {
       (data) => {
         let index: number;
         this.tarefas.forEach((e, i) => {
-          if (this.selected_id) index = i;
+          if (this.selected_tarefa) index = i;
         });
         this.tarefas.splice(index, 1);
         this.toastr.success('Tarefa apagada!');
@@ -299,5 +299,4 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-  
 }

@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { AppComponent } from '../app.component';
 import { ApiService } from '../api.service';
+import { ContratoOperadora, ContratoSeguradora, Empresa, Reajuste, Sinistralidade } from './models';
 
 declare var $: any;
 
@@ -12,96 +11,37 @@ declare var $: any;
   styleUrls: ['./nova-empresa.component.css'],
 })
 export class NovaEmpresaComponent implements OnInit {
-  empresa = {
-    id: 0,
-    CNPJ: '',
-    cod_empresa: '',
-    razao_social: '',
-    tipo_contrato: '',
-    operadora: '',
-    operadora_nome: '',
-    seguradora: 'Seguro de Vida',
-    seguradora_nome: '',
-    tipo: '',
-    vencimento_boleto: '',
-    inicio_vigencia: '',
-    ano_vigencia: '',
-    sinistralidade: '',
-    tecnico: '',
-    negociado: '',
-    data_recebimento: '',
-    anexo_doc_casamento: null,
-    anexo_doc_empregaticio: null,
-    celular: '',
-    cidade: '',
-    estado: '',
-    codigo: '',
-    apolice: '',
-    status: '',
-    observacoes: null,
-  };
-
-  empresas = [
-    {
-      id: 0,
-      CNPJ: '',
-      razao_social: '',
-    },
-  ];
-
-  anex_doc_casamento: any;
-  CNPJ: any;
+  empresa: Empresa = new Empresa;
+  contratoSeguradora: ContratoSeguradora = new ContratoSeguradora;
+  contratoOperadora: ContratoOperadora = new ContratoOperadora;
+  sinistralidade: Sinistralidade = new Sinistralidade;
+  enviarSinistralidade = false;
+  reajuste: Reajuste = new Reajuste;
+  enviarReajuste = false;
 
   constructor(
     private toastr: ToastrService,
     private api: ApiService,
-    private appComponent: AppComponent,
-    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
     $(document).ready(() => {
-      $('.date').mask('00/00/0000');
-      $('.time').mask('00:00:00');
-      $('.date_time').mask('00/00/0000 00:00:00');
       $('.cep').mask('00000-000');
-      $('.phone').mask('0000-0000');
-      $('.phone_with_ddd').mask('(00) 00000-0000');
-      $('.phone_us').mask('(000) 000-0000');
-      $('.mixed').mask('AAA 000-S0S');
-      $('.CNPJ').mask('000.000.000-00', { reverse: false });
+      $('.celular').mask('(00) 00000-0000');
       $('.cnpj').mask('00.000.000/0000-00', { reverse: false });
-      $('.money').mask('000.000.000.000.000,00', { reverse: true });
-      $('.money2').mask('#.##0,00', { reverse: true });
-      $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
-        translation: {
-          Z: {
-            pattern: /[0-9]/,
-            optional: true,
-          },
-        },
-      });
-      $('.ip_address').mask('099.099.099.099');
-      $('.percent').mask('##0,00%', { reverse: true });
-      $('.clear-if-not-match').mask('00/00/0000', { clearIfNotMatch: true });
-      $('.placeholder').mask('00/00/0000', {
-        translation: {
-          placeholder: '__/__/____',
-        },
-      });
-      $('.placeholder2').mask('00/00/0000', {
-        placeholder: '__/__/____',
-      });
-      $('.fallback').mask('00r00r0000', {
-        translation: {
-          r: {
-            pattern: /[\/]/,
-            fallback: '/',
-          },
-          placeholder: '__/__/____',
-        },
-      });
-      $('.selectonfocus').mask('00/00/0000', { selectOnFocus: true });
+    });
+
+    // DADOS DA EMPRESA PRINCIPAL
+    $('#filial').on('change', function () {
+      if ($(this).is(":checked") == true) {
+        $('#divFilial').fadeIn('100');
+        $('#CNPJ_empresa_principal').prop('required', 'required');
+        $('#razao_social_principal').prop('required', 'required');
+      } else {
+        $('#divFilial').hide();
+        $('#CNPJ_empresa_principal').prop('required', '');
+        $('#razao_social_principal').prop('required', '');
+      }
     });
 
     // TELA DE ANEXO DO DOCUMENTO DA EMPRESA
@@ -158,52 +98,125 @@ export class NovaEmpresaComponent implements OnInit {
 
     // OPÇÕES
 
-    $('input, select, textarea').keypress(function (event: {
-      which: number;
-      preventDefault: () => void;
-    }) {
-      if (event.which == 13) {
-        event.preventDefault();
+    $('input, select, textarea').keypress(
+      function (
+        event: {
+          which: number;
+          preventDefault: () => void;
+        }
+      ) {
+        if (event.which == 13) {
+          event.preventDefault();
+        }
       }
-    });
+    );
 
     $('#tipo_contrato').on('change', function () {
       if ('Operadora' === $(this).val()) {
-        $('#operadoras').fadeIn('100');
-        $('#seguradoras').hide();
-        $('#nome_operadora').fadeIn('100');
-        $('#nome_seguradora').fadeOut('100');
-        $('#codigo').fadeIn('100');
-        $('#apolice').fadeOut('100');
+        $('#operadora').fadeIn('100');
+        $('#seguradora').hide();
+        $('#formularioSeguradora').each (function(){
+          this.reset();
+        });
+      } else if ('Seguradora' === $(this).val()) {
+        $('#seguradora').fadeIn('100');
+        $('#operadora').hide();
+        $('#formularioOperadora').each (function(){
+          this.reset();
+        });
       } else {
-        'Seguradora' === $(this).val();
-        $('#seguradoras').fadeIn('100');
-        $('#operadoras').hide();
-        $('#nome_seguradora').fadeIn('100');
-        $('#nome_operadora').fadeOut('100');
-        $('#apolice').fadeIn('100');
-        $('#codigo').fadeOut('100');
+        $('#operadora').hide();
+        $('#seguradora').hide();
       }
-      //
     });
   }
 
-  // selectedFile: File = null;
-  // onFileSelected(event: any) {
-  //   this.selectedFile = <File>event.target.files[0];
-  // }
 
   newEmpresa() {
-    // const fd = new FormData();
-    // fd.append('image', this.selectedFile, this.selectedFile.name);
-    this.api.inserir('empresa/', this.empresa).subscribe(
+    
+    let urlEmpresa = 'empresa/';
+    if (this.empresa.is_filial == true) {
+      urlEmpresa = 'filial/'
+      console.log(this.empresa);
+    }
+
+    this.api.inserir(urlEmpresa, this.empresa).subscribe(
       (data) => {
-        this.toastr.success('Empresa incluída com sucesso!');
-        this.appComponent.titular.push(data);
+        this.empresa.id = data.id;
+        this.newContrato();
+        this.newReajuste();
+        this.newSinistralidade();
       },
       (error) => {
-        this.toastr.error('Dados necessários em branco!', error.error);
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
+      }
+    );  
+  }
+
+  newContrato() {
+    let urlTipo: string;
+    let dados: any;
+    if (this.empresa.tipo_contrato == 'Operadora') {
+      urlTipo = 'contrato-operadora/';
+      dados = this.contratoOperadora;
+    } else {
+      urlTipo = 'contrato-seguradora/'
+      dados = this.contratoSeguradora;
+    }
+
+    dados.empresa = this.empresa.id
+    console.log(dados)
+    this.api.inserir(urlTipo, dados).subscribe(
+      (data) => {
+        this.toastr.success('Empresa incluída com sucesso!');
+      },
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
       }
     );
+  }
+
+  newSinistralidade() {
+
+    if (this.enviarSinistralidade == true) {
+      this.sinistralidade.empresa = this.empresa.id;
+      console.log(this.sinistralidade);
+      this.api.inserir('sinistralidade/', this.sinistralidade).subscribe(
+        (data) => {
+          this.toastr.success('Sinistralidade incluída com sucesso!');
+        },
+        (error) => {
+          let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
+      }
+      );
+    }  
+  }
+
+  newReajuste() {
+   
+    if (this.enviarReajuste == true) {
+
+      this.reajuste.empresa = this.empresa.id;
+      this.api.inserir('reajuste/', this.reajuste).subscribe(
+        (data) => {
+          this.toastr.success('Reajuste incluído com sucesso!');
+        },
+        (error) => {
+          let mensagens = error.error;
+          for (let campo in mensagens) {
+            this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+          }
+        }
+      );
+    }
   }
 }
