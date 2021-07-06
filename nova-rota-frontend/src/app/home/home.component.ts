@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ApiService } from '../api.service';
 import { AppComponent } from '../app.component';
 import { User } from '../account/login/models';
 import { AuthService } from '../account/login/auth.service';
+import { ApiService } from '../api.service';
 
 declare var $: any;
 
@@ -17,7 +17,7 @@ declare var $: any;
 
 export class HomeComponent implements OnInit {
 
-  usuario: User;
+  usuario: User = new User;
 
   // carregador
   animation = 'pulse';
@@ -220,7 +220,7 @@ export class HomeComponent implements OnInit {
   tarefaClicked = (tarefa: { id: string }) => {
     $('.texto-overlay').fadeIn('200');
     $('#over-text').fadeIn('200');
-    this.api.getTarefas(tarefa.id).subscribe(
+    this.api.selecionar('tarefas/', tarefa.id).subscribe(
       (data) => {
         this.selected_tarefa = data;
       },
