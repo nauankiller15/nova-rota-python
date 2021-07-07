@@ -24,7 +24,7 @@
   padding: 10px;
 }
 
-.margEmp{
+.margEmp {
   margin-top: -20px;
 }
 
@@ -83,10 +83,9 @@
   left: 10px;
   border-bottom: 2px solid var(--cor-tema);
   margin-bottom: 24px;
-  border-radius: 0.25rem;
 }
 
-.radiusTop{
+.radiusTop {
   border-radius: 7px 0px 0px 0px;
 }
 
@@ -121,11 +120,13 @@
   transform: translate(0px, 0px);
 }
 
-
 @keyframes slide-in {
-  0% { transform: translateX(100px); }
-  100% { transform: translateX(0); }
-
+  0% {
+    transform: translateX(100px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .menuVigencia .menuItems li:hover {
@@ -133,6 +134,7 @@
   transform: translate(0px, -4px);
   transition: all 0.2s ease-in-out;
 }
+
 .menuVigencia .menuItems li::before {
   display: block;
   content: attr(data-item);
@@ -145,7 +147,7 @@
   width: 0;
   overflow: hidden;
   cursor: pointer;
-  color: var(--branco)
+  color: var(--branco);
 }
 .menuVigencia .menuItems li:hover::before {
   display: block;

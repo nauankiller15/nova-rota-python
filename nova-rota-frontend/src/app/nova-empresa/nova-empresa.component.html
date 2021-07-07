@@ -7,17 +7,16 @@
             <div class="page-title-icon">
               <i class="fas fa-building icon-gradient bg-mean-fruit"> </i>
             </div>
-            <div style="position: absolute; left: 90px;" id="changeEmpPrincipal">
+            <div style="position: absolute; left: 90px" id="changeEmpPrincipal">
               Inclusão de Empresa Principal
-              <div class="page-title-subheading">
-                Nova Empresa Principal
-              </div>
+              <div class="page-title-subheading">Nova Empresa Principal</div>
             </div>
-            <div style="display: none; position: absolute; left: 90px;" id="changeEmpFilial">
+            <div
+              style="display: none; position: absolute; left: 90px"
+              id="changeEmpFilial"
+            >
               Inclusão de Empresa Filial
-              <div class="page-title-subheading">
-                Nova Empresa Filial
-              </div>
+              <div class="page-title-subheading">Nova Empresa Filial</div>
             </div>
           </div>
         </div>
@@ -28,17 +27,18 @@
         <nav class="menuVigencia">
           <ul class="menuItems">
             <!-- BOTÃO REAJUSTE -->
-            <li id="principalCad" class="active radiusTop">Empresa Principal</li>
+            <li id="principalCad" class="active radiusTop">
+              Empresa Principal
+            </li>
 
             <!-- BOTÃO SINISTRALIDADE -->
             <li id="filialCad">Empresa Filial</li>
           </ul>
         </nav>
         <div class="card-body margEmp">
-          
           <h5 class="card-title">Preencha os campos abaixo:</h5>
-         
-          <div style="display: none;" class="form-check">
+
+          <div style="display: none" class="form-check">
             <input
               [(ngModel)]="empresa.is_filial"
               id="filial"
