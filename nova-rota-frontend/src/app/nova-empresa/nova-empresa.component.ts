@@ -39,6 +39,10 @@ export class NovaEmpresaComponent implements OnInit {
     $('#principalCad').click(function () {
       $('#changeEmpFilial').slideUp('100');
       $('#changeEmpPrincipal').slideDown('100');
+      // ANIMAÇÃO SELEÇÃO DOS DADOS FILIAIS
+      $('.filialSelect').slideUp('100');
+      $('.inserirFilial').slideUp('100');
+      //
       $('#filial').each(function () {
         this.checked = false;
         $('#divFilial').slideUp();
@@ -49,6 +53,10 @@ export class NovaEmpresaComponent implements OnInit {
     $('#filialCad').click(function () {
       $('#changeEmpPrincipal').slideUp('100');
       $('#changeEmpFilial').slideDown('100');
+      // ANIMAÇÃO SELEÇÃO DOS DADOS FILIAIS
+      $('.filialSelect').slideDown('100');
+      $('.inserirFilial').slideDown('100');
+      //
       $('#filial').each(function () {
         this.checked = true;
         $('#divFilial').slideDown('100');
@@ -136,7 +144,10 @@ export class NovaEmpresaComponent implements OnInit {
       }
     });
 
+
+
     $('#tipo_contrato').on('change', function () {
+      $('.filialSelect').addClass('htSlct');
       if ('Operadora' === $(this).val()) {
         $('#operadora').slideDown('100');
         $('#seguradora').slideUp();
@@ -144,12 +155,14 @@ export class NovaEmpresaComponent implements OnInit {
           this.reset();
         });
       } else if ('Seguradora' === $(this).val()) {
+      $('.filialSelect').addClass('htSlct');
         $('#seguradora').slideDown('100');
         $('#operadora').slideUp();
         $('#formularioOperadora').each(function () {
           this.reset();
         });
       } else {
+      $('.filialSelect').removeClass('htSlct');
         $('#operadora').slideUp();
         $('#seguradora').slideUp();
       }

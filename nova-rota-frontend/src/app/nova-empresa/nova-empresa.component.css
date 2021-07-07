@@ -125,6 +125,33 @@
   animation: slide-right 0.3s ease-in-out;
 }
 
+.filialSelect {
+  top: 216px;
+  position: absolute;
+  width: 100%;
+  height: 35vh;
+  border: 2px solid var(--cor-tema);
+  display: none;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.htSlct{
+  height: 44vh;
+  transition: 0.3s;
+}
+
+.inserirFilial{
+  right: 25px;
+  top: 190px;
+  position: absolute;
+  background-color: var(--cor-tema);
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  display: none;
+}
+
 @keyframes slide-left {
   0% {
     transform: translateX(60px);
@@ -146,7 +173,6 @@
 .menuVigencia .menuItems li.active:hover {
   transform: translate(0px, 0px);
 }
-
 
 .menuVigencia .menuItems li:hover {
   display: block;
