@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ApiService } from './api.service';
+import { ApiService } from '../api.service';
+import { Empresa } from '../nova-empresa/models';
 
 declare var $: any;
 
@@ -20,53 +20,18 @@ export class AlteracaoEmpresaComponent implements OnInit {
   intervalId: number | null = null;
   //
 
-  selected_empresa = {
-    id: 0,
-    CNPJ: '00.000.000/0000-00',
-    cod_empresa: '',
-    razao_social: '',
-    tipo_contrato: '',
-    operadora: '',
-    operadora_nome: '',
-    seguradora: '',
-    seguradora_nome: '',
-    tipo: '',
-    vencimento_boleto: '',
-    inicio_vigencia: '',
-    ano_vigencia: '',
-    sinistralidade: '',
-    tecnico: '',
-    negociado: '',
-    data_recebimento: '',
-    anexo_doc_casamento: null,
-    anexo_doc_empregaticio: null,
-    celular: '',
-    cidade: '',
-    estado: '',
-    codigo: '',
-    apolice: '',
-    status: '',
-    observacoes: null,
-  };
+  selected_empresa: Empresa;
 
-  empresas = [
-    {
-      id: 0,
-      CNPJ: '',
-      razao_social: '',
-    },
-  ];
+  empresas: Empresa[];
 
   CNPJ: any;
-
-  fileToUpload: File = null;
   razao_social: string;
+  fileToUpload: File = null;
   p: number = 1;
 
   constructor(
     private toastr: ToastrService,
     private api: ApiService,
-    private route: ActivatedRoute
   ) {
     this.getEmpresas();
   }
@@ -86,47 +51,9 @@ export class AlteracaoEmpresaComponent implements OnInit {
     //---------------
     // MÁSCARAS DE INPUT
     $(document).ready(() => {
-      $('.date').mask('00/00/0000');
-      $('.time').mask('00:00:00');
-      $('.date_time').mask('00/00/0000 00:00:00');
       $('.cep').mask('00000-000');
-      $('.phone').mask('0000-0000');
-      $('.phone_with_ddd').mask('(00) 0000-0000');
-      $('.phone_us').mask('(000) 000-0000');
-      $('.mixed').mask('AAA 000-S0S');
-      $('.cpf').mask('000.000.000-00', { reverse: false });
+      $('.celular').mask('(00) 0000-0000');
       $('.cnpj').mask('00.000.000/0000-00', { reverse: false });
-      $('.money').mask('000.000.000.000.000,00', { reverse: true });
-      $('.money2').mask('#.##0,00', { reverse: true });
-      $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
-        translation: {
-          Z: {
-            pattern: /[0-9]/,
-            optional: true,
-          },
-        },
-      });
-      $('.ip_address').mask('099.099.099.099');
-      $('.percent').mask('##0,00%', { reverse: true });
-      $('.clear-if-not-match').mask('00/00/0000', { clearIfNotMatch: true });
-      $('.placeholder').mask('00/00/0000', {
-        translation: {
-          placeholder: '__/__/____',
-        },
-      });
-      $('.placeholder2').mask('00/00/0000', {
-        placeholder: '__/__/____',
-      });
-      $('.fallback').mask('00r00r0000', {
-        translation: {
-          r: {
-            pattern: /[\/]/,
-            fallback: '/',
-          },
-          placeholder: '__/__/____',
-        },
-      });
-      $('.selectonfocus').mask('00/00/0000', { selectOnFocus: true });
     });
     //
     // VOLTAR ALTERAÇÃO DE DADOS
@@ -178,7 +105,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
     });
   }
 
-  searchCNPJ() {
+  searchCNPJ(CNPJ) {
     if (this.CNPJ != '') {
       this.empresas = this.empresas.filter((res) => {
         return res.CNPJ.toLocaleLowerCase().match(
@@ -190,7 +117,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
     }
   }
 
-  searchEmpresa() {
+  searchEmpresa(razaoSocial) {
     if (this.razao_social != '') {
       this.empresas = this.empresas.filter((res) => {
         return res.razao_social
@@ -203,7 +130,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
   }
 
   getEmpresas = () => {
-    this.api.getAllEmpresas().subscribe(
+    this.api.listar('empresa/').subscribe(
       (data) => {
         this.empresas = data;
       },
@@ -214,7 +141,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
   };
 
   loadEmpresa(id: string) {
-    this.api.getEmpresa(id).subscribe(
+    this.api.selecionar('empresa/', id).subscribe(
       (data) => {
         this.selected_empresa = data;
       },
@@ -224,10 +151,10 @@ export class AlteracaoEmpresaComponent implements OnInit {
     );
   }
 
-  empresaClicked = (titular: { id: string }) => {
+  empresaClicked = (empresa: { id: string }) => {
     $('#consulta').fadeOut('200');
     $('#empresaappear').fadeIn('200');
-    this.api.getEmpresa(titular.id).subscribe(
+    this.api.selecionar('empresa/', empresa.id).subscribe(
       (data) => {
         this.selected_empresa = data;
       },
@@ -238,7 +165,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
   };
 
   updateEmp() {
-    this.api.updateEmpresa(this.selected_empresa).subscribe(
+    this.api.inserir('empresa/', this.selected_empresa).subscribe(
       (data: {}) => {
         this.toastr.success('Atualizado com sucesso!');
       },

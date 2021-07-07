@@ -40,6 +40,7 @@
                   [class.is-invalid]="CPF.invalid && CPF.touched"
                   [class.is-valid]="CPF.valid && CPF.touched"
                   [(ngModel)]="titular.CPF"
+                  id="CPF"
                   name="CPF"
                   type="text"
                   class="form-control cpf"
@@ -55,6 +56,7 @@
                     >CPF Digitos Incompletos!</small
                   >
                 </div>
+                <small id="InvalidCPF" class="text-danger" style="display: none;">CPF Inválido!</small>
               </div>
 
               <div class="col-md-2 mb-3">
