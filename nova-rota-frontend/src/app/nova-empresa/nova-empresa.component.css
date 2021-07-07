@@ -113,22 +113,40 @@
   padding: 21px;
   color: #fff;
   transition: all 0.2s ease-in-out;
-  animation: slide-in 0.2s ease-in-out;
+  animation: slide-left 0.3s ease-in-out;
   /* border: 2px solid #ffffff29; */
+}
+.menuVigencia .menuItems li.active:nth-child(2) {
+  display: block;
+  background: linear-gradient(0deg, #0c5d24 0%, #11963c 100%);
+  padding: 21px;
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+  animation: slide-right 0.3s ease-in-out;
+}
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(60px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(-60px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .menuVigencia .menuItems li.active:hover {
   transform: translate(0px, 0px);
 }
 
-@keyframes slide-in {
-  0% {
-    transform: translateX(100px);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
 
 .menuVigencia .menuItems li:hover {
   display: block;
