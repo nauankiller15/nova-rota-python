@@ -212,24 +212,7 @@
             </div>
 
             <div class="form-row">
-              <div class="col-md-2 mb-3 mr-5">
-                <label for="validationCustom01">Vencimento do Boleto</label>
-                <input
-                  #vencimento_boleto="ngModel"
-                  [class.is-invalid]="
-                    vencimento_boleto.invalid && vencimento_boleto.touched
-                  "
-                  [class.is-valid]="
-                    vencimento_boleto.valid && vencimento_boleto.touched
-                  "
-                  [(ngModel)]="empresa.vencimento_boleto"
-                  name="vencimento_boleto"
-                  type="date"
-                  class="form-control"
-                  required
-                />
-              </div>
-
+             
               <div class="col-md-2 mb-3 mr-5">
                 <label for="validationCustom05">Inicio de Vigência</label>
                 <input
@@ -261,7 +244,7 @@
                 <!--  -->
               </div>
 
-              <div class="col-md-2 mb-3">
+              <div class="col-md-2 mb-3 mr-5">
                 <label for="validationCustom05">Data de Recebimento</label>
                 <input
                   #data_recebimento="ngModel"
@@ -291,6 +274,24 @@
                 </div>
 
                 <!--  -->
+              </div>
+
+              <div class="col-md-2 mb-3 mr-5">
+                <label for="validationCustom01">Vencimento do Boleto</label>
+                <input
+                  #vencimento_boleto="ngModel"
+                  [class.is-invalid]="
+                    vencimento_boleto.invalid && vencimento_boleto.touched
+                  "
+                  [class.is-valid]="
+                    vencimento_boleto.valid && vencimento_boleto.touched
+                  "
+                  [(ngModel)]="empresa.vencimento_boleto"
+                  name="vencimento_boleto"
+                  type="date"
+                  class="form-control"
+                  required
+                />
               </div>
             </div>
 
@@ -689,7 +690,7 @@
                           reajuste_sinistralidade.touched
                         "
                         [disabled]="!enviarReajuste"
-                        class="form-control"
+                        class="form-control percent"
                         style="
                           border-top: none;
                           border-left: none;
@@ -712,7 +713,7 @@
                         [disabled]="!enviarReajuste"
                         name="tecnico"
                         type="number"
-                        class="form-control"
+                        class="form-control percent"
                         style="
                           border-top: none;
                           border-left: none;
@@ -737,7 +738,7 @@
                         [disabled]="!enviarReajuste"
                         name="negociado"
                         type="number"
-                        class="form-control"
+                        class="form-control percent"
                         style="
                           border-top: none;
                           border-left: none;
@@ -813,7 +814,7 @@
                         [disabled]="!enviarSinistralidade"
                         name="sinistralidade"
                         type="text"
-                        class="form-control"
+                        class="form-control percent"
                         style="
                           border-top: none;
                           border-left: none;
