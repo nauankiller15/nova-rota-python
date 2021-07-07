@@ -56,7 +56,7 @@
             novalidate
           >
             <div id="divFilial" class="form-row" style="display: none">
-              <div class="col-md-2 mb-2">
+              <div class="col-md-2" style="flex: 0 0 19%; max-width: 19%">
                 <label for="validationCustom01"
                   >CNPJ da Empresa Principal</label
                 >
@@ -134,7 +134,7 @@
             <hr />
 
             <div class="form-row">
-              <div class="col-md-2 mb-2">
+              <div class="col-md-2" style="flex: 0 0 19%; max-width: 19%">
                 <label for="validationCustom01">CNPJ</label>
                 <input
                   #CNPJ="ngModel"
@@ -602,9 +602,11 @@
             class="btn btn-primary"
             (click)="newEmpresa()"
           >
-            Gravar informações
+            <i class="fas fa-check"></i> Gravar informações
           </button>
-          <button type="reset" class="btn btn-cancelar">Apagar tudo</button>
+          <button type="reset" class="btn btn-cancelar">
+            <i class="far fa-times-circle"></i> Apagar tudo
+          </button>
         </div>
 
         <!-- VINCULAR INICIO DA VIGÊNCIA -->
@@ -615,7 +617,7 @@
                 <nav class="menuVigencia">
                   <ul class="menuItems">
                     <!-- BOTÃO REAJUSTE -->
-                    <li id="reajusteBtn" class="active">Reajuste</li>
+                    <li id="reajusteBtn" class="active radiusTop">Reajuste</li>
 
                     <!-- BOTÃO SINISTRALIDADE -->
                     <li id="sinistralidadeBtn">Sinistralidade</li>

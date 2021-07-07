@@ -58,7 +58,7 @@
                 />
               </div>
             </div>
-            <div style="width: 100%; height: 20px"></div>
+            <div style="width: 100%; height: 10px"></div>
 
             <ngx-skeleton-loader
               *ngIf="!contentLoaded"
@@ -121,9 +121,11 @@
             >
             </ngx-skeleton-loader>
             <div style="width: 100%"></div>
+            <hr />
             <div *ngIf="contentLoaded" class="titulares">
               Titulares Encontrados:
-              <li class="loadit"
+              <li
+                class="loadit"
                 *ngFor="
                   let titular of titulares
                     | orderBy: 'created_at':false
@@ -152,12 +154,13 @@
                   class="fas fa-external-link-alt"
                 ></i>
               </li>
-              <h4 class="loadit"
-            style="margin-top: 20px;"
-            *ngIf="titulares.length === 0"
-          >
-            Nada encontrado
-          </h4>
+              <h4
+                class="loadit"
+                style="margin-top: 20px"
+                *ngIf="titulares.length === 0"
+              >
+                Nada encontrado
+              </h4>
             </div>
             <pagination-controls
               id="alttitulares"
@@ -193,7 +196,7 @@
           <div class="botao-anexosAlt">
             <button
               class="btn btn-primary"
-              style="font-weight: bold; font-size: 16px"
+              style="width: 160px"
               id="abrirAnexoAlt"
             >
               <i style="margin-right: 6px" class="fas fa-file-image"></i>Abrir
@@ -309,7 +312,6 @@
                   placeholder="Informe a data de recebimento"
                   required
                 />
-
               </div>
 
               <div class="col-md-2 mb-3">
@@ -321,7 +323,6 @@
                   placeholder="Prioridade"
                   required
                 />
-
               </div>
 
               <div class="col-md-2 mb-3">
@@ -589,7 +590,7 @@
               </div>
             </div>
             <button class="btn btn-primary" (click)="updateTit()">
-              Alterar Titular
+              <i class="fas fa-check"></i> Alterar Titular
             </button>
           </form>
         </div>

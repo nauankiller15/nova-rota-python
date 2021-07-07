@@ -40,7 +40,7 @@ export class NovaEmpresaComponent implements OnInit {
       $('#changeEmpPrincipal').slideDown('100');
       $('#filial').each(function () {
         this.checked = false;
-        $('#divFilial').hide();
+        $('#divFilial').slideUp();
         $('#CNPJ_empresa_principal').prop('required', '');
         $('#razao_social_principal').prop('required', '');
       });
@@ -50,7 +50,7 @@ export class NovaEmpresaComponent implements OnInit {
       $('#changeEmpFilial').slideDown('100');
       $('#filial').each(function () {
         this.checked = true;
-        $('#divFilial').fadeIn('100');
+        $('#divFilial').slideDown('100');
         $('#CNPJ_empresa_principal').prop('required', 'required');
         $('#razao_social_principal').prop('required', 'required');
       });
@@ -63,7 +63,7 @@ export class NovaEmpresaComponent implements OnInit {
         $('#CNPJ_empresa_principal').prop('required', 'required');
         $('#razao_social_principal').prop('required', 'required');
       } else {
-        $('#divFilial').hide();
+        $('#divFilial').slideUp();
         $('#CNPJ_empresa_principal').prop('required', '');
         $('#razao_social_principal').prop('required', '');
       }
@@ -76,7 +76,7 @@ export class NovaEmpresaComponent implements OnInit {
     $('#dataRecebimento').on('focus', function () {
       $(this).siblings('#vinc-anexo-empresa').fadeIn('100');
     });
-    $('#vinc-anexo-empresa').hide();
+    $('#vinc-anexo-empresa').slideUp();
     //
     $('#fecharAnexo5').click(function () {
       $('#vinc-anexo-empresa').fadeOut('100');
@@ -94,7 +94,7 @@ export class NovaEmpresaComponent implements OnInit {
     $('#dataVigencia').on('focus', function () {
       $(this).siblings('#vinc-vigencia').fadeIn('100');
     });
-    $('#vinc-vigencia').hide();
+    $('#vinc-vigencia').slideUp();
     //
     $('#fecharVigencia').click(function () {
       $('#vinc-vigencia').fadeOut('100');
@@ -137,20 +137,20 @@ export class NovaEmpresaComponent implements OnInit {
 
     $('#tipo_contrato').on('change', function () {
       if ('Operadora' === $(this).val()) {
-        $('#operadora').fadeIn('100');
-        $('#seguradora').hide();
+        $('#operadora').slideDown('100');
+        $('#seguradora').slideUp();
         $('#formularioSeguradora').each(function () {
           this.reset();
         });
       } else if ('Seguradora' === $(this).val()) {
-        $('#seguradora').fadeIn('100');
-        $('#operadora').hide();
+        $('#seguradora').slideDown('100');
+        $('#operadora').slideUp();
         $('#formularioOperadora').each(function () {
           this.reset();
         });
       } else {
-        $('#operadora').hide();
-        $('#seguradora').hide();
+        $('#operadora').slideUp();
+        $('#seguradora').slideUp();
       }
     });
   }
