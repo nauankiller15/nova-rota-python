@@ -35,8 +35,8 @@ export class ApiService {
     });
   }
 
-  apagar(apiUrl, dados): Observable<any> {
-    return this.http.delete(this.baseUrl + apiUrl + dados.id + '/', {
+  apagar(apiUrl, pk): Observable<any> {
+    return this.http.delete(this.baseUrl + apiUrl + pk + '/', {
       headers: this.httpHeaders,
     });
   }

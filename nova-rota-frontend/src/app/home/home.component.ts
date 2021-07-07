@@ -97,7 +97,7 @@ export class HomeComponent implements OnInit {
   //
   titulo: string;
   p: number = 1;
-  selected_id: Number;
+  selected_id: any;
   update_tarefa: any;
 
   public loading = false;
@@ -282,11 +282,11 @@ export class HomeComponent implements OnInit {
   }
 
   deleteTarefa() {
-    this.api.apagar('tarefas/', this.selected_tarefa).subscribe(
+    this.api.apagar('tarefas/', this.selected_id).subscribe(
       (data) => {
         let index: number;
-        this.tarefas.forEach((e, i) => {
-          if (this.selected_tarefa) index = i;
+        this.tarefas.forEach((id, i) => {
+          if (id == this.selected_id) index = i;
         });
         this.tarefas.splice(index, 1);
         this.toastr.success('Tarefa apagada!');
@@ -299,4 +299,6 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+
+
 }

@@ -8,7 +8,7 @@
               <i class="fas fa-building icon-gradient bg-mean-fruit"> </i>
             </div>
             <div>
-              Alteração Empresa Principal/Filial Ativa
+              Alteração Empresa Principal ou Filial Ativa
               <div class="page-title-subheading">
                 Alteração de dados - Principal/Filial Ativa.
               </div>
@@ -471,7 +471,7 @@
                   [(ngModel)]="selected_empresa.inicio_vigencia"
                   name="inicio_vigencia"
                   type="date"
-                  id="dataVigencia"
+                  id="dataVigenciaAlt"
                   class="form-control"
                   required
                 />
@@ -509,14 +509,14 @@
                     <nav class="menuVigencia">
                       <ul class="menuItems">
                         <!-- BOTÃO REAJUSTE -->
-                        <li id="reajusteBtn" class="active">Reajuste</li>
+                        <li id="reajusteBtnAlt" class="active">Reajuste</li>
 
                         <!-- BOTÃO SINISTRALIDADE -->
-                        <li id="sinistralidadeBtn">Sinistralidade</li>
+                        <li id="sinistralidadeBtnAlt">Sinistralidade</li>
                       </ul>
                     </nav>
                   </div>
-                  <div id="reajusTab">
+                  <div id="reajustTabAlt">
                     <h1
                       style="
                         font-size: 20px;
@@ -633,7 +633,7 @@
                     </div>
                   </div>
 
-                  <div id="sinisTab" style="display: none">
+                  <div id="sinisTabAlt" style="display: none">
                     <h1
                       style="
                         font-size: 20px;
@@ -707,7 +707,7 @@
                       bottom: 20px;
                     "
                     class="btn btn-primary"
-                    id="fecharVigencia"
+                    id="fecharVigenciaAlt"
                   >
                     Fechar tela
                   </button>
