@@ -6,7 +6,7 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  baseUrl = 'http://192.168.10.21:8000/api/';
+  baseUrl = 'http://localhost:8000/api/';
   httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor( private http: HttpClient) { }

@@ -11,7 +11,7 @@ import { Login, User } from './models';
 })
 export class AuthService {
   
-  private baseUrl = 'http://192.168.10.21:8000/api/';
+  private baseUrl = 'http://localhost:8000/api/';
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json'});
   
   constructor(private http: HttpClient, private router: Router, private toastr: ToastrService) {}

@@ -112,8 +112,8 @@
   background: linear-gradient(0deg, #0c5d24 0%, #11963c 100%);
   padding: 21px;
   color: #fff;
-  transition: all 0.2s ease-in-out;
-  animation: slide-left 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  animation: slide-left 0.4s ease-in-out;
   /* border: 2px solid #ffffff29; */
 }
 .menuVigencia .menuItems li.active:nth-child(2) {
@@ -121,8 +121,8 @@
   background: linear-gradient(0deg, #0c5d24 0%, #11963c 100%);
   padding: 21px;
   color: #fff;
-  transition: all 0.2s ease-in-out;
-  animation: slide-right 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  animation: slide-right 0.4s ease-in-out;
 }
 
 .filialSelect {
@@ -133,7 +133,17 @@
   border: 2px solid var(--cor-tema);
   display: none;
   border-radius: 10px;
-  transition: 0.3s;
+  transition: 0.4s;
+  animation: scale-in 0.6s ease-in-out;
+}
+
+@keyframes scale-in {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: translateX(1.0);
+  }
 }
 
 .htSlct{
@@ -150,7 +160,7 @@
   border-radius: 10px;
   color: #fff;
   display: none;
-  animation: slide-inserir 1.7s ease-in-out;
+  animation: slide-inserir 0.9s ease-in-out;
 }
 
 
@@ -188,13 +198,13 @@
 .menuVigencia .menuItems li:hover {
   display: block;
   transform: translate(0px, -4px);
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .menuVigencia .menuItems li::before {
   display: block;
   content: attr(data-item);
-  transition: 0.2s;
+  transition: 0.3s;
   position: absolute;
   top: 21px;
   bottom: 0;
@@ -205,6 +215,7 @@
   cursor: pointer;
   color: var(--branco);
 }
+
 .menuVigencia .menuItems li:hover::before {
   display: block;
   width: 67%;
