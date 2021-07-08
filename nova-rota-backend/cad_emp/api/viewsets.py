@@ -1,4 +1,5 @@
 from rest_framework.viewsets import ModelViewSet
+from django_filters.rest_framework import DjangoFilterBackend
 from cad_emp.models import ContratoOperadora, ContratoSeguradora, Empresa, Filial, Reajuste, Sinistralidade
 from .serializers import ContratoOperadoraSerializer, ContratoSeguradoraSerializer, EmpresaSerializer, FilialSerializer, ReajusteSerializer, SinistralidadeSerializer
 
@@ -11,24 +12,31 @@ class EmpresaViewSet(ModelViewSet):
 class FilialViewSet(ModelViewSet):
     queryset = Filial.objects.all()
     serializer_class = FilialSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['empresa']
 
 
 class ContratoOperadoraViewSet(ModelViewSet):
     queryset = ContratoOperadora.objects.all()
     serializer_class = ContratoOperadoraSerializer
-
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['empresa']
 
 class ContratoSeguradoraViewSet(ModelViewSet):
     queryset = ContratoSeguradora.objects.all()
     serializer_class = ContratoSeguradoraSerializer
-
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['empresa']
 
 
 class ReajusteViewSet(ModelViewSet):
     queryset = Reajuste.objects.all()
     serializer_class = ReajusteSerializer
-
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['empresa']
 
 class SinistralidadeViewSet(ModelViewSet):
     queryset = Sinistralidade.objects.all()
     serializer_class = SinistralidadeSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['empresa']

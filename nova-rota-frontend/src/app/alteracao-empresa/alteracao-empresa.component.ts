@@ -32,7 +32,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
   sinistralidade: Sinistralidade = new Sinistralidade;
   enviarSinistralidade = false;
   
-  reajustes: Reajuste[];
+  reajustes: Reajuste[] = [];
   reajuste: Reajuste = new Reajuste;
   enviarReajuste = false;
 
@@ -114,6 +114,10 @@ export class AlteracaoEmpresaComponent implements OnInit {
       $(this).addClass('active');
       $(this).siblings().removeClass('active');
     });
+
+    $('#estado_uf').on('blur', function(){
+      $('#vinc-vigencia').fadeIn(100);
+    });
   }
 
   searchCNPJ(CNPJ: string) {
@@ -151,10 +155,24 @@ export class AlteracaoEmpresaComponent implements OnInit {
     );
   };
 
-  loadEmpresa(id: string) {
+  empresaClicked = (empresa: Empresa) => {
+    $('#consulta').fadeOut('200');
+    $('#empresaappear').fadeIn('200');
+    this.empresa = empresa;
+    this.loadReajustes(empresa.id);
+    this.loadSinistralidades(empresa.id);
+    this.loadContratoOperadora(empresa.id);
+    this.loadContratoSeguradora(empresa.id);
+  };
+
+  loadEmpresa(id: number) {
     this.api.selecionar('empresa/', id).subscribe(
       (data) => {
         this.empresa = data;
+        this.loadReajustes(data.id);
+        this.loadSinistralidades(data.id);
+        this.toastr.success('empresa carregada');
+
       },
       (error) => {
         this.toastr.error('Titular não encontrado', error.message);
@@ -162,18 +180,50 @@ export class AlteracaoEmpresaComponent implements OnInit {
     );
   }
 
-  empresaClicked = (empresa: { id: string }) => {
-    $('#consulta').fadeOut('200');
-    $('#empresaappear').fadeIn('200');
-    this.api.selecionar('empresa/', empresa.id).subscribe(
+  loadReajustes(empresa: number) {
+    this.api.listar(`reajuste/?empresa=${empresa}`).subscribe(
       (data) => {
-        this.empresa = data;
+        this.reajustes = data;
+        console.log(data);
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        this.toastr.error('Titular não encontrado', error.message);
       }
     );
-  };
+  }
+
+  loadSinistralidades(empresa: number) {
+    this.api.listar(`sinistralidade/?empresa=${empresa}`).subscribe(
+      (data) => {
+        this.sinistralidades = data;
+      },
+      (error) => {
+        this.toastr.error('Titular não encontrado', error.message);
+      }
+    );
+  }
+
+  loadContratoOperadora(empresa: number) {
+    this.api.listar(`contrato-operadora/?empresa=${empresa}`).subscribe(
+      (data) => {
+        this.contratoOperadora = data[0];
+      },
+      (error) => {
+        this.toastr.error('Titular não encontrado', error.message);
+      }
+    );
+  }
+
+  loadContratoSeguradora(empresa: number) {
+    this.api.listar(`contrato-seguradora/?empresa=${empresa}`).subscribe(
+      (data) => {
+        this.contratoSeguradora = data[0];
+      },
+      (error) => {
+        this.toastr.error('Titular não encontrado', error.message);
+      }
+    );
+  }
 
   updateEmp() {
     this.api.inserir('empresa/', this.empresa).subscribe(

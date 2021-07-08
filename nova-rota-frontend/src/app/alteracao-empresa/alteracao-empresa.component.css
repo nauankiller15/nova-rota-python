@@ -79,23 +79,27 @@
   transform: translate(-50%, -50%);
 }
 
-.botao-anexosEmpAlt {
-  right: 20px;
-  padding: 0px 6px 9px 12px;
-  top: 10px;
-}
-
-.botao-vigenciaAlt {
-  right: 20px;
-  padding: 0px 6px 9px 12px;
-  top: 65px;
-}
-
+/* Botoes do topo à direita */
 .bordatopEmp {
+  padding-top: 0;
   top: 2px;
   right: 20px;
   position: absolute;
   border: 1px solid #ededefa8;
+}
+
+.bordatopEmp button {
+  width: 160px;
+  margin: 5px;
+  margin-bottom: 10px;
+}
+
+.bordatopEmp i {
+  margin-right: 6px;
+}
+
+.bordatopEmp hr {
+  margin: 0px;
 }
 
 /* TELA DE VIGÊNCIA */

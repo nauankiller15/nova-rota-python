@@ -20,6 +20,7 @@ export class Empresa {
 }
 
 export class ContratoOperadora {
+    id: number;
     empresa: number;
     tipo: string;
     nome: string;
@@ -27,6 +28,7 @@ export class ContratoOperadora {
 }
 
 export class ContratoSeguradora {
+    id: number;
     empresa: number;
     nome: string;
     tipo: string = 'Seguro de Vida';
@@ -34,6 +36,7 @@ export class ContratoSeguradora {
 }
 
 export class Reajuste{
+    id: number;
     empresa: number;
     ano_vigencia: number;
     sinistralidade: number;
@@ -42,6 +45,7 @@ export class Reajuste{
 }
 
 export class Sinistralidade {
+    id: number;
     empresa: number;
     ano: number;
     sinistralidade: string;

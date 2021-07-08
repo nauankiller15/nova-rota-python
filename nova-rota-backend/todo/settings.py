@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
     'public.apps.PublicConfig',
+    'django_filters',
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
@@ -61,8 +62,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'todo.urls'
@@ -145,13 +146,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ALLOWED_HOSTS = ['192.168.10.21', '192.168.10.21:4200' '192.168.10.21:8000', '192.168.10.21:8000/login', 'localhost', '127.0.0.1']
-
 CORS_ALLOWED_ORIGINS = [
-    "http://192.168.10.21:8000",
-    "http://192.168.10.21:8000",
-    "http://192.168.10.21",
-    "http://192.168.10.21:4200",
     "http://localhost:4200",
     "http://127.0.0.1:4200",
 ]
