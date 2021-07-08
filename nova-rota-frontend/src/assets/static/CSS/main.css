@@ -5169,6 +5169,7 @@ input[type="button"].btn-block {
   background-clip: border-box;
   border: 1px solid rgba(26, 54, 126, 0.125);
   border-radius: 0.25rem;
+  animation: cutOff 0.5s ease-in-out;
 }
 
 .card > hr {
@@ -5189,6 +5190,11 @@ input[type="button"].btn-block {
 .card-body {
   flex: 1 1 auto;
   padding: 1.25rem;
+   animation: cutOff 0.6s ease-in-out;
+}
+
+#titularesappear{
+  animation: cutOff 0.5s ease-in-out;
 }
 
 .card-title {
@@ -11397,7 +11403,7 @@ button,
   flex: 1;
   z-index: 8;
   position: relative;
-}
+ }
 
 .app-main .app-main__outer {
   flex: 1;
@@ -11405,7 +11411,19 @@ button,
   display: flex;
   z-index: 12;
   min-height: 87vh;
+  animation: cutOff 0.5s ease-in-out;
 }
+
+@keyframes cutOff {
+  0% {
+    transform: translateX(-260px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
 
 .app-main .app-main__inner {
   padding: 35px 35px 20px 35px;

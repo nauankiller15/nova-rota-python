@@ -30,6 +30,7 @@
   width: 50vh;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.534);
+  animation: cutOff 0.5s ease-in-out;
 }
 
 .box-novidades h3 {
