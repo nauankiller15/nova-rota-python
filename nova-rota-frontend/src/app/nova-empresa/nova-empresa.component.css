@@ -156,7 +156,7 @@
 
 @keyframes slide-inserir {
   0% {
-    transform: translateX(-660px);
+    transform: translateX(-260px);
   }
   100% {
     transform: translateX(0);
