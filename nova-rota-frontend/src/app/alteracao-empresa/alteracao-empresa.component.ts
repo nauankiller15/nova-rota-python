@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../api.service';
-import { Empresa } from '../nova-empresa/models';
+import { ContratoOperadora, ContratoSeguradora, Empresa, Reajuste, Sinistralidade } from '../nova-empresa/models';
 
 declare var $: any;
 
@@ -20,12 +20,23 @@ export class AlteracaoEmpresaComponent implements OnInit {
   intervalId: number | null = null;
   //
 
-  selected_empresa: Empresa;
 
+  // DADOS DA EMPRESA
+  busca: Empresa[];
   empresas: Empresa[];
+  empresa: Empresa = new Empresa;
+  contratoSeguradora: ContratoSeguradora = new ContratoSeguradora;
+  contratoOperadora: ContratoOperadora= new ContratoOperadora;
+
+  sinistralidades: Sinistralidade[];
+  sinistralidade: Sinistralidade = new Sinistralidade;
+  enviarSinistralidade = false;
+  
+  reajustes: Reajuste[];
+  reajuste: Reajuste = new Reajuste;
+  enviarReajuste = false;
 
   CNPJ: any;
-  razao_social: string;
   fileToUpload: File = null;
   p: number = 1;
 
@@ -105,34 +116,34 @@ export class AlteracaoEmpresaComponent implements OnInit {
     });
   }
 
-  searchCNPJ(CNPJ) {
-    if (this.CNPJ != '') {
-      this.empresas = this.empresas.filter((res) => {
-        return res.CNPJ.toLocaleLowerCase().match(
-          this.CNPJ.toLocaleLowerCase()
-        );
+  searchCNPJ(CNPJ: string) {
+    console.log(CNPJ)
+    if (CNPJ != '') {
+      this.busca = this.empresas.filter((res) => {
+        return res.CNPJ.match(CNPJ);
       });
-    } else if (this.CNPJ == '') {
-      this.getEmpresas();
+    } else if (CNPJ == '') {
+      this.busca = this.empresas;
     }
   }
 
-  searchEmpresa(razaoSocial) {
-    if (this.razao_social != '') {
-      this.empresas = this.empresas.filter((res) => {
+  searchEmpresa(razaoSocial: string) {
+    if (razaoSocial != '') {
+      this.busca = this.empresas.filter((res) => {
         return res.razao_social
           .toLocaleLowerCase()
-          .match(this.razao_social.toLocaleLowerCase());
+          .match(razaoSocial.toLocaleLowerCase());
       });
-    } else if (this.razao_social == '') {
-      this.getEmpresas();
+    } else if (razaoSocial == '') {
+      this.busca = this.empresas;
     }
   }
 
-  getEmpresas = () => {
+  getEmpresas() {
     this.api.listar('empresa/').subscribe(
       (data) => {
         this.empresas = data;
+        this.busca = data;
       },
       (error) => {
         this.toastr.error('Aconteceu um Erro!', error.message);
@@ -143,7 +154,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
   loadEmpresa(id: string) {
     this.api.selecionar('empresa/', id).subscribe(
       (data) => {
-        this.selected_empresa = data;
+        this.empresa = data;
       },
       (error) => {
         this.toastr.error('Titular não encontrado', error.message);
@@ -156,7 +167,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
     $('#empresaappear').fadeIn('200');
     this.api.selecionar('empresa/', empresa.id).subscribe(
       (data) => {
-        this.selected_empresa = data;
+        this.empresa = data;
       },
       (error) => {
         this.toastr.error('Aconteceu um Erro!', error.message);
@@ -165,7 +176,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
   };
 
   updateEmp() {
-    this.api.inserir('empresa/', this.selected_empresa).subscribe(
+    this.api.inserir('empresa/', this.empresa).subscribe(
       (data: {}) => {
         this.toastr.success('Atualizado com sucesso!');
       },
@@ -176,5 +187,80 @@ export class AlteracaoEmpresaComponent implements OnInit {
         }
       }
     );
+  }
+
+  newEmpresa() {
+    this.api.inserir('empresa/', this.empresa).subscribe(
+      (data: {}) => {
+        this.toastr.success('Atualizado com sucesso!');
+      },
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
+      }
+    );
+  }
+
+  newContrato() {
+    let urlTipo: string;
+    let dados: any;
+    if (this.empresa.tipo_contrato == 'Operadora') {
+      urlTipo = 'contrato-operadora/';
+      dados = this.contratoOperadora;
+    } else {
+      urlTipo = 'contrato-seguradora/';
+      dados = this.contratoSeguradora;
+    }
+
+    dados.empresa = this.empresa.id;
+    console.log(dados);
+    this.api.inserir(urlTipo, dados).subscribe(
+      (data) => {
+        this.toastr.success('Empresa incluída com sucesso!');
+      },
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
+      }
+    );
+  }
+
+  newSinistralidade() {
+    if (this.enviarSinistralidade == true) {
+      this.sinistralidade.empresa = this.empresa.id;
+      console.log(this.sinistralidade);
+      this.api.inserir('sinistralidade/', this.sinistralidade).subscribe(
+        (data) => {
+          this.toastr.success('Sinistralidade incluída com sucesso!');
+        },
+        (error) => {
+          let mensagens = error.error;
+          for (let campo in mensagens) {
+            this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+          }
+        }
+      );
+    }
+  }
+
+  newReajuste() {
+    if (this.enviarReajuste == true) {
+      this.reajuste.empresa = this.empresa.id;
+      this.api.inserir('reajuste/', this.reajuste).subscribe(
+        (data) => {
+          this.toastr.success('Reajuste incluído com sucesso!');
+        },
+        (error) => {
+          let mensagens = error.error;
+          for (let campo in mensagens) {
+            this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+          }
+        }
+      );
+    }
   }
 }
