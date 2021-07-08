@@ -24,6 +24,10 @@
   padding: 10px;
 }
 
+.margEmp {
+  margin-top: -20px;
+}
+
 .box-anexo {
   border-top: 4px solid var(--cor-tema);
   border-radius: 15px;
@@ -80,6 +84,11 @@
   border-bottom: 2px solid var(--cor-tema);
   margin-bottom: 24px;
 }
+
+.radiusTop {
+  border-radius: 7px 0px 0px 0px;
+}
+
 .menuVigencia .menuItems {
   margin-bottom: -2px;
   list-style: none;
@@ -97,18 +106,36 @@
   position: relative;
   cursor: pointer;
 }
+
 .menuVigencia .menuItems li.active {
   display: block;
-  background-color: var(--cor-tema);
+  background: linear-gradient(0deg, #0c5d24 0%, #11963c 100%);
   padding: 21px;
   color: #fff;
   transition: all 0.2s ease-in-out;
+  animation: slide-in 0.2s ease-in-out;
+  /* border: 2px solid #ffffff29; */
 }
+
+.menuVigencia .menuItems li.active:hover {
+  transform: translate(0px, 0px);
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(100px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 .menuVigencia .menuItems li:hover {
   display: block;
   transform: translate(0px, -4px);
   transition: all 0.2s ease-in-out;
 }
+
 .menuVigencia .menuItems li::before {
   display: block;
   content: attr(data-item);
@@ -121,7 +148,7 @@
   width: 0;
   overflow: hidden;
   cursor: pointer;
-  color: var(--branco)
+  color: var(--branco);
 }
 .menuVigencia .menuItems li:hover::before {
   display: block;

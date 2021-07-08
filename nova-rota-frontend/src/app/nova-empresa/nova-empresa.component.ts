@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../api.service';
-import { ContratoOperadora, ContratoSeguradora, Empresa, Reajuste, Sinistralidade } from './models';
+import {
+  ContratoOperadora,
+  ContratoSeguradora,
+  Empresa,
+  Reajuste,
+  Sinistralidade,
+} from './models';
 
 declare var $: any;
 
@@ -11,34 +17,54 @@ declare var $: any;
   styleUrls: ['./nova-empresa.component.css'],
 })
 export class NovaEmpresaComponent implements OnInit {
-  empresa: Empresa = new Empresa;
-  contratoSeguradora: ContratoSeguradora = new ContratoSeguradora;
-  contratoOperadora: ContratoOperadora = new ContratoOperadora;
-  sinistralidade: Sinistralidade = new Sinistralidade;
+  empresa: Empresa = new Empresa();
+  contratoSeguradora: ContratoSeguradora = new ContratoSeguradora();
+  contratoOperadora: ContratoOperadora = new ContratoOperadora();
+  sinistralidade: Sinistralidade = new Sinistralidade();
   enviarSinistralidade = false;
-  reajuste: Reajuste = new Reajuste;
+  reajuste: Reajuste = new Reajuste();
   enviarReajuste = false;
 
-  constructor(
-    private toastr: ToastrService,
-    private api: ApiService,
-  ) {}
+  constructor(private toastr: ToastrService, private api: ApiService) {}
 
   ngOnInit(): void {
     $(document).ready(() => {
       $('.cep').mask('00000-000');
       $('.celular').mask('(00) 00000-0000');
       $('.cnpj').mask('00.000.000/0000-00', { reverse: false });
+      $('.percent').mask('##0,00%', { reverse: false });
+    });
+
+    // CADASTRO DE EMPRESAS
+    $('#principalCad').click(function () {
+      $('#changeEmpFilial').slideUp('100');
+      $('#changeEmpPrincipal').slideDown('100');
+      $('#filial').each(function () {
+        this.checked = false;
+        $('#divFilial').slideUp();
+        $('#CNPJ_empresa_principal').prop('required', '');
+        $('#razao_social_principal').prop('required', '');
+      });
+    });
+    $('#filialCad').click(function () {
+      $('#changeEmpPrincipal').slideUp('100');
+      $('#changeEmpFilial').slideDown('100');
+      $('#filial').each(function () {
+        this.checked = true;
+        $('#divFilial').slideDown('100');
+        $('#CNPJ_empresa_principal').prop('required', 'required');
+        $('#razao_social_principal').prop('required', 'required');
+      });
     });
 
     // DADOS DA EMPRESA PRINCIPAL
     $('#filial').on('change', function () {
-      if ($(this).is(":checked") == true) {
+      if ($(this).is(':checked') == true) {
         $('#divFilial').fadeIn('100');
         $('#CNPJ_empresa_principal').prop('required', 'required');
         $('#razao_social_principal').prop('required', 'required');
       } else {
-        $('#divFilial').hide();
+        $('#divFilial').slideUp();
         $('#CNPJ_empresa_principal').prop('required', '');
         $('#razao_social_principal').prop('required', '');
       }
@@ -51,7 +77,7 @@ export class NovaEmpresaComponent implements OnInit {
     $('#dataRecebimento').on('focus', function () {
       $(this).siblings('#vinc-anexo-empresa').fadeIn('100');
     });
-    $('#vinc-anexo-empresa').hide();
+    $('#vinc-anexo-empresa').slideUp();
     //
     $('#fecharAnexo5').click(function () {
       $('#vinc-anexo-empresa').fadeOut('100');
@@ -69,7 +95,7 @@ export class NovaEmpresaComponent implements OnInit {
     $('#dataVigencia').on('focus', function () {
       $(this).siblings('#vinc-vigencia').fadeIn('100');
     });
-    $('#vinc-vigencia').hide();
+    $('#vinc-vigencia').slideUp();
     //
     $('#fecharVigencia').click(function () {
       $('#vinc-vigencia').fadeOut('100');
@@ -96,47 +122,44 @@ export class NovaEmpresaComponent implements OnInit {
       $(this).siblings().removeClass('active');
     });
 
+    // $('#filial').trigger('click');
+    //
+
     // OPÇÕES
 
-    $('input, select, textarea').keypress(
-      function (
-        event: {
-          which: number;
-          preventDefault: () => void;
-        }
-      ) {
-        if (event.which == 13) {
-          event.preventDefault();
-        }
+    $('input, select, textarea').keypress(function (event: {
+      which: number;
+      preventDefault: () => void;
+    }) {
+      if (event.which == 13) {
+        event.preventDefault();
       }
-    );
+    });
 
     $('#tipo_contrato').on('change', function () {
       if ('Operadora' === $(this).val()) {
-        $('#operadora').fadeIn('100');
-        $('#seguradora').hide();
-        $('#formularioSeguradora').each (function(){
+        $('#operadora').slideDown('100');
+        $('#seguradora').slideUp();
+        $('#formularioSeguradora').each(function () {
           this.reset();
         });
       } else if ('Seguradora' === $(this).val()) {
-        $('#seguradora').fadeIn('100');
-        $('#operadora').hide();
-        $('#formularioOperadora').each (function(){
+        $('#seguradora').slideDown('100');
+        $('#operadora').slideUp();
+        $('#formularioOperadora').each(function () {
           this.reset();
         });
       } else {
-        $('#operadora').hide();
-        $('#seguradora').hide();
+        $('#operadora').slideUp();
+        $('#seguradora').slideUp();
       }
     });
   }
 
-
   newEmpresa() {
-    
     let urlEmpresa = 'empresa/';
     if (this.empresa.is_filial == true) {
-      urlEmpresa = 'filial/'
+      urlEmpresa = 'filial/';
       console.log(this.empresa);
     }
 
@@ -153,7 +176,7 @@ export class NovaEmpresaComponent implements OnInit {
           this.toastr.error(mensagens[campo], 'Erro no ' + campo);
         }
       }
-    );  
+    );
   }
 
   newContrato() {
@@ -163,12 +186,12 @@ export class NovaEmpresaComponent implements OnInit {
       urlTipo = 'contrato-operadora/';
       dados = this.contratoOperadora;
     } else {
-      urlTipo = 'contrato-seguradora/'
+      urlTipo = 'contrato-seguradora/';
       dados = this.contratoSeguradora;
     }
 
-    dados.empresa = this.empresa.id
-    console.log(dados)
+    dados.empresa = this.empresa.id;
+    console.log(dados);
     this.api.inserir(urlTipo, dados).subscribe(
       (data) => {
         this.toastr.success('Empresa incluída com sucesso!');
@@ -183,7 +206,6 @@ export class NovaEmpresaComponent implements OnInit {
   }
 
   newSinistralidade() {
-
     if (this.enviarSinistralidade == true) {
       this.sinistralidade.empresa = this.empresa.id;
       console.log(this.sinistralidade);
@@ -193,18 +215,16 @@ export class NovaEmpresaComponent implements OnInit {
         },
         (error) => {
           let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+          for (let campo in mensagens) {
+            this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+          }
         }
-      }
       );
-    }  
+    }
   }
 
   newReajuste() {
-   
     if (this.enviarReajuste == true) {
-
       this.reajuste.empresa = this.empresa.id;
       this.api.inserir('reajuste/', this.reajuste).subscribe(
         (data) => {

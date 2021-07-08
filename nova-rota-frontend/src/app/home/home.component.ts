@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { User } from '../account/login/models';
 import { AuthService } from '../account/login/auth.service';
+import { NgIf } from '@angular/common';
 import { ApiService } from '../api.service';
 
 declare var $: any;
@@ -14,10 +15,8 @@ declare var $: any;
   template: '<menu></menu><router-outlet></router-outlet>',
   styleUrls: ['./home.component.css'],
 })
-
 export class HomeComponent implements OnInit {
-
-  usuario: User = new User;
+  usuario: User = new User();
 
   // carregador
   animation = 'pulse';
@@ -26,7 +25,7 @@ export class HomeComponent implements OnInit {
   widthHeightSizeInPixels = 50;
 
   intervalId: number | null = null;
-  // 
+  //
 
   //
   dependente: any[];
@@ -98,23 +97,23 @@ export class HomeComponent implements OnInit {
   //
   titulo: string;
   p: number = 1;
-  selected_id: string;
+  selected_id: any;
   update_tarefa: any;
+
   public loading = false;
-  
+
   constructor(
     private api: ApiService,
     private authService: AuthService,
     private router: Router,
-    private toastr: ToastrService,
-    private appComponent: AppComponent
+    private toastr: ToastrService
   ) {
     this.getTarefas();
   }
-  
+
   ngOnInit() {
     this.usuario = this.authService.getUser();
-    
+
     setTimeout(() => {
       this.contentLoaded = true;
     }, 2000);
@@ -285,19 +284,21 @@ export class HomeComponent implements OnInit {
   deleteTarefa() {
     this.api.apagar('tarefas/', this.selected_id).subscribe(
       (data) => {
-        this.toastr.success('Deletado com sucesso!');
         let index: number;
-
-        this.appComponent.tarefas.forEach((e, i) => {
-          if (e.id == this.selected_id) index = i;
+        this.tarefas.forEach((id, i) => {
+          if (id == this.selected_id) index = i;
         });
-        this.appComponent.tarefas.splice(index, 1);
+        this.tarefas.splice(index, 1);
+        this.toastr.success('Tarefa apagada!');
+
         $('.texto-overlay').fadeOut('100');
         $('#over-text').fadeOut('100');
       },
       (error) => {
-        this.toastr.error('Esta Tarefa não existe mais!', error.message);
+        this.toastr.error('Aconteceu um Erro!', error.message);
       }
     );
   }
+
+
 }

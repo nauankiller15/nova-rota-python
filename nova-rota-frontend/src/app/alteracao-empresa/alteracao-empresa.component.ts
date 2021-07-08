@@ -71,15 +71,15 @@ export class AlteracaoEmpresaComponent implements OnInit {
     });
 
     // TELA DE VIGÊNCIA
-    $('#dataVigencia').on('blur', function () {
+    $('#dataVigenciaAlt').on('blur', function () {
       $('#vinc-vigenciaAlt').fadeIn('100');
     });
-    $('#dataVigencia').on('focus', function () {
+    $('#dataVigenciaAlt').on('focus', function () {
       $(this).siblings('#vinc-vigenciaAlt').fadeIn('100');
     });
     $('#vinc-vigenciaAlt').hide();
     //
-    $('#fecharVigencia').click(function () {
+    $('#fecharVigenciaAlt').click(function () {
       $('#vinc-vigenciaAlt').fadeOut('100');
       $('#vigenciaTela').fadeIn('100');
     });
@@ -89,13 +89,13 @@ export class AlteracaoEmpresaComponent implements OnInit {
     });
 
     // SLIDE LEFT AND RIGHT AJUSTES
-    $('#sinistralidadeBtn').click(function () {
-      $('#sinisTab').slideDown('100');
-      $('#reajusTab').slideUp('100');
+    $('#sinistralidadeBtnAlt').click(function () {
+      $('#sinisTabAlt').slideDown('100');
+      $('#reajustTabAlt').slideUp('100');
     });
-    $('#reajusteBtn').click(function () {
-      $('#reajusTab').slideDown('100');
-      $('#sinisTab').slideUp('100');
+    $('#reajusteBtnAlt').click(function () {
+      $('#reajustTabAlt').slideDown('100');
+      $('#sinisTabAlt').slideUp('100');
     });
 
     // BOTÕES

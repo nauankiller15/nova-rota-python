@@ -132,6 +132,10 @@
   transform: translate(-50%, -50%);
 }
 
+.radiusTop {
+  border-radius: 7px 0px 0px 0px;
+}
+
 .menuVigencia {
   display: block;
   left: 10px;
@@ -157,11 +161,17 @@
 }
 .menuVigencia .menuItems li.active {
   display: block;
-  background-color: var(--cor-tema);
+  background: linear-gradient(0deg, #0c5d24 0%, #11963c 100%);
   padding: 21px;
   color: #fff;
   transition: all 0.2s ease-in-out;
+  animation: slide-in 0.2s ease-in-out;
+  /* border: 2px solid #ffffff29; */
 }
+.menuVigencia .menuItems li.active:hover {
+  transform: translate(0px, 0px);
+}
+
 .menuVigencia .menuItems li:hover {
   display: block;
   transform: translate(0px, -4px);

@@ -11404,6 +11404,7 @@ button,
   flex-direction: column;
   display: flex;
   z-index: 12;
+  min-height: 87vh;
 }
 
 .app-main .app-main__inner {
