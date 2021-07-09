@@ -28,7 +28,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
   contratoSeguradora: ContratoSeguradora = new ContratoSeguradora;
   contratoOperadora: ContratoOperadora= new ContratoOperadora;
 
-  sinistralidades: Sinistralidade[];
+  sinistralidades: Sinistralidade[] = [];
   sinistralidade: Sinistralidade = new Sinistralidade;
   enviarSinistralidade = false;
   
@@ -115,8 +115,23 @@ export class AlteracaoEmpresaComponent implements OnInit {
       $(this).siblings().removeClass('active');
     });
 
-    $('#estado_uf').on('blur', function(){
+    // Sinistralidade e reajuste
+    $('#reajuste-sinistralidade').on('click', function(){
       $('#vinc-vigencia').fadeIn(100);
+    });
+
+    $('#fecharVigencia').on('click', function(){
+      $('#vinc-vigencia').hide();
+    });
+
+    $('#reajusteBtn').on('click', function(){
+      $('#reajusTab').fadeIn(100);
+      $('#sinisTab').hide();
+    });
+
+    $('#sinistralidadeBtn').on('click', function(){
+      $('#sinisTab').fadeIn(100);
+      $('#reajusTab').hide();
     });
   }
 
@@ -196,6 +211,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
     this.api.listar(`sinistralidade/?empresa=${empresa}`).subscribe(
       (data) => {
         this.sinistralidades = data;
+        console.log(this.sinistralidades);
       },
       (error) => {
         this.toastr.error('Titular não encontrado', error.message);

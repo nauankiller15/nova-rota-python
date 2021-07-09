@@ -834,6 +834,7 @@
                   </ul>
                 </nav>
               </div>
+
               <div id="reajusTab">
                 <h1 style="font-size: 20px; display: flex; margin-bottom: 15px">
                   Histórico de Reajustes:
@@ -861,7 +862,7 @@
                         <th><button class="btn"><i class="fas fa-trash"></i></button></th>
                       </tr>
                       <tr *ngIf="reajustes.length == 0">
-                        <th>Nenhum reajuste cadastrado</th>
+                        <th colspan="6">Nenhum reajuste cadastrado</th>
                       </tr>
                     </tbody>
                   </table>
@@ -997,7 +998,29 @@
                   Histórico de Sinistralidade:
                 </h1>
                 <label for="reajuste">Informe aqui as sinistralidades:</label>
-                <div style="width: 100%"></div>
+                
+                <div>
+                  <table class="table table-info text-center">
+                    <thead>
+                      <tr>
+                        <th>Ano</th>
+                        <th>Sinistralidade</th>
+                        <th colspan="2">Ação</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let linha of sinistralidades">
+                        <th>{{ linha.ano }}</th>
+                        <th>{{ linha.sinistralidade }}</th>
+                        <th><button class="btn"><i class="fas fa-edit"></i></button></th>
+                        <th><button class="btn"><i class="fas fa-trash"></i></button></th>
+                      </tr>
+                      <tr *ngIf="sinistralidades.length == 0">
+                        <th colspan="4">Nenhuma sinistralidade cadastrada</th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
 
                 <div class="form-check">
                   <input
