@@ -147,14 +147,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ALLOWED_HOSTS = ['35.247.213.199', '35.247.213.199:4200' 
-                 '35.247.213.199:8000', '35.247.213.199:8000/login',
+ALLOWED_HOSTS = ['35.247.213.199', '35.247.213.199:80' 
+                 '35.247.213.199:8000', '35.247.213.199:80/login',
                  'localhost', '127.0.0.1']
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",
     "http://127.0.0.1:4200",
     "http://35.247.213.199:8000",
+    "http://35.247.213.199:800",
 ]
 
 CORS_ALLOW_METHODS = [
