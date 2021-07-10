@@ -96,8 +96,8 @@ DEBUG = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'nrs-sistema',
-        'USER': 'django-admin',
+        'NAME': 'nrssistema',
+        'USER': 'djangoadm',
         'PASSWORD': 'sistemanrs12',
         'HOST': 'localhost',
         'PORT': '5432'
