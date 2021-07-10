@@ -98,7 +98,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'nrs-sistema',
         'USER': 'django-admin',
-        'PASSWORD': 'nrs@admin',
+        'PASSWORD': 'sistemanrs12',
         'HOST': 'localhost',
         'PORT': '5432'
 
