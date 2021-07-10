@@ -94,10 +94,19 @@ SECRET_KEY = 'django-insecure-&p(sim^*%3ja)0x*uchqe36&_b!&%dryu%!!0jez@pi72v_h*m
 DEBUG = True
 
 DATABASES = {
-  'default': {
-       'ENGINE': 'django.db.backends.sqlite3',
-       'NAME': BASE_DIR / 'db.sqlite3e',
-   }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'nrs-sistema',
+        'USER': 'django-admin',
+        'PASSWORD': 'nrs@admin',
+        'HOST': 'localhost',
+        'PORT': '5432'
+
+    },
+    'local': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3e',
+    }
 }
 
 # Password validation

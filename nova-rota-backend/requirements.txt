@@ -10,3 +10,4 @@ PyJWT==1.7.1
 python-stdnum==1.16
 pytz==2021.1
 sqlparse==0.4.1
+psycopg2
