@@ -11412,6 +11412,7 @@ button,
   z-index: 12;
   min-height: 87vh;
   animation: cutOff 0.5s ease-in-out;
+  transition: 0.3s
 }
 
 @keyframes cutOff {
@@ -11491,6 +11492,7 @@ button,
 
 .fixed-footer .app-main .app-main__outer {
   padding-bottom: 60px;
+  transition: 0.3s;
 }
 
 .app-page-title {
