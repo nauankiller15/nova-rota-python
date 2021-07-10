@@ -100,7 +100,7 @@ DATABASES = {
       'USER': 'djangoadm',
       'PASSWORD': 'sistemanrs12',
       'HOST': 'localhost',
-      'PORT': ''
+      'PORT': '',
   }
 }
 
