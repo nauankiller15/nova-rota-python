@@ -19,6 +19,7 @@ from cad_emp.api.viewsets import SinistralidadeViewSet
 from novidades.api.viewsets import NovidadesViewSet
 from tarefas.api.viewsets import TarefaViewSet
 
+
 router = routers.DefaultRouter()
 router.register(r'titular', TitularViewSet)
 router.register(r'lista-parentesco', TitularParentescos, basename='lista-parentesco')
