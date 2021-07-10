@@ -95,12 +95,8 @@ DEBUG = True
 
 DATABASES = {
   'default': {
-      'ENGINE': 'django.db.backends.postgresql_psycopg2',
-      'NAME': 'nrsbanco',
-      'USER': 'djangoadm',
-      'PASSWORD': 'sistemanrs12',
-      'HOST': 'localhost',
-      'PORT': '',
+      'ENGINE': 'django.db.backends.sqlite3',
+      'NAME': BASE_DIR / 'db.sqlite3e',
   }
 }
 
