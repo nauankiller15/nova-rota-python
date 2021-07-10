@@ -10843,7 +10843,7 @@ h5,
 
 .bg-gradient {
   background: linear-gradient(0deg, #093516 0%, #02882d 100%);
-  width: 60vh;
+  width: 100vh;
   height: 70vh;
   position: absolute;
   right: 15px;
