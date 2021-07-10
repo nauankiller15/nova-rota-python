@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  baseUrl = 'http://35.247.213.199:80/api/';
+  baseUrl = 'http://35.247.213.199:8000/api/';
   httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   getTitulares: any;
 
