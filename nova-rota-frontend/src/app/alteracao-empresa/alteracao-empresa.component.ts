@@ -36,8 +36,6 @@ export class AlteracaoEmpresaComponent implements OnInit {
   reajuste: Reajuste = new Reajuste;
   enviarReajuste = false;
 
-  CNPJ: any;
-  fileToUpload: File = null;
   p: number = 1;
 
   constructor(
