@@ -10708,11 +10708,21 @@ h5,
 
 .wrap {
   width: 100%;
-  height: 70vh;
+  min-height: 70vh;
   border-radius: 5px;
   -webkit-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
   -moz-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
   box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+}
+
+@media (max-width: 1300px) {
+  .ftco-section {
+    padding: 3em 0;
+  }
+
+  .wrap {
+    min-height: 78vh;
+  }
 }
 
 .text-wrap {
@@ -10725,7 +10735,7 @@ h5,
 .politicaPst {
   position: absolute;
   bottom: 25px;
-  width: 90%;
+  width: 88%;
   text-align: center;
 }
 
@@ -10829,25 +10839,16 @@ h5,
 
 .text-wrap {
   color: #fff;
-  background-image: url(https://1.bp.blogspot.com/-37lNr8KmrfY/YNdrHWH1X0I/AAAAAAAAHQM/Ue3QmMiikSUMqmXmBQ8UIkh6Yu7KbhlIgCLcBGAsYHQ/s0/shield.png);
-  background-size: 100%;
+  background: url(https://1.bp.blogspot.com/-37lNr8KmrfY/YNdrHWH1X0I/AAAAAAAAHQM/Ue3QmMiikSUMqmXmBQ8UIkh6Yu7KbhlIgCLcBGAsYHQ/s0/shield.png),
+    linear-gradient(0deg, #093516 0%, #02882d 100%);
+  background-position: 100% 50%;
   background-repeat: no-repeat;
-  background-position: -14vh 30vh;
   z-index: 99;
 }
 
 .text-wrap .text h2 {
   font-weight: 200;
   color: #fff;
-}
-
-.bg-gradient {
-  background: linear-gradient(0deg, #093516 0%, #02882d 100%);
-  width: 100vh;
-  height: 70vh;
-  position: absolute;
-  right: 15px;
-  z-index: 1;
 }
 
 .login-wrap {
