@@ -1,6 +1,6 @@
 {
     "/api": {
-      "target": "http://35.247.213.199:8000/api/",
+      "target": "http://35.247.213.199:80/api/",
       "secure": false
     }
   }
