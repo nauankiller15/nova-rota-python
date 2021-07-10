@@ -94,15 +94,14 @@ SECRET_KEY = 'django-insecure-&p(sim^*%3ja)0x*uchqe36&_b!&%dryu%!!0jez@pi72v_h*m
 DEBUG = True
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'nrsbanco',
-        'USER': 'djangoadm',
-        'PASSWORD': 'sistemanrs12',
-        'HOST': 'localhost',
-        'PORT': ''
-
-    }
+  'default': {
+      'ENGINE': 'django.db.backends.postgresql_psycopg2',
+      'NAME': 'nrsbanco',
+      'USER': 'djangoadm',
+      'PASSWORD': 'sistemanrs12',
+      'HOST': 'localhost',
+      'PORT': ''
+  }
 }
 
 # Password validation
