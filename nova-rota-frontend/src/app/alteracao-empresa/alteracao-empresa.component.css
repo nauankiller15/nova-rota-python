@@ -120,6 +120,32 @@
   display: none;
 }
 
+/* BOTÕES DE AÇÕES */
+.editVig {
+  color: var(--cor-tema);
+  background-color: var(--branco);
+  border-color: var(--cor-tema);
+}
+
+.editVig:hover {
+  color: var(--branco);
+  background-color: var(--cor-tema);
+  border-color: var(--branco);
+}
+
+.eraseVig {
+  color: var(--cor-cancelar);
+  background-color: var(--branco);
+  border-color: var(--cor-cancelar);
+}
+
+.eraseVig:hover {
+  color: var(--branco);
+  background-color: var(--cor-cancelar);
+  border-color: var(--branco);
+}
+/*  */
+
 .box-vigencia {
   border-top: 4px solid var(--cor-tema);
   border-radius: 15px;
@@ -127,13 +153,14 @@
   max-width: 100vh;
   width: 69%;
   min-height: 30vh;
-  margin: 12vh auto;
   z-index: 997;
   position: fixed;
-  top: 32vh;
+  top: 48vh;
   left: 59%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
+  transition: 0.4s;
+
 }
 
 .radiusTop {
@@ -220,7 +247,7 @@
   width: 0;
   overflow: hidden;
   cursor: pointer;
-  color: var(--branco)
+  color: var(--branco);
 }
 .menuVigencia .menuItems li:hover::before {
   display: block;
@@ -231,7 +258,7 @@
 
 .anexo-info-box-empresa-vinc {
   margin: auto;
-  width: 80%;
+  width: 90%;
   margin-top: 29px;
   padding: 10px;
 }

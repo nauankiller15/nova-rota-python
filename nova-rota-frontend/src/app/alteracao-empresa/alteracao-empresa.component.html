@@ -22,9 +22,7 @@
           <h5 class="card-title">Consultar Empresa</h5>
           <form class="needs-validation" novalidate>
             <div class="form-row">
-              <div
-                class="input-group col-md-3 mb3"
-              >
+              <div class="input-group col-md-3 mb3">
                 <label for="validationCustom01">CNPJ:</label>
                 <div style="width: 100%"></div>
                 <span class="input-group-text" id="basic-addon1"
@@ -118,7 +116,7 @@
             </ngx-skeleton-loader>
             <div style="width: 100%"></div>
             <hr />
-            <div *ngIf="contentLoaded" class="titulares fadeIn">
+            <div *ngIf="contentLoaded" class="titulares">
               Empresas Encontradas:
               <li
                 class="loadit"
@@ -189,27 +187,21 @@
             {{ empresa.CNPJ | mask: "00.000.000/0000-00" }}
           </p>
           <div class="bordatopEmp">
-            <button
-              class="btn btn-primary"
-              id="abrirAnexoEmp"
-            >
-              <i class="fas fa-file-image"></i>Abrir
-              Anexos
+            <button class="btn btn-primary" id="abrirAnexoEmp">
+              <i class="fas fa-file-image"></i>
+              Abrir Anexos
             </button>
-            
-            <hr>   
 
-            <button
-              class="btn btn-primary"
-              id="abrirVigenciaAlt"
-            >
+            <hr />
+
+            <button class="btn btn-primary" id="reajuste-sinistralidade">
               <i class="fas fa-building"></i>
               Abrir Vigência
             </button>
           </div>
         </h1>
         <!-- TELA DE ANEXOS DA EMPRESA -->
-        <div id="vinc-anexo-emp" style="display: none;">
+        <div id="vinc-anexo-emp" style="display: none">
           <div class="box-anexo">
             <div class="anexo-info-box-titular-vinc">
               <label
@@ -442,7 +434,6 @@
             </div>
 
             <div class="form-row">
-             
               <div class="col-md-2 mb-3 mr-5">
                 <label for="validationCustom05">Inicio de Vigência</label>
                 <input
@@ -527,7 +518,7 @@
 
             <div class="form-row">
               <!-- VINCULAR ANEXO DO DOCUMENTO DA EMPRESA -->
-              <div id="vinc-anexo-empresa" style="display: none;">
+              <div id="vinc-anexo-empresa" style="display: none">
                 <div class="box-anexo">
                   <div class="anexo-info-box-empresa-vinc">
                     <h1
@@ -647,8 +638,12 @@
                 <select
                   #tipo_contrato="ngModel"
                   [(ngModel)]="empresa.tipo_contrato"
-                  [class.is-invalid]="tipo_contrato.invalid && tipo_contrato.touched"
-                  [class.is-valid]="tipo_contrato.valid && tipo_contrato.touched"
+                  [class.is-invalid]="
+                    tipo_contrato.invalid && tipo_contrato.touched
+                  "
+                  [class.is-valid]="
+                    tipo_contrato.valid && tipo_contrato.touched
+                  "
                   name="sexo"
                   class="form-control"
                   name="tipo_contrato"
@@ -682,8 +677,12 @@
                 <label for="validationCustom02">Operadoras</label>
                 <select
                   #operadora_tipo="ngModel"
-                  [class.is-invalid]="operadora_tipo.invalid && operadora_tipo.touched"
-                  [class.is-valid]="operadora_tipo.valid && operadora_tipo.touched"
+                  [class.is-invalid]="
+                    operadora_tipo.invalid && operadora_tipo.touched
+                  "
+                  [class.is-valid]="
+                    operadora_tipo.valid && operadora_tipo.touched
+                  "
                   [(ngModel)]="contratoOperadora.tipo"
                   name="operadora"
                   class="form-control"
@@ -701,8 +700,12 @@
                 <input
                   #operadora_nome="ngModel"
                   [(ngModel)]="contratoOperadora.nome"
-                  [class.is-invalid]="operadora_nome.invalid && operadora_nome.touched"
-                  [class.is-valid]="operadora_nome.valid && operadora_nome.touched"
+                  [class.is-invalid]="
+                    operadora_nome.invalid && operadora_nome.touched
+                  "
+                  [class.is-valid]="
+                    operadora_nome.valid && operadora_nome.touched
+                  "
                   name="operadora_nome"
                   type="text"
                   class="form-control"
@@ -711,8 +714,11 @@
                 />
                 <small
                   class="text-danger"
-                  [class.d-none]="operadora_nome.valid || operadora_nome.untouched"
-                >Nome da Seguradora Necessária!</small>
+                  [class.d-none]="
+                    operadora_nome.valid || operadora_nome.untouched
+                  "
+                  >Nome da Seguradora Necessária!</small
+                >
               </div>
 
               <div id="codigo" class="col-md-2 mb-2">
@@ -739,8 +745,12 @@
                 <select
                   #seguradora_tipo="ngModel"
                   [(ngModel)]="contratoSeguradora.tipo"
-                  [class.is-valid]="seguradora_tipo.valid && seguradora_tipo.touched"
-                  [class.is-invalid]="seguradora_tipo.invalid && seguradora_tipo.touched"
+                  [class.is-valid]="
+                    seguradora_tipo.valid && seguradora_tipo.touched
+                  "
+                  [class.is-invalid]="
+                    seguradora_tipo.invalid && seguradora_tipo.touched
+                  "
                   name="seguradora"
                   type="text"
                   class="form-control"
@@ -750,15 +760,19 @@
                   <option value="Seguro de Vida">Seguro de Vida</option>
                 </select>
               </div>
-              
+
               <!-- NOME DA SEGURADORA (SEGURO DE VIDA) -->
               <div id="nome_seguradora" class="col-md-5 mb-3">
                 <label for="validationCustom01">Nome da Seguradora</label>
                 <input
                   #seguradora_nome="ngModel"
                   [(ngModel)]="contratoSeguradora.nome"
-                  [class.is-invalid]="seguradora_nome.invalid && seguradora_nome.touched"
-                  [class.is-valid]="seguradora_nome.valid && seguradora_nome.touched"
+                  [class.is-invalid]="
+                    seguradora_nome.invalid && seguradora_nome.touched
+                  "
+                  [class.is-valid]="
+                    seguradora_nome.valid && seguradora_nome.touched
+                  "
                   name="seguradora_nome"
                   type="text"
                   class="form-control"
@@ -768,8 +782,11 @@
 
                 <small
                   class="text-danger"
-                  [class.d-none]="seguradora_nome.valid || seguradora_nome.untouched"
-                >Nome da Seguradora Necessária!</small>
+                  [class.d-none]="
+                    seguradora_nome.valid || seguradora_nome.untouched
+                  "
+                  >Nome da Seguradora Necessária!</small
+                >
               </div>
 
               <div id="apolice" class="col-md-3 mb-2">
@@ -788,18 +805,9 @@
               </div>
             </div>
           </form>
+          <div class="col-md-5 mb-5"></div>
+
           <!-- fim bloco Contrato -->
-
-          <div>
-            <button
-              id="reajuste-sinistralidade"
-              class="btn btn-primary mb-3"
-            >
-              <i class="fas fa-list"></i>
-              Reajuste/Sinistalidade
-            </button>
-          </div>
-
           <button
             [disabled]="empresaForm.form.invalid || contratoForm.form.invalid"
             name="enviar"
@@ -814,17 +822,17 @@
         </div>
 
         <!-- VINCULAR INICIO DA VIGÊNCIA -->
-        <div id="vinc-vigencia" style="display: none;">
+        <div id="vinc-vigenciaAlt" style="display: none">
           <div class="box-vigencia">
             <div class="anexo-info-box-empresa-vinc">
               <div style="margin: 0 auto 10px auto; width: 100%">
                 <nav class="menuVigencia">
                   <ul class="menuItems">
                     <!-- BOTÃO REAJUSTE -->
-                    <li id="reajusteBtn" class="active radiusTop">Reajuste</li>
+                    <li id="reajusteBtnAlt" class="active radiusTop">Reajuste</li>
 
                     <!-- BOTÃO SINISTRALIDADE -->
-                    <li id="sinistralidadeBtn">Sinistralidade</li>
+                    <li id="sinistralidadeBtnAlt">Sinistralidade</li>
                   </ul>
                 </nav>
               </div>
@@ -833,7 +841,7 @@
                 <h1 style="font-size: 20px; display: flex; margin-bottom: 15px">
                   Histórico de Reajustes:
                 </h1>
-                
+
                 <div>
                   <table class="table table-info text-center">
                     <thead>
@@ -841,20 +849,33 @@
                         <th></th>
                         <th>Ano</th>
                         <th>Sinistralidade</th>
-                        <th>Técnico</th>
-                        <th>Negociado</th>
-                        <th colspan="2">Ação</th>
+                        <th>Técnico %</th>
+                        <th>Negociado %</th>
+                        <th colspan="2">Ações</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let linha of reajustes">
+                      <tr *ngFor="let linha of reajustes | paginate
+                      : {
+                          id: 'reajustes_pag',
+                          itemsPerPage: 5,
+                          currentPage: p
+                        } ">
                         <th></th>
                         <th>{{ linha.ano_vigencia }}</th>
                         <th>{{ linha.sinistralidade }}</th>
-                        <th>{{ linha.tecnico }}</th>
-                        <th>{{ linha.negociado }}</th>
-                        <th><button class="btn" (click)="editReajuste(linha)"><i class="fas fa-edit"></i></button></th>
-                        <th><button class="btn"><i class="fas fa-trash"></i></button></th>
+                        <th>{{ linha.tecnico }} %</th>
+                        <th>{{ linha.negociado }} %</th>
+                        <th>
+                          <button class="btn" (click)="editReajuste(linha)">
+                            <i class="fas fa-edit"></i>
+                          </button>
+                        </th>
+                        <th>
+                          <button class="btn">
+                            <i class="fas fa-trash"></i>
+                          </button>
+                        </th>
                       </tr>
                       <tr *ngIf="reajustes.length == 0">
                         <th colspan="6">Nenhum reajuste cadastrado</th>
@@ -862,14 +883,38 @@
                     </tbody>
                   </table>
                 </div>
+                <pagination-controls
+                id="reajustes_pag"
+                class="paginacao"
+                maxSize="7"
+                autoHide="true"
+                previousLabel="Anterior"
+                nextLabel="Seguinte"
+                directionLinks="true"
+                autoHide="true"
+                responsive="true"
+                (pageChange)="p = $event"
+              ></pagination-controls>
 
                 <div>
-                  Adicionar Reajuste:
-                  <button class="btn" (click)="adicionarReajuste()"><i class="fas fa-plus"></i></button>
+                  <button class="btn btn-primary" (click)="adicionarReajuste()">
+                    <i style="margin-right: 5px" class="fas fa-plus"></i
+                    >Adicionar Reajuste
+                  </button>
                 </div>
-                <div id="formularioReajuste" style="display: none;">
+                <div id="formularioReajuste" style="display: none">
+                  <hr />
                   <form #reajusteForm="ngForm">
-                    <label for="reajuste">Informe aqui os reajustes:</label>
+                    <h1
+                      style="
+                        font-size: 20px;
+                        display: flex;
+                        margin-bottom: 15px;
+                        margin-top: 15px;
+                      "
+                    >
+                      Informe aqui os Reajustes:
+                    </h1>
                     <div style="width: 100%"></div>
                     <div class="form-row">
                       <!-- ANO -->
@@ -897,7 +942,7 @@
                         />
                       </div>
                       <!--  -->
-  
+
                       <!-- SINISTRALIDADE -->
                       <div class="col-md-5 mb-5">
                         <label for="validationCustom01">Sinistralidade</label>
@@ -914,7 +959,8 @@
                             reajuste_sinistralidade.valid &&
                             reajuste_sinistralidade.touched
                           "
-                          class="form-control percent"
+                          maxlength="3"
+                          class="form-control"
                           style="
                             border-top: none;
                             border-left: none;
@@ -925,18 +971,21 @@
                         />
                       </div>
                       <!--  -->
-  
+
                       <!-- TÉCNICO -->
                       <div class="col-md-5 mb-5">
                         <label for="validationCustom01">Técnico</label>
                         <input
                           #tecnico="ngModel"
                           [(ngModel)]="reajuste.tecnico"
-                          [class.is-invalid]="tecnico.invalid && tecnico.touched"
+                          [class.is-invalid]="
+                            tecnico.invalid && tecnico.touched
+                          "
                           [class.is-valid]="tecnico.valid && tecnico.touched"
                           name="tecnico"
                           type="number"
-                          class="form-control percent"
+                          maxlength="3"
+                          class="form-control"
                           style="
                             border-top: none;
                             border-left: none;
@@ -947,7 +996,7 @@
                         />
                       </div>
                       <!--  -->
-  
+
                       <!-- NEGOCIADO -->
                       <div class="col-md-5 mb-5">
                         <label for="validationCustom01">Negociado</label>
@@ -957,10 +1006,13 @@
                           [class.is-invalid]="
                             negociado.invalid && negociado.touched
                           "
-                          [class.is-valid]="negociado.valid && negociado.touched"
+                          [class.is-valid]="
+                            negociado.valid && negociado.touched
+                          "
                           name="negociado"
                           type="number"
-                          class="form-control percent"
+                          maxlength="3"
+                          class="form-control"
                           style="
                             border-top: none;
                             border-left: none;
@@ -972,8 +1024,22 @@
                       </div>
                       <!--  -->
                     </div>
-                    <button id="atualizarReajuste" class="btn btn-primary" (click)="updateReajuste()" style="display: none;">atualizar</button>
-                    <button id="cadastrarReajuste" class="btn btn-primary" (click)="newReajuste()" style="display: none;">Cadastrar</button>
+                    <button
+                      id="atualizarReajuste"
+                      class="btn btn-primary"
+                      (click)="updateReajuste()"
+                      style="display: none"
+                    >
+                    <i class="fas fa-check"></i> Atualizar
+                    </button>
+                    <button
+                      id="cadastrarReajuste"
+                      class="btn btn-primary"
+                      (click)="newReajuste()"
+                      style="display: none"
+                    >
+                    <i class="fas fa-check"></i> Cadastrar
+                    </button>
                   </form>
                 </div>
               </div>
@@ -982,23 +1048,37 @@
                 <h1 style="font-size: 20px; display: flex; margin-bottom: 15px">
                   Histórico de Sinistralidade:
                 </h1>
-                <label for="sinistralidades">Informe aqui as sinistralidades:</label>
-                
                 <div>
                   <table class="table table-info text-center">
                     <thead>
                       <tr>
                         <th>Ano</th>
-                        <th>Sinistralidade</th>
-                        <th colspan="2">Ação</th>
+                        <th>Sinistralidade %</th>
+                        <th colspan="2">Ações</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let linha of sinistralidades">
+                      <tr *ngFor="let linha of sinistralidades | paginate
+                      : {
+                          id: 'sinistralidades_page',
+                          itemsPerPage: 5,
+                          currentPage: p
+                        }">
                         <th>{{ linha.ano }}</th>
-                        <th>{{ linha.sinistralidade }}</th>
-                        <th><button class="btn" (click)="editSinistralidade(linha)"><i class="fas fa-edit"></i></button></th>
-                        <th><button class="btn"><i class="fas fa-trash"></i></button></th>
+                        <th>{{ linha.sinistralidade }} %</th>
+                        <th>
+                          <button
+                            class="btn editVig"
+                            (click)="editSinistralidade(linha)"
+                          >
+                            <i class="fas fa-edit"></i>
+                          </button>
+                        </th>
+                        <th>
+                          <button class="btn eraseVig">
+                            <i class="fas fa-trash"></i>
+                          </button>
+                        </th>
                       </tr>
                       <tr *ngIf="sinistralidades.length == 0">
                         <th colspan="4">Nenhuma sinistralidade cadastrada</th>
@@ -1006,13 +1086,40 @@
                     </tbody>
                   </table>
                 </div>
-
+                <pagination-controls
+                id="sinistralidades_page"
+                class="paginacao"
+                maxSize="7"
+                autoHide="true"
+                previousLabel="Anterior"
+                nextLabel="Seguinte"
+                directionLinks="true"
+                autoHide="true"
+                responsive="true"
+                (pageChange)="p = $event"
+              ></pagination-controls>
                 <div>
-                  Adicionar Sinistralidade:
-                  <button class="btn" (click)="adicionarSinistralidade()"><i class="fas fa-plus"></i></button>
+                  <button
+                    class="btn btn-primary"
+                    (click)="adicionarSinistralidade()"
+                  >
+                    <i style="margin-right: 5px" class="fas fa-plus"></i
+                    >Adicionar Sinistralidade:
+                  </button>
                 </div>
 
-                <div id="formularioSinistralidade" style="display: none;">
+                <div id="formularioSinistralidade" style="display: none">
+                  <hr />
+                  <h1
+                    style="
+                      font-size: 20px;
+                      display: flex;
+                      margin-bottom: 15px;
+                      margin-top: 15px;
+                    "
+                  >
+                    Informe aqui a Sinistralidade:
+                  </h1>
                   <form #sinistralidadeForm="ngForm">
                     <div class="form-row">
                       <!-- ANO -->
@@ -1053,7 +1160,8 @@
                           "
                           name="sinistralidade"
                           type="text"
-                          class="form-control percent"
+                          maxlength="3"
+                          class="form-control"
                           style="
                             border-top: none;
                             border-left: none;
@@ -1065,8 +1173,22 @@
                       </div>
                       <!--  -->
                     </div>
-                    <button id="atualizarSinistralidade" class="btn btn-primary" (click)="updateSinistralidade()" style="display: none;">atualizar</button>
-                    <button id="cadastrarSinistralidade" class="btn btn-primary" (click)="newSinistralidade()" style="display: none;">Cadastrar</button>
+                    <button
+                      id="atualizarSinistralidade"
+                      class="btn btn-primary"
+                      (click)="updateSinistralidade()"
+                      style="display: none"
+                    >
+                    <i class="fas fa-check"></i> Atualizar
+                    </button>
+                    <button
+                      id="cadastrarSinistralidade"
+                      class="btn btn-primary"
+                      (click)="newSinistralidade()"
+                      style="display: none"
+                    >
+                    <i class="fas fa-check"></i> Cadastrar
+                    </button>
                   </form>
                 </div>
               </div>
@@ -1074,28 +1196,29 @@
                 style="
                   display: flex;
                   position: absolute;
-                  right: 20px;
-                  bottom: 20px;
+                  right: 52px;
+                  bottom: 10px;
                 "
-                class="btn btn-primary"
-                id="fecharVigencia"
+                class="btn btn-cancelar"
+                id="fecharVigenciaAlt"
               >
                 Fechar
               </button>
             </div>
+          </div>
         </div>
       </div>
-    </div>
-    <app-rodape></app-rodape>
+      <app-rodape></app-rodape>
 
-    <script>
-      document.title = "Alteração Empresa Ativa";
-    </script>
-    <script src="https://bossanova.uk/jsuites/v2/jsuites.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://bossanova.uk/jsuites/v2/jsuites.css"
-      type="text/css"
-    />
+      <script>
+        document.title = "Alteração Empresa Ativa";
+      </script>
+      <script src="https://bossanova.uk/jsuites/v2/jsuites.js"></script>
+      <link
+        rel="stylesheet"
+        href="https://bossanova.uk/jsuites/v2/jsuites.css"
+        type="text/css"
+      />
+    </div>
   </div>
 </div>
