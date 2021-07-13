@@ -21,6 +21,8 @@ export class AlteracaoDependenteComponent implements OnInit {
 
   // DADOS DO DEPENDENTE
   busca: Dependente[];
+
+  // BUSCA DOS TITULARES
    buscaTitular: Titular[];
   
   dependentes: Dependente[];
@@ -200,7 +202,6 @@ export class AlteracaoDependenteComponent implements OnInit {
   }
 
   // VINCULAR DEPENDENTE
-
   searchNomeTitDep(nome_benef: string) {
     if (nome_benef != '') {
       this.buscaTitular = this.titulares.filter((res) => {

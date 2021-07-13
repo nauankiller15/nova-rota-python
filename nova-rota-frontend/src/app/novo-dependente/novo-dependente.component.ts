@@ -12,9 +12,18 @@ declare var $: any;
   styleUrls: ['./novo-dependente.component.css'],
 })
 export class NovoDependenteComponent implements OnInit {
+  // CARREGADOR
+  animation = 'pulse';
+  contentLoaded = false;
+  count = 2;
+  widthHeightSizeInPixels = 50;
+
+  // BUSCA DOS TTULARES
   titulares: Titular[];
+  buscaTitular: Titular[];
+  //
   busca: Titular[];
-  dependente: Dependente = new Dependente;
+  dependente: Dependente = new Dependente();
   p: number = 1;
 
   constructor(
@@ -39,11 +48,14 @@ export class NovoDependenteComponent implements OnInit {
 
     // TELA DE ANEXO ESTADO CIVIL
 
-    $("input, select, textarea").keypress(function (event: { which: number; preventDefault: () => void; }) {
+    $('input, select, textarea').keypress(function (event: {
+      which: number;
+      preventDefault: () => void;
+    }) {
       if (event.which == 13) {
-          event.preventDefault();
+        event.preventDefault();
       }
-  });
+    });
 
     $('#estado_civil2').on('change', function () {
       'Casado(a)' === $(this).val()
@@ -80,10 +92,10 @@ export class NovoDependenteComponent implements OnInit {
 
     $('#filhoConjuge').on('change', function () {
       'Filho(a)' === $(this).val()
-      ? $('#vinc-anexo-conjugeFilho').fadeIn('100')
-      : $('#vinc-anexo-conjugeFilho').fadeOut('100');
-    //
-    'Conjuge' === $(this).val();
+        ? $('#vinc-anexo-conjugeFilho').fadeIn('100')
+        : $('#vinc-anexo-conjugeFilho').fadeOut('100');
+      //
+      'Conjuge' === $(this).val();
       $('#reanexar2').fadeOut('100');
       //
       'Solteiro' === $(this).val();
@@ -104,26 +116,23 @@ export class NovoDependenteComponent implements OnInit {
       $('#confirmacaoDependente').fadeOut('100');
     });
 
-
     //
 
+    // CONFIRMAÇÃO DECLARAÇÃO SAÚDE
 
-      // CONFIRMAÇÃO DECLARAÇÃO SAÚDE
-
-      $('#declaracaoSaudeDependente').on('change', function () {
-        'Sim' === $(this).val()
-          ? $('#descDeclaracaoSaudeDependente').fadeIn('100')
-          : $('#descDeclaracaoSaudeDependente').fadeOut('100');
-      });
-        //
-
+    $('#declaracaoSaudeDependente').on('change', function () {
+      'Sim' === $(this).val()
+        ? $('#descDeclaracaoSaudeDependente').fadeIn('100')
+        : $('#descDeclaracaoSaudeDependente').fadeOut('100');
+    });
+    //
   }
 
   getTitulares = () => {
     this.api.listar('titular/').subscribe(
       (data) => {
         this.titulares = data;
-        this.busca = data;
+        this.buscaTitular = data;
       },
       (error) => {
         this.toastr.error('Aconteceu um Erro!', error.message);
@@ -131,27 +140,33 @@ export class NovoDependenteComponent implements OnInit {
     );
   };
 
-  searchNomeTitDep(nome) {
-    if (nome != '') {
-      this.busca = this.titulares.filter((res) => {
-        return res.nome_benef
-          .toLocaleLowerCase()
-          .match(nome.toLocaleLowerCase());
+  // VINCULAR DEPENDENTE
+  searchNomeTitDep(nome_benef: string) {
+    if (nome_benef != '') {
+      this.buscaTitular = this.titulares.filter((res) => {
+        return res.nome_benef.match(nome_benef);
       });
-    } else {
-      this.busca = this.titulares;
+    } else if (nome_benef == '') {
+      this.buscaTitular = this.titulares;
     }
   }
 
-  titularClickedDependente = (titular: Titular) => {
+  titularClickedDependente = (titular: any) => {
     $('#vinc-titular').fadeOut('200');
     $('#encounter-tit').slideDown('200');
 
-    this.dependente.titular = titular.id;
-    this.dependente.nome_benef = titular.nome_benef;
-    this.toastr.success('Titular vinculado com sucesso!');
-  }
+    this.api.selecionar('titular/', titular.id).subscribe(
+      (data) => {
+        this.dependente.titular = titular.id;
+        this.dependente.nome_benef = titular.nome_benef;
 
+        this.toastr.success('Titular vinculado com sucesso!');
+      },
+      (error) => {
+        this.toastr.error('Aconteceu um Erro!', error.message);
+      }
+    );
+  };
   newDependente() {
     this.api.inserir('parentesco/', this.dependente).subscribe(
       (data) => {

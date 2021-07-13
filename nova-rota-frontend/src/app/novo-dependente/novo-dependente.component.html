@@ -623,6 +623,7 @@
                       <input
                         autocomplete="off"
                         (input)="searchNomeTitDep($event.taget)"
+                        name="nome_benef"
                         type="text"
                         class="form-control"
                         placeholder="Buscar Titular pelo Nome"
@@ -646,7 +647,7 @@
                       <li
                         value="{{ titular.id }}"
                         *ngFor="
-                          let titular of busca
+                          let resultadoTitular of buscaTitular
                             | orderBy: 'created_at':false
                             | paginate
                               : {
@@ -655,7 +656,7 @@
                                   currentPage: p
                                 }
                         "
-                        (click)="titularClickedDependente(titular)"
+                        (click)="titularClickedDependente(resultadoTitular)"
                       >
                         <i
                           style="
@@ -670,8 +671,16 @@
                           "
                           class="fas fa-user-tie"
                         ></i>
-                        CPF: {{ titular.CPF }} - {{ titular.nome_benef }}
+                        CPF:
+                        {{ resultadoTitular.CPF | mask: "000.000.000-99" }} -
+                        {{ resultadoTitular.nome_benef }}
                       </li>
+                      <h4 class="loadit" *ngIf="titular.length === 0">
+                        Nada encontrado
+                      </h4>
+                      <h4 class="loadit" *ngIf="buscaTitular.length === 0">
+                        Nada encontrado
+                      </h4>
                     </div>
                     <pagination-controls
                       id="titularvinculoAlterar"
@@ -694,7 +703,7 @@
               id="confirmDepBtn"
               (click)="newDependente()"
             >
-            <i class="fas fa-check"></i> Gravar informações
+              <i class="fas fa-check"></i> Gravar informações
             </button>
 
             <div id="confirmacaoDependente">
@@ -729,13 +738,15 @@
                       margin-left: 25%;
                     "
                   >
-                  <i class="fas fa-check"></i> Cadastrar outro
+                    <i class="fas fa-check"></i> Cadastrar outro
                   </button>
                 </div>
               </div>
             </div>
 
-            <button type="reset" class="btn btn-cancelar"><i class="far fa-times-circle"></i> Apagar tudo</button>
+            <button type="reset" class="btn btn-cancelar">
+              <i class="far fa-times-circle"></i> Apagar tudo
+            </button>
           </form>
         </div>
       </div>
