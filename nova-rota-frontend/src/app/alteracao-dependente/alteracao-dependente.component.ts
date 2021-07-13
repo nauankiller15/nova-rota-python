@@ -128,6 +128,7 @@ export class AlteracaoDependenteComponent implements OnInit {
     $('#voltardadosdep').click(function () {
       $('#dependentesappear').fadeOut('200');
       $('#consulta2').slideDown('200');
+      $('#postDep').slideUp(600);
     });
 
     // VOLTAR ALTERAÇÃO DE DADOS
@@ -233,6 +234,7 @@ export class AlteracaoDependenteComponent implements OnInit {
     $('#encounter-tit').fadeOut('100');
     $('#consulta2').slideUp(250);
     $('#dependentesappear').slideDown(250);
+    $('#postDep').slideDown(600);
     this.api.selecionar('parentesco/', dependentes.id).subscribe(
       (data) => {
         this.dependente = data;

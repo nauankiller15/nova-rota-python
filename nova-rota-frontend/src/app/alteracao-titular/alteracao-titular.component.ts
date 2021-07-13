@@ -103,6 +103,7 @@ export class AlteracaoTitularComponent implements OnInit {
     $('#voltardados').click(function () {
       $('#titularesappear').fadeOut('200');
       $('#consulta').slideDown('200');
+      $('#postTit').slideUp(600);
     });
 
     $('#abrirAnexoAlt').click(function () {
@@ -164,6 +165,7 @@ export class AlteracaoTitularComponent implements OnInit {
   titularClicked = (titular: { id: string }) => {
     $('#consulta').slideUp(250);
     $('#titularesappear').slideDown(250);
+    $('#postTit').slideDown(600);
     this.api.selecionar('titular/', titular.id).subscribe(
       (data) => {
         this.titular = data;
