@@ -336,15 +336,15 @@ export class AlteracaoEmpresaComponent implements OnInit {
     this.sinistralidade = new Sinistralidade();
     $('#formularioSinistralidade').slideDown(200);
     $('#cadastrarSinistralidade').fadeIn(100);
-    $('#atualizarSinistralidade').hide();
+    $('#atualizarSinistralidade').slideUp(200);
   }
 
   newSinistralidade() {
     this.sinistralidade.empresa = this.empresa.id;
     this.api.inserir('sinistralidade/', this.sinistralidade).subscribe(
       (data) => {
-        $('#formularioSinistralidade').hide();
-        $('#cadastrarSinistralidade').hide();
+        $('#formularioSinistralidade').slideUp(200);
+        $('#cadastrarSinistralidade').slideUp(200);
         this.sinistralidade = new Sinistralidade();
         this.loadSinistralidades(this.empresa.id);
         this.toastr.success('Sinistralidade incluída com sucesso!');
@@ -362,15 +362,15 @@ export class AlteracaoEmpresaComponent implements OnInit {
     this.sinistralidade = sinistralidade;
     $('#formularioSinistralidade').fadeIn(100);
     $('#atualizarSinistralidade').fadeIn(100);
-    $('#cadastrarSinistralidade').hide();
+    $('#cadastrarSinistralidade').slideUp(200);
   }
 
   updateSinistralidade() {
     this.api.atualizar('sinistralidade/', this.sinistralidade).subscribe(
       (data) => {
         this.loadSinistralidades(this.empresa.id);
-        $('#formularioSinistralidade').hide();
-        $('#atualizarSinistralidade').hide();
+        $('#formularioSinistralidade').slideUp(200);
+        $('#atualizarSinistralidade').slideUp(200);
         this.toastr.success('Sinistralidade atualizada com sucesso!');
       },
       (error) => {
