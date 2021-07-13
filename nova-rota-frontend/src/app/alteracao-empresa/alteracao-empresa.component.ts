@@ -107,6 +107,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
     });
 
     $('#sinistralidadeBtnAlt').on('click', function () {
+      $('#tabelaSinistro').slideDown(200);
       $('#formularioReajuste').slideUp(100);
       $('#sinisTab').slideDown(300);
       $('#reajusTab').slideUp(300);
