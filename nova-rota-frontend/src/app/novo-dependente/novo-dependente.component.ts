@@ -167,6 +167,7 @@ export class NovoDependenteComponent implements OnInit {
       }
     );
   };
+  
   newDependente() {
     this.api.inserir('parentesco/', this.dependente).subscribe(
       (data) => {
