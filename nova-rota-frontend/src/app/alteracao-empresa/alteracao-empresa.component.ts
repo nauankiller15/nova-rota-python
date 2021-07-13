@@ -28,6 +28,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
 
   // DADOS DA EMPRESA
   busca: Empresa[];
+  
   empresas: Empresa[];
   empresa: Empresa = new Empresa();
 

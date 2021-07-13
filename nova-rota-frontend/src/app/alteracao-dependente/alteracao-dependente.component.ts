@@ -13,17 +13,21 @@ declare var $: any;
   styleUrls: ['./alteracao-dependente.component.css'],
 })
 export class AlteracaoDependenteComponent implements OnInit {
-  // carregador
+  // CARREGADOR
   animation = 'pulse';
   contentLoaded = false;
   count = 2;
   widthHeightSizeInPixels = 50;
 
+  // DADOS DO DEPENDENTE
   busca: Dependente[];
 
   dependentes: Dependente[];
   dependente: Dependente = new Dependente();
 
+  //
+  titulares: Dependente[];
+  //
   intervalId: number | null = null;
   //
 
@@ -34,20 +38,6 @@ export class AlteracaoDependenteComponent implements OnInit {
     }
     return true;
   }
-
-  // textOnly(event): boolean {
-  //   var key = event.keyCode;
-  //   `enter code here`;
-  //   return (key >= 65 && key <= 90) || key == 8;
-  // }
-
-  titulares = [
-    {
-      id: 0,
-      CPF: '',
-      nome_benef: '',
-    },
-  ];
 
   p: number = 1;
   fileToUpload: File = null;
