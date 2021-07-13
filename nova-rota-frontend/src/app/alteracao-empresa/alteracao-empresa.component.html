@@ -647,13 +647,9 @@
                 <label for="validationCustom02">Tipo de Contrato</label>
                 <select
                   #tipo_contrato="ngModel"
-                  [class.is-invalid]="
-                    tipo_contrato.invalid && tipo_contrato.touched
-                  "
-                  [class.is-valid]="
-                    tipo_contrato.valid && tipo_contrato.touched
-                  "
                   [(ngModel)]="empresa.tipo_contrato"
+                  [class.is-invalid]="tipo_contrato.invalid && tipo_contrato.touched"
+                  [class.is-valid]="tipo_contrato.valid && tipo_contrato.touched"
                   name="sexo"
                   class="form-control"
                   name="tipo_contrato"
@@ -681,7 +677,6 @@
 
           <!-- Bloco da Contrato -->
           <form #contratoForm="ngForm">
-            
             <!-- Dados Operadora -->
             <div class="form-row" *ngIf="empresa.tipo_contrato == 'Operadora'">
               <div class="col-md-2">
@@ -796,7 +791,7 @@
           </form>
           <!-- fim bloco Contrato -->
 
-          <div><div>
+          <div>
             <button
               id="reajuste-sinistralidade"
               class="btn btn-primary mb-3"
@@ -804,13 +799,13 @@
               <i class="fas fa-list"></i>
               Reajuste/Sinistalidade
             </button>
-          </div></div>
+          </div>
 
           <button
             [disabled]="empresaForm.form.invalid || contratoForm.form.invalid"
             name="enviar"
             class="btn btn-primary"
-            (click)="newEmpresa()"
+            (click)="atualizarEmpresa()"
           >
             <i class="fas fa-check"></i> Gravar informações
           </button>
@@ -839,6 +834,7 @@
                 <h1 style="font-size: 20px; display: flex; margin-bottom: 15px">
                   Histórico de Reajustes:
                 </h1>
+                
                 <div>
                   <table class="table table-info text-center">
                     <thead>
@@ -858,7 +854,7 @@
                         <th>{{ linha.sinistralidade }}</th>
                         <th>{{ linha.tecnico }}</th>
                         <th>{{ linha.negociado }}</th>
-                        <th><button class="btn"><i class="fas fa-edit"></i></button></th>
+                        <th><button class="btn" (click)="editReajuste(linha)"><i class="fas fa-edit"></i></button></th>
                         <th><button class="btn"><i class="fas fa-trash"></i></button></th>
                       </tr>
                       <tr *ngIf="reajustes.length == 0">
@@ -869,18 +865,10 @@
                 </div>
 
                 <div>
-                  <div class="form-check">
-                    <input
-                      [(ngModel)]="enviarReajuste"
-                      class="form-check-input"
-                      type="checkbox"
-                      id="enviarReajuste"
-                    />
-                    <label class="form-check-label" for="enviarReajuste">
-                      Incluir Reajuste
-                    </label>
-                  </div>
-  
+                  Adicionar Reajuste:
+                  <button class="btn" (click)="adicionarReajuste()"><i class="fas fa-plus"></i></button>
+                </div>
+                <div id="formularioReajuste" style="display: none;">
                   <form #reajusteForm="ngForm">
                     <label for="reajuste">Informe aqui os reajustes:</label>
                     <div style="width: 100%"></div>
@@ -900,7 +888,6 @@
                           [class.is-valid]="
                             ano_vigencia.valid && ano_vigencia.touched
                           "
-                          [disabled]="!enviarReajuste"
                           style="
                             border-top: none;
                             border-left: none;
@@ -928,7 +915,6 @@
                             reajuste_sinistralidade.valid &&
                             reajuste_sinistralidade.touched
                           "
-                          [disabled]="!enviarReajuste"
                           class="form-control percent"
                           style="
                             border-top: none;
@@ -949,7 +935,6 @@
                           [(ngModel)]="reajuste.tecnico"
                           [class.is-invalid]="tecnico.invalid && tecnico.touched"
                           [class.is-valid]="tecnico.valid && tecnico.touched"
-                          [disabled]="!enviarReajuste"
                           name="tecnico"
                           type="number"
                           class="form-control percent"
@@ -974,7 +959,6 @@
                             negociado.invalid && negociado.touched
                           "
                           [class.is-valid]="negociado.valid && negociado.touched"
-                          [disabled]="!enviarReajuste"
                           name="negociado"
                           type="number"
                           class="form-control percent"
@@ -989,6 +973,8 @@
                       </div>
                       <!--  -->
                     </div>
+                    <button id="atualizarReajuste" class="btn btn-primary" (click)="updateReajuste()" style="display: none;">atualizar</button>
+                    <button id="cadastrarReajuste" class="btn btn-primary" (click)="newReajuste()" style="display: none;">Cadastrar</button>
                   </form>
                 </div>
               </div>
@@ -997,7 +983,7 @@
                 <h1 style="font-size: 20px; display: flex; margin-bottom: 15px">
                   Histórico de Sinistralidade:
                 </h1>
-                <label for="reajuste">Informe aqui as sinistralidades:</label>
+                <label for="sinistralidades">Informe aqui as sinistralidades:</label>
                 
                 <div>
                   <table class="table table-info text-center">
@@ -1012,7 +998,7 @@
                       <tr *ngFor="let linha of sinistralidades">
                         <th>{{ linha.ano }}</th>
                         <th>{{ linha.sinistralidade }}</th>
-                        <th><button class="btn"><i class="fas fa-edit"></i></button></th>
+                        <th><button class="btn" (click)="editSinistralidade(linha)"><i class="fas fa-edit"></i></button></th>
                         <th><button class="btn"><i class="fas fa-trash"></i></button></th>
                       </tr>
                       <tr *ngIf="sinistralidades.length == 0">
@@ -1022,73 +1008,68 @@
                   </table>
                 </div>
 
-                <div class="form-check">
-                  <input
-                    [(ngModel)]="enviarSinistralidade"
-                    class="form-check-input"
-                    type="checkbox"
-                    id="enviarSinistralidade"
-                  />
-                  <label class="form-check-label" for="enviarSinistralidade">
-                    Incluir Sinistralidade
-                  </label>
+                <div>
+                  Adicionar Sinistralidade:
+                  <button class="btn" (click)="adicionarSinistralidade()"><i class="fas fa-plus"></i></button>
                 </div>
 
-                <form #sinistralidadeForm="ngForm">
-                  <div class="form-row">
-                    <!-- ANO -->
-                    <div class="col-md-5 mb-5">
-                      <label for="validationCustom01">Ano</label>
-                      <input
-                        #ano="ngModel"
-                        [(ngModel)]="sinistralidade.ano"
-                        [class.is-invalid]="ano.invalid && ano.touched"
-                        [class.is-valid]="ano.valid && ano.touched"
-                        [disabled]="!enviarSinistralidade"
-                        name="ano"
-                        type="number"
-                        class="form-control"
-                        style="
-                          border-top: none;
-                          border-left: none;
-                          border-right: none;
-                        "
-                        placeholder="Informe o ano da negociação"
-                        required
-                      />
-                    </div>
-                    <!--  -->
+                <div id="formularioSinistralidade" style="display: none;">
+                  <form #sinistralidadeForm="ngForm">
+                    <div class="form-row">
+                      <!-- ANO -->
+                      <div class="col-md-5 mb-5">
+                        <label for="validationCustom01">Ano</label>
+                        <input
+                          #ano="ngModel"
+                          [(ngModel)]="sinistralidade.ano"
+                          [class.is-invalid]="ano.invalid && ano.touched"
+                          [class.is-valid]="ano.valid && ano.touched"
+                          name="ano"
+                          type="number"
+                          class="form-control"
+                          style="
+                            border-top: none;
+                            border-left: none;
+                            border-right: none;
+                          "
+                          placeholder="Informe o ano da negociação"
+                          required
+                        />
+                      </div>
+                      <!--  -->
 
-                    <!-- SINISTRALIDADE -->
-                    <div class="col-md-5 mb-5">
-                      <label for="validationCustom01">Sinistralidade</label>
-                      <input
-                        #sinistralidade_sinistralidade="ngModel"
-                        [(ngModel)]="sinistralidade.sinistralidade"
-                        [class.is-invalid]="
-                          sinistralidade_sinistralidade.invalid &&
-                          sinistralidade_sinistralidade.touched
-                        "
-                        [class.is-valid]="
-                          sinistralidade_sinistralidade.valid &&
-                          sinistralidade_sinistralidade.touched
-                        "
-                        [disabled]="!enviarSinistralidade"
-                        name="sinistralidade"
-                        type="text"
-                        class="form-control percent"
-                        style="
-                          border-top: none;
-                          border-left: none;
-                          border-right: none;
-                        "
-                        placeholder="Informe a sinistralidade"
-                        required
-                      />
+                      <!-- SINISTRALIDADE -->
+                      <div class="col-md-5 mb-5">
+                        <label for="validationCustom01">Sinistralidade</label>
+                        <input
+                          #sinistralidade_sinistralidade="ngModel"
+                          [(ngModel)]="sinistralidade.sinistralidade"
+                          [class.is-invalid]="
+                            sinistralidade_sinistralidade.invalid &&
+                            sinistralidade_sinistralidade.touched
+                          "
+                          [class.is-valid]="
+                            sinistralidade_sinistralidade.valid &&
+                            sinistralidade_sinistralidade.touched
+                          "
+                          name="sinistralidade"
+                          type="text"
+                          class="form-control percent"
+                          style="
+                            border-top: none;
+                            border-left: none;
+                            border-right: none;
+                          "
+                          placeholder="Informe a sinistralidade"
+                          required
+                        />
+                      </div>
+                      <!--  -->
                     </div>
-                    <!--  -->
-                  </div>
-                </form>
+                    <button id="atualizarSinistralidade" class="btn btn-primary" (click)="updateSinistralidade()" style="display: none;">atualizar</button>
+                    <button id="cadastrarSinistralidade" class="btn btn-primary" (click)="newSinistralidade()" style="display: none;">Cadastrar</button>
+                  </form>
+                </div>
               </div>
               <button
                 style="

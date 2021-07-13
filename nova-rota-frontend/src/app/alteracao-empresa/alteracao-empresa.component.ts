@@ -25,6 +25,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
   busca: Empresa[];
   empresas: Empresa[];
   empresa: Empresa = new Empresa;
+
   contratoSeguradora: ContratoSeguradora = new ContratoSeguradora;
   contratoOperadora: ContratoOperadora= new ContratoOperadora;
 
@@ -36,8 +37,6 @@ export class AlteracaoEmpresaComponent implements OnInit {
   reajuste: Reajuste = new Reajuste;
   enviarReajuste = false;
 
-  CNPJ: any;
-  fileToUpload: File = null;
   p: number = 1;
 
   constructor(
@@ -97,16 +96,6 @@ export class AlteracaoEmpresaComponent implements OnInit {
 
     $('#abrirVigenciaAlt').click(function () {
       $('#vinc-vigenciaAlt').fadeIn('100');
-    });
-
-    // SLIDE LEFT AND RIGHT AJUSTES
-    $('#sinistralidadeBtnAlt').click(function () {
-      $('#sinisTabAlt').slideDown('100');
-      $('#reajustTabAlt').slideUp('100');
-    });
-    $('#reajusteBtnAlt').click(function () {
-      $('#reajustTabAlt').slideDown('100');
-      $('#sinisTabAlt').slideUp('100');
     });
 
     // BOTÕES
@@ -180,29 +169,16 @@ export class AlteracaoEmpresaComponent implements OnInit {
     this.loadContratoSeguradora(empresa.id);
   };
 
-  loadEmpresa(id: number) {
-    this.api.selecionar('empresa/', id).subscribe(
-      (data) => {
-        this.empresa = data;
-        this.loadReajustes(data.id);
-        this.loadSinistralidades(data.id);
-        this.toastr.success('empresa carregada');
-
-      },
-      (error) => {
-        this.toastr.error('Titular não encontrado', error.message);
-      }
-    );
-  }
-
   loadReajustes(empresa: number) {
     this.api.listar(`reajuste/?empresa=${empresa}`).subscribe(
       (data) => {
         this.reajustes = data;
-        console.log(data);
       },
       (error) => {
-        this.toastr.error('Titular não encontrado', error.message);
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
       }
     );
   }
@@ -211,10 +187,12 @@ export class AlteracaoEmpresaComponent implements OnInit {
     this.api.listar(`sinistralidade/?empresa=${empresa}`).subscribe(
       (data) => {
         this.sinistralidades = data;
-        console.log(this.sinistralidades);
       },
       (error) => {
-        this.toastr.error('Titular não encontrado', error.message);
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }      
       }
     );
   }
@@ -222,10 +200,18 @@ export class AlteracaoEmpresaComponent implements OnInit {
   loadContratoOperadora(empresa: number) {
     this.api.listar(`contrato-operadora/?empresa=${empresa}`).subscribe(
       (data) => {
-        this.contratoOperadora = data[0];
+        console.log(data.length);
+        if (data.length > 0) {
+          this.contratoOperadora = data[0];
+        } else {
+          this.contratoOperadora = new ContratoOperadora;
+        }
       },
       (error) => {
-        this.toastr.error('Titular não encontrado', error.message);
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }      
       }
     );
   }
@@ -233,18 +219,29 @@ export class AlteracaoEmpresaComponent implements OnInit {
   loadContratoSeguradora(empresa: number) {
     this.api.listar(`contrato-seguradora/?empresa=${empresa}`).subscribe(
       (data) => {
-        this.contratoSeguradora = data[0];
+        if (data.length > 0) {
+          this.contratoSeguradora = data[0];
+        } else {
+          this.contratoSeguradora = new ContratoSeguradora;
+        }
       },
       (error) => {
-        this.toastr.error('Titular não encontrado', error.message);
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }      
       }
     );
   }
 
-  updateEmp() {
-    this.api.inserir('empresa/', this.empresa).subscribe(
-      (data: {}) => {
-        this.toastr.success('Atualizado com sucesso!');
+  atualizarEmpresa() {
+    this.api.atualizar('empresa/', this.empresa).subscribe(
+      (data) => {
+        this.atualizarContrato();
+        this.loadReajustes(this.empresa.id);
+        this.loadSinistralidades(this.empresa.id);
+        this.loadContratoOperadora(this.empresa.id);
+        this.loadContratoSeguradora(this.empresa.id);
       },
       (error) => {
         let mensagens = error.error;
@@ -255,23 +252,10 @@ export class AlteracaoEmpresaComponent implements OnInit {
     );
   }
 
-  newEmpresa() {
-    this.api.inserir('empresa/', this.empresa).subscribe(
-      (data: {}) => {
-        this.toastr.success('Atualizado com sucesso!');
-      },
-      (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
-      }
-    );
-  }
-
-  newContrato() {
+  atualizarContrato() {
     let urlTipo: string;
     let dados: any;
+
     if (this.empresa.tipo_contrato == 'Operadora') {
       urlTipo = 'contrato-operadora/';
       dados = this.contratoOperadora;
@@ -280,11 +264,52 @@ export class AlteracaoEmpresaComponent implements OnInit {
       dados = this.contratoSeguradora;
     }
 
-    dados.empresa = this.empresa.id;
     console.log(dados);
-    this.api.inserir(urlTipo, dados).subscribe(
+    if (dados.id) {
+      this.api.atualizar(urlTipo, dados).subscribe(
+        (data) => {
+          this.toastr.success('Empresa atualizada com sucesso!');      
+        },
+        (error) => {
+          let mensagens = error.error;
+          for (let campo in mensagens) {
+            this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+          }
+        }
+      );
+    } else {
+      dados.empresa = this.empresa.id;
+      this.api.inserir(urlTipo, dados).subscribe(
+        (data) => {
+          this.toastr.success('Empresa atualizada com sucesso!');      
+        },
+        (error) => {
+          let mensagens = error.error;
+          for (let campo in mensagens) {
+            this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+          }
+        }
+      );
+    }
+  }
+
+  // REAJUSTE
+  adicionarReajuste() {
+    this.reajuste = new Reajuste;
+    $('#formularioReajuste').fadeIn(100);
+    $('#cadastrarReajuste').fadeIn(100);
+    $('#atualizarReajuste').hide();
+  }
+
+  newReajuste() {
+    this.reajuste.empresa = this.empresa.id;
+    this.api.inserir('reajuste/', this.reajuste).subscribe(
       (data) => {
-        this.toastr.success('Empresa incluída com sucesso!');
+        $('#formularioReajuste').hide();
+        $('#cadastrarReajuste').hide();
+        this.reajuste = new Reajuste;
+        this.loadReajustes(this.empresa.id);
+        this.toastr.success('Reajuste incluído com sucesso!');
       },
       (error) => {
         let mensagens = error.error;
@@ -295,38 +320,76 @@ export class AlteracaoEmpresaComponent implements OnInit {
     );
   }
 
-  newSinistralidade() {
-    if (this.enviarSinistralidade == true) {
-      this.sinistralidade.empresa = this.empresa.id;
-      console.log(this.sinistralidade);
-      this.api.inserir('sinistralidade/', this.sinistralidade).subscribe(
-        (data) => {
-          this.toastr.success('Sinistralidade incluída com sucesso!');
-        },
-        (error) => {
-          let mensagens = error.error;
-          for (let campo in mensagens) {
-            this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-          }
+  editReajuste(reajuste: Reajuste) {
+    this.reajuste = reajuste;
+    $('#formularioReajuste').fadeIn(100);
+    $('#atualizarReajuste').fadeIn(100);
+    $('#cadastrarReajuste').hide();
+  };
+
+  updateReajuste() {
+    this.api.atualizar('reajuste/', this.reajuste).subscribe(
+      (data) => {
+        this.loadReajustes(this.empresa.id)
+        this.toastr.success('Reajuste atualizado com sucesso!');
+      },
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
         }
-      );
-    }
+      }
+    );
   }
 
-  newReajuste() {
-    if (this.enviarReajuste == true) {
-      this.reajuste.empresa = this.empresa.id;
-      this.api.inserir('reajuste/', this.reajuste).subscribe(
-        (data) => {
-          this.toastr.success('Reajuste incluído com sucesso!');
-        },
-        (error) => {
-          let mensagens = error.error;
-          for (let campo in mensagens) {
-            this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-          }
+  // SINISTRALIDADE
+  adicionarSinistralidade() {
+    this.sinistralidade = new Sinistralidade;
+    $('#formularioSinistralidade').fadeIn(100);
+    $('#cadastrarSinistralidade').fadeIn(100);
+    $('#atualizarSinistralidade').hide();
+  }
+
+  newSinistralidade() {
+    this.sinistralidade.empresa = this.empresa.id;
+    this.api.inserir('sinistralidade/', this.sinistralidade).subscribe(
+      (data) => {
+        $('#formularioSinistralidade').hide();
+        $('#cadastrarSinistralidade').hide();
+        this.sinistralidade = new Sinistralidade;
+        this.loadSinistralidades(this.empresa.id);
+        this.toastr.success('Sinistralidade incluída com sucesso!');
+      },
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
         }
-      );
-    }
+      }
+    );
+  }
+
+  editSinistralidade(sinistralidade: Sinistralidade) {
+    this.sinistralidade = sinistralidade;
+    $('#formularioSinistralidade').fadeIn(100);
+    $('#atualizarSinistralidade').fadeIn(100);
+    $('#cadastrarSinistralidade').hide();
+  };
+
+  updateSinistralidade() {
+    this.api.atualizar('sinistralidade/', this.sinistralidade).subscribe(
+      (data) => {
+        this.loadSinistralidades(this.empresa.id)
+        $('#formularioSinistralidade').hide();
+        $('#atualizarSinistralidade').hide();
+        this.toastr.success('Sinistralidade atualizada com sucesso!');
+      },
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
+      }
+    );
   }
 }

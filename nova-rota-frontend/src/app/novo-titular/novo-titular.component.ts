@@ -32,7 +32,6 @@ export class NovoTitularComponent implements OnInit {
 
     // VALIDAR CPF
     $('#CPF').on('change', function () {
-      console.log('onchange');
       if (validarCPF(this.value) == false) {
         console.log('cpf invalido');
         $(this).addClass('is-invalid ng-invalid');
@@ -40,6 +39,8 @@ export class NovoTitularComponent implements OnInit {
         $('#InvalidCPF').fadeIn(100);
       } else {
         $('#InvalidCPF').hide();
+        $(this).removeClass('is-invalid ng-invalid');
+        $(this).addClass('ng-valid is-valid');
       }
     }); 
 
