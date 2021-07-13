@@ -1840,7 +1840,6 @@ pre code {
 
 .table thead th {
   vertical-align: bottom;
-  border-bottom: 2px solid #e9ecef;
 }
 
 .table tbody + tbody {
@@ -1954,14 +1953,19 @@ pre code {
 .table-info,
 .table-info > th,
 .table-info > td {
-  background-color: #bee7ff;
+  border-radius: 10px;
+  background: linear-gradient( 
+0deg
+, #2a9e4d 0%, #336543 100%);
+  color: #fff;
 }
 
 .table-info th,
 .table-info td,
 .table-info thead th,
 .table-info tbody + tbody {
-  border-color: #86d3ff;
+  border-color: #fdfdfd79;
+  border-radius: 10px;
 }
 
 .table-hover .table-info:hover {

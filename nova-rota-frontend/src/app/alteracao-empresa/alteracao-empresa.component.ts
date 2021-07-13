@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../api.service';
-import { ContratoOperadora, ContratoSeguradora, Empresa, Reajuste, Sinistralidade } from '../nova-empresa/models';
+import {
+  ContratoOperadora,
+  ContratoSeguradora,
+  Empresa,
+  Reajuste,
+  Sinistralidade,
+} from '../nova-empresa/models';
 
 declare var $: any;
 
@@ -20,29 +26,25 @@ export class AlteracaoEmpresaComponent implements OnInit {
   intervalId: number | null = null;
   //
 
-
   // DADOS DA EMPRESA
   busca: Empresa[];
   empresas: Empresa[];
-  empresa: Empresa = new Empresa;
+  empresa: Empresa = new Empresa();
 
-  contratoSeguradora: ContratoSeguradora = new ContratoSeguradora;
-  contratoOperadora: ContratoOperadora= new ContratoOperadora;
+  contratoSeguradora: ContratoSeguradora = new ContratoSeguradora();
+  contratoOperadora: ContratoOperadora = new ContratoOperadora();
 
   sinistralidades: Sinistralidade[] = [];
-  sinistralidade: Sinistralidade = new Sinistralidade;
+  sinistralidade: Sinistralidade = new Sinistralidade();
   enviarSinistralidade = false;
-  
+
   reajustes: Reajuste[] = [];
-  reajuste: Reajuste = new Reajuste;
+  reajuste: Reajuste = new Reajuste();
   enviarReajuste = false;
 
   p: number = 1;
 
-  constructor(
-    private toastr: ToastrService,
-    private api: ApiService,
-  ) {
+  constructor(private toastr: ToastrService, private api: ApiService) {
     this.getEmpresas();
   }
 
@@ -80,24 +82,6 @@ export class AlteracaoEmpresaComponent implements OnInit {
       $('#vinc-anexo-emp').fadeOut('100');
     });
 
-    // TELA DE VIGÊNCIA
-    $('#dataVigenciaAlt').on('blur', function () {
-      $('#vinc-vigenciaAlt').fadeIn('100');
-    });
-    $('#dataVigenciaAlt').on('focus', function () {
-      $(this).siblings('#vinc-vigenciaAlt').fadeIn('100');
-    });
-    $('#vinc-vigenciaAlt').hide();
-    //
-    $('#fecharVigenciaAlt').click(function () {
-      $('#vinc-vigenciaAlt').fadeOut('100');
-      $('#vigenciaTela').fadeIn('100');
-    });
-
-    $('#abrirVigenciaAlt').click(function () {
-      $('#vinc-vigenciaAlt').fadeIn('100');
-    });
-
     // BOTÕES
     $('.menuItems li').on('click', function () {
       $(this).addClass('active');
@@ -105,27 +89,32 @@ export class AlteracaoEmpresaComponent implements OnInit {
     });
 
     // Sinistralidade e reajuste
-    $('#reajuste-sinistralidade').on('click', function(){
-      $('#vinc-vigencia').fadeIn(100);
+    $('#reajuste-sinistralidade').on('click', function () {
+      $('#vinc-vigenciaAlt').fadeIn(100);
     });
 
-    $('#fecharVigencia').on('click', function(){
-      $('#vinc-vigencia').hide();
+    $('#fecharVigenciaAlt').on('click', function () {
+      $('#formularioSinistralidade').slideUp(200);
+      $('#formularioReajuste').slideUp(200);
+
+      $('#vinc-vigenciaAlt').fadeOut(100);
     });
 
-    $('#reajusteBtn').on('click', function(){
-      $('#reajusTab').fadeIn(100);
-      $('#sinisTab').hide();
+    $('#reajusteBtnAlt').on('click', function () {
+      $('#formularioSinistralidade').slideUp(100);
+      $('#reajusTab').slideDown(300);
+      $('#sinisTab').slideUp(300);
     });
 
-    $('#sinistralidadeBtn').on('click', function(){
-      $('#sinisTab').fadeIn(100);
-      $('#reajusTab').hide();
+    $('#sinistralidadeBtnAlt').on('click', function () {
+      $('#formularioReajuste').slideUp(100);
+      $('#sinisTab').slideDown(300);
+      $('#reajusTab').slideUp(300);
     });
   }
 
   searchCNPJ(CNPJ: string) {
-    console.log(CNPJ)
+    console.log(CNPJ);
     if (CNPJ != '') {
       this.busca = this.empresas.filter((res) => {
         return res.CNPJ.match(CNPJ);
@@ -157,7 +146,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
         this.toastr.error('Aconteceu um Erro!', error.message);
       }
     );
-  };
+  }
 
   empresaClicked = (empresa: Empresa) => {
     $('#consulta').fadeOut('200');
@@ -192,7 +181,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
         let mensagens = error.error;
         for (let campo in mensagens) {
           this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }      
+        }
       }
     );
   }
@@ -204,14 +193,14 @@ export class AlteracaoEmpresaComponent implements OnInit {
         if (data.length > 0) {
           this.contratoOperadora = data[0];
         } else {
-          this.contratoOperadora = new ContratoOperadora;
+          this.contratoOperadora = new ContratoOperadora();
         }
       },
       (error) => {
         let mensagens = error.error;
         for (let campo in mensagens) {
           this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }      
+        }
       }
     );
   }
@@ -222,14 +211,14 @@ export class AlteracaoEmpresaComponent implements OnInit {
         if (data.length > 0) {
           this.contratoSeguradora = data[0];
         } else {
-          this.contratoSeguradora = new ContratoSeguradora;
+          this.contratoSeguradora = new ContratoSeguradora();
         }
       },
       (error) => {
         let mensagens = error.error;
         for (let campo in mensagens) {
           this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }      
+        }
       }
     );
   }
@@ -268,7 +257,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
     if (dados.id) {
       this.api.atualizar(urlTipo, dados).subscribe(
         (data) => {
-          this.toastr.success('Empresa atualizada com sucesso!');      
+          this.toastr.success('Empresa atualizada com sucesso!');
         },
         (error) => {
           let mensagens = error.error;
@@ -281,7 +270,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
       dados.empresa = this.empresa.id;
       this.api.inserir(urlTipo, dados).subscribe(
         (data) => {
-          this.toastr.success('Empresa atualizada com sucesso!');      
+          this.toastr.success('Empresa atualizada com sucesso!');
         },
         (error) => {
           let mensagens = error.error;
@@ -295,8 +284,8 @@ export class AlteracaoEmpresaComponent implements OnInit {
 
   // REAJUSTE
   adicionarReajuste() {
-    this.reajuste = new Reajuste;
-    $('#formularioReajuste').fadeIn(100);
+    this.reajuste = new Reajuste();
+    $('#formularioReajuste').slideDown(200);
     $('#cadastrarReajuste').fadeIn(100);
     $('#atualizarReajuste').hide();
   }
@@ -307,7 +296,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
       (data) => {
         $('#formularioReajuste').hide();
         $('#cadastrarReajuste').hide();
-        this.reajuste = new Reajuste;
+        this.reajuste = new Reajuste();
         this.loadReajustes(this.empresa.id);
         this.toastr.success('Reajuste incluído com sucesso!');
       },
@@ -325,12 +314,12 @@ export class AlteracaoEmpresaComponent implements OnInit {
     $('#formularioReajuste').fadeIn(100);
     $('#atualizarReajuste').fadeIn(100);
     $('#cadastrarReajuste').hide();
-  };
+  }
 
   updateReajuste() {
     this.api.atualizar('reajuste/', this.reajuste).subscribe(
       (data) => {
-        this.loadReajustes(this.empresa.id)
+        this.loadReajustes(this.empresa.id);
         this.toastr.success('Reajuste atualizado com sucesso!');
       },
       (error) => {
@@ -344,8 +333,8 @@ export class AlteracaoEmpresaComponent implements OnInit {
 
   // SINISTRALIDADE
   adicionarSinistralidade() {
-    this.sinistralidade = new Sinistralidade;
-    $('#formularioSinistralidade').fadeIn(100);
+    this.sinistralidade = new Sinistralidade();
+    $('#formularioSinistralidade').slideDown(200);
     $('#cadastrarSinistralidade').fadeIn(100);
     $('#atualizarSinistralidade').hide();
   }
@@ -356,7 +345,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
       (data) => {
         $('#formularioSinistralidade').hide();
         $('#cadastrarSinistralidade').hide();
-        this.sinistralidade = new Sinistralidade;
+        this.sinistralidade = new Sinistralidade();
         this.loadSinistralidades(this.empresa.id);
         this.toastr.success('Sinistralidade incluída com sucesso!');
       },
@@ -374,12 +363,12 @@ export class AlteracaoEmpresaComponent implements OnInit {
     $('#formularioSinistralidade').fadeIn(100);
     $('#atualizarSinistralidade').fadeIn(100);
     $('#cadastrarSinistralidade').hide();
-  };
+  }
 
   updateSinistralidade() {
     this.api.atualizar('sinistralidade/', this.sinistralidade).subscribe(
       (data) => {
-        this.loadSinistralidades(this.empresa.id)
+        this.loadSinistralidades(this.empresa.id);
         $('#formularioSinistralidade').hide();
         $('#atualizarSinistralidade').hide();
         this.toastr.success('Sinistralidade atualizada com sucesso!');

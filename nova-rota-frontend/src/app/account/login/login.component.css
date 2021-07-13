@@ -1879,14 +1879,16 @@ pre code {
 .table-info,
 .table-info > th,
 .table-info > td {
-  background-color: #bee5eb;
+  border-color: #ffffff42;
+  border-radius: 10px;
 }
 
 .table-info th,
 .table-info td,
 .table-info thead th,
 .table-info tbody + tbody {
-  border-color: #86cfda;
+  border-color: #fdfdfd;
+  border-radius: 10px;
 }
 
 .table-hover .table-info:hover {
