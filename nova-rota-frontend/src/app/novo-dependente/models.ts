@@ -1,5 +1,5 @@
 export class Dependente {
-
+    id: number;
     CPF: string;
     cod_empresa: string;
     carteirinha: string;

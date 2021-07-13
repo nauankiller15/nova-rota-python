@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../api.service';
 import { HomeComponent } from '../home/home.component';
-import { Dependente } from '../novo-dependente/models';
+import { Dependente, Titular } from '../novo-dependente/models';
 
 declare var $: any;
 
@@ -21,12 +21,13 @@ export class AlteracaoDependenteComponent implements OnInit {
 
   // DADOS DO DEPENDENTE
   busca: Dependente[];
-
+   buscaTitular: Titular[];
+  
   dependentes: Dependente[];
   dependente: Dependente = new Dependente();
 
   //
-  titulares: Dependente[];
+  titulares: Titular[];
   //
   intervalId: number | null = null;
   //
@@ -162,21 +163,24 @@ export class AlteracaoDependenteComponent implements OnInit {
     }
   }
 
-  getDependentes = () => {
+  getDependentes() {
     this.api.listar('parentesco/').subscribe(
       (data) => {
         this.dependentes = data;
+        this.busca = data;
       },
       (error) => {
         this.toastr.error('Aconteceu um Erro!', error.message);
       }
     );
-  };
+  }
 
   getTitulares = () => {
     this.api.listar('titular/').subscribe(
       (data) => {
         this.titulares = data;
+        this.buscaTitular = data;
+
       },
       (error) => {
         this.toastr.error('Aconteceu um Erro!', error.message);
@@ -197,15 +201,13 @@ export class AlteracaoDependenteComponent implements OnInit {
 
   // VINCULAR DEPENDENTE
 
-  searchNomeTitDep() {
-    if (this.nome_benef != '') {
-      this.titulares = this.titulares.filter((res) => {
-        return res.nome_benef
-          .toLocaleLowerCase()
-          .match(this.nome_benef.toLocaleLowerCase());
+  searchNomeTitDep(nome_benef: string) {
+    if (nome_benef != '') {
+      this.buscaTitular = this.titulares.filter((res) => {
+        return res.nome_benef.match(nome_benef);
       });
-    } else if (this.nome_benef == '') {
-      this.getTitulares();
+    } else if (nome_benef == '') {
+      this.buscaTitular = this.titulares;
     }
   }
 

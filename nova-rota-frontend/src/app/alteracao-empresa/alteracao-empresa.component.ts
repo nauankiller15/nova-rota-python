@@ -28,10 +28,11 @@ export class AlteracaoEmpresaComponent implements OnInit {
 
   // DADOS DA EMPRESA
   busca: Empresa[];
-  
+
   empresas: Empresa[];
   empresa: Empresa = new Empresa();
 
+  //
   contratoSeguradora: ContratoSeguradora = new ContratoSeguradora();
   contratoOperadora: ContratoOperadora = new ContratoOperadora();
 

@@ -123,7 +123,11 @@
                   let resultado of busca
                     | orderBy: 'created_at':false
                     | paginate
-                      : { id: 'altEmpresas', itemsPerPage: 14, currentPage: p }
+                      : {
+                          id: 'altEmpresas',
+                          itemsPerPage: 14,
+                          currentPage: p
+                        }
                 "
                 (click)="empresaClicked(resultado)"
               >
