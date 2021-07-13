@@ -144,8 +144,6 @@ export class NovaEmpresaComponent implements OnInit {
       }
     });
 
-
-
     $('#tipo_contrato').on('change', function () {
       $('.filialSelect').addClass('htSlct');
       if ('Operadora' === $(this).val()) {
