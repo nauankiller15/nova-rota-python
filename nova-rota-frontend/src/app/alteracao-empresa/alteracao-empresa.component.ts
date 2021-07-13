@@ -115,7 +115,6 @@ export class AlteracaoEmpresaComponent implements OnInit {
   }
 
   searchCNPJ(CNPJ: string) {
-    console.log(CNPJ);
     if (CNPJ != '') {
       this.busca = this.empresas.filter((res) => {
         return res.CNPJ.match(CNPJ);
@@ -150,8 +149,8 @@ export class AlteracaoEmpresaComponent implements OnInit {
   }
 
   empresaClicked = (empresa: Empresa) => {
-    $('#consulta').fadeOut('200');
-    $('#empresaappear').fadeIn('200');
+    $('#consulta').slideUp(250);
+    $('#empresaappear').slideDown(250);
     this.empresa = empresa;
     this.loadReajustes(empresa.id);
     this.loadSinistralidades(empresa.id);

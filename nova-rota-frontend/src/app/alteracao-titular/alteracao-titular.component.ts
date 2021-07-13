@@ -190,8 +190,8 @@ export class AlteracaoTitularComponent implements OnInit {
   }
 
   titularClicked = (titular: { id: string }) => {
-    $('#consulta').fadeOut('200');
-    $('#titularesappear').fadeIn('200');
+    $('#consulta2').slideUp(250);
+    $('#titularesappear').slideDown(250);
     this.api.selecionar('titular/', titular.id).subscribe(
       (data) => {
         this.selected_titular = data;

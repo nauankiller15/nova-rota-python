@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../api.service';
 import { HomeComponent } from '../home/home.component';
+import { Dependente } from '../novo-dependente/models';
 
 declare var $: any;
 
@@ -17,6 +18,11 @@ export class AlteracaoDependenteComponent implements OnInit {
   contentLoaded = false;
   count = 2;
   widthHeightSizeInPixels = 50;
+
+  busca: Dependente[];
+
+  dependentes: Dependente[];
+  dependente: Dependente = new Dependente();
 
   intervalId: number | null = null;
   //
@@ -40,45 +46,6 @@ export class AlteracaoDependenteComponent implements OnInit {
       id: 0,
       CPF: '',
       nome_benef: '',
-    },
-  ];
-
-  selected_dependente = {
-    id: 0,
-    CPF: '',
-    cod_empresa: '',
-    data_recebimento: '',
-    tipo: '',
-    nome_dependente: '',
-    data_nascimento: '',
-    sexo: '',
-    estado_civil: '',
-    anexo_doc_tit: '',
-    nome_mae: '',
-    data_admissao: '',
-    data_casamento: '',
-    anexo_doc_casamento: null,
-    anexo_doc_nascimento: null,
-    tipo_parentesco: '',
-    CEP: '',
-    celular: '',
-    cidade: '',
-    estado: '',
-    declaracao_saude: '',
-    status: '',
-    desc_declarao_saude: '',
-    observacoes: '',
-    titular: null,
-    titular_nome: '',
-    carteirinha: '',
-    nome_benef: null,
-  };
-
-  dependentes = [
-    {
-      id: 0,
-      CPF: '',
-      nome_dependente: '',
     },
   ];
 
@@ -185,25 +152,23 @@ export class AlteracaoDependenteComponent implements OnInit {
     });
   }
 
-  searchCPF() {
-    if (this.CPF != '') {
-      this.dependentes = this.dependentes.filter((res) => {
-        return res.CPF.toLocaleLowerCase().match(this.CPF.toLocaleLowerCase());
+  searchCPF(CPF: string) {
+    if (CPF != '') {
+      this.busca = this.dependentes.filter((res) => {
+        return res.CPF.match(CPF);
       });
-    } else if (this.CPF == '') {
-      this.getDependentes();
+    } else if (CPF == '') {
+      this.busca = this.dependentes;
     }
   }
 
-  searchNomeBenef() {
-    if (this.nome_dependente != '') {
-      this.dependentes = this.dependentes.filter((res) => {
-        return res.nome_dependente
-          .toLocaleLowerCase()
-          .match(this.nome_dependente.toLocaleLowerCase());
+  searchNomeBenef(nome_dependente: string) {
+    if (nome_dependente != '') {
+      this.busca = this.dependentes.filter((res) => {
+        return res.nome_dependente.match(nome_dependente);
       });
-    } else if (this.nome_dependente == '') {
-      this.getDependentes();
+    } else if (nome_dependente == '') {
+      this.busca = this.dependentes;
     }
   }
 
@@ -232,7 +197,7 @@ export class AlteracaoDependenteComponent implements OnInit {
   loadDependente(id: string) {
     this.api.selecionar('parentesco/', id).subscribe(
       (data) => {
-        this.selected_dependente = data;
+        this.dependente = data;
       },
       (error) => {
         this.toastr.error('Dependente não encontrado', error.message);
@@ -260,8 +225,8 @@ export class AlteracaoDependenteComponent implements OnInit {
 
     this.api.selecionar('titular/', titular.id).subscribe(
       (data) => {
-        this.selected_dependente.titular = titular.id;
-        this.selected_dependente.nome_benef = titular.nome_benef;
+        this.dependente.titular = titular.id;
+        this.dependente.nome_benef = titular.nome_benef;
 
         this.toastr.success('Titular vinculado com sucesso!');
       },
@@ -273,11 +238,11 @@ export class AlteracaoDependenteComponent implements OnInit {
 
   dependenteClicked = (dependentes: { id: any }) => {
     $('#encounter-tit').fadeOut('100');
-    $('#consulta2').fadeOut('200');
-    $('#dependentesappear').fadeIn('20');
+    $('#consulta2').slideUp(250);
+    $('#dependentesappear').slideDown(250);
     this.api.selecionar('parentesco/', dependentes.id).subscribe(
       (data) => {
-        this.selected_dependente = data;
+        this.dependente = data;
       },
       (error) => {
         this.toastr.error('Aconteceu um Erro!', error.message);
@@ -286,9 +251,9 @@ export class AlteracaoDependenteComponent implements OnInit {
   };
 
   updateDependente() {
-    this.api.atualizar('parentesco/', this.selected_dependente).subscribe(
+    this.api.atualizar('parentesco/', this.dependente).subscribe(
       (data) => {
-        this.selected_dependente = data;
+        this.dependente = data;
         this.toastr.success('Atualizado com sucesso!');
       },
       (error) => {
