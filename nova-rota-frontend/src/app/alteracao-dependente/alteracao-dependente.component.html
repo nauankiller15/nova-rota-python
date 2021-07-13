@@ -156,13 +156,6 @@
                 <h4
                   class="loadit"
                   style="margin-top: 20px"
-                  *ngIf="dependentes.length === 0"
-                >
-                  Nada encontrado
-                </h4>
-                <h4
-                  class="loadit"
-                  style="margin-top: 20px"
                   *ngIf="busca.length === 0"
                 >
                   Nada encontrado
@@ -700,9 +693,6 @@
                         {{ resultadoTitular.CPF | mask: "000.000.000-99" }} -
                         {{ resultadoTitular.nome_benef }}
                       </li>
-                      <h4 class="loadit" *ngIf="titular.length === 0">
-                        Nada encontrado
-                      </h4>
                       <h4 class="loadit" *ngIf="buscaTitular.length === 0">
                         Nada encontrado
                       </h4>
