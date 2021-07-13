@@ -30,13 +30,13 @@ class ContratoSeguradoraViewSet(ModelViewSet):
 
 
 class ReajusteViewSet(ModelViewSet):
-    queryset = Reajuste.objects.all()
+    queryset = Reajuste.objects.all().order_by('ano_vigencia')
     serializer_class = ReajusteSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['empresa']
 
 class SinistralidadeViewSet(ModelViewSet):
-    queryset = Sinistralidade.objects.all()
+    queryset = Sinistralidade.objects.all().order_by('ano')
     serializer_class = SinistralidadeSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['empresa']

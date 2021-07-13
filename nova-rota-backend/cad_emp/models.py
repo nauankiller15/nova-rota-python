@@ -50,9 +50,9 @@ class Filial(Empresa):
 class Reajuste(models.Model):
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     ano_vigencia = models.PositiveIntegerField()
-    sinistralidade = models.CharField( max_length=100)
-    tecnico = models.DecimalField(max_digits=3, decimal_places=2)
-    negociado = models.DecimalField(max_digits=3, decimal_places=2)
+    sinistralidade = models.DecimalField(max_digits=4, decimal_places=2)
+    tecnico = models.DecimalField(max_digits=4, decimal_places=2)
+    negociado = models.DecimalField(max_digits=4, decimal_places=2)
 
 
 class Sinistralidade(models.Model):
@@ -79,6 +79,13 @@ class ContratoOperadora(models.Model):
                                      blank=False, default="Selecione", null=False)
     codigo = models.CharField("Codigo", max_length=100, unique=True)
 
+    def save(self, *args, **kwargs):
+        contratos_seguradora = ContratoSeguradora.objects.filter(empresa_id=self.empresa)
+        if len(contratos_seguradora) > 0:
+            for contrato in contratos_seguradora:
+                contrato.delete()
+        return super().save(*args, **kwargs)
+
 
 class ContratoSeguradora(models.Model):
 
@@ -91,3 +98,10 @@ class ContratoSeguradora(models.Model):
     tipo = models.CharField(max_length=25, choices=seguradora_choice,
                                      blank=False, default="Selecione", null=False)
     apolice = models.CharField("Apolice", max_length=100, unique=True)
+
+    def save(self, *args, **kwargs):
+        contratos_operadora = ContratoOperadora.objects.filter(empresa_id=self.empresa)
+        if len(contratos_operadora) > 0:
+            for contrato in contratos_operadora:
+                contrato.delete()
+        return super().save(*args, **kwargs)
