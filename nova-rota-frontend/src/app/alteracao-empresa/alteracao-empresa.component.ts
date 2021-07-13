@@ -363,12 +363,14 @@ export class AlteracaoEmpresaComponent implements OnInit {
     $('#formularioSinistralidade').fadeIn(100);
     $('#atualizarSinistralidade').fadeIn(100);
     $('#cadastrarSinistralidade').slideUp(200);
+    $('#tabelaSinistro').slideUp(200);
   }
 
   updateSinistralidade() {
     this.api.atualizar('sinistralidade/', this.sinistralidade).subscribe(
       (data) => {
         this.loadSinistralidades(this.empresa.id);
+        $('#tabelaSinistro').slideDown(200);
         $('#formularioSinistralidade').slideUp(200);
         $('#atualizarSinistralidade').slideUp(200);
         this.toastr.success('Sinistralidade atualizada com sucesso!');
