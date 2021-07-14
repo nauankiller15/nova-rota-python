@@ -840,11 +840,12 @@
               </div>
 
               <div id="reajusTab">
-                <h1 style="font-size: 20px; display: flex; margin-bottom: 15px">
-                  Histórico de Reajustes:
-                </h1>
-
-                <div>
+                <div id="tabelaReajuste">
+                  <h1
+                    style="font-size: 20px; display: flex; margin-bottom: 15px"
+                  >
+                    Histórico de Reajustes:
+                  </h1>
                   <table class="table table-info text-center">
                     <thead>
                       <tr>
@@ -874,12 +875,12 @@
                         <th>{{ linha.tecnico }} %</th>
                         <th>{{ linha.negociado }} %</th>
                         <th>
-                          <button class="btn" (click)="editReajuste(linha)">
+                          <button class="btn editVig" (click)="editReajuste(linha)">
                             <i class="fas fa-edit"></i>
                           </button>
                         </th>
                         <th>
-                          <button class="btn">
+                          <button class="btn eraseVig">
                             <i class="fas fa-trash"></i>
                           </button>
                         </th>
@@ -889,26 +890,30 @@
                       </tr>
                     </tbody>
                   </table>
-                </div>
-                <pagination-controls
-                  id="reajustes_pag"
-                  class="paginacao"
-                  maxSize="7"
-                  autoHide="true"
-                  previousLabel="Anterior"
-                  nextLabel="Seguinte"
-                  directionLinks="true"
-                  autoHide="true"
-                  responsive="true"
-                  (pageChange)="p = $event"
-                ></pagination-controls>
+                  <pagination-controls
+                    id="reajustes_pag"
+                    class="paginacao"
+                    maxSize="7"
+                    autoHide="true"
+                    previousLabel="Anterior"
+                    nextLabel="Seguinte"
+                    directionLinks="true"
+                    autoHide="true"
+                    responsive="true"
+                    (pageChange)="p = $event"
+                  ></pagination-controls>
 
-                <div>
-                  <button class="btn btn-primary" (click)="adicionarReajuste()">
-                    <i style="margin-right: 5px" class="fas fa-plus"></i
-                    >Adicionar Reajuste
-                  </button>
+                  <div>
+                    <button
+                      class="btn btn-primary"
+                      (click)="adicionarReajuste()"
+                    >
+                      <i style="margin-right: 5px" class="fas fa-plus"></i
+                      >Adicionar Reajuste
+                    </button>
+                  </div>
                 </div>
+
                 <div id="formularioReajuste" style="display: none">
                   <hr />
                   <form #reajusteForm="ngForm">
@@ -1037,7 +1042,7 @@
                       (click)="updateReajuste()"
                       style="display: none"
                     >
-                      <i class="fas fa-check"></i> Atualizar
+                      <i class="fas fa-check"></i> Atualizar Reajuste
                     </button>
                     <button
                       id="cadastrarReajuste"
@@ -1062,7 +1067,7 @@
                     <thead>
                       <tr>
                         <th>Ano</th>
-                        <th>Sinistralidade %</th>
+                        <th>Fidelizado</th>
                         <th colspan="2">Ações</th>
                       </tr>
                     </thead>
@@ -1160,7 +1165,7 @@
 
                       <!-- SINISTRALIDADE -->
                       <div class="col-md-5 mb-5">
-                        <label for="validationCustom01">Sinistralidade</label>
+                        <label for="validationCustom01">Fidelizado</label>
                         <input
                           #sinistralidade_sinistralidade="ngModel"
                           [(ngModel)]="sinistralidade.sinistralidade"
@@ -1181,7 +1186,7 @@
                             border-left: none;
                             border-right: none;
                           "
-                          placeholder="Informe a sinistralidade"
+                          placeholder="Informe a fidelização"
                           required
                         />
                       </div>
@@ -1193,7 +1198,7 @@
                       (click)="updateSinistralidade()"
                       style="display: none"
                     >
-                      <i class="fas fa-check"></i> Atualizar
+                      <i class="fas fa-check"></i> Atualizar Sinistralidade
                     </button>
                     <button
                       id="cadastrarSinistralidade"

@@ -106,6 +106,8 @@ export class AlteracaoEmpresaComponent implements OnInit {
       $('#formularioSinistralidade').slideUp(100);
       $('#reajusTab').slideDown(300);
       $('#sinisTab').slideUp(300);
+    $('#tabelaReajuste').slideDown(200);
+
     });
 
     $('#sinistralidadeBtnAlt').on('click', function () {
@@ -319,13 +321,17 @@ export class AlteracaoEmpresaComponent implements OnInit {
     this.reajuste = reajuste;
     $('#formularioReajuste').fadeIn(100);
     $('#atualizarReajuste').fadeIn(100);
-    $('#cadastrarReajuste').hide();
+    $('#cadastrarReajuste').slideUp(200);
+    $('#tabelaReajuste').slideUp(200);
   }
 
   updateReajuste() {
     this.api.atualizar('reajuste/', this.reajuste).subscribe(
       (data) => {
         this.loadReajustes(this.empresa.id);
+        $('#tabelaReajuste').slideDown(200);
+        $('#formularioReajuste').slideUp(200);
+        $('#atualizarReajuste').slideUp(200);
         this.toastr.success('Reajuste atualizado com sucesso!');
       },
       (error) => {
