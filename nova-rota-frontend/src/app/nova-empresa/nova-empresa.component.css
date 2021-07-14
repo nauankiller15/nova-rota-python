@@ -20,6 +20,14 @@
 .anexo-info-box-empresa-vinc {
   margin: auto;
   width: 90%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+.anexo-info-box-titular-vinc {
+  margin: auto;
+  width: 90%;
   margin-top: 29px;
   padding: 10px;
 }
