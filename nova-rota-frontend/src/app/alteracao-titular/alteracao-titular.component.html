@@ -22,20 +22,16 @@
           <h5 class="card-title">Consultar o Titular</h5>
           <form class="needs-validation" novalidate>
             <div class="form-row">
-              <div
-                class="input-group col-md-3 mb3"
-              >
+              <div class="input-group col-md-3 mb3">
                 <label for="validationCustom01">CPF:</label>
                 <div style="width: 100%"></div>
                 <span class="input-group-text" id="basic-addon1"
                   ><i class="fas fa-id-card"></i
                 ></span>
                 <input
-                  [(ngModel)]="CPF"
-                  [ngModelOptions]="{ standalone: true }"
-                  (input)="searchCPF()"
-                  class="form-control"
-                  mask="000.000.000-00"
+                  name="CPF"
+                  (input)="searchCPF($event.target.value)"
+                  class="form-control cpf"
                   type="text"
                   id="search_cpf"
                   placeholder="Pesquise por CPF"
@@ -48,90 +44,95 @@
                   ><i class="fas fa-user-tie"></i
                 ></span>
                 <input
-                  [(ngModel)]="nome_benef"
-                  (input)="searchNomeBenef()"
-                  [ngModelOptions]="{ standalone: true }"
-                  type="text"
-                  class="form-control"
-                  placeholder="Digite aqui o nome do Titular"
-                />
+                (input)="searchNomeBenef($event.target.value)"
+                name="nome_titular"
+                type="text"
+                class="form-control"
+                placeholder="Digite aqui o nome do Titular"
+              />
               </div>
             </div>
             <div style="width: 100%; height: 10px"></div>
 
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
             <hr />
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
             <div *ngIf="contentLoaded" class="titulares">
               Titulares Encontrados:
               <li
                 class="loadit"
                 *ngFor="
-                  let titular of titulares
+                  let resultado of busca
                     | orderBy: 'created_at':false
                     | paginate
-                      : { id: 'alttitulares', itemsPerPage: 14, currentPage: p }
+                      : {
+                          id: 'alttitulares',
+                          itemsPerPage: 14,
+                          currentPage: p
+                        }
                 "
-                (click)="titularClicked(titular)"
+                (click)="titularClicked(resultado)"
               >
                 <i
                   style="
@@ -146,8 +147,8 @@
                   "
                   class="fas fa-user-tie"
                 ></i>
-                CPF: {{ titular.CPF | mask: "000.000.000-99" }} -
-                {{ titular.nome_benef }}
+                CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
+                {{ resultado.nome_benef }}
                 <i
                   style="float: right; margin-top: 4px"
                   class="fas fa-external-link-alt"
@@ -156,7 +157,7 @@
               <h4
                 class="loadit"
                 style="margin-top: 20px"
-                *ngIf="titulares.length === 0"
+                *ngIf="busca.length === 0"
               >
                 Nada encontrado
               </h4>
@@ -185,11 +186,11 @@
             <i class="fas fa-chevron-left"></i>
           </div>
           <s style="margin-left: 12px; width: 975px; text-decoration: none">{{
-            selected_titular.nome_benef
+            titular.nome_benef
           }}</s>
           <p class="cpf-ts">
             Inscrito(a) sob CPF:
-            {{ selected_titular.CPF | mask: "000.000.000-99" }}
+            {{ titular.CPF | mask: "000.000.000-99" }}
           </p>
 
           <div class="botao-anexosAlt">
@@ -221,8 +222,8 @@
 
               <img
                 style="width: 250px"
-                src="{{ selected_titular.anexo_doc_casamento }}"
-                alt="Certidão de Casamento de {{ selected_titular.nome_benef }}"
+                src="{{ titular.anexo_doc_casamento }}"
+                alt="Certidão de Casamento de {{ titular.nome_benef }}"
               />
               <label
                 for="avatar"
@@ -239,7 +240,7 @@
                 type="file"
                 id="imagemCasado"
                 accept="image/png, image/jpeg"
-                [(ngModel)]="selected_titular.anexo_doc_casamento"
+                [(ngModel)]="titular.anexo_doc_casamento"
                 [ngModelOptions]="{ standalone: true }"
                 ng-required="false"
               />
@@ -261,7 +262,7 @@
         </div>
         <!--  -->
 
-        <div class="card-body">
+        <div id="postTit" class="card-body">
           <h5 class="card-title">ALTERE OS CAMPOS ABAIXO:</h5>
           <hr />
           <form class="needs-validation" novalidate>
@@ -272,7 +273,7 @@
                   maxlength="11"
                   autocomplete="off"
                   mask="000.000.000-00"
-                  [(ngModel)]="selected_titular.CPF"
+                  [(ngModel)]="titular.CPF"
                   [ngModelOptions]="{ standalone: true }"
                   type="text"
                   class="form-control cpf"
@@ -288,7 +289,7 @@
                 <label for="validationCustom01">Código Empresa</label>
                 <input
                   autocomplete="off"
-                  [(ngModel)]="selected_titular.cod_empresa"
+                  [(ngModel)]="titular.cod_empresa"
                   [ngModelOptions]="{ standalone: true }"
                   type="text"
                   class="form-control"
@@ -304,7 +305,7 @@
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Data de Recebimento</label>
                 <input
-                  [(ngModel)]="selected_titular.data_recebimento"
+                  [(ngModel)]="titular.data_recebimento"
                   [ngModelOptions]="{ standalone: true }"
                   type="date"
                   class="form-control"
@@ -327,7 +328,7 @@
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Número da Carteirinha</label>
                 <input
-                  [(ngModel)]="selected_titular.carteirinha"
+                  [(ngModel)]="titular.carteirinha"
                   autocomplete="off"
                   [ngModelOptions]="{ standalone: true }"
                   type="text"
@@ -339,7 +340,7 @@
               <div class="col-md-3 mb-3" style="display: none">
                 <label for="validationCustom01">Tipo</label>
                 <input
-                  [(ngModel)]="selected_titular.tipo"
+                  [(ngModel)]="titular.tipo"
                   [ngModelOptions]="{ standalone: true }"
                   readonly="“true”"
                   type="text"
@@ -351,7 +352,7 @@
               <div class="col-md-4 mb-3">
                 <label for="validationCustom01">Nome do Beneficiário</label>
                 <input
-                  [(ngModel)]="selected_titular.nome_benef"
+                  [(ngModel)]="titular.nome_benef"
                   [ngModelOptions]="{ standalone: true }"
                   type="text"
                   class="form-control"
@@ -363,7 +364,7 @@
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Data de Nascimento</label>
                 <input
-                  [(ngModel)]="selected_titular.data_nascimento"
+                  [(ngModel)]="titular.data_nascimento"
                   [ngModelOptions]="{ standalone: true }"
                   type="date"
                   class="form-control"
@@ -379,7 +380,7 @@
               <div class="col-md-2 mb-3">
                 <label for="validationCustom02">Sexo</label>
                 <select
-                  [(ngModel)]="selected_titular.sexo"
+                  [(ngModel)]="titular.sexo"
                   [ngModelOptions]="{ standalone: true }"
                   class="form-control"
                   name="sexo"
@@ -393,7 +394,7 @@
               <div class="col-md-2 mb-3">
                 <label for="validationCustom02">Estado Civil</label>
                 <select
-                  [(ngModel)]="selected_titular.estado_civil"
+                  [(ngModel)]="titular.estado_civil"
                   [ngModelOptions]="{ standalone: true }"
                   class="form-control"
                   name="estado_civil"
@@ -408,7 +409,7 @@
               <div class="col-md-4 mb-3">
                 <label for="validationCustom01">Nome da Mãe</label>
                 <input
-                  [(ngModel)]="selected_titular.nome_mae"
+                  [(ngModel)]="titular.nome_mae"
                   [ngModelOptions]="{ standalone: true }"
                   type="text"
                   class="form-control"
@@ -420,7 +421,7 @@
               <div class="col-md-2 mb-3">
                 <label for="validationCustom05">Data de Admissão</label>
                 <input
-                  [(ngModel)]="selected_titular.data_admissao"
+                  [(ngModel)]="titular.data_admissao"
                   [ngModelOptions]="{ standalone: true }"
                   type="date"
                   class="form-control"
@@ -431,25 +432,12 @@
               <div class="col-md-2 mb-3">
                 <label for="validationCustom05">Data de Casamento</label>
                 <input
-                  [(ngModel)]="selected_titular.data_casamento"
+                  [(ngModel)]="titular.data_casamento"
                   [ngModelOptions]="{ standalone: true }"
                   type="date"
                   class="form-control"
                   placeholder="Informe a data do casamento"
                   ng-required="false"
-                />
-              </div>
-
-              <div class="col-md-2 mb-2">
-                <label for="validationCustom01">Parentesco</label>
-                <input
-                  [(ngModel)]="selected_titular.tipo_parentesco"
-                  [ngModelOptions]="{ standalone: true }"
-                  readonly="“true”"
-                  type="text"
-                  class="form-control"
-                  placeholder="Sem Parentesco"
-                  required
                 />
               </div>
             </div>
@@ -458,7 +446,7 @@
               <div class="col-md-2 mb-2">
                 <label for="validationCustom01">CEP</label>
                 <input
-                  [(ngModel)]="selected_titular.CEP"
+                  [(ngModel)]="titular.CEP"
                   [ngModelOptions]="{ standalone: true }"
                   type="text"
                   class="form-control cep"
@@ -470,7 +458,7 @@
               <div class="col-md-2 mb-2">
                 <label for="validationCustom01">Celular</label>
                 <input
-                  [(ngModel)]="selected_titular.celular"
+                  [(ngModel)]="titular.celular"
                   [ngModelOptions]="{ standalone: true }"
                   type="text"
                   class="form-control phone_with_ddd"
@@ -482,7 +470,7 @@
               <div class="col-md-2 mb-2">
                 <label for="validationCustom03">Cidade</label>
                 <input
-                  [(ngModel)]="selected_titular.cidade"
+                  [(ngModel)]="titular.cidade"
                   [ngModelOptions]="{ standalone: true }"
                   type="text"
                   class="form-control"
@@ -494,7 +482,7 @@
               <div class="col-md-1 mb-1">
                 <label for="validationCustom02">Estado UF</label>
                 <select
-                  [(ngModel)]="selected_titular.estado"
+                  [(ngModel)]="titular.estado"
                   [ngModelOptions]="{ standalone: true }"
                   class="form-control"
                   name="estado_uf"
@@ -533,7 +521,7 @@
               <div class="col-md-2 mb-2">
                 <label for="validationCustom03">Declaração de Saúde</label>
                 <select
-                  [(ngModel)]="selected_titular.declaracao_saude"
+                  [(ngModel)]="titular.declaracao_saude"
                   [ngModelOptions]="{ standalone: true }"
                   class="form-control"
                   id="validationCustom09"
@@ -548,7 +536,7 @@
                 <label for="validationCustom04">Status Sistema</label>
                 <input
                   readonly="true"
-                  [(ngModel)]="selected_titular.status"
+                  [(ngModel)]="titular.status"
                   [ngModelOptions]="{ standalone: true }"
                   type="text"
                   class="form-control"
@@ -565,7 +553,7 @@
                   >Descrição da Declaração de Saúde</label
                 >
                 <input
-                  [(ngModel)]="selected_titular.desc_declarao_saude"
+                  [(ngModel)]="titular.desc_declarao_saude"
                   [ngModelOptions]="{ standalone: true }"
                   type="text"
                   class="form-control"
@@ -578,7 +566,7 @@
               <div class="col-md-5 mb-5">
                 <label for="validationCustom05">Observações</label>
                 <input
-                  [(ngModel)]="selected_titular.observacoes"
+                  [(ngModel)]="titular.observacoes"
                   [ngModelOptions]="{ standalone: true }"
                   type="text"
                   class="form-control"

@@ -28,9 +28,11 @@ export class AlteracaoEmpresaComponent implements OnInit {
 
   // DADOS DA EMPRESA
   busca: Empresa[];
+
   empresas: Empresa[];
   empresa: Empresa = new Empresa();
 
+  //
   contratoSeguradora: ContratoSeguradora = new ContratoSeguradora();
   contratoOperadora: ContratoOperadora = new ContratoOperadora();
 
@@ -107,6 +109,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
     });
 
     $('#sinistralidadeBtnAlt').on('click', function () {
+      $('#tabelaSinistro').slideDown(200);
       $('#formularioReajuste').slideUp(100);
       $('#sinisTab').slideDown(300);
       $('#reajusTab').slideUp(300);
@@ -114,7 +117,6 @@ export class AlteracaoEmpresaComponent implements OnInit {
   }
 
   searchCNPJ(CNPJ: string) {
-    console.log(CNPJ);
     if (CNPJ != '') {
       this.busca = this.empresas.filter((res) => {
         return res.CNPJ.match(CNPJ);
@@ -149,8 +151,8 @@ export class AlteracaoEmpresaComponent implements OnInit {
   }
 
   empresaClicked = (empresa: Empresa) => {
-    $('#consulta').fadeOut('200');
-    $('#empresaappear').fadeIn('200');
+    $('#consulta').slideUp(250);
+    $('#empresaappear').slideDown(250);
     this.empresa = empresa;
     this.loadReajustes(empresa.id);
     this.loadSinistralidades(empresa.id);
@@ -336,15 +338,15 @@ export class AlteracaoEmpresaComponent implements OnInit {
     this.sinistralidade = new Sinistralidade();
     $('#formularioSinistralidade').slideDown(200);
     $('#cadastrarSinistralidade').fadeIn(100);
-    $('#atualizarSinistralidade').hide();
+    $('#atualizarSinistralidade').slideUp(200);
   }
 
   newSinistralidade() {
     this.sinistralidade.empresa = this.empresa.id;
     this.api.inserir('sinistralidade/', this.sinistralidade).subscribe(
       (data) => {
-        $('#formularioSinistralidade').hide();
-        $('#cadastrarSinistralidade').hide();
+        $('#formularioSinistralidade').slideUp(200);
+        $('#cadastrarSinistralidade').slideUp(200);
         this.sinistralidade = new Sinistralidade();
         this.loadSinistralidades(this.empresa.id);
         this.toastr.success('Sinistralidade incluída com sucesso!');
@@ -362,15 +364,17 @@ export class AlteracaoEmpresaComponent implements OnInit {
     this.sinistralidade = sinistralidade;
     $('#formularioSinistralidade').fadeIn(100);
     $('#atualizarSinistralidade').fadeIn(100);
-    $('#cadastrarSinistralidade').hide();
+    $('#cadastrarSinistralidade').slideUp(200);
+    $('#tabelaSinistro').slideUp(200);
   }
 
   updateSinistralidade() {
     this.api.atualizar('sinistralidade/', this.sinistralidade).subscribe(
       (data) => {
         this.loadSinistralidades(this.empresa.id);
-        $('#formularioSinistralidade').hide();
-        $('#atualizarSinistralidade').hide();
+        $('#tabelaSinistro').slideDown(200);
+        $('#formularioSinistralidade').slideUp(200);
+        $('#atualizarSinistralidade').slideUp(200);
         this.toastr.success('Sinistralidade atualizada com sucesso!');
       },
       (error) => {

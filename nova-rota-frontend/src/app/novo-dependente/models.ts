@@ -1,5 +1,5 @@
 export class Dependente {
-
+    id: number;
     CPF: string;
     cod_empresa: string;
     carteirinha: string;
@@ -18,6 +18,7 @@ export class Dependente {
     nome_mae: string;
     data_admissao: string;
     titular: number;
+    nome_benef: string;
     CEP: string;
     celular: string;
     cidade: string;
@@ -25,7 +26,8 @@ export class Dependente {
     declaracao_saude: string;
     desc_declarao_saude: string;
     observacoes: string;
-    nome_benef: string;
+    status: string;
+    titular_nome: string;
 }
 
 export class Titular {

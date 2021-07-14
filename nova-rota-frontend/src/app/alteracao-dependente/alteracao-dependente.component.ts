@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../api.service';
 import { HomeComponent } from '../home/home.component';
+import { Dependente, Titular } from '../novo-dependente/models';
 
 declare var $: any;
 
@@ -12,12 +13,24 @@ declare var $: any;
   styleUrls: ['./alteracao-dependente.component.css'],
 })
 export class AlteracaoDependenteComponent implements OnInit {
-  // carregador
+  // CARREGADOR
   animation = 'pulse';
   contentLoaded = false;
   count = 2;
   widthHeightSizeInPixels = 50;
 
+  // DADOS DO DEPENDENTE
+  busca: Dependente[];
+
+  // BUSCA DOS TITULARES
+   buscaTitular: Titular[];
+  
+  dependentes: Dependente[];
+  dependente: Dependente = new Dependente();
+
+  //
+  titulares: Titular[];
+  //
   intervalId: number | null = null;
   //
 
@@ -28,59 +41,6 @@ export class AlteracaoDependenteComponent implements OnInit {
     }
     return true;
   }
-
-  // textOnly(event): boolean {
-  //   var key = event.keyCode;
-  //   `enter code here`;
-  //   return (key >= 65 && key <= 90) || key == 8;
-  // }
-
-  titulares = [
-    {
-      id: 0,
-      CPF: '',
-      nome_benef: '',
-    },
-  ];
-
-  selected_dependente = {
-    id: 0,
-    CPF: '',
-    cod_empresa: '',
-    data_recebimento: '',
-    tipo: '',
-    nome_dependente: '',
-    data_nascimento: '',
-    sexo: '',
-    estado_civil: '',
-    anexo_doc_tit: '',
-    nome_mae: '',
-    data_admissao: '',
-    data_casamento: '',
-    anexo_doc_casamento: null,
-    anexo_doc_nascimento: null,
-    tipo_parentesco: '',
-    CEP: '',
-    celular: '',
-    cidade: '',
-    estado: '',
-    declaracao_saude: '',
-    status: '',
-    desc_declarao_saude: '',
-    observacoes: '',
-    titular: null,
-    titular_nome: '',
-    carteirinha: '',
-    nome_benef: null,
-  };
-
-  dependentes = [
-    {
-      id: 0,
-      CPF: '',
-      nome_dependente: '',
-    },
-  ];
 
   p: number = 1;
   fileToUpload: File = null;
@@ -168,6 +128,7 @@ export class AlteracaoDependenteComponent implements OnInit {
     $('#voltardadosdep').click(function () {
       $('#dependentesappear').fadeOut('200');
       $('#consulta2').slideDown('200');
+      $('#postDep').slideUp(600);
     });
 
     // VOLTAR ALTERAÇÃO DE DADOS
@@ -185,43 +146,44 @@ export class AlteracaoDependenteComponent implements OnInit {
     });
   }
 
-  searchCPF() {
-    if (this.CPF != '') {
-      this.dependentes = this.dependentes.filter((res) => {
-        return res.CPF.toLocaleLowerCase().match(this.CPF.toLocaleLowerCase());
+  searchCPF(CPF: string) {
+    if (CPF != '') {
+      this.busca = this.dependentes.filter((res) => {
+        return res.CPF.match(CPF);
       });
-    } else if (this.CPF == '') {
-      this.getDependentes();
+    } else if (CPF == '') {
+      this.busca = this.dependentes;
     }
   }
 
-  searchNomeBenef() {
-    if (this.nome_dependente != '') {
-      this.dependentes = this.dependentes.filter((res) => {
-        return res.nome_dependente
-          .toLocaleLowerCase()
-          .match(this.nome_dependente.toLocaleLowerCase());
+  searchNomeBenef(nome_dependente: string) {
+    if (nome_dependente != '') {
+      this.busca = this.dependentes.filter((res) => {
+        return res.nome_dependente.match(nome_dependente);
       });
-    } else if (this.nome_dependente == '') {
-      this.getDependentes();
+    } else if (nome_dependente == '') {
+      this.busca = this.dependentes;
     }
   }
 
-  getDependentes = () => {
+  getDependentes() {
     this.api.listar('parentesco/').subscribe(
       (data) => {
         this.dependentes = data;
+        this.busca = data;
       },
       (error) => {
         this.toastr.error('Aconteceu um Erro!', error.message);
       }
     );
-  };
+  }
 
   getTitulares = () => {
     this.api.listar('titular/').subscribe(
       (data) => {
         this.titulares = data;
+        this.buscaTitular = data;
+
       },
       (error) => {
         this.toastr.error('Aconteceu um Erro!', error.message);
@@ -232,7 +194,7 @@ export class AlteracaoDependenteComponent implements OnInit {
   loadDependente(id: string) {
     this.api.selecionar('parentesco/', id).subscribe(
       (data) => {
-        this.selected_dependente = data;
+        this.dependente = data;
       },
       (error) => {
         this.toastr.error('Dependente não encontrado', error.message);
@@ -241,16 +203,13 @@ export class AlteracaoDependenteComponent implements OnInit {
   }
 
   // VINCULAR DEPENDENTE
-
-  searchNomeTitDep() {
-    if (this.nome_benef != '') {
-      this.titulares = this.titulares.filter((res) => {
-        return res.nome_benef
-          .toLocaleLowerCase()
-          .match(this.nome_benef.toLocaleLowerCase());
+  searchNomeTitDep(nome_benef: string) {
+    if (nome_benef != '') {
+      this.buscaTitular = this.titulares.filter((res) => {
+        return res.nome_benef.match(nome_benef);
       });
-    } else if (this.nome_benef == '') {
-      this.getTitulares();
+    } else if (nome_benef == '') {
+      this.buscaTitular = this.titulares;
     }
   }
 
@@ -260,8 +219,8 @@ export class AlteracaoDependenteComponent implements OnInit {
 
     this.api.selecionar('titular/', titular.id).subscribe(
       (data) => {
-        this.selected_dependente.titular = titular.id;
-        this.selected_dependente.nome_benef = titular.nome_benef;
+        this.dependente.titular = titular.id;
+        this.dependente.nome_benef = titular.nome_benef;
 
         this.toastr.success('Titular vinculado com sucesso!');
       },
@@ -273,11 +232,12 @@ export class AlteracaoDependenteComponent implements OnInit {
 
   dependenteClicked = (dependentes: { id: any }) => {
     $('#encounter-tit').fadeOut('100');
-    $('#consulta2').fadeOut('200');
-    $('#dependentesappear').fadeIn('20');
+    $('#consulta2').slideUp(250);
+    $('#dependentesappear').slideDown(250);
+    $('#postDep').slideDown(600);
     this.api.selecionar('parentesco/', dependentes.id).subscribe(
       (data) => {
-        this.selected_dependente = data;
+        this.dependente = data;
       },
       (error) => {
         this.toastr.error('Aconteceu um Erro!', error.message);
@@ -286,9 +246,9 @@ export class AlteracaoDependenteComponent implements OnInit {
   };
 
   updateDependente() {
-    this.api.atualizar('parentesco/', this.selected_dependente).subscribe(
+    this.api.atualizar('parentesco/', this.dependente).subscribe(
       (data) => {
-        this.selected_dependente = data;
+        this.dependente = data;
         this.toastr.success('Atualizado com sucesso!');
       },
       (error) => {
