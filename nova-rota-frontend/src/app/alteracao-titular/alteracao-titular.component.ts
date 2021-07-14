@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../api.service';
+import { Titular } from '../novo-titular/models';
+
 
 declare var $: any;
 
@@ -11,6 +13,13 @@ declare var $: any;
   styleUrls: ['./alteracao-titular.component.css'],
 })
 export class AlteracaoTitularComponent implements OnInit {
+
+  // DADOS DO TITULAR
+  busca: Titular[];
+
+  titulares: Titular[];
+  titular: Titular = new Titular();
+
   // CARREGADOR
   animation = 'pulse';
   contentLoaded = false;
@@ -19,43 +28,6 @@ export class AlteracaoTitularComponent implements OnInit {
 
   intervalId: number | null = null;
   //
-
-  selected_titular = {
-    id: 0,
-    CPF: '000.000.000-00',
-    cod_empresa: '',
-    data_recebimento: '',
-    tipo: '',
-    nome_benef: '',
-    data_nascimento: '',
-    carteirinha: '',
-    sexo: '',
-    estado_civil: '',
-    anexo_doc_tit: '',
-    nome_mae: '',
-    data_admissao: '',
-    data_casamento: '',
-    anexo_doc_casamento: null,
-    anexo_doc_empregaticio: null,
-    tipo_parentesco: '',
-    CEP: '',
-    celular: '',
-    cidade: '',
-    estado: '',
-    declaracao_saude: '',
-    status: '',
-    desc_declarao_saude: '',
-    observacoes: '',
-  };
-
-  titulares = [
-    {
-      id: 0,
-      CPF: '',
-      nome_benef: '',
-    },
-  ];
-
   fileToUpload: File = null;
   CPF: string;
   nome_benef: string;
@@ -131,6 +103,7 @@ export class AlteracaoTitularComponent implements OnInit {
     $('#voltardados').click(function () {
       $('#titularesappear').fadeOut('200');
       $('#consulta').slideDown('200');
+      $('#postTit').slideUp(600);
     });
 
     $('#abrirAnexoAlt').click(function () {
@@ -142,25 +115,24 @@ export class AlteracaoTitularComponent implements OnInit {
     });
   }
 
-  searchCPF() {
-    if (this.CPF != '') {
-      this.titulares = this.titulares.filter((res) => {
-        return res.CPF.toLocaleLowerCase().match(this.CPF.toLocaleLowerCase());
+  searchCPF(CPF: string) {
+    if (CPF != '') {
+      this.busca = this.titulares.filter((res) => {
+        return res.CPF.match(CPF);
       });
-    } else if (this.CPF == '') {
-      this.getTitulares();
+    } else if (CPF == '') {
+      this.busca = this.titulares;
     }
   }
 
-  searchNomeBenef() {
-    if (this.nome_benef != '') {
-      this.titulares = this.titulares.filter((res) => {
-        return res.nome_benef
-          .toLocaleLowerCase()
-          .match(this.nome_benef.toLocaleLowerCase());
+
+  searchNomeBenef(nome_benef: string) {
+    if (nome_benef != '') {
+      this.busca = this.titulares.filter((res) => {
+        return res.nome_benef.match(nome_benef);
       });
-    } else if (this.nome_benef == '') {
-      this.getTitulares();
+    } else if (nome_benef == '') {
+      this.busca = this.titulares;
     }
   }
 
@@ -168,6 +140,7 @@ export class AlteracaoTitularComponent implements OnInit {
     this.api.listar('titular/').subscribe(
       (data) => {
         this.titulares = data;
+        this.busca = data;
       },
       (error) => {
         const mensagens = error.error;
@@ -181,7 +154,7 @@ export class AlteracaoTitularComponent implements OnInit {
   loadTitular(id: string) {
     this.api.selecionar('titular/', id).subscribe(
       (data) => {
-        this.selected_titular = data;
+        this.titular = data;
       },
       (error) => {
         this.toastr.error('Titular não encontrado', error.message);
@@ -190,11 +163,12 @@ export class AlteracaoTitularComponent implements OnInit {
   }
 
   titularClicked = (titular: { id: string }) => {
-    $('#consulta').fadeOut('200');
-    $('#titularesappear').fadeIn('200');
+    $('#consulta').slideUp(250);
+    $('#titularesappear').slideDown(250);
+    $('#postTit').slideDown(600);
     this.api.selecionar('titular/', titular.id).subscribe(
       (data) => {
-        this.selected_titular = data;
+        this.titular = data;
       },
       (error) => {
         this.toastr.error('Aconteceu um Erro!', error.message);
@@ -203,7 +177,7 @@ export class AlteracaoTitularComponent implements OnInit {
   };
 
   updateTit() {
-    this.api.atualizar('titular/', this.selected_titular).subscribe(
+    this.api.atualizar('titular/', this.titular).subscribe(
       (data) => {
         this.toastr.success('Atualizado com sucesso!');
       },

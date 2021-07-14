@@ -53,69 +53,68 @@
               </div>
             </div>
             <div style="width: 100%; height: 10px"></div>
-
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
             <hr />
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
             <div *ngIf="contentLoaded" class="titulares">
               Empresas Encontradas:
               <li
@@ -124,7 +123,11 @@
                   let resultado of busca
                     | orderBy: 'created_at':false
                     | paginate
-                      : { id: 'altEmpresas', itemsPerPage: 14, currentPage: p }
+                      : {
+                          id: 'altEmpresas',
+                          itemsPerPage: 14,
+                          currentPage: p
+                        }
                 "
                 (click)="empresaClicked(resultado)"
               >
@@ -151,17 +154,10 @@
               <h4
                 class="loadit"
                 style="margin-top: 20px"
-                *ngIf="empresas.length === 0"
+                *ngIf="busca.length === 0"
               >
                 Nada encontrado
               </h4>
-              <h4
-              class="loadit"
-              style="margin-top: 20px"
-              *ngIf="busca.length === 0"
-            >
-              Nada encontrado
-            </h4>
             </div>
             <pagination-controls
               id="altEmpresas"
@@ -823,9 +819,6 @@
           >
             <i class="fas fa-check"></i> Gravar informações
           </button>
-          <button type="reset" class="btn btn-cancelar">
-            <i class="far fa-times-circle"></i> Apagar tudo
-          </button>
         </div>
 
         <!-- VINCULAR INICIO DA VIGÊNCIA -->
@@ -836,7 +829,9 @@
                 <nav class="menuVigencia">
                   <ul class="menuItems">
                     <!-- BOTÃO REAJUSTE -->
-                    <li id="reajusteBtnAlt" class="active radiusTop">Reajuste</li>
+                    <li id="reajusteBtnAlt" class="active radiusTop">
+                      Reajuste
+                    </li>
 
                     <!-- BOTÃO SINISTRALIDADE -->
                     <li id="sinistralidadeBtnAlt">Sinistralidade</li>
@@ -862,12 +857,17 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let linha of reajustes | paginate
-                      : {
-                          id: 'reajustes_pag',
-                          itemsPerPage: 5,
-                          currentPage: p
-                        } ">
+                      <tr
+                        *ngFor="
+                          let linha of reajustes
+                            | paginate
+                              : {
+                                  id: 'reajustes_pag',
+                                  itemsPerPage: 5,
+                                  currentPage: p
+                                }
+                        "
+                      >
                         <th></th>
                         <th>{{ linha.ano_vigencia }}</th>
                         <th>{{ linha.sinistralidade }}</th>
@@ -891,17 +891,17 @@
                   </table>
                 </div>
                 <pagination-controls
-                id="reajustes_pag"
-                class="paginacao"
-                maxSize="7"
-                autoHide="true"
-                previousLabel="Anterior"
-                nextLabel="Seguinte"
-                directionLinks="true"
-                autoHide="true"
-                responsive="true"
-                (pageChange)="p = $event"
-              ></pagination-controls>
+                  id="reajustes_pag"
+                  class="paginacao"
+                  maxSize="7"
+                  autoHide="true"
+                  previousLabel="Anterior"
+                  nextLabel="Seguinte"
+                  directionLinks="true"
+                  autoHide="true"
+                  responsive="true"
+                  (pageChange)="p = $event"
+                ></pagination-controls>
 
                 <div>
                   <button class="btn btn-primary" (click)="adicionarReajuste()">
@@ -1037,7 +1037,7 @@
                       (click)="updateReajuste()"
                       style="display: none"
                     >
-                    <i class="fas fa-check"></i> Atualizar
+                      <i class="fas fa-check"></i> Atualizar
                     </button>
                     <button
                       id="cadastrarReajuste"
@@ -1045,17 +1045,19 @@
                       (click)="newReajuste()"
                       style="display: none"
                     >
-                    <i class="fas fa-check"></i> Cadastrar
+                      <i class="fas fa-check"></i> Cadastrar
                     </button>
                   </form>
                 </div>
               </div>
 
               <div id="sinisTab" style="display: none">
-                <h1 style="font-size: 20px; display: flex; margin-bottom: 15px">
-                  Histórico de Sinistralidade:
-                </h1>
-                <div>
+                <div id="tabelaSinistro">
+                  <h1
+                    style="font-size: 20px; display: flex; margin-bottom: 15px"
+                  >
+                    Histórico de Sinistralidade:
+                  </h1>
                   <table class="table table-info text-center">
                     <thead>
                       <tr>
@@ -1065,12 +1067,17 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let linha of sinistralidades | paginate
-                      : {
-                          id: 'sinistralidades_page',
-                          itemsPerPage: 5,
-                          currentPage: p
-                        }">
+                      <tr
+                        *ngFor="
+                          let linha of sinistralidades
+                            | paginate
+                              : {
+                                  id: 'sinistralidades_page',
+                                  itemsPerPage: 5,
+                                  currentPage: p
+                                }
+                        "
+                      >
                         <th>{{ linha.ano }}</th>
                         <th>{{ linha.sinistralidade }} %</th>
                         <th>
@@ -1092,27 +1099,27 @@
                       </tr>
                     </tbody>
                   </table>
-                </div>
-                <pagination-controls
-                id="sinistralidades_page"
-                class="paginacao"
-                maxSize="7"
-                autoHide="true"
-                previousLabel="Anterior"
-                nextLabel="Seguinte"
-                directionLinks="true"
-                autoHide="true"
-                responsive="true"
-                (pageChange)="p = $event"
-              ></pagination-controls>
-                <div>
-                  <button
-                    class="btn btn-primary"
-                    (click)="adicionarSinistralidade()"
-                  >
-                    <i style="margin-right: 5px" class="fas fa-plus"></i
-                    >Adicionar Sinistralidade:
-                  </button>
+                  <pagination-controls
+                    id="sinistralidades_page"
+                    class="paginacao"
+                    maxSize="7"
+                    autoHide="true"
+                    previousLabel="Anterior"
+                    nextLabel="Seguinte"
+                    directionLinks="true"
+                    autoHide="true"
+                    responsive="true"
+                    (pageChange)="p = $event"
+                  ></pagination-controls>
+                  <div>
+                    <button
+                      class="btn btn-primary"
+                      (click)="adicionarSinistralidade()"
+                    >
+                      <i style="margin-right: 5px" class="fas fa-plus"></i
+                      >Adicionar Sinistralidade:
+                    </button>
+                  </div>
                 </div>
 
                 <div id="formularioSinistralidade" style="display: none">
@@ -1186,7 +1193,7 @@
                       (click)="updateSinistralidade()"
                       style="display: none"
                     >
-                    <i class="fas fa-check"></i> Atualizar
+                      <i class="fas fa-check"></i> Atualizar
                     </button>
                     <button
                       id="cadastrarSinistralidade"
@@ -1194,7 +1201,7 @@
                       (click)="newSinistralidade()"
                       style="display: none"
                     >
-                    <i class="fas fa-check"></i> Cadastrar
+                      <i class="fas fa-check"></i> Cadastrar
                     </button>
                   </form>
                 </div>

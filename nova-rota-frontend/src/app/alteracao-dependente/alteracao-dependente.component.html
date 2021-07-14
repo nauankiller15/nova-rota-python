@@ -22,19 +22,15 @@
           <h5 class="card-title">Consultar o Dependente</h5>
           <form class="needs-validation">
             <div class="form-row">
-              <div
-                class="input-group col-md-3 mb3"
-              >
+              <div class="input-group col-md-3 mb3">
                 <label for="validationCustom01">CPF:</label>
                 <div style="width: 100%"></div>
                 <span class="input-group-text" id="basic-addon1"
                   ><i class="fas fa-id-card"></i
                 ></span>
                 <input
-                  (keypress)="numberOnly($event)"
-                  [(ngModel)]="CPF"
                   name="CPF"
-                  (input)="searchCPF()"
+                  (input)="searchCPF($event.target.value)"
                   class="form-control cpf"
                   type="text"
                   id="search_cpf"
@@ -49,8 +45,7 @@
                   ><i class="fas fa-user-plus"></i
                 ></span>
                 <input
-                  [(ngModel)]="nome_dependente"
-                  (input)="searchNomeBenef()"
+                  (input)="searchNomeBenef($event.target.value)"
                   name="nome_dependente"
                   type="text"
                   class="form-control"
@@ -60,72 +55,74 @@
             </div>
             <div style="width: 100%; height: 10px"></div>
 
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
             <hr />
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+
             <div *ngIf="contentLoaded">
               <div class="titulares">
                 Dependentes Encontrados:
                 <li
                   class="loadit"
                   *ngFor="
-                    let dependente of dependentes
+                    let resultado of busca
                       | orderBy: 'created_at':false
                       | paginate
                         : {
@@ -134,7 +131,7 @@
                             currentPage: p
                           }
                   "
-                  (click)="dependenteClicked(dependente)"
+                  (click)="dependenteClicked(resultado)"
                 >
                   <i
                     style="
@@ -149,8 +146,8 @@
                     "
                     class="fas fa-user-plus"
                   ></i>
-                  CPF: {{ dependente.CPF | mask: "000.000.000-99" }} -
-                  {{ dependente.nome_dependente }}
+                  CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
+                  {{ resultado.nome_dependente }}
                   <i
                     style="float: right; margin-top: 4px"
                     class="fas fa-external-link-alt"
@@ -159,7 +156,7 @@
                 <h4
                   class="loadit"
                   style="margin-top: 20px"
-                  *ngIf="dependentes.length === 0"
+                  *ngIf="busca.length === 0"
                 >
                   Nada encontrado
                 </h4>
@@ -188,10 +185,10 @@
           <div id="voltardadosdep" class="voltar">
             <i class="fas fa-chevron-left"></i>
           </div>
-          {{ selected_dependente.nome_dependente }}
+          {{ dependente.nome_dependente }}
           <p class="cpf-ts">
             Inscrito(a) sob CPF:
-            {{ selected_dependente.CPF | mask: "000.000.000-99" }}
+            {{ dependente.CPF | mask: "000.000.000-99" }}
           </p>
           <p class="cpf-ts">
             Dependente de:
@@ -215,7 +212,7 @@
                 border-radius: 0.25rem;
               "
             >
-              {{ selected_dependente.titular_nome }}
+              {{ dependente.titular_nome }}
             </b>
           </p>
 
@@ -248,10 +245,8 @@
 
               <img
                 style="width: 250px"
-                src="{{ selected_dependente.anexo_doc_casamento }}"
-                alt="Certidão de Casamento de {{
-                  selected_dependente.nome_dependente
-                }}"
+                src="{{ dependente.anexo_doc_casamento }}"
+                alt="Certidão de Casamento de {{ dependente.nome_dependente }}"
               />
               <label
                 for="avatar"
@@ -268,7 +263,7 @@
                 type="file"
                 id="imagemCasado"
                 accept="image/png, image/jpeg"
-                [(ngModel)]="selected_dependente.anexo_doc_casamento"
+                [(ngModel)]="dependente.anexo_doc_casamento"
                 name="anexo_doc_casamento"
                 ng-required="false"
               />
@@ -290,7 +285,7 @@
         </div>
         <!--  -->
 
-        <div class="card-body">
+        <div id="postDep" class="card-body">
           <h5 class="card-title">ALTERE OS CAMPOS ABAIXO:</h5>
           <hr />
           <form class="needs-validation">
@@ -301,7 +296,7 @@
                   maxlength="11"
                   autocomplete="off"
                   mask="000.000.000-00"
-                  [(ngModel)]="selected_dependente.CPF"
+                  [(ngModel)]="dependente.CPF"
                   name="CPF"
                   type="text"
                   class="form-control cpf"
@@ -317,7 +312,7 @@
                 <label for="validationCustom01">Código Empresa</label>
                 <input
                   autocomplete="off"
-                  [(ngModel)]="selected_dependente.cod_empresa"
+                  [(ngModel)]="dependente.cod_empresa"
                   name="cod_empresa"
                   type="text"
                   class="form-control"
@@ -333,7 +328,7 @@
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Data de Recebimento</label>
                 <input
-                  [(ngModel)]="selected_dependente.data_recebimento"
+                  [(ngModel)]="dependente.data_recebimento"
                   name="data_recebimento"
                   type="date"
                   class="form-control"
@@ -357,7 +352,7 @@
                 <label for="validationCustom01">Número da Carteirinha</label>
                 <input
                   autocomplete="off"
-                  [(ngModel)]="selected_dependente.carteirinha"
+                  [(ngModel)]="dependente.carteirinha"
                   name="carteirinha"
                   type="text"
                   class="form-control"
@@ -368,7 +363,7 @@
               <div class="col-md-4 mb-3">
                 <label for="validationCustom01">Nome do Dependente</label>
                 <input
-                  [(ngModel)]="selected_dependente.nome_dependente"
+                  [(ngModel)]="dependente.nome_dependente"
                   [ngModelOptions]="{ standalone: true }"
                   type="text"
                   class="form-control"
@@ -380,7 +375,7 @@
               <div class="col-md-3 mb-3" style="display: none">
                 <label for="validationCustom01">Tipo</label>
                 <input
-                  [(ngModel)]="selected_dependente.tipo"
+                  [(ngModel)]="dependente.tipo"
                   name="tipo"
                   readonly="“true”"
                   type="text"
@@ -392,7 +387,7 @@
               <div class="col-md-2 mb-3">
                 <label for="validationCustom02">Sexo</label>
                 <select
-                  [(ngModel)]="selected_dependente.sexo"
+                  [(ngModel)]="dependente.sexo"
                   name="sexo"
                   class="form-control"
                   name="sexo"
@@ -406,7 +401,7 @@
               <div class="col-md-2 mb-3">
                 <label for="validationCustom02">Estado Civil</label>
                 <select
-                  [(ngModel)]="selected_dependente.estado_civil"
+                  [(ngModel)]="dependente.estado_civil"
                   name="estado_civil"
                   class="form-control"
                   name="estado_civil"
@@ -417,11 +412,13 @@
                   <option value="Convivente">Convivente</option>
                 </select>
               </div>
+            </div>
 
+            <div class="form-row">
               <div class="col-md-4 mb-3">
                 <label for="validationCustom01">Nome da Mãe</label>
                 <input
-                  [(ngModel)]="selected_dependente.nome_mae"
+                  [(ngModel)]="dependente.nome_mae"
                   name="nome_mae"
                   type="text"
                   class="form-control"
@@ -433,7 +430,7 @@
               <div class="col-md-2 mb-3">
                 <label for="validationCustom05">Data de Admissão</label>
                 <input
-                  [(ngModel)]="selected_dependente.data_admissao"
+                  [(ngModel)]="dependente.data_admissao"
                   name="data_admissao"
                   type="date"
                   class="form-control"
@@ -444,7 +441,7 @@
               <div class="col-md-2 mb-3">
                 <label for="validationCustom05">Data de Casamento</label>
                 <input
-                  [(ngModel)]="selected_dependente.data_casamento"
+                  [(ngModel)]="dependente.data_casamento"
                   name="data_casamento"
                   type="date"
                   class="form-control"
@@ -456,7 +453,7 @@
               <div class="col-md-2 mb-2">
                 <label for="validationCustom01">Parentesco</label>
                 <input
-                  [(ngModel)]="selected_dependente.tipo_parentesco"
+                  [(ngModel)]="dependente.tipo_parentesco"
                   name="tipo_parentesco"
                   readonly="“true”"
                   type="text"
@@ -466,12 +463,12 @@
                 />
               </div>
             </div>
-
+            
             <div class="form-row">
               <div class="col-md-2 mb-2">
                 <label for="validationCustom01">CEP</label>
                 <input
-                  [(ngModel)]="selected_dependente.CEP"
+                  [(ngModel)]="dependente.CEP"
                   name="CEP"
                   type="text"
                   class="form-control cep"
@@ -483,7 +480,7 @@
               <div class="col-md-2 mb-2">
                 <label for="validationCustom01">Celular</label>
                 <input
-                  [(ngModel)]="selected_dependente.celular"
+                  [(ngModel)]="dependente.celular"
                   name="celular"
                   type="text"
                   class="form-control phone_with_ddd"
@@ -495,7 +492,7 @@
               <div class="col-md-2 mb-2">
                 <label for="validationCustom03">Cidade</label>
                 <input
-                  [(ngModel)]="selected_dependente.cidade"
+                  [(ngModel)]="dependente.cidade"
                   name="cidade"
                   type="text"
                   class="form-control"
@@ -507,7 +504,7 @@
               <div class="col-md-1 mb-1">
                 <label for="validationCustom02">Estado UF</label>
                 <select
-                  [(ngModel)]="selected_dependente.estado"
+                  [(ngModel)]="dependente.estado"
                   name="estado_uf"
                   class="form-control"
                   name="estado_uf"
@@ -558,7 +555,7 @@
                   "
                   class="form-control"
                   name="declaracao_saude"
-                  [(ngModel)]="selected_dependente.declaracao_saude"
+                  [(ngModel)]="dependente.declaracao_saude"
                   required
                 >
                   <option value="">Selecione aqui</option>
@@ -571,7 +568,7 @@
                 <label for="validationCustom04">Status Sistema</label>
                 <input
                   readonly="true"
-                  [(ngModel)]="selected_dependente.status"
+                  [(ngModel)]="dependente.status"
                   name="status"
                   type="text"
                   class="form-control"
@@ -586,7 +583,7 @@
                   >Descrição da Declaração de Saúde</label
                 >
                 <input
-                  [(ngModel)]="selected_dependente.desc_declarao_saude"
+                  [(ngModel)]="dependente.desc_declarao_saude"
                   name="desc_declarao_saude"
                   type="text"
                   class="form-control"
@@ -599,7 +596,7 @@
               <div class="col-md-5 mb-5">
                 <label for="validationCustom05">Observações</label>
                 <input
-                  [(ngModel)]="selected_dependente.observacoes"
+                  [(ngModel)]="dependente.observacoes"
                   name="observacoes"
                   type="text"
                   class="form-control"
@@ -625,7 +622,7 @@
                   </button>
                   <p id="encounter-tit" style="display: none">
                     Titular vinculado:
-                    <b>{{ selected_dependente.nome_benef }}</b>
+                    <b>{{ dependente.nome_benef }}</b>
                   </p>
                 </div>
               </div>
@@ -642,8 +639,7 @@
                       ></span>
                       <input
                         autocomplete="off"
-                        [(ngModel)]="nome_benef"
-                        (input)="searchNomeTitDep()"
+                        (input)="searchNomeTitDep($event.target.value)"
                         name="nome_benef"
                         type="text"
                         class="form-control"
@@ -653,20 +649,13 @@
                     <div style="width: 100%; height: 15px"></div>
                     <hr />
                     <em for="validationCustom05">Titulares Encontrados:</em>
-                    <div style="width: 100%; height: 12px"></div>
-                    <ngx-skeleton-loader
-                      *ngIf="!contentLoaded"
-                      [theme]="{ width: '100%', height: '40px' }"
-                      animation="progress"
-                    >
-                    </ngx-skeleton-loader>
-                    <div style="width: 100%"></div>
+
                     <input
                       #titular="ngModel"
                       style="display: none"
                       value=""
                       class="titulares-checkbox"
-                      [(ngModel)]="selected_dependente.titular"
+                      [(ngModel)]="dependente.titular"
                       name="titular"
                       [class.is-invalid]="titular.invalid && titular.touched"
                       [class.is-valid]="titular.valid && titular.touched"
@@ -676,7 +665,7 @@
                       <li
                         value="{{ titular.id }}"
                         *ngFor="
-                          let titular of titulares
+                          let resultadoTitular of buscaTitular
                             | orderBy: 'created_at':false
                             | paginate
                               : {
@@ -685,7 +674,7 @@
                                   currentPage: p
                                 }
                         "
-                        (click)="titularClickedDependente(titular)"
+                        (click)="titularClickedDependente(resultadoTitular)"
                       >
                         <i
                           style="
@@ -700,9 +689,13 @@
                           "
                           class="fas fa-user-tie"
                         ></i>
-                        CPF: {{ titular.CPF | mask: "000.000.000-99" }} -
-                        {{ titular.nome_benef }}
+                        CPF:
+                        {{ resultadoTitular.CPF | mask: "000.000.000-99" }} -
+                        {{ resultadoTitular.nome_benef }}
                       </li>
+                      <h4 class="loadit" *ngIf="buscaTitular.length === 0">
+                        Nada encontrado
+                      </h4>
                     </div>
                     <pagination-controls
                       id="titularvinculo"

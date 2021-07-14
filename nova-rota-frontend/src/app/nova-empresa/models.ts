@@ -19,6 +19,7 @@ export class Empresa {
     razao_social_principal: string;
 }
 
+
 export class ContratoOperadora {
     id: number;
     empresa: number;
