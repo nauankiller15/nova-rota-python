@@ -35,49 +35,6 @@ export class NovaEmpresaComponent implements OnInit {
       $('.percent').mask('##0,00%', { reverse: false });
     });
 
-    // CADASTRO DE EMPRESAS
-    $('#principalCad').click(function () {
-      $('#changeEmpFilial').slideUp('100');
-      $('#changeEmpPrincipal').slideDown('100');
-      // ANIMAÇÃO SELEÇÃO DOS DADOS FILIAIS
-      $('.filialSelect').slideUp('100');
-      $('.inserirFilial').slideUp('100');
-      //
-      $('#filial').each(function () {
-        this.checked = false;
-        $('#divFilial').slideUp();
-        $('#CNPJ_empresa_principal').prop('required', '');
-        $('#razao_social_principal').prop('required', '');
-      });
-    });
-    $('#filialCad').click(function () {
-      $('#changeEmpPrincipal').slideUp('100');
-      $('#changeEmpFilial').slideDown('100');
-      // ANIMAÇÃO SELEÇÃO DOS DADOS FILIAIS
-      $('.filialSelect').slideDown('100');
-      $('.inserirFilial').slideDown('100');
-      //
-      $('#filial').each(function () {
-        this.checked = true;
-        $('#divFilial').slideDown('100');
-        $('#CNPJ_empresa_principal').prop('required', 'required');
-        $('#razao_social_principal').prop('required', 'required');
-      });
-    });
-
-    // DADOS DA EMPRESA PRINCIPAL
-    $('#filial').on('change', function () {
-      if ($(this).is(':checked') == true) {
-        $('#divFilial').fadeIn('100');
-        $('#CNPJ_empresa_principal').prop('required', 'required');
-        $('#razao_social_principal').prop('required', 'required');
-      } else {
-        $('#divFilial').slideUp();
-        $('#CNPJ_empresa_principal').prop('required', '');
-        $('#razao_social_principal').prop('required', '');
-      }
-    });
-
     // TELA DE ANEXO DO DOCUMENTO DA EMPRESA
     $('#dataRecebimento').on('blur', function () {
       $('#vinc-anexo-empresa').fadeIn('100');
@@ -167,11 +124,29 @@ export class NovaEmpresaComponent implements OnInit {
     });
   }
 
+  // CADASTRO DE EMPRESAS
+  empresaPrincipal() {
+    this.empresa.is_filial = false;
+    $('#changeEmpFilial').slideUp('100');
+    $('#changeEmpPrincipal').slideDown('100');
+    // ANIMAÇÃO SELEÇÃO DOS DADOS FILIAIS
+    $('.filialSelect').slideUp('100');
+    $('.inserirFilial').slideUp('100');
+  }
+  
+  empresaFilial() {
+    this.empresa.is_filial = true;
+    $('#changeEmpPrincipal').slideUp('100');
+    $('#changeEmpFilial').slideDown('100');
+    // ANIMAÇÃO SELEÇÃO DOS DADOS FILIAIS
+    $('.filialSelect').slideDown('100');
+    $('.inserirFilial').slideDown('100');
+  }
+
   newEmpresa() {
     let urlEmpresa = 'empresa/';
     if (this.empresa.is_filial == true) {
       urlEmpresa = 'filial/';
-      console.log(this.empresa);
     }
 
     this.api.inserir(urlEmpresa, this.empresa).subscribe(
@@ -202,7 +177,6 @@ export class NovaEmpresaComponent implements OnInit {
     }
 
     dados.empresa = this.empresa.id;
-    console.log(dados);
     this.api.inserir(urlTipo, dados).subscribe(
       (data) => {
         this.toastr.success('Empresa incluída com sucesso!');
@@ -219,7 +193,6 @@ export class NovaEmpresaComponent implements OnInit {
   newSinistralidade() {
     if (this.enviarSinistralidade == true) {
       this.sinistralidade.empresa = this.empresa.id;
-      console.log(this.sinistralidade);
       this.api.inserir('sinistralidade/', this.sinistralidade).subscribe(
         (data) => {
           this.toastr.success('Sinistralidade incluída com sucesso!');

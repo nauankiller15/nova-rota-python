@@ -253,10 +253,14 @@ export class AlteracaoEmpresaComponent implements OnInit {
       dados = this.contratoSeguradora;
     }
 
-    console.log(dados);
     if (dados.id) {
       this.api.atualizar(urlTipo, dados).subscribe(
         (data) => {
+          if (this.empresa.tipo_contrato == 'Operadora') {
+           this.loadContratoOperadora(this.empresa.id);
+          } else {
+            this.loadContratoSeguradora(this.empresa.id);
+          }
           this.toastr.success('Empresa atualizada com sucesso!');
         },
         (error) => {

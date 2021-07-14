@@ -13,8 +13,8 @@ import os
 from pathlib import Path
 from datetime import timedelta
 
-# from .variaveis_de_ambiente \
-# import SECRET_KEY, ALLOWED_HOSTS, DEBUG, DATABASES
+from .variaveis_de_ambiente \
+import SECRET_KEY, ALLOWED_HOSTS, DEBUG, DATABASES
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -90,15 +90,15 @@ WSGI_APPLICATION = 'todo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-SECRET_KEY = 'django-insecure-&p(sim^*%3ja)0x*uchqe36&_b!&%dryu%!!0jez@pi72v_h*m'
-DEBUG = True
+# SECRET_KEY = 'django-insecure-&p(sim^*%3ja)0x*uchqe36&_b!&%dryu%!!0jez@pi72v_h*m'
+# DEBUG = True
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3e',
-    }
-   }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

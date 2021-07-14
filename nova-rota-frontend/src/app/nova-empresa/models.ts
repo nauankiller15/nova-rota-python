@@ -13,7 +13,7 @@ export class Empresa {
     cidade: string;
     estado: string;
     observacoes: string;
-    is_filial:boolean;
+    is_filial: boolean = false;
     // campos de filial
     CNPJ_empresa_principal: string;
     razao_social_principal: string;

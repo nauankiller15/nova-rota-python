@@ -53,7 +53,10 @@ export class LoginComponent implements OnInit {
         this.loading = false;
       }
     } catch (error) {
-      this.toastr.error('erro', 'Erro ao efetuar login');
+      let mensagens = error.error;
+      for (let campo in mensagens) {
+        this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+      }      
       this.loading = false;
     }
   }
