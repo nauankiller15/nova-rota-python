@@ -44,7 +44,7 @@ export class NovaEmpresaComponent implements OnInit {
     });
     $('#vinc-anexo-empresa').slideUp();
     //
-    $('#fecharAnexo5').click(function () {
+    $('#fecharAnexo6').click(function () {
       $('#vinc-anexo-empresa').fadeOut('100');
       $('#reanexar5').fadeIn('100');
     });
