@@ -87,7 +87,7 @@ export class NovaEmpresaComponent implements OnInit {
       $(this).siblings().removeClass('active');
     });
 
-    // $('#filial').trigger('click');
+        // $('#filial').trigger('click');
     //
 
     // OPÇÕES
@@ -102,7 +102,6 @@ export class NovaEmpresaComponent implements OnInit {
     });
 
     $('#tipo_contrato').on('change', function () {
-      $('.filialSelect').addClass('htSlct');
       if ('Operadora' === $(this).val()) {
         $('#operadora').slideDown('100');
         $('#seguradora').slideUp();
@@ -110,23 +109,24 @@ export class NovaEmpresaComponent implements OnInit {
           this.reset();
         });
       } else if ('Seguradora' === $(this).val()) {
-      $('.filialSelect').addClass('htSlct');
         $('#seguradora').slideDown('100');
         $('#operadora').slideUp();
         $('#formularioOperadora').each(function () {
           this.reset();
         });
       } else {
-      $('.filialSelect').removeClass('htSlct');
         $('#operadora').slideUp();
         $('#seguradora').slideUp();
       }
     });
+    
   }
 
   // CADASTRO DE EMPRESAS
   empresaPrincipal() {
     this.empresa.is_filial = false;
+    $('#divFilial').slideUp(250);
+    //
     $('#changeEmpFilial').slideUp('100');
     $('#changeEmpPrincipal').slideDown('100');
     // ANIMAÇÃO SELEÇÃO DOS DADOS FILIAIS
@@ -135,7 +135,9 @@ export class NovaEmpresaComponent implements OnInit {
   }
   
   empresaFilial() {
+    $('#divFilial').fadeIn(250);
     this.empresa.is_filial = true;
+    //
     $('#changeEmpPrincipal').slideUp('100');
     $('#changeEmpFilial').slideDown('100');
     // ANIMAÇÃO SELEÇÃO DOS DADOS FILIAIS

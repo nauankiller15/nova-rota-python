@@ -90,9 +90,10 @@ export class AlteracaoEmpresaComponent implements OnInit {
       $(this).siblings().removeClass('active');
     });
 
-    // Sinistralidade e reajuste
+    // Sinistralidade e Reajuste
     $('#reajuste-sinistralidade').on('click', function () {
       $('#vinc-vigenciaAlt').fadeIn(100);
+      $('#tabelaReajuste').slideDown(250);
     });
 
     $('#fecharVigenciaAlt').on('click', function () {
@@ -100,12 +101,13 @@ export class AlteracaoEmpresaComponent implements OnInit {
       $('#formularioReajuste').slideUp(200);
 
       $('#vinc-vigenciaAlt').fadeOut(100);
+      $('#tabelaReajuste').slideDown(200);
     });
 
     $('#reajusteBtnAlt').on('click', function () {
       $('#formularioSinistralidade').slideUp(100);
-      $('#reajusTab').slideDown(300);
-      $('#sinisTab').slideUp(300);
+      $('#reajusTabAlt').slideDown(300);
+      $('#sinisTabAlt').slideUp(300);
     $('#tabelaReajuste').slideDown(200);
 
     });
@@ -113,8 +115,8 @@ export class AlteracaoEmpresaComponent implements OnInit {
     $('#sinistralidadeBtnAlt').on('click', function () {
       $('#tabelaSinistro').slideDown(200);
       $('#formularioReajuste').slideUp(100);
-      $('#sinisTab').slideDown(300);
-      $('#reajusTab').slideUp(300);
+      $('#sinisTabAlt').slideDown(300);
+      $('#reajusTabAlt').slideUp(300);
     });
   }
 

@@ -32,6 +32,18 @@
   padding: 10px;
 }
 
+#divFilial{
+  animation: slideFilial 0.4s ease-in-out;
+}
+
+@keyframes slideFilial {
+  0% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 .margEmp {
   margin-top: -20px;
 }
@@ -72,19 +84,19 @@
 
 .box-vigencia {
   border-top: 4px solid var(--cor-tema);
-    border-radius: 15px;
-    background: #ffffff;
-    max-width: 100vh;
-    width: 69%;
-    min-height: 30vh;
-    margin: 12vh auto;
-    z-index: 997;
-    position: fixed;
-    top: 32vh;
-    left: 59%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    transition: 0.4s;
+  border-radius: 15px;
+  background: #ffffff;
+  max-width: 100vh;
+  width: 69%;
+  min-height: 30vh;
+  margin: 12vh auto;
+  z-index: 997;
+  position: fixed;
+  top: 32vh;
+  left: 59%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
 }
 
 .menuVigencia {
@@ -95,7 +107,7 @@
 }
 
 .radiusTop {
-  border-radius: 7px 0px 0px 0px;
+  border-radius: 0.25rem 0px 0px 0px;
 }
 
 .menuVigencia .menuItems {
@@ -153,17 +165,11 @@
     transform: scale(0);
   }
   100% {
-    transform: translateX(1.0);
+    transform: translateX(1);
   }
 }
 
-.htSlct{
-  height: 45vh;
-  transition: 0.3s;
-}
-
-
-.inserirFilial{
+.inserirFilial {
   right: 25px;
   top: 190px;
   position: absolute;
@@ -174,7 +180,6 @@
   display: none;
   animation: slide-inserir 0.9s ease-in-out;
 }
-
 
 @keyframes slide-inserir {
   0% {

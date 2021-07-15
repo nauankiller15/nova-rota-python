@@ -5,7 +5,7 @@ export class Empresa {
     razao_social: string;
     status: string = 'OK';
     vencimento_boleto: string;
-    tipo_contrato: string;
+    tipo_contrato: string = 'Selecione aqui';
     inicio_vigencia: string;
     data_recebimento: string;
     anexo_doc_emp: string;

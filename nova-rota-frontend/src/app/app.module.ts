@@ -36,7 +36,6 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { RodapeComponent } from './rodape/rodape.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NgxLoadingModule } from 'ngx-loading';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -45,7 +44,6 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
 };
 
 @NgModule({
-  
   declarations: [
     AppComponent,
     LoginComponent,
@@ -93,7 +91,6 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    {provide: LocationStrategy, useClass: HashLocationStrategy},
   ],
   bootstrap: [AppComponent],
 })

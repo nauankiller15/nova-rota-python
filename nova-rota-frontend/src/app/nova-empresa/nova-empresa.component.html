@@ -27,18 +27,108 @@
         <nav class="menuVigencia">
           <ul class="menuItems">
             <!-- BOTÃO REAJUSTE -->
-            <li id="principalCad" class="active radiusTop" (click)="empresaPrincipal()">
+            <li
+              class="active radiusTop"
+              (click)="empresaPrincipal()"
+              id="functionPrincipal"
+            >
               Empresa Principal
             </li>
 
             <!-- BOTÃO SINISTRALIDADE -->
-            <li id="filialCad" (click)="empresaFilial()">Empresa Filial</li>
+            <li (click)="empresaFilial()" id="functionFilial">
+              Empresa Filial
+            </li>
           </ul>
         </nav>
         <div class="filialSelect"></div>
         <div class="inserirFilial">Inserir dados da Filial</div>
         <div class="card-body margEmp">
           <h5 class="card-title">Preencha os campos abaixo:</h5>
+          
+          <form
+            class="nees-validation"
+            #filialForm="ngForm"
+          >
+            <div id="divFilial">
+              <div class="form-row" *ngIf="empresa.is_filial == true">
+                <div class="col-md-2" style="flex: 0 0 19%; max-width: 19%">
+                  <label for="validationCustom01"
+                    >CNPJ da Empresa Principal</label
+                  >
+                  <input
+                    #CNPJ_empresa_principal="ngModel"
+                    autocomplete="off"
+                    [(ngModel)]="empresa.CNPJ_empresa_principal"
+                    [class.is-invalid]="
+                      CNPJ_empresa_principal.invalid &&
+                      CNPJ_empresa_principal.touched
+                    "
+                    [class.is-valid]="
+                      CNPJ_empresa_principal.valid &&
+                      CNPJ_empresa_principal.touched
+                    "
+                    pattern="^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$"
+                    id="CNPJ_empresa_principal"
+                    name="CNPJ_empresa_principal"
+                    type="text"
+                    class="form-control cnpj"
+                    placeholder="Número de CNPJ"
+                  />
+                  <div
+                    *ngIf="
+                      CNPJ_empresa_principal.errors &&
+                      (CNPJ_empresa_principal.valid ||
+                        CNPJ_empresa_principal.touched)
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="CNPJ_empresa_principal.errors.required"
+                      >CNPJ Necessário!</small
+                    >
+                    <small
+                      class="text-danger"
+                      *ngIf="CNPJ_empresa_principal.errors.pattern"
+                      >CNPJ Digitos Incompletos!</small
+                    >
+                  </div>
+                </div>
+
+                <div class="col-md-4 mb-2">
+                  <label for="validationCustom01">
+                    Razão social da Empresa Principal</label
+                  >
+                  <input
+                    #razao_social_principal="ngModel"
+                    [(ngModel)]="empresa.razao_social_principal"
+                    [class.is-invalid]="
+                      razao_social_principal.invalid &&
+                      razao_social_principal.touched
+                    "
+                    [class.is-valid]="
+                      razao_social_principal.valid &&
+                      razao_social_principal.touched
+                    "
+                    id="razao_social_principal"
+                    name="razao_social_principal"
+                    type="text"
+                    class="form-control"
+                    placeholder="Digite aqui a Razão Social"
+                  />
+                  <small
+                    class="text-danger"
+                    [class.d-none]="
+                      razao_social_principal.valid ||
+                      razao_social_principal.untouched
+                    "
+                  >
+                    Razão Social Necessária!
+                  </small>
+                </div>
+              </div>
+            </div>
+          </form>
 
           <form
             class="needs-validation"
@@ -46,82 +136,6 @@
             ENCTYPE="multipart/form-data"
             novalidate
           >
-            <div id="divFilial" class="form-row" *ngIf="empresa.is_filial == true">
-              <div class="col-md-2" style="flex: 0 0 19%; max-width: 19%">
-                <label for="validationCustom01"
-                  >CNPJ da Empresa Principal</label
-                >
-                <input
-                  #CNPJ_empresa_principal="ngModel"
-                  autocomplete="off"
-                  [(ngModel)]="empresa.CNPJ_empresa_principal"
-                  [class.is-invalid]="
-                    CNPJ_empresa_principal.invalid &&
-                    CNPJ_empresa_principal.touched
-                  "
-                  [class.is-valid]="
-                    CNPJ_empresa_principal.valid &&
-                    CNPJ_empresa_principal.touched
-                  "
-                  pattern="^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$"
-                  id="CNPJ_empresa_principal"
-                  name="CNPJ_empresa_principal"
-                  type="text"
-                  class="form-control cnpj"
-                  placeholder="Número de CNPJ"
-                />
-                <div
-                  *ngIf="
-                    CNPJ_empresa_principal.errors &&
-                    (CNPJ_empresa_principal.valid ||
-                      CNPJ_empresa_principal.touched)
-                  "
-                >
-                  <small
-                    class="text-danger"
-                    *ngIf="CNPJ_empresa_principal.errors.required"
-                    >CNPJ Necessário!</small
-                  >
-                  <small
-                    class="text-danger"
-                    *ngIf="CNPJ_empresa_principal.errors.pattern"
-                    >CNPJ Digitos Incompletos!</small
-                  >
-                </div>
-              </div>
-
-              <div class="col-md-4 mb-2">
-                <label for="validationCustom01">
-                  Razão social da Empresa Principal</label
-                >
-                <input
-                  #razao_social_principal="ngModel"
-                  [(ngModel)]="empresa.razao_social_principal"
-                  [class.is-invalid]="
-                    razao_social_principal.invalid &&
-                    razao_social_principal.touched
-                  "
-                  [class.is-valid]="
-                    razao_social_principal.valid &&
-                    razao_social_principal.touched
-                  "
-                  id="razao_social_principal"
-                  name="razao_social_principal"
-                  type="text"
-                  class="form-control"
-                  placeholder="Digite aqui a Razão Social"
-                />
-                <small
-                  class="text-danger"
-                  [class.d-none]="
-                    razao_social_principal.valid ||
-                    razao_social_principal.untouched
-                  "
-                >
-                  Razão SocialNecessária!
-                </small>
-              </div>
-            </div>
             <hr class="sef" />
 
             <div class="form-row">
@@ -155,6 +169,7 @@
                 <label for="validationCustom01">Razão Social</label>
                 <input
                   #razao_social="ngModel"
+                  autocomplete="off"
                   [class.is-invalid]="
                     razao_social.invalid && razao_social.touched
                   "
@@ -203,7 +218,6 @@
             </div>
 
             <div class="form-row">
-             
               <div class="col-md-2 mb-3 mr-5">
                 <label for="validationCustom05">Inicio de Vigência</label>
                 <input
@@ -290,7 +304,7 @@
               <!-- VINCULAR ANEXO DO DOCUMENTO DA EMPRESA -->
               <div id="vinc-anexo-empresa">
                 <div class="box-anexo">
-                  <div class="anexo-info-box-empresa-vinc">
+                  <div class="anexo-info-box-titular-vinc">
                     <h1
                       style="
                         font-size: 20px;
@@ -726,6 +740,7 @@
                         [disabled]="!enviarReajuste"
                         name="negociado"
                         type="number"
+                        maxlength="3"
                         class="form-control percent"
                         style="
                           border-top: none;
@@ -826,7 +841,7 @@
                 class="btn btn-primary"
                 id="fecharVigencia"
               >
-                Fechar
+                Gravar
               </button>
             </div>
           </div>
