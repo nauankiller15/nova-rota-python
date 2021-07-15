@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
-import { AppComponent } from '../app.component';
 import { User } from '../account/login/models';
 import { AuthService } from '../account/login/auth.service';
-import { NgIf } from '@angular/common';
 import { ApiService } from '../api.service';
+import { Novidade, Tarefa } from './models';
 
 declare var $: any;
 
@@ -28,84 +26,24 @@ export class HomeComponent implements OnInit {
   //
 
   //
-  dependente: any[];
-  titular: any[];
-
   title = 'nova-rota-frontend';
 
-  selected_titular = {
-    id: 0,
-    CPF: '',
-    cod_empresa: '',
-    data_recebimento: '',
-    tipo: '',
-    nome_benef: '',
-    data_nascimento: '',
-    sexo: '',
-    carteirinha: '',
-    estado_civil: '',
-    nome_mae: '',
-    data_admissao: '',
-    data_casamento: null,
-    anexo_doc_casamento: null,
-    anexo_doc_empregaticio: null,
-    CEP: '',
-    celular: '',
-    cidade: '',
-    estado: '',
-    declaracao_saude: '',
-    status: '',
-    desc_declarao_saude: '',
-    observacoes: null,
-  };
-
-  selected_dependente = {
-    id: 0,
-    CPF: '',
-    cod_empresa: '',
-    data_recebimento: '',
-    tipo: '',
-    nome_dependente: '',
-    data_nascimento: '',
-    sexo: '',
-    carteirinha: '',
-    estado_civil: '',
-    nome_mae: '',
-    data_admissao: '',
-    data_casamento: null,
-    anexo_doc_casamento: null,
-    anexo_doc_nascimento: null,
-    tipo_parentesco: '',
-    CEP: '',
-    celular: '',
-    cidade: '',
-    estado: '',
-    declaracao_saude: '',
-    status: '',
-    desc_declarao_saude: '',
-    observacoes: null,
-    titular: null,
-    nome_benef: null,
-  };
-
   // tarefas
-  tarefas = [{ id: '', titulo: '' }];
-  selected_tarefa = { id: '', titulo: '', descricao: '', status_tarefa: '' };
+  busca: Tarefa[] = [];
+  tarefas: Tarefa[] = [];
+  selected_tarefa: Tarefa = new Tarefa;
+
   // novidades
-  novidades = [{ id: '', titulo: '' }];
-  selected_novidade = { id: '', titulo: '', descricao: '' };
+  novidades: Novidade[] = [];
+  selected_novidade: Novidade = new Novidade;
   //
-  titulo: string;
   p: number = 1;
-  selected_id: any;
-  update_tarefa: any;
 
   public loading = false;
 
   constructor(
     private api: ApiService,
     private authService: AuthService,
-    private router: Router,
     private toastr: ToastrService
   ) {
     this.getTarefas();
@@ -197,43 +135,35 @@ export class HomeComponent implements OnInit {
     this.api.listar('tarefas/').subscribe(
       (data) => {
         this.tarefas = data;
+        this.busca = data;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
-      }
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }      }
     );
   };
 
-  searchTarefa() {
-    if (this.titulo != '') {
-      this.tarefas = this.tarefas.filter((res) => {
+  searchTarefa(titulo: string) {
+    if (titulo != '') {
+      this.busca = this.tarefas.filter((res) => {
         return res.titulo
           .toLocaleLowerCase()
-          .match(this.titulo.toLocaleLowerCase());
+          .match(titulo.toLocaleLowerCase());
       });
-    } else if (this.titulo == '') {
-      this.getTarefas();
+    } else if (titulo == '') {
+      this.busca = this.tarefas
     }
   }
 
-  tarefaClicked = (tarefa: { id: string }) => {
+  tarefaClicked = (tarefa: Tarefa) => {
     $('.texto-overlay').fadeIn('200');
     $('#over-text').fadeIn('200');
-    this.api.selecionar('tarefas/', tarefa.id).subscribe(
-      (data) => {
-        this.selected_tarefa = data;
-      },
-      (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
-      }
-    );
+    
+    this.selected_tarefa = tarefa;
   };
 
-  // tarefaClicked = (tarefa: { id: any }) => {
-  //   $('#over-text').fadeIn('100');
-  //   $('.texto-overlay').fadeIn('100');
-  //   this.router.navigate(['tarefas-detail', tarefa.id]);
-  // };
 
   // ABRIR NOVA TAREFA
   novaTarefa() {
@@ -242,16 +172,6 @@ export class HomeComponent implements OnInit {
     $('#abrirTarefa').fadeIn('100');
   }
 
-  loadTarefa(id: string) {
-    this.api.selecionar('tarefas/', id).subscribe(
-      (data) => {
-        this.selected_tarefa = data;
-      },
-      (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
-      }
-    );
-  }
 
   loadNovidade(id: string) {
     this.loading = true;
@@ -261,7 +181,10 @@ export class HomeComponent implements OnInit {
         this.loading = false;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+        this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
         this.loading = false;
       }
     );
@@ -271,34 +194,32 @@ export class HomeComponent implements OnInit {
     this.api.atualizar('tarefas/', this.selected_tarefa).subscribe(
       (data) => {
         this.toastr.success('Atualizado com sucesso!');
-        this.update_tarefa = data;
         $('.texto-overlay').fadeOut('100');
         $('#over-text').fadeOut('100');
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
       }
     );
   }
 
   deleteTarefa() {
-    this.api.apagar('tarefas/', this.selected_id).subscribe(
+    this.api.apagar('tarefas/', this.selected_tarefa.id).subscribe(
       (data) => {
-        let index: number;
-        this.tarefas.forEach((id, i) => {
-          if (id == this.selected_id) index = i;
-        });
-        this.tarefas.splice(index, 1);
+        this.getTarefas();
         this.toastr.success('Tarefa apagada!');
-
         $('.texto-overlay').fadeOut('100');
         $('#over-text').fadeOut('100');
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
       }
     );
   }
-
-
 }

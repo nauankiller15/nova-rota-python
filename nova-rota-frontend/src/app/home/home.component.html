@@ -168,8 +168,7 @@
             class="form-control"
             type="text"
             id="searchTarefa"
-            [(ngModel)]="titulo"
-            (input)="searchTarefa()"
+            (input)="searchTarefa($event.target.value)"
             placeholder="Digite o nome da tarefa para buscar"
           />
           <i class="edit-search fas fa-search"></i>
@@ -217,7 +216,7 @@
               class="loadit"
               [ngClass]="tarefa.status_tarefa ? 'tarefa-completed' : ''"
               *ngFor="
-                let tarefa of tarefas
+                let tarefa of busca
                   | orderBy: 'created_at':false
                   | paginate: { id: 'tarefa', itemsPerPage: 8, currentPage: p }
               "
@@ -273,16 +272,12 @@
         type="checkbox"
         id="status_tarefa"
         name="status_tarefa"
-        value="Feito"
+        (value)="true"
       />
       <label style="margin-left: 5px" for="status_tarefa"
         >Completar Tarefa</label
       >
-      <!-- <select style="max-width: 80px" [(ngModel)]="selected_tarefa.status_tarefa">
-        <option value="Fazendo">Fazendo</option>
-        <option value="Feito">Feito</option>
-      </select> -->
-      <br />
+      
       <div class="posit-bottom">
         <button class="edit-edit" (click)="updateTarefa()">
           <i class="fas fa-edit"></i> Atualizar
