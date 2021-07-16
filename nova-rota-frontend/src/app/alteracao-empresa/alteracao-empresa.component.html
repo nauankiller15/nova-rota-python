@@ -862,6 +862,7 @@
                     </thead>
                     <tbody>
                       <tr
+                        class="loadit"
                         *ngFor="
                           let linha of reajustes
                             | paginate
@@ -873,7 +874,9 @@
                         "
                       >
                         <th></th>
-                        <th><div class="anoVig">{{ linha.ano_vigencia }}</div></th>
+                        <th>
+                          <div class="anoVig">{{ linha.ano_vigencia }}</div>
+                        </th>
                         <th>{{ linha.fidelizado }}</th>
                         <th>{{ linha.tecnico }} %</th>
                         <th>{{ linha.negociado }} %</th>
@@ -1080,6 +1083,7 @@
                     </thead>
                     <tbody>
                       <tr
+                        class="loadit"
                         *ngFor="
                           let linha of sinistralidades
                             | paginate
@@ -1090,7 +1094,9 @@
                                 }
                         "
                       >
-                        <th><div class="anoVig">{{ linha.ano }}</div></th>
+                        <th>
+                          <div class="anoVig">{{ linha.ano }}</div>
+                        </th>
                         <th>{{ linha.sinistralidade }} %</th>
                         <th>
                           <button

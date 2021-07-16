@@ -403,7 +403,7 @@
 }
 
 .task-item li:hover {
-  color: #fff;
+  color: var(--branco);
   transform: translate(0px, -3px);
   background: var(--cor-tema);
 }
