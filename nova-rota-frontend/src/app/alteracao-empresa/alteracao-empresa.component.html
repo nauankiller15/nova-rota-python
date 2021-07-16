@@ -189,6 +189,7 @@
             Inscrito sob CNPJ:
             {{ empresa.CNPJ | mask: "00.000.000/0000-00" }}
           </p>
+          <h6 *ngIf="empresa.is_filial == true">Filial de : {{empresa.CNPJ_empresa_principal}} - {{empresa.razao_social_principal}}</h6>
           <div class="bordatopEmp">
             <button class="btn btn-primary" id="abrirAnexoEmp">
               <i class="fas fa-file-image"></i>

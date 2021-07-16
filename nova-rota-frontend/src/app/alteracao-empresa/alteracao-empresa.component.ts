@@ -8,7 +8,6 @@ import {
   Reajuste,
   Sinistralidade,
 } from '../nova-empresa/models';
-import { EmpresaPrincipal } from './models';
 
 declare var $: any;
 
@@ -32,7 +31,6 @@ export class AlteracaoEmpresaComponent implements OnInit {
 
   empresas: Empresa[] = [];
   empresa: Empresa = new Empresa();
-  empresaPrincipal: EmpresaPrincipal = new EmpresaPrincipal;
   //
   contratoSeguradora: ContratoSeguradora = new ContratoSeguradora();
   contratoOperadora: ContratoOperadora = new ContratoOperadora();
