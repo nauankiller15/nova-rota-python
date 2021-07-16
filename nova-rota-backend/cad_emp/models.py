@@ -48,22 +48,24 @@ class Filial(Empresa):
 
 
 class Reajuste(models.Model):
+
+    fidelizado_choice = (
+        ('Não', 'Não'),
+        ('Sim', 'Sim'),
+    )
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
-    ano_vigencia = models.PositiveIntegerField()
-    sinistralidade = models.DecimalField(max_digits=4, decimal_places=2)
-    tecnico = models.DecimalField(max_digits=4, decimal_places=2)
-    negociado = models.DecimalField(max_digits=4, decimal_places=2)
+    ano_vigencia = models.PositiveIntegerField(blank=False, null=False)
+    fidelizado = models.CharField(max_length=25, choices=fidelizado_choice,
+                                  blank=False, default="Selecione", null=False)
+    tecnico = models.DecimalField(max_digits=5, decimal_places=2, blank=False, null=False)
+    negociado = models.DecimalField(max_digits=5, decimal_places=2, blank=False, null=False)
 
 
 class Sinistralidade(models.Model):
-    tipo_choice = (
-        ('Negociação', 'Negociação'),
-        ('Fidelização', 'Fidelização'),
-    )
-    
+
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
-    ano = models.PositiveIntegerField(blank=True)
-    sinistralidade = models.CharField(max_length=255)
+    ano = models.PositiveIntegerField(blank=False, null=False)
+    sinistralidade = models.DecimalField(max_digits=5, decimal_places=2, blank=False, null=False)
 
 
 class ContratoOperadora(models.Model):
@@ -74,10 +76,10 @@ class ContratoOperadora(models.Model):
     )
     
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
-    nome = models.CharField("Nome da Seguradora", max_length=255)
+    nome = models.CharField("Nome da Seguradora", max_length=255, blank=False, null=False)
     tipo = models.CharField(max_length=25, choices=operadora_choice,
                                      blank=False, default="Selecione", null=False)
-    codigo = models.CharField("Codigo", max_length=100, unique=True)
+    codigo = models.CharField("Codigo", max_length=100, blank=False, null=False)
 
     def save(self, *args, **kwargs):
         contratos_seguradora = ContratoSeguradora.objects.filter(empresa_id=self.empresa)
@@ -94,10 +96,10 @@ class ContratoSeguradora(models.Model):
     )
 
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
-    nome = models.CharField("Nome da Seguradora", max_length=255)
+    nome = models.CharField("Nome da Seguradora", max_length=255, blank=False, null=False)
     tipo = models.CharField(max_length=25, choices=seguradora_choice,
                                      blank=False, default="Selecione", null=False)
-    apolice = models.CharField("Apolice", max_length=100, unique=True)
+    apolice = models.CharField("Apolice", max_length=100, blank=False, null=False)
 
     def save(self, *args, **kwargs):
         contratos_operadora = ContratoOperadora.objects.filter(empresa_id=self.empresa)
