@@ -6,7 +6,17 @@
 }
 
   .tarefa-completed {
-    border-bottom: 1px solid rgb(0, 236, 79);
+    background: #11b147 !important;
     width: 100%;
+    font-weight: bold;
   }
   
+  .tarefa-completed::after{
+    color: #fff;
+    content: "\f00c";
+    font-family: FontAwesome;
+    margin-left: -1.3em;
+    width: 1.5em;
+    font-size: 23px;
+    float: right;
+}

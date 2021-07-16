@@ -685,29 +685,34 @@
                     <!-- SINISTRALIDADE -->
                     <div class="col-md-5 mb-5">
                       <label for="validationCustom01">Fidelizado</label>
-                      <input
-                        #reajuste_sinistralidade="ngModel"
-                        [(ngModel)]="reajuste.sinistralidade"
-                        name="sinistralidade"
+                      <select
+                        #fidelizado="ngModel"
+                        [(ngModel)]="reajuste.fidelizado"
+                        name="fidelizado"
                         type="text"
                         [class.is-invalid]="
-                          reajuste_sinistralidade.invalid &&
-                          reajuste_sinistralidade.touched
+                          fidelizado.invalid &&
+                          fidelizado.touched
                         "
                         [class.is-valid]="
-                          reajuste_sinistralidade.valid &&
-                          reajuste_sinistralidade.touched
+                          fidelizado.valid &&
+                          fidelizado.touched
                         "
-                        [disabled]="!enviarReajuste"
-                        class="form-control percent"
                         style="
-                          border-top: none;
-                          border-left: none;
-                          border-right: none;
-                        "
-                        placeholder="Informe a fidelização"
-                        required
-                      />
+                        border-top: none;
+                        border-left: none;
+                        border-right: none;
+                      "
+                        name="fidelizado"
+                  class="form-control"
+                  placeholder="Informe a fidelização"
+
+                  required
+                >
+                  <option value="">Selecione</option>
+                  <option value="Operadora">Sim</option>
+                  <option value="Seguradora">Não</option>
+                </select>
                     </div>
                     <!--  -->
 

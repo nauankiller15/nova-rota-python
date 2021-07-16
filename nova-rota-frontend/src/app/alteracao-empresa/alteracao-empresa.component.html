@@ -189,7 +189,32 @@
             Inscrito sob CNPJ:
             {{ empresa.CNPJ | mask: "00.000.000/0000-00" }}
           </p>
-          <h6 *ngIf="empresa.is_filial == true">Filial de : {{empresa.CNPJ_empresa_principal}} - {{empresa.razao_social_principal}}</h6>
+          <p class="cnpj-ts" *ngIf="empresa.is_filial == true">
+            Filial de:
+            <i
+              style="
+                font-size: 18px;
+                margin-left: 9px;
+                margin-right: 1px;
+                background-color: #eff9ff;
+                border: 1px solid #ced4da;
+                border-radius: 0.25rem;
+                padding: 7px;
+              "
+              class="fas fa-building"
+            ></i>
+            <b
+              style="
+                padding-right: 5px;
+                padding-bottom: 4px;
+                border: 1px solid #ced4da;
+                border-radius: 0.25rem;
+              "
+            >
+              {{ empresa.CNPJ_empresa_principal }} -
+              {{ empresa.razao_social_principal }}
+            </b>
+          </p>
           <div class="bordatopEmp">
             <button class="btn btn-primary" id="abrirAnexoEmp">
               <i class="fas fa-file-image"></i>
@@ -281,7 +306,11 @@
             ENCTYPE="multipart/form-data"
             novalidate
           >
-            <div id="divFilial" class="form-row" *ngIf="empresa.is_filial == true">
+            <div
+              id="divFilial"
+              class="form-row"
+              *ngIf="empresa.is_filial == true"
+            >
               <div class="col-md-2" style="flex: 0 0 19%; max-width: 19%">
                 <label for="validationCustom01"
                   >CNPJ da Empresa Principal</label
@@ -845,7 +874,7 @@
                       >
                         <th></th>
                         <th>{{ linha.ano_vigencia }}</th>
-                        <th>{{ linha.sinistralidade }}</th>
+                        <th>{{ linha.fidelizado }}</th>
                         <th>{{ linha.tecnico }} %</th>
                         <th>{{ linha.negociado }} %</th>
                         <th>
@@ -934,29 +963,31 @@
                       <!-- SINISTRALIDADE -->
                       <div class="col-md-5 mb-5">
                         <label for="validationCustom01">Fidelizado</label>
-                        <input
-                          #reajuste_sinistralidade="ngModel"
-                          [(ngModel)]="reajuste.sinistralidade"
-                          name="sinistralidade"
+                        <select
+                          #fidelizado="ngModel"
+                          [(ngModel)]="reajuste.fidelizado"
+                          name="fidelizado"
                           type="text"
                           [class.is-invalid]="
-                            reajuste_sinistralidade.invalid &&
-                            reajuste_sinistralidade.touched
+                            fidelizado.invalid && fidelizado.touched
                           "
                           [class.is-valid]="
-                            reajuste_sinistralidade.valid &&
-                            reajuste_sinistralidade.touched
+                            fidelizado.valid && fidelizado.touched
                           "
-                          maxlength="3"
-                          class="form-control"
                           style="
                             border-top: none;
                             border-left: none;
                             border-right: none;
                           "
+                          name="fidelizado"
+                          class="form-control"
                           placeholder="Informe a fidelização"
                           required
-                        />
+                        >
+                          <option value="">Selecione</option>
+                          <option value="Sim">Sim</option>
+                          <option value="Não">Não</option>
+                        </select>
                       </div>
                       <!--  -->
 
@@ -972,7 +1003,7 @@
                           [class.is-valid]="tecnico.valid && tecnico.touched"
                           name="tecnico"
                           type="number"
-                          maxlength="3"
+                          maxlength="4"
                           class="form-control"
                           style="
                             border-top: none;

@@ -40,7 +40,7 @@ export class Reajuste{
     id: number;
     empresa: number;
     ano_vigencia: number;
-    sinistralidade: number;
+    fidelizado: number;
     tecnico: number;
     negociado: number;
 }
