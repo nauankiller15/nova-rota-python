@@ -74,6 +74,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
     $('#voltardados-empresa').click(function () {
       $('#empresaappear').fadeOut('200');
       $('#consulta').slideDown('200');
+      $('#postEmp').slideUp(600);
     });
 
     $('#abrirAnexoEmp').click(function () {
@@ -156,6 +157,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
   empresaClicked = (empresa: Empresa) => {
     $('#consulta').slideUp(250);
     $('#empresaappear').slideDown(250);
+    $('#postEmp').slideDown(600);
     this.empresa = empresa;
     this.loadReajustes(empresa.id);
     this.loadSinistralidades(empresa.id);
