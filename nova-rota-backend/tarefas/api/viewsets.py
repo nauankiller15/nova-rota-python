@@ -21,7 +21,7 @@ class TarefaViewSet(ModelViewSet):
         return super().create(request, *args, **kwargs)
 
 def dados_usuario(request):
-    token = request.META.get('HTTP_AUTHORIZATION', b'').replace('JWT ', '')
+    token = request.META.get('HTTP_AUTHORIZATION', '').replace('JWT ', '')
     verificacaoToken = VerifyJSONWebTokenSerializer()
     dados = verificacaoToken.validate({'token': token})
     return dados
