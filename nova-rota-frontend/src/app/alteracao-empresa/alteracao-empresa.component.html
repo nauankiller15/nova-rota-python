@@ -189,7 +189,7 @@
             Inscrito sob CNPJ:
             {{ empresa.CNPJ | mask: "00.000.000/0000-00" }}
           </p>
-          <p class="cnpj-ts" *ngIf="empresa.is_filial == true">
+          <p class="cnpj-ts" *ngIf="empresa.is_filial === true">
             Filial de:
             <i
               style="
@@ -309,7 +309,7 @@
             <div
               id="divFilial"
               class="form-row"
-              *ngIf="empresa.is_filial == true"
+              *ngIf="empresa.is_filial === true"
             >
               <div class="col-md-2" style="flex: 0 0 19%; max-width: 19%">
                 <label for="validationCustom01"
@@ -680,7 +680,7 @@
           <!-- Bloco da Contrato -->
           <form #contratoForm="ngForm">
             <!-- Dados Operadora -->
-            <div class="form-row" *ngIf="empresa.tipo_contrato == 'Operadora'">
+            <div class="form-row" *ngIf="empresa.tipo_contrato === 'Operadora'">
               <div class="col-md-2">
                 <label for="validationCustom02">Operadoras</label>
                 <select
@@ -748,7 +748,7 @@
             <!-- Fim dados Operadora -->
 
             <!-- Dados Seguradora -->
-            <div class="form-row" *ngIf="empresa.tipo_contrato == 'Seguradora'">
+            <div class="form-row" *ngIf="empresa.tipo_contrato === 'Seguradora'">
               <div class="col-md-2 mb-3">
                 <label for="validationCustom02">Seguradoras</label>
                 <select
@@ -867,7 +867,7 @@
                           let linha of reajustes
                             | paginate
                               : {
-                                  id: 'reajustes_pag',
+                                  id: 'reajustes_page',
                                   itemsPerPage: 5,
                                   currentPage: p
                                 }
@@ -894,14 +894,14 @@
                           </button>
                         </th>
                       </tr>
-                      <tr *ngIf="reajustes.length == 0">
+                      <tr *ngIf="reajustes.length === 0">
                         <th colspan="6">Nenhum reajuste cadastrado</th>
                       </tr>
                     </tbody>
                   </table>
                   <div>
                     <pagination-controls
-                      id="reajustes_pag"
+                      id="reajustes_page"
                       class="paginacao"
                       maxSize="7"
                       autoHide="true"
@@ -1112,12 +1112,15 @@
                           </button>
                         </th>
                       </tr>
-                      <tr *ngIf="sinistralidades.length == 0">
+                      <tr *ngIf="sinistralidades.length === 0">
                         <th colspan="4">Nenhuma sinistralidade cadastrada</th>
                       </tr>
                     </tbody>
                   </table>
-                  <pagination-controls
+                 
+
+                  <div>
+                     <pagination-controls
                     id="sinistralidades_pag"
                     class="paginacao"
                     maxSize="7"
@@ -1129,8 +1132,6 @@
                     responsive="true"
                     (pageChange)="p = $event"
                   ></pagination-controls>
-
-                  <div>
                     <button
                       class="btn btn-primary"
                       (click)="adicionarSinistralidade()"
