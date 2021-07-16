@@ -119,7 +119,13 @@ export class NovaEmpresaComponent implements OnInit {
         $('#seguradora').slideUp();
       }
     });
-    
+    // FECHAR TELA DE CONFIRMAÇÃO EMPRESA
+    $('#fecharTelaEmpresa').click(function () {
+      $('#confirmacaoEmpresa').fadeOut(200);
+    });
+    $(".apagarEmp").click(function() {
+      $('form').find("input[type=text], textarea, select").val("");
+  });
   }
 
   // CADASTRO DE EMPRESAS
@@ -147,8 +153,10 @@ export class NovaEmpresaComponent implements OnInit {
 
   newEmpresa() {
     let urlEmpresa = 'empresa/';
+    $('#confirmacaoEmpresa').fadeIn('100');
     if (this.empresa.is_filial == true) {
       urlEmpresa = 'filial/';
+    $('#confirmacaoEmpresa').fadeIn('100');
     }
 
     this.api.inserir(urlEmpresa, this.empresa).subscribe(

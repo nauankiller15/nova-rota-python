@@ -112,6 +112,8 @@ export class NovoDependenteComponent implements OnInit {
       $('#vinc-anexo-conjugeFilho').fadeIn('100');
     });
 
+    // FECHAR TELA DE CONFIRMAÇÃO DEPENDENTE
+    
     $('#fecharTelaDependente').click(function () {
       $('#confirmacaoDependente').fadeOut('100');
     });

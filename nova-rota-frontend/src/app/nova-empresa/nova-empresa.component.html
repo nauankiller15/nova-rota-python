@@ -380,6 +380,7 @@
                   name="estado_uf"
                   class="form-control"
                   name="estado_uf"
+                  maxlength="2"
                 >
                   <option value="">Selecione</option>
                   <option value="AC">AC</option>
@@ -593,6 +594,44 @@
 
           <div class="col-md-5 mb-5"></div>
 
+          <div id="confirmacaoEmpresa">
+            <div class="box-confirmacao">
+              <div class="confirmacao-texto">
+                <div style="position: absolute; right: 70px; top: 66px">
+                  <img
+                    style="width: 85px; height: 85px"
+                    src="https://1.bp.blogspot.com/-eC39C3T4rsI/YNUTDdEUSeI/AAAAAAAAHPI/nbUgYyth4y4ZHUxzm-PVHquQ7XEVY1qegCLcBGAsYHQ/s0/checked.png"
+                  />
+                </div>
+                <h1
+                  style="
+                    font-size: 22px;
+                    margin-top: 5px;
+                    margin-bottom: 15px;
+                  "
+                >
+                  Você cadastrou: <b>{{ empresa.razao_social }}</b>
+                  <div style="width: 100%; height: 12px"></div>
+                  sob CNPJ: <b>{{ empresa.CNPJ }}</b>
+                </h1>
+                <button
+                  class="btn btn-primary apagarEmp"
+                  type="reset"
+                  id="fecharTelaEmpresa"
+                  style="
+                    bottom: 27px;
+                    margin: auto;
+                    width: 200px;
+                    position: absolute;
+                    margin-left: 25%;
+                  "
+                >
+                  <i class="fas fa-check"></i> Cadastrar outro
+                </button>
+              </div>
+            </div>
+          </div>
+
           <button
             [disabled]="
               empresaForm.form.invalid ||
@@ -604,7 +643,7 @@
           >
             <i class="fas fa-check"></i> Gravar informações
           </button>
-          <button type="reset" class="btn btn-cancelar">
+          <button type="reset" class="btn btn-cancelar apagarEmp">
             <i class="far fa-times-circle"></i> Apagar tudo
           </button>
         </div>
@@ -642,7 +681,7 @@
                     id="enviarReajuste"
                   />
                   <label
-                  class="btn btn-primary"
+                    class="btn btn-primary"
                     style="cursor: pointer"
                     for="enviarReajuste"
                   >
@@ -691,28 +730,25 @@
                         name="fidelizado"
                         type="text"
                         [class.is-invalid]="
-                          fidelizado.invalid &&
-                          fidelizado.touched
+                          fidelizado.invalid && fidelizado.touched
                         "
                         [class.is-valid]="
-                          fidelizado.valid &&
-                          fidelizado.touched
+                          fidelizado.valid && fidelizado.touched
                         "
                         style="
-                        border-top: none;
-                        border-left: none;
-                        border-right: none;
-                      "
+                          border-top: none;
+                          border-left: none;
+                          border-right: none;
+                        "
                         name="fidelizado"
-                  class="form-control"
-                  placeholder="Informe a fidelização"
-
-                  required
-                >
-                  <option value="">Selecione</option>
-                  <option value="Operadora">Sim</option>
-                  <option value="Seguradora">Não</option>
-                </select>
+                        class="form-control"
+                        placeholder="Informe a fidelização"
+                        required
+                      >
+                        <option value="">Selecione</option>
+                        <option value="Sim">Sim</option>
+                        <option value="Não">Não</option>
+                      </select>
                     </div>
                     <!--  -->
 
@@ -786,7 +822,7 @@
                     id="enviarSinistralidade"
                   />
                   <label
-                  class="btn btn-primary"
+                    class="btn btn-primary"
                     style="cursor: pointer"
                     for="enviarSinistralidade"
                   >
@@ -852,6 +888,9 @@
                 </form>
               </div>
               <button
+                [disabled]="
+                  sinistralidadeForm.form.invalid || reajusteForm.form.invalid
+                "
                 style="
                   display: flex;
                   position: absolute;

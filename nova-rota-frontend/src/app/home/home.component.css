@@ -11,6 +11,12 @@
     font-weight: bold;
   }
   
+  .tarefa-completed:hover {
+    background: var(--cor-tema) !important;
+    width: 100%;
+    font-weight: bold;
+  }
+
   .tarefa-completed::after{
     color: #fff;
     content: "\f00c";
