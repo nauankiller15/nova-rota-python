@@ -4,26 +4,3 @@
   margin-left: 25%;
   width: 250px;
 }
-
-.tarefa-completed {
-  background: #11b147 !important;
-  width: 100%;
-  font-weight: bold;
-}
-
-.tarefa-completed:hover {
-  color: var(--branco) !important;
-  background: var(--cor-tema) !important;
-  width: 100%;
-  font-weight: bold;
-}
-
-.tarefa-completed::after{
-  color: var(--branco) !important;
-  content: "\f00c";
-  font-family: FontAwesome;
-  margin-left: -1.3em;
-  width: 1.5em;
-  font-size: 23px;
-  float: right;
-}

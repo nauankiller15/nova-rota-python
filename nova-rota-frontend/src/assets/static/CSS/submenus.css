@@ -384,6 +384,20 @@
   margin-bottom: 5px;
 }
 
+.task-item li::before{
+  color: #495057;
+  content: "\f044";
+  font-family: 'Font Awesome 5 Free';
+  width: 1.5em;
+  font-size: 17px;
+  float: left;
+  font-weight: bold;
+}
+
+.task-item li::before:hover{
+  color: var(--branco) !important;
+}
+
 .task-item > li:nth-of-type(odd) {
   background: #eff1f6 ;
 }
