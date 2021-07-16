@@ -12,13 +12,14 @@
   }
   
   .tarefa-completed:hover {
+    color: var(--branco) !important;
     background: var(--cor-tema) !important;
     width: 100%;
     font-weight: bold;
+    color: var(--branco) !important;
   }
 
   .tarefa-completed::after{
-    color: #fff;
     content: "\f00c";
     font-family: FontAwesome;
     margin-left: -1.3em;
