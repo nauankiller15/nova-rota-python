@@ -646,6 +646,7 @@
                     />
                     <div class="titulares-checkbox">
                       <li
+                      class="loadit"
                         value="{{ titular.id }}"
                         *ngFor="
                           let resultadoTitular of buscaTitular
@@ -676,7 +677,7 @@
                         {{ resultadoTitular.CPF | mask: "000.000.000-99" }} -
                         {{ resultadoTitular.nome_benef }}
                       </li>
-                      <h4 class="loadit" *ngIf="buscaTitular.length === 0">
+                      <h4 class="loadit" *ngIf="buscaTitular.length == 0">
                         Nada encontrado
                       </h4>
                     </div>

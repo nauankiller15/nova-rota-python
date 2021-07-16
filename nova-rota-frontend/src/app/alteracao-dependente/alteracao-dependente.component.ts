@@ -23,7 +23,7 @@ export class AlteracaoDependenteComponent implements OnInit {
   busca: Dependente[];
 
   // BUSCA DOS TITULARES
-   buscaTitular: Titular[];
+   buscaTitularAlt: Titular[] = [];
   
   dependentes: Dependente[];
   dependente: Dependente = new Dependente();
@@ -182,7 +182,7 @@ export class AlteracaoDependenteComponent implements OnInit {
     this.api.listar('titular/').subscribe(
       (data) => {
         this.titulares = data;
-        this.buscaTitular = data;
+        this.buscaTitularAlt = data;
 
       },
       (error) => {
@@ -205,11 +205,11 @@ export class AlteracaoDependenteComponent implements OnInit {
   // VINCULAR DEPENDENTE
   searchNomeTitDep(nome_benef: string) {
     if (nome_benef != '') {
-      this.buscaTitular = this.titulares.filter((res) => {
+      this.buscaTitularAlt = this.titulares.filter((res) => {
         return res.nome_benef.match(nome_benef);
       });
     } else if (nome_benef == '') {
-      this.buscaTitular = this.titulares;
+      this.buscaTitularAlt = this.titulares;
     }
   }
 

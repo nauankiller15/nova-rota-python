@@ -20,7 +20,8 @@ export class NovoDependenteComponent implements OnInit {
 
   // BUSCA DOS TTULARES
   titulares: Titular[];
-  buscaTitular: Titular[];
+  resultadoTitular = [];
+  buscaTitular: Titular[] = [];
   //
   busca: Titular[];
   dependente: Dependente = new Dependente();
@@ -113,7 +114,7 @@ export class NovoDependenteComponent implements OnInit {
     });
 
     // FECHAR TELA DE CONFIRMAÇÃO DEPENDENTE
-    
+
     $('#fecharTelaDependente').click(function () {
       $('#confirmacaoDependente').fadeOut('100');
     });
@@ -169,7 +170,7 @@ export class NovoDependenteComponent implements OnInit {
       }
     );
   };
-  
+
   newDependente() {
     this.api.inserir('parentesco/', this.dependente).subscribe(
       (data) => {

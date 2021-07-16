@@ -662,10 +662,11 @@
                       required
                     />
                     <div *ngIf="contentLoaded" class="titulares-checkbox">
-                      <li
+                      <li 
+                        class="loadit"
                         value="{{ titular.id }}"
                         *ngFor="
-                          let resultadoTitular of buscaTitular
+                          let resultadoTitular of buscaTitularAlt
                             | orderBy: 'created_at':false
                             | paginate
                               : {
@@ -693,7 +694,7 @@
                         {{ resultadoTitular.CPF | mask: "000.000.000-99" }} -
                         {{ resultadoTitular.nome_benef }}
                       </li>
-                      <h4 class="loadit" *ngIf="buscaTitular.length === 0">
+                      <h4 class="loadit" *ngIf="buscaTitularAlt.length === 0">
                         Nada encontrado
                       </h4>
                     </div>
