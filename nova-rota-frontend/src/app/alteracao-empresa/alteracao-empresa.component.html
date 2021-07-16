@@ -625,7 +625,7 @@
                   name="sexo"
                   class="form-control"
                   name="tipo_contrato"
-                  id="tipo_contrato"
+                  id="tipo_contratoAlt"
                   required
                 >
                   <option value="">Selecione aqui</option>
@@ -665,6 +665,7 @@
                   name="operadora"
                   class="form-control"
                   required
+                  id="operadoraAlt"
                 >
                   <option value="">Selecione aqui</option>
                   <option value="Saude">Saúde</option>
@@ -718,7 +719,7 @@
 
             <!-- Dados Seguradora -->
             <div class="form-row" *ngIf="empresa.tipo_contrato == 'Seguradora'">
-              <div class="col-md-3">
+              <div class="col-md-2 mb-3">
                 <label for="validationCustom02">Seguradoras</label>
                 <select
                   #seguradora_tipo="ngModel"
@@ -732,6 +733,7 @@
                   name="seguradora"
                   type="text"
                   class="form-control"
+                  id="seguradoraAlt"
                   required
                 >
                   <option value="">Selecione</option>
@@ -767,7 +769,7 @@
                 >
               </div>
 
-              <div id="apolice" class="col-md-3 mb-2">
+              <div class="col-md-2 mb-3">
                 <label for="validationCustom03">Apólice</label>
                 <input
                   #apolice="ngModel"
@@ -866,17 +868,17 @@
                   </table>
                   <div>
                     <pagination-controls
-                    id="reajustes_pag"
-                    class="paginacao"
-                    maxSize="7"
-                    autoHide="true"
-                    previousLabel="Anterior"
-                    nextLabel="Seguinte"
-                    directionLinks="true"
-                    autoHide="true"
-                    responsive="true"
-                    (pageChange)="p = $event"
-                  ></pagination-controls>
+                      id="reajustes_pag"
+                      class="paginacao"
+                      maxSize="7"
+                      autoHide="true"
+                      previousLabel="Anterior"
+                      nextLabel="Seguinte"
+                      directionLinks="true"
+                      autoHide="true"
+                      responsive="true"
+                      (pageChange)="p = $event"
+                    ></pagination-controls>
                     <button
                       class="btn btn-primary"
                       (click)="adicionarReajuste()"
@@ -1201,17 +1203,17 @@
           </div>
         </div>
       </div>
-      <app-rodape></app-rodape>
-
-      <script>
-        document.title = "Alteração Empresa Ativa";
-      </script>
-      <script src="https://bossanova.uk/jsuites/v2/jsuites.js"></script>
-      <link
-        rel="stylesheet"
-        href="https://bossanova.uk/jsuites/v2/jsuites.css"
-        type="text/css"
-      />
     </div>
+    <app-rodape></app-rodape>
   </div>
 </div>
+
+<script>
+  document.title = "Alteração Empresa Ativa";
+</script>
+<script src="https://bossanova.uk/jsuites/v2/jsuites.js"></script>
+<link
+  rel="stylesheet"
+  href="https://bossanova.uk/jsuites/v2/jsuites.css"
+  type="text/css"
+/>

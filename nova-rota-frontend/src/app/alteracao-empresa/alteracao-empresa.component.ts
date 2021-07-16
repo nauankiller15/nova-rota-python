@@ -108,8 +108,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
       $('#formularioSinistralidade').slideUp(100);
       $('#reajusTabAlt').slideDown(300);
       $('#sinisTabAlt').slideUp(300);
-    $('#tabelaReajuste').slideDown(200);
-
+      $('#tabelaReajuste').slideDown(200);
     });
 
     $('#sinistralidadeBtnAlt').on('click', function () {
@@ -252,18 +251,42 @@ export class AlteracaoEmpresaComponent implements OnInit {
     let dados: any;
 
     if (this.empresa.tipo_contrato == 'Operadora') {
+      $('#operadoraAlt').slideDown('100');
+      $('#seguradoraAlt').slideUp();
       urlTipo = 'contrato-operadora/';
+      
       dados = this.contratoOperadora;
     } else {
+      $('#seguradoraAlt').slideDown('100');
+      $('#operadoraAlt').slideUp();
       urlTipo = 'contrato-seguradora/';
       dados = this.contratoSeguradora;
     }
+
+    $('#tipo_contratoAlt').on('change', function () {
+      if ('Operadora' === $(this).val()) {
+        $('#operadoraAlt').slideDown('100');
+        $('#seguradoraAlt').slideUp();
+        $('#formularioSeguradora').each(function () {
+          this.reset();
+        });
+      } else if ('Seguradora' === $(this).val()) {
+        $('#seguradoraAlt').slideDown('100');
+        $('#operadoraAlt').slideUp();
+        $('#formularioOperadora').each(function () {
+          this.reset();
+        });
+      } else {
+        $('#operadoraAlt').slideUp();
+        $('#seguradoraAlt').slideUp();
+      }
+    });
 
     if (dados.id) {
       this.api.atualizar(urlTipo, dados).subscribe(
         (data) => {
           if (this.empresa.tipo_contrato == 'Operadora') {
-           this.loadContratoOperadora(this.empresa.id);
+            this.loadContratoOperadora(this.empresa.id);
           } else {
             this.loadContratoSeguradora(this.empresa.id);
           }
