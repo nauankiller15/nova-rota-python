@@ -453,17 +453,6 @@
                   class="form-control"
                   required
                 />
-
-                <!-- BOTÃO REABRIR VIGENCIA -->
-                <div id="vigenciaTela" style="display: none; z-index: 999">
-                  <button
-                    style="position: absolute; right: -44px; top: 31px"
-                    class="btn btn-primary"
-                    id="abrirVigencia"
-                  >
-                    <i class="fas fa-building" style="font-size: 15px"></i>
-                  </button>
-                </div>
                 <!--  -->
               </div>
 
@@ -483,18 +472,6 @@
                   class="form-control"
                   required
                 />
-
-                <!-- BOTÃO REANEXAR DOCUMENTO DA EMPRESA -->
-                <div id="reanexar5" style="display: none">
-                  <button
-                    style="position: absolute; right: -44px; top: 31px"
-                    class="btn btn-primary"
-                    id="abrirAnexo5"
-                  >
-                    <i class="fas fa-file-image" style="font-size: 15px"></i>
-                  </button>
-                </div>
-
                 <!--  -->
               </div>
 
@@ -887,7 +864,8 @@
                       </tr>
                     </tbody>
                   </table>
-                  <pagination-controls
+                  <div>
+                    <pagination-controls
                     id="reajustes_pag"
                     class="paginacao"
                     maxSize="7"
@@ -899,8 +877,6 @@
                     responsive="true"
                     (pageChange)="p = $event"
                   ></pagination-controls>
-
-                  <div>
                     <button
                       class="btn btn-primary"
                       (click)="adicionarReajuste()"
@@ -1074,7 +1050,7 @@
                           let linha of sinistralidades
                             | paginate
                               : {
-                                  id: 'sinistralidades_page',
+                                  id: 'sinistralidades_pag',
                                   itemsPerPage: 5,
                                   currentPage: p
                                 }
@@ -1102,7 +1078,7 @@
                     </tbody>
                   </table>
                   <pagination-controls
-                    id="sinistralidades_page"
+                    id="sinistralidades_pag"
                     class="paginacao"
                     maxSize="7"
                     autoHide="true"
@@ -1113,6 +1089,7 @@
                     responsive="true"
                     (pageChange)="p = $event"
                   ></pagination-controls>
+
                   <div>
                     <button
                       class="btn btn-primary"
