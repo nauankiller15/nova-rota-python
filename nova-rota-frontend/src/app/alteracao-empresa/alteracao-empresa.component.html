@@ -260,7 +260,7 @@
         </div>
         <!--  -->
 
-        <div class="card-body">
+        <div id="postEmp" class="card-body">
           <h5 class="card-title">ALTERE OS CAMPOS ABAIXO:</h5>
 
           <div style="display: none" class="form-check">
@@ -438,7 +438,7 @@
 
             <div class="form-row">
               <div class="col-md-2 mb-3 mr-5">
-                <label for="validationCustom05">Inicio de Vigência</label>
+                <label for="validationCustom05">Início de Vigência</label>
                 <input
                   #inicio_vigencia="ngModel"
                   [class.is-invalid]="
@@ -450,21 +450,9 @@
                   [(ngModel)]="empresa.inicio_vigencia"
                   name="inicio_vigencia"
                   type="date"
-                  id="dataVigencia"
                   class="form-control"
                   required
                 />
-
-                <!-- BOTÃO REABRIR VIGENCIA -->
-                <div id="vigenciaTela" style="display: none; z-index: 999">
-                  <button
-                    style="position: absolute; right: -44px; top: 31px"
-                    class="btn btn-primary"
-                    id="abrirVigencia"
-                  >
-                    <i class="fas fa-building" style="font-size: 15px"></i>
-                  </button>
-                </div>
                 <!--  -->
               </div>
 
@@ -481,22 +469,9 @@
                   [(ngModel)]="empresa.data_recebimento"
                   name="data_recebimento"
                   type="date"
-                  id="dataRecebimento"
                   class="form-control"
                   required
                 />
-
-                <!-- BOTÃO REANEXAR DOCUMENTO DA EMPRESA -->
-                <div id="reanexar5" style="display: none">
-                  <button
-                    style="position: absolute; right: -44px; top: 31px"
-                    class="btn btn-primary"
-                    id="abrirAnexo5"
-                  >
-                    <i class="fas fa-file-image" style="font-size: 15px"></i>
-                  </button>
-                </div>
-
                 <!--  -->
               </div>
 
@@ -523,7 +498,7 @@
               <!-- VINCULAR ANEXO DO DOCUMENTO DA EMPRESA -->
               <div id="vinc-anexo-empresa" style="display: none">
                 <div class="box-anexo">
-                  <div class="anexo-info-box-empresa-vinc">
+                  <div class="anexo-info-box-titular-vinc">
                     <h1
                       style="
                         font-size: 20px;
@@ -650,7 +625,7 @@
                   name="sexo"
                   class="form-control"
                   name="tipo_contrato"
-                  id="tipo_contrato"
+                  id="tipo_contratoAlt"
                   required
                 >
                   <option value="">Selecione aqui</option>
@@ -690,6 +665,7 @@
                   name="operadora"
                   class="form-control"
                   required
+                  id="operadoraAlt"
                 >
                   <option value="">Selecione aqui</option>
                   <option value="Saude">Saúde</option>
@@ -743,7 +719,7 @@
 
             <!-- Dados Seguradora -->
             <div class="form-row" *ngIf="empresa.tipo_contrato == 'Seguradora'">
-              <div class="col-md-3">
+              <div class="col-md-2 mb-3">
                 <label for="validationCustom02">Seguradoras</label>
                 <select
                   #seguradora_tipo="ngModel"
@@ -757,6 +733,7 @@
                   name="seguradora"
                   type="text"
                   class="form-control"
+                  id="seguradoraAlt"
                   required
                 >
                   <option value="">Selecione</option>
@@ -792,7 +769,7 @@
                 >
               </div>
 
-              <div id="apolice" class="col-md-3 mb-2">
+              <div class="col-md-2 mb-3">
                 <label for="validationCustom03">Apólice</label>
                 <input
                   #apolice="ngModel"
@@ -825,32 +802,29 @@
         <div id="vinc-vigenciaAlt" style="display: none">
           <div class="box-vigencia">
             <div class="anexo-info-box-empresa-vinc">
-              <div style="margin: 0 auto 10px auto; width: 100%">
-                <nav class="menuVigencia">
-                  <ul class="menuItems">
-                    <!-- BOTÃO REAJUSTE -->
-                    <li id="reajusteBtnAlt" class="active radiusTop">
-                      Reajuste
-                    </li>
+              <nav class="menuVigencia">
+                <ul class="menuItems">
+                  <!-- BOTÃO REAJUSTE -->
+                  <li id="reajusteBtnAlt" class="active radiusTop">Reajuste</li>
 
-                    <!-- BOTÃO SINISTRALIDADE -->
-                    <li id="sinistralidadeBtnAlt">Sinistralidade</li>
-                  </ul>
-                </nav>
-              </div>
+                  <!-- BOTÃO SINISTRALIDADE -->
+                  <li id="sinistralidadeBtnAlt">Sinistralidade</li>
+                </ul>
+              </nav>
 
-              <div id="reajusTab">
-                <h1 style="font-size: 20px; display: flex; margin-bottom: 15px">
-                  Histórico de Reajustes:
-                </h1>
-
-                <div>
+              <div id="reajusTabAlt">
+                <div id="tabelaReajuste">
+                  <h1
+                    style="font-size: 20px; display: flex; margin-bottom: 15px"
+                  >
+                    Histórico de Reajustes:
+                  </h1>
                   <table class="table table-info text-center">
                     <thead>
                       <tr>
                         <th></th>
                         <th>Ano</th>
-                        <th>Sinistralidade</th>
+                        <th>Fidelizado</th>
                         <th>Técnico %</th>
                         <th>Negociado %</th>
                         <th colspan="2">Ações</th>
@@ -874,12 +848,15 @@
                         <th>{{ linha.tecnico }} %</th>
                         <th>{{ linha.negociado }} %</th>
                         <th>
-                          <button class="btn" (click)="editReajuste(linha)">
+                          <button
+                            class="btn editVig"
+                            (click)="editReajuste(linha)"
+                          >
                             <i class="fas fa-edit"></i>
                           </button>
                         </th>
                         <th>
-                          <button class="btn">
+                          <button class="btn eraseVig">
                             <i class="fas fa-trash"></i>
                           </button>
                         </th>
@@ -889,26 +866,29 @@
                       </tr>
                     </tbody>
                   </table>
+                  <div>
+                    <pagination-controls
+                      id="reajustes_pag"
+                      class="paginacao"
+                      maxSize="7"
+                      autoHide="true"
+                      previousLabel="Anterior"
+                      nextLabel="Seguinte"
+                      directionLinks="true"
+                      autoHide="true"
+                      responsive="true"
+                      (pageChange)="p = $event"
+                    ></pagination-controls>
+                    <button
+                      class="btn btn-primary"
+                      (click)="adicionarReajuste()"
+                    >
+                      <i style="margin-right: 5px" class="fas fa-plus"></i
+                      >Adicionar Reajuste
+                    </button>
+                  </div>
                 </div>
-                <pagination-controls
-                  id="reajustes_pag"
-                  class="paginacao"
-                  maxSize="7"
-                  autoHide="true"
-                  previousLabel="Anterior"
-                  nextLabel="Seguinte"
-                  directionLinks="true"
-                  autoHide="true"
-                  responsive="true"
-                  (pageChange)="p = $event"
-                ></pagination-controls>
 
-                <div>
-                  <button class="btn btn-primary" (click)="adicionarReajuste()">
-                    <i style="margin-right: 5px" class="fas fa-plus"></i
-                    >Adicionar Reajuste
-                  </button>
-                </div>
                 <div id="formularioReajuste" style="display: none">
                   <hr />
                   <form #reajusteForm="ngForm">
@@ -952,7 +932,7 @@
 
                       <!-- SINISTRALIDADE -->
                       <div class="col-md-5 mb-5">
-                        <label for="validationCustom01">Sinistralidade</label>
+                        <label for="validationCustom01">Fidelizado</label>
                         <input
                           #reajuste_sinistralidade="ngModel"
                           [(ngModel)]="reajuste.sinistralidade"
@@ -973,7 +953,7 @@
                             border-left: none;
                             border-right: none;
                           "
-                          placeholder="Informe a sinistralidade"
+                          placeholder="Informe a fidelização"
                           required
                         />
                       </div>
@@ -1037,7 +1017,7 @@
                       (click)="updateReajuste()"
                       style="display: none"
                     >
-                      <i class="fas fa-check"></i> Atualizar
+                      <i class="fas fa-check"></i> Atualizar Reajuste
                     </button>
                     <button
                       id="cadastrarReajuste"
@@ -1051,7 +1031,7 @@
                 </div>
               </div>
 
-              <div id="sinisTab" style="display: none">
+              <div id="sinisTabAlt" style="display: none">
                 <div id="tabelaSinistro">
                   <h1
                     style="font-size: 20px; display: flex; margin-bottom: 15px"
@@ -1062,7 +1042,7 @@
                     <thead>
                       <tr>
                         <th>Ano</th>
-                        <th>Sinistralidade %</th>
+                        <th>Sinistralidade</th>
                         <th colspan="2">Ações</th>
                       </tr>
                     </thead>
@@ -1072,7 +1052,7 @@
                           let linha of sinistralidades
                             | paginate
                               : {
-                                  id: 'sinistralidades_page',
+                                  id: 'sinistralidades_pag',
                                   itemsPerPage: 5,
                                   currentPage: p
                                 }
@@ -1100,7 +1080,7 @@
                     </tbody>
                   </table>
                   <pagination-controls
-                    id="sinistralidades_page"
+                    id="sinistralidades_pag"
                     class="paginacao"
                     maxSize="7"
                     autoHide="true"
@@ -1111,6 +1091,7 @@
                     responsive="true"
                     (pageChange)="p = $event"
                   ></pagination-controls>
+
                   <div>
                     <button
                       class="btn btn-primary"
@@ -1193,7 +1174,7 @@
                       (click)="updateSinistralidade()"
                       style="display: none"
                     >
-                      <i class="fas fa-check"></i> Atualizar
+                      <i class="fas fa-check"></i> Atualizar Sinistralidade
                     </button>
                     <button
                       id="cadastrarSinistralidade"
@@ -1210,8 +1191,8 @@
                 style="
                   display: flex;
                   position: absolute;
-                  right: 52px;
-                  bottom: 10px;
+                  right: 53px;
+                  bottom: 25px;
                 "
                 class="btn btn-cancelar"
                 id="fecharVigenciaAlt"
@@ -1222,17 +1203,17 @@
           </div>
         </div>
       </div>
-      <app-rodape></app-rodape>
-
-      <script>
-        document.title = "Alteração Empresa Ativa";
-      </script>
-      <script src="https://bossanova.uk/jsuites/v2/jsuites.js"></script>
-      <link
-        rel="stylesheet"
-        href="https://bossanova.uk/jsuites/v2/jsuites.css"
-        type="text/css"
-      />
     </div>
+    <app-rodape></app-rodape>
   </div>
 </div>
+
+<script>
+  document.title = "Alteração Empresa Ativa";
+</script>
+<script src="https://bossanova.uk/jsuites/v2/jsuites.js"></script>
+<link
+  rel="stylesheet"
+  href="https://bossanova.uk/jsuites/v2/jsuites.css"
+  type="text/css"
+/>

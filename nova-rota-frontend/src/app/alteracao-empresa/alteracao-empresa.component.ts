@@ -74,6 +74,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
     $('#voltardados-empresa').click(function () {
       $('#empresaappear').fadeOut('200');
       $('#consulta').slideDown('200');
+      $('#postEmp').slideUp(600);
     });
 
     $('#abrirAnexoEmp').click(function () {
@@ -90,9 +91,10 @@ export class AlteracaoEmpresaComponent implements OnInit {
       $(this).siblings().removeClass('active');
     });
 
-    // Sinistralidade e reajuste
+    // Sinistralidade e Reajuste
     $('#reajuste-sinistralidade').on('click', function () {
       $('#vinc-vigenciaAlt').fadeIn(100);
+      $('#tabelaReajuste').slideDown(250);
     });
 
     $('#fecharVigenciaAlt').on('click', function () {
@@ -100,19 +102,21 @@ export class AlteracaoEmpresaComponent implements OnInit {
       $('#formularioReajuste').slideUp(200);
 
       $('#vinc-vigenciaAlt').fadeOut(100);
+      $('#tabelaReajuste').slideDown(200);
     });
 
     $('#reajusteBtnAlt').on('click', function () {
       $('#formularioSinistralidade').slideUp(100);
-      $('#reajusTab').slideDown(300);
-      $('#sinisTab').slideUp(300);
+      $('#reajusTabAlt').slideDown(300);
+      $('#sinisTabAlt').slideUp(300);
+      $('#tabelaReajuste').slideDown(200);
     });
 
     $('#sinistralidadeBtnAlt').on('click', function () {
       $('#tabelaSinistro').slideDown(200);
       $('#formularioReajuste').slideUp(100);
-      $('#sinisTab').slideDown(300);
-      $('#reajusTab').slideUp(300);
+      $('#sinisTabAlt').slideDown(300);
+      $('#reajusTabAlt').slideUp(300);
     });
   }
 
@@ -153,6 +157,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
   empresaClicked = (empresa: Empresa) => {
     $('#consulta').slideUp(250);
     $('#empresaappear').slideDown(250);
+    $('#postEmp').slideDown(600);
     this.empresa = empresa;
     this.loadReajustes(empresa.id);
     this.loadSinistralidades(empresa.id);
@@ -247,18 +252,42 @@ export class AlteracaoEmpresaComponent implements OnInit {
     let dados: any;
 
     if (this.empresa.tipo_contrato == 'Operadora') {
+      $('#operadoraAlt').slideDown('100');
+      $('#seguradoraAlt').slideUp();
       urlTipo = 'contrato-operadora/';
+      
       dados = this.contratoOperadora;
     } else {
+      $('#seguradoraAlt').slideDown('100');
+      $('#operadoraAlt').slideUp();
       urlTipo = 'contrato-seguradora/';
       dados = this.contratoSeguradora;
     }
+
+    $('#tipo_contratoAlt').on('change', function () {
+      if ('Operadora' === $(this).val()) {
+        $('#operadoraAlt').slideDown('100');
+        $('#seguradoraAlt').slideUp();
+        $('#formularioSeguradora').each(function () {
+          this.reset();
+        });
+      } else if ('Seguradora' === $(this).val()) {
+        $('#seguradoraAlt').slideDown('100');
+        $('#operadoraAlt').slideUp();
+        $('#formularioOperadora').each(function () {
+          this.reset();
+        });
+      } else {
+        $('#operadoraAlt').slideUp();
+        $('#seguradoraAlt').slideUp();
+      }
+    });
 
     if (dados.id) {
       this.api.atualizar(urlTipo, dados).subscribe(
         (data) => {
           if (this.empresa.tipo_contrato == 'Operadora') {
-           this.loadContratoOperadora(this.empresa.id);
+            this.loadContratoOperadora(this.empresa.id);
           } else {
             this.loadContratoSeguradora(this.empresa.id);
           }
@@ -318,13 +347,17 @@ export class AlteracaoEmpresaComponent implements OnInit {
     this.reajuste = reajuste;
     $('#formularioReajuste').fadeIn(100);
     $('#atualizarReajuste').fadeIn(100);
-    $('#cadastrarReajuste').hide();
+    $('#cadastrarReajuste').slideUp(200);
+    $('#tabelaReajuste').slideUp(200);
   }
 
   updateReajuste() {
     this.api.atualizar('reajuste/', this.reajuste).subscribe(
       (data) => {
         this.loadReajustes(this.empresa.id);
+        $('#tabelaReajuste').slideDown(200);
+        $('#formularioReajuste').slideUp(200);
+        $('#atualizarReajuste').slideUp(200);
         this.toastr.success('Reajuste atualizado com sucesso!');
       },
       (error) => {

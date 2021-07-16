@@ -10994,8 +10994,7 @@ button,
 }
 
 .vertical-nav-menu ul > li > a.mm-active {
-  color: var(--cor-tema);
-  background: #e0f3ff;
+  background: #80d49b;
   font-weight: bold;
 }
 
