@@ -12,8 +12,6 @@ class EmpresaViewSet(ModelViewSet):
 class FilialViewSet(ModelViewSet):
     queryset = Filial.objects.all()
     serializer_class = FilialSerializer
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['empresa']
 
 
 class ContratoOperadoraViewSet(ModelViewSet):

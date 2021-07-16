@@ -8,6 +8,7 @@ import {
   Reajuste,
   Sinistralidade,
 } from '../nova-empresa/models';
+import { EmpresaPrincipal } from './models';
 
 declare var $: any;
 
@@ -27,11 +28,11 @@ export class AlteracaoEmpresaComponent implements OnInit {
   //
 
   // DADOS DA EMPRESA
-  busca: Empresa[];
+  busca: Empresa[] = [];
 
-  empresas: Empresa[];
+  empresas: Empresa[] = [];
   empresa: Empresa = new Empresa();
-
+  empresaPrincipal: EmpresaPrincipal = new EmpresaPrincipal;
   //
   contratoSeguradora: ContratoSeguradora = new ContratoSeguradora();
   contratoOperadora: ContratoOperadora = new ContratoOperadora();
@@ -159,11 +160,26 @@ export class AlteracaoEmpresaComponent implements OnInit {
     $('#empresaappear').slideDown(250);
     $('#postEmp').slideDown(600);
     this.empresa = empresa;
-    this.loadReajustes(empresa.id);
-    this.loadSinistralidades(empresa.id);
-    this.loadContratoOperadora(empresa.id);
-    this.loadContratoSeguradora(empresa.id);
+    this.loadDadosEmpresa();
   };
+
+  loadDadosEmpresa() {
+    if (this.empresa.is_filial == true) {
+      this.loadFilial();
+    }
+
+    this.loadReajustes(this.empresa.id);
+    this.loadSinistralidades(this.empresa.id);
+    this.loadContratoOperadora(this.empresa.id);
+    this.loadContratoSeguradora(this.empresa.id);
+  }
+  loadFilial() {
+    this.api.selecionar('filial/', this.empresa.id).subscribe(
+      (data) => {
+        this.empresa = data;
+      },
+    );  
+  }
 
   loadReajustes(empresa: number) {
     this.api.listar(`reajuste/?empresa=${empresa}`).subscribe(
@@ -233,10 +249,6 @@ export class AlteracaoEmpresaComponent implements OnInit {
     this.api.atualizar('empresa/', this.empresa).subscribe(
       (data) => {
         this.atualizarContrato();
-        this.loadReajustes(this.empresa.id);
-        this.loadSinistralidades(this.empresa.id);
-        this.loadContratoOperadora(this.empresa.id);
-        this.loadContratoSeguradora(this.empresa.id);
       },
       (error) => {
         let mensagens = error.error;
@@ -252,45 +264,18 @@ export class AlteracaoEmpresaComponent implements OnInit {
     let dados: any;
 
     if (this.empresa.tipo_contrato == 'Operadora') {
-      $('#operadoraAlt').slideDown('100');
-      $('#seguradoraAlt').slideUp();
       urlTipo = 'contrato-operadora/';
       
       dados = this.contratoOperadora;
     } else {
-      $('#seguradoraAlt').slideDown('100');
-      $('#operadoraAlt').slideUp();
       urlTipo = 'contrato-seguradora/';
       dados = this.contratoSeguradora;
     }
 
-    $('#tipo_contratoAlt').on('change', function () {
-      if ('Operadora' === $(this).val()) {
-        $('#operadoraAlt').slideDown('100');
-        $('#seguradoraAlt').slideUp();
-        $('#formularioSeguradora').each(function () {
-          this.reset();
-        });
-      } else if ('Seguradora' === $(this).val()) {
-        $('#seguradoraAlt').slideDown('100');
-        $('#operadoraAlt').slideUp();
-        $('#formularioOperadora').each(function () {
-          this.reset();
-        });
-      } else {
-        $('#operadoraAlt').slideUp();
-        $('#seguradoraAlt').slideUp();
-      }
-    });
-
     if (dados.id) {
       this.api.atualizar(urlTipo, dados).subscribe(
         (data) => {
-          if (this.empresa.tipo_contrato == 'Operadora') {
-            this.loadContratoOperadora(this.empresa.id);
-          } else {
-            this.loadContratoSeguradora(this.empresa.id);
-          }
+          this.loadDadosEmpresa();
           this.toastr.success('Empresa atualizada com sucesso!');
         },
         (error) => {
@@ -304,6 +289,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
       dados.empresa = this.empresa.id;
       this.api.inserir(urlTipo, dados).subscribe(
         (data) => {
+          this.loadDadosEmpresa();
           this.toastr.success('Empresa atualizada com sucesso!');
         },
         (error) => {

@@ -280,7 +280,7 @@
             ENCTYPE="multipart/form-data"
             novalidate
           >
-            <div id="divFilial" class="form-row" style="display: none">
+            <div id="divFilial" class="form-row" *ngIf="empresa.is_filial == true">
               <div class="col-md-2" style="flex: 0 0 19%; max-width: 19%">
                 <label for="validationCustom01"
                   >CNPJ da Empresa Principal</label
