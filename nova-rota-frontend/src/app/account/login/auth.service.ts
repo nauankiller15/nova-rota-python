@@ -30,7 +30,7 @@ export class AuthService {
 
   autenticado() {
     const token = this.getAuthorizationToken();
-
+    
     if (token) {
       const expirado = this.tokenExpirado(token);
       if (!expirado) {
@@ -68,6 +68,10 @@ export class AuthService {
     const token = this.getAuthorizationToken()
     const tokenDecode = jwtDecode(token);
     let usuario: User = new User;
+
+    if (tokenDecode['user_id']) {
+      usuario.user_id = tokenDecode['user_id'];
+    }
 
     if (tokenDecode['username']) {
       usuario.username = tokenDecode['username'];

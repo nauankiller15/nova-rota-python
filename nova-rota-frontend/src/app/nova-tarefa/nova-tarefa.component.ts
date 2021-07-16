@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../account/login/auth.service';
+import { User } from '../account/login/models';
 import { ApiService } from '../api.service';
 import { HomeComponent } from '../home/home.component';
 import { Tarefa } from '../home/models';
@@ -12,15 +14,19 @@ declare var $: any;
   styleUrls: ['./nova-tarefa.component.css'],
 })
 export class NovaTarefaComponent implements OnInit {
+  usuario: User = new User;
   nova_tarefa: Tarefa = new Tarefa;
 
   constructor(
     private api: ApiService,
+    private authService: AuthService,
     private toastr: ToastrService,
     private homeComponent: HomeComponent
   ) {}
 
   ngOnInit(): void {
+    this.usuario = this.authService.getUser();
+
     // FECHAR NOVA TAREFA
     $('#fechar-bt4').on('click', function () {
       $('#over-tarefa').fadeOut('100');
@@ -37,6 +43,7 @@ export class NovaTarefaComponent implements OnInit {
     //
   }
   save() {
+    this.nova_tarefa.usuario = this.usuario.user_id;
     this.api.inserir('tarefas/', this.nova_tarefa).subscribe(
       (data) => {
         this.homeComponent.tarefas.push(data);
