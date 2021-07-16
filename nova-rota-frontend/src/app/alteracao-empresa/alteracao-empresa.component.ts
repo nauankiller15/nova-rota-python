@@ -191,7 +191,6 @@ export class AlteracaoEmpresaComponent implements OnInit {
   loadContratoOperadora(empresa: number) {
     this.api.listar(`contrato-operadora/?empresa=${empresa}`).subscribe(
       (data) => {
-        console.log(data.length);
         if (data.length > 0) {
           this.contratoOperadora = data[0];
         } else {
