@@ -120,6 +120,18 @@
   display: none;
 }
 
+.anoVig{
+  margin: auto;
+  padding: 2px;
+  background-color: var(--branco);
+  color: var(--cor-tema);
+  font-size: 15px;
+  border-radius: 4px;
+  width: 85px;
+  box-shadow: 4px 3px 0px 0px #0000002e;
+  border: 1px solid #007325;
+}
+
 /* BOTÕES DE AÇÕES */
 .editVig {
   color: var(--cor-tema);
