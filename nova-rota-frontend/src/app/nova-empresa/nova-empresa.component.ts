@@ -87,7 +87,7 @@ export class NovaEmpresaComponent implements OnInit {
       $(this).siblings().removeClass('active');
     });
 
-        // $('#filial').trigger('click');
+    // $('#filial').trigger('click');
     //
 
     // OPÇÕES
@@ -123,11 +123,11 @@ export class NovaEmpresaComponent implements OnInit {
     $('#fecharTelaEmpresa').click(function () {
       $('#confirmacaoEmpresa').fadeOut(200);
     });
-    $(".apagarEmp").click(function() {
+    $('.apagarEmp').click(function () {
       $('form').each(function () {
         this.reset();
       });
-  });
+    });
   }
 
   // CADASTRO DE EMPRESAS
@@ -141,7 +141,7 @@ export class NovaEmpresaComponent implements OnInit {
     $('.filialSelect').slideUp('100');
     $('.inserirFilial').slideUp('100');
   }
-  
+
   empresaFilial() {
     $('#divFilial').fadeIn(250);
     this.empresa.is_filial = true;
@@ -158,7 +158,7 @@ export class NovaEmpresaComponent implements OnInit {
     $('#confirmacaoEmpresa').fadeIn('100');
     if (this.empresa.is_filial == true) {
       urlEmpresa = 'filial/';
-    $('#confirmacaoEmpresa').fadeIn('100');
+      $('#confirmacaoEmpresa').fadeIn('100');
     }
 
     this.api.inserir(urlEmpresa, this.empresa).subscribe(
