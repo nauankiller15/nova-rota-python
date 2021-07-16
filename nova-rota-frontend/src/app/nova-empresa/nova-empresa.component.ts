@@ -124,7 +124,9 @@ export class NovaEmpresaComponent implements OnInit {
       $('#confirmacaoEmpresa').fadeOut(200);
     });
     $(".apagarEmp").click(function() {
-      $('form').find("input[type=text], textarea, select").val("");
+      $('form').each(function () {
+        this.reset();
+      });
   });
   }
 
