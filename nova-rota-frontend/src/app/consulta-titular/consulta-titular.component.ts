@@ -106,11 +106,11 @@ export class ConsultaTitularComponent implements OnInit {
       $('#postTitConsulta').slideUp(600);
     });
 
-    $('#abrirAnexoAlt').click(function () {
+    $('#abrirAnexoConsulta2').click(function () {
       $('#vinc-anexo-casadoAlt').fadeIn('100');
     });
 
-    $('#fecharAnexoAlt').click(function () {
+    $('#fecharAnexoConsulta2').click(function () {
       $('#vinc-anexo-casadoAlt').fadeOut('100');
     });
   }
