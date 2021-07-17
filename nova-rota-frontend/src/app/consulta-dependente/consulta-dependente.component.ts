@@ -125,16 +125,10 @@ export class ConsultaDependenteComponent implements OnInit {
     });
 
     // VOLTAR ALTERAÇÃO DE DADOS
-    $('#voltardadosdep').click(function () {
-      $('#titularesappearConsulta').fadeOut('200');
-      $('#consulta2').slideDown('200');
+    $('#voltardadosdepConsulta').click(function () {
+      $('#dependentesappearConsulta').fadeOut('200');
+      $('#consulta3').slideDown('200');
       $('#postDepConsulta').slideUp(600);
-    });
-
-    // VOLTAR ALTERAÇÃO DE DADOS
-    $('#voltardadosDependente').click(function () {
-      $('#titularesappearConsulta').fadeOut('200');
-      $('#consulta').slideDown('200');
     });
 
     $('#abrirAnexoConsultaDependente').click(function () {
