@@ -102,6 +102,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
 
       $('#vinc-vigenciaAlt').fadeOut(100);
       $('#tabelaReajuste').slideDown(200);
+      $('#tabelaSinistro').slideDown(200);
     });
 
     $('#reajusteBtnAlt').on('click', function () {
@@ -172,11 +173,9 @@ export class AlteracaoEmpresaComponent implements OnInit {
     this.loadContratoSeguradora(this.empresa.id);
   }
   loadFilial() {
-    this.api.selecionar('filial/', this.empresa.id).subscribe(
-      (data) => {
-        this.empresa = data;
-      },
-    );  
+    this.api.selecionar('filial/', this.empresa.id).subscribe((data) => {
+      this.empresa = data;
+    });
   }
 
   loadReajustes(empresa: number) {
@@ -263,7 +262,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
 
     if (this.empresa.tipo_contrato == 'Operadora') {
       urlTipo = 'contrato-operadora/';
-      
+
       dados = this.contratoOperadora;
     } else {
       urlTipo = 'contrato-seguradora/';
