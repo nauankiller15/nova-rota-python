@@ -36,6 +36,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { RodapeComponent } from './rodape/rodape.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NgxLoadingModule } from 'ngx-loading';
+import { ConsultaTitularComponent } from './consulta-titular/consulta-titular.component';
+import { ConsultaDependenteComponent } from './consulta-dependente/consulta-dependente.component';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -68,6 +70,8 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     NovidadesDetailsComponent,
     RodapeComponent,
     SidebarComponent,
+    ConsultaTitularComponent,
+    ConsultaDependenteComponent,
   ],
   imports: [
     NgxSkeletonLoaderModule.forRoot(),

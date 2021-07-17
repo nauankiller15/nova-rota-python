@@ -31,6 +31,8 @@ import { CreateAccountComponent } from './account/create-account/create-account.
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NovidadesDetailsComponent } from './novidades-details/novidades-details.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ConsultaDependenteComponent } from './consulta-dependente/consulta-dependente.component';
+import { ConsultaTitularComponent } from './consulta-titular/consulta-titular.component';
 //
 
 const routes: Routes = [
@@ -80,6 +82,12 @@ const routes: Routes = [
         path: 'alt-empresa-details/:id',
         component: AltEmpresaDetailsComponent,
       },
+      // === CONSULTA DE TITULARES ====
+      { path: 'consulta-titular', component: ConsultaTitularComponent },
+      // 
+       // === CONSULTA DE DEPENDENTES ====
+      { path: 'consulta-dependente', component: ConsultaDependenteComponent },
+      // 
     ],
     canActivate: [AuthGuard]
   },

@@ -1,0 +1,486 @@
+<div class="fadeIn app-main">
+  <div class="app-main__outer">
+    <div class="app-main__inner">
+      <div class="app-page-title">
+        <div class="page-title-wrapper">
+          <div class="page-title-heading">
+            <div class="page-title-icon">
+              <i class="fas fas fa-user-plus icon-gradient bg-mean-fruit"> </i>
+            </div>
+            <div>
+              Consulta de Dependentes
+              <div class="page-title-subheading">
+                Consulta de dados - Dependentes Ativos e Cancelados.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="consulta3" class="main-card mb-3 card">
+        <div class="card-body">
+          <h5 class="card-title">Consultar o Dependente</h5>
+          <form class="needs-validation">
+            <div class="form-row">
+              <div class="input-group col-md-3 mb3">
+                <label>CPF:</label>
+                <div style="width: 100%"></div>
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="fas fa-id-card"></i
+                ></span>
+                <input
+                  name="CPF"
+                  (input)="searchCPF($event.target.value)"
+                  class="form-control cpf"
+                  type="text"
+                  id="search_cpf"
+                  placeholder="Pesquise por CPF"
+                />
+              </div>
+              <!-- (keypress)="textOnly($event)" -->
+              <div class="input-group col-md-4 mb3">
+                <label>Nome do Dependente:</label>
+                <div style="width: 100%"></div>
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="fas fa-user-plus"></i
+                ></span>
+                <input
+                  (input)="searchNomeBenef($event.target.value)"
+                  name="nome_dependente"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o nome do Dependente"
+                />
+              </div>
+            </div>
+            <div style="width: 100%; height: 10px"></div>
+
+            <hr />
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+
+            <div *ngIf="contentLoaded">
+              <div class="titulares">
+                Dependentes Encontrados:
+                <li
+                  class="loadit"
+                  *ngFor="
+                    let resultado of busca
+                      | orderBy: 'created_at':false
+                      | paginate
+                        : {
+                            id: 'dependentes',
+                            itemsPerPage: 14,
+                            currentPage: p
+                          }
+                  "
+                  (click)="dependenteClickedConsulta(resultado)"
+                >
+                  <i
+                    style="
+                      font-size: 18px;
+                      margin-left: 9px;
+                      margin-right: 1px;
+                      background-color: #eff9ff;
+                      border: 1px solid #ced4da;
+                      border-radius: 0.25rem;
+                      padding: 3px;
+                      color: #434343;
+                    "
+                    class="fas fa-user-plus"
+                  ></i>
+                  CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
+                  {{ resultado.nome_dependente }}
+                  <i
+                    style="float: right; margin-top: 4px"
+                    class="fas fa-external-link-alt"
+                  ></i>
+                </li>
+                <h4
+                  class="loadit"
+                  style="margin-top: 20px"
+                  *ngIf="busca.length === 0"
+                >
+                  Nada encontrado
+                </h4>
+              </div>
+            </div>
+            <pagination-controls
+              id="dependentes"
+              class="paginacao"
+              maxSize="7"
+              autoHide="true"
+              previousLabel="Anterior"
+              nextLabel="Seguinte"
+              directionLinks="true"
+              autoHide="true"
+              responsive="true"
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </form>
+        </div>
+      </div>
+      <div id="dependentesappearConsulta" class="main-card mb-3 card">
+        <h1
+          class="titular-ts"
+          style="margin-left: 20px; margin-right: 20px; padding-top: 20px"
+        >
+          <div id="voltardadosdep" class="voltar">
+            <i class="fas fa-chevron-left"></i>
+          </div>
+          {{ dependente.nome_dependente }}
+          <p class="cpf-ts">
+            Inscrito(a) sob CPF:
+            {{ dependente.CPF | mask: "000.000.000-99" }}
+          </p>
+          <p class="cpf-ts">
+            Dependente de:
+            <i
+              style="
+                font-size: 18px;
+                margin-left: 9px;
+                margin-right: 1px;
+                background-color: #eff9ff;
+                border: 1px solid #ced4da;
+                border-radius: 0.25rem;
+                padding: 7px;
+              "
+              class="fas fa-user-tie"
+            ></i>
+            <b
+              style="
+                padding-right: 5px;
+                padding-bottom: 4px;
+                border: 1px solid #ced4da;
+                border-radius: 0.25rem;
+              "
+            >
+              {{ dependente.titular_nome }}
+            </b>
+          </p>
+
+          <div class="botao-anexosAlt">
+            <button
+              class="btn btn-primary"
+              style="width: 160px"
+              id="abrirAnexoConsultaDependente"
+            >
+              <i style="margin-right: 6px" class="fas fa-file-image"></i>Abrir
+              Anexos
+            </button>
+          </div>
+        </h1>
+
+        <!-- TELA DE ANEXOS DE CASAMENTO -->
+        <div id="vinc-anexo-casadoAlt">
+          <div class="box-anexo">
+            <div class="anexo-info-box-titular-vinc">
+              <label
+                for="avatar"
+                style="
+                  display: flex;
+                  font-size: 18px;
+                  margin-top: 10px;
+                  margin-bottom: 10px;
+                "
+                >Anexos vinculados:</label
+              >
+
+              <img
+                style="width: 250px"
+                src="{{ dependente.anexo_doc_casamento }}"
+                alt="Certidão de Casamento de {{ dependente.nome_dependente }}"
+              />
+              <label
+                for="avatar"
+                style="
+                  display: flex;
+                  font-size: 17px;
+                  margin-top: 25px;
+                  margin-bottom: 10px;
+                "
+                >Escolha uma outra imagem para anexar:</label
+              >
+
+              <input
+                type="file"
+                id="imagemCasado"
+                accept="image/png, image/jpeg"
+                [(ngModel)]="dependente.anexo_doc_casamento"
+                name="anexo_doc_casamento"
+                ng-required="false"
+              />
+
+              <button
+                style="
+                  display: flex;
+                  position: absolute;
+                  right: 20px;
+                  bottom: 20px;
+                "
+                class="btn btn-primary"
+                id="fecharAnexoConsultaDependente"
+              >
+                Fechar tela
+              </button>
+            </div>
+          </div>
+        </div>
+        <!--  -->
+
+        <div id="postDep" class="card-body">
+          <h5 class="card-title">DADOS CADASTRADOS DO DEPENDENTE:</h5>
+          <hr />
+          <form class="needs-validation">
+            <div class="form-row">
+              <div class="dadosConsulta">
+                <label>Código Empresa</label>
+                <div class="linhaE"></div>
+                <p>
+                  <b>{{ dependente.cod_empresa }}</b>
+                </p>
+              </div>
+
+              <div class="dadosConsulta">
+                <label>Prioridade</label>
+                <div class="linhaE"></div>
+                <p>
+                  <b>{{ dependente.prioridade }}</b>
+                </p>
+              </div>
+
+              <div class="dadosConsulta important">
+                <label>Número da Carteirinha</label>
+                <div class="linhaE"></div>
+                <p>
+                  <b>{{ dependente.carteirinha }}</b>
+                </p>
+              </div>
+
+              <div class="dadosConsulta status">
+                <label>Status Sistema</label>
+                <div class="linhaE"></div>
+                <p>
+                  <b>{{ dependente.status }}</b>
+                </p>
+              </div>
+            </div>
+
+            <div style="width: 100%; margin-top: 10px">
+              <h3></h3>
+              <hr />
+            </div>
+
+            <div class="form-row">
+              <div class="dadosConsulta mae">
+                <label>Nome da Mãe</label>
+                <div class="linhaE"></div>
+                <p>
+                  <b>{{ dependente.nome_mae }}</b>
+                </p>
+              </div>
+
+              <div class="dadosConsulta">
+                <label>Parentesco</label>
+                <div class="linhaE"></div>
+                <p>
+                  <b>{{ dependente.tipo_parentesco }}</b>
+                </p>
+              </div>
+              <div class="dadosConsulta">
+                <label>Celular</label>
+                <div class="linhaE"></div>
+                <p>
+                  <b>{{ dependente.celular }}</b>
+                </p>
+              </div>
+
+              <div class="dadosConsulta">
+                <label>Tipo</label>
+                <div class="linhaE"></div>
+                <p>
+                  <b>{{ dependente.tipo }}</b>
+                </p>
+              </div>
+
+              <div class="dadosConsulta">
+                <label>Sexo</label>
+                <div class="linhaE"></div>
+                <p>
+                  <b>{{ dependente.sexo }}</b>
+                </p>
+              </div>
+
+              <div class="dadosConsulta">
+                <label>Estado Civil</label>
+                <div class="linhaE"></div>
+                <p>
+                  <b>{{ dependente.estado_civil }}</b>
+                </p>
+              </div>
+
+              <div
+                style="
+                  width: 1px;
+                  height: auto;
+                  background-color: #ced4da;
+                  margin-left: 30px;
+                  margin-right: 30px;
+                "
+              ></div>
+              <div class="dadosConsulta">
+                <label>CEP</label>
+                <div class="linhaE"></div>
+                <p>
+                  <b>{{ dependente.CEP }}</b>
+                </p>
+              </div>
+
+              <div class="dadosConsulta">
+                <label>Cidade</label>
+                <div class="linhaE"></div>
+                <p>
+                  <b>{{ dependente.cidade }}</b>
+                </p>
+              </div>
+
+              <div class="dadosConsulta">
+                <label>Estado UF</label>
+                <div class="linhaE"></div>
+                <p>
+                  <b>{{ dependente.estado }}</b>
+                </p>
+              </div>
+
+              <div style="width: 100%; margin-top: 10px">
+                <hr />
+              </div>
+              <div class="dadosConsulta">
+                <label>Data de Recebimento</label>
+                <div class="linhaE"></div>
+                <p>
+                  <b>{{ dependente.data_recebimento }}</b>
+                </p>
+              </div>
+
+              <div class="dadosConsulta">
+                <label>Data de Admissão</label>
+                <div class="linhaE"></div>
+                <p>
+                  <b>{{ dependente.data_admissao }}</b>
+                </p>
+              </div>
+
+              <div class="dadosConsulta">
+                <label>Data de Casamento</label>
+                <div class="linhaE"></div>
+                <p>
+                  <b>{{ dependente.data_casamento }}</b>
+                </p>
+              </div>
+
+              <div style="width: 100%; margin-top: 10px">
+                <hr />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div style="width: 100%; margin-top: 10px">
+                <hr />
+              </div>
+              <div class="dadosConsulta important">
+                <label>Declaração de Saúde </label>
+                <div class="linhaE"></div>
+                <p>
+                  <b>{{ dependente.declaracao_saude }}</b>
+                </p>
+              </div>
+
+              <div class="dadosConsulta important">
+                <label>Descrição Declaração Saúde</label>
+                <div class="linhaE"></div>
+                <p>
+                  <b>{{ dependente.desc_declarao_saude }}</b>
+                </p>
+              </div>
+
+              <div class="dadosConsulta obs">
+                <label>Observações</label>
+                <div class="linhaE"></div>
+                <p>
+                  <b>{{ dependente.observacoes }}</b>
+                </p>
+              </div>
+
+              <!--  -->
+            </div>
+            <hr />
+          </form>
+        </div>
+
+        <!--  -->
+      </div>
+    </div>
+    <app-rodape></app-rodape>
+  </div>
+</div>
+<script>
+  document.title = "Consulta Dependente";
+</script>

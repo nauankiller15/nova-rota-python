@@ -217,7 +217,7 @@
               [ngClass]="tarefa.status_tarefa ? 'tarefa-completed' : ''"
               *ngFor="
                 let tarefa of busca
-                  | orderBy: 'created_at':false
+                  | orderBy: 'created_at':true
                   | paginate: { id: 'tarefa', itemsPerPage: 8, currentPage: p }
               "
               (click)="tarefaClicked(tarefa)"
