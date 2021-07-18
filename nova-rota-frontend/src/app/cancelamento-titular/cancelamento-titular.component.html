@@ -119,10 +119,11 @@
             <div *ngIf="contentLoaded">
               <div for="checkedAllTitulares" class="contentCancelar">
                 <button class="btn btn-primary">
-                    <input id="checkedAllTitulares" type="checkbox" />
-                    <label for="checkedAllTitulares" style="margin-left: 10px" 
-                      >Selecionar tudo</label>
-                  </button>
+                  <input id="checkedAllTitulares" type="checkbox" />
+                  <label for="checkedAllTitulares" style="margin-left: 10px"
+                    >Selecionar tudo</label
+                  >
+                </button>
               </div>
               <div class="contentCancelar">
                 <button class="btn btn-cancelar">
@@ -164,10 +165,6 @@
                   ></i>
                   CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
                   {{ resultado.nome_benef }}
-                  <i
-                    style="float: right; margin-top: 4px"
-                    class="fas fa-external-link-alt"
-                  ></i>
                 </li>
                 <h4
                   class="loadit"
@@ -458,8 +455,8 @@
 
       <!--  -->
     </div>
+    <app-rodape></app-rodape>
   </div>
-  <app-rodape></app-rodape>
 </div>
 <!-- </div> -->
 <script>
