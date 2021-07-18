@@ -8,11 +8,11 @@ import { Titular } from '../novo-titular/models';
 declare var $: any;
 
 @Component({
-  selector: 'app-consulta-titular',
-  templateUrl: './consulta-titular.component.html',
-  styleUrls: ['./consulta-titular.component.css'],
+  selector: 'app-cancelamento-titular',
+  templateUrl: './cancelamento-titular.component.html',
+  styleUrls: ['./cancelamento-titular.component.css'],
 })
-export class ConsultaTitularComponent implements OnInit {
+export class CancelamentoTitularComponent implements OnInit {
   
   data_casamento: Titular[] = [];
   // DADOS DO TITULAR

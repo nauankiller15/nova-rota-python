@@ -126,7 +126,7 @@
                       | orderBy: 'created_at':false
                       | paginate
                         : {
-                            id: 'titulars',
+                            id: 'titularsConsulta',
                             itemsPerPage: 14,
                             currentPage: p
                           }
@@ -163,7 +163,7 @@
               </div>
             </div>
             <pagination-controls
-              id="titulars"
+              id="titularsConsulta"
               class="paginacao"
               maxSize="7"
               autoHide="true"
@@ -401,11 +401,8 @@
                 <div class="linhaE"></div>
                 <p>
                   <b>{{ titular.data_casamento }}</b>
+                  <b *ngIf="data_casamento.length > 0">Nenhuma data</b>
                 </p>
-              </div>
-
-              <div style="width: 100%; margin-top: 10px">
-                <hr />
               </div>
             </div>
 

@@ -5,21 +5,21 @@
         <div class="page-title-wrapper">
           <div class="page-title-heading">
             <div class="page-title-icon">
-              <i class="fas fas fa-user-plus icon-gradient bg-mean-fruit"> </i>
+              <i class="fas fas fa-user-tie icon-gradient bg-mean-fruit"> </i>
             </div>
             <div>
-              Consulta de Dependentes
+              Cancelamento de Titulares
               <div class="page-title-subheading">
-                Consulta de dados - Dependentes Ativos e Cancelados.
+                Cancelamento de dados - Titulares Ativos.
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div id="consulta3" class="main-card mb-3 card">
+      <div id="consulta4" class="main-card mb-3 card">
         <div class="card-body">
-          <h5 class="card-title">Consultar o Dependente</h5>
+          <h5 class="card-title">Consultar o titular</h5>
           <form class="needs-validation">
             <div class="form-row">
               <div class="input-group col-md-3 mb3">
@@ -39,17 +39,17 @@
               </div>
               <!-- (keypress)="textOnly($event)" -->
               <div class="input-group col-md-4 mb3">
-                <label>Nome do Dependente:</label>
+                <label>Nome do titular:</label>
                 <div style="width: 100%"></div>
                 <span class="input-group-text" id="basic-addon1"
-                  ><i class="fas fa-user-plus"></i
+                  ><i class="fas fa-user-tie"></i
                 ></span>
                 <input
                   (input)="searchNomeBenef($event.target.value)"
-                  name="nome_dependente"
+                  name="nome_titular"
                   type="text"
                   class="form-control"
-                  placeholder="Digite aqui o nome do dependente"
+                  placeholder="Digite aqui o nome do titular"
                 />
               </div>
             </div>
@@ -117,8 +117,21 @@
             </ngx-skeleton-loader>
 
             <div *ngIf="contentLoaded">
+              <div for="checkedAllTitulares" class="contentCancelar">
+                <button class="btn btn-primary">
+                    <input id="checkedAllTitulares" type="checkbox" />
+                    <label for="checkedAllTitulares" style="margin-left: 10px" 
+                      >Selecionar tudo</label>
+                  </button>
+              </div>
+              <div class="contentCancelar">
+                <button class="btn btn-cancelar">
+                  <i style="margin-right: 6px" class="fas fa-times-circle"></i
+                  >Cancelar
+                </button>
+              </div>
               <div class="titulares">
-                Dependentes Encontrados:
+                Titulares Encontrados:
                 <li
                   class="loadit"
                   *ngFor="
@@ -126,13 +139,16 @@
                       | orderBy: 'created_at':false
                       | paginate
                         : {
-                            id: 'dependentesConsulta',
+                            id: 'titularsCancelamento',
                             itemsPerPage: 14,
                             currentPage: p
                           }
                   "
-                  (click)="dependenteClickedConsulta(resultado)"
+                  id="checkedTitular"
                 >
+                  <input for="checkedTitular" type="checkbox" />
+
+                  <!-- (click)="titularClickedConsulta(resultado)" -->
                   <i
                     style="
                       font-size: 18px;
@@ -144,10 +160,10 @@
                       padding: 3px;
                       color: #434343;
                     "
-                    class="fas fa-user-plus"
+                    class="fas fa-user-tie"
                   ></i>
                   CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
-                  {{ resultado.nome_dependente }}
+                  {{ resultado.nome_benef }}
                   <i
                     style="float: right; margin-top: 4px"
                     class="fas fa-external-link-alt"
@@ -163,7 +179,7 @@
               </div>
             </div>
             <pagination-controls
-              id="dependentesConsulta"
+              id="titularsCancelamento"
               class="paginacao"
               maxSize="7"
               autoHide="true"
@@ -177,50 +193,25 @@
           </form>
         </div>
       </div>
-      <div id="dependentesappearConsulta" class="main-card mb-3 card">
+      <!-- <div id="titularesappearConsulta" class="main-card mb-3 card">
         <h1
           class="titular-ts"
           style="margin-left: 20px; margin-right: 20px; padding-top: 20px"
         >
-          <div id="voltardadosdepConsulta" class="voltar">
+          <div id="voltardadosTitConsulta" class="voltar">
             <i class="fas fa-chevron-left"></i>
           </div>
-          {{ dependente.nome_dependente }}
+          {{ titular.nome_benef }}
           <p class="cpf-ts">
             Inscrito(a) sob CPF:
-            {{ dependente.CPF | mask: "000.000.000-99" }}
-          </p>
-          <p class="cpf-ts">
-            Dependente de:
-            <i
-              style="
-                font-size: 18px;
-                margin-left: 9px;
-                margin-right: 1px;
-                background-color: #eff9ff;
-                border: 1px solid #ced4da;
-                border-radius: 0.25rem;
-                padding: 7px;
-              "
-              class="fas fa-user-tie"
-            ></i>
-            <b
-              style="
-                padding-right: 5px;
-                padding-bottom: 4px;
-                border: 1px solid #ced4da;
-                border-radius: 0.25rem;
-              "
-            >
-              {{ dependente.titular_nome }}
-            </b>
+            {{ titular.CPF | mask: "000.000.000-99" }}
           </p>
 
           <div class="botao-anexosAlt">
             <button
               class="btn btn-primary"
               style="width: 160px"
-              id="abrirAnexoConsultaDependente"
+              id="abrirAnexoConsulta2"
             >
               <i style="margin-right: 6px" class="fas fa-file-image"></i>Abrir
               Anexos
@@ -228,7 +219,7 @@
           </div>
         </h1>
 
-        <!-- TELA DE ANEXOS DE CASAMENTO -->
+        TELA DE ANEXOS DE CASAMENTO
         <div id="vinc-anexo-casadoAlt">
           <div class="box-anexo">
             <div class="anexo-info-box-titular-vinc">
@@ -245,8 +236,8 @@
 
               <img
                 style="width: 250px"
-                src="{{ dependente.anexo_doc_casamento }}"
-                alt="Certidão de Casamento de {{ dependente.nome_dependente }}"
+                src="{{ titular.anexo_doc_casamento }}"
+                alt="Certidão de Casamento de {{ titular.nome_benef }}"
               />
               <label
                 for="avatar"
@@ -263,7 +254,7 @@
                 type="file"
                 id="imagemCasado"
                 accept="image/png, image/jpeg"
-                [(ngModel)]="dependente.anexo_doc_casamento"
+                [(ngModel)]="titular.anexo_doc_casamento"
                 name="anexo_doc_casamento"
                 ng-required="false"
               />
@@ -276,17 +267,17 @@
                   bottom: 20px;
                 "
                 class="btn btn-primary"
-                id="fecharAnexoConsultaDependente"
+                id="fecharAnexoConsulta2"
               >
                 Fechar tela
               </button>
             </div>
           </div>
-        </div>
-        <!--  -->
+        </div> -->
+      <!--  -->
 
-        <div id="postDep" class="card-body">
-          <h5 class="card-title">DADOS CADASTRADOS DO DEPENDENTE:</h5>
+      <!-- <div id="postTitConsulta" class="card-body">
+          <h5 class="card-title">DADOS CADASTRADOS DO titular:</h5>
           <hr />
           <form class="needs-validation">
             <div class="form-row">
@@ -294,7 +285,7 @@
                 <label>Código Empresa</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.cod_empresa }}</b>
+                  <b>{{ titular.cod_empresa }}</b>
                 </p>
               </div>
 
@@ -302,7 +293,7 @@
                 <label>Prioridade</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.prioridade }}</b>
+                  <b>{{ titular.prioridade }}</b>
                 </p>
               </div>
 
@@ -310,7 +301,7 @@
                 <label>Número da Carteirinha</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.carteirinha }}</b>
+                  <b>{{ titular.carteirinha }}</b>
                 </p>
               </div>
 
@@ -318,7 +309,7 @@
                 <label>Status Sistema</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.status }}</b>
+                  <b>{{ titular.status }}</b>
                 </p>
               </div>
             </div>
@@ -333,23 +324,15 @@
                 <label>Nome da Mãe</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.nome_mae }}</b>
+                  <b>{{ titular.nome_mae }}</b>
                 </p>
               </div>
-             
+
               <div class="dadosConsulta">
                 <label>Celular</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.celular }}</b>
-                </p>
-              </div>
-
-              <div class="dadosConsulta parentesco">
-                <label>Parentesco</label>
-                <div class="linhaE"></div>
-                <p>
-                  <b>{{ dependente.tipo_parentesco }}</b>
+                  <b>{{ titular.celular }}</b>
                 </p>
               </div>
 
@@ -357,7 +340,7 @@
                 <label>Tipo</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.tipo }}</b>
+                  <b>{{ titular.tipo }}</b>
                 </p>
               </div>
 
@@ -365,7 +348,7 @@
                 <label>Sexo</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.sexo }}</b>
+                  <b>{{ titular.sexo }}</b>
                 </p>
               </div>
 
@@ -373,7 +356,7 @@
                 <label>Estado Civil</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.estado_civil }}</b>
+                  <b>{{ titular.estado_civil }}</b>
                 </p>
               </div>
 
@@ -390,7 +373,7 @@
                 <label>CEP</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.CEP }}</b>
+                  <b>{{ titular.CEP }}</b>
                 </p>
               </div>
 
@@ -398,7 +381,7 @@
                 <label>Cidade</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.cidade }}</b>
+                  <b>{{ titular.cidade }}</b>
                 </p>
               </div>
 
@@ -406,7 +389,7 @@
                 <label>Estado UF</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.estado }}</b>
+                  <b>{{ titular.estado }}</b>
                 </p>
               </div>
 
@@ -417,7 +400,7 @@
                 <label>Data de Recebimento</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.data_recebimento }}</b>
+                  <b>{{ titular.data_recebimento }}</b>
                 </p>
               </div>
 
@@ -425,7 +408,7 @@
                 <label>Data de Admissão</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.data_admissao }}</b>
+                  <b>{{ titular.data_admissao }}</b>
                 </p>
               </div>
 
@@ -433,11 +416,10 @@
                 <label>Data de Casamento</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.data_casamento }}</b>
+                  <b>{{ titular.data_casamento }}</b>
                   <b *ngIf="data_casamento.length > 0">Nenhuma data</b>
                 </p>
               </div>
-              
             </div>
 
             <div class="form-row">
@@ -448,7 +430,7 @@
                 <label>Declaração de Saúde </label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.declaracao_saude }}</b>
+                  <b>{{ titular.declaracao_saude }}</b>
                 </p>
               </div>
 
@@ -456,7 +438,7 @@
                 <label>Descrição Declaração Saúde</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.desc_declarao_saude }}</b>
+                  <b>{{ titular.desc_declarao_saude }}</b>
                 </p>
               </div>
 
@@ -464,22 +446,22 @@
                 <label>Observações</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.observacoes }}</b>
+                  <b>{{ titular.observacoes }}</b>
                 </p>
               </div>
 
-              <!--  -->
+              
             </div>
             <hr />
           </form>
-        </div>
+        </div> -->
 
-        <!--  -->
-      </div>
+      <!--  -->
     </div>
-    <app-rodape></app-rodape>
   </div>
+  <app-rodape></app-rodape>
 </div>
+<!-- </div> -->
 <script>
-  document.title = "Consulta Dependente";
+  document.title = "Cancelamento titular";
 </script>

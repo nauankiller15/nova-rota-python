@@ -33,6 +33,8 @@ import { NovidadesDetailsComponent } from './novidades-details/novidades-details
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ConsultaDependenteComponent } from './consulta-dependente/consulta-dependente.component';
 import { ConsultaTitularComponent } from './consulta-titular/consulta-titular.component';
+import { CancelamentoDependenteComponent } from './cancelamento-dependente/cancelamento-dependente.component';
+import { CancelamentoTitularComponent } from './cancelamento-titular/cancelamento-titular.component';
 //
 
 const routes: Routes = [
@@ -71,25 +73,37 @@ const routes: Routes = [
         path: 'alt-dependente-details/:id',
         component: AltDependenteDetailsComponent,
       },
-      // 
-      // 
+      //
+      //
       // === CADASTRO DE EMPRESAS ====
       { path: 'nova-empresa', component: NovaEmpresaComponent },
-      // 
+      //
       // ==== ALTERACAO EMPRESAS ====
       { path: 'alteracao-empresa', component: AlteracaoEmpresaComponent },
       {
         path: 'alt-empresa-details/:id',
         component: AltEmpresaDetailsComponent,
       },
+      //
+      //
       // === CONSULTA DE TITULARES ====
       { path: 'consulta-titular', component: ConsultaTitularComponent },
-      // 
-       // === CONSULTA DE DEPENDENTES ====
+      //
+      //
+      // === CANCELAMENTO DE TITULARES ====
+      { path: 'cancelamento-titular', component: CancelamentoTitularComponent },
+      //
+      //
+      // === CONSULTA DE DEPENDENTES ====
       { path: 'consulta-dependente', component: ConsultaDependenteComponent },
-      // 
+      //
+      //
+      // === CANCELAMENTO DE DEPENDENTES ====
+      { path: 'cancelamento-dependente', component: CancelamentoDependenteComponent },
+      //
+      //
     ],
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     path: '',

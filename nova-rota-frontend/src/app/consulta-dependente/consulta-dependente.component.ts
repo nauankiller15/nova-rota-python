@@ -14,6 +14,8 @@ declare var $: any;
 })
 export class ConsultaDependenteComponent implements OnInit {
   // CARREGADOR
+
+  data_casamento: Dependente[] = [];
   animation = 'pulse';
   contentLoaded = false;
   count = 2;
@@ -23,8 +25,8 @@ export class ConsultaDependenteComponent implements OnInit {
   busca: Dependente[];
 
   // BUSCA DOS TITULARES
-   buscaTitularAlt: Titular[] = [];
-  
+  buscaTitularAlt: Titular[] = [];
+
   dependentes: Dependente[];
   dependente: Dependente = new Dependente();
 
@@ -177,7 +179,6 @@ export class ConsultaDependenteComponent implements OnInit {
       (data) => {
         this.titulares = data;
         this.buscaTitularAlt = data;
-
       },
       (error) => {
         this.toastr.error('Aconteceu um Erro!', error.message);
@@ -206,7 +207,6 @@ export class ConsultaDependenteComponent implements OnInit {
       this.buscaTitularAlt = this.titulares;
     }
   }
-
 
   dependenteClickedConsulta = (dependentes: { id: any }) => {
     $('#consulta3').slideUp(250);
