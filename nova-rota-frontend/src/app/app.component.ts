@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './api.service';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscriber } from 'rxjs';
+import { Router } from '@angular/router';
 
 declare var $: any;
 
