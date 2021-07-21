@@ -18,6 +18,22 @@
       </div>
 
       <div id="consulta3" class="main-card mb-3 card">
+        <nav class="menuVigencia">
+          <ul class="menuItems">
+            <!-- BOTÃO REAJUSTE -->
+            <li
+              class="active radiusTop"
+              (click)="depAtivo()"
+            >
+              Dependentes Ativos
+            </li>
+
+            <!-- BOTÃO SINISTRALIDADE -->
+            <li class="cancelados" (click)="depCancelado()">
+              Dependentes Cancelados
+            </li>
+          </ul>
+        </nav>
         <div class="card-body">
           <h5 class="card-title">Consultar o Dependente</h5>
           <form class="needs-validation">

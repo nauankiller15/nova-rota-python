@@ -236,4 +236,19 @@ export class ConsultaDependenteComponent implements OnInit {
       }
     );
   }
+
+  depAtivo() {
+    $('.menuVigencia').removeClass('canceladoBorder');
+    $('.menuItems li').siblings().removeClass('canceladoBtn');
+    $('.menuItems li').addClass('active');
+    $('.cancelados').removeClass('canceladoBtn');
+    $('.cancelados').removeClass('active');
+
+  }
+  depCancelado() {
+    $('.menuVigencia').addClass('canceladoBorder');
+    $('.cancelados').addClass('canceladoBtn');
+    $('.radiusTop').removeClass('active');
+    $('.cancelados').removeClass('active');
+  }
 }
