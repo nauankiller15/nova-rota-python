@@ -4,7 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../api.service';
 import { Titular } from '../novo-titular/models';
 
-
 declare var $: any;
 
 @Component({
@@ -13,7 +12,6 @@ declare var $: any;
   styleUrls: ['./consulta-titular.component.css'],
 })
 export class ConsultaTitularComponent implements OnInit {
-  
   data_casamento: Titular[] = [];
   // DADOS DO TITULAR
   busca: Titular[];
@@ -114,6 +112,8 @@ export class ConsultaTitularComponent implements OnInit {
     $('#fecharAnexoConsulta2').click(function () {
       $('#vinc-anexo-casadoAlt').fadeOut('100');
     });
+
+   
   }
 
   searchCPF(CPF: string) {
@@ -125,7 +125,6 @@ export class ConsultaTitularComponent implements OnInit {
       this.busca = this.titulares;
     }
   }
-
 
   searchNomeBenef(nome_benef: string) {
     if (nome_benef != '') {
@@ -147,7 +146,7 @@ export class ConsultaTitularComponent implements OnInit {
         const mensagens = error.error;
         for (let mensagem in mensagens) {
           this.toastr.error(mensagem, mensagens[mensagem]);
-        } 
+        }
       }
     );
   };
@@ -189,5 +188,20 @@ export class ConsultaTitularComponent implements OnInit {
         }
       }
     );
+  }
+
+  titAtivo() {
+    $('.menuVigencia').removeClass('canceladoBorder');
+    $('.menuItems li').siblings().removeClass('canceladoBtn');
+    $('.menuItems li').addClass('active');
+    $('.cancelados').removeClass('canceladoBtn');
+    $('.cancelados').removeClass('active');
+
+  }
+  titCancelado() {
+    $('.menuVigencia').addClass('canceladoBorder');
+    $('.cancelados').addClass('canceladoBtn');
+    $('.radiusTop').removeClass('active');
+    $('.cancelados').removeClass('active');
   }
 }

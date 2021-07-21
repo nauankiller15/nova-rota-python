@@ -1,0 +1,10 @@
+.comprarBtn {
+  text-align: center;
+}
+.comprarBtn button {
+  padding: 12px;
+  height: 50px;
+  font-family: heebo;
+  font-size: 20px;
+  background-color: #f0ff00;
+}

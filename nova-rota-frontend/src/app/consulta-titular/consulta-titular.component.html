@@ -18,6 +18,22 @@
       </div>
 
       <div id="consulta4" class="main-card mb-3 card">
+        <nav class="menuVigencia">
+          <ul class="menuItems">
+            <!-- BOTÃO REAJUSTE -->
+            <li
+              class="active radiusTop"
+              (click)="titAtivo()"
+            >
+              Titulares Ativos
+            </li>
+
+            <!-- BOTÃO SINISTRALIDADE -->
+            <li class="cancelados" (click)="titCancelado()">
+              Titulares Cancelados
+            </li>
+          </ul>
+        </nav>
         <div class="card-body">
           <h5 class="card-title">Consultar o titular</h5>
           <form class="needs-validation">
@@ -117,7 +133,7 @@
             </ngx-skeleton-loader>
 
             <div *ngIf="contentLoaded">
-              <div class="titulares">
+                          <div class="titulares">
                 Titulares Encontrados:
                 <li
                   class="loadit"
