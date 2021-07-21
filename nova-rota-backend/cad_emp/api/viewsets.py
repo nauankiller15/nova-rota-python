@@ -1,3 +1,4 @@
+from permissions.permissions import Proprietario
 from rest_framework.viewsets import ModelViewSet
 from django_filters.rest_framework import DjangoFilterBackend
 from cad_emp.models import ContratoOperadora, ContratoSeguradora, Empresa, Filial, Reajuste, Sinistralidade
@@ -7,11 +8,13 @@ from .serializers import ContratoOperadoraSerializer, ContratoSeguradoraSerializ
 class EmpresaViewSet(ModelViewSet):
     queryset = Empresa.objects.all()
     serializer_class = EmpresaSerializer
+    permissions = [Proprietario]
 
 
 class FilialViewSet(ModelViewSet):
     queryset = Filial.objects.all()
     serializer_class = FilialSerializer
+    permission_classes = [Proprietario]
 
 
 class ContratoOperadoraViewSet(ModelViewSet):
