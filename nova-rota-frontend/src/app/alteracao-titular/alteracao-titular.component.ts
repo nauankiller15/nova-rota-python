@@ -189,4 +189,19 @@ export class AlteracaoTitularComponent implements OnInit {
       }
     );
   }
+  titAtivo() {
+    $('.menuVigencia').removeClass('canceladoBorder');
+    $('.menuItems li').siblings().removeClass('canceladoBtn');
+    $('.menuItems li').addClass('active');
+    $('.cancelados').removeClass('canceladoBtn');
+    $('.cancelados').removeClass('active');
+
+  }
+  titCancelado() {
+    $('.menuVigencia').addClass('canceladoBorder');
+    $('.cancelados').addClass('canceladoBtn');
+    $('.radiusTop').removeClass('active');
+    $('.cancelados').removeClass('active');
+  }
+  
 }

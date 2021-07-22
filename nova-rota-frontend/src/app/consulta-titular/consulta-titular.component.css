@@ -409,11 +409,10 @@ em {
 }
 
 .menuVigencia .menuItems li.active:hover {
-  transform: translate(0px, 0px);
+  transform: none;
 }
 
 .menuVigencia .menuItems li:hover {
   display: block;
-  transform: translate(0px, -4px);
   transition: all 0.3s ease-in-out;
 }

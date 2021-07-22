@@ -18,6 +18,22 @@
       </div>
 
       <div id="consulta" class="main-card mb-3 card">
+        <nav class="menuVigencia">
+          <ul class="menuItems">
+            <!-- BOTÃO REAJUSTE -->
+            <li
+              class="active radiusTop"
+              (click)="titAtivo()"
+            >
+              Titulares Ativos
+            </li>
+
+            <!-- BOTÃO SINISTRALIDADE -->
+            <li class="cancelados" (click)="titCancelado()">
+              Titulares Cancelados
+            </li>
+          </ul>
+        </nav>
         <div class="card-body">
           <h5 class="card-title">Consultar o Titular</h5>
           <form class="needs-validation" novalidate>
