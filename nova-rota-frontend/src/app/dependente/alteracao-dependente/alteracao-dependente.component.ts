@@ -20,15 +20,15 @@ export class AlteracaoDependenteComponent implements OnInit {
   widthHeightSizeInPixels = 50;
 
   // DADOS DO DEPENDENTE
-  busca: Dependente[];
-
-  // BUSCA DOS TITULARES
-   buscaTitularAlt: Titular[] = [];
-  dependentes: Dependente[];
+  busca: Dependente[] = [];
+  dependentes: Dependente[] = [];
   dependente: Dependente = new Dependente();
 
+  // BUSCA DOS TITULARES
+  buscaTitularAlt: Titular[] = [];
+  titulares: Titular[] = [];
+
   //
-  titulares: Titular[];
   //
   intervalId: number | null = null;
   //

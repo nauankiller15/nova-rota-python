@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ApiService } from '../../api.service';
+import { ApiService } from 'src/app/api.service';
 import { Titular } from '../models';
 
 
@@ -15,9 +15,8 @@ declare var $: any;
 export class AlteracaoTitularComponent implements OnInit {
 
   // DADOS DO TITULAR
-  busca: Titular[];
-
-  titulares: Titular[];
+  busca: Titular[] = [];
+  titulares: Titular[] = [];
   titular: Titular = new Titular();
 
   // CARREGADOR
@@ -36,7 +35,6 @@ export class AlteracaoTitularComponent implements OnInit {
   constructor(
     private toastr: ToastrService,
     private api: ApiService,
-    private route: ActivatedRoute
   ) {
     this.getTitulares();
   }
