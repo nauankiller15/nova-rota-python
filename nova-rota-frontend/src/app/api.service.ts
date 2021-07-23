@@ -23,7 +23,7 @@ export class ApiService {
     });
   }
 
-  inserir(apiUrl, dados): Observable<any> {
+  inserir(apiUrl:string, dados:any): Observable<any> {
     return this.http.post(this.baseUrl + apiUrl, dados, {
       headers: this.httpHeaders,
     });

@@ -124,7 +124,7 @@
               </div>
               <div class="widget-content-left ml-3 header-user-info">
                 <div class="widget-heading">{{ usuario.username }}</div>
-                <div class="widget-subheading">Cargo do funcionário</div>
+                <div class="widget-subheading">{{usuario.cargo}}</div>
               </div>
               <div class="widget-content-right header-user-info ml-3">
                 <button
@@ -146,7 +146,7 @@
     </div>
   </div>
   <div class="app-main">
-    <app-sidebar></app-sidebar>
+    <app-sidebar [usuario]="usuario"></app-sidebar>
     <!-- APPS APARECERAO AQUI -->
 
     <div id="conteudo"></div>
