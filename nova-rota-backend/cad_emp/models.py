@@ -65,7 +65,7 @@ class Sinistralidade(models.Model):
 
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     ano = models.PositiveIntegerField(blank=False, null=False)
-    sinistralidade = models.DecimalField(max_digits=5, decimal_places=2, blank=False, null=False)
+    sinistralidade = models.DecimalField(max_digits=5, decimal_places=2)
 
 
 class ContratoOperadora(models.Model):

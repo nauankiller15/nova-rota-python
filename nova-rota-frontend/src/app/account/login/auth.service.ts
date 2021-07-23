@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
-import { Login, User } from './models';
+import { Login } from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -64,23 +63,10 @@ export class AuthService {
     }
   }
 
-  getUser() {
+  getUserId() {
     const token = this.getAuthorizationToken()
     const tokenDecode = jwtDecode(token);
-    let usuario: User = new User;
 
-    if (tokenDecode['user_id']) {
-      usuario.user_id = tokenDecode['user_id'];
-    }
-
-    if (tokenDecode['username']) {
-      usuario.username = tokenDecode['username'];
-    }
-
-    if (tokenDecode['email']) {
-      usuario.email = tokenDecode['email'];
-    }
-
-    return usuario
+    return tokenDecode['user_id']
   }
 }

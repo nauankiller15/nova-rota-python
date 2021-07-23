@@ -13,6 +13,5 @@ class TarefaViewSet(ModelViewSet):
         return super().list(request, *args, **kwargs)
     
     def create(self, request, *args, **kwargs):
-        if request.data['usuario'] != request.user.id:
-            raise PermissionDenied('ID do Usuário Inválido')
+        request.data['usuario'] = request.user.id
         return super().create(request, *args, **kwargs)

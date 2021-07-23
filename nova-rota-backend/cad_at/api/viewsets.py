@@ -1,6 +1,6 @@
+from rest_framework.permissions import IsAdminUser
 from django.core.exceptions import ValidationError
 from cad_bp.models import Parentesco
-from django.http import Http404
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ViewSet
 from cad_bp.api.serializers import ParentescoSerializer

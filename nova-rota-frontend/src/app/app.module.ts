@@ -3,43 +3,55 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { TarefasDetailsComponent } from './tarefas-details/tarefas-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NovaTarefaComponent } from './nova-tarefa/nova-tarefa.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { AlteracaoTitularComponent } from './alteracao-titular/alteracao-titular.component';
 import { RouterModule } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NovoTitularComponent } from './novo-titular/novo-titular.component';
-import { AltTitularDetailsComponent } from './alt-titular-details/alt-titular-details.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { NovoDependenteComponent } from './novo-dependente/novo-dependente.component';
-import { AlteracaoDependenteComponent } from './alteracao-dependente/alteracao-dependente.component';
-import { AltDependenteDetailsComponent } from './alt-dependente-details/alt-dependente-details.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { NovaEmpresaComponent } from './nova-empresa/nova-empresa.component';
-import { AlteracaoEmpresaComponent } from './alteracao-empresa/alteracao-empresa.component';
-import { AltEmpresaDetailsComponent } from './alt-empresa-details/alt-empresa-details.component';
-import { HomeComponent } from './home/home.component';
-import { AuthenticationComponent } from './authentication/authentication.component';
-import { ProfileComponent } from './profile/profile.component';
-import { CreateAccountComponent } from './account/create-account/create-account.component';
-import { LoginComponent } from './account/login/login.component';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { NovidadesDetailsComponent } from './novidades-details/novidades-details.component';
+import { ProfileComponent } from './usuario/profile/profile.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './http-interceptors/auth-interceptor';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { RodapeComponent } from './rodape/rodape.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { RodapeComponent } from './base/rodape/rodape.component';
 import { NgxLoadingModule } from 'ngx-loading';
-import { ConsultaTitularComponent } from './consulta-titular/consulta-titular.component';
-import { ConsultaDependenteComponent } from './consulta-dependente/consulta-dependente.component';
-import { CancelamentoTitularComponent } from './cancelamento-titular/cancelamento-titular.component';
-import { CancelamentoDependenteComponent } from './cancelamento-dependente/cancelamento-dependente.component';
+
+import { AuthInterceptor } from './http-interceptors/auth-interceptor';
+
+import { SidebarComponent } from './base/sidebar/sidebar.component';
+
+import { HomeComponent } from './home/home.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+
+import { AuthenticationComponent } from './authentication/authentication.component';
+import { LoginComponent } from './account/login/login.component';
+
+import { CreateAccountComponent } from './account/create-account/create-account.component';
+import { AlterarUsuarioComponent } from './usuario/alterar-usuario/alterar-usuario.component';
+import { NovoUsuarioComponent } from './usuario/novo-usuario/novo-usuario.component';
+
+import { NovoTitularComponent } from './titular/novo-titular/novo-titular.component';
+import { AlteracaoTitularComponent } from './titular/alteracao-titular/alteracao-titular.component';
+import { AltTitularDetailsComponent } from './titular/alt-titular-details/alt-titular-details.component';
+import { ConsultaTitularComponent } from './titular/consulta-titular/consulta-titular.component';
+import { CancelamentoTitularComponent } from './titular/cancelamento-titular/cancelamento-titular.component';
+
+import { NovoDependenteComponent } from './dependente/novo-dependente/novo-dependente.component';
+import { ConsultaDependenteComponent } from './dependente/consulta-dependente/consulta-dependente.component';
+import { AlteracaoDependenteComponent } from './dependente/alteracao-dependente/alteracao-dependente.component';
+import { AltDependenteDetailsComponent } from './dependente/alt-dependente-details/alt-dependente-details.component';
+import { CancelamentoDependenteComponent } from './dependente/cancelamento-dependente/cancelamento-dependente.component';
+
+import { NovaEmpresaComponent } from './empresa/nova-empresa/nova-empresa.component';
+import { AlteracaoEmpresaComponent } from './empresa/alteracao-empresa/alteracao-empresa.component';
+import { AltEmpresaDetailsComponent } from './empresa/alt-empresa-details/alt-empresa-details.component';
+
+import { NovaTarefaComponent } from './tarefa/nova-tarefa/nova-tarefa.component';
+import { TarefasDetailsComponent } from './tarefa/tarefas-details/tarefas-details.component';
+
+import { NovidadesDetailsComponent } from './novidades-details/novidades-details.component';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -76,6 +88,8 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     ConsultaDependenteComponent,
     CancelamentoTitularComponent,
     CancelamentoDependenteComponent,
+    NovoUsuarioComponent,
+    AlterarUsuarioComponent,
   ],
   imports: [
     NgxSkeletonLoaderModule.forRoot(),

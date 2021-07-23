@@ -1,3 +1,5 @@
+from accounts.api.serializers import ManipularUsuarioSerializer
+from django.views.generic import base
 from django.contrib import admin
 from django.conf.urls import include
 from django.urls import path
@@ -7,6 +9,7 @@ from django.conf.urls.static import static
 from rest_framework import routers
 from rest_framework_jwt.views import obtain_jwt_token
 
+from accounts.api.viewsets import CargoViewSet, DadosUsuarioViewSet, ManipularUsuarioViewSet, UsuarioViewSet
 from cad_at.api.viewsets import TitularViewSet
 from cad_at.api.viewsets import TitularParentescos
 from cad_bp.api.viewsets import ParentescoViewSet
@@ -21,6 +24,10 @@ from tarefas.api.viewsets import TarefaViewSet
 
 
 router = routers.DefaultRouter()
+router.register(r'usuario', UsuarioViewSet)
+router.register(r'manipular-usuario', ManipularUsuarioViewSet, basename='manipular-usuario')
+router.register(r'dados-usuario', DadosUsuarioViewSet, basename='dados-usuario')
+router.register(r'cargo', CargoViewSet)
 router.register(r'titular', TitularViewSet)
 router.register(r'lista-parentesco', TitularParentescos, basename='lista-parentesco')
 router.register(r'parentesco', ParentescoViewSet)

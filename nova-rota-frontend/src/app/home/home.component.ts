@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { User } from '../account/login/models';
 import { AuthService } from '../account/login/auth.service';
 import { ApiService } from '../api.service';
+import { Cargo, Usuario } from '../usuario/models';
 import { Novidade, Tarefa } from './models';
 
 declare var $: any;
@@ -14,7 +14,9 @@ declare var $: any;
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  usuario: User = new User();
+  userID: number;
+  usuario: Usuario = new Usuario;
+  cargo: Cargo = new Cargo;
 
   // carregador
   animation = 'pulse';
@@ -50,7 +52,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.usuario = this.authService.getUser();
+    this.userID = this.authService.getUserId();
+    this.loadDadosUsuario(this.userID)
 
     setTimeout(() => {
       this.contentLoaded = true;
@@ -186,6 +189,20 @@ export class HomeComponent implements OnInit {
         this.toastr.error(mensagens[campo], 'Erro no ' + campo);
         }
         this.loading = false;
+      }
+    );
+  }
+
+  loadDadosUsuario(id: number) {
+    this.api.listar('dados-usuario/').subscribe(
+      (data) => {
+        this.usuario = data;
+      },
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
       }
     );
   }
