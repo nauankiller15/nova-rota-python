@@ -1,5 +1,5 @@
-window.onload = function () {
-  !(function (e) {
+$(window).on("load", function () {
+!(function (e) {
     var t = {};
     function n(i) {
       if (t[i]) return t[i].exports;
@@ -52400,4 +52400,4 @@ window.onload = function () {
     },
     function (e, t) {},
   ]);
-};
+});

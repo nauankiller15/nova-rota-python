@@ -30,7 +30,7 @@
                                 <input #nome="ngModel" [(ngModel)]="usuario.first_name"
                                     [class.is-invalid]="nome.invalid && nome.touched"
                                     [class.is-valid]="nome.valid && nome.touched" id="nome" name="nome" type="text"
-                                    class="form-control" placeholder="Nome" required />
+                                    class="form-control" placeholder="Digite aqui seu Nome" required />
                             </div>
 
                             <div class="col-md-4 mb-4">
@@ -38,7 +38,7 @@
                                 <input #sobrenome="ngModel" [(ngModel)]="usuario.last_name"
                                     [class.is-invalid]="sobrenome.invalid && sobrenome.touched"
                                     [class.is-valid]="sobrenome.valid && sobrenome.touched" id="sobrenome"
-                                    name="sobrenome" type="text" class="form-control" placeholder="Sobrenome"
+                                    name="sobrenome" type="text" class="form-control" placeholder="Digite aqui seu Sobrenome"
                                     required />
                             </div>
                         </div>
@@ -49,17 +49,17 @@
                                 <input #email="ngModel" [(ngModel)]="usuario.email"
                                     [class.is-invalid]="email.invalid && email.touched"
                                     [class.is-valid]="email.valid && email.touched" id="email" name="email" type="text"
-                                    class="form-control" placeholder="Email" required />
+                                    class="form-control" placeholder="Digite aqui seu Email" required />
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="col-md-3 mb-4">
-                                <label for="validationCustom01">UserName <span style="color: red">*</span></label>
+                                <label for="validationCustom01">Usuário <span style="color: red">*</span></label>
                                 <input #username="ngModel" [(ngModel)]="usuario.username"
                                     [class.is-invalid]="username.invalid && username.touched"
                                     [class.is-valid]="username.valid && username.touched" id="username" name="username"
-                                    type="text" class="form-control" placeholder="UserName" required />
+                                    type="text" class="form-control" placeholder="Digite aqui seu Usuário" required />
                             </div>
                         </div>
 
@@ -69,7 +69,7 @@
                                 <input #senha="ngModel" [(ngModel)]="usuario.password"
                                     [class.is-invalid]="senha.invalid && senha.touched"
                                     [class.is-valid]="senha.valid && senha.touched" id="senha" name="senha" type="text"
-                                    class="form-control cpf" placeholder="Senha" required />
+                                    class="form-control cpf" placeholder="Digite aqui sua Senha" required />
                             </div>
 
                             <div class="col-md-3 mb-4">
@@ -89,7 +89,7 @@
                                 <label for="validationCustom01">Cargo <span style="color: red">*</span></label>
                                 <select #cargo_input="ngModel" [(ngModel)]="cargo.cargo" name="cargo"
                                     class="form-control" required>
-                                    <option value=""></option>
+                                    <option value="">Selecione</option>
                                     <option value="funcionario">Funcionário</option>
                                     <option value="gestor">Gestor</option>
                                 </select>
@@ -102,7 +102,7 @@
                         class="btn btn-primary" (click)="novoUsuario()">
                         <i class="fas fa-check"></i> Gravar informações
                     </button>
-                    <button type="reset" class="btn btn-cancelar"><i class="far fa-times-circle"></i> Apagar
+                    <button type="reset" class="btn btn-cancelar apagarEmp"><i class="far fa-times-circle"></i> Apagar
                         tudo</button>
                 </div>
             </div>
