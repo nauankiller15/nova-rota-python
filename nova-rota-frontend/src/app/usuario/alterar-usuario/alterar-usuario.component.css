@@ -1,0 +1,191 @@
+.voltar {
+    z-index: 104;
+    cursor: pointer;
+    margin-left: -36px;
+    padding: 14px 2px 1px 0px;
+    border-radius: 50%;
+    background-color: #ededefa8;
+    font-size: 23px;
+    width: 57px;
+    text-align: center;
+    display: inline-block;
+    transition: 0.3s;
+    height: 57px;
+  }
+  .voltar:hover {
+    background-color: var(--cor-tema);
+    color: var(--branco);
+    transform: translate(-2px, 0px);
+  }
+  
+  .titular-ts {
+    border-bottom: 3px solid #ededefa8;
+  }
+  
+  .nome-ts {
+    font-size: 22px;
+    width: 88%;
+    margin-left: 50px;
+  }
+  
+  .cpfinput {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #495057;
+  }
+  
+  #userappear {
+    display: none;
+  }
+  
+  /* TELA DE ANEXO CASADO */
+  #vinc-anexo-casadoAlt {
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #0000005e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #vinc-anexo-casadoAlt {
+    display: none;
+  }
+  
+  .anexo-info-box-titular-vinc {
+    margin: auto;
+    width: 80%;
+    margin-top: 29px;
+    padding: 10px;
+  }
+  
+  .box-anexo {
+    border-top: 4px solid var(--cor-tema);
+    border-radius: 15px;
+    background: #ffffff;
+    width: 90vh;
+    min-height: 65vh;
+    margin: 10vh auto;
+    z-index: 997;
+    position: fixed;
+    top: 40vh;
+    left: 58%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .botao-anexosAlt {
+    position: absolute;
+    right: 20px;
+    border: 1px solid #ededefa8;
+    padding: 0px 6px 9px 12px;
+    top: 20px;
+  }
+  
+  
+  /* MENU DE ESCOLHA DE ATIVOS E CANCELADOS */
+  
+  .menuVigencia {
+    display: block;
+    left: 10px;
+    border-bottom: 2px solid var(--cor-tema);
+    margin-bottom: 5px;
+  }
+  
+  .radiusTop {
+    border-radius: 0.25rem 0px 0px 0px;
+  }
+  
+  .menuVigencia .menuItems {
+    margin-bottom: -2px;
+    list-style: none;
+    display: flex;
+    margin-left: -41px;
+  }
+  .menuVigencia .menuItems li {
+    display: block;
+    font-weight: 500;
+    padding: 21px;
+    text-decoration: none;
+    color: #495057;
+    font-size: 17px;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .canceladoBtn {
+    background: linear-gradient(0deg, #5d0c0c 0%, #961111 100%) !important;
+    color: #fff !important;
+    animation: slide-right 0.4s ease-in-out;
+  }
+  
+  .canceladoBtn:hover {
+    transform: translate(0px, 0px) !important;
+  }
+  
+  .canceladoBorder {
+    border-bottom: 2px solid #961111;
+  }
+  
+  .menuVigencia .menuItems li.active {
+    display: block;
+    background: linear-gradient(0deg, #0c5d24 0%, #11963c 100%);
+    padding: 21px;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    animation: slide-left 0.4s ease-in-out;
+    transform: translate(0px, 0px) !important;
+  
+    /* border: 2px solid #ffffff29; */
+  }
+  .menuVigencia .menuItems li.active:nth-child(2) {
+    display: block;
+    background: linear-gradient(0deg, #0c5d24 0%, #11963c 100%);
+    padding: 21px;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    animation: slide-right 0.4s ease-in-out;
+  }
+  
+  @keyframes slide-inserir {
+    0% {
+      transform: translateX(-260px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slide-left {
+    0% {
+      transform: translateX(60px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slide-right {
+    0% {
+      transform: translateX(-60px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  .menuVigencia .menuItems li.active:hover {
+    transform: translate(0px, 0px) !important;
+  }
+  
+  .menuVigencia .menuItems li:hover {
+    display: block;
+    transition: all 0.3s ease-in-out;
+  }
+  

@@ -11,7 +11,14 @@ declare var $: any;
   styleUrls: ['./alterar-usuario.component.css']
 })
 export class AlterarUsuarioComponent implements OnInit {
+  // CARREGADOR
+  animation = 'pulse';
   contentLoaded = false;
+  count = 2;
+  widthHeightSizeInPixels = 50;
+  
+  intervalId: number | null = null;
+
   p = 1;
 
   busca: Usuario[]  = []
@@ -24,6 +31,34 @@ export class AlterarUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+       // CARREGADOR TIMEOUT
+       setTimeout(() => {
+        this.contentLoaded = true;
+      }, 2500);
+  
+      this.intervalId = window.setInterval(() => {
+        this.animation = this.animation === 'pulse' ? 'progress-dark' : 'pulse';
+        this.count = this.count === 2 ? 5 : 2;
+        this.widthHeightSizeInPixels =
+          this.widthHeightSizeInPixels === 50 ? 100 : 50;
+      }, 5000);
+      //---------------
+
+    // VOLTAR ALTERAÇÃO DE DADOS
+    $('#voltarUser').click(function () {
+      $('#userappear').fadeOut('200');
+      $('#consultaUser').slideDown('200');
+      $('#postTit').slideUp(600);
+    });
+
+    $('#abrirAnexoAlt').click(function () {
+      $('#vinc-anexo-casadoAlt').fadeIn('100');
+    });
+
+    $('#fecharAnexoAlt').click(function () {
+      $('#vinc-anexo-casadoAlt').fadeOut('100');
+    });
+
   }
 
   loadUsuarios() {
@@ -47,9 +82,9 @@ export class AlterarUsuarioComponent implements OnInit {
   }
 
   usuarioClicked(usuario: Usuario) {
-    $('#consulta').hide();
-    $('#titularesappear').show();
-    
+    $('#consultaUser').slideUp(250);
+    $('#userappear').slideDown(250);
+    $('#postUser').slideDown(600);
     this.usuario = usuario;
     this.loadCargo();
   }

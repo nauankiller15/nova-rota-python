@@ -81,11 +81,6 @@ export class AppComponent implements OnInit {
   selected_id: any;
 
   ngOnInit() {
-    // MENU PRINCIPAL ANIMAÇÕES
-    $('[routerLink]').click(function () {
-      $('.vertical-nav-menu li a').removeClass('mm-active');
-      $(this).find('a').addClass('mm-active');
-    });
 
     // $("#btnEditar").on('click', function() {
     //   $('input[name="edit"]').removeAttr('readonly');
