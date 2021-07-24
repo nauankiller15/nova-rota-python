@@ -105,7 +105,7 @@
             <div style="width: 100%"></div>
 
             <div *ngIf="contentLoaded" class="titulares">
-              Titulares Encontrados:
+              Usuários Encontrados:
               <li
                 class="loadit"
                 *ngFor="
@@ -113,7 +113,7 @@
                     | orderBy: 'created_at':false
                     | paginate
                       : {
-                          id: 'titularsAlteracao',
+                          id: 'usuariosAlteracao',
                           itemsPerPage: 14,
                           currentPage: p
                         }
@@ -149,7 +149,7 @@
               </h4>
             </div>
             <pagination-controls
-              id="titularsAlteracao"
+              id="usuariosAlteracao"
               class="paginacao"
               maxSize="7"
               autoHide="true"
