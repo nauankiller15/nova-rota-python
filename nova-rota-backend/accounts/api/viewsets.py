@@ -12,18 +12,18 @@ from permissions.permissions import Gestor, GestorOrReadOnly, OwnerOnly
 class UsuarioViewSet(ListCreateAPIView, GenericViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAdminUser | GestorOrReadOnly]
+    permission_classes = [IsAdminUser | Gestor]
 
 class ManipularUsuarioViewSet(RetrieveUpdateAPIView, GenericViewSet):
     queryset = User.objects.all()
     serializer_class = ManipularUsuarioSerializer
-    permission_classes = [IsAdminUser | GestorOrReadOnly]
+    permission_classes = [IsAdminUser | Gestor]
 
 
 class CargoViewSet(ModelViewSet):
     queryset = Cargo.objects.all()
     serializer_class = CargoSerializer
-    permission_classes = [IsAdminUser | GestorOrReadOnly]
+    permission_classes = [IsAdminUser | Gestor]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['user']
 

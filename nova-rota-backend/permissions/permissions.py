@@ -1,5 +1,4 @@
 from django.shortcuts import get_object_or_404
-from rest_framework.generics import CreateAPIView
 
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 
@@ -26,9 +25,7 @@ class GestorOrReadOnly(BasePermission):
 class OwnerOnly(BasePermission):
 
     def has_permission(self, request, view):
-        print(request.GET)
         return True
 
     def has_object_permission(self, request, view, obj):
-        print(obj.user, request.user)
         return obj.user == request.user
