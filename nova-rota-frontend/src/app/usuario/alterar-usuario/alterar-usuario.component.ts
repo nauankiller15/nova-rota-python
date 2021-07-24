@@ -16,7 +16,7 @@ export class AlterarUsuarioComponent implements OnInit {
   contentLoaded = false;
   count = 2;
   widthHeightSizeInPixels = 50;
-  
+
   intervalId: number | null = null;
 
   p = 1;
@@ -77,8 +77,14 @@ export class AlterarUsuarioComponent implements OnInit {
     );
   }
 
-  buscarUsuario(nome: string) {
-
+  buscarUsuario(first_name: string) {
+ if (first_name != '') {
+      this.busca = this.usuarios.filter((res) => {
+        return res.first_name.match(first_name);
+      });
+    } else if (first_name == '') {
+      this.busca = this.usuarios;
+    }
   }
 
   usuarioClicked(usuario: Usuario) {

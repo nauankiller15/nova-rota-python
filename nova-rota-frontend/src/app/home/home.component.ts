@@ -124,6 +124,13 @@ export class HomeComponent implements OnInit {
     $('#fechar-bt2').on('click', function () {
       $('#config').fadeOut('100');
     });
+
+     // MENU PRINCIPAL ANIMAÇÕES
+     $('[routerLink]').click(function () {
+      $('.vertical-nav-menu li a').removeClass('mm-active');
+      $(this).find('a').addClass('mm-active');
+    });
+    
   }
 
   logout() {

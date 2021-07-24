@@ -100,11 +100,11 @@
           </a>
           <ul>
             <li routerLink="/alteracao-titular" routerLinkActive="mm-active">
-              <a> <i class="metismenu-icon"> </i>Titular </a>
+              <a> <i class="metismenu-icon"> </i>Titular</a>
             </li>
 
             <li routerLink="/alteracao-dependente" routerLinkActive="mm-active">
-              <a> <i class="metismenu-icon"> </i>Dependente </a>
+              <a> <i class="metismenu-icon"> </i>Dependente</a>
             </li>
           </ul>
         </li>
@@ -125,68 +125,65 @@
           </ul>
         </li>
 
-        <div *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)">
-          <hr />
+        <hr *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)" />
 
-          <li routerLink="/dashboard" routerLinkActive="mm-active">
-            <a>
-              <i class="metismenu-icon fas fa-chart-bar"></i> Painel de Analises
-            </a>
-            <ul style="display: none"></ul>
-          </li>
+        <li
+          routerLink="/dashboard"
+          routerLinkActive="mm-active"
+          *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)"
+        >
+          <a>
+            <i class="metismenu-icon fas fa-chart-bar"></i> Painel de Analises
+          </a>
+          <ul style="display: none"></ul>
+        </li>
 
-          <li>
-            <a>
-              <i class="metismenu-icon fas fa-building"></i> Cadastro de
-              Empresas
-              <i
-                class="metismenu-state-icon fas fa-chevron-down caret-left"
-              ></i>
-            </a>
-            <ul>
-              <li
-                class="eraseForm"
-                routerLink="/nova-empresa"
-                routerLinkActive="mm-active"
-              >
-                <a> <i class="metismenu-icon"> </i>Cadastrar</a>
-              </li>
+        <li *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)">
+          <a>
+            <i class="metismenu-icon fas fa-building"></i> Cadastro de Empresas
+            <i class="metismenu-state-icon fas fa-chevron-down caret-left"></i>
+          </a>
+          <ul>
+            <li
+              class="eraseForm"
+              routerLink="/nova-empresa"
+              routerLinkActive="mm-active"
+            >
+              <a> <i class="metismenu-icon"> </i>Cadastrar</a>
+            </li>
 
-              <li routerLink="/alteracao-empresa" routerLinkActive="mm-active">
-                <a> <i class="metismenu-icon"> </i>Alteração </a>
-              </li>
+            <li routerLink="/alteracao-empresa" routerLinkActive="mm-active">
+              <a> <i class="metismenu-icon"> </i>Alteração </a>
+            </li>
 
-              <li routerLink="/consulta-empresa" routerLinkActive="mm-active">
-                <a> <i class="metismenu-icon"> </i>Consultar</a>
-              </li>
-            </ul>
-          </li>
+            <li routerLink="/consulta-empresa" routerLinkActive="mm-active">
+              <a> <i class="metismenu-icon"> </i>Consultar</a>
+            </li>
+          </ul>
+        </li>
 
-          <li>
-            <a>
-              <i class="metismenu-icon fas fa-user eraseForm"></i> Usuários
-              <i
-                class="metismenu-state-icon fas fa-chevron-down caret-left"
-              ></i>
-            </a>
-            <ul>
-              <li
-                class="eraseForm"
-                routerLink="/novo-usuario"
-                routerLinkActive="mm-active"
-              >
-                <a> <i class="metismenu-icon"> </i>Novo Usuário</a>
-              </li>
-              <li
-                class="eraseForm"
-                routerLink="/alterar-usuario"
-                routerLinkActive="mm-active"
-              >
-                <a> <i class="metismenu-icon"> </i>Editar Usuário</a>
-              </li>
-            </ul>
-          </li>
-        </div>
+        <li *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)">
+          <a>
+            <i class="metismenu-icon fas fa-user eraseForm"></i> Usuários
+            <i class="metismenu-state-icon fas fa-chevron-down caret-left"></i>
+          </a>
+          <ul>
+            <li
+              class="eraseForm"
+              routerLink="/novo-usuario"
+              routerLinkActive="mm-active"
+            >
+              <a> <i class="metismenu-icon"> </i>Novo Usuário</a>
+            </li>
+            <li
+              class="eraseForm"
+              routerLink="/alterar-usuario"
+              routerLinkActive="mm-active"
+            >
+              <a> <i class="metismenu-icon"> </i>Editar Usuário</a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>
