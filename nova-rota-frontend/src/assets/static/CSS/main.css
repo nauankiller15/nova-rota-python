@@ -16184,6 +16184,8 @@ legend {
 
 .widget-content .widget-content-left .widget-subheading {
   opacity: 0.79;
+  text-transform: capitalize;
+  letter-spacing: normal;
 }
 
 .widget-content .widget-content-right {

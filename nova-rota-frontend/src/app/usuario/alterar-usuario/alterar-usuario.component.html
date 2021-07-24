@@ -1,205 +1,319 @@
 <div class="fadeIn app-main">
-    <div class="app-main__outer">
-        <div class="app-main__inner">
-            <div class="app-page-title">
-                <div class="page-title-wrapper">
-                    <div class="page-title-heading">
-                        <div class="page-title-icon">
-                            <i class="fas fas fa-user-tie icon-gradient bg-mean-fruit"> </i>
-                        </div>
-                        <div>
-                            Alteração Usuário
-                            <div class="page-title-subheading">
-                                Alteração de dados - Usuário.
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <div class="app-main__outer">
+    <div class="app-main__inner">
+      <div class="app-page-title">
+        <div class="page-title-wrapper">
+          <div class="page-title-heading">
+            <div class="page-title-icon">
+              <i class="fas fas fa-user icon-gradient bg-mean-fruit"> </i>
             </div>
-
-            <div id="consulta" class="main-card mb-3 card">
-                <div class="card-body">
-                    <h5 class="card-title">Consultar Usuário</h5>
-                    <form class="needs-validation" novalidate>
-                        <div class="form-row">
-                            <div class="input-group col-md-3 mb3">
-                                <label for="validationCustom01">Nome do Usuário:</label>
-                                <div style="width: 100%"></div>
-                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-id-card"></i></span>
-                                <input name="nome" (input)="buscarUsuario($event.target.value)" class="form-control"
-                                    type="text" id="search_nome" placeholder="Pesquise pelo nome" />
-                            </div>
-                        </div>
-                        <div style="width: 100%; height: 10px"></div>
-
-                        <hr />
-
-                        <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '50%', height: '40px' }"
-                            animation="progress">
-                        </ngx-skeleton-loader>
-                        <div style="width: 100%"></div>
-
-                        <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '50%', height: '40px' }"
-                            animation="progress">
-                        </ngx-skeleton-loader>
-                        <div style="width: 100%"></div>
-
-                        <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '50%', height: '40px' }"
-                            animation="progress">
-                        </ngx-skeleton-loader>
-                        <div style="width: 100%"></div>
-
-                        <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '50%', height: '40px' }"
-                            animation="progress">
-                        </ngx-skeleton-loader>
-                        <div style="width: 100%"></div>
-
-                        <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '50%', height: '40px' }"
-                            animation="progress">
-                        </ngx-skeleton-loader>
-                        <div style="width: 100%"></div>
-
-                        <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '50%', height: '40px' }"
-                            animation="progress">
-                        </ngx-skeleton-loader>
-                        <div style="width: 100%"></div>
-                        <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '50%', height: '40px' }"
-                            animation="progress">
-                        </ngx-skeleton-loader>
-                        <div style="width: 100%"></div>
-                        <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '50%', height: '40px' }"
-                            animation="progress">
-                        </ngx-skeleton-loader>
-                        <div style="width: 100%"></div>
-
-                        <div *ngIf="contentLoaded" class="titulares">
-                            Titulares Encontrados:
-                            <li 
-                                class="loadit" 
-                                *ngFor="
-                                    let resultado of busca
-                                    | orderBy: 'created_at':false
-                                    | paginate
-                                    : {
-                                        id: 'titularsAlteracao',
-                                        itemsPerPage: 14,
-                                        currentPage: p
-                                    }
-                                " 
-                                (click)="usuarioClicked(resultado)">
-                                <i 
-                                    style="
-                                        font-size: 18px;
-                                        margin-left: 9px;
-                                        margin-right: 1px;
-                                        background-color: #eff9ff;
-                                        border: 1px solid #ced4da;
-                                        border-radius: 0.25rem;
-                                        padding: 3px;
-                                        color: #434343;
-                                    " 
-                                    class="fas fa-user-tie">
-                                </i>
-                                Nome: {{ resultado.first_name + ' ' + resultado.last_name }}
-                                <i style="float: right; margin-top: 4px" class="fas fa-external-link-alt"></i>
-                            </li>
-                            <h4 class="loadit" style="margin-top: 20px" *ngIf="busca.length === 0">
-                                Nada encontrado
-                            </h4>
-                        </div>
-                        <pagination-controls id="titularsAlteracao" class="paginacao" maxSize="7" autoHide="true"
-                            previousLabel="Anterior" nextLabel="Seguinte" directionLinks="true" autoHide="true"
-                            responsive="true" (pageChange)="p = $event"></pagination-controls>
-                    </form>
-                </div>
+            <div>
+              Alteração Usuário
+              <div class="page-title-subheading">
+                Alteração de dados - Usuário.
+              </div>
             </div>
-
-            <div id="titularesappear" class="main-card mb-3 card" style="display: none;"> 
-                <h1 class="titular-ts" style="margin-left: 20px; margin-right: 20px; padding-top: 20px">
-                    <div id="voltardados" class="voltar">
-                        <i class="fas fa-chevron-left"></i>
-                    </div>
-                    <s style="margin-left: 12px; width: 975px; text-decoration: none">
-                        {{ usuario.first_name + ' ' + usuario.last_name }}
-                    </s>
-                    <p class="cpf-ts">
-                        UserName:
-                        {{ usuario.username }}
-                    </p>
-                </h1>
-
-                <div id="postTit" class="card-body">
-                    <h5 class="card-title">ALTERE OS CAMPOS ABAIXO:</h5>
-                    <hr />
-                    <form class="needs-validation" #usuarioForm="ngForm">
-                        <div class="form-row">
-                            <div class="col-md-3 mb-4">
-                                <label for="validationCustom01">Nome <span style="color: red">*</span></label>
-                                <input #nome="ngModel" [(ngModel)]="usuario.first_name"
-                                    [class.is-invalid]="nome.invalid && nome.touched"
-                                    [class.is-valid]="nome.valid && nome.touched" id="nome" name="nome" type="text"
-                                    class="form-control" placeholder="Nome" required />
-                            </div>
-
-                            <div class="col-md-4 mb-4">
-                                <label for="validationCustom01">Sobrenome <span style="color: red">*</span></label>
-                                <input #sobrenome="ngModel" [(ngModel)]="usuario.last_name"
-                                    [class.is-invalid]="sobrenome.invalid && sobrenome.touched"
-                                    [class.is-valid]="sobrenome.valid && sobrenome.touched" id="sobrenome"
-                                    name="sobrenome" type="text" class="form-control" placeholder="Sobrenome"
-                                    required />
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="col-md-4 mb-4">
-                                <label for="validationCustom01">Email <span style="color: red">*</span></label>
-                                <input #email="ngModel" [(ngModel)]="usuario.email"
-                                    [class.is-invalid]="email.invalid && email.touched"
-                                    [class.is-valid]="email.valid && email.touched" id="email" name="email" type="text"
-                                    class="form-control" placeholder="Email" required />
-                            </div>
-                        </div>
-                    </form>
-
-                    <button 
-                        [disabled]="usuarioForm.form.invalid || !usuarioForm.form.dirty"
-                        class="btn btn-primary" (click)="atualizarUsuario()"
-                    >
-                        <i class="fas fa-check"></i> 
-                        Atualizar Usuário
-                    </button>
-
-                    <form #cargoForm="ngForm">
-                        <div class="form-row">
-                            <div class="col-md-3 mb-4">
-                                <label for="validationCustom01">Cargo <span style="color: red">*</span></label>
-                                <select #cargo_input="ngModel" [(ngModel)]="cargo.cargo" name="cargo"
-                                    class="form-control" required>
-                                    <option value=""></option>
-                                    <option value="funcionario">Funcionário</option>
-                                    <option value="gestor">Gestor</option>
-                                </select>
-                            </div>
-                        </div>
-                    </form>
-
-                    <button 
-                        [disabled]="cargoForm.form.invalid || !cargoForm.form.dirty" name="enviar"
-                        class="btn btn-primary" (click)="atualizarCargo()"
-                    >
-                        <i class="fas fa-check"></i> 
-                        Gravar informações
-                    </button>
-                </div>
-                <!--  -->
-            </div>
+          </div>
         </div>
-        <app-rodape></app-rodape>
+      </div>
+
+      <div id="consultaUser" class="main-card mb-3 card">
+        <div class="card-body">
+          <h5 class="card-title">Consultar Usuário</h5>
+          <form class="needs-validation" novalidate>
+            <div class="form-row">
+              <div class="input-group col-md-3 mb3">
+                <label for="validationCustom01">Nome do Usuário:</label>
+                <div style="width: 100%"></div>
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="fas fa-id-card"></i
+                ></span>
+                <input
+                  name="nome"
+                  (input)="buscarUsuario($event.target.value)"
+                  class="form-control"
+                  type="text"
+                  id="search_nome"
+                  placeholder="Pesquise pelo nome"
+                />
+              </div>
+            </div>
+            <div style="width: 100%; height: 10px"></div>
+
+            <hr />
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+            <ngx-skeleton-loader
+              *ngIf="!contentLoaded"
+              [theme]="{ width: '50%', height: '40px' }"
+              animation="progress"
+            >
+            </ngx-skeleton-loader>
+            <div style="width: 100%"></div>
+
+            <div *ngIf="contentLoaded" class="titulares">
+              Titulares Encontrados:
+              <li
+                class="loadit"
+                *ngFor="
+                  let resultado of busca
+                    | orderBy: 'created_at':false
+                    | paginate
+                      : {
+                          id: 'titularsAlteracao',
+                          itemsPerPage: 14,
+                          currentPage: p
+                        }
+                "
+                (click)="usuarioClicked(resultado)"
+              >
+                <i
+                  style="
+                    font-size: 18px;
+                    margin-left: 9px;
+                    margin-right: 1px;
+                    background-color: #eff9ff;
+                    border: 1px solid #ced4da;
+                    border-radius: 0.25rem;
+                    padding: 3px;
+                    color: #434343;
+                  "
+                  class="fas fa-user"
+                >
+                </i>
+                Nome: {{ resultado.first_name + " " + resultado.last_name }}
+                <i
+                  style="float: right; margin-top: 4px"
+                  class="fas fa-external-link-alt"
+                ></i>
+              </li>
+              <h4
+                class="loadit"
+                style="margin-top: 20px"
+                *ngIf="busca.length === 0"
+              >
+                Nada encontrado
+              </h4>
+            </div>
+            <pagination-controls
+              id="titularsAlteracao"
+              class="paginacao"
+              maxSize="7"
+              autoHide="true"
+              previousLabel="Anterior"
+              nextLabel="Seguinte"
+              directionLinks="true"
+              autoHide="true"
+              responsive="true"
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </form>
+        </div>
+      </div>
+
+      <div id="userappear" class="main-card mb-3 card" style="display: none">
+        <h1
+          class="titular-ts"
+          style="
+            text-transform: Capitalize;
+            margin-left: 20px;
+            margin-right: 20px;
+            padding-top: 20px;
+          "
+        >
+          <div id="voltarUser" class="voltar">
+            <i class="fas fa-chevron-left"></i>
+          </div>
+          <s style="margin-left: 12px; width: 975px; text-decoration: none">
+            Usuário:
+            {{ usuario.username }}</s
+          >
+          <p class="nome-ts">
+            Nome:
+            {{ usuario.first_name + " " + usuario.last_name }}
+          </p>
+
+          <div class="botao-anexosAlt">
+            <button
+              class="btn btn-primary"
+              style="width: 160px"
+              id="abrirAnexoAlt"
+            >
+              <i style="margin-right: 6px" class="fas fa-file-image"></i>Abrir
+              Anexos
+            </button>
+          </div>
+        </h1>
+
+        <div id="postUser" class="card-body">
+          <h5 class="card-title">ALTERE OS CAMPOS ABAIXO:</h5>
+          <hr />
+          <form class="needs-validation" #usuarioForm="ngForm">
+            <div class="form-row">
+              <div class="col-md-3 mb-4">
+                <label for="validationCustom01"
+                  >Nome <span style="color: red">*</span></label
+                >
+                <input
+                  #nome="ngModel"
+                  [(ngModel)]="usuario.first_name"
+                  [class.is-invalid]="nome.invalid && nome.touched"
+                  [class.is-valid]="nome.valid && nome.touched"
+                  id="nome"
+                  name="nome"
+                  type="text"
+                  class="form-control"
+                  placeholder="Nome"
+                  required
+                />
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <label for="validationCustom01"
+                  >Sobrenome <span style="color: red">*</span></label
+                >
+                <input
+                  #sobrenome="ngModel"
+                  [(ngModel)]="usuario.last_name"
+                  [class.is-invalid]="sobrenome.invalid && sobrenome.touched"
+                  [class.is-valid]="sobrenome.valid && sobrenome.touched"
+                  id="sobrenome"
+                  name="sobrenome"
+                  type="text"
+                  class="form-control"
+                  placeholder="Sobrenome"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-4 mb-4">
+                <label for="validationCustom01"
+                  >Email <span style="color: red">*</span></label
+                >
+                <input
+                  #email="ngModel"
+                  [(ngModel)]="usuario.email"
+                  [class.is-invalid]="email.invalid && email.touched"
+                  [class.is-valid]="email.valid && email.touched"
+                  id="email"
+                  name="email"
+                  type="text"
+                  class="form-control"
+                  placeholder="Email"
+                  required
+                />
+              </div>
+            </div>
+          </form>
+
+          <button
+            [disabled]="usuarioForm.form.invalid || !usuarioForm.form.dirty"
+            class="btn btn-primary"
+            (click)="atualizarUsuario()"
+          >
+            <i class="fas fa-check"></i>
+            Atualizar Usuário
+          </button>
+
+          <hr />
+          <form #cargoForm="ngForm">
+            <div class="form-row">
+              <div class="col-md-3 mb-4">
+                <label for="validationCustom01"
+                  >Cargo <span style="color: red">*</span></label
+                >
+                <select
+                  #cargo_input="ngModel"
+                  [(ngModel)]="cargo.cargo"
+                  name="cargo"
+                  class="form-control"
+                  required
+                >
+                  <option value=""></option>
+                  <option value="funcionario">Funcionário</option>
+                  <option value="gestor">Gestor</option>
+                </select>
+              </div>
+            </div>
+          </form>
+
+          <button
+            [disabled]="cargoForm.form.invalid || !cargoForm.form.dirty"
+            name="enviar"
+            class="btn btn-primary"
+            (click)="atualizarCargo()"
+          >
+            <i class="fas fa-check"></i>
+            Gravar informações
+          </button>
+        </div>
+        <!--  -->
+      </div>
     </div>
+    <app-rodape></app-rodape>
+  </div>
 </div>
 <script>
-    document.title = "Alteração de Usuário";
+  document.title = "Alteração de Usuário";
 </script>
 <script src="https://bossanova.uk/jsuites/v2/jsuites.js"></script>
-<link rel="stylesheet" href="https://bossanova.uk/jsuites/v2/jsuites.css" type="text/css" />
+<link
+  rel="stylesheet"
+  href="https://bossanova.uk/jsuites/v2/jsuites.css"
+  type="text/css"
+/>

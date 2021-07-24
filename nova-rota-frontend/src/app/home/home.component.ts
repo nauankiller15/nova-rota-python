@@ -67,10 +67,6 @@ export class HomeComponent implements OnInit {
     }, 2000);
 
     // MENU PRINCIPAL ANIMAÇÕES
-    $('[routerLink]').click(function () {
-      $('.vertical-nav-menu li a').removeClass('mm-active');
-      $(this).find('a').addClass('mm-active');
-    });
 
     // $("#btnEditar").on('click', function() {
     //   $('input[name="edit"]').removeAttr('readonly');
