@@ -133,8 +133,7 @@
   border: none;
   padding: 0;
   margin-bottom: 10px;
-  max-height: 90px;
-  height: 60px;
+  min-height: 255px;
   background-color: #00000005;
   border: 2px solid #0000000d;
   padding: 10px;
@@ -143,17 +142,17 @@
 
 .no-borda3 {
   width: 100%;
-  outline: none;
-  border: none;
-  padding: 0;
-  margin-bottom: 35px;
-  max-height: 90px;
-  height: 60px;
-  background-color: #00000005;
-  border: 2px solid #0000000d;
-  padding: 10px;
-  resize: none;
+    outline: none;
+    border: none;
+    padding: 0;
+
+    min-height: 200px;
+    background-color: #00000005;
+    border: 2px solid #0000000d;
+    padding: 10px;
+    resize: none;
 }
+
 .texto-overlay span {
   margin-bottom: 20px;
   width: 100%;
