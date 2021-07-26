@@ -35,12 +35,17 @@ class Empresa (models.Model):
     is_filial = models.BooleanField()
     status = models.CharField("Status", max_length=25,
                               default="OK", editable=False)
+    ativo = models.BooleanField(default=True)
     observacoes = models.TextField("Obs.", blank=True, null=True)
     criado_em = models.DateTimeField("criado em", auto_now_add=True)
     atualizado_em = models.DateTimeField("atualizado", auto_now=True)
 
     def __str__(self):
         return f'{self.razao_social} - CNPJ: {self.CNPJ}'
+    
+    class Meta:
+        ordering = ['ativo']
+
 
 class Filial(Empresa):
     CNPJ_empresa_principal = BRCNPJField(max_length=14)
