@@ -15,23 +15,16 @@ declare var $: any;
 export class ConsultaDependenteComponent implements OnInit {
   // CARREGADOR
 
-  data_casamento: Dependente[] = [];
   animation = 'pulse';
   contentLoaded = false;
   count = 2;
   widthHeightSizeInPixels = 50;
 
   // DADOS DO DEPENDENTE
-  busca: Dependente[];
+  busca: Dependente[] = [];
 
-  // BUSCA DOS TITULARES
-  buscaTitularAlt: Titular[] = [];
-
-  dependentes: Dependente[];
+  dependentes: Dependente[] = [];
   dependente: Dependente = new Dependente();
-
-  //
-  titulares: Titular[];
   //
   intervalId: number | null = null;
   //
@@ -45,20 +38,13 @@ export class ConsultaDependenteComponent implements OnInit {
   }
 
   p: number = 1;
-  fileToUpload: File = null;
-  CPF: string;
-  nome_dependente: string;
-  nome_benef: string;
-  selected_titular: any;
+  
 
   constructor(
     private toastr: ToastrService,
     private api: ApiService,
-    private homeComponent: HomeComponent,
-    private route: ActivatedRoute
   ) {
-    this.getDependentes();
-    this.getTitulares();
+    this.getDependentesAtivos();
   }
 
   ngOnInit(): void {
@@ -162,8 +148,8 @@ export class ConsultaDependenteComponent implements OnInit {
     }
   }
 
-  getDependentes() {
-    this.api.listar('parentesco/').subscribe(
+  getDependentesAtivos() {
+    this.api.listar('parentesco/?ativo=true').subscribe(
       (data) => {
         this.dependentes = data;
         this.busca = data;
@@ -174,70 +160,30 @@ export class ConsultaDependenteComponent implements OnInit {
     );
   }
 
-  getTitulares = () => {
-    this.api.listar('titular/').subscribe(
+  getDependentesInativos() {
+    this.api.listar('parentesco/?ativo=false').subscribe(
       (data) => {
-        this.titulares = data;
-        this.buscaTitularAlt = data;
+        this.dependentes = data;
+        this.busca = data;
       },
       (error) => {
         this.toastr.error('Aconteceu um Erro!', error.message);
       }
     );
-  };
-
-  loadDependente(id: string) {
-    this.api.selecionar('parentesco/', id).subscribe(
-      (data) => {
-        this.dependente = data;
-      },
-      (error) => {
-        this.toastr.error('Dependente não encontrado', error.message);
-      }
-    );
   }
+  
 
-  // VINCULAR DEPENDENTE
-  searchNomeTitDep(nome_benef: string) {
-    if (nome_benef != '') {
-      this.buscaTitularAlt = this.titulares.filter((res) => {
-        return res.nome_benef.match(nome_benef);
-      });
-    } else if (nome_benef == '') {
-      this.buscaTitularAlt = this.titulares;
-    }
-  }
-
-  dependenteClickedConsulta = (dependentes: { id: any }) => {
+  dependenteClickedConsulta = (dependente: Dependente) => {
     $('#consulta3').slideUp(250);
     $('#dependentesappearConsulta').slideDown(250);
     $('#postDepConsulta').slideDown(600);
-    this.api.selecionar('parentesco/', dependentes.id).subscribe(
-      (data) => {
-        this.dependente = data;
-      },
-      (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
-      }
-    );
+    this.dependente = dependente;
   };
 
-  updateDependente() {
-    this.api.atualizar('parentesco/', this.dependente).subscribe(
-      (data) => {
-        this.dependente = data;
-        this.toastr.success('Atualizado com sucesso!');
-      },
-      (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
-      }
-    );
-  }
+  
 
   depAtivo() {
+    this.getDependentesInativos();
     $('.menuVigencia').removeClass('canceladoBorder');
     $('.menuItems li').siblings().removeClass('canceladoBtn');
     $('.menuItems li').addClass('active');
@@ -246,6 +192,7 @@ export class ConsultaDependenteComponent implements OnInit {
 
   }
   depCancelado() {
+    this.getDependentesInativos();
     $('.menuVigencia').addClass('canceladoBorder');
     $('.cancelados').addClass('canceladoBtn');
     $('.radiusTop').removeClass('active');

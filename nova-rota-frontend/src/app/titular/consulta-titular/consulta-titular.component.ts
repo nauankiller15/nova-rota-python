@@ -12,11 +12,10 @@ declare var $: any;
   styleUrls: ['./consulta-titular.component.css'],
 })
 export class ConsultaTitularComponent implements OnInit {
-  data_casamento: Titular[] = [];
   // DADOS DO TITULAR
-  busca: Titular[];
+  busca: Titular[] = [];
 
-  titulares: Titular[];
+  titulares: Titular[] = [];
   titular: Titular = new Titular();
 
   // CARREGADOR
@@ -27,17 +26,14 @@ export class ConsultaTitularComponent implements OnInit {
 
   intervalId: number | null = null;
   //
-  fileToUpload: File = null;
-  CPF: string;
-  nome_benef: string;
+ 
   p: number = 1;
 
   constructor(
     private toastr: ToastrService,
     private api: ApiService,
-    private route: ActivatedRoute
   ) {
-    this.getTitulares();
+    this.getTitularesAtivos();
   }
 
   ngOnInit(): void {
@@ -55,47 +51,9 @@ export class ConsultaTitularComponent implements OnInit {
     //---------------
     // MÁSCARAS DE INPUT
     $(document).ready(() => {
-      $('.date').mask('00/00/0000');
-      $('.time').mask('00:00:00');
-      $('.date_time').mask('00/00/0000 00:00:00');
       $('.cep').mask('00000-000');
-      $('.phone').mask('0000-0000');
       $('.phone_with_ddd').mask('(00) 0000-0000');
-      $('.phone_us').mask('(000) 000-0000');
-      $('.mixed').mask('AAA 000-S0S');
       $('.cpf').mask('000.000.000-00', { reverse: false });
-      $('.cnpj').mask('00.000.000/0000-00', { reverse: false });
-      $('.money').mask('000.000.000.000.000,00', { reverse: true });
-      $('.money2').mask('#.##0,00', { reverse: true });
-      $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
-        translation: {
-          Z: {
-            pattern: /[0-9]/,
-            optional: true,
-          },
-        },
-      });
-      $('.ip_address').mask('099.099.099.099');
-      $('.percent').mask('##0,00%', { reverse: true });
-      $('.clear-if-not-match').mask('00/00/0000', { clearIfNotMatch: true });
-      $('.placeholder').mask('00/00/0000', {
-        translation: {
-          placeholder: '__/__/____',
-        },
-      });
-      $('.placeholder2').mask('00/00/0000', {
-        placeholder: '__/__/____',
-      });
-      $('.fallback').mask('00r00r0000', {
-        translation: {
-          r: {
-            pattern: /[\/]/,
-            fallback: '/',
-          },
-          placeholder: '__/__/____',
-        },
-      });
-      $('.selectonfocus').mask('00/00/0000', { selectOnFocus: true });
     });
     //
     // VOLTAR ALTERAÇÃO DE DADOS
@@ -112,8 +70,6 @@ export class ConsultaTitularComponent implements OnInit {
     $('#fecharAnexoConsulta2').click(function () {
       $('#vinc-anexo-casadoAlt').fadeOut('100');
     });
-
-   
   }
 
   searchCPF(CPF: string) {
@@ -136,11 +92,12 @@ export class ConsultaTitularComponent implements OnInit {
     }
   }
 
-  getTitulares = () => {
-    this.api.listar('titular/').subscribe(
+  getTitularesAtivos() {
+    this.api.listar('titular/?ativo=true').subscribe(
       (data) => {
         this.titulares = data;
         this.busca = data;
+        this.contentLoaded = true;
       },
       (error) => {
         const mensagens = error.error;
@@ -149,48 +106,34 @@ export class ConsultaTitularComponent implements OnInit {
         }
       }
     );
-  };
-
-  loadTitular(id: string) {
-    this.api.selecionar('titular/', id).subscribe(
-      (data) => {
-        this.titular = data;
-      },
-      (error) => {
-        this.toastr.error('Titular não encontrado', error.message);
-      }
-    );
   }
 
-  titularClickedConsulta = (titular: { id: string }) => {
-    $('#consulta4').slideUp(250);
-    $('#titularesappearConsulta').slideDown(250);
-    $('#postTitConsulta').slideDown(600);
-    this.api.selecionar('titular/', titular.id).subscribe(
+  getTitularesInativos() {
+    this.api.listar('titular/?ativo=false').subscribe(
       (data) => {
-        this.titular = data;
+        this.titulares = data;
+        this.busca = data;
+        this.contentLoaded = true;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
-      }
-    );
-  };
-
-  updateTit() {
-    this.api.atualizar('titular/', this.titular).subscribe(
-      (data) => {
-        this.toastr.success('Atualizado com sucesso!');
-      },
-      (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        const mensagens = error.error;
+        for (let mensagem in mensagens) {
+          this.toastr.error(mensagem, mensagens[mensagem]);
         }
       }
     );
   }
 
+  titularClickedConsulta (titular: Titular) {
+    $('#consulta4').slideUp(250);
+    $('#titularesappearConsulta').slideDown(250);
+    $('#postTitConsulta').slideDown(600);
+    $('#postTitConsulta').slideDown(600);
+    this.titular = titular;
+  }
+
   titAtivo() {
+    this.getTitularesAtivos()
     $('.menuVigencia').removeClass('canceladoBorder');
     $('.menuItems li').siblings().removeClass('canceladoBtn');
     $('.menuItems li').addClass('active');
@@ -199,6 +142,7 @@ export class ConsultaTitularComponent implements OnInit {
 
   }
   titCancelado() {
+    this.getTitularesInativos()
     $('.menuVigencia').addClass('canceladoBorder');
     $('.cancelados').addClass('canceladoBtn');
     $('.radiusTop').removeClass('active');

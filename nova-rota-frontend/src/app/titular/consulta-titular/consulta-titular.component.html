@@ -20,7 +20,6 @@
       <div id="consulta4" class="main-card mb-3 card">
         <nav class="menuVigencia">
           <ul class="menuItems">
-            <!-- BOTÃO REAJUSTE -->
             <li
               class="active radiusTop"
               (click)="titAtivo()"
@@ -28,8 +27,8 @@
               Titulares Ativos
             </li>
 
-            <!-- BOTÃO SINISTRALIDADE -->
-            <li class="cancelados" (click)="titCancelado()">
+            <li class="cancelados" 
+              (click)="titCancelado()">
               Titulares Cancelados
             </li>
           </ul>
@@ -417,7 +416,7 @@
                 <div class="linhaE"></div>
                 <p>
                   <b>{{ titular.data_casamento }}</b>
-                  <b *ngIf="data_casamento.length > 0">Nenhuma data</b>
+                  <b *ngIf="titular.data_casamento == null">Nenhuma data</b>
                 </p>
               </div>
             </div>
