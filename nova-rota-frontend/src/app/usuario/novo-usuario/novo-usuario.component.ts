@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/api.service';
 import { Cargo, NovoUsuario } from '../models';
 
+declare var $: any;
 @Component({
   selector: 'app-novo-usuario',
   templateUrl: './novo-usuario.component.html',
@@ -15,6 +16,11 @@ export class NovoUsuarioComponent implements OnInit {
   constructor(private apiService: ApiService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    $('.apagarEmp').click(function () {
+      $('form').each(function () {
+        this.reset();
+      });
+    });
   }
 
   novoUsuario(){

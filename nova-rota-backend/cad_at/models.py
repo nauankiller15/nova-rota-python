@@ -53,6 +53,7 @@ class Titular (models.Model):
     desc_declarao_saude = models.CharField(
         "Desc. Declaracao Saude", max_length=255, blank=True)
     observacoes = models.TextField("Obs.", blank=True, null=True)
+    ativo = models.BooleanField(default=True)
     criado_em = models.DateTimeField("criado em", auto_now_add=True)
     atualizado_em = models.DateTimeField("atualizado em", auto_now=True)
 
@@ -65,3 +66,6 @@ class Titular (models.Model):
 
     def __str__(self):
         return f'{self.nome_benef} - CPF: {self.CPF}'
+
+    class Meta:
+        ordering = ['ativo']

@@ -36,6 +36,10 @@ export class NovaTarefaComponent implements OnInit {
       $('#tarefas').fadeIn('100');
       $('.box-text').fadeIn('100');
     });
+
+    $('.eraseTarefa').click(function () {
+      $('#includeTarefa').find('input:text, textarea').val('');
+    });
     //
   }
   save() {

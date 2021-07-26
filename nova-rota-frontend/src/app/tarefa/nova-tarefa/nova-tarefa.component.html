@@ -1,29 +1,32 @@
-<div style="display: none;"  class="nova-tarefa">
+<div style="display: none" class="nova-tarefa">
   <a id="fechar-bt4">
     <div class="fechar-button2">X</div>
   </a>
   <h2><i class="fas fa-edit"></i> Nova Tarefa</h2>
-  <h3>
-    <input
-      class="no-borda4"
-      type="text"
-      [(ngModel)]="nova_tarefa.titulo"
-      placeholder="Digite aqui o Título da Tarefa"
-    />
-  </h3>
-  <span>
-    <textarea
-      class="no-borda3"
-      style="min-height: 162px"
-      type="text"
-      [(ngModel)]="nova_tarefa.descricao"
-      placeholder="Digite aqui a descrição da Tarefa"
-    ></textarea>
-  </span>
- 
+  <div id="includeTarefa">
+    <h3>
+      <input
+        class="no-borda4"
+        type="text"
+        [(ngModel)]="nova_tarefa.titulo"
+        placeholder="Digite aqui o Título da Tarefa"
+      />
+    </h3>
+    <span>
+      <textarea
+        class="no-borda3"
+        type="text"
+        [(ngModel)]="nova_tarefa.descricao"
+        placeholder="Digite aqui a descrição da Tarefa"
+      ></textarea>
+    </span>
+  </div>
   <br />
   <button class="edit-edit" (click)="save()">
     <i class="fas fa-plus"></i> Nova tarefa
   </button>
+  <button style="position: absolute; left: 20px;" class="edit-trash eraseTarefa">
+    <i class="far fa-times-circle"></i> Apagar tudo
+  </button>
 </div>
-<div style="display: none;" id="over-tarefa"></div>
+<div style="display: none" id="over-tarefa"></div>

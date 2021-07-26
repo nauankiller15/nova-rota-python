@@ -6,19 +6,22 @@ declare var $: any;
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent implements OnInit {
-
   @Input() usuario: Usuario;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
-    $('.eraseForm').click(function () {
-      $('form').each(function () {
-        this.reset();
+      $('.eraseForm').click(function () {
+        $('form').each(function () {
+          this.reset();
+        });
       });
-    });
+
+     
+
   }
+
 }
