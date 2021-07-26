@@ -1,8 +1,10 @@
-from rest_framework.permissions import IsAdminUser
 from django.core.exceptions import ValidationError
-from cad_bp.models import Parentesco
+from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ViewSet
+from django_filters.rest_framework import DjangoFilterBackend
+
+from cad_bp.models import Parentesco
 from cad_bp.api.serializers import ParentescoSerializer
 from cad_at.models import Titular
 from .serializers import TitularSerializer
@@ -11,6 +13,8 @@ from .serializers import TitularSerializer
 class TitularViewSet(ModelViewSet):
     queryset = Titular.objects.all()
     serializer_class = TitularSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['ativo']
 
 
 class TitularParentescos(ViewSet):

@@ -146,6 +146,7 @@
                           }
                   "
                   id="checkedTitular"
+                  (click)="titularClicked(resultado)"
                 >
                   <input for="checkedTitular" type="checkbox" />
 
@@ -455,6 +456,13 @@
 
       <!--  -->
     </div>
+
+    <div id="box-cancelar" class="box-cancelar" style="display: none;">
+      <h1>Tem certeza que quer cancelar o cadastro de {{ titular.nome_benef }}?</h1>
+      <button class="btn btn-danger" (click)="cancelarTitular()">Invativar</button>
+      <button class="btn btn-secondary" (click)="boxCancelarVoltar()">voltar</button>
+    </div>
+
     <app-rodape></app-rodape>
   </div>
 </div>

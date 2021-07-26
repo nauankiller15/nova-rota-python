@@ -13,14 +13,12 @@ declare var $: any;
   styleUrls: ['./cancelamento-titular.component.css'],
 })
 export class CancelamentoTitularComponent implements OnInit {
+  titular: Titular = new Titular;
+
+  busca: Titular[] = []
+  titulares: Titular[] = []
   
-  data_casamento: Titular[] = [];
-  // DADOS DO TITULAR
-  busca: Titular[];
-
-  titulares: Titular[];
-  titular: Titular = new Titular();
-
+  
   // CARREGADOR
   animation = 'pulse';
   contentLoaded = false;
@@ -28,11 +26,9 @@ export class CancelamentoTitularComponent implements OnInit {
   widthHeightSizeInPixels = 50;
 
   intervalId: number | null = null;
-  //
-  fileToUpload: File = null;
-  CPF: string;
-  nome_benef: string;
   p: number = 1;
+  //
+  
 
   constructor(
     private toastr: ToastrService,
@@ -138,7 +134,7 @@ export class CancelamentoTitularComponent implements OnInit {
   }
 
   getTitulares = () => {
-    this.api.listar('titular/').subscribe(
+    this.api.listar('titular/?ativo=true').subscribe(
       (data) => {
         this.titulares = data;
         this.busca = data;
@@ -152,35 +148,22 @@ export class CancelamentoTitularComponent implements OnInit {
     );
   };
 
-  loadTitular(id: string) {
-    this.api.selecionar('titular/', id).subscribe(
-      (data) => {
-        this.titular = data;
-      },
-      (error) => {
-        this.toastr.error('Titular não encontrado', error.message);
-      }
-    );
+  titularClicked(titular) {
+    this.titular = titular;
+    $('#box-cancelar').show();
   }
 
-  titularClickedConsulta = (titular: { id: string }) => {
-    $('#consulta4').slideUp(250);
-    $('#titularesappearConsulta').slideDown(250);
-    $('#postTitConsulta').slideDown(600);
-    this.api.selecionar('titular/', titular.id).subscribe(
-      (data) => {
-        this.titular = data;
-      },
-      (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
-      }
-    );
-  };
+  boxCancelarVoltar() {
+    $('#box-cancelar').hide();
+  }
 
-  updateTit() {
+  cancelarTitular() {
+    this.titular.ativo = false;
     this.api.atualizar('titular/', this.titular).subscribe(
       (data) => {
-        this.toastr.success('Atualizado com sucesso!');
+        this.toastr.success('Titular CANCELADO com sucesso!');
+        $('#box-cancelar').hide();
+        this.getTitulares();
       },
       (error) => {
         let mensagens = error.error;

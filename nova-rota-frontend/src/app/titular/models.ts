@@ -23,4 +23,5 @@ export class Titular {
     desc_declarao_saude: string;
     observacoes: string;
     status: string;
+    ativo: boolean;
 }

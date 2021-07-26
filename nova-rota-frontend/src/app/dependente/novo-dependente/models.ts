@@ -27,6 +27,7 @@ export class Dependente {
     desc_declarao_saude: string;
     observacoes: string;
     status: string;
+    ativo: boolean;
     titular_nome: string;
 }
 

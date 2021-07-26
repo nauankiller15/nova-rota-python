@@ -1,3 +1,4 @@
+from django_filters.rest_framework.backends import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.viewsets import ModelViewSet
@@ -6,14 +7,12 @@ from .serializers import ParentescoSerializer
 
 
 class ParentescoViewSet(ModelViewSet):
+    
     queryset = Parentesco.objects.all().order_by('criado_em')
     serializer_class = ParentescoSerializer
-
-    def list(self, request, *args, **kwargs):
-        print('novo', request.user)
-        queryset = Parentesco.objects.all()
-        serializer = ParentescoSerializer(queryset, many=True)
-        return Response(serializer.data)
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['ativo']
+    
 
     def retrieve(self, request, pk=None):
         parentesco = Parentesco.objects.filter(id=pk).last()
