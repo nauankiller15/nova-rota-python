@@ -38,7 +38,7 @@ export class NovaTarefaComponent implements OnInit {
     });
 
     $('.eraseTarefa').click(function () {
-      $('#includeTarefa').reset();
+      $('#includeTarefa').find('input:text, textarea').val('');
     });
     //
   }
