@@ -61,6 +61,7 @@
   transition: 0.3s;
   color: #6c757d;
   cursor: pointer;
+  box-shadow: -10px 0px 0px 0px #717171;
 }
 
 .titulares > li:nth-of-type(odd) {
