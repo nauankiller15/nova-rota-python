@@ -36,6 +36,11 @@ export class ConsultaDependenteComponent implements OnInit {
   }
 
   p: number = 1;
+  fileToUpload: File = null;
+  CPF: string;
+  nome_dependente: string;
+  nome_benef: string;
+  selected_titular: any;
 
   constructor(private toastr: ToastrService, private api: ApiService) {
     this.getDependentesAtivos();
@@ -144,6 +149,7 @@ export class ConsultaDependenteComponent implements OnInit {
     }
   }
 
+
   getDependentesAtivos() {
     this.api.listar('parentesco/?ativo=true').subscribe(
       (data) => {
@@ -158,6 +164,18 @@ export class ConsultaDependenteComponent implements OnInit {
 
   getDependentesInativos() {
     this.api.listar('parentesco/?ativo=false').subscribe(
+      (data) => {
+        this.dependentes = data;
+        this.busca = data;
+      },
+      (error) => {
+        this.toastr.error('Aconteceu um Erro!', error.message);
+      }
+    );
+  }
+
+  getDependentes() {
+    this.api.listar('parentesco/').subscribe(
       (data) => {
         this.dependentes = data;
         this.busca = data;
