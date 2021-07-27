@@ -22,12 +22,20 @@
           <ul class="menuItems">
             <!-- BOTÃO REAJUSTE -->
             <li class="active radiusTop" (click)="depAtivo()">
-              Dependentes Ativos
+              <i
+                class="fas fa-user-check"
+                style="font-size: 15px; margin-right: 9px"
+              ></i
+              >Dependentes Ativos
             </li>
 
             <!-- BOTÃO SINISTRALIDADE -->
             <li class="cancelados" (click)="depCancelado()">
-              Dependentes Cancelados
+              <i
+                class="fas fa-user-slash"
+                style="font-size: 15px; margin-right: 9px"
+              ></i
+              >Dependentes Cancelados
             </li>
           </ul>
         </nav>

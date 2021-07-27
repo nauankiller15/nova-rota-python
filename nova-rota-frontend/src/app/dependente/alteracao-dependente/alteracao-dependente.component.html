@@ -21,16 +21,21 @@
         <nav class="menuVigencia">
           <ul class="menuItems">
             <!-- BOTÃO REAJUSTE -->
-            <li
-              class="active radiusTop"
-              (click)="depAtivo()"
-            >
-              Dependentes Ativos
+            <li class="active radiusTop" (click)="depAtivo()">
+              <i
+                class="fas fa-user-check"
+                style="font-size: 15px; margin-right: 9px"
+              ></i
+              >Dependentes Ativos
             </li>
 
             <!-- BOTÃO SINISTRALIDADE -->
             <li class="cancelados" (click)="depCancelado()">
-              Dependentes Cancelados
+              <i
+                class="fas fa-user-slash"
+                style="font-size: 15px; margin-right: 9px"
+              ></i
+              >Dependentes Cancelados
             </li>
           </ul>
         </nav>
@@ -479,7 +484,7 @@
                 />
               </div>
             </div>
-            
+
             <div class="form-row">
               <div class="col-md-2 mb-2">
                 <label for="validationCustom01">CEP</label>
@@ -678,7 +683,7 @@
                       required
                     />
                     <div *ngIf="contentLoaded" class="titulares-checkbox">
-                      <li 
+                      <li
                         class="loadit"
                         value="{{ titular.id }}"
                         *ngFor="
