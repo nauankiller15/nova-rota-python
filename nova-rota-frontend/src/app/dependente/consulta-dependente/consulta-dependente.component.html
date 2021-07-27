@@ -485,6 +485,7 @@
                 <div class="linhaE"></div>
                 <p>
                   <b>{{ dependente.observacoes }}</b>
+                  <b *ngIf="dependente.observacoes == null">Nenhuma observação</b>
                 </p>
               </div>
 
