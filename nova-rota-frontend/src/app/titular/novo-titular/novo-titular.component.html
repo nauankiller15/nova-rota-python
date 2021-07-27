@@ -56,7 +56,9 @@
                     >CPF Digitos Incompletos!</small
                   >
                 </div>
-                <small id="InvalidCPF" class="text-danger" style="display: none;">CPF Inválido!</small>
+                <small id="InvalidCPF" class="text-danger" style="display: none"
+                  >CPF Inválido!</small
+                >
               </div>
 
               <div class="col-md-2 mb-3">
@@ -102,13 +104,12 @@
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Prioridade</label>
                 <input
-                  [(ngModel)]="titular.prioridade"
                   type="text"
                   class="form-control"
                   placeholder="Prioridade"
                   name="prioridade"
                   readonly="true"
-                value="Prioridade"
+                  value="prioridade"
                 />
               </div>
 
@@ -574,7 +575,7 @@
               class="btn btn-primary"
               (click)="newTitular()"
             >
-            <i class="fas fa-check"></i> Gravar informações
+              <i class="fas fa-check"></i> Gravar informações
             </button>
 
             <div id="confirmacaoTitular">
@@ -609,13 +610,15 @@
                       margin-left: 25%;
                     "
                   >
-                  <i class="fas fa-check"></i> Cadastrar outro
+                    <i class="fas fa-check"></i> Cadastrar outro
                   </button>
                 </div>
               </div>
             </div>
 
-            <button type="reset" class="btn btn-cancelar"><i class="far fa-times-circle"></i> Apagar tudo</button>
+            <button type="reset" class="btn btn-cancelar">
+              <i class="far fa-times-circle"></i> Apagar tudo
+            </button>
           </form>
         </div>
       </div>

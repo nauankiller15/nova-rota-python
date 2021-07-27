@@ -54,8 +54,8 @@ export class AlteracaoDependenteComponent implements OnInit {
     private homeComponent: HomeComponent,
     private route: ActivatedRoute
   ) {
-    this.getDependentes();
-    this.getTitulares();
+    this.getDependentesAtivos();
+    this.getTitularesAtivos();
   }
 
   ngOnInit(): void {
@@ -165,6 +165,30 @@ export class AlteracaoDependenteComponent implements OnInit {
     }
   }
 
+  getDependentesAtivos() {
+    this.api.listar('parentesco/?ativo=true').subscribe(
+      (data) => {
+        this.dependentes = data;
+        this.busca = data;
+      },
+      (error) => {
+        this.toastr.error('Aconteceu um Erro!', error.message);
+      }
+    );
+  }
+
+  getDependentesInativos() {
+    this.api.listar('parentesco/?ativo=false').subscribe(
+      (data) => {
+        this.dependentes = data;
+        this.busca = data;
+      },
+      (error) => {
+        this.toastr.error('Aconteceu um Erro!', error.message);
+      }
+    );
+  }
+
   getDependentes() {
     this.api.listar('parentesco/').subscribe(
       (data) => {
@@ -177,12 +201,11 @@ export class AlteracaoDependenteComponent implements OnInit {
     );
   }
 
-  getTitulares = () => {
-    this.api.listar('titular/').subscribe(
+  getTitularesAtivos = () => {
+    this.api.listar('titular/?ativo=true').subscribe(
       (data) => {
         this.titulares = data;
         this.buscaTitularAlt = data;
-
       },
       (error) => {
         this.toastr.error('Aconteceu um Erro!', error.message);
@@ -258,15 +281,17 @@ export class AlteracaoDependenteComponent implements OnInit {
       }
     );
   }
+
   depAtivo() {
+    this.getDependentesAtivos();
     $('.menuVigencia').removeClass('canceladoBorder');
     $('.menuItems li').siblings().removeClass('canceladoBtn');
     $('.menuItems li').addClass('active');
     $('.cancelados').removeClass('canceladoBtn');
     $('.cancelados').removeClass('active');
-
   }
   depCancelado() {
+    this.getDependentesInativos();
     $('.menuVigencia').addClass('canceladoBorder');
     $('.cancelados').addClass('canceladoBtn');
     $('.radiusTop').removeClass('active');

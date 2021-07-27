@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../api.service';
-import { HomeComponent } from '../../home/home.component';
 import { Dependente, Titular } from '../novo-dependente/models';
 
 declare var $: any;
@@ -14,7 +13,6 @@ declare var $: any;
 })
 export class ConsultaDependenteComponent implements OnInit {
   // CARREGADOR
-
   animation = 'pulse';
   contentLoaded = false;
   count = 2;
@@ -38,27 +36,25 @@ export class ConsultaDependenteComponent implements OnInit {
   }
 
   p: number = 1;
-  
 
-  constructor(
-    private toastr: ToastrService,
-    private api: ApiService,
-  ) {
+  constructor(private toastr: ToastrService, private api: ApiService) {
     this.getDependentesAtivos();
   }
 
   ngOnInit(): void {
     // CARREGADOR TIMEOUT
-    setTimeout(() => {
-      this.contentLoaded = true;
-    }, 2500);
+    $(document).ready(() => {
+      setTimeout(() => {
+        this.contentLoaded = true;
+      }, 2500);
 
-    this.intervalId = window.setInterval(() => {
-      this.animation = this.animation === 'pulse' ? 'progress-dark' : 'pulse';
-      this.count = this.count === 2 ? 5 : 2;
-      this.widthHeightSizeInPixels =
-        this.widthHeightSizeInPixels === 50 ? 100 : 50;
-    }, 5000);
+      this.intervalId = window.setInterval(() => {
+        this.animation = this.animation === 'pulse' ? 'progress-dark' : 'pulse';
+        this.count = this.count === 2 ? 5 : 2;
+        this.widthHeightSizeInPixels =
+          this.widthHeightSizeInPixels === 50 ? 100 : 50;
+      }, 5000);
+    });
     //---------------
 
     // MÁSCARAS DE INPUT
@@ -171,7 +167,6 @@ export class ConsultaDependenteComponent implements OnInit {
       }
     );
   }
-  
 
   dependenteClickedConsulta = (dependente: Dependente) => {
     $('#consulta3').slideUp(250);
@@ -180,16 +175,13 @@ export class ConsultaDependenteComponent implements OnInit {
     this.dependente = dependente;
   };
 
-  
-
   depAtivo() {
-    this.getDependentesInativos();
+    this.getDependentesAtivos();
     $('.menuVigencia').removeClass('canceladoBorder');
     $('.menuItems li').siblings().removeClass('canceladoBtn');
     $('.menuItems li').addClass('active');
     $('.cancelados').removeClass('canceladoBtn');
     $('.cancelados').removeClass('active');
-
   }
   depCancelado() {
     this.getDependentesInativos();

@@ -23,31 +23,38 @@ export class ConsultaTitularComponent implements OnInit {
   contentLoaded = false;
   count = 2;
   widthHeightSizeInPixels = 50;
-
+  //
   intervalId: number | null = null;
   //
- 
+
+  numberOnly(event): boolean {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  }
+  
   p: number = 1;
 
-  constructor(
-    private toastr: ToastrService,
-    private api: ApiService,
-  ) {
+  constructor(private toastr: ToastrService, private api: ApiService) {
     this.getTitularesAtivos();
   }
 
   ngOnInit(): void {
     // CARREGADOR TIMEOUT
-    setTimeout(() => {
-      this.contentLoaded = true;
-    }, 2500);
+    $(document).ready(() => {
+      setTimeout(() => {
+        this.contentLoaded = true;
+      }, 2500);
 
-    this.intervalId = window.setInterval(() => {
-      this.animation = this.animation === 'pulse' ? 'progress-dark' : 'pulse';
-      this.count = this.count === 2 ? 5 : 2;
-      this.widthHeightSizeInPixels =
-        this.widthHeightSizeInPixels === 50 ? 100 : 50;
-    }, 5000);
+      this.intervalId = window.setInterval(() => {
+        this.animation = this.animation === 'pulse' ? 'progress-dark' : 'pulse';
+        this.count = this.count === 2 ? 5 : 2;
+        this.widthHeightSizeInPixels =
+          this.widthHeightSizeInPixels === 50 ? 100 : 50;
+      }, 5000);
+    });
     //---------------
     // MÁSCARAS DE INPUT
     $(document).ready(() => {
@@ -124,7 +131,7 @@ export class ConsultaTitularComponent implements OnInit {
     );
   }
 
-  titularClickedConsulta (titular: Titular) {
+  titularClickedConsulta(titular: Titular) {
     $('#consulta4').slideUp(250);
     $('#titularesappearConsulta').slideDown(250);
     $('#postTitConsulta').slideDown(600);
@@ -133,16 +140,15 @@ export class ConsultaTitularComponent implements OnInit {
   }
 
   titAtivo() {
-    this.getTitularesAtivos()
+    this.getTitularesAtivos();
     $('.menuVigencia').removeClass('canceladoBorder');
     $('.menuItems li').siblings().removeClass('canceladoBtn');
     $('.menuItems li').addClass('active');
     $('.cancelados').removeClass('canceladoBtn');
     $('.cancelados').removeClass('active');
-
   }
   titCancelado() {
-    this.getTitularesInativos()
+    this.getTitularesInativos();
     $('.menuVigencia').addClass('canceladoBorder');
     $('.cancelados').addClass('canceladoBtn');
     $('.radiusTop').removeClass('active');

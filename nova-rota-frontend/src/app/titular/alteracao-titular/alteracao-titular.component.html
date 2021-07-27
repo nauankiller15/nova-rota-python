@@ -21,10 +21,7 @@
         <nav class="menuVigencia">
           <ul class="menuItems">
             <!-- BOTÃO REAJUSTE -->
-            <li
-              class="active radiusTop"
-              (click)="titAtivo()"
-            >
+            <li class="active radiusTop" (click)="titAtivo()">
               Titulares Ativos
             </li>
 
@@ -60,12 +57,12 @@
                   ><i class="fas fa-user-tie"></i
                 ></span>
                 <input
-                (input)="searchNomeBenef($event.target.value)"
-                name="nome_titular"
-                type="text"
-                class="form-control"
-                placeholder="Digite aqui o nome do titular"
-              />
+                  (input)="searchNomeBenef($event.target.value)"
+                  name="nome_titular"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o nome do titular"
+                />
               </div>
             </div>
             <div style="width: 100%; height: 10px"></div>

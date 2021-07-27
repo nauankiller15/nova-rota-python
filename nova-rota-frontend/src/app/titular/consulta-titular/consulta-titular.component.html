@@ -5,7 +5,7 @@
         <div class="page-title-wrapper">
           <div class="page-title-heading">
             <div class="page-title-icon">
-                <i class="fas fas fa-user-tie icon-gradient bg-mean-fruit"> </i>
+              <i class="fas fas fa-user-tie icon-gradient bg-mean-fruit"> </i>
             </div>
             <div>
               Consulta de Titulares
@@ -20,15 +20,11 @@
       <div id="consulta4" class="main-card mb-3 card">
         <nav class="menuVigencia">
           <ul class="menuItems">
-            <li
-              class="active radiusTop"
-              (click)="titAtivo()"
-            >
+            <li class="active radiusTop" (click)="titAtivo()">
               Titulares Ativos
             </li>
 
-            <li class="cancelados" 
-              (click)="titCancelado()">
+            <li class="cancelados" (click)="titCancelado()">
               Titulares Cancelados
             </li>
           </ul>
@@ -132,7 +128,7 @@
             </ngx-skeleton-loader>
 
             <div *ngIf="contentLoaded">
-                          <div class="titulares">
+              <div class="titulares">
                 Titulares Encontrados:
                 <li
                   class="loadit"

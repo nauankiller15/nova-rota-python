@@ -21,10 +21,7 @@
         <nav class="menuVigencia">
           <ul class="menuItems">
             <!-- BOTÃO REAJUSTE -->
-            <li
-              class="active radiusTop"
-              (click)="depAtivo()"
-            >
+            <li class="active radiusTop" (click)="depAtivo()">
               Dependentes Ativos
             </li>
 
@@ -352,7 +349,7 @@
                   <b>{{ dependente.nome_mae }}</b>
                 </p>
               </div>
-             
+
               <div class="dadosConsulta">
                 <label>Celular</label>
                 <div class="linhaE"></div>
@@ -453,7 +450,6 @@
                   <b *ngIf="dependente.data_casamento == null">Nenhuma data</b>
                 </p>
               </div>
-              
             </div>
 
             <div class="form-row">

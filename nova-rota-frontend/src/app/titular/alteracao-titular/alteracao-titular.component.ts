@@ -36,7 +36,7 @@ export class AlteracaoTitularComponent implements OnInit {
     private toastr: ToastrService,
     private api: ApiService,
   ) {
-    this.getTitulares();
+    this.getTitularesAtivos();
   }
 
   ngOnInit(): void {
@@ -134,6 +134,38 @@ export class AlteracaoTitularComponent implements OnInit {
     }
   }
 
+  getTitularesAtivos() {
+    this.api.listar('titular/?ativo=true').subscribe(
+      (data) => {
+        this.titulares = data;
+        this.busca = data;
+        this.contentLoaded = true;
+      },
+      (error) => {
+        const mensagens = error.error;
+        for (let mensagem in mensagens) {
+          this.toastr.error(mensagem, mensagens[mensagem]);
+        }
+      }
+    );
+  }
+
+  getTitularesInativos() {
+    this.api.listar('titular/?ativo=false').subscribe(
+      (data) => {
+        this.titulares = data;
+        this.busca = data;
+        this.contentLoaded = true;
+      },
+      (error) => {
+        const mensagens = error.error;
+        for (let mensagem in mensagens) {
+          this.toastr.error(mensagem, mensagens[mensagem]);
+        }
+      }
+    );
+  }
+  
   getTitulares = () => {
     this.api.listar('titular/').subscribe(
       (data) => {
@@ -188,6 +220,7 @@ export class AlteracaoTitularComponent implements OnInit {
     );
   }
   titAtivo() {
+    this.getTitularesAtivos();
     $('.menuVigencia').removeClass('canceladoBorder');
     $('.menuItems li').siblings().removeClass('canceladoBtn');
     $('.menuItems li').addClass('active');
@@ -196,6 +229,7 @@ export class AlteracaoTitularComponent implements OnInit {
 
   }
   titCancelado() {
+    this.getTitularesInativos();
     $('.menuVigencia').addClass('canceladoBorder');
     $('.cancelados').addClass('canceladoBtn');
     $('.radiusTop').removeClass('active');
