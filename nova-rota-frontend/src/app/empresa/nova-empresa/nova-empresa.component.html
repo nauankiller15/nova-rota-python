@@ -64,8 +64,7 @@
                     [class.is-valid]="
                       CNPJ_empresa_principal.valid &&
                       CNPJ_empresa_principal.touched
-                    "
-                    pattern="^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$"
+                    "                    
                     id="CNPJ_empresa_principal"
                     name="CNPJ_empresa_principal"
                     type="text"
@@ -123,6 +122,7 @@
                     Razão Social Necessária!
                   </small>
                 </div>
+                <small id="InvalidCNPJprincipal" class="text-danger" style="display: none;">CNPJ Inválido!</small>
               </div>
             </div>
           </form>
@@ -144,7 +144,7 @@
                   [(ngModel)]="empresa.CNPJ"
                   [class.is-invalid]="CNPJ.invalid && CNPJ.touched"
                   [class.is-valid]="CNPJ.valid && CNPJ.touched"
-                  pattern="^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$"
+                  id="CNPJ"
                   name="CNPJ"
                   type="text"
                   class="form-control cnpj"
@@ -160,6 +160,7 @@
                     >CNPJ Digitos Incompletos!</small
                   >
                 </div>
+                <small id="InvalidCNPJ" class="text-danger" style="display: none;">CNPJ Inválido!</small>
               </div>
 
               <div class="col-md-4 mb-2">

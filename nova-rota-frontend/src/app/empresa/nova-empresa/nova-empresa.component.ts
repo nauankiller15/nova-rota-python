@@ -8,6 +8,7 @@ import {
   Reajuste,
   Sinistralidade,
 } from './models';
+import { validarCNPJ } from '../../shared/validador-cnpj';
 
 declare var $: any;
 
@@ -34,6 +35,33 @@ export class NovaEmpresaComponent implements OnInit {
       $('.cnpj').mask('00.000.000/0000-00', { reverse: false });
       $('.percent').mask('##0,00%', { reverse: false });
     });
+
+    // VALIDAR CNPJ EMP PRINCIPAL
+    $('#CNPJprincipal').on('change', function () {
+      if (validarCNPJ(this.value) == false) {
+        console.log('cnpj invalido');
+        $(this).addClass('is-invalid ng-invalid');
+        $(this).removeClass('ng-valid is-valid');
+        $('#InvalidCNPJprincipal').fadeIn(100);
+      } else {
+        $('#InvalidCNPJprincipal').hide();
+        $(this).removeClass('is-invalid ng-invalid');
+        $(this).addClass('ng-valid is-valid');
+      }
+    }); 
+    // VALIDAR CNPJ
+    $('#CNPJ').on('change', function () {
+      if (validarCNPJ(this.value) == false) {
+        console.log('cnpj invalido');
+        $(this).addClass('is-invalid ng-invalid');
+        $(this).removeClass('ng-valid is-valid');
+        $('#InvalidCNPJ').fadeIn(100);
+      } else {
+        $('#InvalidCNPJ').hide();
+        $(this).removeClass('is-invalid ng-invalid');
+        $(this).addClass('ng-valid is-valid');
+      }
+    }); 
 
     // TELA DE ANEXO DO DOCUMENTO DA EMPRESA
     $('#dataRecebimento').on('blur', function () {

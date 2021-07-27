@@ -3,6 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from '../../app.component';
 import { ApiService } from '../../api.service';
 import { Dependente, Titular } from './models';
+import { validarCPF } from '../../shared/validador-cpf';
+
 
 declare var $: any;
 
@@ -41,6 +43,20 @@ export class NovoDependenteComponent implements OnInit {
       $('.celular').mask('(00) 00000-0000');
       $('.cpf').mask('000.000.000-00', { reverse: false });
     });
+
+    // VALIDAR CPF
+    $('#CPFDep').on('change', function () {
+      if (validarCPF(this.value) == false) {
+        console.log('cpf invalido');
+        $(this).addClass('is-invalid ng-invalid');
+        $(this).removeClass('ng-valid is-valid');
+        $('#InvalidCPF').fadeIn(100);
+      } else {
+        $('#InvalidCPF').hide();
+        $(this).removeClass('is-invalid ng-invalid');
+        $(this).addClass('ng-valid is-valid');
+      }
+    }); 
 
     // VINCULAR TITULAR
     $('#vincular-titular-btn').click(function () {

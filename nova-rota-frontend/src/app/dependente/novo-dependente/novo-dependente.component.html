@@ -39,13 +39,13 @@
                   autocomplete="off"
                   [class.is-invalid]="CPF.invalid && CPF.touched"
                   [class.is-valid]="CPF.valid && CPF.touched"
-                  required
-                  name="CPF"
-                  pattern="^\d{3}\.\d{3}\.\d{3}\-\d{2}$"
                   [(ngModel)]="dependente.CPF"
+                  id="CPFDep"
+                  name="CPF"
                   type="text"
                   class="form-control cpf"
                   placeholder="Número de CPF"
+                  required
                 />
                 <div *ngIf="CPF.errors && (CPF.valid || CPF.touched)">
                   <small class="text-danger" *ngIf="CPF.errors.required"
@@ -55,6 +55,9 @@
                     >CPF Digitos Incompletos!</small
                   >
                 </div>
+                <small id="InvalidCPF" class="text-danger" style="display: none"
+                  >CPF Inválido!</small
+                >
               </div>
 
               <div class="col-md-2 mb-3">
@@ -646,7 +649,7 @@
                     />
                     <div class="titulares-checkbox">
                       <li
-                      class="loadit"
+                        class="loadit"
                         value="{{ titular.id }}"
                         *ngFor="
                           let resultadoTitular of buscaTitular
