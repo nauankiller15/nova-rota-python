@@ -4,7 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../api.service';
 import { Titular } from '../models';
 
-
 declare var $: any;
 
 @Component({
@@ -13,12 +12,11 @@ declare var $: any;
   styleUrls: ['./cancelamento-titular.component.css'],
 })
 export class CancelamentoTitularComponent implements OnInit {
-  titular: Titular = new Titular;
+  titular: Titular = new Titular();
 
-  busca: Titular[] = []
-  titulares: Titular[] = []
-  
-  
+  busca: Titular[] = [];
+  titulares: Titular[] = [];
+
   // CARREGADOR
   animation = 'pulse';
   contentLoaded = false;
@@ -28,7 +26,6 @@ export class CancelamentoTitularComponent implements OnInit {
   intervalId: number | null = null;
   p: number = 1;
   //
-  
 
   constructor(
     private toastr: ToastrService,
@@ -122,7 +119,6 @@ export class CancelamentoTitularComponent implements OnInit {
     }
   }
 
-
   searchNomeBenef(nome_benef: string) {
     if (nome_benef != '') {
       this.busca = this.titulares.filter((res) => {
@@ -143,26 +139,26 @@ export class CancelamentoTitularComponent implements OnInit {
         const mensagens = error.error;
         for (let mensagem in mensagens) {
           this.toastr.error(mensagem, mensagens[mensagem]);
-        } 
+        }
       }
     );
   };
 
   titularClicked(titular) {
     this.titular = titular;
-    $('#box-cancelar').show();
+    $('#cancelamentoTitular').fadeIn(250);
   }
 
   boxCancelarVoltar() {
-    $('#box-cancelar').hide();
+    $('#cancelamentoTitular').fadeOut(250);
   }
 
   cancelarTitular() {
     this.titular.ativo = false;
     this.api.atualizar('titular/', this.titular).subscribe(
       (data) => {
-        this.toastr.success('Titular CANCELADO com sucesso!');
-        $('#box-cancelar').hide();
+        this.toastr.success('`Titular <b>CANCELADO</b> com sucesso!`');
+        $('#cancelamentoTitular').fadeOut(250);
         this.getTitulares();
       },
       (error) => {

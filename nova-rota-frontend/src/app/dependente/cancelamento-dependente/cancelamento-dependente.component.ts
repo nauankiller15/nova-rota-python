@@ -93,11 +93,11 @@ export class CancelamentoDependenteComponent implements OnInit {
 
   dependenteClicked(dependente) {
     this.dependente = dependente;
-    $('#box-cancelar').show();
+    $('#cancelamentoDependente').fadeIn(250);
   }
 
   boxCancelarVoltar() {
-    $('#box-cancelar').hide();
+    $('#cancelamentoDependente').fadeOut(250);
   }
 
   cancelarDependente() {
@@ -105,7 +105,7 @@ export class CancelamentoDependenteComponent implements OnInit {
     this.api.atualizar('parentesco/', this.dependente).subscribe(
       (data) => {
         this.toastr.success('Dependente CANCELADO com sucesso!');
-        $('#box-cancelar').hide();
+        $('#cancelamentoDependente').fadeOut(250);
         this.getDependentes();
       },
       (error) => {

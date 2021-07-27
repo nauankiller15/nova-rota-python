@@ -128,7 +128,7 @@
               <div class="contentCancelar">
                 <button class="btn btn-cancelar">
                   <i style="margin-right: 6px" class="fas fa-times-circle"></i
-                  >Cancelar
+                  >Cancelar todos
                 </button>
               </div>
               <div class="titulares">
@@ -457,10 +457,22 @@
       <!--  -->
     </div>
 
-    <div id="box-cancelar" class="box-cancelar" style="display: none;">
-      <h1>Tem certeza que quer cancelar o cadastro de {{ titular.nome_benef }}?</h1>
-      <button class="btn btn-danger" (click)="cancelarTitular()">Invativar</button>
-      <button class="btn btn-secondary" (click)="boxCancelarVoltar()">voltar</button>
+    <div id="cancelamentoTitular">
+      <div class="box-cancelar">
+        <div class="anexo-info-box-titular-vinc">
+          <h1>
+            Tem certeza que deseja cancelar o cadastro de
+            <b>{{ titular.nome_benef }}</b>?
+          </h1>
+          <div style="margin-top: 35px; width: 100%"></div>
+          <button class="btn btn-primary" (click)="cancelarTitular()">
+            Confirmar
+          </button>
+          <button class="btn btn-secondary" (click)="boxCancelarVoltar()">
+            Voltar
+          </button>
+        </div>
+      </div>
     </div>
 
     <app-rodape></app-rodape>
