@@ -23,6 +23,8 @@ export class CancelamentoDependenteComponent implements OnInit {
 
   dependentes: Dependente[];
   dependente: Dependente = new Dependente();
+  cancelamentos: Dependente[] = [];
+  cancelados = {'cancelados': [], 'erros': []}
   //
   intervalId: number | null = null;
   //
@@ -113,6 +115,54 @@ export class CancelamentoDependenteComponent implements OnInit {
         for (let campo in mensagens) {
           this.toastr.error(mensagens[campo], 'Erro no ' + campo);
         }
+      }
+    );
+  }
+
+  preCancelar(adicionar: boolean, dependente: Dependente) {
+    if (adicionar == true) {
+      this.cancelamentos.push(dependente);
+    } else {
+      const indice = this.cancelamentos.indexOf(dependente);
+      this.cancelamentos.splice(indice, 1);
+    }
+  }
+
+  confirmarCancelamentos() {
+    $('#cancelamentoSelecionados').fadeIn(250);
+  }
+
+  boxSeleconadosVoltar() {
+    $('#cancelamentoSelecionados').fadeOut(250);
+  }
+
+  boxEsperaVoltar() {
+    this.getDependentes();
+    this.cancelamentos = [];
+    $('#espera').fadeOut(250);
+  }
+
+  cancelarSelecionados() {
+    this.cancelamentos.forEach(dependente => {
+      this.cancelar(dependente);
+    });
+    $('#cancelamentoSelecionados').fadeOut(250);
+    $('#espera').fadeIn(250);
+  }
+
+  cancelar(dependente: Dependente) {
+    dependente.ativo = false;
+    this.api.atualizar('parentesco/', dependente).subscribe(
+      (data) => {
+        this.cancelados.cancelados.push(dependente);
+      },
+      (error) => {
+        let mensagens = error.error;
+        let erros = [];
+        for (let campo in mensagens) {
+          erros.push(mensagens[campo]);
+        }
+        this.cancelados.erros.push({'dependente': dependente, 'erros': erros});
       }
     );
   }

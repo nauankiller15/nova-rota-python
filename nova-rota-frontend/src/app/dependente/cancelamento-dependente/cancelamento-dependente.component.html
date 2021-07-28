@@ -125,9 +125,9 @@
                     </button>
                 </div>
                 <div class="contentCancelar">
-                  <button class="btn btn-cancelar">
+                  <button class="btn btn-cancelar" (click)="confirmarCancelamentos()">
                     <i style="margin-right: 6px" class="fas fa-times-circle"></i
-                    >Cancelar
+                    >Cancelar selecionados
                   </button>
                 </div>
                 <div class="titulares">
@@ -144,10 +144,8 @@
                               currentPage: p
                             }
                     "
-                    id="checkedTitular"
-                    (click)="dependenteClicked(resultado)"
                   >
-                    <input for="checkedTitular" type="checkbox" />
+                    <input for="checkedTitular" type="checkbox" (click)="preCancelar($event.target.checked, resultado)"/>
   
                     <i
                       style="
@@ -164,6 +162,9 @@
                     ></i>
                     CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
                     {{ resultado.nome_dependente }}
+                    <button class="btn" (click)="dependenteClicked(resultado)">
+                      <i class="fas fa-trash"></i>
+                    </button>
                   </li>
                   <h4
                     class="loadit"
@@ -202,6 +203,50 @@
               Confirmar
             </button>
             <button class="btn btn-secondary" (click)="boxCancelarVoltar()">
+              Voltar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="cancelamentoSelecionados" style="display: none;">
+        <div class="box-cancelar">
+          <div class="anexo-info-box-titular-vinc">
+            <h1>
+              Tem certeza que deseja cancelar os cadastros abaixo?
+            </h1>
+            <h3 *ngFor="let dependente of cancelamentos">
+              <b>{{ dependente.nome_dependente }}</b>
+            </h3>
+            <div style="margin-top: 35px; width: 100%"></div>
+            <button class="btn btn-primary" (click)="cancelarSelecionados()">
+              Confirmar
+            </button>
+            <button class="btn btn-secondary" (click)="boxSeleconadosVoltar()">
+              Voltar
+            </button>
+          </div>
+        </div>
+      </div>
+  
+      <div id="espera" style="display: none;">
+        <div class="box-cancelar">
+          <div class="anexo-info-box-titular-vinc">
+            <h1 *ngIf="cancelados.cancelados.length > 0">Cadastros Cancelados:</h1>
+            <h3 *ngFor="let dependente of cancelados.cancelados">
+              <b>{{ dependente.nome_dependente }}</b>
+            </h3>
+  
+            <h1 *ngIf="cancelados.erros.length > 0">Cadastros com erro no cancelamento:</h1>
+            <div *ngFor="let erro of cancelados.erros">
+              <h3 >
+                <b>{{ erro.dependente.nome_dependente }}:</b>
+              </h3>
+              <p *ngFor="let msg of erro.erros">{{msg}}</p>
+            </div>
+  
+            <div style="margin-top: 35px; width: 100%"></div>
+            <button class="btn btn-secondary" (click)="boxEsperaVoltar()">
               Voltar
             </button>
           </div>

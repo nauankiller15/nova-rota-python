@@ -366,3 +366,9 @@ em {
   transform: translate(-50%, -50%);
   transition: 0.4s;
 }
+
+.titulares button {
+  color: var(--cor-cancelar);
+  background-color: var(--branco);
+  border-color: var(--cor-cancelar);
+}
