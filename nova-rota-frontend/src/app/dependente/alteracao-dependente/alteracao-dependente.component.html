@@ -78,66 +78,7 @@
 
             <hr />
 
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-            <div style="width: 100%"></div>
-
-            <ngx-skeleton-loader
-              *ngIf="!contentLoaded"
-              [theme]="{ width: '50%', height: '40px' }"
-              animation="progress"
-            >
-            </ngx-skeleton-loader>
-
-            <div *ngIf="contentLoaded">
+            <div>
               <div class="titulares">
                 Dependentes Encontrados:
                 <li
@@ -153,6 +94,7 @@
                           }
                   "
                   (click)="dependenteClicked(resultado)"
+                  [ngClass]="tipoPrioridade(resultado.criado_em) == 'Prioridade' ? 'prioridade': 'sem-prioridade'"
                 >
                   <i
                     style="
@@ -697,6 +639,7 @@
                                 }
                         "
                         (click)="titularClickedDependente(resultadoTitular)"
+                        [ngClass]="tipoPrioridade(resultado.criado_em) == 'Prioridade' ? 'prioridade': 'sem-prioridade'"
                       >
                         <i
                           style="

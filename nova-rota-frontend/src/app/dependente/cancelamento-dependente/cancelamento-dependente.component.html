@@ -57,66 +57,7 @@
   
               <hr />
   
-              <ngx-skeleton-loader
-                *ngIf="!contentLoaded"
-                [theme]="{ width: '50%', height: '40px' }"
-                animation="progress"
-              >
-              </ngx-skeleton-loader>
-              <div style="width: 100%"></div>
-              <ngx-skeleton-loader
-                *ngIf="!contentLoaded"
-                [theme]="{ width: '50%', height: '40px' }"
-                animation="progress"
-              >
-              </ngx-skeleton-loader>
-              <div style="width: 100%"></div>
-              <ngx-skeleton-loader
-                *ngIf="!contentLoaded"
-                [theme]="{ width: '50%', height: '40px' }"
-                animation="progress"
-              >
-              </ngx-skeleton-loader>
-              <div style="width: 100%"></div>
-              <ngx-skeleton-loader
-                *ngIf="!contentLoaded"
-                [theme]="{ width: '50%', height: '40px' }"
-                animation="progress"
-              >
-              </ngx-skeleton-loader>
-              <div style="width: 100%"></div>
-              <ngx-skeleton-loader
-                *ngIf="!contentLoaded"
-                [theme]="{ width: '50%', height: '40px' }"
-                animation="progress"
-              >
-              </ngx-skeleton-loader>
-              <div style="width: 100%"></div>
-  
-              <ngx-skeleton-loader
-                *ngIf="!contentLoaded"
-                [theme]="{ width: '50%', height: '40px' }"
-                animation="progress"
-              >
-              </ngx-skeleton-loader>
-              <div style="width: 100%"></div>
-  
-              <ngx-skeleton-loader
-                *ngIf="!contentLoaded"
-                [theme]="{ width: '50%', height: '40px' }"
-                animation="progress"
-              >
-              </ngx-skeleton-loader>
-              <div style="width: 100%"></div>
-  
-              <ngx-skeleton-loader
-                *ngIf="!contentLoaded"
-                [theme]="{ width: '50%', height: '40px' }"
-                animation="progress"
-              >
-              </ngx-skeleton-loader>
-  
-              <div *ngIf="contentLoaded">
+              <div>
                 <div for="checkedAllTitulares" class="contentCancelar">
                   <button class="btn btn-primary">
                       <input id="checkedAllTitulares" type="checkbox" />
@@ -146,6 +87,7 @@
                     "
                     id="checkedTitular"
                     (click)="dependenteClicked(resultado)"
+                    [ngClass]="tipoPrioridade(resultado.criado_em) == 'Prioridade' ? 'prioridade': 'sem-prioridade'"
                   >
                     <input for="checkedTitular" type="checkbox" />
   
