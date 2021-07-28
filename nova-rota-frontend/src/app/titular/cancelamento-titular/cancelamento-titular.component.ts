@@ -131,7 +131,6 @@ export class CancelamentoTitularComponent implements OnInit {
     );
   }
 
-<<<<<<< HEAD
   tipoPrioridade(data) {
     const hoje = new Date();
     let dataPrioridade = new Date(data);
@@ -145,7 +144,6 @@ export class CancelamentoTitularComponent implements OnInit {
     return prioridade
   }
   
-=======
   preCancelar(adicionar: boolean, titular: Titular) {
     if (adicionar == true) {
       this.cancelamentos.push(titular);
@@ -193,5 +191,4 @@ export class CancelamentoTitularComponent implements OnInit {
       }
     );
   }
->>>>>>> 19ba91a9671a38ee4ee4ab4da2485d583d122729
 }
