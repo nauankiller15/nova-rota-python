@@ -22,12 +22,20 @@
           <ul class="menuItems">
             <!-- BOTÃO REAJUSTE -->
             <li class="active radiusTop" (click)="titAtivo()">
-              Titulares Ativos
+              <i
+              class="fas fa-user-check"
+              style="font-size: 15px; margin-right: 9px"
+            ></i
+            >Titulares Ativos
             </li>
 
             <!-- BOTÃO SINISTRALIDADE -->
             <li class="cancelados" (click)="titCancelado()">
-              Titulares Cancelados
+              <i
+              class="fas fa-user-slash"
+              style="font-size: 15px; margin-right: 9px"
+            ></i
+            >Titulares Cancelados
             </li>
           </ul>
         </nav>

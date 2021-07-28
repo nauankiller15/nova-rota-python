@@ -32,12 +32,20 @@
               (click)="empresaPrincipal()"
               id="functionPrincipal"
             >
-              Empresa Principal
+              <i
+                class="fas fa-building"
+                style="font-size: 15px; margin-right: 9px"
+              ></i
+              >Empresa Principal
             </li>
 
             <!-- BOTÃO SINISTRALIDADE -->
             <li (click)="empresaFilial()" id="functionFilial">
-              Empresa Filial
+              <i
+                class="fas fa-plus"
+                style="font-size: 15px; margin-right: 9px"
+              ></i
+              >Empresa Filial
             </li>
           </ul>
         </nav>
@@ -64,7 +72,7 @@
                     [class.is-valid]="
                       CNPJ_empresa_principal.valid &&
                       CNPJ_empresa_principal.touched
-                    "                    
+                    "
                     id="CNPJ_empresa_principal"
                     name="CNPJ_empresa_principal"
                     type="text"
@@ -122,7 +130,12 @@
                     Razão Social Necessária!
                   </small>
                 </div>
-                <small id="InvalidCNPJprincipal" class="text-danger" style="display: none;">CNPJ Inválido!</small>
+                <small
+                  id="InvalidCNPJprincipal"
+                  class="text-danger"
+                  style="display: none"
+                  >CNPJ Inválido!</small
+                >
               </div>
             </div>
           </form>
@@ -160,7 +173,12 @@
                     >CNPJ Digitos Incompletos!</small
                   >
                 </div>
-                <small id="InvalidCNPJ" class="text-danger" style="display: none;">CNPJ Inválido!</small>
+                <small
+                  id="InvalidCNPJ"
+                  class="text-danger"
+                  style="display: none"
+                  >CNPJ Inválido!</small
+                >
               </div>
 
               <div class="col-md-4 mb-2">
@@ -605,11 +623,7 @@
                   />
                 </div>
                 <h1
-                  style="
-                    font-size: 22px;
-                    margin-top: 5px;
-                    margin-bottom: 15px;
-                  "
+                  style="font-size: 22px; margin-top: 5px; margin-bottom: 15px"
                 >
                   Você cadastrou: <b>{{ empresa.razao_social }}</b>
                   <div style="width: 100%; height: 12px"></div>
