@@ -153,6 +153,8 @@
                           }
                   "
                   (click)="dependenteClickedConsulta(resultado)"
+                  [ngClass]="definirPrioridade(resultado.criado_em) == 'Prioridade' ? 'prioridade': 'sem-prioridade'"
+
                 >
                   <i
                     style="

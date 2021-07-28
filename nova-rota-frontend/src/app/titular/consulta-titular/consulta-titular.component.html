@@ -28,7 +28,6 @@
               >Titulares Ativos
             </li>
 
-            <!-- BOTÃO SINISTRALIDADE -->
             <li class="cancelados" (click)="titCancelado()">
               <i
                 class="fas fa-user-slash"
@@ -152,6 +151,7 @@
                           }
                   "
                   (click)="titularClickedConsulta(resultado)"
+                  [ngClass]="tipoPrioridade(resultado.criado_em) == 'Prioridade' ? 'prioridade': 'sem-prioridade'"
                 >
                   <i
                     style="
