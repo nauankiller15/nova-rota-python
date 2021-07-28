@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../api.service';
-import { Dependente, Titular } from '../novo-dependente/models';
+import { Dependente, Titular } from '../models';
 
 declare var $: any;
 

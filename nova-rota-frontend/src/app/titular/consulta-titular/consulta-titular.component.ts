@@ -1,5 +1,5 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../api.service';
 import { Titular } from '../models';
@@ -153,5 +153,25 @@ export class ConsultaTitularComponent implements OnInit {
     $('.cancelados').addClass('canceladoBtn');
     $('.radiusTop').removeClass('active');
     $('.cancelados').removeClass('active');
+  }
+
+  tipoPrioridade(data) {
+    const hoje = new Date();
+    let dataPrioridade = new Date(data);
+    dataPrioridade.setMonth(dataPrioridade.getMonth() + 1);
+    let prioridade = 'Prioridade';
+    console.log(dataPrioridade, hoje, dataPrioridade > hoje);
+    if (dataPrioridade < hoje) {
+      prioridade = "Sem Prioridade";
+    }
+
+    return prioridade
+  }
+
+  data(data:string) {
+    const datePipe: DatePipe = new DatePipe('en-US')
+    let dataFormatada = datePipe.transform(data, 'dd/MM/YYYY');
+
+    return dataFormatada
   }
 }

@@ -315,7 +315,7 @@
                 <label>Prioridade</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.prioridade }}</b>
+                  <b>{{ definirPrioridade(dependente.criado_em) }}</b>
                 </p>
               </div>
 
@@ -327,11 +327,14 @@
                 </p>
               </div>
 
-              <div class="dadosConsulta status">
+              <div class="dadosConsulta" [ngClass]="dependente.ativo == true ? 'status-ativo': 'status-cancelado'">
                 <label>Status Sistema</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.status }}</b>
+                  <b *ngIf="dependente.ativo == true; else cancelado">Ativo</b>
+                  <ng-template #cancelado>
+                    <b>Cancelado</b>
+                  </ng-template>
                 </p>
               </div>
             </div>
@@ -430,7 +433,7 @@
                 <label>Data de Recebimento</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.data_recebimento }}</b>
+                  <b>{{ data(dependente.data_recebimento) }}</b>
                 </p>
               </div>
 
@@ -438,7 +441,7 @@
                 <label>Data de Admissão</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.data_admissao }}</b>
+                  <b>{{ data(dependente.data_admissao) }}</b>
                 </p>
               </div>
 
@@ -446,7 +449,7 @@
                 <label>Data de Casamento</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ dependente.data_casamento }}</b>
+                  <b>{{ data(dependente.data_casamento) }}</b>
                   <b *ngIf="dependente.data_casamento == null">Nenhuma data</b>
                 </p>
               </div>

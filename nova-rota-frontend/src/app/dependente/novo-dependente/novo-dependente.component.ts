@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from '../../app.component';
 import { ApiService } from '../../api.service';
-import { Dependente, Titular } from './models';
+import { Dependente, Titular } from '../models';
 import { validarCPF } from '../../shared/validador-cpf';
 
 

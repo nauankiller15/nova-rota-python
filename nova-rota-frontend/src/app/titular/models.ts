@@ -24,4 +24,5 @@ export class Titular {
     observacoes: string;
     status: string;
     ativo: boolean;
+    criado_em: string;
 }

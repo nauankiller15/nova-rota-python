@@ -6,11 +6,3 @@ class TitularSerializer(serializers.ModelSerializer):
     class Meta:
         model = Titular
         fields = '__all__'
-
-
-class TitularSimpleSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Titular
-        fields = ['nome_benef']
-
-

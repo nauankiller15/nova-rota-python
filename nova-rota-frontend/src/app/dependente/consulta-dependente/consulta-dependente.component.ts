@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../api.service';
-import { Dependente, Titular } from '../novo-dependente/models';
+import { Dependente, Titular } from '../models';
+import { data } from '../../shared/formatar-data';
+import { DatePipe } from '@angular/common';
 
 declare var $: any;
 
@@ -42,7 +44,10 @@ export class ConsultaDependenteComponent implements OnInit {
   nome_benef: string;
   selected_titular: any;
 
-  constructor(private toastr: ToastrService, private api: ApiService) {
+  constructor(
+    private toastr: ToastrService, 
+    private api: ApiService,
+  ) {
     this.getDependentesAtivos();
   }
 
@@ -207,5 +212,24 @@ export class ConsultaDependenteComponent implements OnInit {
     $('.cancelados').addClass('canceladoBtn');
     $('.radiusTop').removeClass('active');
     $('.cancelados').removeClass('active');
+  }
+
+  data(data:string) {
+    const datePipe: DatePipe = new DatePipe('en-US')
+    let dataFormatada = datePipe.transform(data, 'dd/MM/YYYY');
+
+    return dataFormatada
+  }
+
+  definirPrioridade(data) {
+    const hoje = new Date();
+    let dataPrioridade = new Date(data);
+    dataPrioridade.setMonth(dataPrioridade.getMonth() + 1);
+    let prioridade = 'Prioridade';
+    if (dataPrioridade < hoje) {
+      prioridade = "Sem Prioridade";
+    }
+
+    return prioridade
   }
 }

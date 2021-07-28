@@ -28,6 +28,7 @@ export class Dependente {
     observacoes: string;
     status: string;
     ativo: boolean;
+    criado_em: string;
     titular_nome: string;
 }
 
