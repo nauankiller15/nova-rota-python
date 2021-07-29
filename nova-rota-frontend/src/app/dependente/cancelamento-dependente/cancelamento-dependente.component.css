@@ -371,10 +371,45 @@
   transition: 0.4s;
 }
 
+<<<<<<< HEAD
+.prioridade {
+  display: block;
+  width: 650px;
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px 10px 7px 8px;
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+  transition: 0.3s;
+  color: #6c757d;
+  cursor: pointer;
+  box-shadow: -10px 0px 0px 0px #04f14b;
+}
+
+.sem-prioridade {
+  display: block;
+  width: 650px;
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px 10px 7px 8px;
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+  transition: 0.3s;
+  color: #6c757d;
+  cursor: pointer;
+  box-shadow: -10px 0px 0px 0px #707471;
+=======
 .titulares button {
   color: var(--cor-cancelar);
   background-color: var(--branco);
   border-color: var(--cor-cancelar);
+>>>>>>> 19ba91a9671a38ee4ee4ab4da2485d583d122729
 }
 
 .prioridade {
