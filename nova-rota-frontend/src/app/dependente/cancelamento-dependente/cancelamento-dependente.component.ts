@@ -24,19 +24,15 @@ export class CancelamentoDependenteComponent implements OnInit {
   dependentes: Dependente[];
   dependente: Dependente = new Dependente();
   cancelamentos: Dependente[] = [];
-  cancelados = {'cancelados': [], 'erros': []}
+  cancelados = { cancelados: [], erros: [] };
   //
   intervalId: number | null = null;
   //
 
   p: number = 1;
-  
 
-  constructor(
-    private toastr: ToastrService,
-    private api: ApiService,
-  ) {
-    this.getDependentes();
+  constructor(private toastr: ToastrService, private api: ApiService) {
+    this.getDependentesAtivos();
   }
 
   ngOnInit(): void {
@@ -56,7 +52,6 @@ export class CancelamentoDependenteComponent implements OnInit {
     // MÁSCARAS DE INPUT
     $(document).ready(() => {
       $('.cpf').mask('000.000.000-00', { reverse: false });
-
     });
     //
   }
@@ -81,8 +76,20 @@ export class CancelamentoDependenteComponent implements OnInit {
     }
   }
 
-  getDependentes() {
+  getDependentesAtivos() {
     this.api.listar('parentesco/?ativo=true').subscribe(
+      (data) => {
+        this.dependentes = data;
+        this.busca = data;
+      },
+      (error) => {
+        this.toastr.error('Aconteceu um Erro!', error.message);
+      }
+    );
+  }
+
+  getDependentesInativos() {
+    this.api.listar('parentesco/?ativo=false').subscribe(
       (data) => {
         this.dependentes = data;
         this.busca = data;
@@ -108,7 +115,7 @@ export class CancelamentoDependenteComponent implements OnInit {
       (data) => {
         this.toastr.success('Dependente CANCELADO com sucesso!');
         $('#cancelamentoDependente').fadeOut(250);
-        this.getDependentes();
+        this.getDependentesAtivos();
       },
       (error) => {
         let mensagens = error.error;
@@ -137,13 +144,13 @@ export class CancelamentoDependenteComponent implements OnInit {
   }
 
   boxEsperaVoltar() {
-    this.getDependentes();
+    this.getDependentesAtivos();
     this.cancelamentos = [];
     $('#espera').fadeOut(250);
   }
 
   cancelarSelecionados() {
-    this.cancelamentos.forEach(dependente => {
+    this.cancelamentos.forEach((dependente) => {
       this.cancelar(dependente);
     });
     $('#cancelamentoSelecionados').fadeOut(250);
@@ -162,8 +169,20 @@ export class CancelamentoDependenteComponent implements OnInit {
         for (let campo in mensagens) {
           erros.push(mensagens[campo]);
         }
-        this.cancelados.erros.push({'dependente': dependente, 'erros': erros});
+        this.cancelados.erros.push({ dependente: dependente, erros: erros });
       }
     );
+  }
+  tipoPrioridade(data) {
+    const hoje = new Date();
+    let dataPrioridade = new Date(data);
+    dataPrioridade.setMonth(dataPrioridade.getMonth() + 1);
+    let prioridade = 'Prioridade';
+    console.log(dataPrioridade, hoje, dataPrioridade > hoje);
+    if (dataPrioridade < hoje) {
+      prioridade = "Sem Prioridade";
+    }
+
+    return prioridade
   }
 }

@@ -106,7 +106,7 @@
                     ></i>
                     CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
                     {{ resultado.nome_dependente }}
-                    <button class="btn" (click)="dependenteClicked(resultado)">
+                    <button class="btn exclude" (click)="dependenteClicked(resultado)">
                       <i class="fas fa-trash"></i>
                     </button>
                   </li>

@@ -321,7 +321,7 @@ em {
 .contentCancelar {
   display: inline-grid;
   margin-left: 5px;
-  width: 150px;
+  width: 190px;
   min-height: 42px;
   cursor: pointer;
 }
@@ -405,4 +405,11 @@ em {
   color: var(--cor-cancelar);
   background-color: var(--branco);
   border-color: var(--cor-cancelar);
+}
+
+.exclude{
+  margin-top: -1px;
+  padding: 4px 8px 4px 8px;
+  float: right;
+  margin-right: 0px;
 }
