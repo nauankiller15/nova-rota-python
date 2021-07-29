@@ -105,6 +105,7 @@ export class ConsultaTitularComponent implements OnInit {
         this.titulares = data;
         this.busca = data;
         this.contentLoaded = true;
+        console.log(data);
       },
       (error) => {
         const mensagens = error.error;
@@ -153,18 +154,6 @@ export class ConsultaTitularComponent implements OnInit {
     $('.cancelados').addClass('canceladoBtn');
     $('.radiusTop').removeClass('active');
     $('.cancelados').removeClass('active');
-  }
-
-  tipoPrioridade(data) {
-    const hoje = new Date();
-    let dataPrioridade = new Date(data);
-    dataPrioridade.setMonth(dataPrioridade.getMonth() + 1);
-    let prioridade = 'Prioridade';
-    if (dataPrioridade < hoje) {
-      prioridade = "Sem Prioridade";
-    }
-
-    return prioridade
   }
 
   data(data:string) {

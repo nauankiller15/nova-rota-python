@@ -85,9 +85,7 @@
                               currentPage: p
                             }
                     "
-                    id="checkedTitular"
-                    (click)="dependenteClicked(resultado)"
-                    [ngClass]="tipoPrioridade(resultado.criado_em) == 'Prioridade' ? 'prioridade': 'sem-prioridade'"
+                    [ngClass]="resultado.prioridade == 'prioridade' ? 'prioridade': 'sem-prioridade'"
                   >
                     <input for="checkedTitular" type="checkbox" (click)="preCancelar($event.target.checked, resultado)"/>
   

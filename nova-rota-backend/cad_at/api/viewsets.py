@@ -17,6 +17,7 @@ class TitularViewSet(ModelViewSet):
     filterset_fields = ['ativo']
 
 
+
 class TitularParentescos(ViewSet):
 
     def list(self, request):

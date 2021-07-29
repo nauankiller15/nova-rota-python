@@ -20,7 +20,6 @@
       <div id="consulta3" class="main-card mb-3 card">
         <nav class="menuVigencia">
           <ul class="menuItems">
-            <!-- BOTÃO REAJUSTE -->
             <li class="active radiusTop" (click)="depAtivo()">
               <i
                 class="fas fa-user-check"
@@ -29,7 +28,6 @@
               >Dependentes Ativos
             </li>
 
-            <!-- BOTÃO SINISTRALIDADE -->
             <li class="cancelados" (click)="depCancelado()">
               <i
                 class="fas fa-user-slash"
@@ -94,7 +92,7 @@
                           }
                   "
                   (click)="dependenteClickedConsulta(resultado)"
-                  [ngClass]="definirPrioridade(resultado.criado_em) == 'Prioridade' ? 'prioridade': 'sem-prioridade'"
+                  [ngClass]="resultado.prioridade == 'prioridade' ? 'prioridade': 'sem-prioridade'"
 
                 >
                   <i
@@ -266,7 +264,7 @@
                 <label>Prioridade</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ definirPrioridade(dependente.criado_em) }}</b>
+                  <b>{{ dependente.prioridade }}</b>
                 </p>
               </div>
 

@@ -368,6 +368,12 @@ em {
   transition: 0.4s;
 }
 
+.titulares button {
+  color: var(--cor-cancelar);
+  background-color: var(--branco);
+  border-color: var(--cor-cancelar);
+}
+
 .prioridade {
   display: block;
   width: 650px;
@@ -400,11 +406,6 @@ em {
   color: #6c757d;
   cursor: pointer;
   box-shadow: -10px 0px 0px 0px #707471;
-}
-.titulares button {
-  color: var(--cor-cancelar);
-  background-color: var(--branco);
-  border-color: var(--cor-cancelar);
 }
 
 .exclude{

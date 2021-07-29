@@ -20,7 +20,6 @@
       <div id="consulta2" class="main-card mb-3 card">
         <nav class="menuVigencia">
           <ul class="menuItems">
-            <!-- BOTÃO REAJUSTE -->
             <li class="active radiusTop" (click)="depAtivo()">
               <i
                 class="fas fa-user-check"
@@ -29,7 +28,6 @@
               >Dependentes Ativos
             </li>
 
-            <!-- BOTÃO SINISTRALIDADE -->
             <li class="cancelados" (click)="depCancelado()">
               <i
                 class="fas fa-user-slash"
@@ -94,7 +92,8 @@
                           }
                   "
                   (click)="dependenteClicked(resultado)"
-                  [ngClass]="tipoPrioridade(resultado.criado_em) == 'Prioridade' ? 'prioridade': 'sem-prioridade'"
+                  [ngClass]="resultado.prioridade == 'prioridade' ? 'prioridade': 'sem-prioridade'"
+
                 >
                   <i
                     style="
@@ -306,7 +305,7 @@
                   readonly="True"
                   type="text"
                   class="form-control"
-                  placeholder="Prioridade"
+                  [value]="dependente.prioridade"
                   required
                 />
               </div>
@@ -531,12 +530,11 @@
                 <label for="validationCustom04">Status Sistema</label>
                 <input
                   readonly="true"
-                  [(ngModel)]="dependente.status"
                   name="status"
                   type="text"
                   class="form-control"
                   id="validationCustom10"
-                  placeholder="OK"
+                  [value]="dependente.ativo ? 'Ativo': 'Cancelado'"
                   required
                 />
               </div>
