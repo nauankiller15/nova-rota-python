@@ -292,6 +292,7 @@ em {
   margin: auto;
   width: 80%;
   margin-top: 29px;
+  margin-bottom: 29px;
   padding: 10px;
 }
 
@@ -431,5 +432,22 @@ em {
 }
 
 #cancelamentoSelecionados {
+  display: none;
+}
+
+#espera {
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0000005e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#espera {
   display: none;
 }
