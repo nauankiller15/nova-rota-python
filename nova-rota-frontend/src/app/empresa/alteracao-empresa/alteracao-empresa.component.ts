@@ -9,6 +9,8 @@ import {
   Sinistralidade,
 } from '../nova-empresa/models';
 
+import { bootstrap } from 'bootstrap';
+
 declare var $: any;
 
 @Component({
@@ -50,6 +52,10 @@ export class AlteracaoEmpresaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+    $('.editVig').tooltip('toggle');
     // CARREGADOR TIMEOUT
     setTimeout(() => {
       this.contentLoaded = true;

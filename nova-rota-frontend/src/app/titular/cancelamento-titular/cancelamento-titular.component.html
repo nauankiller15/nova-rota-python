@@ -60,7 +60,10 @@
             <div>
               <div for="checkedAllTitulares" class="contentCancelar">
                 <button class="btn btn-secondary">
-                  <i style="margin-right: 3px;font-size: 14px;"  class="far fa-times-circle"></i>
+                  <i
+                    style="margin-right: 3px; font-size: 14px"
+                    class="far fa-times-circle"
+                  ></i>
                   Desmarcar todos
                 </button>
               </div>
@@ -114,12 +117,16 @@
                   CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
                   {{ resultado.nome_benef }}
                   <button
+                    data-toggle="tooltip"
+                    title="Excluir Titular"
+                    data-placement="top"
                     class="btn exclude"
                     (click)="titularClicked(resultado)"
                   >
                     <i class="fas fa-trash"></i>
                   </button>
                 </li>
+
                 <h4
                   class="loadit"
                   style="margin-top: 20px"
