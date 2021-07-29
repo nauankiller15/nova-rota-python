@@ -154,6 +154,7 @@
                         }
                 "
                 (click)="titularClicked(resultado)"
+                [ngClass]="resultado.prioridade == 'prioridade' ? 'prioridade': 'sem-prioridade'"
               >
                 <i
                   style="
@@ -341,7 +342,7 @@
                   readonly="true"
                   type="text"
                   class="form-control"
-                  placeholder="Prioridade"
+                  [value]="titular.prioridade"
                   required
                 />
               </div>
@@ -557,12 +558,10 @@
                 <label for="validationCustom04">Status Sistema</label>
                 <input
                   readonly="true"
-                  [(ngModel)]="titular.status"
-                  [ngModelOptions]="{ standalone: true }"
                   type="text"
                   class="form-control"
                   id="validationCustom10"
-                  placeholder="OK"
+                  [value]="titular.ativo ? 'Ativo': 'Cancelado'"
                   required
                 />
                 <div class="invalid-feedback">

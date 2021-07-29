@@ -1,7 +1,12 @@
-from rest_framework.exceptions import ValidationError
-from cad_emp.models import Empresa
+from datetime import datetime, timedelta
+
 from django.db import models
+from django.utils import timezone
+
+from rest_framework.exceptions import ValidationError
 from localflavor.br.models import BRCPFField, BRPostalCodeField, BRStateField
+
+from cad_emp.models import Empresa
 
 
 class Titular (models.Model):
@@ -25,7 +30,6 @@ class Titular (models.Model):
     CPF = BRCPFField("CPF", max_length=14, null=False, unique=True)
     cod_empresa = models.CharField("Codigo Empresa", max_length=25, null=False, blank=False)
     carteirinha = models.CharField("Numero da Carteirinha", max_length=35, null=False, blank=False, unique=True)
-    prioridade = models.CharField(max_length=25, blank=False, default="Prioridade", null=False)
     data_recebimento = models.DateField(
         "Data Recebimento", auto_now=False, auto_now_add=False, blank=True, null=False)
     tipo = models.CharField("Tipo Cadastro", max_length=25,
@@ -56,6 +60,12 @@ class Titular (models.Model):
     ativo = models.BooleanField(default=True)
     criado_em = models.DateTimeField("criado em", auto_now_add=True)
     atualizado_em = models.DateTimeField("atualizado em", auto_now=True)
+
+    def prioridade(self):
+        if self.ativo:
+            if self.criado_em > timezone.now() - timedelta(days=30):
+                return 'prioridade'
+        return 'sem prioridade'
 
     def save(self, *args, **kwargs):
         empresa = Empresa.objects.filter(cod_empresa=self.cod_empresa).last()

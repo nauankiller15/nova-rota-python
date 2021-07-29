@@ -22,7 +22,6 @@ export class Titular {
     declaracao_saude: string;
     desc_declarao_saude: string;
     observacoes: string;
-    status: string;
     ativo: boolean;
     criado_em: string;
 }

@@ -145,6 +145,7 @@
                             currentPage: p
                           }
                   "
+                  [ngClass]="resultado.prioridade == 'prioridade' ? 'prioridade': 'sem-prioridade'"
                 >
                   <input for="checkedTitular" type="checkbox" (click)="preCancelar($event.target.checked, resultado)"/>
                   <i

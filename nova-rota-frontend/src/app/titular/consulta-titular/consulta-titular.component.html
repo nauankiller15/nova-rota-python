@@ -151,7 +151,7 @@
                           }
                   "
                   (click)="titularClickedConsulta(resultado)"
-                  [ngClass]="tipoPrioridade(resultado.criado_em) == 'Prioridade' ? 'prioridade': 'sem-prioridade'"
+                  [ngClass]="resultado.prioridade == 'prioridade' ? 'prioridade': 'sem-prioridade'"
                 >
                   <i
                     style="
@@ -297,7 +297,7 @@
                 <label>Prioridade</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ tipoPrioridade(titular.criado_em) }}</b>
+                  <b>{{ titular.prioridade }}</b>
                 </p>
               </div>
 
