@@ -189,18 +189,6 @@ export class AlteracaoDependenteComponent implements OnInit {
     );
   }
 
-  getDependentes() {
-    this.api.listar('parentesco/').subscribe(
-      (data) => {
-        this.dependentes = data;
-        this.busca = data;
-      },
-      (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
-      }
-    );
-  }
-
   getTitularesAtivos = () => {
     this.api.listar('titular/?ativo=true').subscribe(
       (data) => {

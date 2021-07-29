@@ -34,7 +34,7 @@ export class NovoDependenteComponent implements OnInit {
     private api: ApiService,
     private appComponent: AppComponent
   ) {
-    this.getTitulares();
+    this.getTitularesAtivos();
   }
 
   ngOnInit(): void {
@@ -147,8 +147,8 @@ export class NovoDependenteComponent implements OnInit {
     //
   }
 
-  getTitulares = () => {
-    this.api.listar('titular/').subscribe(
+  getTitularesAtivos = () => {
+    this.api.listar('titular/?ativo=true').subscribe(
       (data) => {
         this.titulares = data;
         this.buscaTitular = data;

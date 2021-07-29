@@ -321,7 +321,7 @@ em {
 .contentCancelar {
   display: inline-grid;
   margin-left: 5px;
-  width: 150px;
+  width: 190px;
   min-height: 42px;
   cursor: pointer;
 }
@@ -439,4 +439,31 @@ em {
   color: #6c757d;
   cursor: pointer;
   box-shadow: -10px 0px 0px 0px #707471;
+}
+
+.exclude{
+  margin-top: -1px;
+  padding: 4px 8px 4px 8px;
+  float: right;
+  margin-right: 0px;
+}
+
+
+/* TELA DE CONFIRMAÇÃO CANCELAMENTO MÚLTIPLO */
+
+#cancelamentoSelecionados {
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0000005e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#cancelamentoSelecionados {
+  display: none;
 }
