@@ -60,14 +60,15 @@
             <div>
               <div for="checkedAllTitulares" class="contentCancelar">
                 <button class="btn btn-secondary">
-                  <input id="checkedAllTitulares" type="checkbox" />
-                  <label for="checkedAllTitulares" style="margin-left: 10px"
-                    >Desmarcar todos</label
-                  >
+                  <i style="margin-right: 3px;font-size: 14px;"  class="far fa-times-circle"></i>
+                  Desmarcar todos
                 </button>
               </div>
               <div class="contentCancelar">
-                <button class="btn btn-primary" (click)="confirmarCancelamentos()">
+                <button
+                  class="btn btn-primary"
+                  (click)="confirmarCancelamentos()"
+                >
                   <i style="margin-right: 6px" class="fas fa-user-slash"></i
                   >Cancelar selecionados
                 </button>
@@ -86,9 +87,17 @@
                             currentPage: p
                           }
                   "
-                  [ngClass]="resultado.prioridade == 'prioridade' ? 'prioridade': 'sem-prioridade'"
+                  [ngClass]="
+                    resultado.prioridade == 'prioridade'
+                      ? 'prioridade'
+                      : 'sem-prioridade'
+                  "
                 >
-                  <input for="checkedTitular" type="checkbox" (click)="preCancelar($event.target.checked, resultado)"/>
+                  <input
+                    for="checkedTitular"
+                    type="checkbox"
+                    (click)="preCancelar($event.target.checked, resultado)"
+                  />
                   <i
                     style="
                       font-size: 18px;
@@ -104,7 +113,10 @@
                   ></i>
                   CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
                   {{ resultado.nome_benef }}
-                  <button class="btn exclude" (click)="titularClicked(resultado)">
+                  <button
+                    class="btn exclude"
+                    (click)="titularClicked(resultado)"
+                  >
                     <i class="fas fa-trash"></i>
                   </button>
                 </li>
@@ -139,7 +151,8 @@
         <div class="anexo-info-box-titular-vinc">
           <h1>
             Tem certeza que deseja cancelar o cadastro de
-            <b>{{ titular.nome_benef }}</b>?
+            <b>{{ titular.nome_benef }}</b
+            >?
           </h1>
           <div style="margin-top: 35px; width: 100%"></div>
           <button class="btn btn-primary" (click)="cancelarTitular()">
@@ -152,10 +165,10 @@
       </div>
     </div>
 
-    <div id="cancelamentoSelecionados" style="display: none;">
+    <div id="cancelamentoSelecionados" style="display: none">
       <div class="box-cancelar">
         <div class="anexo-info-box-titular-vinc">
-          <h1 style="margin-bottom: 13px;">
+          <h1 style="margin-bottom: 13px">
             Tem certeza que deseja cancelar os cadastros abaixo?
           </h1>
           <h3 *ngFor="let titular of cancelamentos">
@@ -172,20 +185,24 @@
       </div>
     </div>
 
-    <div id="espera" style="display: none;">
+    <div id="espera" style="display: none">
       <div class="box-cancelar">
         <div class="anexo-info-box-titular-vinc">
-          <h1 *ngIf="cancelados.cancelados.length > 0">Cadastros Cancelados:</h1>
+          <h1 *ngIf="cancelados.cancelados.length > 0">
+            Cadastros Cancelados:
+          </h1>
           <h3 *ngFor="let titular of cancelados.cancelados">
             <b>{{ titular.nome_benef }}</b>
           </h3>
 
-          <h1 *ngIf="cancelados.erros.length > 0">Cadastros com erro no cancelamento:</h1>
+          <h1 *ngIf="cancelados.erros.length > 0">
+            Cadastros com erro no cancelamento:
+          </h1>
           <div *ngFor="let erro of cancelados.erros">
-            <h3 >
+            <h3>
               <b>{{ erro.titular.nome_benef }}:</b>
             </h3>
-            <p *ngFor="let msg of erro.erros">{{msg}}</p>
+            <p *ngFor="let msg of erro.erros">{{ msg }}</p>
           </div>
 
           <div style="margin-top: 35px; width: 100%"></div>
