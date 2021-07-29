@@ -125,8 +125,7 @@
           </ul>
         </li>
 
-        <hr *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)" />
-
+        <li *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)" class="app-sidebar__heading">Administração</li>
         <li
           routerLink="/dashboard"
           routerLinkActive="mm-active"
