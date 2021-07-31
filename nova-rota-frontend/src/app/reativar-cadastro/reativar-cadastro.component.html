@@ -1,0 +1,197 @@
+<div class="fadeIn app-main">
+    <div class="app-main__outer">
+        <div class="app-main__inner">
+            <div class="app-page-title">
+                <div class="page-title-wrapper">
+                    <div class="page-title-heading">
+                        <div class="page-title-icon">
+                            <i class="fas fas fa-user-tie icon-gradient bg-mean-fruit"> </i>
+                        </div>
+                        <div>
+                            Reativar Cadastro
+                            <div class="page-title-subheading">
+                                Reativar cadastro de Titulares e Dependetes Cancelados.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="consulta4" class="main-card mb-3 card">
+                <nav class="menuVigencia">
+                    <ul class="menuItems">
+                        <li class="active radiusTop" (click)="titulares()">
+                            <i class="fas fa-user-check" style="font-size: 15px; margin-right: 9px"></i>Titulares
+                            Cancelados
+                        </li>
+
+                        <li class="dependentes-cancelados" (click)="dependentes()">
+                            <i class="fas fa-user-slash" style="font-size: 15px; margin-right: 9px"></i>Dependentes
+                            Cancelados
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="card-body">
+                    <h5 *ngIf="tipoPesquisa == 'titular'" class="card-title">Consultar Titular Cancelado</h5>
+                    <h5 *ngIf="tipoPesquisa == 'dependente'" class="card-title">Consultar Dependente Cancelado</h5>
+                    <form class="needs-validation">
+                        <div class="form-row">
+                            <div class="input-group col-md-3 mb3">
+                                <label>CPF:</label>
+                                <div style="width: 100%"></div>
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-id-card"></i></span>
+                                <input name="CPF" (input)="searchCPF($event.target.value)" class="form-control cpf"
+                                    type="text" id="search_cpf" placeholder="Pesquise por CPF" />
+                            </div>
+                            <div class="input-group col-md-4 mb3">
+                                <label>Nome:</label>
+                                <div style="width: 100%"></div>
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tie"></i></span>
+                                <input (input)="searchNome($event.target.value)" name="nome" type="text"
+                                    class="form-control" placeholder="Digite aqui o nome" />
+                            </div>
+                        </div>
+                        <div style="width: 100%; height: 10px"></div>
+
+                        <hr />
+
+                        <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '50%', height: '40px' }"
+                            animation="progress">
+                        </ngx-skeleton-loader>
+                        <div style="width: 100%"></div>
+                        <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '50%', height: '40px' }"
+                            animation="progress">
+                        </ngx-skeleton-loader>
+                        <div style="width: 100%"></div>
+                        <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '50%', height: '40px' }"
+                            animation="progress">
+                        </ngx-skeleton-loader>
+                        <div style="width: 100%"></div>
+                        <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '50%', height: '40px' }"
+                            animation="progress">
+                        </ngx-skeleton-loader>
+                        <div style="width: 100%"></div>
+                        <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '50%', height: '40px' }"
+                            animation="progress">
+                        </ngx-skeleton-loader>
+                        <div style="width: 100%"></div>
+
+                        <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '50%', height: '40px' }"
+                            animation="progress">
+                        </ngx-skeleton-loader>
+                        <div style="width: 100%"></div>
+
+                        <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '50%', height: '40px' }"
+                            animation="progress">
+                        </ngx-skeleton-loader>
+                        <div style="width: 100%"></div>
+
+                        <ngx-skeleton-loader *ngIf="!contentLoaded" [theme]="{ width: '50%', height: '40px' }"
+                            animation="progress">
+                        </ngx-skeleton-loader>
+
+                        <div *ngIf="contentLoaded && tipoPesquisa == 'titular'">
+                            <div class="titulares">
+                                Titulares Encontrados:
+                                <li class="loadit" *ngFor="
+                                    let resultado of busca
+                                    | orderBy: 'created_at':false
+                                    | paginate
+                                    : {
+                                        id: 'titularsConsulta',
+                                        itemsPerPage: 14,
+                                        currentPage: p
+                                    }
+                                    "
+                                    (click)="confirmarReativacao(resultado)"
+                                >
+                                    <i style="
+                                        font-size: 18px;
+                                        margin-left: 9px;
+                                        margin-right: 1px;
+                                        background-color: #eff9ff;
+                                        border: 1px solid #ced4da;
+                                        border-radius: 0.25rem;
+                                        padding: 3px;
+                                        color: #434343;
+                                    " 
+                                    class="fas fa-user-tie"></i>
+                                    CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
+                                    {{ resultado.nome_benef }}
+                                    <i style="float: right; margin-top: 4px" class="fas fa-external-link-alt"></i>
+                                </li>
+                                <h4 class="loadit" style="margin-top: 20px" *ngIf="busca.length === 0">
+                                    Nada encontrado
+                                </h4>
+                            </div>
+                        </div>
+
+                        <div *ngIf="contentLoaded && tipoPesquisa == 'dependente'">
+                            <div class="titulares">
+                                Dependentes Encontrados:
+                                <li class="loadit" *ngFor="
+                                    let resultado of busca
+                                    | orderBy: 'created_at':false
+                                    | paginate
+                                    : {
+                                        id: 'titularsConsulta',
+                                        itemsPerPage: 14,
+                                        currentPage: p
+                                    }
+                                    "
+                                    (click)="confirmarReativacao(resultado)"
+                                >
+                                    <i style="
+                                        font-size: 18px;
+                                        margin-left: 9px;
+                                        margin-right: 1px;
+                                        background-color: #eff9ff;
+                                        border: 1px solid #ced4da;
+                                        border-radius: 0.25rem;
+                                        padding: 3px;
+                                        color: #434343;
+                                    " 
+                                    class="fas fa-user-tie"></i>
+                                    CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
+                                    {{ resultado.nome_dependente }}
+                                    <i style="float: right; margin-top: 4px" class="fas fa-external-link-alt"></i>
+                                </li>
+                                <h4 class="loadit" style="margin-top: 20px" *ngIf="busca.length === 0">
+                                    Nada encontrado
+                                </h4>
+                            </div>
+                        </div>
+                        <pagination-controls id="titularsConsulta" class="paginacao" maxSize="7" autoHide="true"
+                            previousLabel="Anterior" nextLabel="Seguinte" directionLinks="true" autoHide="true"
+                            responsive="true" (pageChange)="p = $event"></pagination-controls>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="reativar" style="display: none;">
+            <div class="box-reativar">
+              <div class="anexo-info-box-titular-vinc">
+                <h1 *ngIf="tipoPesquisa == 'titular'">
+                  Tem certeza que deseja REATIVAR o cadastro de
+                  <b>{{ cadastro.nome_benef }}</b>?
+                </h1>
+                <h1 *ngIf="tipoPesquisa == 'dependente'">
+                    Tem certeza que deseja REATIVAR o cadastro de
+                    <b>{{ cadastro.dependente }}</b>?
+                  </h1>
+
+                <div style="margin-top: 35px; width: 100%"></div>
+                <button class="btn btn-primary" (click)="reativarUsuario()">
+                  Confirmar
+                </button>
+                <button class="btn btn-secondary" (click)="reativarVoltar()">
+                  Voltar
+                </button>
+              </div>
+            </div>
+          </div>
+        <app-rodape></app-rodape>
+    </div>
+</div>

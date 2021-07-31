@@ -52,6 +52,7 @@ import { NovaTarefaComponent } from './tarefa/nova-tarefa/nova-tarefa.component'
 import { TarefasDetailsComponent } from './tarefa/tarefas-details/tarefas-details.component';
 
 import { NovidadesDetailsComponent } from './novidades-details/novidades-details.component';
+import { ReativarCadastroComponent } from './reativar-cadastro/reativar-cadastro.component';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -90,6 +91,7 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     CancelamentoDependenteComponent,
     NovoUsuarioComponent,
     AlterarUsuarioComponent,
+    ReativarCadastroComponent,
   ],
   imports: [
     NgxSkeletonLoaderModule.forRoot(),

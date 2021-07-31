@@ -37,6 +37,7 @@ import { LoginComponent } from './account/login/login.component';
 import { CreateAccountComponent } from './account/create-account/create-account.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NovidadesDetailsComponent } from './novidades-details/novidades-details.component';
+import { ReativarCadastroComponent } from './reativar-cadastro/reativar-cadastro.component';
 //
 
 const routes: Routes = [
@@ -108,6 +109,10 @@ const routes: Routes = [
       //
       // === CANCELAMENTO DE DEPENDENTES ====
       { path: 'cancelamento-dependente', component: CancelamentoDependenteComponent },
+      //
+      //
+      // === REATIVAÇÃO DE CADASTRO ====
+      { path: 'reativar-cadastro', component: ReativarCadastroComponent },
       //
       //
     ],
