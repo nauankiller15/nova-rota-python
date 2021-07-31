@@ -75,7 +75,7 @@
 
         <li>
           <a>
-            <i class="metismenu-icon fas fa-times-circle"></i> Cancelamento
+            <i class="metismenu-icon fas fa-user-slash"></i> Cancelamento
             Ativos
             <i class="metismenu-state-icon fas fa-chevron-down caret-left"></i>
           </a>
@@ -131,8 +131,7 @@
           </ul>
         </li>
 
-        <hr *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)" />
-
+        <li *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)" class="app-sidebar__heading">Administração</li>
         <li
           routerLink="/dashboard"
           routerLinkActive="mm-active"

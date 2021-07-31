@@ -36,6 +36,9 @@ export class CancelamentoTitularComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
     // CARREGADOR TIMEOUT
     setTimeout(() => {
       this.contentLoaded = true;

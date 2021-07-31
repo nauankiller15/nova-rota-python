@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~11.2.13",
     "@angular/router": "~11.2.13",
     "angular-window-component": "^0.3.6",
+    "bootstrap": "^5.0.2",
     "jquery-mask-plugin": "^1.14.16",
     "jwt-decode": "^3.1.2",
     "ng2-completer": "^9.0.1",

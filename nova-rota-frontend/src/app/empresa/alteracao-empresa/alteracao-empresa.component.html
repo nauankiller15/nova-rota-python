@@ -687,7 +687,10 @@
             <!-- Fim dados Operadora -->
 
             <!-- Dados Seguradora -->
-            <div class="form-row" *ngIf="empresa.tipo_contrato === 'Seguradora'">
+            <div
+              class="form-row"
+              *ngIf="empresa.tipo_contrato === 'Seguradora'"
+            >
               <div class="col-md-2 mb-3">
                 <label for="validationCustom02">Seguradoras</label>
                 <select
@@ -821,6 +824,9 @@
                         <th>{{ linha.negociado }} %</th>
                         <th>
                           <button
+                            data-toggle="tooltip"
+                            title="Alterar Vigência"
+                            data-placement="top"
                             class="btn editVig"
                             (click)="editReajuste(linha)"
                           >
@@ -828,7 +834,12 @@
                           </button>
                         </th>
                         <th>
-                          <button class="btn eraseVig">
+                          <button
+                            data-toggle="tooltip"
+                            title="Excluir Reajuste"
+                            data-placement="top"
+                            class="btn eraseVig"
+                          >
                             <i class="fas fa-trash"></i>
                           </button>
                         </th>
@@ -1039,6 +1050,9 @@
                         <th>{{ linha.sinistralidade }} %</th>
                         <th>
                           <button
+                            data-toggle="tooltip"
+                            title="Alterar Vigência"
+                            data-placement="top"
                             class="btn editVig"
                             (click)="editSinistralidade(linha)"
                           >
@@ -1046,7 +1060,12 @@
                           </button>
                         </th>
                         <th>
-                          <button class="btn eraseVig">
+                          <button
+                            data-toggle="tooltip"
+                            title="Excluir Vigência"
+                            data-placement="top"
+                            class="btn eraseVig"
+                          >
                             <i class="fas fa-trash"></i>
                           </button>
                         </th>
@@ -1056,21 +1075,20 @@
                       </tr>
                     </tbody>
                   </table>
-                 
 
                   <div>
-                     <pagination-controls
-                    id="sinistralidades_pag"
-                    class="paginacao"
-                    maxSize="7"
-                    autoHide="true"
-                    previousLabel="Anterior"
-                    nextLabel="Seguinte"
-                    directionLinks="true"
-                    autoHide="true"
-                    responsive="true"
-                    (pageChange)="p = $event"
-                  ></pagination-controls>
+                    <pagination-controls
+                      id="sinistralidades_pag"
+                      class="paginacao"
+                      maxSize="7"
+                      autoHide="true"
+                      previousLabel="Anterior"
+                      nextLabel="Seguinte"
+                      directionLinks="true"
+                      autoHide="true"
+                      responsive="true"
+                      (pageChange)="p = $event"
+                    ></pagination-controls>
                     <button
                       class="btn btn-primary"
                       (click)="adicionarSinistralidade()"
