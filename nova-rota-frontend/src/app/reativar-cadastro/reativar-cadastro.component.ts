@@ -105,11 +105,11 @@ export class ReativarCadastroComponent implements OnInit {
 
   confirmarReativacao(cadastro) {
     this.cadastro = cadastro;
-    $('#reativar').show();
+    $('#reativar').fadeIn(250);
   }
 
   reativarVoltar() {
-    $('#reativar').hide();
+    $('#reativar').fadeOut(250);
   }
 
   reativarUsuario() {
