@@ -109,7 +109,7 @@ export class NovaEmpresaComponent implements OnInit {
       $('#sinisTab').slideUp('100');
     });
 
-    // BOTÕES
+    // BOTÕES DE ESCOLHA
     $('.menuItems li').on('click', function () {
       $(this).addClass('active');
       $(this).siblings().removeClass('active');
