@@ -122,6 +122,7 @@ export class CancelamentoTitularComponent implements OnInit {
     this.api.atualizar('titular/', this.titular).subscribe(
       (data) => {
         this.toastr.success('`Titular <b>CANCELADO</b> com sucesso!`');
+        
         $('#cancelamentoTitular').fadeOut(250);
         this.getTitulares();
       },

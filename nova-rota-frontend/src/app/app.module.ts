@@ -111,6 +111,7 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
       timeOut: 2500,
       closeButton: true,
       positionClass: 'toast-bottom-right',
+      enableHtml: true,
     }),
   ],
   providers: [
