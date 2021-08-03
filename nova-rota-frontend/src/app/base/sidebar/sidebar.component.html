@@ -128,17 +128,17 @@
         </li>
 
         <li
-          *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)"
+          *ngIf="['desenvolvedor', 'Gestor'].includes(usuario.cargo)"
           class="app-sidebar__heading"
         >
           Administração
         </li>
 
-        <!-- <li *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)" class="app-sidebar__heading">Administração</li>
+        <!-- <li *ngIf="['desenvolvedor', 'Gestor'].includes(usuario.cargo)" class="app-sidebar__heading">Administração</li>
         <li
           routerLink="/dashboard"
           routerLinkActive="mm-active"
-          *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)"
+          *ngIf="['desenvolvedor', 'Gestor'].includes(usuario.cargo)"
         >
           <a>
             <i class="metismenu-icon fas fa-chart-bar"></i> Painel de Analises
@@ -146,7 +146,7 @@
           <ul style="display: none"></ul>
         </li> -->
 
-        <li *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)">
+        <li *ngIf="['desenvolvedor', 'Gestor'].includes(usuario.cargo)">
           <a>
             <i class="metismenu-icon fas fa-building"></i> Cadastro de Empresas
             <i class="metismenu-state-icon fas fa-chevron-down caret-left"></i>
@@ -174,7 +174,7 @@
           </ul>
         </li>
 
-        <li *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)">
+        <li *ngIf="['desenvolvedor', 'Gestor'].includes(usuario.cargo)">
           <a>
             <i class="metismenu-icon fas fa-user eraseForm"></i> Usuários
             <i class="metismenu-state-icon fas fa-chevron-down caret-left"></i>

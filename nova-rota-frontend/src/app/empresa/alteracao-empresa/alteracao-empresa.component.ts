@@ -55,7 +55,6 @@ export class AlteracaoEmpresaComponent implements OnInit {
     $(function () {
       $('[data-toggle="tooltip"]').tooltip();
     });
-    $('.editVig').tooltip('toggle');
     // CARREGADOR TIMEOUT
     setTimeout(() => {
       this.contentLoaded = true;

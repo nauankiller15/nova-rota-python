@@ -16,7 +16,7 @@ export class CancelamentoTitularComponent implements OnInit {
   busca: Titular[] = [];
   titulares: Titular[] = [];
   cancelamentos: Titular[] = [];
-  cancelados = {'cancelados': [], 'erros': []}
+  cancelados = { cancelados: [], erros: [] };
 
   // CARREGADOR
   animation = 'pulse';
@@ -28,17 +28,14 @@ export class CancelamentoTitularComponent implements OnInit {
   p: number = 1;
   //
 
-  constructor(
-    private toastr: ToastrService,
-    private api: ApiService,
-  ) {
+  constructor(private toastr: ToastrService, private api: ApiService) {
     this.getTitulares();
   }
 
   ngOnInit(): void {
     $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-    })
+      $('[data-toggle="tooltip"]').tooltip();
+    });
     // CARREGADOR TIMEOUT
     setTimeout(() => {
       this.contentLoaded = true;
@@ -122,7 +119,7 @@ export class CancelamentoTitularComponent implements OnInit {
     this.api.atualizar('titular/', this.titular).subscribe(
       (data) => {
         this.toastr.success('`Titular <b>CANCELADO</b> com sucesso!`');
-        
+
         $('#cancelamentoTitular').fadeOut(250);
         this.getTitulares();
       },
@@ -142,12 +139,12 @@ export class CancelamentoTitularComponent implements OnInit {
     let prioridade = 'Prioridade';
     console.log(dataPrioridade, hoje, dataPrioridade > hoje);
     if (dataPrioridade < hoje) {
-      prioridade = "Sem Prioridade";
+      prioridade = 'Sem Prioridade';
     }
 
-    return prioridade
+    return prioridade;
   }
-  
+
   preCancelar(adicionar: boolean, titular: Titular) {
     if (adicionar == true) {
       this.cancelamentos.push(titular);
@@ -172,7 +169,7 @@ export class CancelamentoTitularComponent implements OnInit {
   }
 
   cancelarSelecionados() {
-    this.cancelamentos.forEach(titular => {
+    this.cancelamentos.forEach((titular) => {
       this.cancelar(titular);
     });
     $('#cancelamentoSelecionados').fadeOut(250);
@@ -191,7 +188,7 @@ export class CancelamentoTitularComponent implements OnInit {
         for (let campo in mensagens) {
           erros.push(mensagens[campo]);
         }
-        this.cancelados.erros.push({'titular': titular, 'erros': erros});
+        this.cancelados.erros.push({ titular: titular, erros: erros });
       }
     );
   }
