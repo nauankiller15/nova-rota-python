@@ -69,13 +69,6 @@ export class HomeComponent implements OnInit {
         this.widthHeightSizeInPixels === 50 ? 100 : 50;
     }, 2000);
 
-    // MENU PRINCIPAL ANIMAÇÕES
-
-    // $("#btnEditar").on('click', function() {
-    //   $('input[name="edit"]').removeAttr('readonly');
-    // });
-    // TAREFAS ANIM
-
     // ABRIR TELA DE TAREFAS
     $('#tarefas-bt').on('click', function () {
       $('#tarefas').fadeIn('100');

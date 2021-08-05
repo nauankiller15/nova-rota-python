@@ -177,8 +177,7 @@ export class NovoDependenteComponent implements OnInit {
     this.api.selecionar('titular/', titular.id).subscribe(
       (data) => {
         this.dependente.titular = titular.id;
-        this.dependente.nome_benef = titular.nome_benef;
-
+        this.dependente.titular_nome = titular.nome;
         this.toastr.success('Titular vinculado com sucesso!');
       },
       (error) => {
@@ -189,11 +188,11 @@ export class NovoDependenteComponent implements OnInit {
 
   newDependente() {
            
+    this.dependente.ativo = true;
     this.api.inserirComArquivo('parentesco/', this.dependente).subscribe(
       (data) => {
         $('#confirmacaoDependente').fadeIn('100');
         $('#encounter-tit').fadeOut('100');
-        this.appComponent.dependente.push(data);
       },
       (error) => {
         let mensagens = error.error;

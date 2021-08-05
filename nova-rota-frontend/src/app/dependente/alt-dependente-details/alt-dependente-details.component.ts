@@ -17,7 +17,7 @@ export class AltDependenteDetailsComponent implements OnInit {
     cod_empresa: '',
     data_recebimento: '',
     tipo: '',
-    nome_dependente: '',
+    nome_depenente: '',
     data_nascimento: '',
     sexo: '',
     estado_civil: '',

@@ -56,9 +56,9 @@
 
                         <hr />
 
-                        <div *ngIf="contentLoaded && tipoPesquisa == 'titular'">
+                        <div *ngIf="contentLoaded">
                             <div class="titulares">
-                                Titulares Encontrados:
+                                Cadastros Encontrados:
                                 <li class="loadit" *ngFor="
                                     let resultado of busca
                                     | orderBy: 'created_at':false
@@ -83,7 +83,7 @@
                                     " 
                                     class="fas fa-user-tie"></i>
                                     CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
-                                    {{ resultado.nome_benef }}
+                                    {{ resultado.nome }}
                                     <i style="float: right; margin-top: 4px" class="fas fa-external-link-alt"></i>
                                 </li>
                                 <h4 class="loadit" style="margin-top: 20px" *ngIf="busca.length === 0">
@@ -92,44 +92,10 @@
                             </div>
                         </div>
 
-                        <div *ngIf="contentLoaded && tipoPesquisa == 'dependente'">
-                            <div class="titulares">
-                                Dependentes Encontrados:
-                                <li class="loadit" *ngFor="
-                                    let resultado of busca
-                                    | orderBy: 'created_at':false
-                                    | paginate
-                                    : {
-                                        id: 'depConsulta',
-                                        itemsPerPage: 14,
-                                        currentPage: p
-                                    }
-                                    "
-                                    (click)="confirmarReativacao(resultado)"
-                                >
-                                    <i style="
-                                        font-size: 18px;
-                                        margin-left: 9px;
-                                        margin-right: 1px;
-                                        background-color: #eff9ff;
-                                        border: 1px solid #ced4da;
-                                        border-radius: 0.25rem;
-                                        padding: 3px;
-                                        color: #434343;
-                                    " 
-                                    class="fas fa-user-tie"></i>
-                                    CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
-                                    {{ resultado.nome_dependente }}
-                                    <i style="float: right; margin-top: 4px" class="fas fa-external-link-alt"></i>
-                                </li>
-                                <h4 class="loadit" style="margin-top: 20px" *ngIf="busca.length === 0">
-                                    Nada encontrado
-                                </h4>
-                            </div>
-                        </div>
                         <pagination-controls id="depConsulta" class="paginacao" maxSize="7" autoHide="true"
                             previousLabel="Anterior" nextLabel="Seguinte" directionLinks="true" autoHide="true"
-                            responsive="true" (pageChange)="p = $event"></pagination-controls>
+                            responsive="true" (pageChange)="p = $event">
+                        </pagination-controls>
                     </form>
                 </div>
             </div>
@@ -138,14 +104,10 @@
         <div id="reativar" style="display: none;">
             <div class="box-reativar">
               <div class="anexo-info-box-titular-vinc">
-                <h1 *ngIf="tipoPesquisa == 'titular'">
+                <h1>
                   Tem certeza que deseja REATIVAR o cadastro de
-                  <b>{{ cadastro.nome_benef }}</b>?
+                  <b>{{ cadastro.nome }}</b>?
                 </h1>
-                <h1 *ngIf="tipoPesquisa == 'dependente'">
-                    Tem certeza que deseja REATIVAR o cadastro de
-                    <b>{{ cadastro.dependente }}</b>?
-                  </h1>
 
                 <div style="margin-top: 35px; width: 100%"></div>
                 <button class="btn btn-primary" (click)="reativarUsuario()">

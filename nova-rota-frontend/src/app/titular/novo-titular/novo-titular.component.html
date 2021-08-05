@@ -151,11 +151,11 @@
                   >Nome do Beneficiário <span style="color: red">*</span></label
                 >
                 <input
-                  #nome_benef="ngModel"
-                  [class.is-invalid]="nome_benef.invalid && nome_benef.touched"
-                  [class.is-valid]="nome_benef.valid && nome_benef.touched"
+                  #nome="ngModel"
+                  [class.is-invalid]="nome.invalid && nome.touched"
+                  [class.is-valid]="nome.valid && nome.touched"
                   [(ngModel)]="titular.nome"
-                  name="nome_benef"
+                  name="nome"
                   type="text"
                   class="form-control"
                   placeholder="Digite aqui o Nome do Beneficiário"
@@ -163,7 +163,7 @@
                 />
                 <small
                   class="text-danger"
-                  [class.d-none]="nome_benef.valid || nome_benef.untouched"
+                  [class.d-none]="nome.valid || nome.untouched"
                 >
                   Nome do Beneficiário Necessário!</small
                 >

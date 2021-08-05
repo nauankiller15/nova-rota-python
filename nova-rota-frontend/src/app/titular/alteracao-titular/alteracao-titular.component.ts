@@ -27,9 +27,7 @@ export class AlteracaoTitularComponent implements OnInit {
 
   intervalId: number | null = null;
   //
-  fileToUpload: File = null;
-  CPF: string;
-  nome_benef: string;
+  
   p: number = 1;
 
   constructor(

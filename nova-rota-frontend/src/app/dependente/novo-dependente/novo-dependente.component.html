@@ -150,16 +150,16 @@
                   >Nome do Dependente <span style="color: red">*</span></label
                 >
                 <input
-                  #nome_dependente="ngModel"
+                  #nome="ngModel"
                   [class.is-invalid]="
-                    nome_dependente.invalid && nome_dependente.touched
+                    nome.invalid && nome.touched
                   "
                   [class.is-valid]="
-                    nome_dependente.valid && nome_dependente.touched
+                    nome.valid && nome.touched
                   "
                   required
                   [(ngModel)]="dependente.nome"
-                  name="nome_dependente"
+                  name="nome"
                   type="text"
                   class="form-control"
                   placeholder="Digite aqui o nome do Dependente"
@@ -167,7 +167,7 @@
                 <small
                   class="text-danger"
                   [class.d-none]="
-                    nome_dependente.valid || nome_dependente.untouched
+                    nome.valid || nome.untouched
                   "
                 >
                   Nome do Dependente Necessário!</small
@@ -609,7 +609,7 @@
                     Vincular Titular
                   </button>
                   <p id="encounter-tit" style="display: none">
-                    Titular vinculado: <b>{{ dependente.nome_benef }}</b>
+                    Titular vinculado: <b>{{ dependente.titular_nome }}</b>
                   </p>
                 </div>
               </div>
@@ -625,7 +625,7 @@
                       <input
                         autocomplete="off"
                         (input)="searchNomeTitDep($event.target.value)"
-                        name="nome_benef"
+                        name="nome"
                         type="text"
                         class="form-control"
                         placeholder="Buscar Titular pelo Nome"
@@ -677,7 +677,7 @@
                         ></i>
                         CPF:
                         {{ resultadoTitular.CPF | mask: "000.000.000-99" }} -
-                        {{ resultadoTitular.nome_benef }}
+                        {{ resultadoTitular.nome }}
                       </li>
                       <h4 class="loadit" *ngIf="buscaTitular.length == 0">
                         Nada encontrado

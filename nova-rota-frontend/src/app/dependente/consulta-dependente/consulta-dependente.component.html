@@ -65,7 +65,7 @@
                 ></span>
                 <input
                   (input)="searchNomeBenef($event.target.value)"
-                  name="nome_dependente"
+                  name="nome"
                   type="text"
                   class="form-control"
                   placeholder="Digite aqui o nome do dependente"
@@ -109,7 +109,7 @@
                     class="fas fa-user-plus"
                   ></i>
                   CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
-                  {{ resultado.nome_dependente }}
+                  {{ resultado.nome }}
                   <i
                     style="float: right; margin-top: 4px"
                     class="fas fa-external-link-alt"
