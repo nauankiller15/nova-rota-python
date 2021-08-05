@@ -459,6 +459,9 @@
                 <div class="linhaE"></div>
                 <p>
                   <b>{{ titular.desc_declarao_saude }}</b>
+                  <b *ngIf="titular.desc_declarao_saude == null"
+                    >Nenhuma declaração de saúde</b
+                  >
                 </p>
               </div>
 

@@ -228,6 +228,7 @@
               <b *ngIf="dependente.anexo_doc_nascimento == null"
                 >Nenhuma Certidão de Nascimento</b
               >
+              <hr />
 
               <button
                 style="
@@ -427,6 +428,9 @@
                 <div class="linhaE"></div>
                 <p>
                   <b>{{ dependente.desc_declarao_saude }}</b>
+                  <b *ngIf="dependente.desc_declarao_saude == null"
+                    >Nenhuma declaração de saúde</b
+                  >
                 </p>
               </div>
 
