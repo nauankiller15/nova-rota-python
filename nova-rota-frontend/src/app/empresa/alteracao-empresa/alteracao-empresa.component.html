@@ -173,7 +173,6 @@
           <div class="box-anexo">
             <div class="anexo-info-box-titular-vinc">
               <label
-                for="avatar"
                 style="
                   display: flex;
                   font-size: 18px;
@@ -182,28 +181,18 @@
                 "
                 >Anexos vinculados:</label
               >
-
-              <img
-                style="width: 250px"
-                src="{{ empresa.anexo_doc_emp }}"
-                alt="Anexo de {{ empresa.razao_social }}"
-              />
-              <label
-                for="avatar"
-                style="
-                  display: flex;
-                  font-size: 17px;
-                  margin-top: 25px;
-                  margin-bottom: 10px;
-                "
-                >Escolha uma outra imagem para anexar:</label
+              <div *ngIf="!empresa.anexo_doc_emp != null">
+                <h3>Documento da empresa</h3>
+                <img
+                  *ngIf="!empresa.anexo_doc_emp != null"
+                  style="width: 250px"
+                  src="{{ empresa.anexo_doc_emp }}"
+                />
+              </div>
+              <b *ngIf="empresa.anexo_doc_emp == null"
+                >Nenhum Documento anexado</b
               >
-
-              <input
-                type="file"
-                accept=".png, .jpg, .jpeg"
-                (change)="anexoEmpresaInput($event.target.files)"
-              />
+              <hr />
 
               <button
                 style="
@@ -787,11 +776,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr
-                        class="loadit"
-                        *ngFor="
-                          let linha of reajustes"
-                      >
+                      <tr class="loadit" *ngFor="let linha of reajustes">
                         <th></th>
                         <th>
                           <div class="anoVig">{{ linha.ano_vigencia }}</div>

@@ -92,8 +92,11 @@
                           }
                   "
                   (click)="dependenteClicked(resultado)"
-                  [ngClass]="resultado.prioridade == 'prioridade' ? 'prioridade': 'sem-prioridade'"
-
+                  [ngClass]="
+                    resultado.prioridade == 'prioridade'
+                      ? 'prioridade'
+                      : 'sem-prioridade'
+                  "
                 >
                   <i
                     style="
@@ -195,7 +198,6 @@
           <div class="box-anexo">
             <div class="anexo-info-box-titular-vinc">
               <label
-                for="avatar"
                 style="
                   display: flex;
                   font-size: 18px;
@@ -204,31 +206,28 @@
                 "
                 >Anexos vinculados:</label
               >
-
-              <img
-                style="width: 250px"
-                src="{{ dependente.anexo_doc_casamento }}"
-                alt="Certidão de Casamento de {{ dependente.nome }}"
-              />
-              <label
-                for="avatar"
-                style="
-                  display: flex;
-                  font-size: 17px;
-                  margin-top: 25px;
-                  margin-bottom: 10px;
-                "
-                >Escolha uma outra imagem para anexar:</label
+              <div *ngIf="dependente.anexo_doc_casamento != null">
+                <h3>Certidão de Casamento</h3>
+                <img
+                  *ngIf="!dependente.anexo_doc_casamento != null"
+                  style="width: 250px"
+                  src="{{ dependente.anexo_doc_casamento }}"
+                />
+              </div>
+              <b *ngIf="dependente.anexo_doc_casamento == null"
+                >Nenhuma Certidão de Casamento</b
               >
-
-              <input
-                type="file"
-                id="imagemCasado"
-                accept="image/png, image/jpeg"
-                name="anexo_doc_casamento"
-                ng-required="false"
-                (change)="anexoCasamentoInput($event.target.files)"
-              />
+              <hr />
+              <div *ngIf="dependente.anexo_doc_nascimento != null">
+                <h3>Certidão de Nascimento</h3>
+                <img
+                  style="width: 250px"
+                  src="{{ dependente.anexo_doc_nascimento }}"
+                />
+              </div>
+              <b *ngIf="dependente.anexo_doc_nascimento == null"
+                >Nenhuma Certidão de Nascimento</b
+              >
 
               <button
                 style="
@@ -534,7 +533,7 @@
                   type="text"
                   class="form-control"
                   id="validationCustom10"
-                  [value]="dependente.ativo ? 'Ativo': 'Cancelado'"
+                  [value]="dependente.ativo ? 'Ativo' : 'Cancelado'"
                   required
                 />
               </div>
