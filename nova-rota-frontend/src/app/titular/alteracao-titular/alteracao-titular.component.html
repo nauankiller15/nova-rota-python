@@ -23,19 +23,19 @@
             <!-- BOTÃO REAJUSTE -->
             <li class="active radiusTop" (click)="titAtivo()">
               <i
-              class="fas fa-user-check"
-              style="font-size: 15px; margin-right: 9px"
-            ></i
-            >Titulares Ativos
+                class="fas fa-user-check"
+                style="font-size: 15px; margin-right: 9px"
+              ></i
+              >Titulares Ativos
             </li>
 
             <!-- BOTÃO SINISTRALIDADE -->
             <li class="cancelados" (click)="titCancelado()">
               <i
-              class="fas fa-user-slash"
-              style="font-size: 15px; margin-right: 9px"
-            ></i
-            >Titulares Cancelados
+                class="fas fa-user-slash"
+                style="font-size: 15px; margin-right: 9px"
+              ></i
+              >Titulares Cancelados
             </li>
           </ul>
         </nav>
@@ -79,7 +79,7 @@
 
             <div style="width: 100%"></div>
 
-            <div  class="titulares">
+            <div class="titulares">
               Titulares Encontrados:
               <li
                 class="loadit"
@@ -94,7 +94,11 @@
                         }
                 "
                 (click)="titularClicked(resultado)"
-                [ngClass]="resultado.prioridade == 'prioridade' ? 'prioridade': 'sem-prioridade'"
+                [ngClass]="
+                  resultado.prioridade == 'prioridade'
+                    ? 'prioridade'
+                    : 'sem-prioridade'
+                "
               >
                 <i
                   style="
@@ -172,7 +176,6 @@
           <div class="box-anexo">
             <div class="anexo-info-box-titular-vinc">
               <label
-                for="avatar"
                 style="
                   display: flex;
                   font-size: 18px;
@@ -181,31 +184,34 @@
                 "
                 >Anexos vinculados:</label
               >
-
-              <img
-                style="width: 250px"
-                src="{{ titular.anexo_doc_casamento }}"
-                alt="Certidão de Casamento de {{ titular.nome }}"
-              />
-              <label
-                for="avatar"
-                style="
-                  display: flex;
-                  font-size: 17px;
-                  margin-top: 25px;
-                  margin-bottom: 10px;
-                "
-                >Escolha uma outra imagem para anexar:</label
+              <div>
+                <h3 *ngIf="titular.anexo_doc_casamento != null">
+                  Certidão de Casamento
+                </h3>
+                <img
+                  *ngIf="!titular.anexo_doc_casamento != null"
+                  style="width: 250px"
+                  src="{{ titular.anexo_doc_casamento }}"
+                />
+              </div>
+              <b *ngIf="titular.anexo_doc_casamento == null"
+                >Nenhuma Certidão de Casamento</b
               >
-
-              <input
-                type="file"
-                id="imagemCasado"
-                accept="image/png, image/jpeg"
-                ng-required="false"
-                (change)="anexoCasamentoInput($event.target.files)"
-              />
-
+              <hr />
+              <div>
+                <h3 *ngIf="titular.anexo_doc_empregaticio != null">
+                  Vínculo Empregatício
+                </h3>
+                <img
+                  *ngIf="!titular.anexo_doc_empregaticio != null"
+                  style="width: 250px"
+                  src="{{ titular.anexo_doc_empregaticio }}"
+                />
+              </div>
+              <b *ngIf="titular.anexo_doc_empregaticio == null"
+                >Nenhum Vínculo Empregatício</b
+              >
+              <hr />
               <button
                 style="
                   display: flex;
@@ -500,7 +506,7 @@
                   type="text"
                   class="form-control"
                   id="validationCustom10"
-                  [value]="titular.ativo ? 'Ativo': 'Cancelado'"
+                  [value]="titular.ativo ? 'Ativo' : 'Cancelado'"
                   required
                 />
                 <div class="invalid-feedback">

@@ -151,7 +151,11 @@
                           }
                   "
                   (click)="titularClickedConsulta(resultado)"
-                  [ngClass]="resultado.prioridade == 'prioridade' ? 'prioridade': 'sem-prioridade'"
+                  [ngClass]="
+                    resultado.prioridade == 'prioridade'
+                      ? 'prioridade'
+                      : 'sem-prioridade'
+                  "
                 >
                   <i
                     style="
@@ -228,7 +232,6 @@
           <div class="box-anexo">
             <div class="anexo-info-box-titular-vinc">
               <label
-                for="avatar"
                 style="
                   display: flex;
                   font-size: 18px;
@@ -237,31 +240,34 @@
                 "
                 >Anexos vinculados:</label
               >
-
-              <img
-                style="width: 250px"
-                src="{{ titular.anexo_doc_casamento }}"
-                alt="Certidão de Casamento de {{ titular.nome }}"
-              />
-              <label
-                for="avatar"
-                style="
-                  display: flex;
-                  font-size: 17px;
-                  margin-top: 25px;
-                  margin-bottom: 10px;
-                "
-                >Escolha uma outra imagem para anexar:</label
+              <div>
+                <h3 *ngIf="titular.anexo_doc_casamento != null">
+                  Certidão de Casamento
+                </h3>
+                <img
+                  *ngIf="!titular.anexo_doc_casamento != null"
+                  style="width: 250px"
+                  src="{{ titular.anexo_doc_casamento }}"
+                />
+              </div>
+              <b *ngIf="titular.anexo_doc_casamento == null"
+                >Nenhuma Certidão de Casamento</b
               >
-
-              <input
-                type="file"
-                id="imagemCasado"
-                accept="image/png, image/jpeg"
-                [(ngModel)]="titular.anexo_doc_casamento"
-                name="anexo_doc_casamento"
-                ng-required="false"
-              />
+              <hr />
+              <div>
+                <h3 *ngIf="titular.anexo_doc_empregaticio != null">
+                  Vínculo Empregatício
+                </h3>
+                <img
+                  *ngIf="!titular.anexo_doc_empregaticio != null"
+                  style="width: 250px"
+                  src="{{ titular.anexo_doc_empregaticio }}"
+                />
+              </div>
+              <b *ngIf="titular.anexo_doc_empregaticio == null"
+                >Nenhum Vínculo Empregatício</b
+              >
+              <hr />
 
               <button
                 style="
@@ -297,7 +303,9 @@
                 <label>Prioridade</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b style="text-transform: capitalize;">{{ titular.prioridade }}</b>
+                  <b style="text-transform: capitalize">{{
+                    titular.prioridade
+                  }}</b>
                 </p>
               </div>
 
@@ -309,7 +317,12 @@
                 </p>
               </div>
 
-              <div class="dadosConsulta" [ngClass]="titular.ativo == true ? 'status-ativo': 'status-cancelado'">
+              <div
+                class="dadosConsulta"
+                [ngClass]="
+                  titular.ativo == true ? 'status-ativo' : 'status-cancelado'
+                "
+              >
                 <label>Status Sistema</label>
                 <div class="linhaE"></div>
                 <p>
