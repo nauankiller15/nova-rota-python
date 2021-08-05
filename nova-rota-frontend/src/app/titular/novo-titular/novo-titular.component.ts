@@ -126,7 +126,7 @@ export class NovoTitularComponent implements OnInit {
 
   
   newTitular() {
-            
+    this.titular.ativo = true;
     this.api.inserirComArquivo('titular/', this.titular).subscribe(
       (data) => {
         $('#confirmacaoTitular').fadeIn('100');

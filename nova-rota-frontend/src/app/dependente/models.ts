@@ -18,7 +18,6 @@ export class Dependente {
     nome_mae: string;
     data_admissao: string;
     titular: number;
-    nome_benef: string;
     CEP: string;
     celular: string;
     cidade: string;

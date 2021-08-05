@@ -42,17 +42,10 @@ export class AlteracaoDependenteComponent implements OnInit {
   }
 
   p: number = 1;
-  fileToUpload: File = null;
-  CPF: string;
-  nome_dependente: string;
-  nome_benef: string;
-  selected_titular: any;
 
   constructor(
     private toastr: ToastrService,
     private api: ApiService,
-    private homeComponent: HomeComponent,
-    private route: ActivatedRoute
   ) {
     this.getDependentesAtivos();
     this.getTitularesAtivos();
@@ -230,8 +223,7 @@ export class AlteracaoDependenteComponent implements OnInit {
     this.api.selecionar('titular/', titular.id).subscribe(
       (data) => {
         this.dependente.titular = titular.id;
-        this.dependente.nome_benef = titular.nome_benef;
-
+        this.dependente.titular_nome = titular.nome;
         this.toastr.success('Titular vinculado com sucesso!');
       },
       (error) => {

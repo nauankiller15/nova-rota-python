@@ -36,11 +36,6 @@ export class ConsultaDependenteComponent implements OnInit {
   }
 
   p: number = 1;
-  fileToUpload: File = null;
-  CPF: string;
-  nome_dependente: string;
-  nome_benef: string;
-  selected_titular: any;
 
   constructor(
     private toastr: ToastrService, 

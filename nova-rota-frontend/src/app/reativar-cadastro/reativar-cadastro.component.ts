@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../api.service';
 import { Dependente } from '../dependente/models';
 import { Titular } from '../titular/models';
+import { ReativarCadastro } from './models';
 
 declare var $: any;
 
@@ -15,7 +16,7 @@ export class ReativarCadastroComponent implements OnInit {
   busca: Array<Titular | Dependente> = [];
   cadastros: Array<Titular | Dependente> = [];
   tipoPesquisa = 'titular';
-  cadastro = new Titular();
+  cadastro: ReativarCadastro = new ReativarCadastro;
 
   contentLoaded = false;
   p = 1;
@@ -98,7 +99,9 @@ export class ReativarCadastroComponent implements OnInit {
   }
 
   confirmarReativacao(cadastro) {
-    this.cadastro = cadastro;
+    this.cadastro.id = cadastro.id;
+    this.cadastro.nome = cadastro.nome;
+    this.cadastro.ativo = true;
     $('#reativar').fadeIn(250);
   }
 

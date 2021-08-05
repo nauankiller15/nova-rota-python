@@ -65,7 +65,7 @@
                 ></span>
                 <input
                   (input)="searchNomeBenef($event.target.value)"
-                  name="nome_dependente"
+                  name="nome"
                   type="text"
                   class="form-control"
                   placeholder="Digite aqui o nome do dependente"
@@ -112,7 +112,7 @@
                     class="fas fa-user-plus"
                   ></i>
                   CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
-                  {{ resultado.nome_dependente }}
+                  {{ resultado.nome }}
                   <i
                     style="float: right; margin-top: 4px"
                     class="fas fa-external-link-alt"
@@ -583,7 +583,7 @@
                   </button>
                   <p id="encounter-tit" style="display: none">
                     Titular vinculado:
-                    <b>{{ dependente.nome_benef }}</b>
+                    <b>{{ dependente.titular_nome }}</b>
                   </p>
                 </div>
               </div>
@@ -601,7 +601,7 @@
                       <input
                         autocomplete="off"
                         (input)="searchNomeTitDep($event.target.value)"
-                        name="nome_benef"
+                        name="nome"
                         type="text"
                         class="form-control"
                         placeholder="Buscar Titular pelo Nome"
@@ -653,7 +653,7 @@
                         ></i>
                         CPF:
                         {{ resultadoTitular.CPF | mask: "000.000.000-99" }} -
-                        {{ resultadoTitular.nome_benef }}
+                        {{ resultadoTitular.nome }}
                       </li>
                       <h4 class="loadit" *ngIf="buscaTitularAlt.length === 0">
                         Nada encontrado
