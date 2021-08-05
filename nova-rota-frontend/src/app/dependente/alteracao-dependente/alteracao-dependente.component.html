@@ -206,26 +206,26 @@
                 "
                 >Anexos vinculados:</label
               >
-              <div *ngIf="dependente.anexo_doc_casamento != null">
+              <div *ngIf="anexo_doc_casamento != null">
                 <h3>Certidão de Casamento</h3>
                 <img
-                  *ngIf="!dependente.anexo_doc_casamento != null"
+                  *ngIf="!anexo_doc_casamento != null"
                   style="width: 250px"
-                  src="{{ dependente.anexo_doc_casamento }}"
+                  src="{{ anexo_doc_casamento }}"
                 />
               </div>
-              <b *ngIf="dependente.anexo_doc_casamento == null"
+              <b *ngIf="anexo_doc_casamento == null"
                 >Nenhuma Certidão de Casamento</b
               >
               <hr />
-              <div *ngIf="dependente.anexo_doc_nascimento != null">
+              <div *ngIf="anexo_doc_nascimento != null">
                 <h3>Certidão de Nascimento</h3>
                 <img
                   style="width: 250px"
-                  src="{{ dependente.anexo_doc_nascimento }}"
+                  src="{{ anexo_doc_nascimento }}"
                 />
               </div>
-              <b *ngIf="dependente.anexo_doc_nascimento == null"
+              <b *ngIf="anexo_doc_nascimento == null"
                 >Nenhuma Certidão de Nascimento</b
               >
 

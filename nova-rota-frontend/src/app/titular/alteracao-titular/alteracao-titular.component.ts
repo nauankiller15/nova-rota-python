@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/api.service';
-import { Titular } from '../models';
+import { AtualizarTitular, Titular } from '../models';
 
 
 declare var $: any;
@@ -17,7 +17,15 @@ export class AlteracaoTitularComponent implements OnInit {
   // DADOS DO TITULAR
   busca: Titular[] = [];
   titulares: Titular[] = [];
-  titular: Titular = new Titular();
+  titular: AtualizarTitular = new AtualizarTitular;
+  campos = [
+    'id', 'nome', 'CPF', 'cod_empresa', 'carteirinha', 'prioridade', 'data_recebimento', 'data_nascimento',
+    'data_casamento','sexo', 'estado_civil', 'nome_mae', 'data_admissao', 'CEP', 'celular', 'cidade', 
+    'estado', 'declaracao_saude', 'desc_declarao_saude', 'observacoes', 'ativo'
+  ]
+  anexo_doc_casamento: File;
+  anexo_doc_empregaticio: File;
+  
 
   // CARREGADOR
   animation = 'pulse';
@@ -52,47 +60,10 @@ export class AlteracaoTitularComponent implements OnInit {
     //---------------
     // MÁSCARAS DE INPUT
     $(document).ready(() => {
-      $('.date').mask('00/00/0000');
-      $('.time').mask('00:00:00');
-      $('.date_time').mask('00/00/0000 00:00:00');
       $('.cep').mask('00000-000');
-      $('.phone').mask('0000-0000');
       $('.phone_with_ddd').mask('(00) 0000-0000');
-      $('.phone_us').mask('(000) 000-0000');
-      $('.mixed').mask('AAA 000-S0S');
       $('.cpf').mask('000.000.000-00', { reverse: false });
       $('.cnpj').mask('00.000.000/0000-00', { reverse: false });
-      $('.money').mask('000.000.000.000.000,00', { reverse: true });
-      $('.money2').mask('#.##0,00', { reverse: true });
-      $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
-        translation: {
-          Z: {
-            pattern: /[0-9]/,
-            optional: true,
-          },
-        },
-      });
-      $('.ip_address').mask('099.099.099.099');
-      $('.percent').mask('##0,00%', { reverse: true });
-      $('.clear-if-not-match').mask('00/00/0000', { clearIfNotMatch: true });
-      $('.placeholder').mask('00/00/0000', {
-        translation: {
-          placeholder: '__/__/____',
-        },
-      });
-      $('.placeholder2').mask('00/00/0000', {
-        placeholder: '__/__/____',
-      });
-      $('.fallback').mask('00r00r0000', {
-        translation: {
-          r: {
-            pattern: /[\/]/,
-            fallback: '/',
-          },
-          placeholder: '__/__/____',
-        },
-      });
-      $('.selectonfocus').mask('00/00/0000', { selectOnFocus: true });
     });
     //
     // VOLTAR ALTERAÇÃO DE DADOS
@@ -120,7 +91,6 @@ export class AlteracaoTitularComponent implements OnInit {
       this.busca = this.titulares;
     }
   }
-
 
   searchNomeBenef(nome: string) {
     if (nome != '') {
@@ -163,45 +133,20 @@ export class AlteracaoTitularComponent implements OnInit {
       }
     );
   }
-  
-  getTitulares = () => {
-    this.api.listar('titular/').subscribe(
-      (data) => {
-        this.titulares = data;
-        this.busca = data;
-      },
-      (error) => {
-        const mensagens = error.error;
-        for (let mensagem in mensagens) {
-          this.toastr.error(mensagem, mensagens[mensagem]);
-        } 
-      }
-    );
-  };
+    
 
-  loadTitular(id: string) {
-    this.api.selecionar('titular/', id).subscribe(
-      (data) => {
-        this.titular = data;
-      },
-      (error) => {
-        this.toastr.error('Titular não encontrado', error.message);
-      }
-    );
-  }
-
-  titularClicked = (titular: { id: string }) => {
+  titularClicked(titular: Titular) {
     $('#consulta').slideUp(250);
     $('#titularesappear').slideDown(250);
     $('#postTit').slideDown(600);
-    this.api.selecionar('titular/', titular.id).subscribe(
-      (data) => {
-        this.titular = data;
-      },
-      (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
-      }
-    );
+
+    this.campos.forEach(campo => {
+      console.log(campo);
+      this.titular[campo] = titular[campo];
+    }); 
+
+    this.anexo_doc_casamento = titular.anexo_doc_casamento;
+    this.anexo_doc_empregaticio = titular.anexo_doc_empregaticio;
   };
 
   titAtivo() {
@@ -222,9 +167,10 @@ export class AlteracaoTitularComponent implements OnInit {
   }
 
   updateTit() {
-    
-    this.api.atualizarComArquivo('titular/', this.titular).subscribe(
+    console.log(this.titular);
+    this.api.atualizarCampo('titular/', this.titular).subscribe(
       (data) => {
+        console.log(data);
         this.toastr.success('Atualizado com sucesso!');      
       },
       (error) => {
@@ -237,10 +183,10 @@ export class AlteracaoTitularComponent implements OnInit {
   }
 
   vinculoEmpInput(files: FileList) {
-    this.titular.anexo_doc_empregaticio = files.item(0);
+    this.anexo_doc_empregaticio = files.item(0);
   }
 
   anexoCasamentoInput(files: FileList) {
-    this.titular.anexo_doc_casamento = files.item(0);
+    this.anexo_doc_casamento = files.item(0);
   } 
 }

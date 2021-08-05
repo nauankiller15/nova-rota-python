@@ -116,8 +116,7 @@ export class ReativarCadastroComponent implements OnInit {
       url = 'parentesco/';
     }
 
-    this.cadastro.ativo = true;
-    this.apiService.atualizar(url, this.cadastro).subscribe(
+    this.apiService.atualizarCampo(url, this.cadastro).subscribe(
       (data) => {
         this.contentLoaded = false;
         if (this.tipoPesquisa == 'titular') {

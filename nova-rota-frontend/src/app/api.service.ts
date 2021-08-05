@@ -64,4 +64,11 @@ export class ApiService {
 
     return this.http.put(this.baseUrl + apiUrl + dados.id + '/', formData);
   }
+
+  atualizarCampo(apiUrl, dados): Observable<any> {
+
+    return this.http.patch(this.baseUrl + apiUrl + dados.id + '/', dados, {
+      headers: this.httpHeaders,
+    });
+  }
 }

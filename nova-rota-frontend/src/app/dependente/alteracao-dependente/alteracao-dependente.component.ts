@@ -23,6 +23,15 @@ export class AlteracaoDependenteComponent implements OnInit {
   busca: Dependente[] = [];
   dependentes: Dependente[] = [];
   dependente: Dependente = new Dependente();
+  campos = [
+    'id', 'nome', 'CPF', 'cod_empresa', 'carteirinha', 'prioridade', 'data_recebimento', 'tipo', 'data_nascimento',
+    'data_casamento', 'sexo', 'estado_civil', 'tipo_parentesco', 'nome_mae', 'data_admissao', 'titular',
+    'CEP', 'celular', 'cidade', 'estado', 'declaracao_saude', 'desc_declarao_saude', 'observacoes', 
+    'ativo', 'titular_nome'
+  ];
+  anexo_doc_parentesco: File;
+  anexo_doc_casamento: File;
+  anexo_doc_nascimento: File;
 
   // BUSCA DOS TITULARES
   buscaTitularAlt: Titular[] = [];
@@ -194,17 +203,6 @@ export class AlteracaoDependenteComponent implements OnInit {
     );
   };
 
-  loadDependente(id: string) {
-    this.api.selecionar('parentesco/', id).subscribe(
-      (data) => {
-        this.dependente = data;
-      },
-      (error) => {
-        this.toastr.error('Dependente não encontrado', error.message);
-      }
-    );
-  }
-
   // VINCULAR DEPENDENTE
   searchNomeTitDep(nome: string) {
     if (nome != '') {
@@ -216,35 +214,28 @@ export class AlteracaoDependenteComponent implements OnInit {
     }
   }
 
-  titularClickedDependente = (titular: any) => {
+  titularClickedDependente(titular: Titular) {
     $('#alterar-titular').fadeOut('200');
     $('#encounter-tit').slideDown('200');
 
-    this.api.selecionar('titular/', titular.id).subscribe(
-      (data) => {
-        this.dependente.titular = titular.id;
-        this.dependente.titular_nome = titular.nome;
-        this.toastr.success('Titular vinculado com sucesso!');
-      },
-      (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
-      }
-    );
+    this.dependente.titular = titular.id;
+    this.dependente.titular_nome = titular.nome;
+    this.toastr.success('Titular vinculado com sucesso!');
   };
 
-  dependenteClicked = (dependentes: { id: any }) => {
+  dependenteClicked = (dependente: Dependente) => {
     $('#encounter-tit').fadeOut('100');
     $('#consulta2').slideUp(250);
     $('#dependentesappear').slideDown(250);
     $('#postDep').slideDown(600);
-    this.api.selecionar('parentesco/', dependentes.id).subscribe(
-      (data) => {
-        this.dependente = data;
-      },
-      (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
-      }
-    );
+    
+    this.campos.forEach(campo => {
+      this.dependente[campo] = dependente[campo];
+    }); 
+
+    this.anexo_doc_casamento = dependente.anexo_doc_casamento;
+    this.anexo_doc_nascimento = dependente.anexo_doc_nascimento;
+    this.anexo_doc_parentesco = dependente.anexo_doc_parentesco;
   };
 
   depAtivo() {

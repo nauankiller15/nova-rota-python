@@ -185,30 +185,30 @@
                 >Anexos vinculados:</label
               >
               <div>
-                <h3 *ngIf="titular.anexo_doc_casamento != null">
+                <h3 *ngIf="anexo_doc_casamento != null">
                   Certidão de Casamento
                 </h3>
                 <img
-                  *ngIf="!titular.anexo_doc_casamento != null"
+                  *ngIf="!anexo_doc_casamento != null"
                   style="width: 250px"
-                  src="{{ titular.anexo_doc_casamento }}"
+                  src="{{ anexo_doc_casamento }}"
                 />
               </div>
-              <b *ngIf="titular.anexo_doc_casamento == null"
+              <b *ngIf="anexo_doc_casamento == null"
                 >Nenhuma Certidão de Casamento</b
               >
               <hr />
               <div>
-                <h3 *ngIf="titular.anexo_doc_empregaticio != null">
+                <h3 *ngIf="anexo_doc_empregaticio != null">
                   Vínculo Empregatício
                 </h3>
                 <img
-                  *ngIf="!titular.anexo_doc_empregaticio != null"
+                  *ngIf="!anexo_doc_empregaticio != null"
                   style="width: 250px"
-                  src="{{ titular.anexo_doc_empregaticio }}"
+                  src="{{ anexo_doc_empregaticio }}"
                 />
               </div>
-              <b *ngIf="titular.anexo_doc_empregaticio == null"
+              <b *ngIf="anexo_doc_empregaticio == null"
                 >Nenhum Vínculo Empregatício</b
               >
               <hr />

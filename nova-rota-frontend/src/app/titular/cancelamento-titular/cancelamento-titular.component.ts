@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../api.service';
-import { Titular } from '../models';
+import { CancelarCadastro, Titular } from '../models';
 
 declare var $: any;
 
@@ -11,11 +11,11 @@ declare var $: any;
   styleUrls: ['./cancelamento-titular.component.css'],
 })
 export class CancelamentoTitularComponent implements OnInit {
-  titular: Titular = new Titular();
+  cadastro: CancelarCadastro = new CancelarCadastro;
 
   busca: Titular[] = [];
   titulares: Titular[] = [];
-  cancelamentos: Titular[] = [];
+  cancelamentos: CancelarCadastro[] = [];
   cancelados = { cancelados: [], erros: [] };
 
   // CARREGADOR
@@ -106,7 +106,9 @@ export class CancelamentoTitularComponent implements OnInit {
   };
 
   titularClicked(titular) {
-    this.titular = titular;
+    this.cadastro.id = titular.id;
+    this.cadastro.nome = titular.nome;
+    this.cadastro.ativo = false;
     $('#cancelamentoTitular').fadeIn(250);
   }
 
@@ -115,8 +117,7 @@ export class CancelamentoTitularComponent implements OnInit {
   }
 
   cancelarTitular() {
-    this.titular.ativo = false;
-    this.api.atualizar('titular/', this.titular).subscribe(
+    this.api.atualizarCampo('titular/', this.cadastro).subscribe(
       (data) => {
         this.toastr.success('`Titular <b>CANCELADO</b> com sucesso!`');
 
@@ -132,25 +133,18 @@ export class CancelamentoTitularComponent implements OnInit {
     );
   }
 
-  tipoPrioridade(data) {
-    const hoje = new Date();
-    let dataPrioridade = new Date(data);
-    dataPrioridade.setMonth(dataPrioridade.getMonth() + 1);
-    let prioridade = 'Prioridade';
-    console.log(dataPrioridade, hoje, dataPrioridade > hoje);
-    if (dataPrioridade < hoje) {
-      prioridade = 'Sem Prioridade';
-    }
-
-    return prioridade;
-  }
-
+  
   preCancelar(adicionar: boolean, titular: Titular) {
+    let cadastro = new CancelarCadastro;
+    cadastro.id = titular.id;
+    cadastro.nome = titular.nome;
+    cadastro.ativo = false;
     if (adicionar == true) {
-      this.cancelamentos.push(titular);
+      this.cancelamentos.push(cadastro);
     } else {
-      const indice = this.cancelamentos.indexOf(titular);
+      const indice = this.cancelamentos.indexOf(cadastro);
       this.cancelamentos.splice(indice, 1);
+      console.log(this.cancelamentos);
     }
   }
 
@@ -176,11 +170,11 @@ export class CancelamentoTitularComponent implements OnInit {
     $('#espera').fadeIn(250);
   }
 
-  cancelar(titular: Titular) {
-    titular.ativo = false;
-    this.api.atualizar('titular/', titular).subscribe(
+  cancelar(cadastro: CancelarCadastro) {
+   
+    this.api.atualizarCampo('titular/', cadastro).subscribe(
       (data) => {
-        this.cancelados.cancelados.push(titular);
+        this.cancelados.cancelados.push(cadastro);
       },
       (error) => {
         let mensagens = error.error;
@@ -188,7 +182,7 @@ export class CancelamentoTitularComponent implements OnInit {
         for (let campo in mensagens) {
           erros.push(mensagens[campo]);
         }
-        this.cancelados.erros.push({ titular: titular, erros: erros });
+        this.cancelados.erros.push({ titular: cadastro, erros: erros });
       }
     );
   }
