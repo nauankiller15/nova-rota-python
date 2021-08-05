@@ -1,20 +1,20 @@
 export class Dependente {
     id: number;
+    nome: string;
     CPF: string;
     cod_empresa: string;
     carteirinha: string;
     prioridade: string;
     data_recebimento: string;
     tipo: string;
-    nome_dependente: string;
     data_nascimento: string;
     data_casamento: string;
     sexo: string;
     estado_civil: string;
     tipo_parentesco: string;
-    anexo_doc_parentesco: string;
-    anexo_doc_casamento: string;
-    anexo_doc_nascimento: string;
+    anexo_doc_parentesco: File;
+    anexo_doc_casamento: File;
+    anexo_doc_nascimento: File;
     nome_mae: string;
     data_admissao: string;
     titular: number;
@@ -35,5 +35,5 @@ export class Dependente {
 export class Titular {
     id: number;
     CPF: string;
-    nome_benef: string;
+    nome: string;
 }

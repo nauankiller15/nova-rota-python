@@ -160,12 +160,12 @@ export class NovoDependenteComponent implements OnInit {
   };
 
   // VINCULAR DEPENDENTE
-  searchNomeTitDep(nome_benef: string) {
-    if (nome_benef != '') {
+  searchNomeTitDep(nome: string) {
+    if (nome != '') {
       this.buscaTitular = this.titulares.filter((res) => {
-        return res.nome_benef.match(nome_benef);
+        return res.nome.match(nome);
       });
-    } else if (nome_benef == '') {
+    } else if (nome == '') {
       this.buscaTitular = this.titulares;
     }
   }
@@ -188,7 +188,15 @@ export class NovoDependenteComponent implements OnInit {
   };
 
   newDependente() {
-    this.api.inserir('parentesco/', this.dependente).subscribe(
+    let formData = new FormData();
+    
+    for (let campo in this.dependente) {
+      if (this.dependente[campo]) {
+        formData.append(campo, this.dependente[campo]);
+      }
+    };
+        
+    this.api.inserirComArquivo('parentesco/', formData).subscribe(
       (data) => {
         $('#confirmacaoDependente').fadeIn('100');
         $('#encounter-tit').fadeOut('100');
@@ -202,4 +210,16 @@ export class NovoDependenteComponent implements OnInit {
       }
     );
   }
+
+  anexoParentescoInput(files: FileList) {
+    this.dependente.anexo_doc_parentesco = files.item(0);
+  }
+
+  anexoCasamentoInput(files: FileList) {
+    this.dependente.anexo_doc_casamento = files.item(0);
+  } 
+
+  anexoNascimentoInput(files: FileList) {
+    this.dependente.anexo_doc_nascimento = files.item(0);
+  } 
 }

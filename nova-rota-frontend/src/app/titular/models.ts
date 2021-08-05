@@ -1,4 +1,5 @@
 export class Titular {
+    nome: string;
     id: number;
     CPF: string;
     cod_empresa: string;
@@ -6,13 +7,12 @@ export class Titular {
     prioridade: string;
     data_recebimento: string;
     tipo: string;
-    nome_benef: string;
     data_nascimento: string;
     data_casamento: string;
     sexo: string;
     estado_civil: string;
-    anexo_doc_casamento: string;
-    anexo_doc_empregaticio: string;
+    anexo_doc_casamento: File;
+    anexo_doc_empregaticio: File;
     nome_mae: string;
     data_admissao: string;
     CEP: string;

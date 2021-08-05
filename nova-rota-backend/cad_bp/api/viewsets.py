@@ -13,10 +13,3 @@ class ParentescoViewSet(ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['ativo']
     
-
-    def retrieve(self, request, pk=None):
-        parentesco = Parentesco.objects.filter(id=pk).last()
-        serializer = ParentescoSerializer(parentesco)
-        json_response = serializer.data
-        json_response['titular_nome'] = parentesco.titular.nome_benef
-        return Response(json_response)

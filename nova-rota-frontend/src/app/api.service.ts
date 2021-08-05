@@ -40,4 +40,12 @@ export class ApiService {
       headers: this.httpHeaders,
     });
   }
+
+  inserirComArquivo(apiUrl:string, dados:any): Observable<any> {
+    return this.http.post(this.baseUrl + apiUrl, dados);
+  }
+
+  atualizarComArquivo(apiUrl, dados): Observable<any> {
+    return this.http.put(this.baseUrl + apiUrl + dados.id + '/', dados);
+  }
 }

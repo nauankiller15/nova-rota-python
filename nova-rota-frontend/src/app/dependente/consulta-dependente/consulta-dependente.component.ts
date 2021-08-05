@@ -102,12 +102,12 @@ export class ConsultaDependenteComponent implements OnInit {
     }
   }
 
-  searchNomeBenef(nome_dependente: string) {
-    if (nome_dependente != '') {
+  searchNomeBenef(nome: string) {
+    if (nome != '') {
       this.busca = this.dependentes.filter((res) => {
-        return res.nome_dependente.match(nome_dependente);
+        return res.nome.match(nome);
       });
-    } else if (nome_dependente == '') {
+    } else if (nome == '') {
       this.busca = this.dependentes;
     }
   }

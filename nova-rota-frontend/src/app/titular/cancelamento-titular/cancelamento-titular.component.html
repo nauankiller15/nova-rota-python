@@ -115,7 +115,7 @@
                     class="fas fa-user-tie"
                   ></i>
                   CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
-                  {{ resultado.nome_benef }}
+                  {{ resultado.nome }}
                   <button
                     data-toggle="tooltip"
                     title="Excluir Titular"
@@ -158,7 +158,7 @@
         <div class="anexo-info-box-titular-vinc">
           <h1>
             Tem certeza que deseja cancelar o cadastro de
-            <b>{{ titular.nome_benef }}</b
+            <b>{{ titular.nome }}</b
             >?
           </h1>
           <div style="margin-top: 35px; width: 100%"></div>

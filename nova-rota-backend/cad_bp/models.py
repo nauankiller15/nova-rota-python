@@ -7,6 +7,16 @@ from localflavor.br.models import BRCPFField, BRStateField, BRPostalCodeField
 from cad_at.models import Titular
 
 
+def doc_nascimento_path(instance, filename):
+    extensao = filename.split('.')[-1]
+    nome_arquivo = 'NASC.' + extensao
+    return '/'.join(['dependentes', instance.nome, nome_arquivo])
+
+def doc_casamento_path(instance, filename):
+    extensao = filename.split('.')[-1]
+    nome_arquivo = 'CSMT.' + extensao
+    return '/'.join(['dependentes', instance.nome, nome_arquivo])
+
 class Parentesco (models.Model):
     objects: None = None
     sexo_choice = (
@@ -30,6 +40,7 @@ class Parentesco (models.Model):
         ('Nao', 'Nao'),
     )
 
+    nome = models.CharField("Nome Dependente", max_length=255, blank=False)
     CPF = BRCPFField("Número CPF", max_length=14, null=False, unique=True)
     cod_empresa = models.CharField("Codigo Empresa", max_length=25, null=False, blank=False)
     carteirinha = models.CharField("Numero da Carteirinha", max_length=35, null=False, unique=True)
@@ -37,7 +48,6 @@ class Parentesco (models.Model):
         "Data Recebimento", auto_now=False, auto_now_add=False, null=False)
     tipo = models.CharField("Tipo Cadastro", max_length=25,
                             default="Inclusão de Parentesco", editable=False)
-    nome_dependente = models.CharField("Nome Dependente", max_length=255, blank=False)
     data_nascimento = models.DateField(
         "Data Nascimento", auto_now_add=False, auto_now=False, blank=False, null=False)
     data_casamento = models.DateField(
@@ -49,8 +59,8 @@ class Parentesco (models.Model):
     tipo_parentesco = models.CharField(max_length=25, choices=parentesco_choice,
                                        blank=False, default="Selecione", null=False)
     anexo_doc_parentesco = models.ImageField(upload_to='anexo_parentescos', blank=True, null=True)
-    anexo_doc_casamento = models.ImageField(upload_to='anexo_parentesco_casamento', blank=True, null=True)
-    anexo_doc_nascimento = models.ImageField(upload_to='anexo_parentesco_nascimento', blank=True, null=True)
+    anexo_doc_casamento = models.ImageField(upload_to=doc_casamento_path, blank=True, null=True)
+    anexo_doc_nascimento = models.ImageField(upload_to=doc_nascimento_path, blank=True, null=True)
     nome_mae = models.CharField("Nome da Mae", max_length=255)
     data_admissao = models.DateField(
         "Data de Admissão", auto_now=False, auto_now_add=False, null=False)
@@ -82,7 +92,7 @@ class Parentesco (models.Model):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.nome_dependente} - CPF: {self.CPF}'
+        return f'{self.nome} - CPF: {self.CPF}'
 
     class Meta:
         ordering = ['ativo']

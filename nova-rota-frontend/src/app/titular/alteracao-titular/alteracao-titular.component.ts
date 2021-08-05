@@ -124,12 +124,12 @@ export class AlteracaoTitularComponent implements OnInit {
   }
 
 
-  searchNomeBenef(nome_benef: string) {
-    if (nome_benef != '') {
+  searchNomeBenef(nome: string) {
+    if (nome != '') {
       this.busca = this.titulares.filter((res) => {
-        return res.nome_benef.match(nome_benef);
+        return res.nome.match(nome);
       });
-    } else if (nome_benef == '') {
+    } else if (nome == '') {
       this.busca = this.titulares;
     }
   }
@@ -206,19 +206,6 @@ export class AlteracaoTitularComponent implements OnInit {
     );
   };
 
-  updateTit() {
-    this.api.atualizar('titular/', this.titular).subscribe(
-      (data) => {
-        this.toastr.success('Atualizado com sucesso!');
-      },
-      (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
-      }
-    );
-  }
   titAtivo() {
     this.getTitularesAtivos();
     $('.menuVigencia').removeClass('canceladoBorder');
@@ -236,17 +223,33 @@ export class AlteracaoTitularComponent implements OnInit {
     $('.cancelados').removeClass('active');
   }
 
-  tipoPrioridade(data) {
-    const hoje = new Date();
-    let dataPrioridade = new Date(data);
-    dataPrioridade.setMonth(dataPrioridade.getMonth() + 1);
-    let prioridade = 'Prioridade';
-    console.log(dataPrioridade, hoje, dataPrioridade > hoje);
-    if (dataPrioridade < hoje) {
-      prioridade = "Sem Prioridade";
-    }
-
-    return prioridade
+  updateTit() {
+    let formData = new FormData();
+    
+    for (let campo in this.titular) {
+      if (this.titular[campo]) {
+        formData.append(campo, this.titular[campo]);
+      }
+    };
+        
+    this.api.atualizarComArquivo('titular/', formData).subscribe(
+      (data) => {
+        this.toastr.success('Atualizado com sucesso!');      
+      },
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
+      }
+    );
   }
-  
+
+  vinculoEmpInput(files: FileList) {
+    this.titular.anexo_doc_empregaticio = files.item(0);
+  }
+
+  anexoCasamentoInput(files: FileList) {
+    this.titular.anexo_doc_casamento = files.item(0);
+  } 
 }

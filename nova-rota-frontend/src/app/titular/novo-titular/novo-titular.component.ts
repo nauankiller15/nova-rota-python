@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { AppComponent } from '../../app.component';
 import { ApiService } from '../../api.service';
 import { Titular } from '../models';
 import { validarCPF } from '../../shared/validador-cpf';
@@ -18,7 +17,6 @@ export class NovoTitularComponent implements OnInit {
   constructor(
     private toastr: ToastrService,
     private api: ApiService,
-    private appComponent: AppComponent,
   ) {}
 
   ngOnInit(): void {
@@ -126,15 +124,17 @@ export class NovoTitularComponent implements OnInit {
     });
   }
 
-  // selectedFile: File = null;
-  // onFileSelected(event: any) {
-  //   this.selectedFile = <File>event.target.files[0];
-  // }
-
+  
   newTitular() {
-    // const fd = new FormData();
-    // fd.append('image', this.selectedFile, this.selectedFile.name);
-    this.api.inserir('titular/', this.titular).subscribe(
+    let formData = new FormData();
+    
+    for (let campo in this.titular) {
+      if (this.titular[campo]) {
+        formData.append(campo, this.titular[campo]);
+      }
+    };
+        
+    this.api.inserirComArquivo('titular/', formData).subscribe(
       (data) => {
         $('#confirmacaoTitular').fadeIn('100');
       },
@@ -145,5 +145,13 @@ export class NovoTitularComponent implements OnInit {
         }
       }
     );
+  }
+
+  vinculoEmpInput(files: FileList) {
+    this.titular.anexo_doc_empregaticio = files.item(0);
+  }
+
+  anexoCasamentoInput(files: FileList) {
+    this.titular.anexo_doc_casamento = files.item(0);
   }
 }

@@ -19,9 +19,9 @@ export class CancelamentoDependenteComponent implements OnInit {
   widthHeightSizeInPixels = 50;
 
   // DADOS DO DEPENDENTE
-  busca: Dependente[];
+  busca: Dependente[] = [];
 
-  dependentes: Dependente[];
+  dependentes: Dependente[] = [];
   dependente: Dependente = new Dependente();
   cancelamentos: Dependente[] = [];
   cancelados = { cancelados: [], erros: [] };
@@ -69,12 +69,12 @@ export class CancelamentoDependenteComponent implements OnInit {
     }
   }
 
-  searchNomeBenef(nome_dependente: string) {
-    if (nome_dependente != '') {
+  searchNomeBenef(nome: string) {
+    if (nome != '') {
       this.busca = this.dependentes.filter((res) => {
-        return res.nome_dependente.match(nome_dependente);
+        return res.nome.match(nome);
       });
-    } else if (nome_dependente == '') {
+    } else if (nome == '') {
       this.busca = this.dependentes;
     }
   }

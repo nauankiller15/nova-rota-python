@@ -158,7 +158,7 @@
                     nome_dependente.valid && nome_dependente.touched
                   "
                   required
-                  [(ngModel)]="dependente.nome_dependente"
+                  [(ngModel)]="dependente.nome"
                   name="nome_dependente"
                   type="text"
                   class="form-control"
@@ -270,9 +270,9 @@
                         type="file"
                         id="avatar"
                         name="avatar"
-                        [(ngModel)]="titular.anexo_doc_casamento"
                         accept=".png, .jpg, .jpeg"
                         ngControl="inputFile"
+                        (change)="anexoCasamentoInput($event.target.files)"
                       />
 
                       <button
@@ -405,11 +405,10 @@
 
                       <input
                         type="file"
-                        id="imagemCasado"
                         ngControl="inputFile"
                         accept=".png, .jpg, .jpeg"
-                        [(ngModel)]="dependente.anexo_doc_nascimento"
                         name="anexo_doc_nascimento"
+                        (change)="anexoNascimentoInput($event.target.files)"
                       />
 
                       <button
@@ -724,7 +723,7 @@
                       margin-bottom: 15px;
                     "
                   >
-                    Você cadastrou: <b>{{ dependente.nome_dependente }}</b>
+                    Você cadastrou: <b>{{ dependente.nome }}</b>
                     <div style="width: 100%; height: 12px"></div>
                     sob CPF: <b>{{ dependente.CPF }}</b>
                   </h1>

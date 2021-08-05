@@ -155,12 +155,12 @@ export class AlteracaoDependenteComponent implements OnInit {
     }
   }
 
-  searchNomeBenef(nome_dependente: string) {
-    if (nome_dependente != '') {
+  searchNomeBenef(nome: string) {
+    if (nome != '') {
       this.busca = this.dependentes.filter((res) => {
-        return res.nome_dependente.match(nome_dependente);
+        return res.nome.match(nome);
       });
-    } else if (nome_dependente == '') {
+    } else if (nome == '') {
       this.busca = this.dependentes;
     }
   }
@@ -213,12 +213,12 @@ export class AlteracaoDependenteComponent implements OnInit {
   }
 
   // VINCULAR DEPENDENTE
-  searchNomeTitDep(nome_benef: string) {
-    if (nome_benef != '') {
+  searchNomeTitDep(nome: string) {
+    if (nome != '') {
       this.buscaTitularAlt = this.titulares.filter((res) => {
-        return res.nome_benef.match(nome_benef);
+        return res.nome.match(nome);
       });
-    } else if (nome_benef == '') {
+    } else if (nome == '') {
       this.buscaTitularAlt = this.titulares;
     }
   }
@@ -255,21 +255,6 @@ export class AlteracaoDependenteComponent implements OnInit {
     );
   };
 
-  updateDependente() {
-    this.api.atualizar('parentesco/', this.dependente).subscribe(
-      (data) => {
-        this.dependente = data;
-        this.toastr.success('Atualizado com sucesso!');
-      },
-      (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
-      }
-    );
-  }
-
   depAtivo() {
     this.getDependentesAtivos();
     $('.menuVigencia').removeClass('canceladoBorder');
@@ -286,16 +271,38 @@ export class AlteracaoDependenteComponent implements OnInit {
     $('.cancelados').removeClass('active');
   }
 
-  tipoPrioridade(data) {
-    const hoje = new Date();
-    let dataPrioridade = new Date(data);
-    dataPrioridade.setMonth(dataPrioridade.getMonth() + 1);
-    let prioridade = 'Prioridade';
-    console.log(dataPrioridade, hoje, dataPrioridade > hoje);
-    if (dataPrioridade < hoje) {
-      prioridade = "Sem Prioridade";
-    }
-
-    return prioridade
+  updateDependente() {
+    let formData = new FormData();
+    
+    for (let campo in this.dependente) {
+      if (this.dependente[campo]) {
+        formData.append(campo, this.dependente[campo]);
+      }
+    };
+        
+    this.api.atualizarComArquivo('parentesco/', formData).subscribe(
+      (data) => {
+        this.dependente = data;
+        this.toastr.success('Atualizado com sucesso!');      
+      },
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
+      }
+    );
   }
+
+  anexoParentescoInput(files: FileList) {
+    this.dependente.anexo_doc_parentesco = files.item(0);
+  }
+
+  anexoCasamentoInput(files: FileList) {
+    this.dependente.anexo_doc_casamento = files.item(0);
+  } 
+
+  anexo_doc_nascimentoInput(files: FileList) {
+    this.dependente.anexo_doc_nascimento = files.item(0);
+  } 
 }

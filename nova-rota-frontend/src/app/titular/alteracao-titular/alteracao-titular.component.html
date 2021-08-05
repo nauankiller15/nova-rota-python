@@ -148,7 +148,7 @@
             <i class="fas fa-chevron-left"></i>
           </div>
           <s style="margin-left: 12px; width: 975px; text-decoration: none">{{
-            titular.nome_benef
+            titular.nome
           }}</s>
           <p class="cpf-ts">
             Inscrito(a) sob CPF:
@@ -185,7 +185,7 @@
               <img
                 style="width: 250px"
                 src="{{ titular.anexo_doc_casamento }}"
-                alt="Certidão de Casamento de {{ titular.nome_benef }}"
+                alt="Certidão de Casamento de {{ titular.nome }}"
               />
               <label
                 for="avatar"
@@ -202,9 +202,8 @@
                 type="file"
                 id="imagemCasado"
                 accept="image/png, image/jpeg"
-                [(ngModel)]="titular.anexo_doc_casamento"
-                [ngModelOptions]="{ standalone: true }"
                 ng-required="false"
+                (change)="anexoCasamentoInput($event.target.files)"
               />
 
               <button
@@ -314,7 +313,7 @@
               <div class="col-md-4 mb-3">
                 <label for="validationCustom01">Nome do Beneficiário</label>
                 <input
-                  [(ngModel)]="titular.nome_benef"
+                  [(ngModel)]="titular.nome"
                   [ngModelOptions]="{ standalone: true }"
                   type="text"
                   class="form-control"

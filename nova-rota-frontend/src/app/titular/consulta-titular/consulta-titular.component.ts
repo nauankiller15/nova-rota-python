@@ -89,12 +89,12 @@ export class ConsultaTitularComponent implements OnInit {
     }
   }
 
-  searchNomeBenef(nome_benef: string) {
-    if (nome_benef != '') {
+  searchNomeBenef(nome: string) {
+    if (nome != '') {
       this.busca = this.titulares.filter((res) => {
-        return res.nome_benef.match(nome_benef);
+        return res.nome.match(nome);
       });
-    } else if (nome_benef == '') {
+    } else if (nome == '') {
       this.busca = this.titulares;
     }
   }

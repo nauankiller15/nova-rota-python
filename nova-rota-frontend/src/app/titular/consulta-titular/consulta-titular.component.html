@@ -205,7 +205,7 @@
           <div id="voltardadosTitConsulta" class="voltar">
             <i class="fas fa-chevron-left"></i>
           </div>
-          {{ titular.nome_benef }}
+          {{ titular.nome }}
           <p class="cpf-ts">
             Inscrito(a) sob CPF:
             {{ titular.CPF | mask: "000.000.000-99" }}
@@ -241,7 +241,7 @@
               <img
                 style="width: 250px"
                 src="{{ titular.anexo_doc_casamento }}"
-                alt="Certidão de Casamento de {{ titular.nome_benef }}"
+                alt="Certidão de Casamento de {{ titular.nome }}"
               />
               <label
                 for="avatar"

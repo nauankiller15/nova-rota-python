@@ -147,7 +147,7 @@
           <div id="voltardadosdep" class="voltar">
             <i class="fas fa-chevron-left"></i>
           </div>
-          {{ dependente.nome_dependente }}
+          {{ dependente.nome }}
           <p class="cpf-ts">
             Inscrito(a) sob CPF:
             {{ dependente.CPF | mask: "000.000.000-99" }}
@@ -208,7 +208,7 @@
               <img
                 style="width: 250px"
                 src="{{ dependente.anexo_doc_casamento }}"
-                alt="Certidão de Casamento de {{ dependente.nome_dependente }}"
+                alt="Certidão de Casamento de {{ dependente.nome }}"
               />
               <label
                 for="avatar"
@@ -225,9 +225,9 @@
                 type="file"
                 id="imagemCasado"
                 accept="image/png, image/jpeg"
-                [(ngModel)]="dependente.anexo_doc_casamento"
                 name="anexo_doc_casamento"
                 ng-required="false"
+                (change)="anexoCasamentoInput($event.target.files)"
               />
 
               <button
@@ -325,7 +325,7 @@
               <div class="col-md-4 mb-3">
                 <label for="validationCustom01">Nome do Dependente</label>
                 <input
-                  [(ngModel)]="dependente.nome_dependente"
+                  [(ngModel)]="dependente.nome"
                   [ngModelOptions]="{ standalone: true }"
                   type="text"
                   class="form-control"

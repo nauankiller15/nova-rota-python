@@ -147,7 +147,7 @@
           <div id="voltardadosdepConsulta" class="voltar">
             <i class="fas fa-chevron-left"></i>
           </div>
-          {{ dependente.nome_dependente }}
+          {{ dependente.nome }}
           <p class="cpf-ts">
             Inscrito(a) sob CPF:
             {{ dependente.CPF | mask: "000.000.000-99" }}
@@ -208,7 +208,7 @@
               <img
                 style="width: 250px"
                 src="{{ dependente.anexo_doc_casamento }}"
-                alt="Certidão de Casamento de {{ dependente.nome_dependente }}"
+                alt="Certidão de Casamento de {{ dependente.nome }}"
               />
               <label
                 for="avatar"

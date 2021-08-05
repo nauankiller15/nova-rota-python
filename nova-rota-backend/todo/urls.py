@@ -42,10 +42,8 @@ router.register(r'novidades', NovidadesViewSet)
 
 
 urlpatterns = [
-    path('api/login/', obtain_jwt_token),
-    path('accounts/', include('accounts.urls')),
-    path('api/', include(router.urls)),
-    # path('api/auth/', include('rest_framework.urls')),
-    path('admin/', admin.site.urls),
     path('', include('public.urls')),
+    path('api/login/', obtain_jwt_token),
+    path('api/', include(router.urls)),
+    path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

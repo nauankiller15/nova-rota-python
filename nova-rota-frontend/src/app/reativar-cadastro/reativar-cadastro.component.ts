@@ -62,7 +62,7 @@ export class ReativarCadastroComponent implements OnInit {
   searchNome(nome: string) {
     if (nome != '') {
       this.busca = this.cadastros.filter((res) => {
-        return res.nome_benef.match(nome);
+        return res.nome.match(nome);
       });
     } else if (nome == '') {
       this.busca = this.cadastros;
