@@ -8,7 +8,7 @@ export class Empresa {
     tipo_contrato: string = 'Selecione aqui';
     inicio_vigencia: string;
     data_recebimento: string;
-    anexo_doc_emp: string;
+    anexo_doc_emp: File;
     celular: string;
     cidade: string;
     estado: string;

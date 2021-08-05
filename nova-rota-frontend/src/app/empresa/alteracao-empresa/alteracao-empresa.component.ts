@@ -7,9 +7,7 @@ import {
   Empresa,
   Reajuste,
   Sinistralidade,
-} from '../nova-empresa/models';
-
-import { bootstrap } from 'bootstrap';
+} from '../models';
 
 declare var $: any;
 
@@ -177,6 +175,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
     this.loadContratoOperadora(this.empresa.id);
     this.loadContratoSeguradora(this.empresa.id);
   }
+
   loadFilial() {
     this.api.selecionar('filial/', this.empresa.id).subscribe((data) => {
       this.empresa = data;
@@ -187,6 +186,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
     this.api.listar(`reajuste/?empresa=${empresa}`).subscribe(
       (data) => {
         this.reajustes = data;
+        console.log(data);
       },
       (error) => {
         let mensagens = error.error;
@@ -248,7 +248,12 @@ export class AlteracaoEmpresaComponent implements OnInit {
   }
 
   atualizarEmpresa() {
-    this.api.atualizar('empresa/', this.empresa).subscribe(
+    let urlEmpresa = 'empresa/';
+    if (this.empresa.is_filial == true) {
+      urlEmpresa = 'filial/';
+    }
+
+    this.api.atualizarComArquivo(urlEmpresa, this.empresa).subscribe(
       (data) => {
         this.atualizarContrato();
       },
@@ -260,6 +265,10 @@ export class AlteracaoEmpresaComponent implements OnInit {
       }
     );
   }
+
+  anexoEmpresaInput(files: FileList) {
+    this.empresa.anexo_doc_emp = files.item(0);
+  } 
 
   atualizarContrato() {
     let urlTipo: string;

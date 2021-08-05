@@ -201,11 +201,8 @@
 
               <input
                 type="file"
-                id="imagemCasado"
-                accept="image/png, image/jpeg"
-                [(ngModel)]="empresa.anexo_doc_emp"
-                [ngModelOptions]="{ standalone: true }"
-                ng-required="false"
+                accept=".png, .jpg, .jpeg"
+                (change)="anexoEmpresaInput($event.target.files)"
               />
 
               <button

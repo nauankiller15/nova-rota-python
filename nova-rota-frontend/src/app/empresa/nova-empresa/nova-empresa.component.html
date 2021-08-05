@@ -336,10 +336,8 @@
 
                     <input
                       type="file"
-                      id="imagemEmpregaticio"
                       accept=".png, .jpg, .jpeg"
-                      [(ngModel)]="empresa.anexo_doc_emp"
-                      name="vinculo_empregaticio"
+                      (change)="anexoEmpresaInput($event.target.files)"
                     />
 
                     <button
@@ -717,6 +715,7 @@
                         [(ngModel)]="reajuste.ano_vigencia"
                         name="ano_vigencia"
                         type="number"
+                        min="1900"
                         class="form-control"
                         [class.is-invalid]="
                           ano_vigencia.invalid && ano_vigencia.touched
@@ -736,7 +735,7 @@
                     </div>
                     <!--  -->
 
-                    <!-- SINISTRALIDADE -->
+                    <!-- FIDELIZADO -->
                     <div class="col-md-5 mb-5">
                       <label for="validationCustom01">Fidelizado</label>
                       <select
@@ -778,7 +777,10 @@
                         [disabled]="!enviarReajuste"
                         name="tecnico"
                         type="number"
-                        class="form-control percent"
+                        min="0"
+                        max="100"
+                        step="0.01"
+                        class="form-control"
                         style="
                           border-top: none;
                           border-left: none;
@@ -803,8 +805,10 @@
                         [disabled]="!enviarReajuste"
                         name="negociado"
                         type="number"
-                        maxlength="3"
-                        class="form-control percent"
+                        min="0"
+                        max="100"
+                        step="0.01"
+                        class="form-control"
                         style="
                           border-top: none;
                           border-left: none;
@@ -859,6 +863,7 @@
                         [disabled]="!enviarSinistralidade"
                         name="ano"
                         type="number"
+                        min="1900"
                         class="form-control"
                         style="
                           border-top: none;
@@ -887,8 +892,11 @@
                         "
                         [disabled]="!enviarSinistralidade"
                         name="sinistralidade"
-                        type="text"
-                        class="form-control percent"
+                        type="number"
+                        min="0"
+                        max="100"
+                        step="0.01"
+                        class="form-control"
                         style="
                           border-top: none;
                           border-left: none;

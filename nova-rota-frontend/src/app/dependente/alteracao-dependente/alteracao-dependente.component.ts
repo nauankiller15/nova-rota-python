@@ -272,15 +272,8 @@ export class AlteracaoDependenteComponent implements OnInit {
   }
 
   updateDependente() {
-    let formData = new FormData();
-    
-    for (let campo in this.dependente) {
-      if (this.dependente[campo]) {
-        formData.append(campo, this.dependente[campo]);
-      }
-    };
-        
-    this.api.atualizarComArquivo('parentesco/', formData).subscribe(
+            
+    this.api.atualizarComArquivo('parentesco/', this.dependente).subscribe(
       (data) => {
         this.dependente = data;
         this.toastr.success('Atualizado com sucesso!');      

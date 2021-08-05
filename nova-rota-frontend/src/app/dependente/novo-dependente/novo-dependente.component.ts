@@ -188,15 +188,8 @@ export class NovoDependenteComponent implements OnInit {
   };
 
   newDependente() {
-    let formData = new FormData();
-    
-    for (let campo in this.dependente) {
-      if (this.dependente[campo]) {
-        formData.append(campo, this.dependente[campo]);
-      }
-    };
-        
-    this.api.inserirComArquivo('parentesco/', formData).subscribe(
+           
+    this.api.inserirComArquivo('parentesco/', this.dependente).subscribe(
       (data) => {
         $('#confirmacaoDependente').fadeIn('100');
         $('#encounter-tit').fadeOut('100');

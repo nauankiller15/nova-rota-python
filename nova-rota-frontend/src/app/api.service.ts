@@ -42,10 +42,26 @@ export class ApiService {
   }
 
   inserirComArquivo(apiUrl:string, dados:any): Observable<any> {
-    return this.http.post(this.baseUrl + apiUrl, dados);
+    let formData = new FormData();
+
+    for (let campo in dados) {
+      if (dados[campo]) {
+        formData.append(campo, dados[campo]);
+      }
+    };
+
+    return this.http.post(this.baseUrl + apiUrl, formData);
   }
 
   atualizarComArquivo(apiUrl, dados): Observable<any> {
-    return this.http.put(this.baseUrl + apiUrl + dados.id + '/', dados);
+    let formData = new FormData();
+
+    for (let campo in dados) {
+      if (dados[campo]) {
+        formData.append(campo, dados[campo]);
+      }
+    };
+
+    return this.http.put(this.baseUrl + apiUrl + dados.id + '/', formData);
   }
 }

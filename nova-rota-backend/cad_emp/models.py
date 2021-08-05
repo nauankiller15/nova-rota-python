@@ -3,6 +3,11 @@ from django.db.models.base import Model
 from localflavor.br.models import BRStateField, BRCNPJField
 
 
+def empresa_path(instance, filename):
+    extensao = filename.split('.')[-1]
+    nome_arquivo = 'EMP.' + extensao
+    return '/'.join(['empresas', instance.razao_social, nome_arquivo])
+
 class Empresa (models.Model):
 
     contrato_choice = (
@@ -26,7 +31,7 @@ class Empresa (models.Model):
         "Data Recebimento", auto_now=False, auto_now_add=False, blank=True, null=False)
     razao_social = models.CharField("Razão Social", max_length=255)
     tipo_contrato = models.CharField(max_length=25, choices=contrato_choice)
-    anexo_doc_emp = models.ImageField(upload_to='anexo_empresa', blank=True, null=True)
+    anexo_doc_emp = models.ImageField(upload_to=empresa_path, blank=True, null=True)
     inicio_vigencia = models.DateField(
         "Inicio de Vigência", auto_now=False, auto_now_add=False, null=False)
     celular = models.CharField("Numero do Celular", max_length=100, null=True)
@@ -61,7 +66,7 @@ class Reajuste(models.Model):
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     ano_vigencia = models.PositiveIntegerField(blank=False, null=False)
     fidelizado = models.CharField(max_length=25, choices=fidelizado_choice,
-                                  blank=False, default="Selecione", null=False)
+                                  blank=False, null=False)
     tecnico = models.DecimalField(max_digits=5, decimal_places=2, blank=False, null=False)
     negociado = models.DecimalField(max_digits=5, decimal_places=2, blank=False, null=False)
 
@@ -83,7 +88,7 @@ class ContratoOperadora(models.Model):
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     nome = models.CharField("Nome da Seguradora", max_length=255, blank=False, null=False)
     tipo = models.CharField(max_length=25, choices=operadora_choice,
-                                     blank=False, default="Selecione", null=False)
+                                     blank=False, null=False)
     codigo = models.CharField("Codigo", max_length=100, blank=False, null=False)
 
     def save(self, *args, **kwargs):
@@ -103,7 +108,7 @@ class ContratoSeguradora(models.Model):
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     nome = models.CharField("Nome da Seguradora", max_length=255, blank=False, null=False)
     tipo = models.CharField(max_length=25, choices=seguradora_choice,
-                                     blank=False, default="Selecione", null=False)
+                                     blank=False, null=False)
     apolice = models.CharField("Apolice", max_length=100, blank=False, null=False)
 
     def save(self, *args, **kwargs):

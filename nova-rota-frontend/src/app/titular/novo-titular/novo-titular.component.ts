@@ -126,15 +126,8 @@ export class NovoTitularComponent implements OnInit {
 
   
   newTitular() {
-    let formData = new FormData();
-    
-    for (let campo in this.titular) {
-      if (this.titular[campo]) {
-        formData.append(campo, this.titular[campo]);
-      }
-    };
-        
-    this.api.inserirComArquivo('titular/', formData).subscribe(
+            
+    this.api.inserirComArquivo('titular/', this.titular).subscribe(
       (data) => {
         $('#confirmacaoTitular').fadeIn('100');
       },

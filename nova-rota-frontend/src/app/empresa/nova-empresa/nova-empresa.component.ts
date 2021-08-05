@@ -7,7 +7,7 @@ import {
   Empresa,
   Reajuste,
   Sinistralidade,
-} from './models';
+} from '../models';
 import { validarCNPJ } from '../../shared/validador-cnpj';
 
 declare var $: any;
@@ -118,9 +118,6 @@ export class NovaEmpresaComponent implements OnInit {
       $(this).siblings().removeClass('active');
     });
 
-    // $('#filial').trigger('click');
-    //
-
     // OPÇÕES
 
     $('input, select, textarea').keypress(function (event: {
@@ -186,18 +183,19 @@ export class NovaEmpresaComponent implements OnInit {
 
   newEmpresa() {
     let urlEmpresa = 'empresa/';
-    $('#confirmacaoEmpresa').fadeIn('100');
     if (this.empresa.is_filial == true) {
       urlEmpresa = 'filial/';
-      $('#confirmacaoEmpresa').fadeIn('100');
     }
 
-    this.api.inserir(urlEmpresa, this.empresa).subscribe(
+    
+
+    this.api.inserirComArquivo(urlEmpresa, this.empresa).subscribe(
       (data) => {
         this.empresa.id = data.id;
         this.newContrato();
         this.newReajuste();
         this.newSinistralidade();
+        $('#confirmacaoEmpresa').fadeIn('100');
       },
       (error) => {
         let mensagens = error.error;
@@ -207,6 +205,10 @@ export class NovaEmpresaComponent implements OnInit {
       }
     );
   }
+
+  anexoEmpresaInput(files: FileList) {
+    this.empresa.anexo_doc_emp = files.item(0);
+  } 
 
   newContrato() {
     let urlTipo: string;
