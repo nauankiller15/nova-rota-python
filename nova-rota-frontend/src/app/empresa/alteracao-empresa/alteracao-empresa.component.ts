@@ -186,7 +186,6 @@ export class AlteracaoEmpresaComponent implements OnInit {
     this.api.listar(`reajuste/?empresa=${empresa}`).subscribe(
       (data) => {
         this.reajustes = data;
-        console.log(data);
       },
       (error) => {
         let mensagens = error.error;

@@ -225,17 +225,6 @@
         <div id="postEmp" class="card-body">
           <h5 class="card-title">ALTERE OS CAMPOS ABAIXO:</h5>
 
-          <div style="display: none" class="form-check">
-            <input
-              [(ngModel)]="empresa.is_filial"
-              id="filial"
-              class="form-check-input"
-              type="checkbox"
-              id="filial"
-            />
-            <label class="form-check-label" for="filial"> Filial </label>
-          </div>
-
           <form
             class="needs-validation"
             #empresaForm="ngForm"
@@ -480,10 +469,8 @@
 
                     <input
                       type="file"
-                      id="imagemEmpregaticio"
                       accept=".png, .jpg, .jpeg"
-                      [(ngModel)]="empresa.anexo_doc_emp"
-                      name="vinculo_empregaticio"
+                      (change)="anexoEmpresaInput($event.target.files)"
                     />
 
                     <button
@@ -803,14 +790,7 @@
                       <tr
                         class="loadit"
                         *ngFor="
-                          let linha of reajustes
-                            | paginate
-                              : {
-                                  id: 'reajustes_page',
-                                  itemsPerPage: 5,
-                                  currentPage: p
-                                }
-                        "
+                          let linha of reajustes"
                       >
                         <th></th>
                         <th>
