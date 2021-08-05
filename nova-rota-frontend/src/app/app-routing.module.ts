@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 // titulares
-import { AltTitularDetailsComponent } from './titular/alt-titular-details/alt-titular-details.component';
 import { AlteracaoTitularComponent } from './titular/alteracao-titular/alteracao-titular.component';
 import { NovoTitularComponent } from './titular/novo-titular/novo-titular.component';
 import { ConsultaTitularComponent } from './titular/consulta-titular/consulta-titular.component';
 import { CancelamentoTitularComponent } from './titular/cancelamento-titular/cancelamento-titular.component';
 //
 // dependentes
-import { AltDependenteDetailsComponent } from './dependente/alt-dependente-details/alt-dependente-details.component';
 import { AlteracaoDependenteComponent } from './dependente/alteracao-dependente/alteracao-dependente.component';
 import { NovoDependenteComponent } from './dependente/novo-dependente/novo-dependente.component';
 import { CancelamentoDependenteComponent } from './dependente/cancelamento-dependente/cancelamento-dependente.component';
@@ -69,19 +67,11 @@ const routes: Routes = [
       { path: 'novo-titular', component: NovoTitularComponent },
       // ==== ALTERACAO TITULAR ====
       { path: 'alteracao-titular', component: AlteracaoTitularComponent },
-      {
-        path: 'alt-titular-details/:id',
-        component: AltTitularDetailsComponent,
-      },
       //]
       // === CADASTRO DE DEPENDENTE ====
       { path: 'novo-dependente', component: NovoDependenteComponent },
       // ==== ALTERACAO TITULAR ====
       { path: 'alteracao-dependente', component: AlteracaoDependenteComponent },
-      {
-        path: 'alt-dependente-details/:id',
-        component: AltDependenteDetailsComponent,
-      },
       //
       //
       // === CADASTRO DE EMPRESAS ====
@@ -145,10 +135,8 @@ export const routingComponentes = [
   TarefasDetailsComponent,
   // --------------------
   AlteracaoTitularComponent,
-  AltTitularDetailsComponent,
   NovoTitularComponent,
   // --------------------
-  AltDependenteDetailsComponent,
   AlteracaoDependenteComponent,
   NovoDependenteComponent,
   // --------------------
