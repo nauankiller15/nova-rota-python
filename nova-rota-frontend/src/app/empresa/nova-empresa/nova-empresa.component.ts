@@ -29,6 +29,10 @@ export class NovaEmpresaComponent implements OnInit {
   constructor(private toastr: ToastrService, private api: ApiService) {}
 
   ngOnInit(): void {
+    $(window).on('load', function () {
+      $('#resetEmp').trigger('click');
+    });
+    // 
     $(function () {
       $('[data-toggle="tooltip"]').tooltip();
     });
@@ -187,8 +191,6 @@ export class NovaEmpresaComponent implements OnInit {
       urlEmpresa = 'filial/';
     }
 
-    
-
     this.api.inserirComArquivo(urlEmpresa, this.empresa).subscribe(
       (data) => {
         this.empresa.id = data.id;
@@ -208,7 +210,7 @@ export class NovaEmpresaComponent implements OnInit {
 
   anexoEmpresaInput(files: FileList) {
     this.empresa.anexo_doc_emp = files.item(0);
-  } 
+  }
 
   newContrato() {
     let urlTipo: string;

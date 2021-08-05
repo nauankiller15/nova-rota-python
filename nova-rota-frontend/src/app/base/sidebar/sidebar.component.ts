@@ -15,7 +15,6 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
       $('.eraseForm').click(function () {
-        $('#resetEmp').trigger('click');
         $('form').each(function () {
           this.reset();
         });
