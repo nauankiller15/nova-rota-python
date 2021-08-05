@@ -11,7 +11,7 @@ class ParentescoSerializer(serializers.ModelSerializer):
         return obj.prioridade()
 
     def get_titular_nome(self, obj):    
-        return obj.titular.nome_benef
+        return obj.titular.nome
 
 
     class Meta:
