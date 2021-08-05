@@ -39,6 +39,11 @@ export class CancelamentoDependenteComponent implements OnInit {
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()
     })
+    $('.eraseCanc').click(function () {
+      $('form').each(function () {
+        this.reset();
+      });
+    });
     // CARREGADOR TIMEOUT
     setTimeout(() => {
       this.contentLoaded = true;

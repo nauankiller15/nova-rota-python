@@ -59,7 +59,7 @@
 
             <div>
               <div for="checkedAllTitulares" class="contentCancelar">
-                <button class="btn btn-secondary">
+                <button type="reset" class="btn btn-secondary">
                   <i
                     style="margin-right: 3px; font-size: 14px"
                     class="far fa-times-circle"
@@ -76,6 +76,8 @@
                   >Cancelar selecionados
                 </button>
               </div>
+
+              <hr />
               <div class="titulares">
                 Titulares Encontrados:
                 <li
@@ -118,12 +120,12 @@
                   {{ resultado.nome }}
                   <button
                     data-toggle="tooltip"
-                    title="Excluir Titular"
+                    title="Cancelar Titular"
                     data-placement="top"
                     class="btn exclude"
                     (click)="titularClicked(resultado)"
                   >
-                    <i class="fas fa-trash"></i>
+                    <i class="fas fa-user-slash"></i>
                   </button>
                 </li>
 

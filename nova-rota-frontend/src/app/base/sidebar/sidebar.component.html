@@ -75,8 +75,7 @@
 
         <li>
           <a>
-            <i class="metismenu-icon fas fa-user-slash"></i> Cancelamento
-            Ativos
+            <i class="metismenu-icon fas fa-user-slash"></i> Cancelamento Ativos
             <i class="metismenu-state-icon fas fa-chevron-down caret-left"></i>
           </a>
           <ul>
@@ -89,10 +88,7 @@
             >
               <a> <i class="metismenu-icon"> </i>Dependente</a>
             </li>
-            <li
-              routerLink="/reativar-cadastro"
-              routerLinkActive="mm-active"
-            >
+            <li routerLink="/reativar-cadastro" routerLinkActive="mm-active">
               <a> <i class="metismenu-icon"> </i>Reativar Cadastro</a>
             </li>
           </ul>
@@ -131,19 +127,26 @@
           </ul>
         </li>
 
-        <li *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)" class="app-sidebar__heading">Administração</li>
+        <li
+          *ngIf="['desenvolvedor', 'Gestor'].includes(usuario.cargo)"
+          class="app-sidebar__heading"
+        >
+          Administração
+        </li>
+
+        <!-- <li *ngIf="['desenvolvedor', 'Gestor'].includes(usuario.cargo)" class="app-sidebar__heading">Administração</li>
         <li
           routerLink="/dashboard"
           routerLinkActive="mm-active"
-          *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)"
+          *ngIf="['desenvolvedor', 'Gestor'].includes(usuario.cargo)"
         >
           <a>
             <i class="metismenu-icon fas fa-chart-bar"></i> Painel de Analises
           </a>
           <ul style="display: none"></ul>
-        </li>
+        </li> -->
 
-        <li *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)">
+        <li *ngIf="['desenvolvedor', 'Gestor'].includes(usuario.cargo)">
           <a>
             <i class="metismenu-icon fas fa-building"></i> Cadastro de Empresas
             <i class="metismenu-state-icon fas fa-chevron-down caret-left"></i>
@@ -171,7 +174,7 @@
           </ul>
         </li>
 
-        <li *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)">
+        <li *ngIf="['desenvolvedor', 'Gestor'].includes(usuario.cargo)">
           <a>
             <i class="metismenu-icon fas fa-user eraseForm"></i> Usuários
             <i class="metismenu-state-icon fas fa-chevron-down caret-left"></i>

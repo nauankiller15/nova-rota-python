@@ -9,44 +9,39 @@ declare var $: any;
 @Component({
   selector: 'app-reativar-cadastro',
   templateUrl: './reativar-cadastro.component.html',
-  styleUrls: ['./reativar-cadastro.component.css']
+  styleUrls: ['./reativar-cadastro.component.css'],
 })
 export class ReativarCadastroComponent implements OnInit {
-
-  busca: Array<Titular|Dependente> = [];
-  cadastros: Array<Titular|Dependente> = [];
+  busca: Array<Titular | Dependente> = [];
+  cadastros: Array<Titular | Dependente> = [];
   tipoPesquisa = 'titular';
-  cadastro = new Titular;
+  cadastro = new Titular();
 
   contentLoaded = false;
   p = 1;
 
-  constructor(private apiService: ApiService, private toastr: ToastrService) { 
+  constructor(private apiService: ApiService, private toastr: ToastrService) {
     this.loadTitularesCancelados();
   }
 
   ngOnInit(): void {
+    // BOTÕES
+    $('.menuItems li').on('click', function () {
+      $(this).addClass('active');
+      $(this).siblings().removeClass('active');
+    });
   }
 
   titulares() {
     this.tipoPesquisa = 'titular';
     this.contentLoaded = false;
     this.loadTitularesCancelados();
-    $('.menuVigencia').removeClass('canceladoBorder');
-    $('.menuItems li').siblings().removeClass('canceladoBtn');
-    $('.menuItems li').addClass('active');
-    $('.dependentes-cancelados').removeClass('canceladoBtn');
-    $('.dependentes-cancelados').removeClass('active');
   }
 
   dependentes() {
     this.tipoPesquisa = 'dependente';
     this.contentLoaded = false;
     this.loadDependentesCancelados();
-    $('.menuVigencia').addClass('canceladoBorder');
-    $('.dependentes-cancelados').addClass('canceladoBtn');
-    $('.radiusTop').removeClass('active');
-    $('.dependentes-cancelados').removeClass('active');
   }
 
   searchCPF(CPF: string) {
@@ -75,7 +70,6 @@ export class ReativarCadastroComponent implements OnInit {
         this.cadastros = data;
         this.busca = data;
         this.contentLoaded = true;
-
       },
       (error) => {
         const mensagens = error.error;
@@ -105,30 +99,29 @@ export class ReativarCadastroComponent implements OnInit {
 
   confirmarReativacao(cadastro) {
     this.cadastro = cadastro;
-    $('#reativar').show();
+    $('#reativar').fadeIn(250);
   }
 
   reativarVoltar() {
-    $('#reativar').hide();
+    $('#reativar').fadeOut(250);
   }
 
   reativarUsuario() {
-
     $('#reativar').hide();
-    let url = 'titular/'
+    let url = 'titular/';
     if (this.tipoPesquisa == 'dependente') {
-      url = 'parentesco/'
+      url = 'parentesco/';
     }
 
     this.cadastro.ativo = true;
     this.apiService.atualizar(url, this.cadastro).subscribe(
       (data) => {
         this.contentLoaded = false;
-        if ( this.tipoPesquisa == 'titular') {
+        if (this.tipoPesquisa == 'titular') {
           this.loadTitularesCancelados();
         } else {
           this.loadDependentesCancelados();
-        }      
+        }
       },
       (error) => {
         const mensagens = error.error;

@@ -29,6 +29,9 @@ export class NovaEmpresaComponent implements OnInit {
   constructor(private toastr: ToastrService, private api: ApiService) {}
 
   ngOnInit(): void {
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
     $(document).ready(() => {
       $('.cep').mask('00000-000');
       $('.celular').mask('(00) 00000-0000');
@@ -48,7 +51,7 @@ export class NovaEmpresaComponent implements OnInit {
         $(this).removeClass('is-invalid ng-invalid');
         $(this).addClass('ng-valid is-valid');
       }
-    }); 
+    });
     // VALIDAR CNPJ
     $('#CNPJ').on('change', function () {
       if (validarCNPJ(this.value) == false) {
@@ -61,7 +64,7 @@ export class NovaEmpresaComponent implements OnInit {
         $(this).removeClass('is-invalid ng-invalid');
         $(this).addClass('ng-valid is-valid');
       }
-    }); 
+    });
 
     // TELA DE ANEXO DO DOCUMENTO DA EMPRESA
     $('#dataRecebimento').on('blur', function () {
@@ -109,7 +112,7 @@ export class NovaEmpresaComponent implements OnInit {
       $('#sinisTab').slideUp('100');
     });
 
-    // BOTÕES
+    // BOTÕES DE ESCOLHA
     $('.menuItems li').on('click', function () {
       $(this).addClass('active');
       $(this).siblings().removeClass('active');

@@ -52,6 +52,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
     this.userID = this.authService.getUserId();
     this.loadDadosUsuario(this.userID)
 
