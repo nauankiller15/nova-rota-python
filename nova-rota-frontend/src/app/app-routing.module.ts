@@ -24,7 +24,7 @@ import { AltEmpresaDetailsComponent } from './empresa/alt-empresa-details/alt-em
 // Usuario
 import { NovoUsuarioComponent } from './usuario/novo-usuario/novo-usuario.component';
 import { AlterarUsuarioComponent } from './usuario/alterar-usuario/alterar-usuario.component';
-// 
+//
 //outros
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -36,6 +36,8 @@ import { CreateAccountComponent } from './account/create-account/create-account.
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NovidadesDetailsComponent } from './novidades-details/novidades-details.component';
 import { ReativarCadastroComponent } from './reativar-cadastro/reativar-cadastro.component';
+import { TransferenciaDependenteComponent } from './dependente/transferencia-dependente/transferencia-dependente.component';
+import { TransferenciaTitularComponent } from './titular/transferencia-titular/transferencia-titular.component';
 //
 
 const routes: Routes = [
@@ -98,11 +100,26 @@ const routes: Routes = [
       //
       //
       // === CANCELAMENTO DE DEPENDENTES ====
-      { path: 'cancelamento-dependente', component: CancelamentoDependenteComponent },
+      {
+        path: 'cancelamento-dependente',
+        component: CancelamentoDependenteComponent,
+      },
       //
       //
       // === REATIVAÇÃO DE CADASTRO ====
       { path: 'reativar-cadastro', component: ReativarCadastroComponent },
+      //
+      //
+      // === TRANSFERÊNCIA DE TITULAR ====
+      {
+        path: 'transferencia-titular',
+        component: TransferenciaTitularComponent,
+      },
+      // === TRANSFERÊNCIA DE DEPENDENTE ====
+      {
+        path: 'transferencia-dependente',
+        component: TransferenciaDependenteComponent,
+      },
       //
       //
     ],
