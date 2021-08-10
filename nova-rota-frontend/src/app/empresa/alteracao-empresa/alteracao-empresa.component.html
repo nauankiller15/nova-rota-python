@@ -876,7 +876,7 @@
                       </div>
                       <!--  -->
 
-                      <!-- SINISTRALIDADE -->
+                      <!-- FIDELIZADO -->
                       <div class="col-md-5 mb-5">
                         <label for="validationCustom01">Fidelizado</label>
                         <select
@@ -1028,6 +1028,7 @@
                             title="Excluir Vigência"
                             data-placement="top"
                             class="btn eraseVig"
+                            (click)="confirmarExclusaoSinistralidade(linha)"
                           >
                             <i class="fas fa-trash"></i>
                           </button>
@@ -1198,6 +1199,42 @@
             Confirmar
           </button>
           <button class="btn btn-secondary" (click)="apagarReajusteVoltar()">
+            Voltar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="exclusaoSinistralidade" style="display: none;">
+      <div class="box-vigencia">
+        <div class="anexo-info-box-titular-vinc">
+          <h1>
+            Tem certeza que deseja o reajuste a seguir?
+          </h1>
+
+          <table class="table table-info text-center">
+            <thead>
+              <tr>
+                <th>Ano</th>
+                <th>Sinistralidade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="loadit">
+                <th>
+                  <div class="anoVig">{{ sinistralidade.ano }}</div>
+                </th>
+                <th>{{ sinistralidade.sinistralidade }}</th>
+              </tr>
+            </tbody>
+          </table>
+
+
+          <div style="margin-top: 35px; width: 100%"></div>
+          <button class="btn btn-primary" (click)="apagarSinistralidade()">
+            Confirmar
+          </button>
+          <button class="btn btn-secondary" (click)="apagarSinistralidadeVoltar()">
             Voltar
           </button>
         </div>

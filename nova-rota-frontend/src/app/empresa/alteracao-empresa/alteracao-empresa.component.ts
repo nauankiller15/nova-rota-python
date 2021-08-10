@@ -447,4 +447,33 @@ export class AlteracaoEmpresaComponent implements OnInit {
       }
     );
   }
+
+  confirmarExclusaoSinistralidade(sinistralidade: Sinistralidade){
+    this.sinistralidade = sinistralidade;
+    $('#formularioReajuste').slideUp(200);
+    $('#vinc-vigenciaAlt').fadeOut(100);
+    $('#exclusaoSinistralidade').show();
+  }
+
+  apagarSinistralidadeVoltar() {
+    $('#exclusaoSinistralidade').hide();
+  }
+
+  apagarSinistralidade() {
+    this.api.apagar('sinistralidade/', this.sinistralidade.id).subscribe(
+      (data) => {
+        this.loadSinistralidades(this.empresa.id);
+        this.toastr.success('Reajuste excluido com sucesso');
+        $('#vinc-vigenciaAlt').fadeIn(100);
+        $('#tabelaReajuste').slideDown(250);
+        $('#exclusaoSinistralidade').hide();
+      },
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
+      }
+    );
+  }
 }
