@@ -73,6 +73,7 @@ export class AlteracaoTitularComponent implements OnInit {
       $('#titularesappear').fadeOut('200');
       $('#consulta').slideDown('200');
       $('#postTit').slideUp(600);
+      
     });
 
     $('#abrirAnexoAlt').click(function () {
@@ -195,6 +196,9 @@ export class AlteracaoTitularComponent implements OnInit {
 
   vinculoEmpInput(files: FileList) {
     this.titular.anexo_doc_empregaticio = files.item(0);
+    $('#atualizarCad').fadeIn(250);
+    $('#unlockCad').fadeOut(250);
+
   }
 
   anexoCasamentoInput(files: FileList) {

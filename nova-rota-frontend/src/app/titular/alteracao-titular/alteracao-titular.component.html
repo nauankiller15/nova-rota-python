@@ -230,35 +230,32 @@
         <!--  -->
 
         <div id="postTit" class="card-body">
-          <div>
-            <button
-              class="btn btn-primary"
-              style="width: 160px"
-              id="abrirAnexoAlt"
-              (click)="novoDocumento()"
-            >
-              <i style="margin-right: 6px" class="fas fa-file-image"></i>
-              Anexar novo documento
-            </button>
-          </div>
-
           <!-- VINCULAR ANEXO DE VINCULO EMPREGATICIO -->
-          <div id="vinc-anexo-empregaticio" style="display: none;">
+          <div id="vinc-anexo-empregaticio" style="display: none">
             <div class="box-anexo">
               <div class="anexo-info-box-titular-vinc">
                 <h1
                   style="
+                    font-size: 2.3em;
+                    display: flex;
+                    margin-top: 0px;
+                    margin-bottom: 15px;
+                  "
+                >
+                  Para continuar a alteração, precisa-se anexar os documentos
+                  necessários:
+                </h1>
+                <h2
+                  style="
                     font-size: 20px;
                     display: flex;
-                    margin-top: -15px;
+                    margin-top: 15px;
                     margin-bottom: 15px;
                   "
                 >
                   Anexar Vínculo Empregatício
-                </h1>
-                <label for="avatar"
-                  >Escolha um arquivo para anexar:</label
-                >
+                </h2>
+                <label for="avatar">Escolha um arquivo para anexar:</label>
                 <div style="height: 10px; width: 100%"></div>
 
                 <input
@@ -614,8 +611,24 @@
                 />
               </div>
             </div>
-            <button class="btn btn-primary" (click)="updateTit()">
-              <i class="fas fa-check"></i> Alterar Titular
+            <div>
+              <button
+                class="btn btn-primary"
+                style="width: 160px"
+                id="unlockCad"
+                (click)="novoDocumento()"
+              >
+                <i style="margin-right: 6px" class="fas fa-unlock"></i>
+                Alterar Titular
+              </button>
+            </div>
+            <button
+              id="atualizarCad"
+              style="display: none"
+              class="btn btn-primary"
+              (click)="updateTit()"
+            >
+              <i class="fas fa-check"></i> Atualizar Cadastro
             </button>
           </form>
         </div>
