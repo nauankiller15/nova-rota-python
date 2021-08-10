@@ -24,7 +24,9 @@ export class AlteracaoTitularComponent implements OnInit {
     'estado', 'declaracao_saude', 'desc_declarao_saude', 'observacoes', 'ativo'
   ]
   anexo_doc_casamento: File;
+  novo_anexo_doc_casamento: File;
   anexo_doc_empregaticio: File;
+  novo_anexo_doc_empregaticio: File;
   
 
   // CARREGADOR
@@ -158,6 +160,7 @@ export class AlteracaoTitularComponent implements OnInit {
     $('.cancelados').removeClass('active');
 
   }
+
   titCancelado() {
     this.getTitularesInativos();
     $('.menuVigencia').addClass('canceladoBorder');
@@ -167,10 +170,10 @@ export class AlteracaoTitularComponent implements OnInit {
   }
 
   updateTit() {
-    console.log(this.titular);
-    this.api.atualizarCampo('titular/', this.titular).subscribe(
+
+    this.api.atualizarComArquivo('titular/', this.titular).subscribe(
       (data) => {
-        console.log(data);
+        this.titularClicked(data);
         this.toastr.success('Atualizado com sucesso!');      
       },
       (error) => {
@@ -182,11 +185,19 @@ export class AlteracaoTitularComponent implements OnInit {
     );
   }
 
+  novoDocumento(){
+    $('#vinc-anexo-empregaticio').fadeIn('100');
+  }  
+
+  fecharNovoDocumento(){
+    $('#vinc-anexo-empregaticio').fadeOut('100');
+  }
+
   vinculoEmpInput(files: FileList) {
-    this.anexo_doc_empregaticio = files.item(0);
+    this.titular.anexo_doc_empregaticio = files.item(0);
   }
 
   anexoCasamentoInput(files: FileList) {
-    this.anexo_doc_casamento = files.item(0);
+    this.novo_anexo_doc_casamento = files.item(0);
   } 
 }

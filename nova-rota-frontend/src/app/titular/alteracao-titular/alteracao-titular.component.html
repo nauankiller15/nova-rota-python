@@ -230,6 +230,62 @@
         <!--  -->
 
         <div id="postTit" class="card-body">
+          <div>
+            <button
+              class="btn btn-primary"
+              style="width: 160px"
+              id="abrirAnexoAlt"
+              (click)="novoDocumento()"
+            >
+              <i style="margin-right: 6px" class="fas fa-file-image"></i>
+              Anexar novo documento
+            </button>
+          </div>
+
+          <!-- VINCULAR ANEXO DE VINCULO EMPREGATICIO -->
+          <div id="vinc-anexo-empregaticio" style="display: none;">
+            <div class="box-anexo">
+              <div class="anexo-info-box-titular-vinc">
+                <h1
+                  style="
+                    font-size: 20px;
+                    display: flex;
+                    margin-top: -15px;
+                    margin-bottom: 15px;
+                  "
+                >
+                  Anexar Vínculo Empregatício
+                </h1>
+                <label for="avatar"
+                  >Escolha um arquivo para anexar:</label
+                >
+                <div style="height: 10px; width: 100%"></div>
+
+                <input
+                  type="file"
+                  id="imagemEmpregaticio"
+                  accept=".png, .jpg, .jpeg"
+                  name="vinculo_empregaticio"
+                  (change)="vinculoEmpInput($event.target.files)"
+                />
+
+                <button
+                  style="
+                    display: flex;
+                    position: absolute;
+                    right: 20px;
+                    bottom: 20px;
+                  "
+                  class="btn btn-primary"
+                  id="fecharAnexo4"
+                  (click)="fecharNovoDocumento()"
+                >
+                  Anexar Arquivo
+                </button>
+              </div>
+            </div>
+          </div>
+
           <h5 class="card-title">ALTERE OS CAMPOS ABAIXO:</h5>
           <hr />
           <form class="needs-validation" novalidate>
@@ -242,11 +298,11 @@
                   mask="000.000.000-00"
                   [(ngModel)]="titular.CPF"
                   [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
                   type="text"
                   class="form-control cpf"
                   placeholder="Número de CPF"
                 />
-
                 <div class="invalid-feedback">
                   Por favor informe o número do CPF corretamente.
                 </div>
@@ -258,6 +314,7 @@
                   autocomplete="off"
                   [(ngModel)]="titular.cod_empresa"
                   [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
                   type="text"
                   class="form-control"
                   placeholder="Código da Empresa"
@@ -274,6 +331,7 @@
                 <input
                   [(ngModel)]="titular.data_recebimento"
                   [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
                   type="date"
                   class="form-control"
                   placeholder="Informe a data de recebimento"
@@ -298,6 +356,7 @@
                   [(ngModel)]="titular.carteirinha"
                   autocomplete="off"
                   [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
                   type="text"
                   class="form-control"
                   placeholder="Digite aqui o número"
@@ -321,6 +380,7 @@
                 <input
                   [(ngModel)]="titular.nome"
                   [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
                   type="text"
                   class="form-control"
                   placeholder="Digite aqui o nome do Beneficiário"
@@ -333,6 +393,7 @@
                 <input
                   [(ngModel)]="titular.data_nascimento"
                   [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
                   type="date"
                   class="form-control"
                   placeholder="Informe a data de nascimento"
@@ -349,6 +410,7 @@
                 <select
                   [(ngModel)]="titular.sexo"
                   [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
                   class="form-control"
                   name="sexo"
                   required
@@ -363,6 +425,7 @@
                 <select
                   [(ngModel)]="titular.estado_civil"
                   [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
                   class="form-control"
                   name="estado_civil"
                   required
@@ -378,6 +441,7 @@
                 <input
                   [(ngModel)]="titular.nome_mae"
                   [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
                   type="text"
                   class="form-control"
                   placeholder="Digite aqui o nome da Mãe"
@@ -390,6 +454,7 @@
                 <input
                   [(ngModel)]="titular.data_admissao"
                   [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
                   type="date"
                   class="form-control"
                   placeholder="Informe a data de admissão"
@@ -401,6 +466,7 @@
                 <input
                   [(ngModel)]="titular.data_casamento"
                   [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
                   type="date"
                   class="form-control"
                   placeholder="Informe a data do casamento"
@@ -415,6 +481,7 @@
                 <input
                   [(ngModel)]="titular.CEP"
                   [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
                   type="text"
                   class="form-control cep"
                   placeholder="Informe o CEP"
@@ -427,6 +494,7 @@
                 <input
                   [(ngModel)]="titular.celular"
                   [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
                   type="text"
                   class="form-control phone_with_ddd"
                   placeholder="Informe o Celular"
@@ -439,6 +507,7 @@
                 <input
                   [(ngModel)]="titular.cidade"
                   [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
                   type="text"
                   class="form-control"
                   placeholder="Cidade"
@@ -451,6 +520,7 @@
                 <select
                   [(ngModel)]="titular.estado"
                   [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
                   class="form-control"
                   name="estado_uf"
                   required
@@ -490,6 +560,7 @@
                 <select
                   [(ngModel)]="titular.declaracao_saude"
                   [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
                   class="form-control"
                   id="validationCustom09"
                   required
@@ -520,6 +591,7 @@
                 <input
                   [(ngModel)]="titular.desc_declarao_saude"
                   [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
                   type="text"
                   class="form-control"
                   id="validationCustom12"
@@ -533,6 +605,7 @@
                 <input
                   [(ngModel)]="titular.observacoes"
                   [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
                   type="text"
                   class="form-control"
                   id="validationCustom11"

@@ -55,4 +55,6 @@ export class AtualizarTitular {
     desc_declarao_saude: string;
     observacoes: string;
     ativo: boolean;
+    anexo_doc_casamento: File = null;
+    anexo_doc_empregaticio: File = null;
 }
