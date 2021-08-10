@@ -365,6 +365,36 @@ export class AlteracaoEmpresaComponent implements OnInit {
     );
   }
 
+  confirmarExclusaoReajuste(reajuste: Reajuste){
+    console.log("exclusa de reajuste")
+    this.reajuste = reajuste;
+    $('#formularioReajuste').slideUp(200);
+    $('#vinc-vigenciaAlt').fadeOut(100);
+    $('#exclusaoReajuste').show();
+  }
+
+  apagarReajusteVoltar() {
+    $('#exclusaoReajuste').hide();
+  }
+
+  apagarReajuste() {
+    this.api.apagar('reajuste/', this.reajuste.id).subscribe(
+      (data) => {
+        this.loadReajustes(this.empresa.id);
+        this.toastr.success('Reajuste excluido com sucesso');
+        $('#vinc-vigenciaAlt').fadeIn(100);
+        $('#tabelaReajuste').slideDown(250);
+        $('#exclusaoReajuste').hide();
+      },
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
+      }
+    );
+  }
+
   // SINISTRALIDADE
   adicionarSinistralidade() {
     this.sinistralidade = new Sinistralidade();

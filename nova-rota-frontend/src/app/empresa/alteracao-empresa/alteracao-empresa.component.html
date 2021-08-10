@@ -801,6 +801,7 @@
                             title="Excluir Reajuste"
                             data-placement="top"
                             class="btn eraseVig"
+                            (click)="confirmarExclusaoReajuste(linha)"
                           >
                             <i class="fas fa-trash"></i>
                           </button>
@@ -1159,6 +1160,46 @@
               </button>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="exclusaoReajuste" style="display: none;">
+      <div class="box-vigencia">
+        <div class="anexo-info-box-titular-vinc">
+          <h1>
+            Tem certeza que deseja o reajuste a seguir?
+          </h1>
+
+          <table class="table table-info text-center">
+            <thead>
+              <tr>
+                <th>Ano</th>
+                <th>Fidelizado</th>
+                <th>Técnico</th>
+                <th>Negociado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="loadit">
+                <th>
+                  <div class="anoVig">{{ reajuste.ano_vigencia }}</div>
+                </th>
+                <th>{{ reajuste.fidelizado }}</th>
+                <th>{{ reajuste.tecnico }}%</th>
+                <th>{{ reajuste.negociado }}%</th>
+              </tr>
+            </tbody>
+          </table>
+
+
+          <div style="margin-top: 35px; width: 100%"></div>
+          <button class="btn btn-primary" (click)="apagarReajuste()">
+            Confirmar
+          </button>
+          <button class="btn btn-secondary" (click)="apagarReajusteVoltar()">
+            Voltar
+          </button>
         </div>
       </div>
     </div>
