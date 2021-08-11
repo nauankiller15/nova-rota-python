@@ -258,11 +258,17 @@
                 <h3 *ngIf="titular.anexo_doc_empregaticio != null">
                   Vínculo Empregatício
                 </h3>
-                <img
+                <figure
                   *ngIf="!titular.anexo_doc_empregaticio != null"
-                  style="width: 250px"
-                  src="{{ titular.anexo_doc_empregaticio }}"
-                />
+                  class="zoom"
+                  onmousemove="zoom(event)"
+                  style="width: 350px"
+                  style="
+                    background-image: url('{{titular.anexo_doc_empregaticio}}');
+                  "
+                >
+                  <img src="{{ titular.anexo_doc_empregaticio }}" />
+                </figure>
               </div>
               <b *ngIf="titular.anexo_doc_empregaticio == null"
                 >Nenhum Vínculo Empregatício</b
