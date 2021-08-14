@@ -226,7 +226,29 @@
             </button>
           </div>
         </h1>
+        <!-- The Modal/Lightbox -->
+        <div id="myModal" class="modal">
+          <span class="close cursor" onclick="closeModal()">&times;</span>
+          <div class="modal-content">
+            <div class="mySlides">
+              <img
+                *ngIf="!titular.anexo_doc_empregaticio != null"
+                src="{{ titular.anexo_doc_empregaticio }}"
+                class="imgAmpliada"
+              />
+              <img
+                *ngIf="!titular.anexo_doc_casamento != null"
+                src="{{ titular.anexo_doc_casamento }}"
+                class="imgAmpliada"
+              />
+            </div>
 
+            <!-- Caption text -->
+            <div class="caption-container">
+              <p id="caption">Documento de {{ titular.nome }}</p>
+            </div>
+          </div>
+        </div>
         <!-- TELA DE ANEXOS DE CASAMENTO -->
         <div id="vinc-anexo-casadoAlt">
           <div class="box-anexo">
@@ -246,7 +268,9 @@
                 </h3>
                 <img
                   *ngIf="!titular.anexo_doc_casamento != null"
-                  style="width: 250px"
+                  width="300px"
+                  onclick="openModal();currentSlide(1)"
+                  class="hover-shadow"
                   src="{{ titular.anexo_doc_casamento }}"
                 />
               </div>
@@ -258,18 +282,24 @@
                 <h3 *ngIf="titular.anexo_doc_empregaticio != null">
                   Vínculo Empregatício
                 </h3>
-                <figure
+                <img
                   *ngIf="!titular.anexo_doc_empregaticio != null"
-                  class="zoom"
-                  onmousemove="zoom(event)"
-                  style="width: 350px"
-                  style="
-                    background-image: url('{{titular.anexo_doc_empregaticio}}');
-                  "
-                >
-                  <img src="{{ titular.anexo_doc_empregaticio }}" />
-                </figure>
+                  width="300px"
+                  onclick="openModal();currentSlide(1)"
+                  class="hover-shadow"
+                  src="{{ titular.anexo_doc_empregaticio }}"
+                />
+
+                <!-- <div id="lightgallery">
+                  <a href="{{ titular.anexo_doc_empregaticio }}">
+                    <img
+                      width="300px"
+                      src="{{ titular.anexo_doc_empregaticio }}"
+                    />
+                  </a>
+                </div> -->
               </div>
+
               <b *ngIf="titular.anexo_doc_empregaticio == null"
                 >Nenhum Vínculo Empregatício</b
               >

@@ -54,6 +54,9 @@ import { ReativarCadastroComponent } from './reativar-cadastro/reativar-cadastro
 import { TransferenciaDependenteComponent } from './dependente/transferencia-dependente/transferencia-dependente.component';
 import { TransferenciaTitularComponent } from './titular/transferencia-titular/transferencia-titular.component';
 
+// LIGHTBOX GALLERY
+import { LightgalleryModule } from 'lightgallery/angular';
+
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
     validation: false,
@@ -94,6 +97,7 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     TransferenciaTitularComponent,
   ],
   imports: [
+    LightgalleryModule,
     NgxSkeletonLoaderModule.forRoot(),
     BrowserModule,
     NgxMaskModule.forRoot(maskConfigFunction),

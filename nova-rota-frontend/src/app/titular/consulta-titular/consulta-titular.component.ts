@@ -3,6 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../api.service';
 import { Titular } from '../models';
+import lightGallery from 'lightgallery';
+
+// Plugins
+import lgThumbnail from 'lightgallery/plugins/thumbnail';
+import lgZoom from 'lightgallery/plugins/zoom';
 
 declare var $: any;
 
@@ -34,7 +39,7 @@ export class ConsultaTitularComponent implements OnInit {
     }
     return true;
   }
-  
+
   p: number = 1;
 
   constructor(private toastr: ToastrService, private api: ApiService) {
@@ -42,6 +47,10 @@ export class ConsultaTitularComponent implements OnInit {
   }
 
   ngOnInit(): void {
+     lightGallery(document.getElementById('lightgallery'), {
+        plugins: [lgZoom, lgThumbnail],
+        speed: 500,
+    });
     // CARREGADOR TIMEOUT
     $(document).ready(() => {
       setTimeout(() => {
@@ -156,10 +165,10 @@ export class ConsultaTitularComponent implements OnInit {
     $('.cancelados').removeClass('active');
   }
 
-  data(data:string) {
-    const datePipe: DatePipe = new DatePipe('en-US')
+  data(data: string) {
+    const datePipe: DatePipe = new DatePipe('en-US');
     let dataFormatada = datePipe.transform(data, 'dd/MM/YYYY');
 
-    return dataFormatada
+    return dataFormatada;
   }
 }
