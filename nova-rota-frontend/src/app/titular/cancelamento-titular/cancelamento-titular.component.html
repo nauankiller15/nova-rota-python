@@ -57,27 +57,29 @@
 
             <hr />
 
-            <div>
-              <div for="checkedAllTitulares" class="contentCancelar">
-                <button type="reset" class="btn btn-secondary">
-                  <i
-                    style="margin-right: 3px; font-size: 14px"
-                    class="far fa-times-circle"
-                  ></i>
-                  Desmarcar todos
-                </button>
-              </div>
-              <div class="contentCancelar">
-                <button
-                  class="btn btn-primary"
-                  (click)="confirmarCancelamentos()"
-                >
-                  <i style="margin-right: 6px" class="fas fa-user-slash"></i
-                  >Cancelar selecionados
-                </button>
+            <div >
+              <div id="cancelamentoEmLote" style="display: none;">
+                <div for="checkedAllTitulares" class="contentCancelar">
+                  <button type="reset" class="btn btn-secondary" (click)="desmarcarTodos()">
+                    <i
+                      style="margin-right: 3px; font-size: 14px"
+                      class="far fa-times-circle"
+                    ></i>
+                    Desmarcar todos
+                  </button>
+                </div>
+                <div class="contentCancelar">
+                  <button
+                    class="btn btn-primary"
+                    (click)="confirmarCancelamentos()"
+                  >
+                    <i style="margin-right: 6px" class="fas fa-user-slash"></i
+                    >Cancelar selecionados
+                  </button>
+                </div>
+                <hr />
               </div>
 
-              <hr />
               <div class="titulares">
                 Titulares Encontrados:
                 <li
@@ -97,11 +99,12 @@
                       ? 'prioridade'
                       : 'sem-prioridade'
                   "
+                  (click)="PreCancelar(resultado)"        
                 >
                   <input
+                    id="checkbox{{resultado.id}}"
                     for="checkedTitular"
                     type="checkbox"
-                    (click)="preCancelar($event.target.checked, resultado)"
                   />
                   <i
                     style="
@@ -123,7 +126,7 @@
                     title="Cancelar Titular"
                     data-placement="top"
                     class="btn exclude"
-                    (click)="titularClicked(resultado)"
+                    (click)="titularClicked($event, resultado)"
                   >
                     <i class="fas fa-user-slash"></i>
                   </button>

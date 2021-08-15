@@ -36,3 +36,9 @@ export class Titular {
     CPF: string;
     nome: string;
 }
+
+export class CancelarCadastro {
+    id: number;
+    nome: string;
+    ativo: boolean = false;
+}

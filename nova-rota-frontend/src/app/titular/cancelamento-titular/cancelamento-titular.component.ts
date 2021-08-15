@@ -105,7 +105,8 @@ export class CancelamentoTitularComponent implements OnInit {
     );
   };
 
-  titularClicked(titular) {
+  titularClicked(e, titular) {
+    e.stopPropagation();
     this.cadastro.id = titular.id;
     this.cadastro.nome = titular.nome;
     this.cadastro.ativo = false;
@@ -133,19 +134,45 @@ export class CancelamentoTitularComponent implements OnInit {
     );
   }
 
-  
-  preCancelar(adicionar: boolean, titular: Titular) {
+  PreCancelar(titular: Titular) {
     let cadastro = new CancelarCadastro;
     cadastro.id = titular.id;
     cadastro.nome = titular.nome;
     cadastro.ativo = false;
-    if (adicionar == true) {
+    if (this.preCancelado(cadastro.id) == false) {
       this.cancelamentos.push(cadastro);
+      $(`#checkbox${cadastro.id}`).prop( "checked", true );
     } else {
-      const indice = this.cancelamentos.indexOf(cadastro);
-      this.cancelamentos.splice(indice, 1);
-      console.log(this.cancelamentos);
+      let novaLista = [];
+      this.cancelamentos.forEach(item => {
+        if (item.id != cadastro.id) {
+          novaLista.push(item);
+        }
+      });
+      this.cancelamentos = novaLista;
+      $(`#checkbox${cadastro.id}`).prop( "checked", false );
     }
+
+    if (this.cancelamentos.length > 0) {
+      $('#cancelamentoEmLote').show();
+    } else {
+      $('#cancelamentoEmLote').hide();
+    }
+  }
+
+  desmarcarTodos() {
+    this.cancelamentos = [];
+    $('#cancelamentoEmLote').hide()
+  }
+
+  preCancelado(pk: number):boolean {
+    let cancelado = false;
+    this.cancelamentos.forEach(item => {
+      if (item.id == pk) {
+        cancelado = true;
+      }
+    });
+    return cancelado
   }
 
   confirmarCancelamentos() {

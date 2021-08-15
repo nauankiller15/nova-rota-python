@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../api.service';
-import { Dependente, Titular } from '../models';
+import { CancelarCadastro, Dependente } from '../models';
 
 declare var $: any;
 
@@ -22,8 +21,8 @@ export class CancelamentoDependenteComponent implements OnInit {
   busca: Dependente[] = [];
 
   dependentes: Dependente[] = [];
-  dependente: Dependente = new Dependente();
-  cancelamentos: Dependente[] = [];
+  cadastro: CancelarCadastro = new CancelarCadastro;
+  cancelamentos: CancelarCadastro[] = [];
   cancelados = { cancelados: [], erros: [] };
   //
   intervalId: number | null = null;
@@ -108,8 +107,11 @@ export class CancelamentoDependenteComponent implements OnInit {
     );
   }
 
-  dependenteClicked(dependente) {
-    this.dependente = dependente;
+  dependenteClicked(e, dependente) {
+    e.stopPropagation();
+    this.cadastro.id = dependente.id;
+    this.cadastro.nome = dependente.nome;
+    this.cadastro.ativo = false;    
     $('#cancelamentoDependente').fadeIn(250);
   }
 
@@ -118,8 +120,8 @@ export class CancelamentoDependenteComponent implements OnInit {
   }
 
   cancelarDependente() {
-    this.dependente.ativo = false;
-    this.api.atualizar('parentesco/', this.dependente).subscribe(
+    this.cadastro.ativo = false;
+    this.api.atualizarCampo('parentesco/', this.cadastro).subscribe(
       (data) => {
         this.toastr.success('Dependente CANCELADO com sucesso!');
         $('#cancelamentoDependente').fadeOut(250);
@@ -134,13 +136,46 @@ export class CancelamentoDependenteComponent implements OnInit {
     );
   }
 
-  preCancelar(adicionar: boolean, dependente: Dependente) {
-    if (adicionar == true) {
-      this.cancelamentos.push(dependente);
+  preCancelar(dependente: Dependente) {
+    
+    let cadastro = new CancelarCadastro;
+    cadastro.id = dependente.id;
+    cadastro.nome = dependente.nome;
+    cadastro.ativo = false;
+    if (this.preCancelado(cadastro.id) == false) {
+      this.cancelamentos.push(cadastro);
+      $(`#checkbox${cadastro.id}`).prop( "checked", true );
     } else {
-      const indice = this.cancelamentos.indexOf(dependente);
-      this.cancelamentos.splice(indice, 1);
+      let novaLista = [];
+      this.cancelamentos.forEach(item => {
+        if (item.id != cadastro.id) {
+          novaLista.push(item);
+        }
+      });
+      this.cancelamentos = novaLista;
+      $(`#checkbox${cadastro.id}`).prop( "checked", false );
     }
+
+    if (this.cancelamentos.length > 0) {
+      $('#cancelamentoEmLote').show();
+    } else {
+      $('#cancelamentoEmLote').hide();
+    }
+  }
+
+  desmarcarTodos() {
+    this.cancelamentos = [];
+    $('#cancelamentoEmLote').hide()
+  }
+
+  preCancelado(pk: number):boolean {
+    let cancelado = false;
+    this.cancelamentos.forEach(item => {
+      if (item.id == pk) {
+        cancelado = true;
+      }
+    });
+    return cancelado
   }
 
   confirmarCancelamentos() {
@@ -165,9 +200,9 @@ export class CancelamentoDependenteComponent implements OnInit {
     $('#espera').fadeIn(250);
   }
 
-  cancelar(dependente: Dependente) {
+  cancelar(dependente: CancelarCadastro) {
     dependente.ativo = false;
-    this.api.atualizar('parentesco/', dependente).subscribe(
+    this.api.atualizarCampo('parentesco/', dependente).subscribe(
       (data) => {
         this.cancelados.cancelados.push(dependente);
       },
@@ -180,17 +215,5 @@ export class CancelamentoDependenteComponent implements OnInit {
         this.cancelados.erros.push({ dependente: dependente, erros: erros });
       }
     );
-  }
-  tipoPrioridade(data) {
-    const hoje = new Date();
-    let dataPrioridade = new Date(data);
-    dataPrioridade.setMonth(dataPrioridade.getMonth() + 1);
-    let prioridade = 'Prioridade';
-    console.log(dataPrioridade, hoje, dataPrioridade > hoje);
-    if (dataPrioridade < hoje) {
-      prioridade = "Sem Prioridade";
-    }
-
-    return prioridade
   }
 }

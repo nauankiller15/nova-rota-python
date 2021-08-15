@@ -37,7 +37,7 @@
                   placeholder="Pesquise por CPF"
                 />
               </div>
-              <!-- (keypress)="textOnly($event)" -->
+
               <div class="input-group col-md-4 mb3">
                 <label>Nome do titular:</label>
                 <div style="width: 100%"></div>
@@ -58,26 +58,27 @@
             <hr />
 
             <div>
-              <div for="checkedAllTitulares" class="contentCancelar">
-                <button class="btn btn-secondary eraseCanc">
-                  <i
-                    style="margin-right: 3px; font-size: 14px"
-                    class="far fa-times-circle"
-                  ></i>
-                  Desmarcar todos
-                </button>
+              <div id="cancelamentoEmLote" style="display: none;">
+                <div for="checkedAllTitulares" class="contentCancelar">
+                  <button class="btn btn-secondary eraseCanc" (click)="desmarcarTodos()">
+                    <i
+                      style="margin-right: 3px; font-size: 14px"
+                      class="far fa-times-circle"
+                    ></i>
+                    Desmarcar todos
+                  </button>
+                </div>
+                <div class="contentCancelar">
+                  <button
+                    class="btn btn-primary"
+                    (click)="confirmarCancelamentos()"
+                  >
+                    <i style="margin-right: 6px" class="fas fa-user-slash"></i
+                    >Cancelar selecionados
+                  </button>
+                </div>
+                <hr />
               </div>
-              <div class="contentCancelar">
-                <button
-                  class="btn btn-primary"
-                  (click)="confirmarCancelamentos()"
-                >
-                  <i style="margin-right: 6px" class="fas fa-user-slash"></i
-                  >Cancelar selecionados
-                </button>
-              </div>
-
-              <hr />
               <div class="titulares">
                 Dependentes Encontrados:
                 <li
@@ -97,11 +98,12 @@
                       ? 'prioridade'
                       : 'sem-prioridade'
                   "
+                  (click)="preCancelar(resultado)"
                 >
                   <input
+                    id="checkbox{{resultado.id}}"
                     for="checkedTitular"
                     type="checkbox"
-                    (click)="preCancelar($event.target.checked, resultado)"
                   />
 
                   <i
@@ -121,7 +123,7 @@
                   {{ resultado.nome }}
                   <button
                     class="btn exclude"
-                    (click)="dependenteClicked(resultado)"
+                    (click)="dependenteClicked($event, resultado)"
                     data-toggle="tooltip"
                     title="Cancelar Dependente"
                     data-placement="top"
@@ -159,7 +161,7 @@
           <div class="anexo-info-box-titular-vinc">
             <h1 style="margin-bottom: 13px">
               Tem certeza que deseja cancelar o cadastro de
-              <b>{{ dependente.nome }}</b
+              <b>{{ cadastro.nome }}</b
               >?
             </h1>
             <div style="margin-top: 35px; width: 100%"></div>
