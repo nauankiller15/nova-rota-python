@@ -12,9 +12,6 @@ export class Dependente {
     sexo: string;
     estado_civil: string;
     tipo_parentesco: string;
-    anexo_doc_parentesco: File;
-    anexo_doc_casamento: File;
-    anexo_doc_nascimento: File;
     nome_mae: string;
     data_admissao: string;
     titular: number;
@@ -29,6 +26,9 @@ export class Dependente {
     ativo: boolean;
     criado_em: string;
     titular_nome: string;
+    anexo_doc_parentesco: File = null;
+    anexo_doc_casamento: File = null;
+    anexo_doc_nascimento: File = null;
 }
 
 export class Titular {

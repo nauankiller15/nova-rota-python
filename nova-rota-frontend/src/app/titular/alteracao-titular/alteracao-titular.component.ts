@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/api.service';
-import { AtualizarTitular, Titular } from '../models';
+import { Titular } from '../models';
 
 
 declare var $: any;
@@ -17,16 +17,14 @@ export class AlteracaoTitularComponent implements OnInit {
   // DADOS DO TITULAR
   busca: Titular[] = [];
   titulares: Titular[] = [];
-  titular: AtualizarTitular = new AtualizarTitular;
+  titular: Titular = new Titular;
   campos = [
     'id', 'nome', 'CPF', 'cod_empresa', 'carteirinha', 'prioridade', 'data_recebimento', 'data_nascimento',
     'data_casamento','sexo', 'estado_civil', 'nome_mae', 'data_admissao', 'CEP', 'celular', 'cidade', 
     'estado', 'declaracao_saude', 'desc_declarao_saude', 'observacoes', 'ativo'
   ]
   anexo_doc_casamento: File;
-  novo_anexo_doc_casamento: File;
   anexo_doc_empregaticio: File;
-  novo_anexo_doc_empregaticio: File;
   
 
   // CARREGADOR
@@ -139,12 +137,12 @@ export class AlteracaoTitularComponent implements OnInit {
     
 
   titularClicked(titular: Titular) {
+    this.titular = new Titular;
     $('#consulta').slideUp(250);
     $('#titularesappear').slideDown(250);
     $('#postTit').slideDown(600);
 
     this.campos.forEach(campo => {
-      console.log(campo);
       this.titular[campo] = titular[campo];
     }); 
 
@@ -202,6 +200,6 @@ export class AlteracaoTitularComponent implements OnInit {
   }
 
   anexoCasamentoInput(files: FileList) {
-    this.novo_anexo_doc_casamento = files.item(0);
+    this.titular.anexo_doc_casamento = files.item(0);
   } 
 }
