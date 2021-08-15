@@ -247,6 +247,63 @@
         </div>
         <!--  -->
 
+        <!-- VINCULAR ANEXO DE VINCULO EMPREGATICIO -->
+        <div id="vinc-anexo-empregaticio" style="display: none">
+          <div class="box-anexo">
+            <div class="anexo-info-box-titular-vinc">
+              <h1 style="
+                  font-size: 2.3em;
+                  display: flex;
+                  margin-top: 0px;
+                  margin-bottom: 15px;
+                ">
+                Para continuar a alteração, precisa-se anexar os documentos
+                necessários:
+              </h1>
+
+              <div *ngIf="dependente.tipo_parentesco == 'Conjuge'">
+                <h2 style="
+                    font-size: 20px;
+                    display: flex;
+                    margin-top: 15px;
+                    margin-bottom: 15px;
+                  ">
+                  Anexar Certidão de Casamento
+                </h2>
+                <label for="avatar">Escolha um arquivo para anexar:</label>
+                <div style="height: 10px; width: 100%"></div>
+  
+                <input type="file" id="imagemCasamento" accept=".png, .jpg, .jpeg" name="anexo_doc_casamento"
+                  (change)="anexoCasamentoInput($event.target.files)" />
+              </div>
+
+              <div *ngIf="dependente.tipo_parentesco == 'Filho(a)'">
+                <h2 style="
+                    font-size: 20px;
+                    display: flex;
+                    margin-top: 15px;
+                    margin-bottom: 15px;
+                  ">
+                  Anexar Certidão de Nascimento
+                </h2>
+                <label for="avatar">Escolha um arquivo para anexar:</label>
+                <div style="height: 10px; width: 100%"></div>
+  
+                <input type="file" id="imagemNascimento" accept=".png, .jpg, .jpeg" name="anexo_doc_nascimento"
+                  (change)="anexoNascimentoInput($event.target.files)" />
+              </div>
+              <button style="
+                  display: flex;
+                  position: absolute;
+                  right: 20px;
+                  bottom: 20px;
+                " class="btn btn-primary" id="fecharAnexo4" (click)="fecharNovoDocumento()">
+                Anexar Arquivo
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div id="postDepConsulta" class="card-body">
           <h5 class="card-title">ALTERE OS CAMPOS ABAIXO:</h5>
           <hr />
@@ -259,12 +316,12 @@
                   autocomplete="off"
                   mask="000.000.000-00"
                   [(ngModel)]="dependente.CPF"
+                  [disabled]="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null"
                   name="CPF"
                   type="text"
                   class="form-control cpf"
                   placeholder="Número de CPF"
                 />
-
                 <div class="invalid-feedback">
                   Por favor informe o número do CPF corretamente.
                 </div>
@@ -275,6 +332,7 @@
                 <input
                   autocomplete="off"
                   [(ngModel)]="dependente.cod_empresa"
+                  [disabled]="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null"
                   name="cod_empresa"
                   type="text"
                   class="form-control"
@@ -291,6 +349,7 @@
                 <label for="validationCustom01">Data de Recebimento</label>
                 <input
                   [(ngModel)]="dependente.data_recebimento"
+                  [disabled]="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null"
                   name="data_recebimento"
                   type="date"
                   class="form-control"
@@ -315,6 +374,7 @@
                 <input
                   autocomplete="off"
                   [(ngModel)]="dependente.carteirinha"
+                  [disabled]="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null"
                   name="carteirinha"
                   type="text"
                   class="form-control"
@@ -327,6 +387,7 @@
                 <input
                   [(ngModel)]="dependente.nome"
                   [ngModelOptions]="{ standalone: true }"
+                  [disabled]="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null"
                   type="text"
                   class="form-control"
                   placeholder="Digite aqui o nome do Beneficiário"
@@ -350,6 +411,7 @@
                 <label for="validationCustom02">Sexo</label>
                 <select
                   [(ngModel)]="dependente.sexo"
+                  [disabled]="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null"
                   name="sexo"
                   class="form-control"
                   name="sexo"
@@ -364,6 +426,7 @@
                 <label for="validationCustom02">Estado Civil</label>
                 <select
                   [(ngModel)]="dependente.estado_civil"
+                  [disabled]="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null"
                   name="estado_civil"
                   class="form-control"
                   name="estado_civil"
@@ -381,6 +444,7 @@
                 <label for="validationCustom01">Nome da Mãe</label>
                 <input
                   [(ngModel)]="dependente.nome_mae"
+                  [disabled]="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null"
                   name="nome_mae"
                   type="text"
                   class="form-control"
@@ -393,6 +457,7 @@
                 <label for="validationCustom05">Data de Admissão</label>
                 <input
                   [(ngModel)]="dependente.data_admissao"
+                  [disabled]="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null"
                   name="data_admissao"
                   type="date"
                   class="form-control"
@@ -404,6 +469,7 @@
                 <label for="validationCustom05">Data de Casamento</label>
                 <input
                   [(ngModel)]="dependente.data_casamento"
+                  [disabled]="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null"
                   name="data_casamento"
                   type="date"
                   class="form-control"
@@ -431,6 +497,7 @@
                 <label for="validationCustom01">CEP</label>
                 <input
                   [(ngModel)]="dependente.CEP"
+                  [disabled]="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null"
                   name="CEP"
                   type="text"
                   class="form-control cep"
@@ -443,6 +510,7 @@
                 <label for="validationCustom01">Celular</label>
                 <input
                   [(ngModel)]="dependente.celular"
+                  [disabled]="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null"
                   name="celular"
                   type="text"
                   class="form-control phone_with_ddd"
@@ -467,6 +535,7 @@
                 <label for="validationCustom02">Estado UF</label>
                 <select
                   [(ngModel)]="dependente.estado"
+                  [disabled]="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null"
                   name="estado_uf"
                   class="form-control"
                   name="estado_uf"
@@ -517,6 +586,7 @@
                   "
                   class="form-control"
                   name="declaracao_saude"
+                  [disabled]="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null"
                   [(ngModel)]="dependente.declaracao_saude"
                   required
                 >
@@ -545,6 +615,7 @@
                 >
                 <input
                   [(ngModel)]="dependente.desc_declarao_saude"
+                  [disabled]="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null"
                   name="desc_declarao_saude"
                   type="text"
                   class="form-control"
@@ -558,6 +629,7 @@
                 <label for="validationCustom05">Observações</label>
                 <input
                   [(ngModel)]="dependente.observacoes"
+                  [disabled]="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null"
                   name="observacoes"
                   type="text"
                   class="form-control"
@@ -577,7 +649,8 @@
               >
               <div class="vinc-tit">
                 <div class="posit-btn">
-                  <button id="alterar-titular-btn" class="btn-vincular">
+                  <button id="alterar-titular-btn" class="btn-vincular" [disabled]="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null"
+                  >
                     <i style="margin-right: 5px" class="fas fa-user-tie"></i>
                     Vincular outro Titular
                   </button>
@@ -675,7 +748,17 @@
 
               <!--  -->
             </div>
-            <button class="btn btn-primary" (click)="updateDependente()">
+
+            <div *ngIf="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null">
+              <button class="btn btn-primary" style="width: 160px" id="unlockCad" (click)="novoDocumento()">
+                <i style="margin-right: 6px" class="fas fa-unlock"></i>
+                Alterar Titular
+              </button>
+            </div>
+            <button *ngIf="dependente.anexo_doc_casamento != null || dependente.anexo_doc_nascimento != null"
+              class="btn btn-primary" 
+              (click)="updateDependente()" 
+            >
               <i class="fas fa-check"></i> Alterar Dependente
             </button>
           </form>

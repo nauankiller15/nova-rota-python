@@ -76,47 +76,11 @@ export class AlteracaoDependenteComponent implements OnInit {
 
     // MÁSCARAS DE INPUT
     $(document).ready(() => {
-      $('.date').mask('00/00/0000');
-      $('.time').mask('00:00:00');
-      $('.date_time').mask('00/00/0000 00:00:00');
+      
       $('.cep').mask('00000-000');
-      $('.phone').mask('0000-0000');
       $('.phone_with_ddd').mask('(00) 0000-0000');
-      $('.phone_us').mask('(000) 000-0000');
-      $('.mixed').mask('AAA 000-S0S');
       $('.cpf').mask('000.000.000-00', { reverse: false });
       $('.cnpj').mask('00.000.000/0000-00', { reverse: false });
-      $('.money').mask('000.000.000.000.000,00', { reverse: true });
-      $('.money2').mask('#.##0,00', { reverse: true });
-      $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
-        translation: {
-          Z: {
-            pattern: /[0-9]/,
-            optional: true,
-          },
-        },
-      });
-      $('.ip_address').mask('099.099.099.099');
-      $('.percent').mask('##0,00%', { reverse: true });
-      $('.clear-if-not-match').mask('00/00/0000', { clearIfNotMatch: true });
-      $('.placeholder').mask('00/00/0000', {
-        translation: {
-          placeholder: '__/__/____',
-        },
-      });
-      $('.placeholder2').mask('00/00/0000', {
-        placeholder: '__/__/____',
-      });
-      $('.fallback').mask('00r00r0000', {
-        translation: {
-          r: {
-            pattern: /[\/]/,
-            fallback: '/',
-          },
-          placeholder: '__/__/____',
-        },
-      });
-      $('.selectonfocus').mask('00/00/0000', { selectOnFocus: true });
     });
     //
 
@@ -224,6 +188,7 @@ export class AlteracaoDependenteComponent implements OnInit {
   };
 
   dependenteClicked = (dependente: Dependente) => {
+    this.dependente = new Dependente;
     $('#encounter-tit').fadeOut('100');
     $('#consulta2').slideUp(250);
     $('#dependentesappear').slideDown(250);
@@ -232,6 +197,7 @@ export class AlteracaoDependenteComponent implements OnInit {
     this.campos.forEach(campo => {
       this.dependente[campo] = dependente[campo];
     }); 
+
 
     this.anexo_doc_casamento = dependente.anexo_doc_casamento;
     this.anexo_doc_nascimento = dependente.anexo_doc_nascimento;
@@ -258,7 +224,7 @@ export class AlteracaoDependenteComponent implements OnInit {
             
     this.api.atualizarComArquivo('parentesco/', this.dependente).subscribe(
       (data) => {
-        this.dependente = data;
+        this.dependenteClicked(data);
         this.toastr.success('Atualizado com sucesso!');      
       },
       (error) => {
@@ -270,6 +236,15 @@ export class AlteracaoDependenteComponent implements OnInit {
     );
   }
 
+
+  novoDocumento(){
+    $('#vinc-anexo-empregaticio').fadeIn('100');
+  }  
+
+  fecharNovoDocumento(){
+    $('#vinc-anexo-empregaticio').fadeOut('100');
+  }
+
   anexoParentescoInput(files: FileList) {
     this.dependente.anexo_doc_parentesco = files.item(0);
   }
@@ -278,7 +253,7 @@ export class AlteracaoDependenteComponent implements OnInit {
     this.dependente.anexo_doc_casamento = files.item(0);
   } 
 
-  anexo_doc_nascimentoInput(files: FileList) {
+  anexoNascimentoInput(files: FileList) {
     this.dependente.anexo_doc_nascimento = files.item(0);
   } 
 }
