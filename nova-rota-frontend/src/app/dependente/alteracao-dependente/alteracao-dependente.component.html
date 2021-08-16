@@ -590,6 +590,7 @@
                 <label for="validationCustom03">Cidade</label>
                 <input
                   [(ngModel)]="dependente.cidade"
+                  [disabled]="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null"
                   name="cidade"
                   type="text"
                   class="form-control"

@@ -153,11 +153,12 @@ export class AlteracaoTitularComponent implements OnInit {
   };
 
   validarCPF(cpf: string) {
+    $('#InvalidCPF').hide();
+    $('#CPFCadastrado').fadeOut(100);
     if (validarCPF(cpf) == false) {
       this.cpfValido = false
       $('#InvalidCPF').fadeIn(100);
     } else {
-      $('#InvalidCPF').hide();
       this.api.listar(`titular/?CPF=${cpf}`).subscribe(
         (data) => {
           if (data.length > 0) {
@@ -165,7 +166,6 @@ export class AlteracaoTitularComponent implements OnInit {
             $('#CPFCadastrado').fadeIn(100);
           } else {
             this.cpfValido = true;
-            $('#CPFCadastrado').fadeOut(100);
           }
         }          
       );
