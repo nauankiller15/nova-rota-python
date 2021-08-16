@@ -226,29 +226,7 @@
             </button>
           </div>
         </h1>
-        <!-- The Modal/Lightbox -->
-        <div id="myModal" class="modal">
-          <span class="close cursor" onclick="closeModal()">&times;</span>
-          <div class="modal-content">
-              <!-- Caption text -->
-              <div class="caption-container">
-                <p id="caption">Documento de {{ titular.nome }}</p>
-              </div>
-            <div class="mySlides">
-              <img
-                *ngIf="!titular.anexo_doc_empregaticio != null"
-                src="{{ titular.anexo_doc_empregaticio }}"
-                class="imgAmpliada"
-              />
-              <img
-                *ngIf="!titular.anexo_doc_casamento != null"
-                src="{{ titular.anexo_doc_casamento }}"
-                class="imgAmpliada"
-              />
-            </div>
 
-          </div>
-        </div>
         <!-- TELA DE ANEXOS DE CASAMENTO -->
         <div id="vinc-anexo-casadoAlt">
           <div class="box-anexo">
@@ -263,16 +241,22 @@
                 >Anexos vinculados:</label
               >
               <div>
+               
                 <h3 *ngIf="titular.anexo_doc_casamento != null">
                   Certidão de Casamento
                 </h3>
-                <img
+                <a
                   *ngIf="!titular.anexo_doc_casamento != null"
-                  width="300px"
-                  onclick="openModal();currentSlide(1)"
-                  class="hover-shadow"
-                  src="{{ titular.anexo_doc_casamento }}"
-                />
+                  href="{{ titular.anexo_doc_casamento }}"
+                  data-lightbox="image1"
+                  data-title="Certidão de Casamento de {{ titular.nome }}"
+                >
+                  <img
+                    width="275px"
+                    class="hover-shadow"
+                    src="{{ titular.anexo_doc_casamento }}"
+                  />
+                </a>
               </div>
               <b *ngIf="titular.anexo_doc_casamento == null"
                 >Nenhuma Certidão de Casamento</b
@@ -282,13 +266,17 @@
                 <h3 *ngIf="titular.anexo_doc_empregaticio != null">
                   Vínculo Empregatício
                 </h3>
-                <img
+                <a
                   *ngIf="!titular.anexo_doc_empregaticio != null"
-                  width="300px"
-                  onclick="openModal();currentSlide(1)"
-                  class="hover-shadow"
-                  src="{{ titular.anexo_doc_empregaticio }}"
-                />
+                  href="{{ titular.anexo_doc_empregaticio }}"
+                  data-lightbox="image2"
+                  data-title="Vínculo Empregatício de {{ titular.nome }}"
+                >
+                  <img
+                    width="275px"
+                    class="hover-shadow"
+                    src="{{ titular.anexo_doc_empregaticio }}"
+                /></a>
 
                 <!-- <div id="lightgallery">
                   <a href="{{ titular.anexo_doc_empregaticio }}">

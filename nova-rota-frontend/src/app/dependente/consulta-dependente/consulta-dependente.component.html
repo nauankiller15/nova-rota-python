@@ -206,24 +206,40 @@
                 "
                 >Anexos vinculados:</label
               >
-              <div *ngIf="dependente.anexo_doc_casamento != null">
+              <div>
                 <h3>Certidão de Casamento</h3>
-                <img
+                <a
                   *ngIf="!dependente.anexo_doc_casamento != null"
-                  style="width: 250px"
-                  src="{{ dependente.anexo_doc_casamento }}"
-                />
+                  href="{{ dependente.anexo_doc_casamento }}"
+                  data-lightbox="image1"
+                  data-title="Certidão de Casamento de {{ dependente.nome }}"
+                >
+                  <img
+                    class="hover-shadow"
+                    *ngIf="!dependente.anexo_doc_casamento != null"
+                    style="width: 275px"
+                    src="{{ dependente.anexo_doc_casamento }}"
+                  />
+                </a>
               </div>
               <b *ngIf="dependente.anexo_doc_casamento == null"
                 >Nenhuma Certidão de Casamento</b
               >
               <hr />
-              <div *ngIf="dependente.anexo_doc_nascimento != null">
+              <div>
                 <h3>Certidão de Nascimento</h3>
-                <img
-                  style="width: 250px"
-                  src="{{ dependente.anexo_doc_nascimento }}"
-                />
+                <a
+                  *ngIf="!dependente.anexo_doc_nascimento != null"
+                  href="{{ dependente.anexo_doc_nascimento }}"
+                  data-lightbox="image2"
+                  data-title="Certidão de Nascimento de {{ dependente.nome }}"
+                >
+                  <img
+                    class="hover-shadow"
+                    style="width: 275px"
+                    src="{{ dependente.anexo_doc_nascimento }}"
+                  />
+                </a>
               </div>
               <b *ngIf="dependente.anexo_doc_nascimento == null"
                 >Nenhuma Certidão de Nascimento</b

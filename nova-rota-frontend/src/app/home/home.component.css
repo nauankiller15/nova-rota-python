@@ -6,11 +6,8 @@
 }
 
 .tarefa-completed {
-  color: #f7f3f3 !important;
-  background: #12a942 !important;
+  color: #495057 !important;
   width: 100%;
-  font-weight: bold;
-  text-shadow: 1px 1px 2px #000000a8;
 }
 
 .tarefa-completed:hover {
@@ -28,7 +25,6 @@
   font-size: 23px;
   float: left;
   margin-top: -4px;
-  background: var(--branco);
   border-radius: 50%;
   padding-left: 6px;
   margin-right: 10px;
