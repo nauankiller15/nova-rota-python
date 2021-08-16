@@ -171,8 +171,8 @@
           </div>
         </h1>
 
-        <!-- TELA DE ANEXOS DE CASAMENTO -->
-        <div id="vinc-anexo-casadoAlt">
+         <!-- TELA DE ANEXOS DE CASAMENTO -->
+         <div id="vinc-anexo-casadoAlt">
           <div class="box-anexo">
             <div class="anexo-info-box-titular-vinc">
               <label
@@ -188,11 +188,18 @@
                 <h3 *ngIf="anexo_doc_casamento != null">
                   Certidão de Casamento
                 </h3>
-                <img
-                  *ngIf="!anexo_doc_casamento != null"
-                  style="width: 250px"
-                  src="{{ anexo_doc_casamento }}"
-                />
+                <a
+                  *ngIf="!titular.anexo_doc_casamento != null"
+                  href="{{ anexo_doc_casamento }}"
+                  data-lightbox="image1"
+                  data-title="Certidão de Casamento de {{ titular.nome }}"
+                >
+                  <img
+                    class="hover-shadow"
+                    width="275px"
+                    src="{{ anexo_doc_casamento }}"
+                  />
+                </a>
               </div>
               <b *ngIf="anexo_doc_casamento == null"
                 >Nenhuma Certidão de Casamento</b
@@ -202,11 +209,18 @@
                 <h3 *ngIf="anexo_doc_empregaticio != null">
                   Vínculo Empregatício
                 </h3>
-                <img
-                  *ngIf="!anexo_doc_empregaticio != null"
-                  style="width: 250px"
-                  src="{{ anexo_doc_empregaticio }}"
-                />
+                <a
+                  *ngIf="!titular.anexo_doc_empregaticio != null"
+                  href="{{ anexo_doc_empregaticio }}"
+                  data-lightbox="image2"
+                  data-title="Vínculo Empregatício de {{ titular.nome }}"
+                >
+                  <img
+                    class="hover-shadow"
+                    width="275px"
+                    src="{{ anexo_doc_empregaticio }}"
+                  />
+                </a>
               </div>
               <b *ngIf="anexo_doc_empregaticio == null"
                 >Nenhum Vínculo Empregatício</b
@@ -311,11 +325,11 @@
                   >CPF Inválido!</small
                 >
                 <small
-                id="CPFCadastrado"
-                class="text-danger"
-                style="display: none; width: 100%;"
-                >CPF Já Cadastrado!</small
-              >
+                  id="CPFCadastrado"
+                  class="text-danger"
+                  style="display: none; width: 100%"
+                  >CPF Já Cadastrado!</small
+                >
               </div>
 
               <div class="col-md-2 mb-3">
@@ -362,7 +376,9 @@
 
               <div class="col-md-2 mb-3">
                 <div class="row">
-                  <label for="validationCustom01" class="ml-3">Número da Carteirinha</label>
+                  <label for="validationCustom01" class="ml-3"
+                    >Número da Carteirinha</label
+                  >
                 </div>
                 <div class="row">
                   <div class="col-md-10">
@@ -376,17 +392,41 @@
                     />
                   </div>
                   <div class="col-md-2">
-                    <button class="btn btn-success" (click)="confirmarAtualizacao()"><i class="fa fa-edit"></i></button>
+                    <button
+                    title="Atualizar Carteirinha"
+
+                      style="margin-left: -20px"
+                      class="btn btn-success"
+                      (click)="confirmarAtualizacao()"
+                    >
+                      <i class="fa fa-edit"></i>
+                    </button>
                   </div>
                 </div>
               </div>
-
-              <div class="box-carteirinha" id="atualizarCarteirinha">
-                <h1 class="mb-5">Tem certeza que quer atualizar a carteirinha de {{titular.nome}}?</h1>
-                <button class="btn btn-primary" (click)="atualizarCarteirinha()">Atualizar</button>
-                <button class="btn btn-secondary" (click)="atualizarCarteirinhaVoltar()">Voltar</button>
+              <div id="atualizarCarteirinha">
+                <div class="box-carteirinha">
+                  <div class="anexo-info-box-titular-vinc">
+                    <h1 class="mb-5">
+                      Tem certeza que deseja atualizar a carteirinha de
+                      <b>{{ titular.nome }}</b
+                      >?
+                    </h1>
+                    <button
+                      class="btn btn-primary"
+                      (click)="atualizarCarteirinha()"
+                    >
+                      Atualizar
+                    </button>
+                    <button
+                      class="btn btn-secondary"
+                      (click)="atualizarCarteirinhaVoltar()"
+                    >
+                      Voltar
+                    </button>
+                  </div>
+                </div>
               </div>
-
               <div class="col-md-3 mb-3" style="display: none">
                 <label for="validationCustom01">Tipo</label>
                 <input

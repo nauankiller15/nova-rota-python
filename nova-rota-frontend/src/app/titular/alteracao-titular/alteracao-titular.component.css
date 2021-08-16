@@ -102,8 +102,48 @@
   align-items: center;
 }
 
-#vinc-anexo-casadoAlt {
+/* TELA DE ATUALIZAÇÃO DE CARTEIRINHA */
+#atualizarCarteirinha {
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0000005e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#atualizarCarteirinha {
   display: none;
+}
+
+.box-carteirinha {
+  border-top: 4px solid var(--cor-tema);
+  border-radius: 15px;
+  background: #ffffff;
+  max-width: 100vh;
+  width: 69%;
+  min-height: 25vh;
+  margin: 12vh auto;
+  z-index: 997;
+  position: fixed;
+  top: 32vh;
+  left: 59%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+
+img.hover-shadow {
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* MENU DE ESCOLHA DE ATIVOS E CANCELADOS */
@@ -239,21 +279,4 @@
   color: #6c757d;
   cursor: pointer;
   box-shadow: -10px 0px 0px 0px #707471;
-}
-
-.box-carteirinha {
-  display: none;
-  border-top: 4px solid var(--cor-tema);
-  border-radius: 15px;
-  background: #ffffff;
-  max-width: 125vh;
-  width: 60vh;
-  min-height: 70vh;
-  margin: 10vh auto;
-  z-index: 997;
-  position: fixed;
-  top: 40vh;
-  left: 58%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
 }

@@ -4,7 +4,11 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/api.service';
 import { validarCPF } from 'src/app/shared/validador-cpf';
 import { Titular } from '../models';
+import lightGallery from 'lightgallery';
 
+// Plugins
+import lgThumbnail from 'lightgallery/plugins/thumbnail';
+import lgZoom from 'lightgallery/plugins/zoom';
 
 declare var $: any;
 
@@ -14,20 +18,36 @@ declare var $: any;
   styleUrls: ['./alteracao-titular.component.css'],
 })
 export class AlteracaoTitularComponent implements OnInit {
-
   // DADOS DO TITULAR
   busca: Titular[] = [];
   titulares: Titular[] = [];
-  titular: Titular = new Titular;
+  titular: Titular = new Titular();
   cpfValido = true;
   campos = [
-    'id', 'nome', 'CPF', 'cod_empresa', 'carteirinha', 'prioridade', 'data_recebimento', 'data_nascimento',
-    'data_casamento','sexo', 'estado_civil', 'nome_mae', 'data_admissao', 'CEP', 'celular', 'cidade', 
-    'estado', 'declaracao_saude', 'desc_declarao_saude', 'observacoes', 'ativo'
-  ]
+    'id',
+    'nome',
+    'CPF',
+    'cod_empresa',
+    'carteirinha',
+    'prioridade',
+    'data_recebimento',
+    'data_nascimento',
+    'data_casamento',
+    'sexo',
+    'estado_civil',
+    'nome_mae',
+    'data_admissao',
+    'CEP',
+    'celular',
+    'cidade',
+    'estado',
+    'declaracao_saude',
+    'desc_declarao_saude',
+    'observacoes',
+    'ativo',
+  ];
   anexo_doc_casamento: File;
   anexo_doc_empregaticio: File;
-  
 
   // CARREGADOR
   animation = 'pulse';
@@ -37,17 +57,18 @@ export class AlteracaoTitularComponent implements OnInit {
 
   intervalId: number | null = null;
   //
-  
+
   p: number = 1;
 
-  constructor(
-    private toastr: ToastrService,
-    private api: ApiService,
-  ) {
+  constructor(private toastr: ToastrService, private api: ApiService) {
     this.getTitularesAtivos();
   }
 
   ngOnInit(): void {
+    lightGallery(document.getElementById('lightgallery'), {
+      plugins: [lgZoom, lgThumbnail],
+      speed: 500,
+    });
     // CARREGADOR TIMEOUT
     setTimeout(() => {
       this.contentLoaded = true;
@@ -73,7 +94,6 @@ export class AlteracaoTitularComponent implements OnInit {
       $('#titularesappear').fadeOut('200');
       $('#consulta').slideDown('200');
       $('#postTit').slideUp(600);
-      
     });
 
     $('#abrirAnexoAlt').click(function () {
@@ -136,39 +156,36 @@ export class AlteracaoTitularComponent implements OnInit {
       }
     );
   }
-    
 
   titularClicked(titular: Titular) {
-    this.titular = new Titular;
+    this.titular = new Titular();
     $('#consulta').slideUp(250);
     $('#titularesappear').slideDown(250);
     $('#postTit').slideDown(600);
 
-    this.campos.forEach(campo => {
+    this.campos.forEach((campo) => {
       this.titular[campo] = titular[campo];
-    }); 
+    });
 
     this.anexo_doc_casamento = titular.anexo_doc_casamento;
     this.anexo_doc_empregaticio = titular.anexo_doc_empregaticio;
-  };
+  }
 
   validarCPF(cpf: string) {
     $('#InvalidCPF').hide();
     $('#CPFCadastrado').fadeOut(100);
     if (validarCPF(cpf) == false) {
-      this.cpfValido = false
+      this.cpfValido = false;
       $('#InvalidCPF').fadeIn(100);
     } else {
-      this.api.listar(`titular/?CPF=${cpf}`).subscribe(
-        (data) => {
-          if (data.length > 0) {
-            this.cpfValido = false;
-            $('#CPFCadastrado').fadeIn(100);
-          } else {
-            this.cpfValido = true;
-          }
-        }          
-      );
+      this.api.listar(`titular/?CPF=${cpf}`).subscribe((data) => {
+        if (data.length > 0) {
+          this.cpfValido = false;
+          $('#CPFCadastrado').fadeIn(100);
+        } else {
+          this.cpfValido = true;
+        }
+      });
     }
   }
 
@@ -179,7 +196,6 @@ export class AlteracaoTitularComponent implements OnInit {
     $('.menuItems li').addClass('active');
     $('.cancelados').removeClass('canceladoBtn');
     $('.cancelados').removeClass('active');
-
   }
 
   titCancelado() {
@@ -191,11 +207,10 @@ export class AlteracaoTitularComponent implements OnInit {
   }
 
   updateTit() {
-
     this.api.atualizarComArquivo('titular/', this.titular).subscribe(
       (data) => {
         this.titularClicked(data);
-        this.toastr.success('Atualizado com sucesso!');      
+        this.toastr.success('Atualizado com sucesso!');
       },
       (error) => {
         let mensagens = error.error;
@@ -206,11 +221,11 @@ export class AlteracaoTitularComponent implements OnInit {
     );
   }
 
-  novoDocumento(){
+  novoDocumento() {
     $('#vinc-anexo-empregaticio').fadeIn('100');
-  }  
+  }
 
-  fecharNovoDocumento(){
+  fecharNovoDocumento() {
     $('#vinc-anexo-empregaticio').fadeOut('100');
   }
 
@@ -218,30 +233,32 @@ export class AlteracaoTitularComponent implements OnInit {
     this.titular.anexo_doc_empregaticio = files.item(0);
     $('#atualizarCad').fadeIn(250);
     $('#unlockCad').fadeOut(250);
-
   }
 
   anexoCasamentoInput(files: FileList) {
     this.titular.anexo_doc_casamento = files.item(0);
-  } 
+  }
 
   confirmarAtualizacao() {
-    $('#atualizarCarteirinha').fadeIn(100)
+    $('#atualizarCarteirinha').fadeIn(100);
   }
   atualizarCarteirinhaVoltar() {
-    $('#atualizarCarteirinha').fadeOut(100)
+    $('#atualizarCarteirinha').fadeOut(100);
   }
-  
-  atualizarCarteirinha(){
-    const atualizar = {id: this.titular.id,carteirinha: this.titular.carteirinha};
+
+  atualizarCarteirinha() {
+    const atualizar = {
+      id: this.titular.id,
+      carteirinha: this.titular.carteirinha,
+    };
     this.api.atualizarCampo('titular/', atualizar).subscribe(
       (data) => {
-        this.toastr.success('Carteirinha atualizada com sucesso!');      
+        this.toastr.success('Carteirinha atualizada com sucesso!');
         if (this.titular.ativo == true) {
           this.getTitularesAtivos();
         } else {
           this.getTitularesInativos();
-        }  
+        }
       },
       (error) => {
         let mensagens = error.error;
@@ -250,6 +267,6 @@ export class AlteracaoTitularComponent implements OnInit {
         }
       }
     );
-    $('#atualizarCarteirinha').fadeOut(100)
+    $('#atualizarCarteirinha').fadeOut(100);
   }
 }

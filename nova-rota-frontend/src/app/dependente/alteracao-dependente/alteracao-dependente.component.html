@@ -194,56 +194,77 @@
           </div>
         </h1>
 
-        <!-- TELA DE ANEXOS DE CASAMENTO -->
-        <div id="vinc-anexo-casadoAlt">
-          <div class="box-anexo">
-            <div class="anexo-info-box-titular-vinc">
-              <label
-                style="
-                  display: flex;
-                  font-size: 18px;
-                  margin-top: 10px;
-                  margin-bottom: 10px;
-                "
-                >Anexos vinculados:</label
+       <!-- TELA DE ANEXOS DE CASAMENTO -->
+       <div id="vinc-anexo-casadoAlt">
+        <div class="box-anexo">
+          <div class="anexo-info-box-titular-vinc">
+            <label
+              style="
+                display: flex;
+                font-size: 18px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+              "
+              >Anexos vinculados:</label
+            >
+            <div>
+              <h3 *ngIf="anexo_doc_casamento != null">
+                Certidão de Casamento
+              </h3>
+              <a
+                *ngIf="!titular.anexo_doc_casamento != null"
+                href="{{ anexo_doc_casamento }}"
+                data-lightbox="image1"
+                data-title="Certidão de Casamento de {{ titular.nome }}"
               >
-              <div *ngIf="anexo_doc_casamento != null">
-                <h3>Certidão de Casamento</h3>
                 <img
-                  *ngIf="!anexo_doc_casamento != null"
-                  style="width: 250px"
+                  class="hover-shadow"
+                  width="275px"
                   src="{{ anexo_doc_casamento }}"
                 />
-              </div>
-              <b *ngIf="anexo_doc_casamento == null"
-                >Nenhuma Certidão de Casamento</b
-              >
-              <hr />
-              <div *ngIf="anexo_doc_nascimento != null">
-                <h3>Certidão de Nascimento</h3>
-                <img style="width: 250px" src="{{ anexo_doc_nascimento }}" />
-              </div>
-              <b *ngIf="anexo_doc_nascimento == null"
-                >Nenhuma Certidão de Nascimento</b
-              >
-              <hr />
-
-              <button
-                style="
-                  display: flex;
-                  position: absolute;
-                  right: 20px;
-                  bottom: 20px;
-                "
-                class="btn btn-primary"
-                id="fecharAnexoAltDependente"
-              >
-                Fechar tela
-              </button>
+              </a>
             </div>
+            <b *ngIf="anexo_doc_casamento == null"
+              >Nenhuma Certidão de Casamento</b
+            >
+            <hr />
+            <div>
+              <h3 *ngIf="anexo_doc_nascimento != null">
+                Certidão de Nascimento
+              </h3>
+              <a
+                *ngIf="!titular.anexo_doc_nascimento != null"
+                href="{{ anexo_doc_nascimento }}"
+                data-lightbox="image2"
+                data-title="Vínculo Empregatício de {{ titular.nome }}"
+              >
+                <img
+                  class="hover-shadow"
+                  width="275px"
+                  src="{{ anexo_doc_nascimento }}"
+                />
+              </a>
+            </div>
+            <b *ngIf="anexo_doc_nascimento == null"
+              >Nenhuma Certidão de Nascimento</b
+            >
+            <hr />
+            <button
+              style="
+                display: flex;
+                position: absolute;
+                right: 20px;
+                bottom: 20px;
+              "
+              class="btn btn-primary"
+              id="fecharAnexoAlt"
+            >
+              Fechar tela
+            </button>
           </div>
         </div>
-        <!--  -->
+      </div>
+      <!--  -->
 
         <!-- VINCULAR ANEXO DE VINCULO EMPREGATICIO -->
         <div id="vinc-anexo-empregaticio" style="display: none">
@@ -356,7 +377,7 @@
                 <small
                   id="CPFCadastrado"
                   class="text-danger"
-                  style="display: none; width: 100%;"
+                  style="display: none; width: 100%"
                   >CPF Já Cadastrado!</small
                 >
               </div>
@@ -409,9 +430,11 @@
                 />
               </div>
 
-              <div class="col-md-3 mb-3">
+              <div class="col-md-2 mb-3">
                 <div class="row">
-                  <label for="validationCustom01" class="ml-3">Número da Carteirinha</label>
+                  <label for="validationCustom01" class="ml-3"
+                    >Número da Carteirinha</label
+                  >
                 </div>
                 <div class="row">
                   <div class="col-md-10">
@@ -425,15 +448,40 @@
                     />
                   </div>
                   <div class="col-md-2">
-                    <button class="btn btn-success" (click)="confirmarAtualizacao()"><i class="fa fa-edit"></i></button>
+                    <button
+                      title="Atualizar Carteirinha"
+                      style="margin-left: -20px"
+                      class="btn btn-success"
+                      (click)="confirmarAtualizacao()"
+                    >
+                      <i class="fa fa-edit"></i>
+                    </button>
                   </div>
                 </div>
               </div>
-              
-              <div class="box-carteirinha" id="atualizarCarteirinha">
-                <h1 class="mb-5">Tem certeza que quer atualizar a carteirinha de {{dependente.nome}}?</h1>
-                <button class="btn btn-primary" (click)="atualizarCarteirinha()">Atualizar</button>
-                <button class="btn btn-secondary" (click)="atualizarCarteirinhaVoltar()">Voltar</button>
+
+              <div id="atualizarCarteirinha">
+                <div class="box-carteirinha">
+                  <div class="anexo-info-box-titular-vinc">
+                    <h1 class="mb-5">
+                      Tem certeza que deseja atualizar a carteirinha de
+                      <b>{{ dependente.nome }}</b
+                      >?
+                    </h1>
+                    <button
+                      class="btn btn-primary"
+                      (click)="atualizarCarteirinha()"
+                    >
+                      Atualizar
+                    </button>
+                    <button
+                      class="btn btn-secondary"
+                      (click)="atualizarCarteirinhaVoltar()"
+                    >
+                      Voltar
+                    </button>
+                  </div>
+                </div>
               </div>
 
               <div class="col-md-4 mb-3">
@@ -601,7 +649,10 @@
                 <label for="validationCustom03">Cidade</label>
                 <input
                   [(ngModel)]="dependente.cidade"
-                  [disabled]="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null"
+                  [disabled]="
+                    dependente.anexo_doc_casamento == null &&
+                    dependente.anexo_doc_nascimento == null
+                  "
                   name="cidade"
                   type="text"
                   class="form-control"

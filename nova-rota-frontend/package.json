@@ -30,6 +30,7 @@
     "install": "^0.13.0",
     "jquery-mask-plugin": "^1.14.16",
     "jwt-decode": "^3.1.2",
+    "lightbox2": "^2.11.3",
     "lightgallery": "^2.1.8",
     "ng2-completer": "^9.0.1",
     "ng2-order-pipe": "^0.1.5",
