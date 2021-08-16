@@ -526,7 +526,7 @@
                   required
                 />
               </div>
-              <div class="col-md-2 mb-3">
+              <div *ngIf="titular.estado_civil == 'Casado(a)'" class="col-md-2 mb-3">
                 <label for="validationCustom05">Data de Casamento</label>
                 <input
                   [(ngModel)]="titular.data_casamento"
