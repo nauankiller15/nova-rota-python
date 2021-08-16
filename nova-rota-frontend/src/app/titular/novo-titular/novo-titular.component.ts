@@ -88,7 +88,7 @@ export class NovoTitularComponent implements OnInit {
     });
     $('#vinc-anexo-empregaticio').hide();
     //
-    $('#fecharAnexo4').click(function () {
+    $('#fecharAnexoNovoTit').click(function () {
       $('#vinc-anexo-empregaticio').fadeOut('100');
       $('#reanexar4').fadeIn('100');
     });
