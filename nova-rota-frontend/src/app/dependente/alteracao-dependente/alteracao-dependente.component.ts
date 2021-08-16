@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { validarCPF } from 'src/app/shared/validador-cpf';
 import { ApiService } from '../../api.service';
 import { HomeComponent } from '../../home/home.component';
 import { Dependente, Titular } from '../models';
@@ -23,6 +24,7 @@ export class AlteracaoDependenteComponent implements OnInit {
   busca: Dependente[] = [];
   dependentes: Dependente[] = [];
   dependente: Dependente = new Dependente();
+  cpfValido = true;
   campos = [
     'id', 'nome', 'CPF', 'cod_empresa', 'carteirinha', 'prioridade', 'data_recebimento', 'tipo', 'data_nascimento',
     'data_casamento', 'sexo', 'estado_civil', 'tipo_parentesco', 'nome_mae', 'data_admissao', 'titular',
@@ -198,11 +200,30 @@ export class AlteracaoDependenteComponent implements OnInit {
       this.dependente[campo] = dependente[campo];
     }); 
 
-
     this.anexo_doc_casamento = dependente.anexo_doc_casamento;
     this.anexo_doc_nascimento = dependente.anexo_doc_nascimento;
     this.anexo_doc_parentesco = dependente.anexo_doc_parentesco;
   };
+
+  validarCPF(cpf: string) {
+    if (validarCPF(cpf) == false) {
+      this.cpfValido = false
+      $('#InvalidCPF').fadeIn(100);
+    } else {
+      $('#InvalidCPF').hide();
+      this.api.listar(`parentesco/?CPF=${cpf}`).subscribe(
+        (data) => {
+          if (data.length > 0) {
+            this.cpfValido = false;
+            $('#CPFCadastrado').fadeIn(100);
+          } else {
+            this.cpfValido = true;
+            $('#CPFCadastrado').fadeOut(100);
+          }
+        }          
+      );
+    }
+  }
 
   depAtivo() {
     this.getDependentesAtivos();

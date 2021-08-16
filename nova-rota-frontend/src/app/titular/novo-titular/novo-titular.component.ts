@@ -13,6 +13,7 @@ declare var $: any;
 })
 export class NovoTitularComponent implements OnInit {
   titular: Titular = new Titular
+  cpfValido = true;
 
   constructor(
     private toastr: ToastrService,
@@ -27,20 +28,6 @@ export class NovoTitularComponent implements OnInit {
         reverse: false,
       });
     });
-
-    // VALIDAR CPF
-    $('#CPF').on('change', function () {
-      if (validarCPF(this.value) == false) {
-        console.log('cpf invalido');
-        $(this).addClass('is-invalid ng-invalid');
-        $(this).removeClass('ng-valid is-valid');
-        $('#InvalidCPF').fadeIn(100);
-      } else {
-        $('#InvalidCPF').hide();
-        $(this).removeClass('is-invalid ng-invalid');
-        $(this).addClass('ng-valid is-valid');
-      }
-    }); 
 
     // TELA DE ANEXO ESTADO CIVIL
 
@@ -124,6 +111,26 @@ export class NovoTitularComponent implements OnInit {
     });
   }
 
+  validarCPF(cpf: string) {
+    if (validarCPF(cpf) == false) {
+      this.cpfValido = false
+      $('#InvalidCPF').fadeIn(100);
+    } else {
+      $('#InvalidCPF').hide();
+      this.api.listar(`titular/?CPF=${cpf}`).subscribe(
+        (data) => {
+          console.log(data);
+          if (data.length > 0) {
+            this.cpfValido = false;
+            $('#CPFCadastrado').fadeIn(100);
+          } else {
+            this.cpfValido = true;
+            $('#CPFCadastrado').fadeOut(100);
+          }
+        }          
+      );
+    }
+  }
   
   newTitular() {
     this.titular.ativo = true;

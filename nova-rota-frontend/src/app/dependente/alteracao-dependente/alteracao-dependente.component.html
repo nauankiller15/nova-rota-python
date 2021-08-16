@@ -52,7 +52,7 @@
                   (input)="searchCPF($event.target.value)"
                   class="form-control cpf"
                   type="text"
-                  id="search_cpf"
+                  id="search_cpf"p
                   placeholder="Pesquise por CPF"
                 />
               </div>
@@ -312,19 +312,22 @@
               <div class="col-md-2 mb-2">
                 <label for="validationCustom01">CPF</label>
                 <input
+                  #CPF="ngModel"
                   maxlength="11"
                   autocomplete="off"
                   mask="000.000.000-00"
                   [(ngModel)]="dependente.CPF"
                   [disabled]="dependente.anexo_doc_casamento == null && dependente.anexo_doc_nascimento == null"
+                  [class.is-invalid]="CPF.invalid && CPF.touched || !cpfValido"
+                  [class.is-valid]="CPF.valid && CPF.touched && cpfValido"
+                  (change)="validarCPF($event.target.value)"
                   name="CPF"
                   type="text"
                   class="form-control cpf"
                   placeholder="Número de CPF"
                 />
-                <div class="invalid-feedback">
-                  Por favor informe o número do CPF corretamente.
-                </div>
+                <small id="InvalidCPF" class="text-danger" style="display: none">CPF Inválido!</small>
+                <small id="CPFCadastrado" class="text-danger" style="display: none">CPF Já Cadastrado!</small>
               </div>
 
               <div class="col-md-2 mb-3">

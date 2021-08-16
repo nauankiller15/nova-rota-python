@@ -14,7 +14,7 @@ class TitularViewSet(ModelViewSet):
     queryset = Titular.objects.all()
     serializer_class = TitularSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['ativo']
+    filterset_fields = ['ativo', 'CPF']
 
 
 

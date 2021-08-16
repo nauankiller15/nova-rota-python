@@ -1,4 +1,3 @@
-from rest_framework.permissions import IsAdminUser
 from rest_framework.viewsets import ModelViewSet
 from django_filters.rest_framework import DjangoFilterBackend
 from cad_emp.models import ContratoOperadora, ContratoSeguradora, Empresa, Filial, Reajuste, Sinistralidade
@@ -8,11 +7,15 @@ from .serializers import ContratoOperadoraSerializer, ContratoSeguradoraSerializ
 class EmpresaViewSet(ModelViewSet):
     queryset = Empresa.objects.all()
     serializer_class = EmpresaSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['CNPJ']
 
 
 class FilialViewSet(ModelViewSet):
     queryset = Filial.objects.all()
     serializer_class = FilialSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['CNPJ']
 
 
 class ContratoOperadoraViewSet(ModelViewSet):

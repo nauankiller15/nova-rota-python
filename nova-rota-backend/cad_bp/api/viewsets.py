@@ -11,5 +11,5 @@ class ParentescoViewSet(ModelViewSet):
     queryset = Parentesco.objects.all().order_by('criado_em')
     serializer_class = ParentescoSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['ativo']
+    filterset_fields = ['ativo', 'CPF']
     

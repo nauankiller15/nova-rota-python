@@ -19,6 +19,7 @@ declare var $: any;
 })
 export class NovaEmpresaComponent implements OnInit {
   empresa: Empresa = new Empresa();
+  cnpjValido = true;
   contratoSeguradora: ContratoSeguradora = new ContratoSeguradora();
   contratoOperadora: ContratoOperadora = new ContratoOperadora();
   sinistralidade: Sinistralidade = new Sinistralidade();
@@ -56,20 +57,7 @@ export class NovaEmpresaComponent implements OnInit {
         $(this).addClass('ng-valid is-valid');
       }
     });
-    // VALIDAR CNPJ
-    $('#CNPJ').on('change', function () {
-      if (validarCNPJ(this.value) == false) {
-        console.log('cnpj invalido');
-        $(this).addClass('is-invalid ng-invalid');
-        $(this).removeClass('ng-valid is-valid');
-        $('#InvalidCNPJ').fadeIn(100);
-      } else {
-        $('#InvalidCNPJ').hide();
-        $(this).removeClass('is-invalid ng-invalid');
-        $(this).addClass('ng-valid is-valid');
-      }
-    });
-
+    
     // TELA DE ANEXO DO DOCUMENTO DA EMPRESA
     $('#dataRecebimento').on('blur', function () {
       $('#vinc-anexo-empresa').fadeIn('100');
@@ -183,6 +171,30 @@ export class NovaEmpresaComponent implements OnInit {
     // ANIMAÇÃO SELEÇÃO DOS DADOS FILIAIS
     $('.filialSelect').slideDown('100');
     $('.inserirFilial').slideDown('100');
+  }
+
+  validarCNPJ(cnpj: string) {
+    $('#InvalidCNPJ').hide();
+    $('#CNPJCadastrado').fadeOut(100);
+    if (validarCNPJ(cnpj) == false) {
+      this.cnpjValido = false
+      $('#InvalidCNPJ').fadeIn(100);
+    } else {
+      let urlEmpresa = 'empresa/';
+      if (this.empresa.is_filial == true) {
+        urlEmpresa = 'filial/';
+      }
+      this.api.listar(`${urlEmpresa}?CNPJ=${cnpj}`).subscribe(
+        (data) => {
+          if (data.length > 0) {
+            this.cnpjValido = false;
+            $('#CNPJCadastrado').fadeIn(100);
+          } else {
+            this.cnpjValido = true;
+          }
+        }          
+      );
+    }
   }
 
   newEmpresa() {

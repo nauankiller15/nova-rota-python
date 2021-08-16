@@ -202,12 +202,24 @@
             <div class="form-row">
               <div class="col-md-2 mb-2">
                 <label for="validationCustom01">CPF</label>
-                <input maxlength="11" autocomplete="off" mask="000.000.000-00" [(ngModel)]="titular.CPF"
-                  [ngModelOptions]="{ standalone: true }" [disabled]="titular.anexo_doc_empregaticio == null"
-                  type="text" class="form-control cpf" placeholder="Número de CPF" />
-                <div class="invalid-feedback">
-                  Por favor informe o número do CPF corretamente.
-                </div>
+                <input 
+                  #CPF="ngModel"
+                  maxlength="11" 
+                  autocomplete="off" 
+                  mask="000.000.000-00" 
+                  [(ngModel)]="titular.CPF"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
+                  [class.is-invalid]="CPF.invalid && CPF.touched || !cpfValido"
+                  [class.is-valid]="CPF.valid && CPF.touched && cpfValido"
+                  (change)="validarCPF($event.target.value)"
+                  id="CPF"
+                  name="CPF"
+                  type="text" 
+                  class="form-control cpf" 
+                  placeholder="Número de CPF" 
+                />
+                <small id="InvalidCPF" class="text-danger" style="display: none">CPF Inválido!</small>
+                <small id="CPFCadastrado" class="text-danger" style="display: none">CPF Já Cadastrado!</small>
               </div>
 
               <div class="col-md-2 mb-3">

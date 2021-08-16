@@ -37,9 +37,10 @@
                 <input
                   #CPF="ngModel"
                   autocomplete="off"
-                  [class.is-invalid]="CPF.invalid && CPF.touched"
-                  [class.is-valid]="CPF.valid && CPF.touched"
                   [(ngModel)]="dependente.CPF"
+                  [class.is-invalid]="CPF.invalid && CPF.touched || !cpfValido"
+                  [class.is-valid]="CPF.valid && CPF.touched && cpfValido"
+                  (change)="validarCPF($event.target.value)"
                   id="CPFDep"
                   name="CPF"
                   type="text"
@@ -55,9 +56,8 @@
                     >CPF Digitos Incompletos!</small
                   >
                 </div>
-                <small id="InvalidCPF" class="text-danger" style="display: none"
-                  >CPF Inválido!</small
-                >
+                <small id="InvalidCPF" class="text-danger" style="display: none">CPF Inválido!</small>
+                <small id="CPFCadastrado" class="text-danger" style="display: none">CPF Já Cadastrado!</small>
               </div>
 
               <div class="col-md-2 mb-3">
