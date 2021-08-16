@@ -230,23 +230,30 @@
         <div id="myModal" class="modal">
           <span class="close cursor" onclick="closeModal()">&times;</span>
           <div class="modal-content">
-              <!-- Caption text -->
-              <div class="caption-container">
-                <p id="caption">Documento de {{ titular.nome }}</p>
-              </div>
+            <!-- Next/previous controls -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            <!-- Caption text -->
+            <div class="caption-container">
+              <p id="caption">Documento de {{ titular.nome }}</p>
+            </div>
             <div class="mySlides">
-              <img
-                *ngIf="!titular.anexo_doc_empregaticio != null"
-                src="{{ titular.anexo_doc_empregaticio }}"
-                class="imgAmpliada"
-              />
               <img
                 *ngIf="!titular.anexo_doc_casamento != null"
                 src="{{ titular.anexo_doc_casamento }}"
                 class="imgAmpliada"
               />
             </div>
-
+            <div
+              *ngIf="!titular.anexo_doc_empregaticio != null"
+              class="mySlides"
+            >
+              <img
+                *ngIf="!titular.anexo_doc_empregaticio != null"
+                src="{{ titular.anexo_doc_empregaticio }}"
+                class="imgAmpliada"
+              />
+            </div>
           </div>
         </div>
         <!-- TELA DE ANEXOS DE CASAMENTO -->
@@ -263,12 +270,18 @@
                 >Anexos vinculados:</label
               >
               <div>
+                <a
+                  href="../"
+                  data-lightbox="image-1"
+                  data-title="My caption"
+                  >Image #1</a
+                >
                 <h3 *ngIf="titular.anexo_doc_casamento != null">
                   Certidão de Casamento
                 </h3>
                 <img
                   *ngIf="!titular.anexo_doc_casamento != null"
-                  width="300px"
+                  width="275px"
                   onclick="openModal();currentSlide(1)"
                   class="hover-shadow"
                   src="{{ titular.anexo_doc_casamento }}"
@@ -284,7 +297,7 @@
                 </h3>
                 <img
                   *ngIf="!titular.anexo_doc_empregaticio != null"
-                  width="300px"
+                  width="275px"
                   onclick="openModal();currentSlide(1)"
                   class="hover-shadow"
                   src="{{ titular.anexo_doc_empregaticio }}"
