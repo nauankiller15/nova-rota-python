@@ -38,7 +38,9 @@
                   #CPF="ngModel"
                   autocomplete="off"
                   [(ngModel)]="titular.CPF"
-                  [class.is-invalid]="CPF.invalid && CPF.touched || !cpfValido"
+                  [class.is-invalid]="
+                    (CPF.invalid && CPF.touched) || !cpfValido
+                  "
                   [class.is-valid]="CPF.valid && CPF.touched && cpfValido"
                   (change)="validarCPF($event.target.value)"
                   id="CPF"
@@ -60,7 +62,12 @@
                 <small id="InvalidCPF" class="text-danger" style="display: none"
                   >CPF Inválido!</small
                 >
-                <small id="CPFCadastrado" class="text-danger" style="display: none">CPF Já Cadastrado!</small>
+                <small
+                  id="CPFCadastrado"
+                  class="text-danger"
+                  style="display: none; width: 100%;"
+                  >CPF Já Cadastrado!</small
+                >
               </div>
 
               <div class="col-md-2 mb-3">

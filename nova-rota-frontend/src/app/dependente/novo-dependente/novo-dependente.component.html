@@ -38,7 +38,9 @@
                   #CPF="ngModel"
                   autocomplete="off"
                   [(ngModel)]="dependente.CPF"
-                  [class.is-invalid]="CPF.invalid && CPF.touched || !cpfValido"
+                  [class.is-invalid]="
+                    (CPF.invalid && CPF.touched) || !cpfValido
+                  "
                   [class.is-valid]="CPF.valid && CPF.touched && cpfValido"
                   (change)="validarCPF($event.target.value)"
                   id="CPFDep"
@@ -56,8 +58,15 @@
                     >CPF Digitos Incompletos!</small
                   >
                 </div>
-                <small id="InvalidCPF" class="text-danger" style="display: none">CPF Inválido!</small>
-                <small id="CPFCadastrado" class="text-danger" style="display: none">CPF Já Cadastrado!</small>
+                <small id="InvalidCPF" class="text-danger" style="display: none"
+                  >CPF Inválido!</small
+                >
+                <small
+                  id="CPFCadastrado"
+                  class="text-danger"
+                  style="display: none; width: 100%"
+                  >CPF Já Cadastrado!</small
+                >
               </div>
 
               <div class="col-md-2 mb-3">
@@ -150,12 +159,8 @@
                 >
                 <input
                   #nome="ngModel"
-                  [class.is-invalid]="
-                    nome.invalid && nome.touched
-                  "
-                  [class.is-valid]="
-                    nome.valid && nome.touched
-                  "
+                  [class.is-invalid]="nome.invalid && nome.touched"
+                  [class.is-valid]="nome.valid && nome.touched"
                   required
                   [(ngModel)]="dependente.nome"
                   name="nome"
@@ -165,9 +170,7 @@
                 />
                 <small
                   class="text-danger"
-                  [class.d-none]="
-                    nome.valid || nome.untouched
-                  "
+                  [class.d-none]="nome.valid || nome.untouched"
                 >
                   Nome do Dependente Necessário!</small
                 >

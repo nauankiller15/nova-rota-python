@@ -22,12 +22,20 @@
           <ul class="menuItems">
             <!-- BOTÃO REAJUSTE -->
             <li class="active radiusTop" (click)="titAtivo()">
-              <i class="fas fa-user-check" style="font-size: 15px; margin-right: 9px"></i>Titulares Ativos
+              <i
+                class="fas fa-user-check"
+                style="font-size: 15px; margin-right: 9px"
+              ></i
+              >Titulares Ativos
             </li>
 
             <!-- BOTÃO SINISTRALIDADE -->
             <li class="cancelados" (click)="titCancelado()">
-              <i class="fas fa-user-slash" style="font-size: 15px; margin-right: 9px"></i>Titulares Cancelados
+              <i
+                class="fas fa-user-slash"
+                style="font-size: 15px; margin-right: 9px"
+              ></i
+              >Titulares Cancelados
             </li>
           </ul>
         </nav>
@@ -38,16 +46,31 @@
               <div class="input-group col-md-3 mb3">
                 <label for="validationCustom01">CPF:</label>
                 <div style="width: 100%"></div>
-                <span class="input-group-text" id="basic-addon1"><i class="fas fa-id-card"></i></span>
-                <input name="CPF" (input)="searchCPF($event.target.value)" class="form-control cpf" type="text"
-                  id="search_cpf" placeholder="Pesquise por CPF" />
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="fas fa-id-card"></i
+                ></span>
+                <input
+                  name="CPF"
+                  (input)="searchCPF($event.target.value)"
+                  class="form-control cpf"
+                  type="text"
+                  id="search_cpf"
+                  placeholder="Pesquise por CPF"
+                />
               </div>
               <div class="input-group col-md-4 mb3">
                 <label for="validationCustom01">Nome do Titular:</label>
                 <div style="width: 100%"></div>
-                <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tie"></i></span>
-                <input (input)="searchNomeBenef($event.target.value)" name="nome_titular" type="text"
-                  class="form-control" placeholder="Digite aqui o nome do titular" />
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="fas fa-user-tie"></i
+                ></span>
+                <input
+                  (input)="searchNomeBenef($event.target.value)"
+                  name="nome_titular"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o nome do titular"
+                />
               </div>
             </div>
             <div style="width: 100%; height: 10px"></div>
@@ -58,7 +81,9 @@
 
             <div class="titulares">
               Titulares Encontrados:
-              <li class="loadit" *ngFor="
+              <li
+                class="loadit"
+                *ngFor="
                   let resultado of busca
                     | orderBy: 'created_at':false
                     | paginate
@@ -67,12 +92,16 @@
                           itemsPerPage: 14,
                           currentPage: p
                         }
-                " (click)="titularClicked(resultado)" [ngClass]="
+                "
+                (click)="titularClicked(resultado)"
+                [ngClass]="
                   resultado.prioridade == 'prioridade'
                     ? 'prioridade'
                     : 'sem-prioridade'
-                ">
-                <i style="
+                "
+              >
+                <i
+                  style="
                     font-size: 18px;
                     margin-left: 9px;
                     margin-right: 1px;
@@ -81,36 +110,61 @@
                     border-radius: 0.25rem;
                     padding: 3px;
                     color: #434343;
-                  " class="fas fa-user-tie"></i>
+                  "
+                  class="fas fa-user-tie"
+                ></i>
                 CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
                 {{ resultado.nome }}
-                <i style="float: right; margin-top: 4px" class="fas fa-external-link-alt"></i>
+                <i
+                  style="float: right; margin-top: 4px"
+                  class="fas fa-external-link-alt"
+                ></i>
               </li>
-              <h4 class="loadit" style="margin-top: 20px" *ngIf="busca.length === 0">
+              <h4
+                class="loadit"
+                style="margin-top: 20px"
+                *ngIf="busca.length === 0"
+              >
                 Nada encontrado
               </h4>
             </div>
-            <pagination-controls id="titularsAlteracao" class="paginacao" maxSize="7" autoHide="true"
-              previousLabel="Anterior" nextLabel="Seguinte" directionLinks="true" autoHide="true" responsive="true"
-              (pageChange)="p = $event"></pagination-controls>
+            <pagination-controls
+              id="titularsAlteracao"
+              class="paginacao"
+              maxSize="7"
+              autoHide="true"
+              previousLabel="Anterior"
+              nextLabel="Seguinte"
+              directionLinks="true"
+              autoHide="true"
+              responsive="true"
+              (pageChange)="p = $event"
+            ></pagination-controls>
           </form>
         </div>
       </div>
       <div id="titularesappear" class="main-card mb-3 card">
-        <h1 class="titular-ts" style="margin-left: 20px; margin-right: 20px; padding-top: 20px">
+        <h1
+          class="titular-ts"
+          style="margin-left: 20px; margin-right: 20px; padding-top: 20px"
+        >
           <div id="voltardados" class="voltar">
             <i class="fas fa-chevron-left"></i>
           </div>
           <s style="margin-left: 12px; width: 975px; text-decoration: none">{{
             titular.nome
-            }}</s>
+          }}</s>
           <p class="cpf-ts">
             Inscrito(a) sob CPF:
             {{ titular.CPF | mask: "000.000.000-99" }}
           </p>
 
           <div class="botao-anexosAlt">
-            <button class="btn btn-primary" style="width: 160px" id="abrirAnexoAlt">
+            <button
+              class="btn btn-primary"
+              style="width: 160px"
+              id="abrirAnexoAlt"
+            >
               <i style="margin-right: 6px" class="fas fa-file-image"></i>Abrir
               Anexos
             </button>
@@ -121,34 +175,53 @@
         <div id="vinc-anexo-casadoAlt">
           <div class="box-anexo">
             <div class="anexo-info-box-titular-vinc">
-              <label style="
+              <label
+                style="
                   display: flex;
                   font-size: 18px;
                   margin-top: 10px;
                   margin-bottom: 10px;
-                ">Anexos vinculados:</label>
+                "
+                >Anexos vinculados:</label
+              >
               <div>
                 <h3 *ngIf="anexo_doc_casamento != null">
                   Certidão de Casamento
                 </h3>
-                <img *ngIf="!anexo_doc_casamento != null" style="width: 250px" src="{{ anexo_doc_casamento }}" />
+                <img
+                  *ngIf="!anexo_doc_casamento != null"
+                  style="width: 250px"
+                  src="{{ anexo_doc_casamento }}"
+                />
               </div>
-              <b *ngIf="anexo_doc_casamento == null">Nenhuma Certidão de Casamento</b>
+              <b *ngIf="anexo_doc_casamento == null"
+                >Nenhuma Certidão de Casamento</b
+              >
               <hr />
               <div>
                 <h3 *ngIf="anexo_doc_empregaticio != null">
                   Vínculo Empregatício
                 </h3>
-                <img *ngIf="!anexo_doc_empregaticio != null" style="width: 250px" src="{{ anexo_doc_empregaticio }}" />
+                <img
+                  *ngIf="!anexo_doc_empregaticio != null"
+                  style="width: 250px"
+                  src="{{ anexo_doc_empregaticio }}"
+                />
               </div>
-              <b *ngIf="anexo_doc_empregaticio == null">Nenhum Vínculo Empregatício</b>
+              <b *ngIf="anexo_doc_empregaticio == null"
+                >Nenhum Vínculo Empregatício</b
+              >
               <hr />
-              <button style="
+              <button
+                style="
                   display: flex;
                   position: absolute;
                   right: 20px;
                   bottom: 20px;
-                " class="btn btn-primary" id="fecharAnexoAlt">
+                "
+                class="btn btn-primary"
+                id="fecharAnexoAlt"
+              >
                 Fechar tela
               </button>
             </div>
@@ -161,35 +234,49 @@
           <div id="vinc-anexo-empregaticio" style="display: none">
             <div class="box-anexo">
               <div class="anexo-info-box-titular-vinc">
-                <h1 style="
+                <h1
+                  style="
                     font-size: 2.3em;
                     display: flex;
                     margin-top: 0px;
                     margin-bottom: 15px;
-                  ">
+                  "
+                >
                   Para continuar a alteração, precisa-se anexar os documentos
                   necessários:
                 </h1>
-                <h2 style="
+                <h2
+                  style="
                     font-size: 20px;
                     display: flex;
                     margin-top: 15px;
                     margin-bottom: 15px;
-                  ">
+                  "
+                >
                   Anexar Vínculo Empregatício
                 </h2>
                 <label for="avatar">Escolha um arquivo para anexar:</label>
                 <div style="height: 10px; width: 100%"></div>
 
-                <input type="file" id="imagemEmpregaticio" accept=".png, .jpg, .jpeg" name="vinculo_empregaticio"
-                  (change)="vinculoEmpInput($event.target.files)" />
+                <input
+                  type="file"
+                  id="imagemEmpregaticio"
+                  accept=".png, .jpg, .jpeg"
+                  name="vinculo_empregaticio"
+                  (change)="vinculoEmpInput($event.target.files)"
+                />
 
-                <button style="
+                <button
+                  style="
                     display: flex;
                     position: absolute;
                     right: 20px;
                     bottom: 20px;
-                  " class="btn btn-primary" id="fecharAnexo4" (click)="fecharNovoDocumento()">
+                  "
+                  class="btn btn-primary"
+                  id="fecharAnexo4"
+                  (click)="fecharNovoDocumento()"
+                >
                   Anexar Arquivo
                 </button>
               </div>
@@ -202,31 +289,47 @@
             <div class="form-row">
               <div class="col-md-2 mb-2">
                 <label for="validationCustom01">CPF</label>
-                <input 
+                <input
                   #CPF="ngModel"
-                  maxlength="11" 
-                  autocomplete="off" 
-                  mask="000.000.000-00" 
+                  maxlength="11"
+                  autocomplete="off"
+                  mask="000.000.000-00"
                   [(ngModel)]="titular.CPF"
                   [disabled]="titular.anexo_doc_empregaticio == null"
-                  [class.is-invalid]="CPF.invalid && CPF.touched || !cpfValido"
+                  [class.is-invalid]="
+                    (CPF.invalid && CPF.touched) || !cpfValido
+                  "
                   [class.is-valid]="CPF.valid && CPF.touched && cpfValido"
                   (change)="validarCPF($event.target.value)"
                   id="CPF"
                   name="CPF"
-                  type="text" 
-                  class="form-control cpf" 
-                  placeholder="Número de CPF" 
+                  type="text"
+                  class="form-control cpf"
+                  placeholder="Número de CPF"
                 />
-                <small id="InvalidCPF" class="text-danger" style="display: none">CPF Inválido!</small>
-                <small id="CPFCadastrado" class="text-danger" style="display: none">CPF Já Cadastrado!</small>
+                <small id="InvalidCPF" class="text-danger" style="display: none"
+                  >CPF Inválido!</small
+                >
+                <small
+                id="CPFCadastrado"
+                class="text-danger"
+                style="display: none; width: 100%;"
+                >CPF Já Cadastrado!</small
+              >
               </div>
 
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Código Empresa</label>
-                <input autocomplete="off" [(ngModel)]="titular.cod_empresa" [ngModelOptions]="{ standalone: true }"
-                  [disabled]="titular.anexo_doc_empregaticio == null" type="text" class="form-control"
-                  placeholder="Código da Empresa" required />
+                <input
+                  autocomplete="off"
+                  [(ngModel)]="titular.cod_empresa"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
+                  type="text"
+                  class="form-control"
+                  placeholder="Código da Empresa"
+                  required
+                />
 
                 <div class="invalid-feedback">
                   Por favor informe o número do Código corretamente.
@@ -235,41 +338,77 @@
 
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Data de Recebimento</label>
-                <input [(ngModel)]="titular.data_recebimento" [ngModelOptions]="{ standalone: true }"
-                  [disabled]="titular.anexo_doc_empregaticio == null" type="date" class="form-control"
-                  placeholder="Informe a data de recebimento" required />
+                <input
+                  [(ngModel)]="titular.data_recebimento"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
+                  type="date"
+                  class="form-control"
+                  placeholder="Informe a data de recebimento"
+                  required
+                />
               </div>
 
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Prioridade</label>
-                <input readonly="true" type="text" class="form-control" [value]="titular.prioridade" required />
+                <input
+                  readonly="true"
+                  type="text"
+                  class="form-control"
+                  [value]="titular.prioridade"
+                  required
+                />
               </div>
 
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Número da Carteirinha</label>
-                <input [(ngModel)]="titular.carteirinha" autocomplete="off" [ngModelOptions]="{ standalone: true }"
-                  [disabled]="titular.anexo_doc_empregaticio == null" type="text" class="form-control"
-                  placeholder="Digite aqui o número" />
+                <input
+                  [(ngModel)]="titular.carteirinha"
+                  autocomplete="off"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o número"
+                />
               </div>
 
               <div class="col-md-3 mb-3" style="display: none">
                 <label for="validationCustom01">Tipo</label>
-                <input [(ngModel)]="titular.tipo" [ngModelOptions]="{ standalone: true }" readonly="“true”" type="text"
-                  class="form-control" placeholder="Inclusão de Dependente" />
+                <input
+                  [(ngModel)]="titular.tipo"
+                  [ngModelOptions]="{ standalone: true }"
+                  readonly="“true”"
+                  type="text"
+                  class="form-control"
+                  placeholder="Inclusão de Dependente"
+                />
               </div>
 
               <div class="col-md-4 mb-3">
                 <label for="validationCustom01">Nome do Beneficiário</label>
-                <input [(ngModel)]="titular.nome" [ngModelOptions]="{ standalone: true }"
-                  [disabled]="titular.anexo_doc_empregaticio == null" type="text" class="form-control"
-                  placeholder="Digite aqui o nome do Beneficiário" required />
+                <input
+                  [(ngModel)]="titular.nome"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o nome do Beneficiário"
+                  required
+                />
               </div>
 
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Data de Nascimento</label>
-                <input [(ngModel)]="titular.data_nascimento" [ngModelOptions]="{ standalone: true }"
-                  [disabled]="titular.anexo_doc_empregaticio == null" type="date" class="form-control"
-                  placeholder="Informe a data de nascimento" required />
+                <input
+                  [(ngModel)]="titular.data_nascimento"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
+                  type="date"
+                  class="form-control"
+                  placeholder="Informe a data de nascimento"
+                  required
+                />
 
                 <div class="invalid-feedback">
                   Por favor informe o número do CPF corretamente.
@@ -278,8 +417,14 @@
 
               <div class="col-md-2 mb-3">
                 <label for="validationCustom02">Sexo</label>
-                <select [(ngModel)]="titular.sexo" [ngModelOptions]="{ standalone: true }"
-                  [disabled]="titular.anexo_doc_empregaticio == null" class="form-control" name="sexo" required>
+                <select
+                  [(ngModel)]="titular.sexo"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
+                  class="form-control"
+                  name="sexo"
+                  required
+                >
                   <option value="Masculino">Masculino</option>
                   <option value="Feminino">Feminino</option>
                 </select>
@@ -287,8 +432,14 @@
 
               <div class="col-md-2 mb-3">
                 <label for="validationCustom02">Estado Civil</label>
-                <select [(ngModel)]="titular.estado_civil" [ngModelOptions]="{ standalone: true }"
-                  [disabled]="titular.anexo_doc_empregaticio == null" class="form-control" name="estado_civil" required>
+                <select
+                  [(ngModel)]="titular.estado_civil"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
+                  class="form-control"
+                  name="estado_civil"
+                  required
+                >
                   <option value="Solteiro(a)">Solteiro(a)</option>
                   <option value="Casado(a)">Casado(a)</option>
                   <option value="Convivente">Convivente</option>
@@ -297,51 +448,93 @@
 
               <div class="col-md-4 mb-3">
                 <label for="validationCustom01">Nome da Mãe</label>
-                <input [(ngModel)]="titular.nome_mae" [ngModelOptions]="{ standalone: true }"
-                  [disabled]="titular.anexo_doc_empregaticio == null" type="text" class="form-control"
-                  placeholder="Digite aqui o nome da Mãe" required />
+                <input
+                  [(ngModel)]="titular.nome_mae"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o nome da Mãe"
+                  required
+                />
               </div>
 
               <div class="col-md-2 mb-3">
                 <label for="validationCustom05">Data de Admissão</label>
-                <input [(ngModel)]="titular.data_admissao" [ngModelOptions]="{ standalone: true }"
-                  [disabled]="titular.anexo_doc_empregaticio == null" type="date" class="form-control"
-                  placeholder="Informe a data de admissão" required />
+                <input
+                  [(ngModel)]="titular.data_admissao"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
+                  type="date"
+                  class="form-control"
+                  placeholder="Informe a data de admissão"
+                  required
+                />
               </div>
               <div class="col-md-2 mb-3">
                 <label for="validationCustom05">Data de Casamento</label>
-                <input [(ngModel)]="titular.data_casamento" [ngModelOptions]="{ standalone: true }"
-                  [disabled]="titular.anexo_doc_empregaticio == null" type="date" class="form-control"
-                  placeholder="Informe a data do casamento" ng-required="false" />
+                <input
+                  [(ngModel)]="titular.data_casamento"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
+                  type="date"
+                  class="form-control"
+                  placeholder="Informe a data do casamento"
+                  ng-required="false"
+                />
               </div>
             </div>
 
             <div class="form-row">
               <div class="col-md-2 mb-2">
                 <label for="validationCustom01">CEP</label>
-                <input [(ngModel)]="titular.CEP" [ngModelOptions]="{ standalone: true }"
-                  [disabled]="titular.anexo_doc_empregaticio == null" type="text" class="form-control cep"
-                  placeholder="Informe o CEP" required />
+                <input
+                  [(ngModel)]="titular.CEP"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
+                  type="text"
+                  class="form-control cep"
+                  placeholder="Informe o CEP"
+                  required
+                />
               </div>
 
               <div class="col-md-2 mb-2">
                 <label for="validationCustom01">Celular</label>
-                <input [(ngModel)]="titular.celular" [ngModelOptions]="{ standalone: true }"
-                  [disabled]="titular.anexo_doc_empregaticio == null" type="text" class="form-control phone_with_ddd"
-                  placeholder="Informe o Celular" required />
+                <input
+                  [(ngModel)]="titular.celular"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
+                  type="text"
+                  class="form-control phone_with_ddd"
+                  placeholder="Informe o Celular"
+                  required
+                />
               </div>
 
               <div class="col-md-2 mb-2">
                 <label for="validationCustom03">Cidade</label>
-                <input [(ngModel)]="titular.cidade" [ngModelOptions]="{ standalone: true }"
-                  [disabled]="titular.anexo_doc_empregaticio == null" type="text" class="form-control"
-                  placeholder="Cidade" required />
+                <input
+                  [(ngModel)]="titular.cidade"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
+                  type="text"
+                  class="form-control"
+                  placeholder="Cidade"
+                  required
+                />
               </div>
 
               <div class="col-md-1 mb-1">
                 <label for="validationCustom02">Estado UF</label>
-                <select [(ngModel)]="titular.estado" [ngModelOptions]="{ standalone: true }"
-                  [disabled]="titular.anexo_doc_empregaticio == null" class="form-control" name="estado_uf" required>
+                <select
+                  [(ngModel)]="titular.estado"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
+                  class="form-control"
+                  name="estado_uf"
+                  required
+                >
                   <option value="AC">AC</option>
                   <option value="AL">AL</option>
                   <option value="AP">AP</option>
@@ -374,9 +567,14 @@
 
               <div class="col-md-2 mb-2">
                 <label for="validationCustom03">Declaração de Saúde</label>
-                <select [(ngModel)]="titular.declaracao_saude" [ngModelOptions]="{ standalone: true }"
-                  [disabled]="titular.anexo_doc_empregaticio == null" class="form-control" id="validationCustom09"
-                  required>
+                <select
+                  [(ngModel)]="titular.declaracao_saude"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
+                  class="form-control"
+                  id="validationCustom09"
+                  required
+                >
                   <option value="Sim">Sim</option>
                   <option value="Nao">Não</option>
                 </select>
@@ -384,34 +582,65 @@
 
               <div class="col-md-2 mb-2">
                 <label for="validationCustom04">Status Sistema</label>
-                <input readonly="true" type="text" class="form-control" id="validationCustom10"
-                  [value]="titular.ativo ? 'Ativo' : 'Cancelado'" required />
+                <input
+                  readonly="true"
+                  type="text"
+                  class="form-control"
+                  id="validationCustom10"
+                  [value]="titular.ativo ? 'Ativo' : 'Cancelado'"
+                  required
+                />
                 <div class="invalid-feedback">
                   Por favor informe o estado corretamente.
                 </div>
               </div>
               <div class="col-md-4 mb-4">
-                <label for="validationCustom05">Descrição da Declaração de Saúde</label>
-                <input [(ngModel)]="titular.desc_declarao_saude" [ngModelOptions]="{ standalone: true }"
-                  [disabled]="titular.anexo_doc_empregaticio == null" type="text" class="form-control"
-                  id="validationCustom12" placeholder="Informe aqui exatamente como está na declaração" required />
+                <label for="validationCustom05"
+                  >Descrição da Declaração de Saúde</label
+                >
+                <input
+                  [(ngModel)]="titular.desc_declarao_saude"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
+                  type="text"
+                  class="form-control"
+                  id="validationCustom12"
+                  placeholder="Informe aqui exatamente como está na declaração"
+                  required
+                />
               </div>
 
               <div class="col-md-5 mb-5">
                 <label for="validationCustom05">Observações</label>
-                <input [(ngModel)]="titular.observacoes" [ngModelOptions]="{ standalone: true }"
-                  [disabled]="titular.anexo_doc_empregaticio == null" type="text" class="form-control"
-                  id="validationCustom11" placeholder="Informe aqui aspectos importantes para o movimentação"
-                  required />
+                <input
+                  [(ngModel)]="titular.observacoes"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="titular.anexo_doc_empregaticio == null"
+                  type="text"
+                  class="form-control"
+                  id="validationCustom11"
+                  placeholder="Informe aqui aspectos importantes para o movimentação"
+                  required
+                />
               </div>
             </div>
             <div>
-              <button class="btn btn-primary" style="width: 160px" id="unlockCad" (click)="novoDocumento()">
+              <button
+                class="btn btn-primary"
+                style="width: 160px"
+                id="unlockCad"
+                (click)="novoDocumento()"
+              >
                 <i style="margin-right: 6px" class="fas fa-unlock"></i>
                 Alterar Titular
               </button>
             </div>
-            <button id="atualizarCad" style="display: none" class="btn btn-primary" (click)="updateTit()">
+            <button
+              id="atualizarCad"
+              style="display: none"
+              class="btn btn-primary"
+              (click)="updateTit()"
+            >
               <i class="fas fa-check"></i> Atualizar Cadastro
             </button>
           </form>
@@ -427,4 +656,8 @@
   document.title = "Alteração Titular Ativo";
 </script>
 <script src="https://bossanova.uk/jsuites/v2/jsuites.js"></script>
-<link rel="stylesheet" href="https://bossanova.uk/jsuites/v2/jsuites.css" type="text/css" />
+<link
+  rel="stylesheet"
+  href="https://bossanova.uk/jsuites/v2/jsuites.css"
+  type="text/css"
+/>
