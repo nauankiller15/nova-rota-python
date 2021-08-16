@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/api.service';
+import { validarCPF } from 'src/app/shared/validador-cpf';
 import { Titular } from '../models';
 
 
@@ -18,6 +19,7 @@ export class AlteracaoTitularComponent implements OnInit {
   busca: Titular[] = [];
   titulares: Titular[] = [];
   titular: Titular = new Titular;
+  cpfValido = true;
   campos = [
     'id', 'nome', 'CPF', 'cod_empresa', 'carteirinha', 'prioridade', 'data_recebimento', 'data_nascimento',
     'data_casamento','sexo', 'estado_civil', 'nome_mae', 'data_admissao', 'CEP', 'celular', 'cidade', 
@@ -149,6 +151,26 @@ export class AlteracaoTitularComponent implements OnInit {
     this.anexo_doc_casamento = titular.anexo_doc_casamento;
     this.anexo_doc_empregaticio = titular.anexo_doc_empregaticio;
   };
+
+  validarCPF(cpf: string) {
+    if (validarCPF(cpf) == false) {
+      this.cpfValido = false
+      $('#InvalidCPF').fadeIn(100);
+    } else {
+      $('#InvalidCPF').hide();
+      this.api.listar(`titular/?CPF=${cpf}`).subscribe(
+        (data) => {
+          if (data.length > 0) {
+            this.cpfValido = false;
+            $('#CPFCadastrado').fadeIn(100);
+          } else {
+            this.cpfValido = true;
+            $('#CPFCadastrado').fadeOut(100);
+          }
+        }          
+      );
+    }
+  }
 
   titAtivo() {
     this.getTitularesAtivos();

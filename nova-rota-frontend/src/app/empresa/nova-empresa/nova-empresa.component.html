@@ -155,8 +155,9 @@
                   #CNPJ="ngModel"
                   autocomplete="off"
                   [(ngModel)]="empresa.CNPJ"
-                  [class.is-invalid]="CNPJ.invalid && CNPJ.touched"
-                  [class.is-valid]="CNPJ.valid && CNPJ.touched"
+                  [class.is-invalid]="CNPJ.invalid && CNPJ.touched || !cnpjValido"
+                  [class.is-valid]="CNPJ.valid && CNPJ.touched && cnpjValido"
+                  (change)="validarCNPJ($event.target.value)"
                   id="CNPJ"
                   name="CNPJ"
                   type="text"
@@ -178,6 +179,12 @@
                   class="text-danger"
                   style="display: none"
                   >CNPJ Inválido!</small
+                >
+                <small
+                  id="CNPJCadastrado"
+                  class="text-danger"
+                  style="display: none"
+                  >CNPJ Já Cadastrado!</small
                 >
               </div>
 

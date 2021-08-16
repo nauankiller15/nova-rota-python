@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { validarCNPJ } from 'src/app/shared/validador-cnpj';
 import { ApiService } from '../../api.service';
 import {
   ContratoOperadora,
@@ -31,6 +32,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
 
   empresas: Empresa[] = [];
   empresa: Empresa = new Empresa();
+  cnpjValido = true;
   //
   contratoSeguradora: ContratoSeguradora = new ContratoSeguradora();
   contratoOperadora: ContratoOperadora = new ContratoOperadora();
@@ -164,6 +166,30 @@ export class AlteracaoEmpresaComponent implements OnInit {
     this.empresa = empresa;
     this.loadDadosEmpresa();
   };
+
+  validarCNPJ(cnpj: string) {
+    $('#InvalidCNPJ').hide();
+    $('#CNPJCadastrado').fadeOut(100);
+    if (validarCNPJ(cnpj) == false) {
+      this.cnpjValido = false
+      $('#InvalidCNPJ').fadeIn(100);
+    } else {
+      let urlEmpresa = 'empresa/';
+      if (this.empresa.is_filial == true) {
+        urlEmpresa = 'filial/';
+      }
+      this.api.listar(`${urlEmpresa}?CNPJ=${cnpj}`).subscribe(
+        (data) => {
+          if (data.length > 0) {
+            this.cnpjValido = false;
+            $('#CNPJCadastrado').fadeIn(100);
+          } else {
+            this.cnpjValido = true;
+          }
+        }          
+      );
+    }
+  }
 
   loadDadosEmpresa() {
     if (this.empresa.is_filial == true) {

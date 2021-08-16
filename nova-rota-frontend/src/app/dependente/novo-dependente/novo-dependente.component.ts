@@ -27,12 +27,12 @@ export class NovoDependenteComponent implements OnInit {
   //
   busca: Titular[];
   dependente: Dependente = new Dependente();
+  cpfValido = true;
   p: number = 1;
 
   constructor(
     private toastr: ToastrService,
     private api: ApiService,
-    private appComponent: AppComponent
   ) {
     this.getTitularesAtivos();
   }
@@ -43,20 +43,6 @@ export class NovoDependenteComponent implements OnInit {
       $('.celular').mask('(00) 00000-0000');
       $('.cpf').mask('000.000.000-00', { reverse: false });
     });
-
-    // VALIDAR CPF
-    $('#CPFDep').on('change', function () {
-      if (validarCPF(this.value) == false) {
-        console.log('cpf invalido');
-        $(this).addClass('is-invalid ng-invalid');
-        $(this).removeClass('ng-valid is-valid');
-        $('#InvalidCPF').fadeIn(100);
-      } else {
-        $('#InvalidCPF').hide();
-        $(this).removeClass('is-invalid ng-invalid');
-        $(this).addClass('ng-valid is-valid');
-      }
-    }); 
 
     // VINCULAR TITULAR
     $('#vincular-titular-btn').click(function () {
@@ -185,6 +171,27 @@ export class NovoDependenteComponent implements OnInit {
       }
     );
   };
+
+  validarCPF(cpf: string) {
+    if (validarCPF(cpf) == false) {
+      this.cpfValido = false
+      $('#InvalidCPF').fadeIn(100);
+    } else {
+      $('#InvalidCPF').hide();
+      this.api.listar(`parentesco/?CPF=${cpf}`).subscribe(
+        (data) => {
+          if (data.length > 0) {
+            this.cpfValido = false;
+            $('#CPFCadastrado').fadeIn(100);
+          } else {
+            this.cpfValido = true;
+            $('#CPFCadastrado').fadeOut(100);
+          }
+        }          
+      );
+    }
+  }
+    
 
   newDependente() {
            
