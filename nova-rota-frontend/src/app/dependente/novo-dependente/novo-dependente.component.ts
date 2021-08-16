@@ -173,11 +173,12 @@ export class NovoDependenteComponent implements OnInit {
   };
 
   validarCPF(cpf: string) {
+    $('#InvalidCPF').hide();
+    $('#CPFCadastrado').fadeOut(100);
     if (validarCPF(cpf) == false) {
       this.cpfValido = false
       $('#InvalidCPF').fadeIn(100);
     } else {
-      $('#InvalidCPF').hide();
       this.api.listar(`parentesco/?CPF=${cpf}`).subscribe(
         (data) => {
           if (data.length > 0) {
@@ -185,7 +186,6 @@ export class NovoDependenteComponent implements OnInit {
             $('#CPFCadastrado').fadeIn(100);
           } else {
             this.cpfValido = true;
-            $('#CPFCadastrado').fadeOut(100);
           }
         }          
       );
