@@ -1954,9 +1954,7 @@ pre code {
 .table-info > th,
 .table-info > td {
   border-radius: 10px;
-  background: linear-gradient( 
-0deg
-, #2a9e4d 0%, #336543 100%);
+  background: linear-gradient(0deg, #2a9e4d 0%, #336543 100%);
   color: #fff;
 }
 
@@ -5194,10 +5192,10 @@ input[type="button"].btn-block {
 .card-body {
   flex: 1 1 auto;
   padding: 1.25rem;
-   animation: cutOff 0.6s ease-in-out;
+  animation: cutOff 0.6s ease-in-out;
 }
 
-#titularesappear{
+#titularesappear {
   animation: cutOff 0.5s ease-in-out;
 }
 
@@ -6357,7 +6355,6 @@ a.close.disabled {
   flex-direction: column;
   width: 100%;
   pointer-events: auto;
-  background-color: var(--branco);
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.3rem;
@@ -10276,6 +10273,9 @@ a.text-warning:focus {
 
 .text-danger {
   color: #d92550 !important;
+  display: block;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 a.text-danger:hover,
@@ -10450,10 +10450,10 @@ button,
   background-size: 48%;
   background: url(https://1.bp.blogspot.com/-HEKOPUUsJR8/YGZYzdXaxlI/AAAAAAAAG9s/_tom1G6Zx1oIo53zLzrTJ5ngoc_zMH39QCLcBGAsYHQ/s0/Logo%2BNova%2BRota%2BSeguros.png)
     no-repeat;
-    cursor: pointer;
-    transition: 0.4s;
+  cursor: pointer;
+  transition: 0.4s;
 }
-.logo-src:hover{
+.logo-src:hover {
   transform: rotate(-6deg);
 }
 
@@ -11406,7 +11406,7 @@ button,
   flex: 1;
   z-index: 8;
   position: relative;
- }
+}
 
 .app-main .app-main__outer {
   flex: 1;
@@ -11415,7 +11415,7 @@ button,
   z-index: 12;
   min-height: 87vh;
   animation: cutOff 0.5s ease-in-out;
-  transition: 0.3s
+  transition: 0.3s;
 }
 
 @keyframes cutOff {
@@ -11426,8 +11426,6 @@ button,
     transform: translateX(0);
   }
 }
-
-
 
 .app-main .app-main__inner {
   padding: 35px 35px 20px 35px;
@@ -12133,9 +12131,11 @@ button,
 }
 
 .bg-mean-fruit {
-  background-image: linear-gradient( 
-120deg
-, #e2fd00 0%, #1b7ef9 100% ) !important;
+  background-image: linear-gradient(
+    120deg,
+    #e2fd00 0%,
+    #1b7ef9 100%
+  ) !important;
 }
 
 .bg-malibu-beach {

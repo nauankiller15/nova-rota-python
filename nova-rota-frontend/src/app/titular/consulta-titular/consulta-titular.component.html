@@ -230,6 +230,10 @@
         <div id="myModal" class="modal">
           <span class="close cursor" onclick="closeModal()">&times;</span>
           <div class="modal-content">
+              <!-- Caption text -->
+              <div class="caption-container">
+                <p id="caption">Documento de {{ titular.nome }}</p>
+              </div>
             <div class="mySlides">
               <img
                 *ngIf="!titular.anexo_doc_empregaticio != null"
@@ -243,10 +247,6 @@
               />
             </div>
 
-            <!-- Caption text -->
-            <div class="caption-container">
-              <p id="caption">Documento de {{ titular.nome }}</p>
-            </div>
           </div>
         </div>
         <!-- TELA DE ANEXOS DE CASAMENTO -->
