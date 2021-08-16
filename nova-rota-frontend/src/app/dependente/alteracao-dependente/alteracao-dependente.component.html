@@ -409,20 +409,31 @@
                 />
               </div>
 
-              <div class="col-md-2 mb-3">
-                <label for="validationCustom01">Número da Carteirinha</label>
-                <input
-                  autocomplete="off"
-                  [(ngModel)]="dependente.carteirinha"
-                  [disabled]="
-                    dependente.anexo_doc_casamento == null &&
-                    dependente.anexo_doc_nascimento == null
-                  "
-                  name="carteirinha"
-                  type="text"
-                  class="form-control"
-                  placeholder="Digite aqui o número"
-                />
+              <div class="col-md-3 mb-3">
+                <div class="row">
+                  <label for="validationCustom01" class="ml-3">Número da Carteirinha</label>
+                </div>
+                <div class="row">
+                  <div class="col-md-10">
+                    <input
+                      autocomplete="off"
+                      [(ngModel)]="dependente.carteirinha"
+                      name="carteirinha"
+                      type="text"
+                      class="form-control"
+                      placeholder="Digite aqui o número"
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <button class="btn btn-success" (click)="confirmarAtualizacao()"><i class="fa fa-edit"></i></button>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="box-carteirinha" id="atualizarCarteirinha">
+                <h1 class="mb-5">Tem certeza que quer atualizar a carteirinha de {{dependente.nome}}?</h1>
+                <button class="btn btn-primary" (click)="atualizarCarteirinha()">Atualizar</button>
+                <button class="btn btn-secondary" (click)="atualizarCarteirinhaVoltar()">Voltar</button>
               </div>
 
               <div class="col-md-4 mb-3">

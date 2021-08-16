@@ -276,5 +276,33 @@ export class AlteracaoDependenteComponent implements OnInit {
 
   anexoNascimentoInput(files: FileList) {
     this.dependente.anexo_doc_nascimento = files.item(0);
-  } 
+  }
+  
+  confirmarAtualizacao() {
+    $('#atualizarCarteirinha').fadeIn(100)
+  }
+  atualizarCarteirinhaVoltar() {
+    $('#atualizarCarteirinha').fadeOut(100)
+  }
+  
+  atualizarCarteirinha(){
+    const atualizar = {id: this.dependente.id,carteirinha: this.dependente.carteirinha};
+    this.api.atualizarCampo('parentesco/', atualizar).subscribe(
+      (data) => {
+        this.toastr.success('Carteirinha atualizada com sucesso!');      
+        if (this.dependente.ativo == true) {
+          this.getDependentesAtivos();
+        } else {
+          this.getDependentesInativos();
+        }  
+      },
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
+      }
+    );
+    $('#atualizarCarteirinha').fadeOut(100)
+  }
 }

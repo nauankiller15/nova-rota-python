@@ -240,3 +240,20 @@
   cursor: pointer;
   box-shadow: -10px 0px 0px 0px #707471;
 }
+
+.box-carteirinha {
+  display: none;
+  border-top: 4px solid var(--cor-tema);
+  border-radius: 15px;
+  background: #ffffff;
+  max-width: 125vh;
+  width: 60vh;
+  min-height: 70vh;
+  margin: 10vh auto;
+  z-index: 997;
+  position: fixed;
+  top: 40vh;
+  left: 58%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}

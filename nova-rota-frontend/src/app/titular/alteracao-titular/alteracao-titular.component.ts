@@ -224,4 +224,32 @@ export class AlteracaoTitularComponent implements OnInit {
   anexoCasamentoInput(files: FileList) {
     this.titular.anexo_doc_casamento = files.item(0);
   } 
+
+  confirmarAtualizacao() {
+    $('#atualizarCarteirinha').fadeIn(100)
+  }
+  atualizarCarteirinhaVoltar() {
+    $('#atualizarCarteirinha').fadeOut(100)
+  }
+  
+  atualizarCarteirinha(){
+    const atualizar = {id: this.titular.id,carteirinha: this.titular.carteirinha};
+    this.api.atualizarCampo('titular/', atualizar).subscribe(
+      (data) => {
+        this.toastr.success('Carteirinha atualizada com sucesso!');      
+        if (this.titular.ativo == true) {
+          this.getTitularesAtivos();
+        } else {
+          this.getTitularesInativos();
+        }  
+      },
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
+      }
+    );
+    $('#atualizarCarteirinha').fadeOut(100)
+  }
 }
