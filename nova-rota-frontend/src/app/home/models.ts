@@ -3,6 +3,7 @@ export class Tarefa {
   usuario: number;
   titulo: string;
   descricao: string;
+  criado_em: string;
   status_tarefa: boolean = false;
 }
 

@@ -152,9 +152,8 @@
                   "
                   (click)="titularClickedConsulta(resultado)"
                   [ngClass]="
-                    resultado.prioridade == 'prioridade'
-                      ? 'prioridade'
-                      : 'sem-prioridade'
+                    resultado.transferido == true ? 'transferido': {                     
+                    'prioridade': resultado.prioridade == 'prioridade'}
                   "
                 >
                   <i

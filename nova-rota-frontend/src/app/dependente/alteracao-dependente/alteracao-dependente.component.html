@@ -94,9 +94,8 @@
                   "
                   (click)="dependenteClicked(resultado)"
                   [ngClass]="
-                    resultado.prioridade == 'prioridade'
-                      ? 'prioridade'
-                      : 'sem-prioridade'
+                    resultado.transferido == true ? 'transferido': {                     
+                    'prioridade': resultado.prioridade == 'prioridade'}
                   "
                 >
                   <i
@@ -386,15 +385,12 @@
                 <label for="validationCustom01">Código Empresa</label>
                 <input
                   autocomplete="off"
-                  [(ngModel)]="dependente.cod_empresa"
-                  [disabled]="
-                    dependente.anexo_doc_casamento == null &&
-                    dependente.anexo_doc_nascimento == null
-                  "
+                  [(value)]="dependente.cod_empresa"
                   name="cod_empresa"
                   type="text"
                   class="form-control"
                   placeholder="Código da Empresa"
+                  readonly
                   required
                 />
 

@@ -42,3 +42,10 @@ export class CancelarCadastro {
   nome: string;
   ativo: boolean = false;
 }
+
+export class TransferirDependente {
+  id: number;
+  carteirinha: string;
+  cod_empresa: string;
+  transferido = true;
+}

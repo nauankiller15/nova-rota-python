@@ -37,16 +37,15 @@
                     placeholder="Pesquise por CPF"
                   />
                 </div>
-                <!-- (keypress)="textOnly($event)" -->
                 <div class="input-group col-md-4 mb3">
-                  <label>Nome do titular:</label>
+                  <label>Nome do dependente:</label>
                   <div style="width: 100%"></div>
                   <span class="input-group-text" id="basic-addon1"
                     ><i class="fas fa-user-plus"></i
                   ></span>
                   <input
                     (input)="searchNomeBenef($event.target.value)"
-                    name="nome_titular"
+                    name="nome_dependente"
                     type="text"
                     class="form-control"
                     placeholder="Digite aqui o nome do dependente"
@@ -75,10 +74,10 @@
                             }
                     "
                     [ngClass]="
-                      resultado.prioridade == 'prioridade'
-                        ? 'prioridade'
-                        : 'sem-prioridade'
+                      resultado.transferido == true ? 'transferido': {                     
+                      'prioridade': resultado.prioridade == 'prioridade'}
                     "
+                    (click)="dependenteClicked(resultado)"
                   >
                  
                     <i
@@ -96,15 +95,6 @@
                     ></i>
                     CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
                     {{ resultado.nome }}
-                    <button
-                      class="btn exclude"
-                      (click)="dependenteClicked(resultado)"
-                      data-toggle="tooltip"
-                      title="Cancelar Dependente"
-                      data-placement="top"
-                    >
-                      <i class="fas fa-user-slash"></i>
-                    </button>
                   </li>
                   <h4
                     class="loadit"
@@ -130,76 +120,63 @@
             </form>
           </div>
         </div>
-  
-        <div id="cancelamentoDependente">
+        
+        <div id="digitarCodigo" style="display: none;">
           <div class="box-cancelar">
             <div class="anexo-info-box-titular-vinc">
-              <h1 style="margin-bottom: 13px">
-                Tem certeza que deseja cancelar o cadastro de
-                <b>{{ dependente.nome }}</b
-                >?
-              </h1>
+              <h1>Qual o código da empresa você deseja substituir?</h1>
+              <div style="margin-top: 20px"></div>
+              <input
+                (change)="validarEmpresa()"
+                [(ngModel)]="cadastro.cod_empresa"
+                name="codigo_empresa"
+                class="form-control cpf"
+                type="text"
+                id="codigo_empresa"
+                placeholder="Digite o código da empresa aqui"
+                style="width: 40%;"
+              />
+              <small id="erroEmpresa" class="text-danger" style="display: none;">
+                Nenhuma empresa encontrada com esse código
+              </small>
               <div style="margin-top: 35px; width: 100%"></div>
-              <button class="btn btn-primary" (click)="cancelarDependente()">
+              <button id="confirmarEmpresa" class="btn btn-primary" (click)="confirmaEmpresa()" disabled>
                 Confirmar
               </button>
-              <button class="btn btn-secondary" (click)="boxCancelarVoltar()">
+              <button class="btn btn-secondary" (click)="empresaVoltar()">
                 Voltar
               </button>
             </div>
           </div>
         </div>
-  
-        <div id="cancelamentoSelecionados">
+    
+        <div id="digitarCarteirinha" style="display: none;">
           <div class="box-cancelar">
             <div class="anexo-info-box-titular-vinc">
-              <h1>Tem certeza que deseja cancelar os cadastros abaixo?</h1>
-              <h3 *ngFor="let dependente of cancelamentos">
-                <b>{{ dependente.nome }}</b>
-              </h3>
-              <div style="margin-top: 35px; width: 100%"></div>
-              <button class="btn btn-primary" (click)="cancelarSelecionados()">
+                <h1>Qual o número da carteirinha você deseja substituir?</h1>
+                <div style="margin-top: 20px"></div>
+                <input
+                  [(ngModel)]="cadastro.carteirinha"
+                  name="carteirinha"
+                  class="form-control"
+                  type="text"
+                  id="carteirinha"
+                  placeholder="Digite o número da carteirinha aqui"
+                  style="width: 40%;"
+                />
+                <div style="margin-top: 35px; width: 100%"></div>
+              <button class="btn btn-primary" (click)="transferirCadastro()">
                 Confirmar
               </button>
-              <button class="btn btn-secondary" (click)="boxSeleconadosVoltar()">
+              <button class="btn btn-secondary" (click)="voltarCarteirinha()">
                 Voltar
               </button>
             </div>
           </div>
-        </div>
-  
-        <div id="espera" style="display: none">
-          <div class="box-cancelar">
-            <div class="anexo-info-box-titular-vinc">
-              <h1 *ngIf="cancelados.cancelados.length > 0">
-                Cadastros Cancelados:
-              </h1>
-              <h3 *ngFor="let dependente of cancelados.cancelados">
-                <b>{{ dependente.nome }}</b>
-              </h3>
-  
-              <h1 *ngIf="cancelados.erros.length > 0">
-                Cadastros com erro no cancelamento:
-              </h1>
-              <div *ngFor="let erro of cancelados.erros">
-                <h3>
-                  <b>{{ erro.dependente.nome }}:</b>
-                </h3>
-                <p *ngFor="let msg of erro.erros">{{ msg }}</p>
-              </div>
-  
-              <div style="margin-top: 35px; width: 100%"></div>
-              <button class="btn btn-secondary" (click)="boxEsperaVoltar()">
-                Voltar
-              </button>
-            </div>
-          </div>
-        </div>
+        </div>      
       </div>
       <app-rodape></app-rodape>
-
     </div>
-    <!-- </div> -->
     <script>
       document.title = "Cancelamento titular";
     </script>

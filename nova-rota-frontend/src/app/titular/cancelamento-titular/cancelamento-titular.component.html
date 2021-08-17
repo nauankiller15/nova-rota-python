@@ -95,9 +95,8 @@
                           }
                   "
                   [ngClass]="
-                    resultado.prioridade == 'prioridade'
-                      ? 'prioridade'
-                      : 'sem-prioridade'
+                    resultado.transferido == true ? 'transferido': {                     
+                    'prioridade': resultado.prioridade == 'prioridade'}
                   "
                   (click)="PreCancelar(resultado)"        
                 >

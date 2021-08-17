@@ -21,6 +21,7 @@ export class Titular {
   desc_declarao_saude: string;
   observacoes: string;
   ativo: boolean;
+  transferido: boolean;
   criado_em: string;
   anexo_doc_casamento: File = null;
   anexo_doc_empregaticio: File = null;
@@ -30,4 +31,11 @@ export class CancelarCadastro {
   id: number;
   nome: string;
   ativo: boolean = false;
+}
+
+export class TransferirTitular {
+  id: number;
+  carteirinha: string;
+  cod_empresa: string;
+  transferido = true;
 }

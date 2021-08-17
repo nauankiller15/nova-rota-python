@@ -192,6 +192,12 @@ export class NovaEmpresaComponent implements OnInit {
           } else {
             this.cnpjValido = true;
           }
+        },
+        (error) => {
+          let mensagens = error.error;
+          for (let campo in mensagens) {
+            this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+          }
         }          
       );
     }

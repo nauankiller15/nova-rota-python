@@ -95,9 +95,8 @@
                 "
                 (click)="titularClicked(resultado)"
                 [ngClass]="
-                  resultado.prioridade == 'prioridade'
-                    ? 'prioridade'
-                    : 'sem-prioridade'
+                  resultado.transferido == true ? 'transferido': {                     
+                  'prioridade': resultado.prioridade == 'prioridade'}
                 "
               >
                 <i
@@ -337,12 +336,11 @@
                 <label for="validationCustom01">Código Empresa</label>
                 <input
                   autocomplete="off"
-                  [(ngModel)]="titular.cod_empresa"
-                  [ngModelOptions]="{ standalone: true }"
-                  [disabled]="titular.anexo_doc_empregaticio == null"
+                  [(value)]="titular.cod_empresa"
                   type="text"
                   class="form-control"
                   placeholder="Código da Empresa"
+                  readonly
                   required
                 />
 

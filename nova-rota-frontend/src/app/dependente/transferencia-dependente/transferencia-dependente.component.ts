@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../api.service';
-import { Dependente, Titular } from '../models';
+import { Dependente, TransferirDependente } from '../models';
 
 declare var $: any;
 
@@ -20,11 +19,8 @@ export class TransferenciaDependenteComponent implements OnInit {
 
   // DADOS DO DEPENDENTE
   busca: Dependente[] = [];
-
   dependentes: Dependente[] = [];
-  dependente: Dependente = new Dependente();
-  cancelamentos: Dependente[] = [];
-  cancelados = { cancelados: [], erros: [] };
+  cadastro: TransferirDependente = new TransferirDependente;
   //
   intervalId: number | null = null;
   //
@@ -35,15 +31,7 @@ export class TransferenciaDependenteComponent implements OnInit {
     this.getDependentesAtivos();
   }
 
-  ngOnInit(): void {
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-    })
-    $('.eraseCanc').click(function () {
-      $('form').each(function () {
-        this.reset();
-      });
-    });
+  ngOnInit(): void {   
     // CARREGADOR TIMEOUT
     setTimeout(() => {
       this.contentLoaded = true;
@@ -55,13 +43,6 @@ export class TransferenciaDependenteComponent implements OnInit {
       this.widthHeightSizeInPixels =
         this.widthHeightSizeInPixels === 50 ? 100 : 50;
     }, 5000);
-    //---------------
-
-    // MÁSCARAS DE INPUT
-    $(document).ready(() => {
-      $('.cpf').mask('000.000.000-00', { reverse: false });
-    });
-    //
   }
 
   searchCPF(CPF: string) {
@@ -108,22 +89,27 @@ export class TransferenciaDependenteComponent implements OnInit {
     );
   }
 
-  dependenteClicked(dependente) {
-    this.dependente = dependente;
-    $('#cancelamentoDependente').fadeIn(250);
+  dependenteClicked(dependente: Dependente) {
+    this.cadastro.id = dependente.id;
+    this.cadastro.transferido = true;
+    $('#digitarCodigo').fadeIn(250);
   }
 
-  boxCancelarVoltar() {
-    $('#cancelamentoDependente').fadeOut(250);
+  empresaVoltar() {
+    $('#digitarCodigo').fadeOut(250);
   }
 
-  cancelarDependente() {
-    this.dependente.ativo = false;
-    this.api.atualizar('parentesco/', this.dependente).subscribe(
+  validarEmpresa() {
+    $('#confirmarEmpresa').prop('disabled', true);
+    $('#erroEmpresa').fadeOut(100);
+    this.api.listar(`empresa/?cod_empresa=${this.cadastro.cod_empresa}`).subscribe(
       (data) => {
-        this.toastr.success('Dependente CANCELADO com sucesso!');
-        $('#cancelamentoDependente').fadeOut(250);
-        this.getDependentesAtivos();
+        console.log(data);
+        if (data.length > 0) {
+          $('#confirmarEmpresa').prop('disabled', false);
+        } else {
+          $('#erroEmpresa').fadeIn(100);
+        }
       },
       (error) => {
         let mensagens = error.error;
@@ -134,63 +120,29 @@ export class TransferenciaDependenteComponent implements OnInit {
     );
   }
 
-  preCancelar(adicionar: boolean, dependente: Dependente) {
-    if (adicionar == true) {
-      this.cancelamentos.push(dependente);
-    } else {
-      const indice = this.cancelamentos.indexOf(dependente);
-      this.cancelamentos.splice(indice, 1);
-    }
+  confirmaEmpresa() {
+    $('#digitarCodigo').fadeOut(250);
+    $('#digitarCarteirinha').fadeIn(250);
   }
 
-  confirmarCancelamentos() {
-    $('#cancelamentoSelecionados').fadeIn(250);
+  voltarCarteirinha() {
+    $('#digitarCarteirinha').fadeOut(250);
   }
 
-  boxSeleconadosVoltar() {
-    $('#cancelamentoSelecionados').fadeOut(250);
-  }
-
-  boxEsperaVoltar() {
-    this.getDependentesAtivos();
-    this.cancelamentos = [];
-    $('#espera').fadeOut(250);
-  }
-
-  cancelarSelecionados() {
-    this.cancelamentos.forEach((dependente) => {
-      this.cancelar(dependente);
-    });
-    $('#cancelamentoSelecionados').fadeOut(250);
-    $('#espera').fadeIn(250);
-  }
-
-  cancelar(dependente: Dependente) {
-    dependente.ativo = false;
-    this.api.atualizar('parentesco/', dependente).subscribe(
+  transferirCadastro() {
+    this.api.atualizarCampo('parentesco/', this.cadastro).subscribe(
       (data) => {
-        this.cancelados.cancelados.push(dependente);
+        this.toastr.success("Dependente tranferido com sucesso");
+        $('#digitarCodigo').fadeOut(250);
+        $('#digitarCarteirinha').fadeOut(250);
       },
       (error) => {
-        let mensagens = error.error;
-        let erros = [];
-        for (let campo in mensagens) {
-          erros.push(mensagens[campo]);
+        const mensagens = error.error;
+        for (let mensagem in mensagens) {
+          this.toastr.error(mensagem, mensagens[mensagem]);
         }
-        this.cancelados.erros.push({ dependente: dependente, erros: erros });
       }
     );
-  }
-  tipoPrioridade(data) {
-    const hoje = new Date();
-    let dataPrioridade = new Date(data);
-    dataPrioridade.setMonth(dataPrioridade.getMonth() + 1);
-    let prioridade = 'Prioridade';
-    console.log(dataPrioridade, hoje, dataPrioridade > hoje);
-    if (dataPrioridade < hoje) {
-      prioridade = "Sem Prioridade";
-    }
 
-    return prioridade
   }
 }

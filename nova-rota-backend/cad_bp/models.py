@@ -75,6 +75,7 @@ class Parentesco (models.Model):
         "Desc. Declaracao Saude", max_length=255, blank=True)
     observacoes = models.TextField("Obs.", blank=True, null=True)
     ativo = models.BooleanField(default=True)
+    transferido = models.BooleanField(default=False)
     criado_em = models.DateTimeField("Criado em", auto_now_add=True)
     atualizado_em = models.DateTimeField("Atualizado em", auto_now=True)
 

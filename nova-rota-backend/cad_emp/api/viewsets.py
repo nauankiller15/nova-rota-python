@@ -8,7 +8,7 @@ class EmpresaViewSet(ModelViewSet):
     queryset = Empresa.objects.all()
     serializer_class = EmpresaSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['CNPJ']
+    filterset_fields = ['CNPJ', 'cod_empresa']
 
 
 class FilialViewSet(ModelViewSet):

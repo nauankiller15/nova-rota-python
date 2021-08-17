@@ -113,7 +113,6 @@ export class ConsultaTitularComponent implements OnInit {
         this.titulares = data;
         this.busca = data;
         this.contentLoaded = true;
-        console.log(data);
       },
       (error) => {
         const mensagens = error.error;

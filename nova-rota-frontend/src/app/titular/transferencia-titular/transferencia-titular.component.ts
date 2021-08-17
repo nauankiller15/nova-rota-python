@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../api.service';
-import { CancelarCadastro, Titular } from '../models';
+import { Titular, TransferirTitular } from '../models';
 
 declare var $: any;
 
@@ -12,12 +12,11 @@ declare var $: any;
 })
 
 export class TransferenciaTitularComponent implements OnInit {
-  cadastro: CancelarCadastro = new CancelarCadastro;
-
+  
   busca: Titular[] = [];
   titulares: Titular[] = [];
-  cancelamentos: CancelarCadastro[] = [];
-  cancelados = { cancelados: [], erros: [] };
+  cadastro: TransferirTitular = new TransferirTitular;
+  
 
   // CARREGADOR
   animation = 'pulse';
@@ -48,27 +47,6 @@ export class TransferenciaTitularComponent implements OnInit {
       this.widthHeightSizeInPixels =
         this.widthHeightSizeInPixels === 50 ? 100 : 50;
     }, 5000);
-    //---------------
-    // MÁSCARAS DE INPUT
-    $(document).ready(() => {
-      $('.cpf').mask('000.000.000-00', { reverse: false });
-      $('.cnpj').mask('00.000.000/0000-00', { reverse: false });
-    });
-    //
-    // VOLTAR ALTERAÇÃO DE DADOS
-    $('#voltardadosTitConsulta').click(function () {
-      $('#titularesappearConsulta').fadeOut('200');
-      $('#consulta4').slideDown('200');
-      $('#postTitConsulta').slideUp(600);
-    });
-
-    $('#abrirAnexoConsulta2').click(function () {
-      $('#vinc-anexo-casadoAlt').fadeIn('100');
-    });
-
-    $('#fecharAnexoConsulta2').click(function () {
-      $('#vinc-anexo-casadoAlt').fadeOut('100');
-    });
   }
 
   searchCPF(CPF: string) {
@@ -76,7 +54,7 @@ export class TransferenciaTitularComponent implements OnInit {
       this.busca = this.titulares.filter((res) => {
         return res.CPF.match(CPF);
       });
-    } else if (CPF == '') {
+    } else {
       this.busca = this.titulares;
     }
   }
@@ -86,7 +64,7 @@ export class TransferenciaTitularComponent implements OnInit {
       this.busca = this.titulares.filter((res) => {
         return res.nome.match(nome);
       });
-    } else if (nome == '') {
+    } else {
       this.busca = this.titulares;
     }
   }
@@ -106,38 +84,36 @@ export class TransferenciaTitularComponent implements OnInit {
     );
   };
 
-  titularClicked(titular) {
+  titularClicked(titular: Titular) {
     this.cadastro.id = titular.id;
-    this.cadastro.nome = titular.nome;
-    this.cadastro.ativo = false;
+    this.cadastro.transferido = true;
     $('#digitarCodigo').fadeIn(250);
   }
 
-  boxCancelarVoltar() {
+  empresaVoltar() {
     $('#digitarCodigo').fadeOut(250);
   }
 
-  confirmaCodigo() {
+  validarEmpresa() {
+    $('#confirmarEmpresa').prop('disabled', true);
+    this.api.listar(`empresa/?cod_empresa=${this.cadastro.cod_empresa}`).subscribe(
+      (data) => {
+        console.log(data);
+        if (data.length > 0) {
+          $('#confirmarEmpresa').prop('disabled', false);
+        }
+      },
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
+      }          
+    );
+  }
+
+  confirmaEmpresa() {
     $('#digitarCodigo').fadeOut(250);
-    $('#digitarCarteirinha').fadeIn(250);
-  }
-
-  
-  preCancelar(adicionar: boolean, titular: Titular) {
-    let cadastro = new CancelarCadastro;
-    cadastro.id = titular.id;
-    cadastro.nome = titular.nome;
-    cadastro.ativo = false;
-    if (adicionar == true) {
-      this.cancelamentos.push(cadastro);
-    } else {
-      const indice = this.cancelamentos.indexOf(cadastro);
-      this.cancelamentos.splice(indice, 1);
-      console.log(this.cancelamentos);
-    }
-  }
-
-  confirmarCancelamentos() {
     $('#digitarCarteirinha').fadeIn(250);
   }
 
@@ -145,33 +121,19 @@ export class TransferenciaTitularComponent implements OnInit {
     $('#digitarCarteirinha').fadeOut(250);
   }
 
-  boxEsperaVoltar() {
-    this.getTitulares();
-    this.cancelamentos = [];
-    $('#espera').fadeOut(250);
-  }
-
-  cancelarSelecionados() {
-    this.cancelamentos.forEach((titular) => {
-      this.cancelar(titular);
-    });
-    $('#digitarCarteirinha').fadeOut(250);
-    $('#espera').fadeIn(250);
-  }
-
-  cancelar(cadastro: CancelarCadastro) {
-   
-    this.api.atualizarCampo('titular/', cadastro).subscribe(
+  transferirCadastro() {
+    this.api.atualizarCampo('titular/', this.cadastro).subscribe(
       (data) => {
-        this.cancelados.cancelados.push(cadastro);
+        this.getTitulares();
+        this.toastr.success("Titular tranferido com sucesso");
+        $('#digitarCodigo').fadeOut(250);
+        $('#digitarCarteirinha').fadeOut(250);
       },
       (error) => {
-        let mensagens = error.error;
-        let erros = [];
-        for (let campo in mensagens) {
-          erros.push(mensagens[campo]);
+        const mensagens = error.error;
+        for (let mensagem in mensagens) {
+          this.toastr.error(mensagem, mensagens[mensagem]);
         }
-        this.cancelados.erros.push({ titular: cadastro, erros: erros });
       }
     );
   }
