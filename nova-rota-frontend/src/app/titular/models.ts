@@ -22,7 +22,6 @@ export class Titular {
   observacoes: string;
   ativo: boolean;
   criado_em: string;
-  data_digitado: number;
   anexo_doc_casamento: File = null;
   anexo_doc_empregaticio: File = null;
 }
