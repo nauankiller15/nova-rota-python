@@ -181,7 +181,9 @@
               {{ dependente.titular_nome }}
             </b>
           </p>
-          <p class="cpf-ts">Incluso em: {{ dependente.criado_em | date: 'dd/MM/yyyy' }}</p>
+          <p class="cpf-ts">
+            Incluso em: {{ dependente.criado_em | date: "dd/MM/yyyy" }}
+          </p>
           <div class="botao-anexosAlt">
             <button
               class="btn btn-primary"
@@ -385,6 +387,7 @@
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Código Empresa</label>
                 <input
+                  readonly="true"
                   autocomplete="off"
                   [(ngModel)]="dependente.cod_empresa"
                   [disabled]="
@@ -903,7 +906,7 @@
                 dependente.anexo_doc_nascimento == null
               "
             >
-            <a href="www.aaa.com.br" target="_blank">TESTE</a>
+              <a href="www.aaa.com.br" target="_blank">TESTE</a>
               <button
                 class="btn btn-primary"
                 style="width: 160px"

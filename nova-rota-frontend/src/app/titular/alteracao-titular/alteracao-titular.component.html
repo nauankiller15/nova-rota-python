@@ -158,7 +158,9 @@
             Inscrito(a) sob CPF:
             {{ titular.CPF | mask: "000.000.000-99" }}
           </p>
-          <p class="cpf-ts">Incluso em: {{ titular.criado_em | date: 'dd/MM/yyyy' }}</p>
+          <p class="cpf-ts">
+            Incluso em: {{ titular.criado_em | date: "dd/MM/yyyy" }}
+          </p>
 
           <div class="botao-anexosAlt">
             <button
@@ -172,8 +174,8 @@
           </div>
         </h1>
 
-         <!-- TELA DE ANEXOS DE CASAMENTO -->
-         <div id="vinc-anexo-casadoAlt">
+        <!-- TELA DE ANEXOS DE CASAMENTO -->
+        <div id="vinc-anexo-casadoAlt">
           <div class="box-anexo">
             <div class="anexo-info-box-titular-vinc">
               <label
@@ -336,6 +338,7 @@
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Código Empresa</label>
                 <input
+                  readonly="true"
                   autocomplete="off"
                   [(ngModel)]="titular.cod_empresa"
                   [ngModelOptions]="{ standalone: true }"
@@ -394,8 +397,7 @@
                   </div>
                   <div class="col-md-2">
                     <button
-                    title="Atualizar Carteirinha"
-
+                      title="Atualizar Carteirinha"
                       style="margin-left: -20px"
                       class="btn btn-success"
                       (click)="confirmarAtualizacao()"
@@ -526,7 +528,10 @@
                   required
                 />
               </div>
-              <div *ngIf="titular.estado_civil == 'Casado(a)'" class="col-md-2 mb-3">
+              <div
+                *ngIf="titular.estado_civil == 'Casado(a)'"
+                class="col-md-2 mb-3"
+              >
                 <label for="validationCustom05">Data de Casamento</label>
                 <input
                   [(ngModel)]="titular.data_casamento"
