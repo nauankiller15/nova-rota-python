@@ -180,7 +180,9 @@
               {{ dependente.titular_nome }}
             </b>
           </p>
-          <p class="cpf-ts">Incluso em: {{ dependente.criado_em | date: 'dd/MM/yyyy' }}</p>
+          <p class="cpf-ts">
+            Incluso em: {{ dependente.criado_em | date: "dd/MM/yyyy" }}
+          </p>
           <div class="botao-anexosAlt">
             <button
               class="btn btn-primary"
@@ -384,6 +386,7 @@
               <div class="col-md-2 mb-3">
                 <label for="validationCustom01">Código Empresa</label>
                 <input
+                  readonly="true"
                   autocomplete="off"
                   [(value)]="dependente.cod_empresa"
                   name="cod_empresa"
@@ -906,7 +909,7 @@
                 (click)="novoDocumento()"
               >
                 <i style="margin-right: 6px" class="fas fa-unlock"></i>
-                Alterar Titular
+                Alterar Dependente
               </button>
             </div>
             <button
@@ -917,7 +920,7 @@
               class="btn btn-primary"
               (click)="updateDependente()"
             >
-              <i class="fas fa-check"></i> Alterar Dependente
+              <i class="fas fa-check"></i> Atualizar Cadastro
             </button>
           </form>
         </div>
