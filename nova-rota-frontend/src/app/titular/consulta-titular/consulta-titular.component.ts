@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../api.service';
@@ -163,12 +162,5 @@ export class ConsultaTitularComponent implements OnInit {
     $('.cancelados').addClass('canceladoBtn');
     $('.radiusTop').removeClass('active');
     $('.cancelados').removeClass('active');
-  }
-
-  data(data: string) {
-    const datePipe: DatePipe = new DatePipe('en-US');
-    let dataFormatada = datePipe.transform(data, 'dd/MM/YYYY');
-
-    return dataFormatada;
   }
 }

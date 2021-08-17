@@ -158,7 +158,7 @@
             Inscrito(a) sob CPF:
             {{ titular.CPF | mask: "000.000.000-99" }}
           </p>
-          <p class="cpf-ts">Incluso em: {{ titular.data_digitado }}</p>
+          <p class="cpf-ts">Incluso em: {{ titular.criado_em | date: 'dd/MM/yyyy' }}</p>
 
           <div class="botao-anexosAlt">
             <button
@@ -700,7 +700,6 @@
             </button>
           </form>
         </div>
-
         <!--  -->
       </div>
     </div>

@@ -29,7 +29,7 @@ export class AlteracaoDependenteComponent implements OnInit {
     'id', 'nome', 'CPF', 'cod_empresa', 'carteirinha', 'prioridade', 'data_recebimento', 'tipo', 'data_nascimento',
     'data_casamento', 'sexo', 'estado_civil', 'tipo_parentesco', 'nome_mae', 'data_admissao', 'titular',
     'CEP', 'celular', 'cidade', 'estado', 'declaracao_saude', 'desc_declarao_saude', 'observacoes', 
-    'ativo', 'titular_nome'
+    'ativo', 'titular_nome', 'criado_em'
   ];
   anexo_doc_parentesco: File;
   anexo_doc_casamento: File;

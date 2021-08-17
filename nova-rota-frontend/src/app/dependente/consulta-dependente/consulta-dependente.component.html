@@ -180,7 +180,7 @@
               {{ dependente.titular_nome }}
             </b>
           </p>
-          <p class="cpf-ts">Incluso em: {{ dependente.data_digitado }}</p>
+          <p class="cpf-ts">Incluso em: {{ dependente.criado_em | date: 'dd/MM/yyyy' }}</p>
 
           <div class="botao-anexosAlt">
             <button
@@ -406,7 +406,7 @@
                 <label>Data de Recebimento</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ data(dependente.data_recebimento) }}</b>
+                  <b>{{ dependente.data_recebimento | date: 'dd/MM/yyyy' }}</b>
                 </p>
               </div>
 
@@ -414,7 +414,7 @@
                 <label>Data de Admissão</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ data(dependente.data_admissao) }}</b>
+                  <b>{{ dependente.data_admissao | date: 'dd/MM/yyyy' }}</b>
                 </p>
               </div>
 
@@ -422,7 +422,7 @@
                 <label>Data de Casamento</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ data(dependente.data_casamento) }}</b>
+                  <b>{{ dependente.data_casamento | date: 'dd/MM/yyyy' }}</b>
                   <b *ngIf="dependente.data_casamento == null">Nenhuma data</b>
                 </p>
               </div>

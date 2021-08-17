@@ -214,7 +214,7 @@
             Inscrito(a) sob CPF:
             {{ titular.CPF | mask: "000.000.000-99" }}
           </p>
-          <p class="cpf-ts">Incluso em: {{ titular.data_digitado }}</p>
+          <p class="cpf-ts">Incluso em: {{ titular.criado_em | date: 'dd/MM/yyyy' }}</p>
 
           <div class="botao-anexosAlt">
             <button
@@ -444,7 +444,7 @@
                 <label>Data de Recebimento</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ data(titular.data_recebimento) }}</b>
+                  <b>{{ titular.data_recebimento | date: 'dd/MM/yyyy' }}</b>
                 </p>
               </div>
 
@@ -452,7 +452,7 @@
                 <label>Data de Admissão</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ data(titular.data_admissao) }}</b>
+                  <b>{{ titular.data_admissao | date: 'dd/MM/yyyy' }}</b>
                 </p>
               </div>
 
@@ -460,7 +460,7 @@
                 <label>Data de Casamento</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ data(titular.data_casamento) }}</b>
+                  <b>{{ titular.data_casamento | date: 'dd/MM/yyyy' }}</b>
                   <b *ngIf="titular.data_casamento == null">Nenhuma data</b>
                 </p>
               </div>

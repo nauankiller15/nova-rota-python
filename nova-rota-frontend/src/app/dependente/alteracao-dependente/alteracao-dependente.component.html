@@ -181,7 +181,7 @@
               {{ dependente.titular_nome }}
             </b>
           </p>
-          <p class="cpf-ts">Incluso em: {{ dependente.data_digitado }}</p>
+          <p class="cpf-ts">Incluso em: {{ dependente.criado_em | date: 'dd/MM/yyyy' }}</p>
           <div class="botao-anexosAlt">
             <button
               class="btn btn-primary"

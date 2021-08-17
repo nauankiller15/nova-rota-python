@@ -45,6 +45,7 @@ export class AlteracaoTitularComponent implements OnInit {
     'desc_declarao_saude',
     'observacoes',
     'ativo',
+    'criado_em',
   ];
   anexo_doc_casamento: File;
   anexo_doc_empregaticio: File;
