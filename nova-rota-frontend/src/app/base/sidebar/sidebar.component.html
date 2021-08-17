@@ -148,25 +148,14 @@
             </li>
           </ul>
         </li>
-
+        <!--  -->
+        <!-- ******* PAINEL ADMINISTRAÇÃO ******* -->
         <li
           *ngIf="['desenvolvedor', 'Gestor'].includes(usuario.cargo)"
           class="app-sidebar__heading"
         >
           Administração
         </li>
-
-        <!-- <li *ngIf="['desenvolvedor', 'Gestor'].includes(usuario.cargo)" class="app-sidebar__heading">Administração</li>
-        <li
-          routerLink="/dashboard"
-          routerLinkActive="mm-active"
-          *ngIf="['desenvolvedor', 'Gestor'].includes(usuario.cargo)"
-        >
-          <a>
-            <i class="metismenu-icon fas fa-chart-bar"></i> Painel de Analises
-          </a>
-          <ul style="display: none"></ul>
-        </li> -->
 
         <li *ngIf="['desenvolvedor', 'Gestor'].includes(usuario.cargo)">
           <a>
