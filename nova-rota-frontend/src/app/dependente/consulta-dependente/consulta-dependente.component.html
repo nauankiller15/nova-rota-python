@@ -309,6 +309,26 @@
                   </ng-template>
                 </p>
               </div>
+
+              <div
+                class="dadosConsulta"
+                [ngClass]="
+                  dependente.transferido == true
+                    ? 'status-transferido'
+                    : ''
+                "
+              >
+                <label>Status Transferência</label>
+                <div class="linhaE"></div>
+                <p>
+                  <b *ngIf="dependente.transferido == true; else not_transferido"
+                    >Transferido</b
+                  >
+                  <ng-template #not_transferido>
+                    <b>Não transferido</b>
+                  </ng-template>
+                </p>
+              </div>
             </div>
 
             <div style="width: 100%; margin-top: 10px">

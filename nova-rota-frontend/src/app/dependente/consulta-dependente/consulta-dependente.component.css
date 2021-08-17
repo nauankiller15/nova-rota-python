@@ -95,6 +95,19 @@
     0 0.25rem 0.53125rem rgb(4 9 20 / 5%), 0 0.125rem 0.1875rem rgb(4 9 20 / 3%);
 }
 
+
+.status-transferido {
+  color: #fff;
+  background-image: linear-gradient(
+    to top,
+    #390ba3 0%,
+    #573cba 100%
+  ) !important;
+  box-shadow: 0 0.46875rem 2.1875rem rgb(4 9 20 / 3%),
+    0 0.9375rem 1.40625rem rgb(4 9 20 / 3%),
+    0 0.25rem 0.53125rem rgb(4 9 20 / 5%), 0 0.125rem 0.1875rem rgb(4 9 20 / 3%);
+}
+
 .status-cancelado {
   color: #fff;
   background-image: linear-gradient(

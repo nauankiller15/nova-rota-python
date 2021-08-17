@@ -152,8 +152,11 @@
                   "
                   (click)="titularClickedConsulta(resultado)"
                   [ngClass]="
-                    resultado.transferido == true ? 'transferido': {                     
-                    'prioridade': resultado.prioridade == 'prioridade'}
+                    resultado.transferido == true
+                      ? 'transferido'
+                      : {
+                          prioridade: resultado.prioridade == 'prioridade'
+                        }
                   "
                 >
                   <i
@@ -213,7 +216,9 @@
             Inscrito(a) sob CPF:
             {{ titular.CPF | mask: "000.000.000-99" }}
           </p>
-          <p class="cpf-ts">Incluso em: {{ titular.criado_em | date: 'dd/MM/yyyy' }}</p>
+          <p class="cpf-ts">
+            Incluso em: {{ titular.criado_em | date: "dd/MM/yyyy" }}
+          </p>
 
           <div class="botao-anexosAlt">
             <button
@@ -355,6 +360,26 @@
                   </ng-template>
                 </p>
               </div>
+
+              <div
+                class="dadosConsulta"
+                [ngClass]="
+                  titular.transferido == true
+                    ? 'status-transferido'
+                    : ''
+                "
+              >
+                <label>Status Transferência</label>
+                <div class="linhaE"></div>
+                <p>
+                  <b *ngIf="titular.transferido == true; else not_transferido"
+                    >Transferido</b
+                  >
+                  <ng-template #not_transferido>
+                    <b>Não transferido</b>
+                  </ng-template>
+                </p>
+              </div>
             </div>
 
             <div style="width: 100%; margin-top: 10px">
@@ -443,7 +468,7 @@
                 <label>Data de Recebimento</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ titular.data_recebimento | date: 'dd/MM/yyyy' }}</b>
+                  <b>{{ titular.data_recebimento | date: "dd/MM/yyyy" }}</b>
                 </p>
               </div>
 
@@ -451,7 +476,7 @@
                 <label>Data de Admissão</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ titular.data_admissao | date: 'dd/MM/yyyy' }}</b>
+                  <b>{{ titular.data_admissao | date: "dd/MM/yyyy" }}</b>
                 </p>
               </div>
 
@@ -459,7 +484,7 @@
                 <label>Data de Casamento</label>
                 <div class="linhaE"></div>
                 <p>
-                  <b>{{ titular.data_casamento | date: 'dd/MM/yyyy' }}</b>
+                  <b>{{ titular.data_casamento | date: "dd/MM/yyyy" }}</b>
                   <b *ngIf="titular.data_casamento == null">Nenhuma data</b>
                 </p>
               </div>
