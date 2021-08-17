@@ -154,15 +154,15 @@ export class CancelamentoTitularComponent implements OnInit {
     }
 
     if (this.cancelamentos.length > 0) {
-      $('#cancelamentoEmLote').show();
+      $('#cancelamentoEmLote').fadeIn(250);
     } else {
-      $('#cancelamentoEmLote').hide();
+      $('#cancelamentoEmLote').fadeOut(250);
     }
   }
 
   desmarcarTodos() {
     this.cancelamentos = [];
-    $('#cancelamentoEmLote').hide()
+    $('#cancelamentoEmLote').fadeOut(250)
   }
 
   preCancelado(pk: number):boolean {
