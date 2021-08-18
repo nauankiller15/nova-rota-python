@@ -58,9 +58,12 @@
             <hr />
 
             <div>
-              <div id="cancelamentoEmLote" style="display: none;">
+              <div id="cancelamentoEmLote" style="display: none">
                 <div for="checkedAllTitulares" class="contentCancelar">
-                  <button class="btn btn-secondary eraseCanc" (click)="desmarcarTodos()">
+                  <button
+                    class="btn btn-secondary eraseCanc"
+                    (click)="desmarcarTodos()"
+                  >
                     <i
                       style="margin-right: 3px; font-size: 14px"
                       class="far fa-times-circle"
@@ -94,13 +97,16 @@
                           }
                   "
                   [ngClass]="
-                    resultado.transferido == true ? 'transferido': {                     
-                    'prioridade': resultado.prioridade == 'prioridade'}
+                    resultado.transferido == true
+                      ? 'transferido'
+                      : {
+                          prioridade: resultado.prioridade == 'prioridade'
+                        }
                   "
                   (click)="preCancelar(resultado)"
                 >
                   <input
-                    id="checkbox{{resultado.id}}"
+                    id="checkbox{{ resultado.id }}"
                     for="checkedTitular"
                     type="checkbox"
                   />
@@ -121,11 +127,11 @@
                   CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
                   {{ resultado.nome }}
                   <button
-                    class="btn exclude"
-                    (click)="dependenteClicked($event, resultado)"
                     data-toggle="tooltip"
                     title="Cancelar Dependente"
                     data-placement="top"
+                    class="btn exclude"
+                    (click)="dependenteClicked($event, resultado)"
                   >
                     <i class="fas fa-user-slash"></i>
                   </button>
@@ -221,7 +227,6 @@
       </div>
     </div>
     <app-rodape></app-rodape>
-
   </div>
   <!-- </div> -->
   <script>
