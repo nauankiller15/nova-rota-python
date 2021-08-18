@@ -28,8 +28,8 @@
   border-radius: 15px;
   background: #ffffff;
   max-width: 125vh;
-  width: 90vh;
-  min-height: 65vh;
+  width: 105vh;
+  min-height: 67vh;
   margin: 5vh auto;
   z-index: 997;
   position: fixed;
@@ -38,6 +38,15 @@
   margin-right: -50%;
   transform: translate(-50%, -50%);
 }
+
+.consultaCPF-atribut {
+  margin: auto;
+  width: 95%;
+  margin-top: 29px;
+  margin-bottom: 29px;
+  padding: 10px;
+}
+
 
 /* TELA DE ANEXO CASADO */
 #vinc-anexo-casado {
