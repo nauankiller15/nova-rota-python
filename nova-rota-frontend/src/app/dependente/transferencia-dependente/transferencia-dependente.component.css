@@ -327,7 +327,24 @@ em {
   cursor: pointer;
 }
 
-/* TELA DE CONFIRMAÇÃO CANCELAMENTO */
+/* TELA DE CONFIRMAÇÃO CANCELAMENTO MÚLTIPLO */
+
+#digitarCarteirinha {
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0000005e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#digitarCarteirinha {
+  display: none;
+}
 
 #digitarCodigo {
   z-index: 999;
