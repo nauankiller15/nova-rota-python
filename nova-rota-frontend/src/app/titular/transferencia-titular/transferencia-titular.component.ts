@@ -8,15 +8,12 @@ declare var $: any;
 @Component({
   selector: 'app-transferencia-titular',
   templateUrl: './transferencia-titular.component.html',
-  styleUrls: ['./transferencia-titular.component.css']
+  styleUrls: ['./transferencia-titular.component.css'],
 })
-
 export class TransferenciaTitularComponent implements OnInit {
-  
   busca: Titular[] = [];
   titulares: Titular[] = [];
-  cadastro: TransferirTitular = new TransferirTitular;
-  
+  cadastro: TransferirTitular = new TransferirTitular();
 
   // CARREGADOR
   animation = 'pulse';
@@ -110,7 +107,7 @@ export class TransferenciaTitularComponent implements OnInit {
         for (let campo in mensagens) {
           this.toastr.error(mensagens[campo], 'Erro no ' + campo);
         }
-      }          
+      }
     );
   }
 
@@ -122,7 +119,7 @@ export class TransferenciaTitularComponent implements OnInit {
     this.api.atualizarCampo('titular/', this.cadastro).subscribe(
       (data) => {
         this.getTitulares();
-        this.toastr.success("Titular tranferido com sucesso");
+        this.toastr.success('Titular tranferido com sucesso');
         $('#digitarCodigo').fadeOut(250);
         $('#digitarCarteirinha').fadeOut(250);
       },

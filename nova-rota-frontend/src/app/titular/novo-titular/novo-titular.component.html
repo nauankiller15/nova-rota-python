@@ -18,6 +18,39 @@
 
       <div class="main-card mb-3 card">
         <div class="card-body">
+          <h5 class="card-title">Faça a consulta do CPF do Titular:</h5>
+          <hr />
+          <a
+            href="https://servicos.receita.fazenda.gov.br/servicos/cpf/consultasituacao/consultapublica.asp"
+            target="_blank"
+            class="btn btn-primary"
+            id="consultarCPF"
+          >
+            <i class="fas fa-check"></i> Consultar CPF
+          </a>
+        </div>
+      </div>
+      <!-- <div id="modalCPF">
+        <div class="box-consultaCPF">
+          <div class="consultaCPF-atribut">
+            <iframe
+              src="https://servicos.receita.fazenda.gov.br/servicos/cpf/consultasituacao/consultapublica.asp"
+              style="width: 940px; height: 530px"
+              frameborder="0"
+            ></iframe>
+          </div>
+          <button
+            style="display: none; position: absolute; right: 20px; bottom: 20px"
+            class="btn btn-primary btnCPF"
+            id="fecharConsulta"
+          >
+            Fechar tela
+          </button>
+        </div>
+      </div> -->
+
+      <div class="main-card mb-3 card">
+        <div class="card-body">
           <h5 class="card-title">Preencha os campos abaixo:</h5>
           <hr />
           <span style="color: red">* Obrigatório</span>
@@ -65,7 +98,7 @@
                 <small
                   id="CPFCadastrado"
                   class="text-danger"
-                  style="display: none; width: 100%;"
+                  style="display: none; width: 100%"
                   >CPF Já Cadastrado!</small
                 >
               </div>

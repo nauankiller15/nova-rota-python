@@ -12,28 +12,48 @@ declare var $: any;
   styleUrls: ['./novo-titular.component.css'],
 })
 export class NovoTitularComponent implements OnInit {
-  titular: Titular = new Titular
+  titular: Titular = new Titular();
   cpfValido = true;
 
-  constructor(
-    private toastr: ToastrService,
-    private api: ApiService,
-  ) {}
+  constructor(private toastr: ToastrService, private api: ApiService) {}
 
   ngOnInit(): void {
+    // CONSULTAR CPF BOTÃO
+    $('#consultarCPF').on('click', function () {
+      $('#modalCPF').fadeIn(250);
+    });
+    document.getElementById('contentCPF').innerHTML =
+      '<object type="text/html" data="https://servicos.receita.fazenda.gov.br/servicos/cpf/consultasituacao/ConsultaPublicaSonoro.asp?CPF=&NASCIMENTO=" style="width: 675px; height: 500px;" ></object>';
+      
+    //
+
+    $('#theForm').submit(function (event) {
+      if (
+        $('#theForm').find('[name="txtCPF"]').val().length > 8 &&
+        $('[name="txtDataNascimento"]').val().length > 4
+      ) {
+        $('.btnCPF').fadeIn(250);
+      } else {
+        console.log('nada a enviar');
+      }
+      event.preventDefault();
+    });
     $(document).ready(() => {
       $('.cep').mask('00000-000');
       $('.celular').mask('(00) 00000-0000');
-      $('.cpf').mask('000.000.000-00', { 
+      $('.cpf').mask('000.000.000-00', {
         reverse: false,
       });
     });
 
     // TELA DE ANEXO ESTADO CIVIL
 
-    $("input, select, textarea").keypress(function (event: { which: number; preventDefault: () => void; }) {
+    $('input, select, textarea').keypress(function (event: {
+      which: number;
+      preventDefault: () => void;
+    }) {
       if (event.which == 13) {
-          event.preventDefault();
+        event.preventDefault();
       }
     });
 
@@ -115,19 +135,17 @@ export class NovoTitularComponent implements OnInit {
     $('#InvalidCPF').hide();
     $('#CPFCadastrado').fadeOut(100);
     if (validarCPF(cpf) == false) {
-      this.cpfValido = false
+      this.cpfValido = false;
       $('#InvalidCPF').fadeIn(100);
     } else {
-      this.api.listar(`titular/?CPF=${cpf}`).subscribe(
-        (data) => {
-          if (data.length > 0) {
-            this.cpfValido = false;
-            $('#CPFCadastrado').fadeIn(100);
-          } else {
-            this.cpfValido = true;
-          }
-        }          
-      );
+      this.api.listar(`titular/?CPF=${cpf}`).subscribe((data) => {
+        if (data.length > 0) {
+          this.cpfValido = false;
+          $('#CPFCadastrado').fadeIn(100);
+        } else {
+          this.cpfValido = true;
+        }
+      });
     }
   }
 

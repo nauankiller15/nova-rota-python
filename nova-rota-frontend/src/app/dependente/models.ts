@@ -25,6 +25,7 @@ export class Dependente {
   status: string;
   ativo: boolean;
   criado_em: string;
+  transferido: boolean;
   titular_nome: string;
   anexo_doc_parentesco: File = null;
   anexo_doc_casamento: File = null;
