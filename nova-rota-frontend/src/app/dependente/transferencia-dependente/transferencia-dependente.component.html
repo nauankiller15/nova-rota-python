@@ -127,7 +127,6 @@
               <h1>Qual o código da empresa você deseja substituir?</h1>
               <div style="margin-top: 20px"></div>
               <input
-                (change)="validarEmpresa()"
                 [(ngModel)]="cadastro.cod_empresa"
                 name="codigo_empresa"
                 class="form-control cpf"
@@ -140,7 +139,7 @@
                 Nenhuma empresa encontrada com esse código
               </small>
               <div style="margin-top: 35px; width: 100%"></div>
-              <button id="confirmarEmpresa" class="btn btn-primary" (click)="confirmaEmpresa()" disabled>
+              <button id="confirmarEmpresa" class="btn btn-primary" (click)="confirmaEmpresa()">
                 Confirmar
               </button>
               <button class="btn btn-secondary" (click)="empresaVoltar()">

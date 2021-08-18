@@ -53,6 +53,7 @@ import { NovidadesDetailsComponent } from './novidades-details/novidades-details
 import { ReativarCadastroComponent } from './reativar-cadastro/reativar-cadastro.component';
 import { TransferenciaDependenteComponent } from './dependente/transferencia-dependente/transferencia-dependente.component';
 import { TransferenciaTitularComponent } from './titular/transferencia-titular/transferencia-titular.component';
+import { RelatorioComponent } from './relatorio/relatorio.component';
 
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
@@ -93,6 +94,7 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     ReativarCadastroComponent,
     TransferenciaDependenteComponent,
     TransferenciaTitularComponent,
+    RelatorioComponent,
   ],
   imports: [
     NgxSkeletonLoaderModule.forRoot(),

@@ -38,6 +38,7 @@ import { NovidadesDetailsComponent } from './novidades-details/novidades-details
 import { ReativarCadastroComponent } from './reativar-cadastro/reativar-cadastro.component';
 import { TransferenciaDependenteComponent } from './dependente/transferencia-dependente/transferencia-dependente.component';
 import { TransferenciaTitularComponent } from './titular/transferencia-titular/transferencia-titular.component';
+import { RelatorioComponent } from './relatorio/relatorio.component';
 //
 
 const routes: Routes = [
@@ -56,6 +57,10 @@ const routes: Routes = [
       // ==== TELA DE USUÁRIO ====
       { path: 'novo-usuario', component: NovoUsuarioComponent },
       { path: 'alterar-usuario', component: AlterarUsuarioComponent },
+      //]
+
+      // ==== TELA DE RELATÓRIO ====
+      { path: 'relatorio', component: RelatorioComponent },
       //]
 
       // ==== TELA DE DASHBOARD ====

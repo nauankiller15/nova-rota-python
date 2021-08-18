@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'cad_at',
     'cad_emp',
     'tarefas',
+    'relatorio',
     'novidades'
 ]
 

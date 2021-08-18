@@ -130,6 +130,24 @@ export class NovoTitularComponent implements OnInit {
       );
     }
   }
+
+  validarEmpresa() {
+    $('#confirmarEmpresa').prop('disabled', true);
+    this.api.listar(`empresa/?cod_empresa=${this.titular.cod_empresa}`).subscribe(
+      (data) => {
+        console.log(data);
+        if (data.length > 0) {
+          $('#confirmarEmpresa').prop('disabled', false);
+        }
+      },
+      (error) => {
+        let mensagens = error.error;
+        for (let campo in mensagens) {
+          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
+        }
+      }          
+    );
+  }
   
   newTitular() {
     this.titular.ativo = true;

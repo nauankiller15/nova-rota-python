@@ -1,9 +1,11 @@
 from datetime import timedelta
+
 from django.utils import timezone
-from rest_framework.exceptions import ValidationError
-from cad_emp.models import Empresa
 from django.db import models
+
 from localflavor.br.models import BRCPFField, BRStateField, BRPostalCodeField
+
+from validators.cod_empresa import cod_empresa_existe
 from cad_at.models import Titular
 
 
@@ -42,7 +44,7 @@ class Parentesco (models.Model):
 
     nome = models.CharField("Nome Dependente", max_length=255, blank=False)
     CPF = BRCPFField("Número CPF", max_length=14, null=False, unique=True)
-    cod_empresa = models.CharField("Codigo Empresa", max_length=25, null=False, blank=False)
+    cod_empresa = models.CharField("Codigo Empresa", max_length=25, null=False, blank=False, validators=[cod_empresa_existe])
     carteirinha = models.CharField("Numero da Carteirinha", max_length=35, null=False, unique=True)
     data_recebimento = models.DateField(
         "Data Recebimento", auto_now=False, auto_now_add=False, null=False)
@@ -84,13 +86,6 @@ class Parentesco (models.Model):
             if self.criado_em > timezone.now() - timedelta(days=30):
                 return 'prioridade'
         return 'sem prioridade'
-
-    def save(self, *args, **kwargs):
-        empresa = Empresa.objects.filter(cod_empresa=self.cod_empresa).last()
-        if empresa == None:
-            raise ValidationError({'Código da Empresa': 'Nenhuma empresa cadastrada com esse código'})
-
-        return super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.nome} - CPF: {self.CPF}'

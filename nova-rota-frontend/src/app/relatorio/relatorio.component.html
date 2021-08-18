@@ -1,0 +1,36 @@
+<div class="fadeIn app-main">
+    <div class="app-main__outer">
+        <div class="app-main__inner">
+            <div class="app-page-title">
+                <div class="page-title-wrapper">
+                    <div class="page-title-heading">
+                        <div class="page-title-icon">
+                            <i class="fas fas fa-user-check icon-gradient bg-mean-fruit"> </i>
+                        </div>
+                        <div>
+                            Relatório
+                            <div class="page-title-subheading">
+                                Relatório de movimentações.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-card mb-3 card">
+                <nav class="menuVigencia">
+                    <ul class="menuItems">
+                        <li *ngFor="let item of vigencias" (click)="selecionarVigencia(item[1])" id="{{item[1]}}">{{item[0]}}</li>
+                    </ul>
+                </nav>
+                
+                <div class="card-body">
+
+
+                </div>
+            </div>
+        </div>
+
+        <app-rodape></app-rodape>
+    </div>
+</div>

@@ -94,13 +94,15 @@ export class TransferenciaTitularComponent implements OnInit {
     $('#digitarCodigo').fadeOut(250);
   }
 
-  validarEmpresa() {
-    $('#confirmarEmpresa').prop('disabled', true);
+  confirmaEmpresa() {
+    $('#erroEmpresa').fadeOut(100);
     this.api.listar(`empresa/?cod_empresa=${this.cadastro.cod_empresa}`).subscribe(
       (data) => {
-        console.log(data);
         if (data.length > 0) {
-          $('#confirmarEmpresa').prop('disabled', false);
+          $('#digitarCodigo').fadeOut(250);
+          $('#digitarCarteirinha').fadeIn(250);
+        } else {
+          $('#erroEmpresa').fadeIn(100);
         }
       },
       (error) => {
@@ -110,11 +112,6 @@ export class TransferenciaTitularComponent implements OnInit {
         }
       }          
     );
-  }
-
-  confirmaEmpresa() {
-    $('#digitarCodigo').fadeOut(250);
-    $('#digitarCarteirinha').fadeIn(250);
   }
 
   voltarCarteirinha() {
