@@ -20,7 +20,7 @@
             <div class="main-card mb-3 card">
                 <nav class="menuVigencia">
                     <ul class="menuItems">
-                        <li *ngFor="let item of vigencias" (click)="selecionarVigencia(item[1])" id="{{item[1]}}">{{item[0]}}</li>
+                        <li *ngFor="let item of vigencias; let index = index;" (click)="selecionarVigencia(item[1])" id="{{item[1]}}" [ngClass]="{'active': index == 3}">{{item[0]}}</li>
                     </ul>
                 </nav>
                 

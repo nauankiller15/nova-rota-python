@@ -103,7 +103,6 @@ export class TransferenciaDependenteComponent implements OnInit {
     $('#erroEmpresa').fadeOut(100);
     this.api.listar(`empresa/?cod_empresa=${this.cadastro.cod_empresa}`).subscribe(
       (data) => {
-        console.log(data);
         if (data.length > 0) {
           $('#digitarCodigo').fadeOut(250);
           $('#digitarCarteirinha').fadeIn(250);
