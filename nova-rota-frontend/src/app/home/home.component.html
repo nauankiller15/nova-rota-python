@@ -116,7 +116,7 @@
               </div>
               <div class="widget-content-left ml-3 header-user-info">
                 <div class="widget-heading">{{ usuario.username }}</div>
-                <div class="widget-subheading">{{usuario.cargo}}</div>
+                <div class="widget-subheading">{{ usuario.cargo }}</div>
               </div>
               <div class="widget-content-right header-user-info ml-3">
                 <button
@@ -202,8 +202,7 @@
             animation="progress"
           >
           </ngx-skeleton-loader>
-          <span class="task-item loadit" *ngIf="contentLoaded"
-            >
+          <span class="task-item loadit" *ngIf="contentLoaded">
             <li
               class="loadit"
               [ngClass]="tarefa.status_tarefa ? 'tarefa-completed' : ''"
@@ -262,12 +261,12 @@
         type="checkbox"
         id="status_tarefa"
         name="status_tarefa"
-        (value)="true"
+        (value)="(true)"
       />
       <label style="margin-left: 5px" for="status_tarefa"
         >Completar Tarefa</label
       >
-      
+
       <div class="posit-bottom">
         <button class="edit-edit" (click)="updateTarefa()">
           <i class="fas fa-edit"></i> Atualizar
