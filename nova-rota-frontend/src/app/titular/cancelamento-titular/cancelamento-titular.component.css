@@ -502,3 +502,12 @@ em {
 #espera {
   display: none;
 }
+
+/* ARROW CANCELAR */
+.tooltip.bottom .tooltip-arrow {
+  top: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-bottom-color: #000000; /* black */
+  border-width: 0 5px 5px;
+}

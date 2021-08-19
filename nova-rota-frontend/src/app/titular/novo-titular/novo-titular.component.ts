@@ -18,26 +18,7 @@ export class NovoTitularComponent implements OnInit {
   constructor(private toastr: ToastrService, private api: ApiService) {}
 
   ngOnInit(): void {
-    // CONSULTAR CPF BOTÃO
-    $('#consultarCPF').on('click', function () {
-      $('#modalCPF').fadeIn(250);
-    });
-    document.getElementById('contentCPF').innerHTML =
-      '<object type="text/html" data="https://servicos.receita.fazenda.gov.br/servicos/cpf/consultasituacao/ConsultaPublicaSonoro.asp?CPF=&NASCIMENTO=" style="width: 675px; height: 500px;" ></object>';
-      
-    //
-
-    $('#theForm').submit(function (event) {
-      if (
-        $('#theForm').find('[name="txtCPF"]').val().length > 8 &&
-        $('[name="txtDataNascimento"]').val().length > 4
-      ) {
-        $('.btnCPF').fadeIn(250);
-      } else {
-        console.log('nada a enviar');
-      }
-      event.preventDefault();
-    });
+    
     $(document).ready(() => {
       $('.cep').mask('00000-000');
       $('.celular').mask('(00) 00000-0000');

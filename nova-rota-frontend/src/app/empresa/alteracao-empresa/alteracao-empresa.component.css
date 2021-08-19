@@ -39,6 +39,42 @@
   display: none;
 }
 
+/* TELA DE CONFIRMAÇÃO DE EXCLUSÃO DE REAJUSTE */
+#exclusaoReajuste {
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0000005e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#exclusaoReajuste {
+  display: none;
+}
+
+/* TELA DE CONFIRMAÇÃO DE EXCLUSÃO DE SINISTRALIDADE */
+#exclusaoSinistralidade {
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0000005e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#exclusaoSinistralidade {
+  display: none;
+}
+
 /* TELA DE ANEXO CASADO */
 #vinc-anexo-emp {
   z-index: 999;
