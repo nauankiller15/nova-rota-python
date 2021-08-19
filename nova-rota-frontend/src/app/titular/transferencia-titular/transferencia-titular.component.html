@@ -54,9 +54,6 @@
               </div>
             </div>
             <div style="width: 100%; height: 10px"></div>
-
-            <hr />
-
             <div>
               <hr />
               <div class="titulares">
@@ -74,8 +71,11 @@
                           }
                   "
                   [ngClass]="
-                    resultado.transferido == true ? 'transferido': {                     
-                    'prioridade': resultado.prioridade == 'prioridade'}
+                    resultado.transferido == true
+                      ? 'transferido'
+                      : {
+                          prioridade: resultado.prioridade == 'prioridade'
+                        }
                   "
                   (click)="titularClicked(resultado)"
                 >
@@ -134,13 +134,17 @@
             type="text"
             id="codigo_empresa"
             placeholder="Digite o código da empresa aqui"
-            style="width: 40%;"
+            style="width: 40%"
           />
-          <small id="erroEmpresa" class="text-danger" style="display: none;">
+          <small id="erroEmpresa" class="text-danger" style="display: none">
             Nenhuma empresa encontrada com esse código
           </small>
           <div style="margin-top: 35px; width: 100%"></div>
-          <button id="confirmarEmpresa" class="btn btn-primary" (click)="confirmaEmpresa()">
+          <button
+            id="confirmarEmpresa"
+            class="btn btn-primary"
+            (click)="confirmaEmpresa()"
+          >
             Confirmar
           </button>
           <button class="btn btn-secondary" (click)="empresaVoltar()">
@@ -153,18 +157,18 @@
     <div id="digitarCarteirinha" style="display: none">
       <div class="box-cancelar">
         <div class="anexo-info-box-titular-vinc">
-            <h1>Qual o número da carteirinha você deseja substituir?</h1>
-            <div style="margin-top: 20px"></div>
-            <input
-              [(ngModel)]="cadastro.carteirinha"
-              name="carteirinha"
-              class="form-control"
-              type="text"
-              id="carteirinha"
-              placeholder="Digite o número da carteirinha aqui"
-              style="width: 40%;"
-            />
-            <div style="margin-top: 35px; width: 100%"></div>
+          <h1>Qual o número da carteirinha você deseja substituir?</h1>
+          <div style="margin-top: 20px"></div>
+          <input
+            [(ngModel)]="cadastro.carteirinha"
+            name="carteirinha"
+            class="form-control"
+            type="text"
+            id="carteirinha"
+            placeholder="Digite o número da carteirinha aqui"
+            style="width: 40%"
+          />
+          <div style="margin-top: 35px; width: 100%"></div>
           <button class="btn btn-primary" (click)="transferirCadastro()">
             Confirmar
           </button>

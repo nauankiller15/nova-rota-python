@@ -1,183 +1,184 @@
 <div class="fadeIn app-main">
-    <div class="app-main__outer">
-      <div class="app-main__inner">
-        <div class="app-page-title">
-          <div class="page-title-wrapper">
-            <div class="page-title-heading">
-              <div class="page-title-icon">
-                <i class="fas fa-user-plus icon-gradient bg-mean-fruit"> </i>
-              </div>
-              <div>
-                Transferência de Dependentes
-                <div class="page-title-subheading">
-                  Transferência de dados - Dependentes Ativos.
-                </div>
+  <div class="app-main__outer">
+    <div class="app-main__inner">
+      <div class="app-page-title">
+        <div class="page-title-wrapper">
+          <div class="page-title-heading">
+            <div class="page-title-icon">
+              <i class="fas fa-user-plus icon-gradient bg-mean-fruit"> </i>
+            </div>
+            <div>
+              Transferência de Dependentes
+              <div class="page-title-subheading">
+                Transferência de dados - Dependentes Ativos.
               </div>
             </div>
           </div>
         </div>
-  
-        <div id="consulta4" class="main-card mb-3 card">
-          <div class="card-body">
-            <h5 class="card-title">Consultar Dependente</h5>
-            <form class="needs-validation">
-              <div class="form-row">
-                <div class="input-group col-md-3 mb3">
-                  <label>CPF:</label>
-                  <div style="width: 100%"></div>
-                  <span class="input-group-text" id="basic-addon1"
-                    ><i class="fas fa-id-card"></i
-                  ></span>
-                  <input
-                    name="CPF"
-                    (input)="searchCPF($event.target.value)"
-                    class="form-control cpf"
-                    type="text"
-                    id="search_cpf"
-                    placeholder="Pesquise por CPF"
-                  />
-                </div>
-                <div class="input-group col-md-4 mb3">
-                  <label>Nome do dependente:</label>
-                  <div style="width: 100%"></div>
-                  <span class="input-group-text" id="basic-addon1"
-                    ><i class="fas fa-user-plus"></i
-                  ></span>
-                  <input
-                    (input)="searchNomeBenef($event.target.value)"
-                    name="nome_dependente"
-                    type="text"
-                    class="form-control"
-                    placeholder="Digite aqui o nome do dependente"
-                  />
-                </div>
-              </div>
-              <div style="width: 100%; height: 10px"></div>
-  
-              <hr />
-  
-              <div>
-               
-                <hr />
-                <div class="titulares">
-                  Dependentes Encontrados:
-                  <li
-                    class="loadit"
-                    *ngFor="
-                      let resultado of busca
-                        | orderBy: 'created_at':false
-                        | paginate
-                          : {
-                              id: 'dependentesCancelamento',
-                              itemsPerPage: 14,
-                              currentPage: p
-                            }
-                    "
-                    [ngClass]="
-                      resultado.transferido == true ? 'transferido': {                     
-                      'prioridade': resultado.prioridade == 'prioridade'}
-                    "
-                    (click)="dependenteClicked(resultado)"
-                  >
-                 
-                    <i
-                      style="
-                        font-size: 18px;
-                        margin-left: 9px;
-                        margin-right: 1px;
-                        background-color: #eff9ff;
-                        border: 1px solid #ced4da;
-                        border-radius: 0.25rem;
-                        padding: 3px;
-                        color: #434343;
-                      "
-                      class="fas fa-user-plus"
-                    ></i>
-                    CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
-                    {{ resultado.nome }}
-                  </li>
-                  <h4
-                    class="loadit"
-                    style="margin-top: 20px"
-                    *ngIf="busca.length === 0"
-                  >
-                    Nada encontrado
-                  </h4>
-                </div>
-              </div>
-              <pagination-controls
-                id="dependentesCancelamento"
-                class="paginacao"
-                maxSize="7"
-                autoHide="true"
-                previousLabel="Anterior"
-                nextLabel="Seguinte"
-                directionLinks="true"
-                autoHide="true"
-                responsive="true"
-                (pageChange)="p = $event"
-              ></pagination-controls>
-            </form>
-          </div>
-        </div>
-        
-        <div id="digitarCodigo">
-          <div class="box-cancelar">
-            <div class="anexo-info-box-titular-vinc">
-              <h1>Qual o código da empresa você deseja substituir?</h1>
-              <div style="margin-top: 20px"></div>
-              <input
-                [(ngModel)]="cadastro.cod_empresa"
-                name="codigo_empresa"
-                class="form-control cpf"
-                type="text"
-                id="codigo_empresa"
-                placeholder="Digite o código da empresa aqui"
-                style="width: 40%;"
-              />
-              <small id="erroEmpresa" class="text-danger" style="display: none;">
-                Nenhuma empresa encontrada com esse código
-              </small>
-              <div style="margin-top: 35px; width: 100%"></div>
-              <button id="confirmarEmpresa" class="btn btn-primary" (click)="confirmaEmpresa()">
-                Confirmar
-              </button>
-              <button class="btn btn-secondary" (click)="empresaVoltar()">
-                Voltar
-              </button>
-            </div>
-          </div>
-        </div>
-    
-        <div id="digitarCarteirinha" style="display: none;">
-          <div class="box-cancelar">
-            <div class="anexo-info-box-titular-vinc">
-                <h1>Qual o número da carteirinha você deseja substituir?</h1>
-                <div style="margin-top: 20px"></div>
-                <input
-                  [(ngModel)]="cadastro.carteirinha"
-                  name="carteirinha"
-                  class="form-control"
-                  type="text"
-                  id="carteirinha"
-                  placeholder="Digite o número da carteirinha aqui"
-                  style="width: 40%;"
-                />
-                <div style="margin-top: 35px; width: 100%"></div>
-              <button class="btn btn-primary" (click)="transferirCadastro()">
-                Confirmar
-              </button>
-              <button class="btn btn-secondary" (click)="voltarCarteirinha()">
-                Voltar
-              </button>
-            </div>
-          </div>
-        </div>      
       </div>
-      <app-rodape></app-rodape>
+
+      <div id="consulta4" class="main-card mb-3 card">
+        <div class="card-body">
+          <h5 class="card-title">Consultar Dependente</h5>
+          <form class="needs-validation">
+            <div class="form-row">
+              <div class="input-group col-md-3 mb3">
+                <label>CPF:</label>
+                <div style="width: 100%"></div>
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="fas fa-id-card"></i
+                ></span>
+                <input
+                  name="CPF"
+                  (input)="searchCPF($event.target.value)"
+                  class="form-control cpf"
+                  type="text"
+                  id="search_cpf"
+                  placeholder="Pesquise por CPF"
+                />
+              </div>
+              <div class="input-group col-md-4 mb3">
+                <label>Nome do dependente:</label>
+                <div style="width: 100%"></div>
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="fas fa-user-plus"></i
+                ></span>
+                <input
+                  (input)="searchNomeBenef($event.target.value)"
+                  name="nome_dependente"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o nome do dependente"
+                />
+              </div>
+            </div>
+            <div style="width: 100%; height: 10px"></div>
+            <div>
+              <hr />
+              <div class="titulares">
+                Dependentes Encontrados:
+                <li
+                  class="loadit"
+                  *ngFor="
+                    let resultado of busca
+                      | orderBy: 'created_at':false
+                      | paginate
+                        : {
+                            id: 'dependentesCancelamento',
+                            itemsPerPage: 14,
+                            currentPage: p
+                          }
+                  "
+                  [ngClass]="
+                    resultado.transferido == true
+                      ? 'transferido'
+                      : {
+                          prioridade: resultado.prioridade == 'prioridade'
+                        }
+                  "
+                  (click)="dependenteClicked(resultado)"
+                >
+                  <i
+                    style="
+                      font-size: 18px;
+                      margin-left: 9px;
+                      margin-right: 1px;
+                      background-color: #eff9ff;
+                      border: 1px solid #ced4da;
+                      border-radius: 0.25rem;
+                      padding: 3px;
+                      color: #434343;
+                    "
+                    class="fas fa-user-plus"
+                  ></i>
+                  CPF: {{ resultado.CPF | mask: "000.000.000-99" }} -
+                  {{ resultado.nome }}
+                </li>
+                <h4
+                  class="loadit"
+                  style="margin-top: 20px"
+                  *ngIf="busca.length === 0"
+                >
+                  Nada encontrado
+                </h4>
+              </div>
+            </div>
+            <pagination-controls
+              id="dependentesCancelamento"
+              class="paginacao"
+              maxSize="7"
+              autoHide="true"
+              previousLabel="Anterior"
+              nextLabel="Seguinte"
+              directionLinks="true"
+              autoHide="true"
+              responsive="true"
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </form>
+        </div>
+      </div>
+
+      <div id="digitarCodigo">
+        <div class="box-cancelar">
+          <div class="anexo-info-box-titular-vinc">
+            <h1>Qual o código da empresa você deseja substituir?</h1>
+            <div style="margin-top: 20px"></div>
+            <input
+              [(ngModel)]="cadastro.cod_empresa"
+              name="codigo_empresa"
+              class="form-control cpf"
+              type="text"
+              id="codigo_empresa"
+              placeholder="Digite o código da empresa aqui"
+              style="width: 40%"
+            />
+            <small id="erroEmpresa" class="text-danger" style="display: none">
+              Nenhuma empresa encontrada com esse código
+            </small>
+            <div style="margin-top: 35px; width: 100%"></div>
+            <button
+              id="confirmarEmpresa"
+              class="btn btn-primary"
+              (click)="confirmaEmpresa()"
+            >
+              Confirmar
+            </button>
+            <button class="btn btn-secondary" (click)="empresaVoltar()">
+              Voltar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="digitarCarteirinha" style="display: none">
+        <div class="box-cancelar">
+          <div class="anexo-info-box-titular-vinc">
+            <h1>Qual o número da carteirinha você deseja substituir?</h1>
+            <div style="margin-top: 20px"></div>
+            <input
+              [(ngModel)]="cadastro.carteirinha"
+              name="carteirinha"
+              class="form-control"
+              type="text"
+              id="carteirinha"
+              placeholder="Digite o número da carteirinha aqui"
+              style="width: 40%"
+            />
+            <div style="margin-top: 35px; width: 100%"></div>
+            <button class="btn btn-primary" (click)="transferirCadastro()">
+              Confirmar
+            </button>
+            <button class="btn btn-secondary" (click)="voltarCarteirinha()">
+              Voltar
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    <script>
-      document.title = "Cancelamento titular";
-    </script>
+    <app-rodape></app-rodape>
   </div>
-  
+  <script>
+    document.title = "Cancelamento titular";
+  </script>
+</div>
