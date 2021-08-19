@@ -16,13 +16,13 @@ export class RelatorioComponent implements OnInit {
     const periodo = hoje.getDate() < 15 ? 1 : 2;
     const mes = hoje.getMonth();
     const ano = hoje.getFullYear();
-    this.setVigencias(`${periodo}-${mes}-${ano}`)
+    this.vigencias = this.setVigencias(`${periodo}-${mes}-${ano}`);
   }
 
   ngOnInit(): void {
   }
 
-  getDataSelecao(selecao: string) {
+  getDataSelecao(selecao: string): Date {
     // selecao no formato: periodo(int)-mes(int)-ano(int) # janeiro é 0, fevereiro 1, etc...
     let data = new Date();
     const vigencia = selecao.split('-');
@@ -38,9 +38,9 @@ export class RelatorioComponent implements OnInit {
     return data
   }
 
-  setVigencias(vigencia:string) {
+  setVigencias(vigencia:string): Array<any> {
     
-    this.vigencias = [];
+    let vigencias = [];
     const dataSelecionada = this.getDataSelecao(vigencia)
     console.log('selecionado', dataSelecionada);
 
@@ -50,26 +50,29 @@ export class RelatorioComponent implements OnInit {
     data.setDate(data.getDate() - 45);
 
     for (let i = inicio; i < 7 + inicio; i++) {
-      this.setVigencia(i % 2 + 1, data.getMonth(), data.getFullYear());
+      vigencias.push(this.setVigencia(i % 2 + 1, data.getMonth(), data.getFullYear()));
       if (i % 2 == 1) {
         data.setMonth(data.getMonth() + 1);
       }
     }
+
+    return vigencias
   }
 
-  setVigencia(periodo: number, mes: number, ano: number) {
+  setVigencia(periodo: number, mes: number, ano: number): Array<any> {
 
     const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril','Maio', 'Junho', 'Julho', 'Agosto', 'Setembro',
      'Outubro', 'Novembro', 'Dezembro'];
     const label = `${periodo}ª ${meses[mes]}/${ano.toString().substring(2,4)}`;
     const idVigencia = `${periodo}-${mes}-${ano}`;
-    this.vigencias.push([label, idVigencia])
+    
+    return [label, idVigencia]
   }
   
   selecionarVigencia(id_vigencia: string){
 
     if (id_vigencia != '') {
-      this.setVigencias(id_vigencia);
+      this.vigencias = this.setVigencias(id_vigencia);
       $(`#${id_vigencia}`).addClass('active');
       $(`#${id_vigencia}`).siblings().removeClass('active');
     }
