@@ -25,6 +25,41 @@
                 </nav>
                 
                 <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Mes de vigencia</th>
+                                <th>Código da empresa</th>
+                                <th>Data de inclusao</th>
+                                <th>Prioridade</th>
+                                <th>Tipo</th>
+                                <th>CPF</th>
+                                <th>Nome</th>
+                                <th>Carteirinha</th>    
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr *ngFor="let dado of dadosRelatorio" 
+                                [ngClass]="{
+                                    'processado': dado.carteirinha == 'PROCESSADO',
+                                    'inclusao-titular': dado.tipo == 'TIT'
+                                }"
+                            >
+                                <td>{{dado.mes_vigencia}}</td>
+                                <td>{{dado.cod_empresa}}</td>
+                                <td>{{dado.data_inclusao}}</td>
+                                <td>{{dado.prioridade}}</td>
+                                <td>{{dado.tipo}}</td>
+                                <td>{{dado.CPF}}</td>
+                                <td>{{dado.nome}}</td>
+                                <td>{{dado.carteirinha}}</td>
+                            </tr>
+                            <tr *ngIf="dadosRelatorio.length == 0">
+                                <td class="text-center" colspan="8">Sem dados cadastrados</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
 
                 </div>

@@ -75,3 +75,11 @@
 .radiusTop {
   border-radius: 0.25rem 0px 0px 0px;
 }
+
+.processado {
+  background-color: #ebff39;
+}
+
+.inclusao-titular {
+  background-color: #39c7ff;
+}

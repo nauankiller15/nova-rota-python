@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { dados } from './dados';
 
 declare var $: any;
 
@@ -9,7 +10,8 @@ declare var $: any;
 })
 export class RelatorioComponent implements OnInit {
 
-  vigencias = []
+  vigencias = [];
+  dadosRelatorio = dados;
 
   constructor() {
     const hoje = new Date;
