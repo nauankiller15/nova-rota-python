@@ -1,3 +1,4 @@
+from datetime import datetime
 from django_filters.rest_framework.backends import DjangoFilterBackend
 
 from rest_framework import status
@@ -33,4 +34,20 @@ class ParentescoViewSet(ModelViewSet):
         )
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def perform_create(self, serializer):
+        dependente = dict(serializer.validated_data)
+
+        Relatorio.objects.create(
+            cod_empresa = dependente['cod_empresa'],
+            data_inclusao = datetime.now().date(),
+            prioridade = 'prioridade',
+            tipo = "INCL. DEP",
+            CPF = dependente['CPF'],
+            nome = dependente['nome'],
+            carteirinha = dependente['carteirinha'],
+            usuario = self.request.user
+        )
+        
+        return super().perform_create(serializer)
     
