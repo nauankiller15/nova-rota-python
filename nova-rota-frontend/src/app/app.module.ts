@@ -16,6 +16,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { RodapeComponent } from './base/rodape/rodape.component';
 import { NgxLoadingModule } from 'ngx-loading';
+import { registerLocaleData } from '@angular/common';
+import localePT from '@angular/common/locales/pt';
+registerLocaleData(localePT);
 
 import { AuthInterceptor } from './http-interceptors/auth-interceptor';
 

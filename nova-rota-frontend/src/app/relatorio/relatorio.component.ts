@@ -13,7 +13,7 @@ declare var $: any;
 export class RelatorioComponent implements OnInit {
 
   vigencias = [];
-  dadosRelatorio = dados;
+  dadosRelatorio = [];
 
   constructor(private apiService: ApiService, private toastr: ToastrService) {
     const hoje = new Date;  
@@ -46,10 +46,8 @@ export class RelatorioComponent implements OnInit {
     
     let vigencias = [];
     const dataSelecionada = this.getDataSelecao(vigencia)
-    console.log('selecionado', dataSelecionada);
 
     let data = new Date(dataSelecionada);
-    console.log(dataSelecionada.getDate());
     const inicio = dataSelecionada.getDate() == 1 ? 1 : 0
     data.setDate(data.getDate() - 45);
 

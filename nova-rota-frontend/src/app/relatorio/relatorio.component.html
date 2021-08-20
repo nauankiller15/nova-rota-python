@@ -46,9 +46,9 @@
                                     'inclusao-titular': dado.tipo == 'TIT'
                                 }"
                             >
-                                <td>{{dado.mes_vigencia}}</td>
+                                <td>{{dado.mes_vigencia | date: 'MMM/yyyy': '': 'pt-BR'}}</td>
                                 <td>{{dado.cod_empresa}}</td>
-                                <td>{{dado.data_inclusao}}</td>
+                                <td>{{dado.data_inclusao | date: 'dd/MM/yyyy'}}</td>
                                 <td>{{dado.prioridade}}</td>
                                 <td>{{dado.tipo}}</td>
                                 <td>{{dado.CPF}}</td>
