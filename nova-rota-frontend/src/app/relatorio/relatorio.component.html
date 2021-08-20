@@ -8,9 +8,9 @@
               <i class="fas fas fa-list icon-gradient bg-mean-fruit"> </i>
             </div>
             <div>
-              Relatório
+              Movimentações Totais
               <div class="page-title-subheading">
-                Relatório de movimentações.
+                Relatório de movimentações totais.
               </div>
             </div>
           </div>
@@ -49,7 +49,16 @@
 
             <tbody>
               <tr
-                *ngFor="let dado of dadosRelatorio"
+                class="loadit"
+                *ngFor="
+                  let dado of dadosRelatorio
+                    | paginate
+                      : {
+                          id: 'relatorioPag',
+                          itemsPerPage: 10,
+                          currentPage: p
+                        }
+                "
                 [ngClass]="{
                   processado:
                     dado.tipo == 'EXCL. TIT' || dado.tipo == 'EXCL. DEP',
@@ -59,7 +68,9 @@
                 <td class="capt">
                   {{ dado.mes_vigencia | date: "MMM/yyyy":"":"pt-BR" }}
                 </td>
-                <td>{{ dado.cod_empresa }}</td>
+                <td>
+                  <b>{{ dado.cod_empresa }}</b>
+                </td>
                 <td>{{ dado.data_inclusao | date: "dd/MM/yyyy" }}</td>
                 <td class="capt">
                   <b>{{ dado.prioridade }}</b>
@@ -67,7 +78,9 @@
                 <td>
                   {{ dado.tipo }}
                 </td>
-                <td><b>{{ dado.CPF }}</b></td>
+                <td>
+                  <b>{{ dado.CPF }}</b>
+                </td>
                 <td>{{ dado.nome }}</td>
                 <td>
                   <b>{{ dado.carteirinha }}</b>
@@ -79,6 +92,18 @@
               </tr>
             </tbody>
           </table>
+          <pagination-controls
+            id="relatorioPag"
+            class="paginacao"
+            maxSize="7"
+            autoHide="true"
+            previousLabel="Anterior"
+            nextLabel="Seguinte"
+            directionLinks="true"
+            autoHide="true"
+            responsive="true"
+            (pageChange)="p = $event"
+          ></pagination-controls>
         </div>
       </div>
     </div>
