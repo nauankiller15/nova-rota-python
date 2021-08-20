@@ -1,111 +1,185 @@
 <div class="fadeIn app-main">
-    <div class="app-main__outer">
-        <div class="app-main__inner">
-            <div class="app-page-title">
-                <div class="page-title-wrapper">
-                    <div class="page-title-heading">
-                        <div class="page-title-icon">
-                            <i class="fas fa-user icon-gradient bg-mean-fruit"> </i>
-                        </div>
-                        <div>
-                            Inclusão de Usuário
-                            <div class="page-title-subheading">Novo Usuário.</div>
-                        </div>
-                    </div>
-                </div>
+  <div class="app-main__outer">
+    <div class="app-main__inner">
+      <div class="app-page-title">
+        <div class="page-title-wrapper">
+          <div class="page-title-heading">
+            <div class="page-title-icon">
+              <i class="fas fa-user icon-gradient bg-mean-fruit"> </i>
             </div>
-            <!--  -->
-
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <h5 class="card-title">Preencha os campos abaixo:</h5>
-                    <hr />
-                    <span style="color: red">* Obrigatório</span>
-                    <div style="height: 5px"></div>
-
-                    <form class="needs-validation" #usuarioForm="ngForm">
-                        <div class="form-row">
-                            <div class="col-md-3 mb-4">
-                                <label for="validationCustom01">Nome <span style="color: red">*</span></label>
-                                <input #nome="ngModel" [(ngModel)]="usuario.first_name"
-                                    [class.is-invalid]="nome.invalid && nome.touched"
-                                    [class.is-valid]="nome.valid && nome.touched" id="nome" name="nome" type="text"
-                                    class="form-control" placeholder="Digite aqui seu Nome" required />
-                            </div>
-
-                            <div class="col-md-4 mb-4">
-                                <label for="validationCustom01">Sobrenome <span style="color: red">*</span></label>
-                                <input #sobrenome="ngModel" [(ngModel)]="usuario.last_name"
-                                    [class.is-invalid]="sobrenome.invalid && sobrenome.touched"
-                                    [class.is-valid]="sobrenome.valid && sobrenome.touched" id="sobrenome"
-                                    name="sobrenome" type="text" class="form-control" placeholder="Digite aqui seu Sobrenome"
-                                    required />
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="col-md-4 mb-4">
-                                <label for="validationCustom01">Email <span style="color: red">*</span></label>
-                                <input #email="ngModel" [(ngModel)]="usuario.email"
-                                    [class.is-invalid]="email.invalid && email.touched"
-                                    [class.is-valid]="email.valid && email.touched" id="email" name="email" type="text"
-                                    class="form-control" placeholder="Digite aqui seu Email" required />
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="col-md-3 mb-4">
-                                <label for="validationCustom01">Usuário <span style="color: red">*</span></label>
-                                <input #username="ngModel" [(ngModel)]="usuario.username"
-                                    [class.is-invalid]="username.invalid && username.touched"
-                                    [class.is-valid]="username.valid && username.touched" id="username" name="username"
-                                    type="text" class="form-control" placeholder="Digite aqui seu Usuário" required />
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="col-md-3 mb-4">
-                                <label for="validationCustom01">Senha <span style="color: red">*</span></label>
-                                <input #senha="ngModel" [(ngModel)]="usuario.password"
-                                    [class.is-invalid]="senha.invalid && senha.touched"
-                                    [class.is-valid]="senha.valid && senha.touched" id="senha" name="senha" type="password"
-                                    class="form-control cpf" placeholder="Digite aqui sua Senha" required />
-                            </div>
-
-                            <div class="col-md-3 mb-4">
-                                <label for="validationCustom01">Confirmacao de Senha <span
-                                        style="color: red">*</span></label>
-                                <input #confirmacaoSenha id="confirmacaoSenha" name="confirmacaoSenha" type="password"
-                                    class="form-control cpf" placeholder="Confimação de senha" required />
-                                <small *ngIf="usuario.password != confirmacaoSenha.value" class="text-danger">Senha não
-                                    é igual a confirmação</small>
-                            </div>
-                        </div>
-                    </form>
-
-                    <form #cargoForm="ngForm">
-                        <div class="form-row">
-                            <div class="col-md-3 mb-4">
-                                <label for="validationCustom01">Cargo <span style="color: red">*</span></label>
-                                <select #cargo_input="ngModel" [(ngModel)]="cargo.cargo" name="cargo"
-                                    class="form-control" required>
-                                    <option value="">Selecione</option>
-                                    <option value="funcionario">Funcionário</option>
-                                    <option value="gestor">Gestor</option>
-                                </select>
-                            </div>
-                        </div>
-                    </form>
-
-                    <button [disabled]="usuarioForm.form.invalid || usuarioForm.form.invalid" name="enviar"
-                        class="btn btn-primary" (click)="novoUsuario()">
-                        <i class="fas fa-check"></i> Gravar informações
-                    </button>
-                    <button type="reset" class="btn btn-cancelar apagarEmp"><i class="far fa-times-circle"></i> Apagar
-                        tudo</button>
-                </div>
+            <div>
+              Inclusão de Usuário
+              <div class="page-title-subheading">Novo Usuário.</div>
             </div>
+          </div>
         </div>
-        <app-rodape></app-rodape>
+      </div>
+      <!--  -->
+
+      <div class="main-card mb-3 card">
+        <div class="card-body">
+          <h5 class="card-title">Preencha os campos abaixo:</h5>
+          <hr />
+          <span style="color: red">* Obrigatório</span>
+          <div style="height: 5px"></div>
+
+          <form class="needs-validation" #usuarioForm="ngForm">
+            <div class="form-row">
+              <div class="col-md-3 mb-4">
+                <label for="validationCustom01"
+                  >Nome <span style="color: red">*</span></label
+                >
+                <input
+                  #nome="ngModel"
+                  [(ngModel)]="usuario.first_name"
+                  [class.is-invalid]="nome.invalid && nome.touched"
+                  [class.is-valid]="nome.valid && nome.touched"
+                  id="nome"
+                  name="nome"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui seu Nome"
+                  required
+                />
+              </div>
+
+              <div class="col-md-3 mb-3">
+                <label for="validationCustom01"
+                  >Sobrenome <span style="color: red">*</span></label
+                >
+                <input
+                  #sobrenome="ngModel"
+                  [(ngModel)]="usuario.last_name"
+                  [class.is-invalid]="sobrenome.invalid && sobrenome.touched"
+                  [class.is-valid]="sobrenome.valid && sobrenome.touched"
+                  id="sobrenome"
+                  name="sobrenome"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui seu Sobrenome"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-3 mb-3">
+                <label for="validationCustom01"
+                  >Email <span style="color: red">*</span></label
+                >
+                <input
+                  #email="ngModel"
+                  [(ngModel)]="usuario.email"
+                  [class.is-invalid]="email.invalid && email.touched"
+                  [class.is-valid]="email.valid && email.touched"
+                  id="email"
+                  name="email"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui seu Email"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-3 mb-4">
+                <label for="validationCustom01"
+                  >Usuário <span style="color: red">*</span></label
+                >
+                <input
+                  #username="ngModel"
+                  [(ngModel)]="usuario.username"
+                  [class.is-invalid]="username.invalid && username.touched"
+                  [class.is-valid]="username.valid && username.touched"
+                  id="username"
+                  name="username"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui seu Usuário"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-3 mb-4">
+                <label for="validationCustom01"
+                  >Senha <span style="color: red">*</span></label
+                >
+                <input
+                  #senha="ngModel"
+                  [(ngModel)]="usuario.password"
+                  [class.is-invalid]="senha.invalid && senha.touched"
+                  [class.is-valid]="senha.valid && senha.touched"
+                  id="senha"
+                  name="senha"
+                  type="password"
+                  class="form-control cpf"
+                  placeholder="Digite aqui sua Senha"
+                  required
+                />
+              </div>
+
+              <div class="col-md-3 mb-4">
+                <label for="validationCustom01"
+                  >Confirmacao de Senha <span style="color: red">*</span></label
+                >
+                <input
+                  #confirmacaoSenha
+                  [class.is-invalid]="confirmacaoSenha.invalid && confirmacaoSenha.touched"
+                  [class.is-valid]="confirmacaoSenha.valid && confirmacaoSenha.touched"
+                  id="confirmacaoSenha"
+                  name="confirmacaoSenha"
+                  type="password"
+                  class="form-control cpf"
+                  placeholder="Confimação de senha"
+                  required
+                />
+                <small
+                  *ngIf="usuario.password != confirmacaoSenha.value"
+                  class="text-danger"
+                  >Senha não é igual a confirmação</small
+                >
+              </div>
+            </div>
+          </form>
+
+          <form #cargoForm="ngForm">
+            <div class="form-row">
+              <div class="col-md-3 mb-4">
+                <label for="validationCustom01"
+                  >Cargo <span style="color: red">*</span></label
+                >
+                <select
+                  #cargo_input="ngModel"
+                  [(ngModel)]="cargo.cargo"
+                  name="cargo"
+                  class="form-control"
+                  required
+                >
+                  <option value="">Selecione</option>
+                  <option value="funcionario">Funcionário</option>
+                  <option value="gestor">Gestor</option>
+                </select>
+              </div>
+            </div>
+          </form>
+
+          <button
+            [disabled]="usuarioForm.form.invalid || usuarioForm.form.invalid"
+            name="enviar"
+            class="btn btn-primary"
+            (click)="novoUsuario()"
+          >
+            <i class="fas fa-check"></i> Gravar informações
+          </button>
+          <button type="reset" class="btn btn-cancelar apagarEmp">
+            <i class="far fa-times-circle"></i> Apagar tudo
+          </button>
+        </div>
+      </div>
     </div>
+    <app-rodape></app-rodape>
+  </div>
 </div>
