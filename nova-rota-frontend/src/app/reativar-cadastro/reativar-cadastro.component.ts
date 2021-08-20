@@ -124,6 +124,7 @@ export class ReativarCadastroComponent implements OnInit {
         } else {
           this.loadDependentesCancelados();
         }
+        this.toastr.success('Cadastro reativado com sucesso');
       },
       (error) => {
         const mensagens = error.error;

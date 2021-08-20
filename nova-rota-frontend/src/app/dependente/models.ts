@@ -41,7 +41,6 @@ export class Titular {
 export class CancelarCadastro {
   id: number;
   nome: string;
-  ativo: boolean = false;
 }
 
 export class TransferirDependente {

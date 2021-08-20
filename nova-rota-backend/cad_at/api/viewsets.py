@@ -1,8 +1,11 @@
+from relatorio.models import Relatorio
+from django_filters.rest_framework import DjangoFilterBackend
 from django.core.exceptions import ValidationError
-from rest_framework.permissions import IsAdminUser
+
+from rest_framework import status
+from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ViewSet
-from django_filters.rest_framework import DjangoFilterBackend
 
 from cad_bp.models import Parentesco
 from cad_bp.api.serializers import ParentescoSerializer
@@ -17,23 +20,24 @@ class TitularViewSet(ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['ativo', 'CPF']
 
-    def perform_update(self, serializer):
-        print('serializer')
-        print(serializer.validated_data)
-        return super().perform_update(serializer)
-    
-    def finalize_response(self, request, response, *args, **kwargs):
-        if request.method == 'POST':    
-            print('criar')
-            print(response.data)
-        elif request.method == 'PUT':    
-            print('atualizar')
-            print(response.data)
-        elif request.method == 'PATCH':    
-            print('PATCH')
-            print(response.data)
+    def destroy(self, request, pk):
+        titular = get_object_or_404(Titular, id=pk)
+        titular.ativo = False
+        titular.save()
 
-        return super().finalize_response(request, response, *args, **kwargs)
+        Relatorio.objects.create(
+            cod_empresa = titular.cod_empresa,
+            data_inclusao = titular.criado_em,
+            prioridade = titular.prioridade(),
+            tipo = "EXCL. TIT",
+            CPF = titular.CPF,
+            nome = titular.nome,
+            carteirinha = titular.carteirinha
+        )
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    
 
 
 class TitularParentescos(ViewSet):

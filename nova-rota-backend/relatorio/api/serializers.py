@@ -1,14 +1,9 @@
+from relatorio.models import Relatorio
 from rest_framework import serializers
-from cad_at.models import Titular
 
 
-class TitularSerializer(serializers.ModelSerializer):
+class RelatorioSerializer(serializers.ModelSerializer):
     
-    prioridade = serializers.SerializerMethodField()
-
-    def get_prioridade(self, obj):
-        return obj.prioridade()
-
     class Meta:
-        model = Titular
+        model = Relatorio
         fields = '__all__'

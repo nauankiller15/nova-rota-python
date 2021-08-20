@@ -1,4 +1,3 @@
-from accounts.api.serializers import ManipularUsuarioSerializer
 from django.views.generic import base
 from django.contrib import admin
 from django.conf.urls import include
@@ -21,6 +20,7 @@ from cad_emp.api.viewsets import ReajusteViewSet
 from cad_emp.api.viewsets import SinistralidadeViewSet
 from novidades.api.viewsets import NovidadesViewSet
 from tarefas.api.viewsets import TarefaViewSet
+from relatorio.api.viewsets import RelatorioViewSet
 
 
 router = routers.DefaultRouter()
@@ -39,6 +39,7 @@ router.register(r'contrato-seguradora', ContratoSeguradoraViewSet)
 router.register(r'reajuste', ReajusteViewSet)
 router.register(r'sinistralidade', SinistralidadeViewSet)
 router.register(r'novidades', NovidadesViewSet)
+router.register(r'relatorio/(?P<vigencia>[1-2]{1}-[\d]{1,2}-[\d]{4})', RelatorioViewSet, basename="relatorio")
 
 
 urlpatterns = [

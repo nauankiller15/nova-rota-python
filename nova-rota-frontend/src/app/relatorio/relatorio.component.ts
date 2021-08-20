@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { ApiService } from '../api.service';
 import { dados } from './dados';
 
 declare var $: any;
@@ -13,8 +15,8 @@ export class RelatorioComponent implements OnInit {
   vigencias = [];
   dadosRelatorio = dados;
 
-  constructor() {
-    const hoje = new Date;
+  constructor(private apiService: ApiService, private toastr: ToastrService) {
+    const hoje = new Date;  
     const periodo = hoje.getDate() < 15 ? 1 : 2;
     const mes = hoje.getMonth();
     const ano = hoje.getFullYear();
@@ -77,6 +79,17 @@ export class RelatorioComponent implements OnInit {
       this.vigencias = this.setVigencias(id_vigencia);
       $(`#${id_vigencia}`).addClass('active');
       $(`#${id_vigencia}`).siblings().removeClass('active');
+      this.apiService.listar(`relatorio/?id_vigencia=${id_vigencia}`).subscribe(
+        (data) => {
+          this.dadosRelatorio = data;
+        },
+        (error) => {
+          const mensagens = error.error;
+          for (let mensagem in mensagens) {
+            this.toastr.error(mensagem, mensagens[mensagem]);
+          }
+        }
+      );
     }
   }
 }

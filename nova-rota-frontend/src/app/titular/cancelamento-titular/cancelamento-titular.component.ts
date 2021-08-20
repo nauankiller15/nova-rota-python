@@ -109,7 +109,6 @@ export class CancelamentoTitularComponent implements OnInit {
     e.stopPropagation();
     this.cadastro.id = titular.id;
     this.cadastro.nome = titular.nome;
-    this.cadastro.ativo = false;
     $('#cancelamentoTitular').fadeIn(250);
   }
 
@@ -118,7 +117,7 @@ export class CancelamentoTitularComponent implements OnInit {
   }
 
   cancelarTitular() {
-    this.api.atualizarCampo('titular/', this.cadastro).subscribe(
+    this.api.apagar('titular/', this.cadastro.id).subscribe(
       (data) => {
         this.toastr.success('`Titular <b>CANCELADO</b> com sucesso!`');
 
@@ -138,7 +137,6 @@ export class CancelamentoTitularComponent implements OnInit {
     let cadastro = new CancelarCadastro;
     cadastro.id = titular.id;
     cadastro.nome = titular.nome;
-    cadastro.ativo = false;
     if (this.preCancelado(cadastro.id) == false) {
       this.cancelamentos.push(cadastro);
       $(`#checkbox${cadastro.id}`).prop( "checked", true );
@@ -199,7 +197,7 @@ export class CancelamentoTitularComponent implements OnInit {
 
   cancelar(cadastro: CancelarCadastro) {
    
-    this.api.atualizarCampo('titular/', cadastro).subscribe(
+    this.api.apagar('titular/', cadastro.id).subscribe(
       (data) => {
         this.cancelados.cancelados.push(cadastro);
       },

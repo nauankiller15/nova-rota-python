@@ -111,7 +111,6 @@ export class CancelamentoDependenteComponent implements OnInit {
     e.stopPropagation();
     this.cadastro.id = dependente.id;
     this.cadastro.nome = dependente.nome;
-    this.cadastro.ativo = false;    
     $('#cancelamentoDependente').fadeIn(250);
   }
 
@@ -120,8 +119,7 @@ export class CancelamentoDependenteComponent implements OnInit {
   }
 
   cancelarDependente() {
-    this.cadastro.ativo = false;
-    this.api.atualizarCampo('parentesco/', this.cadastro).subscribe(
+    this.api.apagar('parentesco/', this.cadastro.id).subscribe(
       (data) => {
         this.toastr.success('Dependente CANCELADO com sucesso!');
         $('#cancelamentoDependente').fadeOut(250);
@@ -141,7 +139,6 @@ export class CancelamentoDependenteComponent implements OnInit {
     let cadastro = new CancelarCadastro;
     cadastro.id = dependente.id;
     cadastro.nome = dependente.nome;
-    cadastro.ativo = false;
     if (this.preCancelado(cadastro.id) == false) {
       this.cancelamentos.push(cadastro);
       $(`#checkbox${cadastro.id}`).prop( "checked", true );
@@ -201,8 +198,7 @@ export class CancelamentoDependenteComponent implements OnInit {
   }
 
   cancelar(dependente: CancelarCadastro) {
-    dependente.ativo = false;
-    this.api.atualizarCampo('parentesco/', dependente).subscribe(
+    this.api.apagar('parentesco/', dependente.id).subscribe(
       (data) => {
         this.cancelados.cancelados.push(dependente);
       },
