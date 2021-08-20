@@ -1,3 +1,10 @@
+.relatorio {
+  background-color: #fff;
+}
+.relatorio > tr:nth-of-type(odd) {
+  background: #eff1f6;
+}
+
 .menuVigencia {
   display: block;
   left: 10px;
@@ -44,7 +51,9 @@
   transform: translate(0px, 0px);
 }
 
-.capt{text-transform: capitalize;}
+.capt {
+  text-transform: capitalize;
+}
 
 .menuVigencia .menuItems li:hover {
   display: block;

@@ -47,7 +47,7 @@
               </tr>
             </thead>
 
-            <tbody>
+            <tbody class="relatorio">
               <tr
                 class="loadit"
                 *ngFor="
@@ -88,7 +88,7 @@
                 <td class="capt">{{ dado.usuario }}</td>
               </tr>
               <tr *ngIf="dadosRelatorio.length == 0">
-                <td class="text-center" colspan="8">Sem dados cadastrados</td>
+                <td class="text-center" colspan="9">Sem dados cadastrados</td>
               </tr>
             </tbody>
           </table>
