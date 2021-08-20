@@ -20,7 +20,7 @@ export class RelatorioComponent implements OnInit {
     const periodo = hoje.getDate() < 15 ? 1 : 2;
     const mes = hoje.getMonth();
     const ano = hoje.getFullYear();
-    this.vigencias = this.setVigencias(`${periodo}-${mes}-${ano}`);
+    this.selecionarVigencia(`${periodo}-${mes}-${ano}`);
   }
 
   ngOnInit(): void {
@@ -77,9 +77,10 @@ export class RelatorioComponent implements OnInit {
 
     if (id_vigencia != '') {
       this.vigencias = this.setVigencias(id_vigencia);
+      const data = this.getDataSelecao(id_vigencia);
       $(`#${id_vigencia}`).addClass('active');
       $(`#${id_vigencia}`).siblings().removeClass('active');
-      this.apiService.listar(`relatorio/?id_vigencia=${id_vigencia}`).subscribe(
+      this.apiService.listar(`relatorio/${id_vigencia}/`).subscribe(
         (data) => {
           this.dadosRelatorio = data;
         },

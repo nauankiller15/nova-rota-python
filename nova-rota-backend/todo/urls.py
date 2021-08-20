@@ -39,7 +39,7 @@ router.register(r'contrato-seguradora', ContratoSeguradoraViewSet)
 router.register(r'reajuste', ReajusteViewSet)
 router.register(r'sinistralidade', SinistralidadeViewSet)
 router.register(r'novidades', NovidadesViewSet)
-router.register(r'relatorio/(?P<vigencia>[1-2]{1}-[\d]{1,2}-[\d]{4})', RelatorioViewSet, basename="relatorio")
+router.register(r'relatorio/(?P<dados_vigencia>[1-2]{1}-[\d]{1,2}-[\d]{4})', RelatorioViewSet, basename="relatorio")
 
 
 urlpatterns = [

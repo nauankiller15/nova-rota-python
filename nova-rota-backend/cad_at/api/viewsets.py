@@ -31,8 +31,8 @@ class TitularViewSet(ModelViewSet):
             prioridade = titular.prioridade(),
             tipo = "EXCL. TIT",
             CPF = titular.CPF,
-            nome = titular.nome,
-            carteirinha = titular.carteirinha
+            nome = f'{titular.nome} (titular.carteirinha)',
+            carteirinha = 'PROCESSADO'
         )
 
         return Response(status=status.HTTP_204_NO_CONTENT)

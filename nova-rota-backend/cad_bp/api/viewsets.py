@@ -28,8 +28,8 @@ class ParentescoViewSet(ModelViewSet):
             prioridade = dependente.prioridade(),
             tipo = "EXCL. DEP",
             CPF = dependente.CPF,
-            nome = dependente.nome,
-            carteirinha = dependente.carteirinha
+            nome = f'{dependente.nome} (titular.carteirinha)',
+            carteirinha = 'PROCESSADO'
         )
 
         return Response(status=status.HTTP_204_NO_CONTENT)
