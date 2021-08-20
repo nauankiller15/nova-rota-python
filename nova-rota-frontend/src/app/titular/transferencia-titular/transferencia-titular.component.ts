@@ -119,7 +119,7 @@ export class TransferenciaTitularComponent implements OnInit {
     this.api.atualizarCampo('titular/', this.cadastro).subscribe(
       (data) => {
         this.getTitulares();
-        this.toastr.success('Titular tranferido com sucesso');
+        this.toastr.success('Titular transferido com sucesso');
         $('#digitarCodigo').fadeOut(250);
         $('#digitarCarteirinha').fadeOut(250);
       },
