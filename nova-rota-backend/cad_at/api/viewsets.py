@@ -35,10 +35,10 @@ class TitularViewSet(ModelViewSet):
             cod_empresa = titular.cod_empresa,
             data_inclusao = titular.criado_em,
             prioridade = titular.prioridade(),
-            tipo = "INCL. TIT",
+            tipo = "EXCL. TIT",
             CPF = titular.CPF,
             nome = f'{titular.nome} ({titular.carteirinha})',
-            carteirinha = titular.carteirinha,
+            carteirinha = 'PROCESSADO',
             usuario = request.user
         )
 
