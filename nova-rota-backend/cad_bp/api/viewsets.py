@@ -1,3 +1,4 @@
+from cad_at.models import Titular
 from datetime import datetime
 from django_filters.rest_framework.backends import DjangoFilterBackend
 
@@ -30,13 +31,15 @@ class ParentescoViewSet(ModelViewSet):
             tipo = "EXCL. DEP",
             CPF = dependente.CPF,
             nome = f'{dependente.nome} ({dependente.carteirinha})',
-            carteirinha = 'PROCESSADO'
+            carteirinha = 'PROCESSADO',
+            usuario = request.user
         )
 
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     def perform_create(self, serializer):
         dependente = dict(serializer.validated_data)
+        titular = get_object_or_404(Titular)
 
         Relatorio.objects.create(
             cod_empresa = dependente['cod_empresa'],
@@ -48,6 +51,6 @@ class ParentescoViewSet(ModelViewSet):
             carteirinha = dependente['carteirinha'],
             usuario = self.request.user
         )
-        
+
         return super().perform_create(serializer)
     
