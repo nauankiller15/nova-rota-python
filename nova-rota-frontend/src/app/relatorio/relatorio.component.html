@@ -1,73 +1,82 @@
 <div class="fadeIn app-main">
-    <div class="app-main__outer">
-        <div class="app-main__inner">
-            <div class="app-page-title">
-                <div class="page-title-wrapper">
-                    <div class="page-title-heading">
-                        <div class="page-title-icon">
-                            <i class="fas fas fa-list icon-gradient bg-mean-fruit"> </i>
-                        </div>
-                        <div>
-                            Relatório
-                            <div class="page-title-subheading">
-                                Relatório de movimentações.
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <div class="app-main__outer">
+    <div class="app-main__inner">
+      <div class="app-page-title">
+        <div class="page-title-wrapper">
+          <div class="page-title-heading">
+            <div class="page-title-icon">
+              <i class="fas fas fa-list icon-gradient bg-mean-fruit"> </i>
             </div>
-
-            <div class="main-card mb-3 card">
-                <nav class="menuVigencia">
-                    <ul class="menuItems">
-                        <li *ngFor="let item of vigencias; let index = index;" (click)="selecionarVigencia(item[1])" id="{{item[1]}}" [ngClass]="{'active': index == 3}">{{item[0]}}</li>
-                    </ul>
-                </nav>
-                
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Mes de vigencia</th>
-                                <th>Código da empresa</th>
-                                <th>Data de inclusao</th>
-                                <th>Prioridade</th>
-                                <th>Tipo</th>
-                                <th>CPF</th>
-                                <th>Nome</th>
-                                <th>Carteirinha</th>    
-                                <th>Funcionário</th>    
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr *ngFor="let dado of dadosRelatorio" 
-                                [ngClass]="{
-                                    'processado': dado.tipo == 'EXCL. TIT' || dado.tipo == 'EXCL. DEP',
-                                    'inclusao-titular': dado.tipo == 'TIT'
-                                }"
-                            >
-                                <td>{{dado.mes_vigencia | date: 'MMM/yyyy': '': 'pt-BR'}}</td>
-                                <td>{{dado.cod_empresa}}</td>
-                                <td>{{dado.data_inclusao | date: 'dd/MM/yyyy'}}</td>
-                                <td>{{dado.prioridade}}</td>
-                                <td>{{dado.tipo}}</td>
-                                <td>{{dado.CPF}}</td>
-                                <td>{{dado.nome}}</td>
-                                <td>{{dado.carteirinha}}</td>
-                                <td>{{dado.usuario}}</td>
-                            </tr>
-                            <tr *ngIf="dadosRelatorio.length == 0">
-                                <td class="text-center" colspan="8">Sem dados cadastrados</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-
-                </div>
+            <div>
+              Relatório
+              <div class="page-title-subheading">
+                Relatório de movimentações.
+              </div>
             </div>
+          </div>
         </div>
+      </div>
 
-        <app-rodape></app-rodape>
+      <div class="main-card mb-3 card">
+        <nav class="menuVigencia">
+          <ul class="menuItems">
+            <li
+              *ngFor="let item of vigencias; let index = index"
+              (click)="selecionarVigencia(item[1])"
+              id="{{ item[1] }}"
+              [ngClass]="{ active: index == 3 }"
+            >
+              {{ item[0] }}
+            </li>
+          </ul>
+        </nav>
+
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Mês de Vigência</th>
+                <th>Código da Empresa</th>
+                <th>Data de Inclusão</th>
+                <th>Prioridade</th>
+                <th>Tipo</th>
+                <th>CPF</th>
+                <th>Nome</th>
+                <th>Carteirinha</th>
+                <th>Funcionário</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr
+                *ngFor="let dado of dadosRelatorio"
+                [ngClass]="{
+                  processado:
+                    dado.tipo == 'EXCL. TIT' || dado.tipo == 'EXCL. DEP',
+                  'inclusao-titular': dado.tipo == 'TIT'
+                }"
+              >
+                <td class="capt">
+                  {{ dado.mes_vigencia | date: "MMM/yyyy":"":"pt-BR" }}
+                </td>
+                <td>{{ dado.cod_empresa }}</td>
+                <td>{{ dado.data_inclusao | date: "dd/MM/yyyy" }}</td>
+                <td class="capt">{{ dado.prioridade }}</td>
+                <td><b>{{ dado.tipo }}</b></td>
+                <td>{{ dado.CPF }}</td>
+                <td>{{ dado.nome }}</td>
+                <td><b>{{ dado.carteirinha }}</b></td>
+                <td class="capt">{{ dado.usuario }}</td>
+              </tr>
+              <tr *ngIf="dadosRelatorio.length == 0">
+                <td class="text-center" colspan="8">Sem dados cadastrados</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
+
+    <app-rodape></app-rodape>
+  </div>
 </div>

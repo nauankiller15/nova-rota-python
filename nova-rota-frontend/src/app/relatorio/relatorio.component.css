@@ -44,6 +44,8 @@
   transform: translate(0px, 0px);
 }
 
+.capt{text-transform: capitalize;}
+
 .menuVigencia .menuItems li:hover {
   display: block;
   transform: translate(0px, -4px);
@@ -77,7 +79,8 @@
 }
 
 .processado {
-  background-color: #ebff39;
+  background-color: #d43f3f;
+  color: #fff;
 }
 
 .inclusao-titular {
