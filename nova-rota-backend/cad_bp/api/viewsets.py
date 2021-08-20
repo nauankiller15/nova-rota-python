@@ -28,7 +28,7 @@ class ParentescoViewSet(ModelViewSet):
             prioridade = dependente.prioridade(),
             tipo = "EXCL. DEP",
             CPF = dependente.CPF,
-            nome = f'{dependente.nome} (titular.carteirinha)',
+            nome = f'{dependente.nome} ({dependente.carteirinha})',
             carteirinha = 'PROCESSADO'
         )
 
