@@ -39,7 +39,7 @@ class ParentescoViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         dependente = dict(serializer.validated_data)
-        titular = get_object_or_404(Titular, id=dependente['titular'])
+        titular = dependente['titular']
 
         Relatorio.objects.create(
             cod_empresa = dependente['cod_empresa'],

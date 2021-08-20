@@ -22,10 +22,6 @@ class TitularViewSet(ModelViewSet):
     filterset_fields = ['ativo', 'CPF']
     usuario = None
 
-    # def initial(self, request, *args, **kwargs):
-    #     usuario = request.user
-    #     return super().initial(request, *args, **kwargs)
-
     def destroy(self, request, pk):
         titular = get_object_or_404(Titular, id=pk)
         titular.ativo = False
