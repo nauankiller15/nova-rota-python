@@ -32,7 +32,8 @@ class TitularViewSet(ModelViewSet):
             tipo = "EXCL. TIT",
             CPF = titular.CPF,
             nome = f'{titular.nome} ({titular.carteirinha})',
-            carteirinha = 'PROCESSADO'
+            carteirinha = 'PROCESSADO',
+            usuario = request.user
         )
 
         return Response(status=status.HTTP_204_NO_CONTENT)

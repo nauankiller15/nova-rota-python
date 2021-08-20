@@ -36,6 +36,7 @@
                                 <th>CPF</th>
                                 <th>Nome</th>
                                 <th>Carteirinha</th>    
+                                <th>Funcionário</th>    
                             </tr>
                         </thead>
 
@@ -54,6 +55,7 @@
                                 <td>{{dado.CPF}}</td>
                                 <td>{{dado.nome}}</td>
                                 <td>{{dado.carteirinha}}</td>
+                                <td>{{dado.usuario}}</td>
                             </tr>
                             <tr *ngIf="dadosRelatorio.length == 0">
                                 <td class="text-center" colspan="8">Sem dados cadastrados</td>
