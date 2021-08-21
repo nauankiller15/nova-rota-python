@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  baseUrl = '//127.0.0.1:8000/api/';
   httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+  private readonly baseUrl = environment.baseUrl;
 
   constructor( private http: HttpClient) { }
 
