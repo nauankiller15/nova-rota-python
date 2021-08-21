@@ -94,18 +94,11 @@
   color: #fff;
 }
 
-.processado > tr:nth-of-type(odd) {
-  background: #9c2323 !important;
-}
-
-.inclusao {
-  background-color: #39ffb3;
-}
-
 .transferencia {
-  background-color: #39c7ff;
+  background-color: #5739ff !important;
+  color: #fff;
 }
 
 .alteracao {
-  background-color: #39b6ff;
+  background-color: #46f553 !important;
 }
