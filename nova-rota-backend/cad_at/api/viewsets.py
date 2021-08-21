@@ -41,6 +41,7 @@ class TitularViewSet(ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
     
     def perform_create(self, serializer):
+
         titular = dict(serializer.validated_data)
 
         Relatorio.objects.create(
@@ -55,6 +56,29 @@ class TitularViewSet(ModelViewSet):
         )
         return super().perform_create(serializer)
     
+    def perform_update(self, serializer):
+
+        dados = dict(serializer.validated_data)
+        if 'transferido' in dados and dados['transferido'] == True:
+            tipo = 'TRANSF. TIT'
+        else:
+            tipo = "ALT. TIT"
+
+        serializer.save()
+        titular = serializer.data
+
+        Relatorio.objects.create(
+            cod_empresa = titular['cod_empresa'],
+            data_inclusao = titular['criado_em'][:10],
+            prioridade = titular['prioridade'],
+            tipo = tipo,
+            CPF = titular['CPF'],
+            nome = titular['nome'],
+            carteirinha = titular['carteirinha'],
+            usuario = self.request.user
+        )
+
+        return Response(titular)
 
 
 class TitularParentescos(ViewSet):

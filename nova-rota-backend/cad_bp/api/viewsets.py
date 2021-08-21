@@ -1,4 +1,3 @@
-from cad_at.models import Titular
 from datetime import datetime
 from django_filters.rest_framework.backends import DjangoFilterBackend
 
@@ -47,10 +46,33 @@ class ParentescoViewSet(ModelViewSet):
             prioridade = 'prioridade',
             tipo = "INCL. DEP",
             CPF = dependente['CPF'],
-            nome = f"{dependente['nome']} (TIT {titular.nome} - {titular.carteirinha}",
+            nome = f"{dependente['nome']} (TIT {titular.nome} - {titular.carteirinha})",
             carteirinha = dependente['carteirinha'],
             usuario = self.request.user
         )
 
         return super().perform_create(serializer)
     
+    def perform_update(self, serializer):
+
+        dados = dict(serializer.validated_data)
+        if 'transferido' in dados and dados['transferido'] == True:
+            tipo = 'TRANSF. DEP'
+        else:
+            tipo = "ALT. DEP"
+
+        serializer.save()
+        dependente = serializer.data
+
+        Relatorio.objects.create(
+            cod_empresa = dependente['cod_empresa'],
+            data_inclusao = dependente['criado_em'][:10],
+            prioridade = dependente['prioridade'],
+            tipo = tipo,
+            CPF = dependente['CPF'],
+            nome = dependente['nome'],
+            carteirinha = dependente['carteirinha'],
+            usuario = self.request.user
+        )
+
+        return Response(dependente)
