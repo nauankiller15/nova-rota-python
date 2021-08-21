@@ -60,9 +60,10 @@
                         }
                 "
                 [ngClass]="{
-                  processado:
-                    dado.tipo == 'EXCL. TIT' || dado.tipo == 'EXCL. DEP',
-                  'inclusao-titular': dado.tipo == 'TIT'
+                  'processado': dado.tipo == 'EXCL. TIT' || dado.tipo == 'EXCL. DEP',
+                  'inclusao': dado.tipo == 'INCL. TIT' || dado.tipo == 'INCL. DEP',
+                  'transferencia': dado.tipo == 'TRANSF. TIT' || dado.tipo == 'TRANSF. DEP',
+                  'alteracao': dado.tipo == 'ALT. TIT' || dado.tipo == 'ALT. DEP'
                 }"
               >
                 <td class="capt">
