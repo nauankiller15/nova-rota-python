@@ -94,12 +94,20 @@
 }
 
 .transferencia {
-  background-color: #4c2cff !important;
   color: #fff;
+  background-image: linear-gradient(
+    to top,
+    #554579 0%,
+    #7050e6 100%
+  ) !important;
 }
 
 .alteracao {
-  background-color: #46f553 !important;
+  background-image: linear-gradient(
+    to top,
+    #61bf4b 0%,
+    #9fd47e 100%
+  ) !important;
 }
 
 .linhaS {
@@ -111,6 +119,6 @@
 }
 
 .tHeadl {
-    font-size: 1.1em;
-    border-bottom: 3px solid #ccc;
+  font-size: 1.1em;
+  border-bottom: 3px solid #ccc;
 }
