@@ -1,3 +1,4 @@
+
 .menuVigencia {
   display: block;
   left: 10px;
@@ -44,7 +45,9 @@
   transform: translate(0px, 0px);
 }
 
-.capt{text-transform: capitalize;}
+.capt {
+  text-transform: capitalize;
+}
 
 .menuVigencia .menuItems li:hover {
   display: block;
@@ -78,9 +81,21 @@
   border-radius: 0.25rem 0px 0px 0px;
 }
 
+/* RELATÓRIO */
+.relatorio {
+  background-color: #fff;
+}
+.relatorio > tr:nth-of-type(odd) {
+  background: #eff1f6;
+}
+
 .processado {
-  background-color: #d43f3f;
+  background-color: #d43f3f !important;
   color: #fff;
+}
+
+.processado > tr:nth-of-type(odd) {
+  background: #9c2323 !important;
 }
 
 .inclusao-titular {
