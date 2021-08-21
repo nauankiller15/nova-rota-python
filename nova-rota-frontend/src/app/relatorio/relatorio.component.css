@@ -94,21 +94,19 @@
 }
 
 .transferencia {
-  color: #fff;
   background-image: linear-gradient(
     to top,
-    #554579 0%,
-    #7050e6 100%
+    #d7c6ff 0%,
+    #ebe9f0 100%
   ) !important;
 }
 
 .alteracao {
   background-image: linear-gradient(
     to top,
-    #61bf4b 0%,
-    #9fd47e 100%
+    #a7e97f 0%,
+    #f0f5ec 100%
   ) !important;
-  font-weight: 620;
   color: #424242;
 }
 .linhaS {
