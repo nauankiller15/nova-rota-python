@@ -1,9 +1,3 @@
-.relatorio {
-  background-color: #fff;
-}
-.relatorio > tr:nth-of-type(odd) {
-  background: #eff1f6;
-}
 
 .menuVigencia {
   display: block;
@@ -87,9 +81,21 @@
   border-radius: 0.25rem 0px 0px 0px;
 }
 
+/* RELATÓRIO */
+.relatorio {
+  background-color: #fff;
+}
+.relatorio > tr:nth-of-type(odd) {
+  background: #eff1f6;
+}
+
 .processado {
   background-color: #d43f3f !important;
   color: #fff;
+}
+
+.processado > tr:nth-of-type(odd) {
+  background: #9c2323 !important;
 }
 
 .inclusao-titular {
