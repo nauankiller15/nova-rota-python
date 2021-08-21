@@ -1,4 +1,3 @@
-
 .menuVigencia {
   display: block;
   left: 10px;
@@ -95,10 +94,23 @@
 }
 
 .transferencia {
-  background-color: #5739ff !important;
+  background-color: #4c2cff !important;
   color: #fff;
 }
 
 .alteracao {
   background-color: #46f553 !important;
+}
+
+.linhaS {
+  border: 1px solid #ffffff85;
+  padding: 5px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.tHeadl {
+    font-size: 1.1em;
+    border-bottom: 3px solid #ccc;
 }

@@ -33,7 +33,7 @@
 
         <div class="card-body">
           <table class="table">
-            <thead>
+            <thead class="tHeadl">
               <tr>
                 <th>Mês de Vigência</th>
                 <th>Código da Empresa</th>
@@ -60,10 +60,13 @@
                         }
                 "
                 [ngClass]="{
-                  'processado': dado.tipo == 'EXCL. TIT' || dado.tipo == 'EXCL. DEP',
-                  'inclusao': dado.tipo == 'INCL. TIT' || dado.tipo == 'INCL. DEP',
-                  'transferencia': dado.tipo == 'TRANSF. TIT' || dado.tipo == 'TRANSF. DEP',
-                  'alteracao': dado.tipo == 'ALT. TIT' || dado.tipo == 'ALT. DEP'
+                  processado:
+                    dado.tipo == 'EXCL. TIT' || dado.tipo == 'EXCL. DEP',
+                  inclusao:
+                    dado.tipo == 'INCL. TIT' || dado.tipo == 'INCL. DEP',
+                  transferencia:
+                    dado.tipo == 'TRANSF. TIT' || dado.tipo == 'TRANSF. DEP',
+                  alteracao: dado.tipo == 'ALT. TIT' || dado.tipo == 'ALT. DEP'
                 }"
               >
                 <td class="capt">
@@ -77,7 +80,7 @@
                   <b>{{ dado.prioridade }}</b>
                 </td>
                 <td>
-                  {{ dado.tipo }}
+                  <div class="linhaS">{{ dado.tipo }}</div>
                 </td>
                 <td>
                   <b>{{ dado.CPF }}</b>
