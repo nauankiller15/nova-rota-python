@@ -1,4 +1,3 @@
-
 .menuVigencia {
   display: block;
   left: 10px;
@@ -94,18 +93,32 @@
   color: #fff;
 }
 
-.processado > tr:nth-of-type(odd) {
-  background: #9c2323 !important;
-}
-
-.inclusao {
-  background-color: #39ffb3;
-}
-
 .transferencia {
-  background-color: #39c7ff;
+  color: #fff;
+  background-image: linear-gradient(
+    to top,
+    #554579 0%,
+    #7050e6 100%
+  ) !important;
 }
 
 .alteracao {
-  background-color: #39b6ff;
+  background-image: linear-gradient(
+    to top,
+    #61bf4b 0%,
+    #9fd47e 100%
+  ) !important;
+}
+
+.linhaS {
+  border: 1px solid #ffffff85;
+  padding: 5px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.tHeadl {
+  font-size: 1.1em;
+  border-bottom: 3px solid #ccc;
 }

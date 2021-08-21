@@ -33,7 +33,7 @@
 
         <div class="card-body">
           <table class="table">
-            <thead>
+            <thead class="tHeadl">
               <tr>
                 <th>Mês de Vigência</th>
                 <th>Código da Empresa</th>
@@ -55,36 +55,39 @@
                     | paginate
                       : {
                           id: 'relatorioPag',
-                          itemsPerPage: 10,
+                          itemsPerPage: 30,
                           currentPage: p
                         }
                 "
                 [ngClass]="{
-                  'processado': dado.tipo == 'EXCL. TIT' || dado.tipo == 'EXCL. DEP',
-                  'inclusao': dado.tipo == 'INCL. TIT' || dado.tipo == 'INCL. DEP',
-                  'transferencia': dado.tipo == 'TRANSF. TIT' || dado.tipo == 'TRANSF. DEP',
-                  'alteracao': dado.tipo == 'ALT. TIT' || dado.tipo == 'ALT. DEP'
+                  processado:
+                    dado.tipo == 'EXCL. TIT' || dado.tipo == 'EXCL. DEP',
+                  inclusao:
+                    dado.tipo == 'INCL. TIT' || dado.tipo == 'INCL. DEP',
+                  transferencia:
+                    dado.tipo == 'TRANSF. TIT' || dado.tipo == 'TRANSF. DEP',
+                  alteracao: dado.tipo == 'ALT. TIT' || dado.tipo == 'ALT. DEP'
                 }"
               >
                 <td class="capt">
                   {{ dado.mes_vigencia | date: "MMM/yyyy":"":"pt-BR" }}
                 </td>
                 <td>
-                  <b>{{ dado.cod_empresa }}</b>
+                  <div class="linhaS">{{ dado.cod_empresa }}</div>
                 </td>
                 <td>{{ dado.data_inclusao | date: "dd/MM/yyyy" }}</td>
                 <td class="capt">
                   <b>{{ dado.prioridade }}</b>
                 </td>
                 <td>
-                  {{ dado.tipo }}
+                  <div class="linhaS">{{ dado.tipo }}</div>
                 </td>
                 <td>
                   <b>{{ dado.CPF }}</b>
                 </td>
                 <td>{{ dado.nome }}</td>
                 <td>
-                  <b>{{ dado.carteirinha }}</b>
+                  <div class="linhaS">{{ dado.carteirinha }}</div>
                 </td>
                 <td class="capt">{{ dado.usuario }}</td>
               </tr>
