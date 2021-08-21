@@ -69,7 +69,7 @@
                   alteracao: dado.tipo == 'ALT. TIT' || dado.tipo == 'ALT. DEP'
                 }"
               >
-                <td class="capt ">
+                <td class="capt">
                   {{ dado.mes_vigencia | date: "MMM/yyyy":"":"pt-BR" }}
                 </td>
                 <td>
@@ -91,8 +91,8 @@
                 </td>
                 <td class="capt">{{ dado.usuario }}</td>
               </tr>
-              <tr *ngIf="dadosRelatorio.length == 0">
-                <td class="text-center loadit" colspan="9">Sem dados cadastrados</td>
+              <tr *ngIf="dadosRelatorio.length == 0" class="loadit">
+                <td class="text-center" colspan="9"><b>Sem dados cadastrados</b></td>
               </tr>
             </tbody>
           </table>
