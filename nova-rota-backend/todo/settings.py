@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework',
     'rest_framework.authtoken',
-    'corsheaders',
     'cad_bp',
     'cad_at',
     'cad_emp',
@@ -148,22 +147,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:4200",
-    "http://127.0.0.1:4200",
-]
-
-CORS_ALLOW_METHODS = [
-    'DELETE',
-    'GET',
-    'OPTIONS',
-    'PATCH',
-    'POST',
-    'PUT',
-]
-
-CORS_URLS_REGEX = r'^/api/.*$'
-
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
@@ -179,4 +162,21 @@ JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': timedelta(hours=12),
 }
 
-# LOGIN_REDIRECT_URL = '/'
+if DEBUG == True:
+    INSTALLED_APPS += ['corsheaders']
+        
+    CORS_ALLOWED_ORIGINS = [
+        "http://localhost:4200",
+        "http://127.0.0.1:4200",
+    ]
+
+    CORS_ALLOW_METHODS = [
+        'DELETE',
+        'GET',
+        'OPTIONS',
+        'PATCH',
+        'POST',
+        'PUT',
+    ]
+
+    CORS_URLS_REGEX = r'^/api/.*$'
