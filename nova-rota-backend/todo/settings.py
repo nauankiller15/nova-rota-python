@@ -163,4 +163,13 @@ JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': timedelta(hours=12),
 }
     
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
 CORS_URLS_REGEX = r'^/api/.*$'
