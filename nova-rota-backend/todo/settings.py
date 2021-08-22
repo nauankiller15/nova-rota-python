@@ -14,7 +14,7 @@ from pathlib import Path
 from datetime import timedelta
 
 from .variaveis_de_ambiente \
-import SECRET_KEY, ALLOWED_HOSTS, DEBUG, DATABASES
+import SECRET_KEY, ALLOWED_HOSTS, DEBUG, DATABASES, CORS_ALLOWED_ORIGINS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
     'cad_bp',
     'cad_at',
     'cad_emp',
@@ -161,22 +162,5 @@ REST_FRAMEWORK = {
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': timedelta(hours=12),
 }
-
-if DEBUG == True:
-    INSTALLED_APPS += ['corsheaders']
-        
-    CORS_ALLOWED_ORIGINS = [
-        "http://localhost:4200",
-        "http://127.0.0.1:4200",
-    ]
-
-    CORS_ALLOW_METHODS = [
-        'DELETE',
-        'GET',
-        'OPTIONS',
-        'PATCH',
-        'POST',
-        'PUT',
-    ]
-
-    CORS_URLS_REGEX = r'^/api/.*$'
+    
+CORS_URLS_REGEX = r'^/api/.*$'
