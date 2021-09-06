@@ -245,6 +245,8 @@ export class AlteracaoDependenteComponent implements OnInit {
             
     this.api.atualizarComArquivo('parentesco/', this.dependente).subscribe(
       (data) => {
+        $('#atualizarCad').fadeOut(250);
+        $('#unlockCad').fadeIn(250);
         this.dependenteClicked(data);
         this.toastr.success('Atualizado com sucesso!');      
       },

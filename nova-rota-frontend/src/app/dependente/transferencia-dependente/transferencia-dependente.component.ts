@@ -126,7 +126,8 @@ export class TransferenciaDependenteComponent implements OnInit {
   transferirCadastro() {
     this.api.atualizarCampo('parentesco/', this.cadastro).subscribe(
       (data) => {
-        this.toastr.success("Dependente tranferido com sucesso");
+        this.getDependentesAtivos()
+        this.toastr.success("Dependente transferido com sucesso");
         $('#digitarCodigo').fadeOut(250);
         $('#digitarCarteirinha').fadeOut(250);
       },

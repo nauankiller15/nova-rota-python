@@ -210,6 +210,8 @@ export class AlteracaoTitularComponent implements OnInit {
   updateTit() {
     this.api.atualizarComArquivo('titular/', this.titular).subscribe(
       (data) => {
+        $('#atualizarCad').fadeOut(250);
+        $('#unlockCad').fadeIn(250);
         this.titularClicked(data);
         this.toastr.success('Atualizado com sucesso!');
       },

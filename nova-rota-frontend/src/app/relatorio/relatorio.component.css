@@ -44,7 +44,9 @@
   transform: translate(0px, 0px);
 }
 
-.capt{text-transform: capitalize;}
+.capt {
+  text-transform: capitalize;
+}
 
 .menuVigencia .menuItems li:hover {
   display: block;
@@ -78,11 +80,44 @@
   border-radius: 0.25rem 0px 0px 0px;
 }
 
+/* RELATÓRIO */
+.relatorio {
+  background-color: #fff;
+}
+.relatorio > tr:nth-of-type(odd) {
+  background: #eff1f6;
+}
+
 .processado {
-  background-color: #d43f3f;
+  background-color: #d43f3f !important;
   color: #fff;
 }
 
-.inclusao-titular {
-  background-color: #39c7ff;
+.transferencia {
+  background-image: linear-gradient(
+    to top,
+    #d7c6ff 0%,
+    #ebe9f0 100%
+  ) !important;
+}
+
+.alteracao {
+  background-image: linear-gradient(
+    to top,
+    #a7e97f 0%,
+    #f0f5ec 100%
+  ) !important;
+  color: #424242;
+}
+.linhaS {
+  border: 1px solid #ffffff85;
+  padding: 5px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.tHeadl {
+  font-size: 1.1em;
+  border-bottom: 3px solid #ccc;
 }
