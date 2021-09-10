@@ -24,8 +24,6 @@ export class NovoUsuarioComponent implements OnInit {
   }
 
   novoUsuario(){
-    console.log(this.usuario)
-    console.log(this.cargo)
     this.apiService.inserir('usuario/', this.usuario).subscribe(
       (data) => {
         console.log(data)

@@ -287,44 +287,48 @@
                 <div id="vinc-anexo-casado">
                   <div class="box-anexo">
                     <div class="anexo-info-box-titular-vinc">
-                      <h1
-                        style="
-                          font-size: 20px;
-                          display: flex;
-                          margin-top: -15px;
-                          margin-bottom: 15px;
-                        "
-                      >
-                        Anexar Certidão de Casamento
-                      </h1>
-                      <label for="avatar"
-                        >Escolha um arquivo para anexar:</label
-                      >
-                      <div style="height: 10px; width: 100%"></div>
+                      <form class="needs-validation" #casadoForm="ngForm">
+                        <h1
+                          style="
+                            font-size: 20px;
+                            display: flex;
+                            margin-top: -15px;
+                            margin-bottom: 15px;
+                          "
+                        >
+                          Anexar Certidão de Casamento
+                        </h1>
+                        <label for="avatar"
+                          >Escolha um arquivo para anexar:</label
+                        >
+                        <div style="height: 10px; width: 100%"></div>
 
-                      <div class="mb-3">
-                        <input
-                          type="file"
-                          id="imagemCasado"
-                          accept="image/png, image/jpeg"
-                          name="cert_casamento"
-                          ngControl="inputFile"
-                          (change)="anexoCasamentoInput($event.target.files)"
-                        />
-                      </div>
+                        <div class="mb-3">
+                          <input
+                            type="file"
+                            id="imagemCasado"
+                            accept="image/png, image/jpeg"
+                            name="cert_casamento"
+                            ngControl="inputFile"
+                            (change)="anexoCasamentoInput($event.target.files)"
+                            required
+                          />
+                        </div>
 
-                      <button
-                        style="
-                          display: flex;
-                          position: absolute;
-                          right: 20px;
-                          bottom: 20px;
-                        "
-                        class="btn btn-primary"
-                        id="fecharAnexo"
-                      >
-                        Anexar Arquivo
-                      </button>
+                        <button
+                          style="
+                            display: flex;
+                            position: absolute;
+                            right: 20px;
+                            bottom: 20px;
+                          "
+                          class="btn btn-primary"
+                          id="fecharAnexo"
+                          [disabled]="casadoForm.form.invalid"
+                        >
+                          Anexar Arquivo
+                        </button>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -333,41 +337,46 @@
                 <div id="vinc-anexo-empregaticio">
                   <div class="box-anexo">
                     <div class="anexo-info-box-titular-vinc">
-                      <h1
-                        style="
-                          font-size: 20px;
-                          display: flex;
-                          margin-top: -15px;
-                          margin-bottom: 15px;
-                        "
-                      >
-                        Anexar Vínculo Empregatício
-                      </h1>
-                      <label for="avatar"
-                        >Escolha um arquivo para anexar:</label
-                      >
-                      <div style="height: 10px; width: 100%"></div>
+                      <form class="needs-validation" #empregaticioForm="ngForm">
+                        <h1
+                          style="
+                            font-size: 20px;
+                            display: flex;
+                            margin-top: -15px;
+                            margin-bottom: 15px;
+                          "
+                        >
+                          Anexar Vínculo Empregatício
+                        </h1>
+                        <label for="avatar"
+                          >Escolha um arquivo para anexar:</label
+                        >
+                        <div style="height: 10px; width: 100%"></div>
 
-                      <input
-                        type="file"
-                        id="imagemEmpregaticio"
-                        accept=".png, .jpg, .jpeg"
-                        name="vinculo_empregaticio"
-                        (change)="vinculoEmpInput($event.target.files)"
-                      />
+                        <input
+                          type="file"
+                          id="imagemEmpregaticio"
+                          accept=".png, .jpg, .jpeg"
+                          name="vinculo_empregaticio"
+                          (change)="vinculoEmpInput($event.target.files)"
+                          required
+                        />
 
-                      <button
-                        style="
-                          display: flex;
-                          position: absolute;
-                          right: 20px;
-                          bottom: 20px;
-                        "
-                        class="btn btn-primary"
-                        id="fecharAnexoNovoTit"
-                      >
-                        Anexar Arquivo
-                      </button>
+                        <button
+                        [disabled]="empregaticioForm.form.invalid"
+
+                          style="
+                            display: flex;
+                            position: absolute;
+                            right: 20px;
+                            bottom: 20px;
+                          "
+                          class="btn btn-primary"
+                          id="fecharAnexoNovoTit"
+                        >
+                          Anexar Arquivo
+                        </button>
+                      </form>
                     </div>
                   </div>
                 </div>
