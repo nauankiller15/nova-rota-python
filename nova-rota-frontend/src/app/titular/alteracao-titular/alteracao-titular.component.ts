@@ -9,6 +9,7 @@ import lightGallery from 'lightgallery';
 // Plugins
 import lgThumbnail from 'lightgallery/plugins/thumbnail';
 import lgZoom from 'lightgallery/plugins/zoom';
+import { Erro } from 'src/app/shared/erros';
 
 declare var $: any;
 
@@ -61,7 +62,7 @@ export class AlteracaoTitularComponent implements OnInit {
 
   p: number = 1;
 
-  constructor(private toastr: ToastrService, private api: ApiService) {
+  constructor(private toastrService: ToastrService, private api: ApiService) {
     this.getTitularesAtivos();
   }
 
@@ -134,10 +135,8 @@ export class AlteracaoTitularComponent implements OnInit {
         this.contentLoaded = true;
       },
       (error) => {
-        const mensagens = error.error;
-        for (let mensagem in mensagens) {
-          this.toastr.error(mensagem, mensagens[mensagem]);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -150,10 +149,8 @@ export class AlteracaoTitularComponent implements OnInit {
         this.contentLoaded = true;
       },
       (error) => {
-        const mensagens = error.error;
-        for (let mensagem in mensagens) {
-          this.toastr.error(mensagem, mensagens[mensagem]);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -213,13 +210,11 @@ export class AlteracaoTitularComponent implements OnInit {
         $('#atualizarCad').fadeOut(250);
         $('#unlockCad').fadeIn(250);
         this.titularClicked(data);
-        this.toastr.success('Atualizado com sucesso!');
+        this.toastrService.success('Atualizado com sucesso!');
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -256,7 +251,7 @@ export class AlteracaoTitularComponent implements OnInit {
     };
     this.api.atualizarCampo('titular/', atualizar).subscribe(
       (data) => {
-        this.toastr.success('Carteirinha atualizada com sucesso!');
+        this.toastrService.success('Carteirinha atualizada com sucesso!');
         if (this.titular.ativo == true) {
           this.getTitularesAtivos();
         } else {
@@ -264,10 +259,8 @@ export class AlteracaoTitularComponent implements OnInit {
         }
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
     $('#atualizarCarteirinha').fadeOut(100);

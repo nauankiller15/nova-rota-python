@@ -37,7 +37,7 @@ export class ConsultaDependenteComponent implements OnInit {
   p: number = 1;
 
   constructor(
-    private toastr: ToastrService, 
+    private toastrService: ToastrService, 
     private api: ApiService,
   ) {
     this.getDependentesAtivos();
@@ -114,7 +114,7 @@ export class ConsultaDependenteComponent implements OnInit {
         this.busca = data;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        this.toastrService.error('Aconteceu um Erro!', error.message);
       }
     );
   }
@@ -126,7 +126,7 @@ export class ConsultaDependenteComponent implements OnInit {
         this.busca = data;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        this.toastrService.error('Aconteceu um Erro!', error.message);
       }
     );
   }
@@ -138,7 +138,7 @@ export class ConsultaDependenteComponent implements OnInit {
         this.busca = data;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        this.toastrService.error('Aconteceu um Erro!', error.message);
       }
     );
   }

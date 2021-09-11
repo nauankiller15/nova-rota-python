@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../account/login/auth.service';
 import { ApiService } from '../api.service';
+import { Erro } from '../shared/erros';
 import { Cargo, Usuario } from '../usuario/models';
 import { Novidade, Tarefa } from './models';
 
@@ -46,7 +47,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private api: ApiService,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastrService: ToastrService
   ) {
     this.getTarefas();
   }
@@ -140,10 +141,9 @@ export class HomeComponent implements OnInit {
         this.busca = data;
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }      }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
+      }
     );
   };
 
@@ -183,11 +183,9 @@ export class HomeComponent implements OnInit {
         this.loading = false;
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-        this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
         this.loading = false;
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -198,10 +196,8 @@ export class HomeComponent implements OnInit {
         this.usuario = data;
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -209,15 +205,13 @@ export class HomeComponent implements OnInit {
   updateTarefa() {
     this.api.atualizar('tarefas/', this.selected_tarefa).subscribe(
       (data) => {
-        this.toastr.success('Atualizado com sucesso!');
+        this.toastrService.success('Atualizado com sucesso!');
         $('.texto-overlay').fadeOut('100');
         $('#over-text').fadeOut('100');
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -226,15 +220,13 @@ export class HomeComponent implements OnInit {
     this.api.apagar('tarefas/', this.selected_tarefa.id).subscribe(
       (data) => {
         this.getTarefas();
-        this.toastr.success('Tarefa apagada!');
+        this.toastrService.success('Tarefa apagada!');
         $('.texto-overlay').fadeOut('100');
         $('#over-text').fadeOut('100');
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }

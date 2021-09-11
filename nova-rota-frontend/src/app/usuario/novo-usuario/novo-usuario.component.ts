@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/api.service';
+import { Erro } from 'src/app/shared/erros';
 import { Cargo, NovoUsuario } from '../models';
 
 declare var $: any;
@@ -13,7 +14,7 @@ export class NovoUsuarioComponent implements OnInit {
   usuario: NovoUsuario = new NovoUsuario;
   cargo: Cargo = new Cargo;
 
-  constructor(private apiService: ApiService, private toastr: ToastrService) { }
+  constructor(private apiService: ApiService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     $('.apagarEmp').click(function () {
@@ -32,21 +33,17 @@ export class NovoUsuarioComponent implements OnInit {
         this.apiService.inserir('cargo/', this.cargo).subscribe(
           (data) => {
             console.log(data)
-            this.toastr.success('Usuario inserido com sucesso');
+            this.toastrService.success('Usuario inserido com sucesso');
           },
           (error) => {
-            let mensagens = error.error;
-            for (let campo in mensagens) {
-              this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-            }
+            const erro = new Erro(this.toastrService, error);
+            erro.exibir();
           }
         );
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }

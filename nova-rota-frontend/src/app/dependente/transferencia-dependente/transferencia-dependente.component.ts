@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Erro } from 'src/app/shared/erros';
 import { ApiService } from '../../api.service';
 import { Dependente, TransferirDependente } from '../models';
 
@@ -27,7 +28,7 @@ export class TransferenciaDependenteComponent implements OnInit {
 
   p: number = 1;
 
-  constructor(private toastr: ToastrService, private api: ApiService) {
+  constructor(private toastrService: ToastrService, private api: ApiService) {
     this.getDependentesAtivos();
   }
 
@@ -72,7 +73,7 @@ export class TransferenciaDependenteComponent implements OnInit {
         this.busca = data;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        this.toastrService.error('Aconteceu um Erro!', error.message);
       }
     );
   }
@@ -84,7 +85,7 @@ export class TransferenciaDependenteComponent implements OnInit {
         this.busca = data;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        this.toastrService.error('Aconteceu um Erro!', error.message);
       }
     );
   }
@@ -111,10 +112,8 @@ export class TransferenciaDependenteComponent implements OnInit {
         }
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -127,15 +126,13 @@ export class TransferenciaDependenteComponent implements OnInit {
     this.api.atualizarCampo('parentesco/', this.cadastro).subscribe(
       (data) => {
         this.getDependentesAtivos()
-        this.toastr.success("Dependente transferido com sucesso");
+        this.toastrService.success("Dependente transferido com sucesso");
         $('#digitarCodigo').fadeOut(250);
         $('#digitarCarteirinha').fadeOut(250);
       },
       (error) => {
-        const mensagens = error.error;
-        for (let mensagem in mensagens) {
-          this.toastr.error(mensagem, mensagens[mensagem]);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir(); 
       }
     );
 

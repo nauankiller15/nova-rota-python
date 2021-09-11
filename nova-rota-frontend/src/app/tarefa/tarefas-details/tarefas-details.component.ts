@@ -21,7 +21,7 @@ export class TarefasDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private api: ApiService,
-    private toastr: ToastrService,
+    private toastrService: ToastrService,
     private homeComponent: HomeComponent
   ) {}
 
@@ -61,27 +61,27 @@ export class TarefasDetailsComponent implements OnInit {
         this.selected_tarefa = data;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        this.toastrService.error('Aconteceu um Erro!', error.message);
       }
     );
   }
   update() {
     this.api.atualizar('tarefas/', this.selected_tarefa).subscribe(
       (data) => {
-        this.toastr.success('Atualizado com sucesso!');
+        this.toastrService.success('Atualizado com sucesso!');
         this.update_tarefa = data;
         $('.texto-overlay').fadeOut('100');
         $('#over-text').fadeOut('100');
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        this.toastrService.error('Aconteceu um Erro!', error.message);
       }
     );
   }
   delete() {
     this.api.apagar('tarefas/', this.selected_id).subscribe(
       (data) => {
-        this.toastr.success('Deletado com sucesso!');
+        this.toastrService.success('Deletado com sucesso!');
         let index: number;
 
         this.homeComponent.tarefas.forEach((e, i) => {
@@ -92,7 +92,7 @@ export class TarefasDetailsComponent implements OnInit {
         $('#over-text').fadeOut('100');
       },
       (error) => {
-        this.toastr.error('Esta Tarefa não existe mais!', error.message);
+        this.toastrService.error('Esta Tarefa não existe mais!', error.message);
       }
     );
   }

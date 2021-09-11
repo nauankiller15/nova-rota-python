@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../api.service';
+import { Erro } from '../shared/erros';
 import { dados } from './dados';
 
 declare var $: any;
@@ -16,7 +17,7 @@ export class RelatorioComponent implements OnInit {
   vigencias = [];
   dadosRelatorio = [];
 
-  constructor(private apiService: ApiService, private toastr: ToastrService) {
+  constructor(private apiService: ApiService, private toastrService: ToastrService) {
     const hoje = new Date();
     const periodo = hoje.getDate() < 15 ? 1 : 2;
     const mes = hoje.getMonth();
@@ -94,10 +95,8 @@ export class RelatorioComponent implements OnInit {
           this.dadosRelatorio = data;
         },
         (error) => {
-          const mensagens = error.error;
-          for (let mensagem in mensagens) {
-            this.toastr.error(mensagem, mensagens[mensagem]);
-          }
+          const erro = new Erro(this.toastrService, error);
+          erro.exibir();
         }
       );
     }

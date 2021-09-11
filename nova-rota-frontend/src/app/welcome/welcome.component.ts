@@ -25,7 +25,7 @@ export class WelcomeComponent implements OnInit {
   intervalId: number | null = null;
   //
   constructor(
-    private toastr: ToastrService,
+    private toastrService: ToastrService,
     private api: ApiService,
   ) {
     this.getNovidades();
@@ -71,7 +71,7 @@ export class WelcomeComponent implements OnInit {
         this.loading = false;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        this.toastrService.error('Aconteceu um Erro!', error.message);
         this.loading = false;
       }
     );
@@ -83,7 +83,7 @@ export class WelcomeComponent implements OnInit {
         this.selected_novidade = data;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        this.toastrService.error('Aconteceu um Erro!', error.message);
       }
     );
   }
@@ -103,7 +103,7 @@ export class WelcomeComponent implements OnInit {
         this.selected_novidade = data;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        this.toastrService.error('Aconteceu um Erro!', error.message);
       }
     );
   };

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Erro } from 'src/app/shared/erros';
 import { ApiService } from '../../api.service';
 import { CancelarCadastro, Titular } from '../models';
 
@@ -28,7 +29,7 @@ export class CancelamentoTitularComponent implements OnInit {
   p: number = 1;
   //
 
-  constructor(private toastr: ToastrService, private api: ApiService) {
+  constructor(private toastrService: ToastrService, private api: ApiService) {
     this.getTitulares();
   }
 
@@ -97,10 +98,8 @@ export class CancelamentoTitularComponent implements OnInit {
         this.busca = data;
       },
       (error) => {
-        const mensagens = error.error;
-        for (let mensagem in mensagens) {
-          this.toastr.error(mensagem, mensagens[mensagem]);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   };
@@ -119,16 +118,14 @@ export class CancelamentoTitularComponent implements OnInit {
   cancelarTitular() {
     this.api.apagar('titular/', this.cadastro.id).subscribe(
       (data) => {
-        this.toastr.success('`Titular <b>CANCELADO</b> com sucesso!`');
+        this.toastrService.success('`Titular <b>CANCELADO</b> com sucesso!`');
 
         $('#cancelamentoTitular').fadeOut(250);
         this.getTitulares();
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -202,6 +199,8 @@ export class CancelamentoTitularComponent implements OnInit {
         this.cancelados.cancelados.push(cadastro);
       },
       (error) => {
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
         let mensagens = error.error;
         let erros = [];
         for (let campo in mensagens) {

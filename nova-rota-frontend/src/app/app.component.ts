@@ -22,6 +22,6 @@ export class AppComponent implements OnInit {
 
   constructor(
     private api: ApiService,
-    private toastr: ToastrService,
+    private toastrService: ToastrService,
   ) { }
 }

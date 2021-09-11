@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Erro } from 'src/app/shared/erros';
 import { ApiService } from '../../api.service';
 import { Titular, TransferirTitular } from '../models';
 
@@ -25,7 +26,7 @@ export class TransferenciaTitularComponent implements OnInit {
   p: number = 1;
   //
 
-  constructor(private toastr: ToastrService, private api: ApiService) {
+  constructor(private toastrService: ToastrService, private api: ApiService) {
     this.getTitulares();
   }
 
@@ -73,10 +74,8 @@ export class TransferenciaTitularComponent implements OnInit {
         this.busca = data;
       },
       (error) => {
-        const mensagens = error.error;
-        for (let mensagem in mensagens) {
-          this.toastr.error(mensagem, mensagens[mensagem]);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   };
@@ -103,10 +102,8 @@ export class TransferenciaTitularComponent implements OnInit {
         }
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -119,15 +116,13 @@ export class TransferenciaTitularComponent implements OnInit {
     this.api.atualizarCampo('titular/', this.cadastro).subscribe(
       (data) => {
         this.getTitulares();
-        this.toastr.success('Titular transferido com sucesso');
+        this.toastrService.success('Titular transferido com sucesso');
         $('#digitarCodigo').fadeOut(250);
         $('#digitarCarteirinha').fadeOut(250);
       },
       (error) => {
-        const mensagens = error.error;
-        for (let mensagem in mensagens) {
-          this.toastr.error(mensagem, mensagens[mensagem]);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }

@@ -16,7 +16,7 @@ export class NovidadesDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private api: ApiService,
-    private toastr: ToastrService,
+    private toastrService: ToastrService,
   ) {}
 
    // CARREGADOR
@@ -82,7 +82,7 @@ export class NovidadesDetailsComponent implements OnInit {
         this.selected_novidade = data;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        this.toastrService.error('Aconteceu um Erro!', error.message);
       }
     );
   }

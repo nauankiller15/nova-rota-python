@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../api.service';
 import { Dependente } from '../dependente/models';
+import { Erro } from '../shared/erros';
 import { Titular } from '../titular/models';
 import { ReativarCadastro } from './models';
 
@@ -21,7 +22,7 @@ export class ReativarCadastroComponent implements OnInit {
   contentLoaded = false;
   p = 1;
 
-  constructor(private apiService: ApiService, private toastr: ToastrService) {
+  constructor(private apiService: ApiService, private toastrService: ToastrService) {
     this.loadTitularesCancelados();
   }
 
@@ -73,10 +74,8 @@ export class ReativarCadastroComponent implements OnInit {
         this.contentLoaded = true;
       },
       (error) => {
-        const mensagens = error.error;
-        for (let mensagem in mensagens) {
-          this.toastr.error(mensagem, mensagens[mensagem]);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -90,10 +89,8 @@ export class ReativarCadastroComponent implements OnInit {
         this.contentLoaded = true;
       },
       (error) => {
-        const mensagens = error.error;
-        for (let mensagem in mensagens) {
-          this.toastr.error(mensagem, mensagens[mensagem]);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -124,13 +121,11 @@ export class ReativarCadastroComponent implements OnInit {
         } else {
           this.loadDependentesCancelados();
         }
-        this.toastr.success('Cadastro reativado com sucesso');
+        this.toastrService.success('Cadastro reativado com sucesso');
       },
       (error) => {
-        const mensagens = error.error;
-        for (let mensagem in mensagens) {
-          this.toastr.error(mensagem, mensagens[mensagem]);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }

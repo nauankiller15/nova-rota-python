@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../api.service';
 import { Titular } from '../models';
 import { validarCPF } from '../../shared/validador-cpf';
+import { Erro } from 'src/app/shared/erros';
 
 declare var $: any;
 
@@ -15,7 +16,7 @@ export class NovoTitularComponent implements OnInit {
   titular: Titular = new Titular();
   cpfValido = true;
 
-  constructor(private toastr: ToastrService, private api: ApiService) {}
+  constructor(private toastrService: ToastrService, private api: ApiService) {}
 
   ngOnInit(): void {
     
@@ -132,10 +133,8 @@ export class NovoTitularComponent implements OnInit {
         }
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }          
     );
   }
@@ -147,10 +146,8 @@ export class NovoTitularComponent implements OnInit {
         $('#confirmacaoTitular').fadeIn('100');
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }

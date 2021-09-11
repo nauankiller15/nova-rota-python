@@ -14,7 +14,7 @@ export class AuthService {
   private readonly baseUrl = environment.baseUrl;
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json'});
   
-  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService) {}
+  constructor(private http: HttpClient, private router: Router, private toastrService: ToastrService) {}
   
   async autenticar(usuario: Login) {
     const resp = await this.http.post(this.baseUrl + 'login/', usuario, {

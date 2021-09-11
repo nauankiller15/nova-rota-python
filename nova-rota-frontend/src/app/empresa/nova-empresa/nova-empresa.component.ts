@@ -9,6 +9,7 @@ import {
   Sinistralidade,
 } from '../models';
 import { validarCNPJ } from '../../shared/validador-cnpj';
+import { Erro } from 'src/app/shared/erros';
 
 declare var $: any;
 
@@ -27,7 +28,7 @@ export class NovaEmpresaComponent implements OnInit {
   reajuste: Reajuste = new Reajuste();
   enviarReajuste = false;
 
-  constructor(private toastr: ToastrService, private api: ApiService) {}
+  constructor(private toastrService: ToastrService, private api: ApiService) {}
 
   ngOnInit(): void {
     $(window).on('load', function () {
@@ -193,10 +194,8 @@ export class NovaEmpresaComponent implements OnInit {
           }
         },
         (error) => {
-          let mensagens = error.error;
-          for (let campo in mensagens) {
-            this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-          }
+          const erro = new Erro(this.toastrService, error);
+          erro.exibir();
         }          
       );
     }
@@ -217,10 +216,8 @@ export class NovaEmpresaComponent implements OnInit {
         $('#confirmacaoEmpresa').fadeIn('100');
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -243,13 +240,11 @@ export class NovaEmpresaComponent implements OnInit {
     dados.empresa = this.empresa.id;
     this.api.inserir(urlTipo, dados).subscribe(
       (data) => {
-        this.toastr.success('Empresa incluída com sucesso!');
+        this.toastrService.success('Empresa incluída com sucesso!');
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -259,13 +254,11 @@ export class NovaEmpresaComponent implements OnInit {
       this.sinistralidade.empresa = this.empresa.id;
       this.api.inserir('sinistralidade/', this.sinistralidade).subscribe(
         (data) => {
-          this.toastr.success('Sinistralidade incluída com sucesso!');
+          this.toastrService.success('Sinistralidade incluída com sucesso!');
         },
         (error) => {
-          let mensagens = error.error;
-          for (let campo in mensagens) {
-            this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-          }
+          const erro = new Erro(this.toastrService, error);
+          erro.exibir();
         }
       );
     }
@@ -276,13 +269,11 @@ export class NovaEmpresaComponent implements OnInit {
       this.reajuste.empresa = this.empresa.id;
       this.api.inserir('reajuste/', this.reajuste).subscribe(
         (data) => {
-          this.toastr.success('Reajuste incluído com sucesso!');
+          this.toastrService.success('Reajuste incluído com sucesso!');
         },
         (error) => {
-          let mensagens = error.error;
-          for (let campo in mensagens) {
-            this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-          }
+          const erro = new Erro(this.toastrService, error);
+          erro.exibir();
         }
       );
     }

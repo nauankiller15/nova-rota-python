@@ -7,6 +7,7 @@ import lightGallery from 'lightgallery';
 // Plugins
 import lgThumbnail from 'lightgallery/plugins/thumbnail';
 import lgZoom from 'lightgallery/plugins/zoom';
+import { Erro } from 'src/app/shared/erros';
 
 declare var $: any;
 
@@ -41,7 +42,7 @@ export class ConsultaTitularComponent implements OnInit {
 
   p: number = 1;
 
-  constructor(private toastr: ToastrService, private api: ApiService) {
+  constructor(private toastrService: ToastrService, private api: ApiService) {
     this.getTitularesAtivos();
   }
 
@@ -115,10 +116,8 @@ export class ConsultaTitularComponent implements OnInit {
         this.contentLoaded = true;
       },
       (error) => {
-        const mensagens = error.error;
-        for (let mensagem in mensagens) {
-          this.toastr.error(mensagem, mensagens[mensagem]);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -131,10 +130,8 @@ export class ConsultaTitularComponent implements OnInit {
         this.contentLoaded = true;
       },
       (error) => {
-        const mensagens = error.error;
-        for (let mensagem in mensagens) {
-          this.toastr.error(mensagem, mensagens[mensagem]);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }

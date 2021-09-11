@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/api.service';
+import { Erro } from 'src/app/shared/erros';
 import { Cargo, Usuario } from '../models';
 
 declare var $: any;
@@ -26,7 +27,7 @@ export class AlterarUsuarioComponent implements OnInit {
   usuario: Usuario = new Usuario;
   cargo: Cargo = new Cargo;
 
-  constructor(private apiService: ApiService, private toastr: ToastrService) { 
+  constructor(private apiService: ApiService, private toastrService: ToastrService) { 
     this.loadUsuarios() 
   }
 
@@ -69,10 +70,8 @@ export class AlterarUsuarioComponent implements OnInit {
         this.contentLoaded = true;
       },
       (error) => {
-        const mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -105,10 +104,8 @@ export class AlterarUsuarioComponent implements OnInit {
         }
       },
       (error) => {
-        const mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );  
   }
@@ -116,13 +113,11 @@ export class AlterarUsuarioComponent implements OnInit {
   atualizarUsuario() {
     this.apiService.atualizar('manipular-usuario/', this.usuario).subscribe(
       (data) => {
-        this.toastr.success('Usuário atualizado com sucesso');
+        this.toastrService.success('Usuário atualizado com sucesso');
       },
       (error) => {
-        const mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );  
   }
@@ -140,13 +135,11 @@ export class AlterarUsuarioComponent implements OnInit {
   atualizarCargo() {
     this.apiService.atualizar('cargo/', this.cargo).subscribe(
       (data) => {
-        this.toastr.success('Cargo atualizado com sucesso');
+        this.toastrService.success('Cargo atualizado com sucesso');
       },
       (error) => {
-        const mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );  
   }
@@ -154,13 +147,11 @@ export class AlterarUsuarioComponent implements OnInit {
   inserirCargo() {
     this.apiService.inserir('cargo/', this.cargo).subscribe(
       (data) => {
-        this.toastr.success('Cargo atualizado com sucesso');
+        this.toastrService.success('Cargo atualizado com sucesso');
       },
       (error) => {
-        const mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );  
   }

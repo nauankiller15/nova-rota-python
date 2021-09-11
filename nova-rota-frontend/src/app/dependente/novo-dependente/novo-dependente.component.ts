@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../api.service';
 import { Dependente, Titular } from '../models';
 import { validarCPF } from '../../shared/validador-cpf';
+import { Erro } from 'src/app/shared/erros';
 
 
 declare var $: any;
@@ -30,7 +31,7 @@ export class NovoDependenteComponent implements OnInit {
   p: number = 1;
 
   constructor(
-    private toastr: ToastrService,
+    private toastrService: ToastrService,
     private api: ApiService,
   ) {
     this.getTitularesAtivos();
@@ -130,7 +131,7 @@ export class NovoDependenteComponent implements OnInit {
         this.buscaTitular = data;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        this.toastrService.error('Aconteceu um Erro!', error.message);
       }
     );
   };
@@ -154,10 +155,10 @@ export class NovoDependenteComponent implements OnInit {
       (data) => {
         this.dependente.titular = titular.id;
         this.dependente.titular_nome = titular.nome;
-        this.toastr.success('Titular vinculado com sucesso!');
+        this.toastrService.success('Titular vinculado com sucesso!');
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        this.toastrService.error('Aconteceu um Erro!', error.message);
       }
     );
   };
@@ -192,10 +193,8 @@ export class NovoDependenteComponent implements OnInit {
         $('#encounter-tit').fadeOut('100');
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }

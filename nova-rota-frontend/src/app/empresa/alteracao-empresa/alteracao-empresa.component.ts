@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Erro } from 'src/app/shared/erros';
 import { validarCNPJ } from 'src/app/shared/validador-cnpj';
 import { ApiService } from '../../api.service';
 import {
@@ -47,7 +48,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
 
   p: number = 1;
 
-  constructor(private toastr: ToastrService, private api: ApiService) {
+  constructor(private toastrService: ToastrService, private api: ApiService) {
     this.getEmpresas();
   }
 
@@ -154,7 +155,7 @@ export class AlteracaoEmpresaComponent implements OnInit {
         this.busca = data;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        this.toastrService.error('Aconteceu um Erro!', error.message);
       }
     );
   }
@@ -214,10 +215,8 @@ export class AlteracaoEmpresaComponent implements OnInit {
         this.reajustes = data;
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir(); 
       }
     );
   }
@@ -228,10 +227,8 @@ export class AlteracaoEmpresaComponent implements OnInit {
         this.sinistralidades = data;
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir(); 
       }
     );
   }
@@ -246,10 +243,8 @@ export class AlteracaoEmpresaComponent implements OnInit {
         }
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir(); 
       }
     );
   }
@@ -264,10 +259,8 @@ export class AlteracaoEmpresaComponent implements OnInit {
         }
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir(); 
       }
     );
   }
@@ -283,10 +276,8 @@ export class AlteracaoEmpresaComponent implements OnInit {
         this.atualizarContrato();
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+      erro.exibir(); 
       }
     );
   }
@@ -312,13 +303,11 @@ export class AlteracaoEmpresaComponent implements OnInit {
       this.api.atualizar(urlTipo, dados).subscribe(
         (data) => {
           this.loadDadosEmpresa();
-          this.toastr.success('Empresa atualizada com sucesso!');
+          this.toastrService.success('Empresa atualizada com sucesso!');
         },
         (error) => {
-          let mensagens = error.error;
-          for (let campo in mensagens) {
-            this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-          }
+          const erro = new Erro(this.toastrService, error);
+          erro.exibir();
         }
       );
     } else {
@@ -326,13 +315,11 @@ export class AlteracaoEmpresaComponent implements OnInit {
       this.api.inserir(urlTipo, dados).subscribe(
         (data) => {
           this.loadDadosEmpresa();
-          this.toastr.success('Empresa atualizada com sucesso!');
+          this.toastrService.success('Empresa atualizada com sucesso!');
         },
         (error) => {
-          let mensagens = error.error;
-          for (let campo in mensagens) {
-            this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-          }
+          const erro = new Erro(this.toastrService, error);
+          erro.exibir();
         }
       );
     }
@@ -354,13 +341,11 @@ export class AlteracaoEmpresaComponent implements OnInit {
         $('#cadastrarReajuste').hide();
         this.reajuste = new Reajuste();
         this.loadReajustes(this.empresa.id);
-        this.toastr.success('Reajuste incluído com sucesso!');
+        this.toastrService.success('Reajuste incluído com sucesso!');
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -380,13 +365,11 @@ export class AlteracaoEmpresaComponent implements OnInit {
         $('#tabelaReajuste').slideDown(200);
         $('#formularioReajuste').slideUp(200);
         $('#atualizarReajuste').slideUp(200);
-        this.toastr.success('Reajuste atualizado com sucesso!');
+        this.toastrService.success('Reajuste atualizado com sucesso!');
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -407,16 +390,14 @@ export class AlteracaoEmpresaComponent implements OnInit {
     this.api.apagar('reajuste/', this.reajuste.id).subscribe(
       (data) => {
         this.loadReajustes(this.empresa.id);
-        this.toastr.success('Reajuste excluido com sucesso');
+        this.toastrService.success('Reajuste excluido com sucesso');
         $('#vinc-vigenciaAlt').fadeIn(100);
         $('#tabelaReajuste').slideDown(250);
         $('#exclusaoReajuste').hide();
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -437,13 +418,11 @@ export class AlteracaoEmpresaComponent implements OnInit {
         $('#cadastrarSinistralidade').slideUp(200);
         this.sinistralidade = new Sinistralidade();
         this.loadSinistralidades(this.empresa.id);
-        this.toastr.success('Sinistralidade incluída com sucesso!');
+        this.toastrService.success('Sinistralidade incluída com sucesso!');
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -463,13 +442,11 @@ export class AlteracaoEmpresaComponent implements OnInit {
         $('#tabelaSinistro').slideDown(200);
         $('#formularioSinistralidade').slideUp(200);
         $('#atualizarSinistralidade').slideUp(200);
-        this.toastr.success('Sinistralidade atualizada com sucesso!');
+        this.toastrService.success('Sinistralidade atualizada com sucesso!');
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -489,16 +466,14 @@ export class AlteracaoEmpresaComponent implements OnInit {
     this.api.apagar('sinistralidade/', this.sinistralidade.id).subscribe(
       (data) => {
         this.loadSinistralidades(this.empresa.id);
-        this.toastr.success('Reajuste excluido com sucesso');
+        this.toastrService.success('Reajuste excluido com sucesso');
         $('#vinc-vigenciaAlt').fadeIn(100);
         $('#tabelaReajuste').slideDown(250);
         $('#exclusaoSinistralidade').hide();
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }

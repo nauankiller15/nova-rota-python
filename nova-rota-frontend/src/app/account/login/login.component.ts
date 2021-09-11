@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Erro } from 'src/app/shared/erros';
 import { AuthService } from './auth.service';
 import { Login } from './models';
 
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   public loading = false;
 
   constructor(
-    private toastr: ToastrService,
+    private toastrService: ToastrService,
     private authService: AuthService,
     private router: Router
   ) {}
@@ -49,15 +50,13 @@ export class LoginComponent implements OnInit {
       const resp = await this.authService.autenticar(this.usuario);
       if (resp === true) {
         window.location.href = '/'
-        this.toastr.success('sucesso', 'Login efetuado');
+        this.toastrService.success('sucesso', 'Login efetuado');
         this.loading = false;
       }
     } catch (error) {
-      let mensagens = error.error;
-      for (let campo in mensagens) {
-        this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-      }      
       this.loading = false;
+      const erro = new Erro(this.toastrService, error);
+      erro.exibir();     
     }
   }
 }

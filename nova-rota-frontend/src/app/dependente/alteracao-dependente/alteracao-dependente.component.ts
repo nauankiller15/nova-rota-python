@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Erro } from 'src/app/shared/erros';
 import { validarCPF } from 'src/app/shared/validador-cpf';
 import { ApiService } from '../../api.service';
 import { HomeComponent } from '../../home/home.component';
@@ -55,7 +56,7 @@ export class AlteracaoDependenteComponent implements OnInit {
   p: number = 1;
 
   constructor(
-    private toastr: ToastrService,
+    private toastrService: ToastrService,
     private api: ApiService,
   ) {
     this.getDependentesAtivos();
@@ -140,7 +141,7 @@ export class AlteracaoDependenteComponent implements OnInit {
         this.busca = data;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        this.toastrService.error('Aconteceu um Erro!', error.message);
       }
     );
   }
@@ -152,7 +153,7 @@ export class AlteracaoDependenteComponent implements OnInit {
         this.busca = data;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        this.toastrService.error('Aconteceu um Erro!', error.message);
       }
     );
   }
@@ -164,7 +165,7 @@ export class AlteracaoDependenteComponent implements OnInit {
         this.buscaTitularAlt = data;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        this.toastrService.error('Aconteceu um Erro!', error.message);
       }
     );
   };
@@ -186,7 +187,7 @@ export class AlteracaoDependenteComponent implements OnInit {
 
     this.dependente.titular = titular.id;
     this.dependente.titular_nome = titular.nome;
-    this.toastr.success('Titular vinculado com sucesso!');
+    this.toastrService.success('Titular vinculado com sucesso!');
   };
 
   dependenteClicked = (dependente: Dependente) => {
@@ -248,13 +249,11 @@ export class AlteracaoDependenteComponent implements OnInit {
         $('#atualizarCad').fadeOut(250);
         $('#unlockCad').fadeIn(250);
         this.dependenteClicked(data);
-        this.toastr.success('Atualizado com sucesso!');      
+        this.toastrService.success('Atualizado com sucesso!');      
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir()    
       }
     );
   }
@@ -291,7 +290,7 @@ export class AlteracaoDependenteComponent implements OnInit {
     const atualizar = {id: this.dependente.id,carteirinha: this.dependente.carteirinha};
     this.api.atualizarCampo('parentesco/', atualizar).subscribe(
       (data) => {
-        this.toastr.success('Carteirinha atualizada com sucesso!');      
+        this.toastrService.success('Carteirinha atualizada com sucesso!');      
         if (this.dependente.ativo == true) {
           this.getDependentesAtivos();
         } else {
@@ -299,10 +298,8 @@ export class AlteracaoDependenteComponent implements OnInit {
         }  
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
     $('#atualizarCarteirinha').fadeOut(100)

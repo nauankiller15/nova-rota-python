@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Erro } from 'src/app/shared/erros';
 import { AuthService } from '../../account/login/auth.service';
 import { ApiService } from '../../api.service';
 import { HomeComponent } from '../../home/home.component';
@@ -17,7 +18,7 @@ export class NovaTarefaComponent implements OnInit {
 
   constructor(
     private api: ApiService,
-    private toastr: ToastrService,
+    private toastrService: ToastrService,
     private homeComponent: HomeComponent
   ) {}
 
@@ -46,15 +47,13 @@ export class NovaTarefaComponent implements OnInit {
     this.api.inserir('tarefas/', this.nova_tarefa).subscribe(
       (data) => {
         this.homeComponent.tarefas.push(data);
-        this.toastr.success('Tarefa criada com sucesso!', data.message);
+        this.toastrService.success('Tarefa criada com sucesso!', data.message);
         $('.nova-tarefa').fadeOut('100');
         $('#over-tarefa').fadeOut('100');
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }

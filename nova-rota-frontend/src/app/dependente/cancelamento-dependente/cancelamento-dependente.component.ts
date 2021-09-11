@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Erro } from 'src/app/shared/erros';
 import { ApiService } from '../../api.service';
 import { CancelarCadastro, Dependente } from '../models';
 
@@ -30,7 +31,7 @@ export class CancelamentoDependenteComponent implements OnInit {
 
   p: number = 1;
 
-  constructor(private toastr: ToastrService, private api: ApiService) {
+  constructor(private toastrService: ToastrService, private api: ApiService) {
     this.getDependentesAtivos();
   }
 
@@ -90,7 +91,7 @@ export class CancelamentoDependenteComponent implements OnInit {
         this.busca = data;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        this.toastrService.error('Aconteceu um Erro!', error.message);
       }
     );
   }
@@ -102,7 +103,7 @@ export class CancelamentoDependenteComponent implements OnInit {
         this.busca = data;
       },
       (error) => {
-        this.toastr.error('Aconteceu um Erro!', error.message);
+        this.toastrService.error('Aconteceu um Erro!', error.message);
       }
     );
   }
@@ -121,15 +122,13 @@ export class CancelamentoDependenteComponent implements OnInit {
   cancelarDependente() {
     this.api.apagar('parentesco/', this.cadastro.id).subscribe(
       (data) => {
-        this.toastr.success('Dependente CANCELADO com sucesso!');
+        this.toastrService.success('Dependente CANCELADO com sucesso!');
         $('#cancelamentoDependente').fadeOut(250);
         this.getDependentesAtivos();
       },
       (error) => {
-        let mensagens = error.error;
-        for (let campo in mensagens) {
-          this.toastr.error(mensagens[campo], 'Erro no ' + campo);
-        }
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
       }
     );
   }
@@ -203,6 +202,8 @@ export class CancelamentoDependenteComponent implements OnInit {
         this.cancelados.cancelados.push(dependente);
       },
       (error) => {
+        const erro = new Erro(this.toastrService, error);
+        erro.exibir();
         let mensagens = error.error;
         let erros = [];
         for (let campo in mensagens) {
