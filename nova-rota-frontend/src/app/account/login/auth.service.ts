@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 import { Login } from './models';
 
 @Injectable({
@@ -10,7 +11,7 @@ import { Login } from './models';
 })
 export class AuthService {
   
-  private baseUrl = '//127.0.0.1:8000/api/';
+  private readonly baseUrl = environment.baseUrl;
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json'});
   
   constructor(private http: HttpClient, private router: Router, private toastr: ToastrService) {}

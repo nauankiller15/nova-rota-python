@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class ApiService {
   httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   private readonly baseUrl = environment.baseUrl;
-
+  
   constructor( private http: HttpClient) { }
 
   listar(apiUrl): Observable<any> {
