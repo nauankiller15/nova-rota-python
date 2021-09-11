@@ -14,7 +14,7 @@ from pathlib import Path
 from datetime import timedelta
 
 from .variaveis_de_ambiente \
-import SECRET_KEY, ALLOWED_HOSTS, DEBUG, DATABASES
+import SECRET_KEY, ALLOWED_HOSTS, DEBUG, DATABASES, CORS_ALLOWED_ORIGINS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -147,13 +147,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:4200",
-    "http://127.0.0.1:4200",
-]
 
 CORS_ALLOW_METHODS = [
     'DELETE',
