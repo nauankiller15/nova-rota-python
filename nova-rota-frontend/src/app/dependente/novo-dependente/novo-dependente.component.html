@@ -301,6 +301,7 @@
                         "
                         class="btn btn-primary"
                         id="fecharAnexo3"
+                        [disabled]="dependente.anexo_doc_casamento == null"
                       >
                         Anexar Arquivo
                       </button>
@@ -437,6 +438,7 @@
                         "
                         class="btn btn-primary"
                         id="fecharAnexo2"
+                        [disabled]="dependente.anexo_doc_nascimento == null"
                       >
                         Anexar Arquivo
                       </button>
@@ -576,8 +578,8 @@
               </div>
 
               <div
+                *ngIf="dependente.declaracao_saude == 'Sim'"
                 class="col-md-4 mb-4"
-                style="display: none"
                 id="descDeclaracaoSaudeDependente"
               >
                 <label for="validationCustom05"
@@ -597,6 +599,7 @@
                   type="text"
                   class="form-control"
                   placeholder="Informe aqui exatamente como está na declaração"
+                  required
                 />
               </div>
 

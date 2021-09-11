@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { AppComponent } from '../../app.component';
 import { ApiService } from '../../api.service';
 import { Dependente, Titular } from '../models';
 import { validarCPF } from '../../shared/validador-cpf';
@@ -121,15 +120,6 @@ export class NovoDependenteComponent implements OnInit {
       $('#confirmacaoDependente').fadeOut('100');
     });
 
-    //
-
-    // CONFIRMAÇÃO DECLARAÇÃO SAÚDE
-
-    $('#declaracaoSaudeDependente').on('change', function () {
-      'Sim' === $(this).val()
-        ? $('#descDeclaracaoSaudeDependente').fadeIn('100')
-        : $('#descDeclaracaoSaudeDependente').fadeOut('100');
-    });
     //
   }
 

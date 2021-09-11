@@ -651,7 +651,8 @@
                   Por favor informe o estado corretamente.
                 </div>
               </div>
-              <div class="col-md-4 mb-4">
+
+              <div class="col-md-4 mb-4" *ngIf="titular.declaracao_saude == 'Sim'">
                 <label for="validationCustom05"
                   >Descrição da Declaração de Saúde</label
                 >
