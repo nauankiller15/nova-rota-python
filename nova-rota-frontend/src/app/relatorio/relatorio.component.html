@@ -31,7 +31,7 @@
           </ul>
         </nav>
 
-        <div class="card-body">
+        <div class="card-body" #tabelaRelatorio>
           <table class="table">
             <thead class="tHeadl">
               <tr>
@@ -109,7 +109,7 @@
             responsive="true"
             (pageChange)="p = $event"
           ></pagination-controls>
-          <button class="btn btn-primary" id="abrirAnexo4">
+          <button class="btn btn-primary" id="abrirAnexo4" (click)="downloadAsPDF()">
             <i
               class="fas fa-file-pdf"
               style="margin-right: 6px; font-size: 15px"
