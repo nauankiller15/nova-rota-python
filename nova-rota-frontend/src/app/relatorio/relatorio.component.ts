@@ -3,13 +3,13 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../api.service';
 import { Erro } from '../shared/erros';
 
-var pdfMake = require("pdfmake/build/pdfmake");
-var pdfFonts = require("pdfmake/build/vfs_fonts");
+var pdfMake = require('pdfmake/build/pdfmake');
+var pdfFonts = require('pdfmake/build/vfs_fonts');
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
-var htmlToPdfmake = require("html-to-pdfmake");
+var htmlToPdfmake = require('html-to-pdfmake');
 
-declare var require: any
+declare var require: any;
 declare var $: any;
 
 @Component({
@@ -25,8 +25,10 @@ export class RelatorioComponent implements OnInit {
 
   @ViewChild('tabelaRelatorio') pdfTable: ElementRef;
 
-
-  constructor(private apiService: ApiService, private toastrService: ToastrService) {
+  constructor(
+    private apiService: ApiService,
+    private toastrService: ToastrService
+  ) {
     const hoje = new Date();
     const periodo = hoje.getDate() < 15 ? 1 : 2;
     const mes = hoje.getMonth();
@@ -111,51 +113,56 @@ export class RelatorioComponent implements OnInit {
     }
   }
 
-  
   public downloadAsPDF() {
-
     const pdfTable = this.pdfTable.nativeElement;
     var html = htmlToPdfmake(pdfTable.innerHTML);
     const styles = {
-      'capt': {
-        'text-transform': 'capitalize'
-      }, 
-
-      'relatorio': {
-        'background-color': '#fff'
-      },
-            
-      'processado': {
-        'background': '#d43f3f !important',
-      },
-      
-      'transferencia': {
-        'background-image': 'linear-gradient(to top, #d7c6ff 0%, #ebe9f0 100%)'
-      },
-      
-      'alteracao': {
-        'background-image': 'linear-gradient(to top, #a7e97f 0%, #f0f5ec 100%)',
-        'color': '#424242'
+      capt: {
+        'text-transform': 'capitalize',
       },
 
-      'linhaS': {
-        'border': '1px solid #ffffff85',
-        'padding': '5px',
+      relatorio: {
+        'background-color': '#fff',
+      },
+
+      processado: {
+        color: '#d43f3f !important',
+        padding: '10px',
+        'font-weight': 'bolder',
+      },
+
+      transferencia: {
+        color: '#d7c6ff !important',
+        padding: '10px',
+        'font-weight': 'bolder',
+      },
+
+      alteracao: {
+        color: '#11963c !important',
+        padding: '10px',
+        'font-weight': 'bolder',
+      },
+
+      linhaS: {
+        border: '1px solid #ffffff85',
+        padding: '5px',
         'border-radius': '6px',
         'text-align': 'center',
-        'font-weight': '700'
+        'font-weight': '700',
       },
-      
-      'tHeadl': {
+
+      tHeadl: {
         'font-size': '1.1em',
-        'border-bottom': '3px solid #ccc'
-      }
-    }
-    
-    const documentDefinition = { pageSize: 'A4', pageOrientation: 'landscape', styles: styles, content: html };
+        'border-bottom': '3px solid #ccc',
+      },
+    };
+
+    const documentDefinition = {
+      pageSize: 'A4',
+      pageOrientation: 'landscape',
+      styles: styles,
+      content: html,
+    };
     pdfMake.createPdf(documentDefinition).open();
-     
   }
 }
-
-
