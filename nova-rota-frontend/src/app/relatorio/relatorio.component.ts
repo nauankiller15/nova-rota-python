@@ -132,7 +132,7 @@ export class RelatorioComponent implements OnInit {
       },
 
       transferencia: {
-        color: '#d7c6ff !important',
+        color: '#1d159c !important',
         padding: '10px',
         'font-weight': 'bolder',
       },

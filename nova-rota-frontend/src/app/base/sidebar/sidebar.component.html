@@ -152,12 +152,12 @@
         <!-- ******* PAINEL ADMINISTRAÇÃO ******* -->
           <li
             class="app-sidebar__heading"
-            *ngIf="['desenvolvedor', 'Gestor'].includes(usuario.cargo)"
+            *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)"
           >
             Administração
           </li>
 
-          <li *ngIf="['desenvolvedor', 'Gestor'].includes(usuario.cargo)">
+          <li *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)">
             <a>
               <i class="metismenu-icon fas fa-building"></i> Cadastro de
               Empresas
@@ -184,7 +184,7 @@
             </ul>
           </li>
 
-          <li *ngIf="['desenvolvedor', 'Gestor'].includes(usuario.cargo)">
+          <li *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)">
             <a>
               <i class="metismenu-icon fas fa-list eraseForm"></i> Relatórios
               <i
@@ -202,7 +202,7 @@
             </ul>
           </li>
 
-          <li *ngIf="['desenvolvedor', 'Gestor'].includes(usuario.cargo)">
+          <li *ngIf="['desenvolvedor', 'gestor'].includes(usuario.cargo)">
             <a>
               <i class="metismenu-icon fas fa-user eraseForm"></i> Usuários
               <i
