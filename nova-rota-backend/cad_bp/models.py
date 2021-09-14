@@ -44,8 +44,8 @@ class Parentesco (models.Model):
 
     nome = models.CharField("Nome Dependente", max_length=255, blank=False)
     CPF = BRCPFField("Número CPF", max_length=14, null=False, unique=True)
-    cod_empresa = models.CharField("Codigo Empresa", max_length=25, null=False, blank=False, validators=[cod_empresa_existe])
-    carteirinha = models.CharField("Numero da Carteirinha", max_length=35, null=True, blank=True, unique=True)
+    cod_empresa = models.CharField("Codigo Empresa", max_length=25, null=True, blank=True, validators=[cod_empresa_existe])
+    carteirinha = models.CharField("Numero da Carteirinha", max_length=35, null=True, blank=True)
     data_recebimento = models.DateField(
         "Data Recebimento", auto_now=False, auto_now_add=False, null=False)
     tipo = models.CharField("Tipo Cadastro", max_length=25,

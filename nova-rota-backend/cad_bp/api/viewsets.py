@@ -71,7 +71,7 @@ class ParentescoViewSet(ModelViewSet):
             tipo = tipo,
             CPF = dependente['CPF'],
             nome = dependente['nome'],
-            carteirinha = dependente['carteirinha'],
+            carteirinha = dependente['carteirinha']  if 'carteirinha' in dependente else '',
             usuario = self.request.user
         )
 
