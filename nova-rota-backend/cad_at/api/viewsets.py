@@ -51,7 +51,7 @@ class TitularViewSet(ModelViewSet):
             tipo = "INCL. TIT",
             CPF = titular['CPF'],
             nome = titular['nome'],
-            carteirinha = titular['carteirinha'],
+            carteirinha = titular['carteirinha'] if 'carteirinha' in titular else '',
             usuario = self.request.user
         )
         return super().perform_create(serializer)
