@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
       const resp = await this.authService.autenticar(this.usuario);
       if (resp === true) {
         window.location.href = '/'
-        this.toastrService.success('sucesso', 'Login efetuado');
+        this.toastrService.success('Sucesso', 'Login efetuado');
         this.loading = false;
       }
     } catch (error) {
