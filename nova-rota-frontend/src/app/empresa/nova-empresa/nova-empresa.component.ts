@@ -34,7 +34,7 @@ export class NovaEmpresaComponent implements OnInit {
     $(window).on('load', function () {
       $('#resetEmp').trigger('click');
     });
-    // 
+    //
     $(function () {
       $('[data-toggle="tooltip"]').tooltip();
     });
@@ -57,7 +57,7 @@ export class NovaEmpresaComponent implements OnInit {
         $(this).addClass('ng-valid is-valid');
       }
     });
-    
+
     // TELA DE ANEXO DO DOCUMENTO DA EMPRESA
     $('#dataRecebimento').on('blur', function () {
       $('#vinc-anexo-empresa').fadeIn('100');
@@ -148,6 +148,16 @@ export class NovaEmpresaComponent implements OnInit {
         this.reset();
       });
     });
+
+     // SLIDE LEFT AND RIGHT TIPOS DE PRODUTOS
+     $('#variosProdutos').click(function () {
+      $('#variosProdutosTab').slideDown('100');
+      $('#umProdutoTab').slideUp('100');
+    });
+    $('#umProduto').click(function () {
+      $('#umProdutoTab').slideDown('100');
+      $('#variosProdutosTab').slideUp('100');
+    });
   }
 
   // CADASTRO DE EMPRESAS
@@ -177,7 +187,7 @@ export class NovaEmpresaComponent implements OnInit {
     $('#InvalidCNPJ').hide();
     $('#CNPJCadastrado').fadeOut(100);
     if (validarCNPJ(cnpj) == false) {
-      this.cnpjValido = false
+      this.cnpjValido = false;
       $('#InvalidCNPJ').fadeIn(100);
     } else {
       let urlEmpresa = 'empresa/';
@@ -196,10 +206,16 @@ export class NovaEmpresaComponent implements OnInit {
         (error) => {
           const erro = new Erro(this.toastrService, error);
           erro.exibir();
-        }          
+        }
       );
     }
   }
+
+  // INCLUIR PRODUTOS
+  newProduto() {
+    $('#vinc-produtos').fadeIn(200);
+  }
+  //
 
   newEmpresa() {
     let urlEmpresa = 'empresa/';
