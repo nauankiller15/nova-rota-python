@@ -76,14 +76,20 @@ export class NovaEmpresaComponent implements OnInit {
       $('#vinc-anexo-empresa').fadeIn('100');
     });
 
-    // TELA DE VIGÊNCIA
-    $('#dataVigencia').on('blur', function () {
+    // // TELA DE VIGÊNCIA
+    // $('#dataVigencia').on('blur', function () {
+    //   $('#vinc-vigencia').fadeIn('100');
+    // });
+    // $('#dataVigencia').on('focus', function () {
+    //   $(this).siblings('#vinc-vigencia').fadeIn('100');
+    // });
+    // $('#vinc-vigencia').slideUp();
+    // //
+
+    // NOVA INCLUSÃO VIGÊNCIA
+    $('#includeVigencia').click(function () {
       $('#vinc-vigencia').fadeIn('100');
     });
-    $('#dataVigencia').on('focus', function () {
-      $(this).siblings('#vinc-vigencia').fadeIn('100');
-    });
-    $('#vinc-vigencia').slideUp();
     //
     $('#fecharVigencia').click(function () {
       $('#vinc-vigencia').fadeOut('100');
@@ -103,6 +109,12 @@ export class NovaEmpresaComponent implements OnInit {
       $('#reajusTab').slideDown('100');
       $('#sinisTab').slideUp('100');
     });
+
+    // FECHAR TELA DE INCLUSÃO DE PRODUTO
+    $('#fecharProduto').click(function () {
+      $('#vinc-produtos').fadeOut('100');
+    });
+    // 
 
     // BOTÕES DE ESCOLHA
     $('.menuItems li').on('click', function () {
@@ -149,8 +161,8 @@ export class NovaEmpresaComponent implements OnInit {
       });
     });
 
-     // SLIDE LEFT AND RIGHT TIPOS DE PRODUTOS
-     $('#variosProdutos').click(function () {
+    // SLIDE LEFT AND RIGHT TIPOS DE PRODUTOS
+    $('#variosProdutos').click(function () {
       $('#variosProdutosTab').slideDown('100');
       $('#umProdutoTab').slideUp('100');
     });

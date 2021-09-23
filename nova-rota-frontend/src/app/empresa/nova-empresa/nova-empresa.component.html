@@ -452,7 +452,7 @@
             </div>
             <div class="col-md-3 mb-3"></div>
 
-            <div class="form-row">
+            <div class="form-row" style="display: none">
               <div class="col-md-2 mb-3">
                 <label for="validationCustom02">Tipo de Contrato</label>
                 <select
@@ -952,267 +952,346 @@
         </div>
       </div>
       <!--  -->
-        <!-- INCLUIR PRODUTOS/CONTRATOS -->
-        <div id="vinc-produtos">
-          <div class="box-produtos">
-            <div class="anexo-info-box-empresa-vinc">
-              <div style="margin: 0 auto 10px auto; width: 100%">
-                <nav class="menuVigencia">
-                  <ul class="menuItems">
-                    <!-- BOTÃO REAJUSTE -->
-                    <li id="umProduto" class="active radiusTop">Incluir Produto</li>
+      <!-- INCLUIR PRODUTOS/CONTRATOS -->
+      <div id="vinc-produtos">
+        <div class="box-produtos">
+          <div class="anexo-info-box-empresa-vinc">
+            <div style="margin: 0 auto 10px auto; width: 100%">
+              <nav class="menuVigencia">
+                <ul class="menuItems">
+                  <!-- BOTÃO REAJUSTE -->
+                  <li id="umProduto" class="active radiusTop">
+                    Incluir Produto
+                  </li>
 
-                    <!-- BOTÃO SINISTRALIDADE -->
-                    <li id="variosProdutos">Incluir mais Produtos</li>
-                  </ul>
-                </nav>
-              </div>
-              <div id="umProdutoTab">
-                <h2 style="font-size: 20px; display: flex; margin-bottom: 15px">
-                  Incluir um produto:
-                </h2>
-                <label for="reajuste">Informe aqui o produto:</label>
-                <div style="width: 100%"></div>
-                <div
-                  style="margin-top: 12px; margin-bottom: 5px"
+                  <!-- BOTÃO SINISTRALIDADE -->
+                  <li id="variosProdutos">Incluir mais Produtos</li>
+                </ul>
+              </nav>
+            </div>
+            <div id="umProdutoTab">
+              <h2 style="font-size: 20px; display: flex; margin-bottom: 15px">
+                Incluir um produto:
+              </h2>
+              <label for="reajuste">Informe aqui o produto:</label>
+              <div style="width: 100%"></div>
+              <div
+                style="margin-top: 12px; margin-bottom: 5px"
+                for="enviarReajuste"
+              >
+                <input
+                  style="display: none"
+                  [(ngModel)]="enviarReajuste"
+                  class="form-check-input"
+                  type="checkbox"
+                  id="enviarReajuste"
+                />
+                <label
+                  class="btn btn-primary"
+                  style="cursor: pointer"
                   for="enviarReajuste"
                 >
-                  <input
-                    style="display: none"
-                    [(ngModel)]="enviarReajuste"
-                    class="form-check-input"
-                    type="checkbox"
-                    id="enviarReajuste"
-                  />
-                  <label
-                    class="btn btn-primary"
-                    style="cursor: pointer"
-                    for="enviarReajuste"
-                  >
-                    <i style="margin-right: 5px" class="fas fa-plus"></i>
-                    Incluir Reajuste
-                  </label>
-                </div>
-                <hr />
+                  <i style="margin-right: 5px" class="fas fa-plus"></i>
+                  Incluir Produto
+                </label>
 
-                <form #reajusteForm="ngForm">
-                  <div style="width: 100%"></div>
-                  <div class="form-row">
-                    <!-- TIPO DO PRODUTO -->
-                    <div class="col-md-5 mb-5">
-                      <label for="validationCustom01">Tipo de Produto</label>
-                      <input
-                        #ano_vigencia="ngModel"
-                        [(ngModel)]="reajuste.ano_vigencia"
-                        name="ano_vigencia"
-                        type="text"
-                        class="form-control"
-                        [class.is-invalid]="
-                          ano_vigencia.invalid && ano_vigencia.touched
-                        "
-                        [class.is-valid]="
-                          ano_vigencia.valid && ano_vigencia.touched
-                        "
-                        [disabled]="!enviarReajuste"
-                        style="
-                          border-top: none;
-                          border-left: none;
-                          border-right: none;
-                        "
-                        placeholder="Informe o tipo do produto"
-                        required
-                      />
-                    </div>
-                    <!--  -->
-
-                    <!-- TÉCNICO -->
-                    <div class="col-md-5 mb-5">
-                      <label for="validationCustom01">Função do Produto</label>
-                      <input
-                        #tecnico="ngModel"
-                        [(ngModel)]="reajuste.tecnico"
-                        [class.is-invalid]="tecnico.invalid && tecnico.touched"
-                        [class.is-valid]="tecnico.valid && tecnico.touched"
-                        [disabled]="!enviarReajuste"
-                        name="tecnico"
-                        type="text"
-                        min="0"
-                        max="100"
-                        step="0.01"
-                        class="form-control"
-                        style="
-                          border-top: none;
-                          border-left: none;
-                          border-right: none;
-                        "
-                        placeholder="Informe a função do produto"
-                        required
-                      />
-                    </div>
-                    <!--  -->
-
-                    <!-- NEGOCIADO -->
-                    <div class="col-md-5 mb-5">
-                      <label for="validationCustom01">Nome do Produto</label>
-                      <input
-                        #negociado="ngModel"
-                        [(ngModel)]="reajuste.negociado"
-                        [class.is-invalid]="
-                          negociado.invalid && negociado.touched
-                        "
-                        [class.is-valid]="negociado.valid && negociado.touched"
-                        [disabled]="!enviarReajuste"
-                        name="negociado"
-                        type="text"
-                        min="0"
-                        max="100"
-                        step="0.01"
-                        class="form-control"
-                        style="
-                          border-top: none;
-                          border-left: none;
-                          border-right: none;
-                        "
-                        placeholder="Informe o nome do produto"
-                        required
-                      />
-                    </div>
-                    <!--  -->
-                  </div>
-                </form>
+                <button
+                  style="margin-top: -8px"
+                  name="enviar"
+                  class="btn btn-primary"
+                  id="includeVigencia"
+                >
+                  <i class="fas fa-plus"></i> Incluir Vigência
+                </button>
               </div>
 
-              <div id="variosProdutosTab" style="display: none">
-                <h2 style="font-size: 20px; display: flex; margin-bottom: 15px">
-                  Incluir mais produtos:
-                </h2>
-                <label for="reajuste">Informe aqui os produtos:</label>
+              <hr />
+
+              <form #reajusteForm="ngForm">
                 <div style="width: 100%"></div>
-                <div
-                  style="margin-top: 12px; margin-bottom: 5px"
+                <div class="form-row">
+                  <!-- TIPO DO PRODUTO -->
+                  <div class="col-md-5 mb-5">
+                    <label for="validationCustom01">Tipo de Produto</label>
+                    <input
+                      #ano_vigencia="ngModel"
+                      [(ngModel)]="reajuste.ano_vigencia"
+                      name="ano_vigencia"
+                      type="text"
+                      class="form-control"
+                      [class.is-invalid]="
+                        ano_vigencia.invalid && ano_vigencia.touched
+                      "
+                      [class.is-valid]="
+                        ano_vigencia.valid && ano_vigencia.touched
+                      "
+                      [disabled]="!enviarReajuste"
+                      style="
+                        border-top: none;
+                        border-left: none;
+                        border-right: none;
+                      "
+                      placeholder="Informe o tipo do produto"
+                      required
+                    />
+                  </div>
+                  <!--  -->
+
+                  <!-- TÉCNICO -->
+                  <div class="col-md-5 mb-5">
+                    <label for="validationCustom01">Função do Produto</label>
+                    <input
+                      #tecnico="ngModel"
+                      [(ngModel)]="reajuste.tecnico"
+                      [class.is-invalid]="tecnico.invalid && tecnico.touched"
+                      [class.is-valid]="tecnico.valid && tecnico.touched"
+                      [disabled]="!enviarReajuste"
+                      name="tecnico"
+                      type="text"
+                      min="0"
+                      max="100"
+                      step="0.01"
+                      class="form-control"
+                      style="
+                        border-top: none;
+                        border-left: none;
+                        border-right: none;
+                      "
+                      placeholder="Informe a função do produto"
+                      required
+                    />
+                  </div>
+                  <!--  -->
+
+                  <!-- NOME DE UM PRODUTO -->
+                  <div class="col-md-5 mb-5">
+                    <label for="validationCustom01">Nome do Produto</label>
+                    <input
+                      #negociado="ngModel"
+                      [(ngModel)]="reajuste.negociado"
+                      [class.is-invalid]="
+                        negociado.invalid && negociado.touched
+                      "
+                      [class.is-valid]="negociado.valid && negociado.touched"
+                      [disabled]="!enviarReajuste"
+                      name="negociado"
+                      type="text"
+                      min="0"
+                      max="100"
+                      step="0.01"
+                      class="form-control"
+                      style="
+                        border-top: none;
+                        border-left: none;
+                        border-right: none;
+                      "
+                      placeholder="Informe o nome do produto"
+                      required
+                    />
+                  </div>
+                  <!--  -->
+
+                  <!-- CÓDIGO DO PRODUTO -->
+                  <div class="col-md-5 mb-5">
+                    <label for="validationCustom01">Código do Produto</label>
+                    <input
+                      #sinistralidade_sinistralidade="ngModel"
+                      [(ngModel)]="sinistralidade.sinistralidade"
+                      [class.is-invalid]="
+                        sinistralidade_sinistralidade.invalid &&
+                        sinistralidade_sinistralidade.touched
+                      "
+                      [class.is-valid]="
+                        sinistralidade_sinistralidade.valid &&
+                        sinistralidade_sinistralidade.touched
+                      "
+                      [disabled]="!enviarSinistralidade"
+                      name="sinistralidade"
+                      type="text"
+                      step="0.01"
+                      class="form-control"
+                      style="
+                        border-top: none;
+                        border-left: none;
+                        border-right: none;
+                      "
+                      placeholder="Informe o código do produto"
+                      required
+                    />
+                  </div>
+                  <!--  -->
+                </div>
+              </form>
+            </div>
+
+            <div id="variosProdutosTab" style="display: none">
+              <h2 style="font-size: 20px; display: flex; margin-bottom: 15px">
+                Incluir mais produtos:
+              </h2>
+              <label for="reajuste">Informe aqui os produtos:</label>
+              <div style="width: 100%"></div>
+              <div
+                style="margin-top: 12px; margin-bottom: 5px"
+                for="enviarSinistralidade"
+              >
+                <input
+                  style="display: none"
+                  [(ngModel)]="enviarSinistralidade"
+                  class="form-check-input"
+                  type="checkbox"
+                  id="enviarSinistralidade"
+                />
+                <label
+                  class="btn btn-primary"
+                  style="cursor: pointer"
                   for="enviarSinistralidade"
                 >
-                  <input
-                    style="display: none"
-                    [(ngModel)]="enviarSinistralidade"
-                    class="form-check-input"
-                    type="checkbox"
-                    id="enviarSinistralidade"
-                  />
-                  <label
-                    class="btn btn-primary"
-                    style="cursor: pointer"
-                    for="enviarSinistralidade"
-                  >
-                    <i style="margin-right: 5px" class="fas fa-plus"></i>
-                    Incluir mais Produtos
-                  </label>
-                </div>
-                <hr />
-                <form #sinistralidadeForm="ngForm">
-                  <div class="form-row">
-                    <!-- TIPO DE PRODUTO -->
-                    <div class="col-md-5 mb-5">
-                      <label for="validationCustom01">Tipo de Produto</label>
-                      <input
-                        #ano="ngModel"
-                        [(ngModel)]="sinistralidade.ano"
-                        [class.is-invalid]="ano.invalid && ano.touched"
-                        [class.is-valid]="ano.valid && ano.touched"
-                        [disabled]="!enviarSinistralidade"
-                        name="ano"
-                        type="text"
-                        class="form-control"
-                        style="
-                          border-top: none;
-                          border-left: none;
-                          border-right: none;
-                        "
-                        placeholder="Informe aqui o tipo do produto"
-                        required
-                      />
-                    </div>
-                    <!--  -->
-
-                    <!-- FUNÇÃO DO PRODUTO -->
-                    <div class="col-md-5 mb-5">
-                      <label for="validationCustom01">Função do Produto</label>
-                      <input
-                        #sinistralidade_sinistralidade="ngModel"
-                        [(ngModel)]="sinistralidade.sinistralidade"
-                        [class.is-invalid]="
-                          sinistralidade_sinistralidade.invalid &&
-                          sinistralidade_sinistralidade.touched
-                        "
-                        [class.is-valid]="
-                          sinistralidade_sinistralidade.valid &&
-                          sinistralidade_sinistralidade.touched
-                        "
-                        [disabled]="!enviarSinistralidade"
-                        name="sinistralidade"
-                        type="text"
-                        step="0.01"
-                        class="form-control"
-                        style="
-                          border-top: none;
-                          border-left: none;
-                          border-right: none;
-                        "
-                        placeholder="Informe a função do produto"
-                        required
-                      />
-                    </div>
-                    <!--  -->
-
-                     <!-- NOME DO PRODUTO -->
-                     <div class="col-md-5 mb-5">
-                      <label for="validationCustom01">Nome do Produto</label>
-                      <input
-                        #sinistralidade_sinistralidade="ngModel"
-                        [(ngModel)]="sinistralidade.sinistralidade"
-                        [class.is-invalid]="
-                          sinistralidade_sinistralidade.invalid &&
-                          sinistralidade_sinistralidade.touched
-                        "
-                        [class.is-valid]="
-                          sinistralidade_sinistralidade.valid &&
-                          sinistralidade_sinistralidade.touched
-                        "
-                        [disabled]="!enviarSinistralidade"
-                        name="sinistralidade"
-                        type="text"
-                        step="0.01"
-                        class="form-control"
-                        style="
-                          border-top: none;
-                          border-left: none;
-                          border-right: none;
-                        "
-                        placeholder="Informe o nome do produto"
-                        required
-                      />
-                    </div>
-                    <!--  -->
-                  </div>
-                </form>
+                  <i style="margin-right: 5px" class="fas fa-plus"></i>
+                  Incluir outro Produto
+                </label>
+                <button
+                  style="margin-top: -8px"
+                  name="enviar"
+                  class="btn btn-primary"
+                  id="includeVigencia"
+                >
+                  <i class="fas fa-plus"></i> Incluir Vigência
+                </button>
               </div>
-              <button
-                
-                style="
-                  display: flex;
-                  position: absolute;
-                  right: 20px;
-                  bottom: 20px;
-                "
-                class="btn btn-primary"
-                id="fecharVigencia"
-              >
-                Gravar
-              </button>
+              <hr />
+              <form #sinistralidadeForm="ngForm">
+                <div class="form-row">
+                  <!-- TIPO DE PRODUTO -->
+                  <div class="col-md-5 mb-5">
+                    <label for="validationCustom01">Tipo de Produto</label>
+                    <input
+                      #ano="ngModel"
+                      [(ngModel)]="sinistralidade.ano"
+                      [class.is-invalid]="ano.invalid && ano.touched"
+                      [class.is-valid]="ano.valid && ano.touched"
+                      [disabled]="!enviarSinistralidade"
+                      name="ano"
+                      type="text"
+                      class="form-control"
+                      style="
+                        border-top: none;
+                        border-left: none;
+                        border-right: none;
+                      "
+                      placeholder="Informe aqui o tipo do produto"
+                      required
+                    />
+                  </div>
+                  <!--  -->
+
+                  <!-- FUNÇÃO DO PRODUTO -->
+                  <div class="col-md-5 mb-5">
+                    <label for="validationCustom01">Função do Produto</label>
+                    <input
+                      #sinistralidade_sinistralidade="ngModel"
+                      [(ngModel)]="sinistralidade.sinistralidade"
+                      [class.is-invalid]="
+                        sinistralidade_sinistralidade.invalid &&
+                        sinistralidade_sinistralidade.touched
+                      "
+                      [class.is-valid]="
+                        sinistralidade_sinistralidade.valid &&
+                        sinistralidade_sinistralidade.touched
+                      "
+                      [disabled]="!enviarSinistralidade"
+                      name="sinistralidade"
+                      type="text"
+                      step="0.01"
+                      class="form-control"
+                      style="
+                        border-top: none;
+                        border-left: none;
+                        border-right: none;
+                      "
+                      placeholder="Informe a função do produto"
+                      required
+                    />
+                  </div>
+                  <!--  -->
+
+                  <!-- NOME DO PRODUTO -->
+                  <div class="col-md-5 mb-5">
+                    <label for="validationCustom01">Nome do Produto</label>
+                    <input
+                      #sinistralidade_sinistralidade="ngModel"
+                      [(ngModel)]="sinistralidade.sinistralidade"
+                      [class.is-invalid]="
+                        sinistralidade_sinistralidade.invalid &&
+                        sinistralidade_sinistralidade.touched
+                      "
+                      [class.is-valid]="
+                        sinistralidade_sinistralidade.valid &&
+                        sinistralidade_sinistralidade.touched
+                      "
+                      [disabled]="!enviarSinistralidade"
+                      name="sinistralidade"
+                      type="text"
+                      step="0.01"
+                      class="form-control"
+                      style="
+                        border-top: none;
+                        border-left: none;
+                        border-right: none;
+                      "
+                      placeholder="Informe o nome do produto"
+                      required
+                    />
+                  </div>
+                  <!--  -->
+
+                  <!-- CÓDIGO DO PRODUTO -->
+                  <div class="col-md-5 mb-5">
+                    <label for="validationCustom01">Código do Produto</label>
+                    <input
+                      #sinistralidade_sinistralidade="ngModel"
+                      [(ngModel)]="sinistralidade.sinistralidade"
+                      [class.is-invalid]="
+                        sinistralidade_sinistralidade.invalid &&
+                        sinistralidade_sinistralidade.touched
+                      "
+                      [class.is-valid]="
+                        sinistralidade_sinistralidade.valid &&
+                        sinistralidade_sinistralidade.touched
+                      "
+                      [disabled]="!enviarSinistralidade"
+                      name="sinistralidade"
+                      type="text"
+                      step="0.01"
+                      class="form-control"
+                      style="
+                        border-top: none;
+                        border-left: none;
+                        border-right: none;
+                      "
+                      placeholder="Informe o código do produto"
+                      required
+                    />
+                  </div>
+                  <!--  -->
+                </div>
+              </form>
             </div>
+            <button
+              style="
+                display: flex;
+                position: absolute;
+                right: 20px;
+                bottom: 20px;
+              "
+              class="btn btn-primary"
+              id="fecharProduto"
+            >
+              Gravar
+            </button>
           </div>
         </div>
-        <!--  -->
+      </div>
+      <!--  -->
     </div>
     <app-rodape></app-rodape>
   </div>
