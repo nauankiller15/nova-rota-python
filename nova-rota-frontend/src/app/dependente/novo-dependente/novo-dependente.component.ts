@@ -5,7 +5,6 @@ import { Dependente, Titular } from '../models';
 import { validarCPF } from '../../shared/validador-cpf';
 import { Erro } from 'src/app/shared/erros';
 
-
 declare var $: any;
 
 @Component({
@@ -30,10 +29,7 @@ export class NovoDependenteComponent implements OnInit {
   cpfValido = true;
   p: number = 1;
 
-  constructor(
-    private toastrService: ToastrService,
-    private api: ApiService,
-  ) {
+  constructor(private toastrService: ToastrService, private api: ApiService) {
     this.getTitularesAtivos();
   }
 
@@ -47,6 +43,11 @@ export class NovoDependenteComponent implements OnInit {
     // VINCULAR TITULAR
     $('#vincular-titular-btn').click(function () {
       $('#vinc-titular').fadeIn('200');
+    });
+    
+    // BOTÃO DE REGRA DE CONSULTA
+    $('#consultarCPFdep').click(function () {
+      $('#appearCadDep').fadeIn(200);
     });
 
     // TELA DE ANEXO ESTADO CIVIL
@@ -167,25 +168,21 @@ export class NovoDependenteComponent implements OnInit {
     $('#InvalidCPF').hide();
     $('#CPFCadastrado').fadeOut(100);
     if (validarCPF(cpf) == false) {
-      this.cpfValido = false
+      this.cpfValido = false;
       $('#InvalidCPF').fadeIn(100);
     } else {
-      this.api.listar(`parentesco/?CPF=${cpf}`).subscribe(
-        (data) => {
-          if (data.length > 0) {
-            this.cpfValido = false;
-            $('#CPFCadastrado').fadeIn(100);
-          } else {
-            this.cpfValido = true;
-          }
-        }          
-      );
+      this.api.listar(`parentesco/?CPF=${cpf}`).subscribe((data) => {
+        if (data.length > 0) {
+          this.cpfValido = false;
+          $('#CPFCadastrado').fadeIn(100);
+        } else {
+          this.cpfValido = true;
+        }
+      });
     }
   }
-    
 
   newDependente() {
-           
     this.dependente.ativo = true;
     this.api.inserirComArquivo('parentesco/', this.dependente).subscribe(
       (data) => {
@@ -205,9 +202,9 @@ export class NovoDependenteComponent implements OnInit {
 
   anexoCasamentoInput(files: FileList) {
     this.dependente.anexo_doc_casamento = files.item(0);
-  } 
+  }
 
   anexoNascimentoInput(files: FileList) {
     this.dependente.anexo_doc_nascimento = files.item(0);
-  } 
+  }
 }

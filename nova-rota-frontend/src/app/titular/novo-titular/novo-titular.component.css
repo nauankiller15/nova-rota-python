@@ -1,5 +1,16 @@
 /* CONSULTA DE CPF MODAL */
 
+.casamento{
+  background-color: #f90a40;
+  color: #fff;
+  padding: 5px 10px 10px 10px;
+  margin: 0 10px 0 10px;
+  border-radius: 6px;
+}
+.casamento label{
+  font-weight: 700;
+}
+
 /* TELA DE ANEXO CASADO */
 #modalCPF {
   z-index: 999;

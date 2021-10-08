@@ -20,11 +20,13 @@
         <div class="card-body">
           <h5 class="card-title">Faça a consulta do CPF do Titular:</h5>
           <hr />
+          Após a consulta do CPF, o cadastro será liberado.
+          <hr />
           <a
             href="https://servicos.receita.fazenda.gov.br/servicos/cpf/consultasituacao/consultapublica.asp"
             target="_blank"
             class="btn btn-primary"
-            id="consultarCPF"
+            id="consultarCPFTit"
           >
             <i class="fas fa-check"></i> Consultar CPF
           </a>
@@ -49,7 +51,7 @@
         </div>
       </div> -->
 
-      <div class="main-card mb-3 card">
+      <div style="display: none" id="appearCadTit" class="main-card mb-3 card">
         <div class="card-body">
           <h5 class="card-title">Preencha os campos abaixo:</h5>
           <hr />
@@ -143,38 +145,6 @@
                 />
               </div>
 
-              <div class="col-md-2 mb-3">
-                <label for="validationCustom01">Prioridade</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Prioridade"
-                  name="prioridade"
-                  readonly="true"
-                  value="Prioridade"
-                />
-              </div>
-
-              <div class="col-md-2 mb-3">
-                <label for="validationCustom01"
-                  >Número da Carteirinha
-                  <span style="color: red">*</span></label
-                >
-                <input
-                  #carteirinha="ngModel"
-                  autocomplete="off"
-                  [class.is-invalid]="
-                    carteirinha.invalid && carteirinha.touched
-                  "
-                  [class.is-valid]="carteirinha.valid && carteirinha.touched"
-                  [(ngModel)]="titular.carteirinha"
-                  name="carteirinha"
-                  type="text"
-                  class="form-control"
-                  placeholder="Digite aqui o número"
-                />
-              </div>
-
               <div class="col-md-3 mb-3" style="display: none">
                 <label for="validationCustom01">Tipo</label>
                 <input
@@ -185,29 +155,6 @@
                   class="form-control"
                   placeholder="Inclusão de Dependente"
                 />
-              </div>
-
-              <div class="col-md-4 mb-3">
-                <label for="validationCustom01"
-                  >Nome do Beneficiário <span style="color: red">*</span></label
-                >
-                <input
-                  #nome="ngModel"
-                  [class.is-invalid]="nome.invalid && nome.touched"
-                  [class.is-valid]="nome.valid && nome.touched"
-                  [(ngModel)]="titular.nome"
-                  name="nome"
-                  type="text"
-                  class="form-control"
-                  placeholder="Digite aqui o Nome do Beneficiário"
-                  required
-                />
-                <small
-                  class="text-danger"
-                  [class.d-none]="nome.valid || nome.untouched"
-                >
-                  Nome do Beneficiário Necessário!</small
-                >
               </div>
 
               <div class="col-md-2 mb-3">
@@ -231,6 +178,132 @@
                 />
               </div>
 
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom01">Número da Carteirinha </label>
+                <input
+                  #carteirinha="ngModel"
+                  autocomplete="off"
+                  [class.is-invalid]="
+                    carteirinha.invalid && carteirinha.touched
+                  "
+                  [class.is-valid]="carteirinha.valid && carteirinha.touched"
+                  [(ngModel)]="titular.carteirinha"
+                  name="carteirinha"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o número"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom01"
+                  >Nome do Beneficiário <span style="color: red">*</span></label
+                >
+                <input
+                  #nome="ngModel"
+                  [class.is-invalid]="nome.invalid && nome.touched"
+                  [class.is-valid]="nome.valid && nome.touched"
+                  [(ngModel)]="titular.nome"
+                  name="nome"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o Nome do Beneficiário"
+                  required
+                />
+                <small
+                  class="text-danger"
+                  [class.d-none]="nome.valid || nome.untouched"
+                >
+                  Nome do Beneficiário Necessário!</small
+                >
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom01"
+                  >Nome da Mãe <span style="color: red">*</span></label
+                >
+                <input
+                  #nome_mae="ngModel"
+                  [class.is-invalid]="nome_mae.invalid && nome_mae.touched"
+                  [class.is-valid]="nome_mae.valid && nome_mae.touched"
+                  [(ngModel)]="titular.nome_mae"
+                  name="nome_mae"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o Nome da Mãe"
+                  required
+                />
+                <small
+                  class="text-danger"
+                  [class.d-none]="nome_mae.valid || nome_mae.untouched"
+                >
+                  Nome da Mãe Necessário!</small
+                >
+              </div>
+            </div>
+            <!-- NOVO FORM ROW -->
+            <div class="form-row">
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom05"
+                  >Data de Admissão <span style="color: red">*</span></label
+                >
+                <input
+                  #data_admissao="ngModel"
+                  [class.is-invalid]="
+                    data_admissao.invalid && data_admissao.touched
+                  "
+                  [class.is-valid]="
+                    data_admissao.valid && data_admissao.touched
+                  "
+                  [(ngModel)]="titular.data_admissao"
+                  name="data_admissao"
+                  type="date"
+                  id="dataAdmissao"
+                  class="form-control"
+                  required
+                />
+
+                <!-- BOTÃO REANEXAR VINCIULO EMPREGATICIO -->
+                <div id="reanexar4" style="display: none">
+                  <button
+                    style="position: absolute; right: -44px; top: 31px"
+                    class="btn btn-primary"
+                    id="abrirAnexo4"
+                  >
+                    <i class="fas fa-file-image" style="font-size: 15px"></i>
+                  </button>
+                </div>
+                <!--  -->
+              </div>
+
+              <div class="col-md-2 mb-2">
+                <label for="validationCustom01">Prioridade</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Prioridade"
+                  name="prioridade"
+                  readonly="true"
+                  value="Prioridade"
+                />
+              </div>
+
+              <div
+                id="datacasamento"
+                class="col-md-2 mb-3 casamento"
+                style="display: none"
+              >
+                <label for="validationCustom05"
+                  >Data de Casamento <span style="color: red">*</span></label
+                >
+                <input
+                  [(ngModel)]="titular.data_casamento"
+                  name="data_casamento"
+                  type="date"
+                  class="form-control"
+                />
+              </div>
               <div class="col-md-2 mb-3">
                 <label for="validationCustom02"
                   >Sexo <span style="color: red">*</span></label
@@ -324,8 +397,11 @@
                           "
                           class="btn btn-primary"
                           id="fecharAnexo"
-                          [disabled]="casadoForm.form.invalid ||
-                          (titular.anexo_doc_casamento == null && titular.estado_civil == 'Casado(a)')"
+                          [disabled]="
+                            casadoForm.form.invalid ||
+                            (titular.anexo_doc_casamento == null &&
+                              titular.estado_civil == 'Casado(a)')
+                          "
                         >
                           Anexar Arquivo
                         </button>
@@ -364,8 +440,10 @@
                         />
 
                         <button
-                        [disabled]="empregaticioForm.form.invalid || titular.anexo_doc_empregaticio == null"
-
+                          [disabled]="
+                            empregaticioForm.form.invalid ||
+                            titular.anexo_doc_empregaticio == null
+                          "
                           style="
                             display: flex;
                             position: absolute;
@@ -382,78 +460,8 @@
                   </div>
                 </div>
               </div>
-
-              <div class="col-md-4 mb-3">
-                <label for="validationCustom01"
-                  >Nome da Mãe <span style="color: red">*</span></label
-                >
-                <input
-                  #nome_mae="ngModel"
-                  [class.is-invalid]="nome_mae.invalid && nome_mae.touched"
-                  [class.is-valid]="nome_mae.valid && nome_mae.touched"
-                  [(ngModel)]="titular.nome_mae"
-                  name="nome_mae"
-                  type="text"
-                  class="form-control"
-                  placeholder="Digite aqui o Nome do Beneficiário"
-                  required
-                />
-                <small
-                  class="text-danger"
-                  [class.d-none]="nome_mae.valid || nome_mae.untouched"
-                >
-                  Nome da Mãe Necessário!</small
-                >
-              </div>
-
-              <div class="col-md-2 mb-3">
-                <label for="validationCustom05"
-                  >Data de Admissão <span style="color: red">*</span></label
-                >
-                <input
-                  #data_admissao="ngModel"
-                  [class.is-invalid]="
-                    data_admissao.invalid && data_admissao.touched
-                  "
-                  [class.is-valid]="
-                    data_admissao.valid && data_admissao.touched
-                  "
-                  [(ngModel)]="titular.data_admissao"
-                  name="data_admissao"
-                  type="date"
-                  id="dataAdmissao"
-                  class="form-control"
-                  required
-                />
-
-                <!-- BOTÃO REANEXAR VINCIULO EMPREGATICIO -->
-                <div id="reanexar4" style="display: none">
-                  <button
-                    style="position: absolute; right: -44px; top: 31px"
-                    class="btn btn-primary"
-                    id="abrirAnexo4"
-                  >
-                    <i class="fas fa-file-image" style="font-size: 15px"></i>
-                  </button>
-                </div>
-                <!--  -->
-              </div>
-
-              <div
-                id="datacasamento"
-                class="col-md-2 mb-3"
-                style="margin-left: 40px; display: none"
-              >
-                <label for="validationCustom05">Data de Casamento</label>
-                <input
-                  [(ngModel)]="titular.data_casamento"
-                  name="data_casamento"
-                  type="date"
-                  class="form-control"
-                />
-              </div>
             </div>
-
+            <!--  -->
             <div class="form-row">
               <div class="col-md-2 mb-2">
                 <label for="validationCustom01"
@@ -573,7 +581,7 @@
                 </select>
               </div>
 
-              <div class="col-md-2 mb-2">
+              <!-- <div class="col-md-2 mb-2">
                 <label for="validationCustom04">Status Sistema</label>
                 <input
                   readonly="true"
@@ -581,7 +589,7 @@
                   class="form-control"
                   placeholder="OK"
                 />
-              </div>
+              </div> -->
 
               <div
                 *ngIf="titular.declaracao_saude == 'Sim'"

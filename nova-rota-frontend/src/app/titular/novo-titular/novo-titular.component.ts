@@ -19,6 +19,12 @@ export class NovoTitularComponent implements OnInit {
   constructor(private toastrService: ToastrService, private api: ApiService) {}
 
   ngOnInit(): void {
+
+        // BOTÃO DE REGRA DE CONSULTA
+        $('#consultarCPFTit').click(function () {
+          $('#appearCadTit').fadeIn(200);
+        });
+    
     
     $(document).ready(() => {
       $('.cep').mask('00000-000');

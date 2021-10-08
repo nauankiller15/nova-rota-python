@@ -20,18 +20,20 @@
         <div class="card-body">
           <h5 class="card-title">Faça a consulta do CPF do Dependente:</h5>
           <hr />
+          Após a consulta do CPF, o cadastro será liberado.
+          <hr />
           <a
             href="https://servicos.receita.fazenda.gov.br/servicos/cpf/consultasituacao/consultapublica.asp"
             target="_blank"
             class="btn btn-primary"
-            id="consultarCPF"
+            id="consultarCPFdep"
           >
             <i class="fas fa-check"></i> Consultar CPF
           </a>
         </div>
       </div>
 
-      <div class="main-card mb-3 card">
+      <div id="appearCadDep" class="main-card mb-3 card" style="display: none;">
         <div class="card-body">
           <h5 class="card-title">Preencha os campos abaixo:</h5>
           <hr />
@@ -123,39 +125,6 @@
                 />
               </div>
 
-              <div class="col-md-2 mb-3">
-                <label for="validationCustom01">Prioridade</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="titular.prioridade"
-                  placeholder="Prioridade"
-                  readonly="true"
-                  name="prioridade"
-                />
-              </div>
-
-              <div class="col-md-2 mb-3">
-                <label for="validationCustom01"
-                  >Número da Carteirinha
-                  <span style="color: red">*</span></label
-                >
-                <input
-                  #carteirinha="ngModel"
-                  autocomplete="off"
-                  [class.is-invalid]="
-                    carteirinha.invalid && carteirinha.touched
-                  "
-                  [class.is-valid]="carteirinha.valid && carteirinha.touched"
-                  [(ngModel)]="dependente.carteirinha"
-                  maxlength="9"
-                  name="carteirinha"
-                  type="text"
-                  class="form-control"
-                  placeholder="Digite aqui o número"
-                />
-              </div>
-
               <div class="col-md-3 mb-3" style="display: none">
                 <label for="validationCustom01">Tipo</label>
                 <input
@@ -166,29 +135,6 @@
                   class="form-control"
                   placeholder="Inclusão de Dependente"
                 />
-              </div>
-
-              <div class="col-md-4 mb-3">
-                <label for="validationCustom01"
-                  >Nome do Dependente <span style="color: red">*</span></label
-                >
-                <input
-                  #nome="ngModel"
-                  [class.is-invalid]="nome.invalid && nome.touched"
-                  [class.is-valid]="nome.valid && nome.touched"
-                  required
-                  [(ngModel)]="dependente.nome"
-                  name="nome"
-                  type="text"
-                  class="form-control"
-                  placeholder="Digite aqui o nome do Dependente"
-                />
-                <small
-                  class="text-danger"
-                  [class.d-none]="nome.valid || nome.untouched"
-                >
-                  Nome do Dependente Necessário!</small
-                >
               </div>
 
               <div class="col-md-2 mb-3">
@@ -214,100 +160,49 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom02"
-                  >Sexo <span style="color: red">*</span></label
+                <label for="validationCustom01"
+                  >Nº Carteirinha do Titular
+                  <span style="color: red">*</span></label
                 >
-                <select
-                  #sexo="ngModel"
-                  [class.is-invalid]="sexo.invalid && sexo.touched"
-                  [class.is-valid]="sexo.valid && sexo.touched"
-                  required
-                  class="form-control"
-                  name="sexo"
-                  [(ngModel)]="dependente.sexo"
-                >
-                  <option value="">Selecione aqui</option>
-                  <option value="Masculino">Masculino</option>
-                  <option value="Feminino">Feminino</option>
-                </select>
-              </div>
-
-              <div class="col-md-2 mb-3">
-                <label for="validationCustom02"
-                  >Estado Civil <span style="color: red">*</span></label
-                >
-                <!-- BOTÃO REANEXAR CASADO -->
-                <div id="reanexar3" style="display: none">
-                  <button
-                    style="position: absolute; right: -46px"
-                    class="btn btn-primary"
-                    id="abrirAnexo3"
-                  >
-                    <i class="fas fa-file-image" style="font-size: 15px"></i>
-                  </button>
-                </div>
-
-                <select
-                  #estado_civil="ngModel"
-                  [(ngModel)]="dependente.estado_civil"
+                <input
+                  #carteirinha="ngModel"
+                  autocomplete="off"
                   [class.is-invalid]="
-                    estado_civil.invalid && estado_civil.touched
+                    carteirinha.invalid && carteirinha.touched
                   "
-                  [class.is-valid]="estado_civil.valid && estado_civil.touched"
-                  required
-                  id="estado_civil2"
+                  [class.is-valid]="carteirinha.valid && carteirinha.touched"
+                  [(ngModel)]="dependente.carteirinha"
+                  maxlength="9"
+                  name="carteirinha"
+                  type="text"
                   class="form-control"
-                  name="estado_civil"
+                  placeholder="Digite aqui o número"
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom01"
+                  >Nome do Dependente <span style="color: red">*</span></label
                 >
-                  <option value="">Selecione</option>
-                  <option value="Solteiro(a)">Solteiro(a)</option>
-                  <option value="Casado(a)">Casado(a)</option>
-                  <option value="Convivente">Convivente</option>
-                </select>
-
-                <!-- VINCULAR ANEXO DE CASADO -->
-                <div id="vinc-anexo-casado">
-                  <div class="box-anexo">
-                    <div class="anexo-info-box-titular-vinc">
-                      <h1
-                        style="
-                          font-size: 20px;
-                          display: flex;
-                          margin-top: -15px;
-                          margin-bottom: 15px;
-                        "
-                      >
-                        Anexar Certidão de Casamento
-                      </h1>
-                      <label for="avatar"
-                        >Escolha um arquivo para anexar:</label
-                      >
-                      <div style="height: 10px; width: 100%"></div>
-                      <input
-                        type="file"
-                        id="avatar"
-                        name="avatar"
-                        accept=".png, .jpg, .jpeg"
-                        ngControl="inputFile"
-                        (change)="anexoCasamentoInput($event.target.files)"
-                      />
-
-                      <button
-                        style="
-                          display: flex;
-                          position: absolute;
-                          right: 20px;
-                          bottom: 20px;
-                        "
-                        class="btn btn-primary"
-                        id="fecharAnexo3"
-                        [disabled]="dependente.anexo_doc_casamento == null"
-                      >
-                        Anexar Arquivo
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                <input
+                  #nome="ngModel"
+                  [class.is-invalid]="nome.invalid && nome.touched"
+                  [class.is-valid]="nome.valid && nome.touched"
+                  required
+                  [(ngModel)]="dependente.nome"
+                  name="nome"
+                  type="text"
+                  class="form-control"
+                  placeholder="Digite aqui o nome do Dependente"
+                />
+                <small
+                  class="text-danger"
+                  [class.d-none]="nome.valid || nome.untouched"
+                >
+                  Nome do Dependente Necessário!</small
+                >
               </div>
 
               <div class="col-md-4 mb-3">
@@ -332,31 +227,45 @@
                   Nome da Mãe Necessário!</small
                 >
               </div>
+            </div>
+
+            <!-- CALSS -->
+            <div class="form-row">
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom02"
+                  >Sexo <span style="color: red">*</span></label
+                >
+                <select
+                  #sexo="ngModel"
+                  [class.is-invalid]="sexo.invalid && sexo.touched"
+                  [class.is-valid]="sexo.valid && sexo.touched"
+                  required
+                  class="form-control"
+                  name="sexo"
+                  [(ngModel)]="dependente.sexo"
+                >
+                  <option value="">Selecione aqui</option>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Feminino">Feminino</option>
+                </select>
+              </div>
 
               <div class="col-md-2 mb-3">
-                <label for="validationCustom05"
-                  >Data de Admissão <span style="color: red">*</span></label
-                >
+                <label for="validationCustom01">Prioridade</label>
                 <input
-                  #data_admissao="ngModel"
-                  [class.is-invalid]="
-                    data_admissao.invalid && data_admissao.touched
-                  "
-                  [class.is-valid]="
-                    data_admissao.valid && data_admissao.touched
-                  "
-                  required
-                  [(ngModel)]="dependente.data_admissao"
-                  name="data_admissao"
-                  type="date"
+                  type="text"
                   class="form-control"
-                  placeholder="Informe a data de admissão"
+                  [(ngModel)]="titular.prioridade"
+                  placeholder="Prioridade"
+                  readonly="true"
+                  name="prioridade"
                 />
               </div>
+
               <div
                 id="datacasamentoDep"
                 style="display: none"
-                class="col-md-2 mb-3"
+                class="col-md-2 mb-3 casamento"
               >
                 <label for="validationCustom05">Data de Casamento</label>
                 <input
@@ -446,8 +355,89 @@
                   </div>
                 </div>
               </div>
-            </div>
+              <!--  -->
 
+              <!-- XXSS  -->
+              <div class="col-md-2 mb-3" style="margin-left: 43px;">
+                <label for="validationCustom02"
+                  >Estado Civil <span style="color: red">*</span></label
+                >
+                <!-- BOTÃO REANEXAR CASADO -->
+                <div id="reanexar3" style="display: none">
+                  <button
+                    style="position: absolute; right: -46px"
+                    class="btn btn-primary"
+                    id="abrirAnexo3"
+                  >
+                    <i class="fas fa-file-image" style="font-size: 15px"></i>
+                  </button>
+                </div>
+
+                <select
+                  #estado_civil="ngModel"
+                  [(ngModel)]="dependente.estado_civil"
+                  [class.is-invalid]="
+                    estado_civil.invalid && estado_civil.touched
+                  "
+                  [class.is-valid]="estado_civil.valid && estado_civil.touched"
+                  required
+                  id="estado_civil2"
+                  class="form-control"
+                  name="estado_civil"
+                >
+                  <option value="">Selecione</option>
+                  <option value="Solteiro(a)">Solteiro(a)</option>
+                  <option value="Casado(a)">Casado(a)</option>
+                  <option value="Convivente">Convivente</option>
+                </select>
+
+                <!-- VINCULAR ANEXO DE CASADO -->
+                <div id="vinc-anexo-casado">
+                  <div class="box-anexo">
+                    <div class="anexo-info-box-titular-vinc">
+                      <h1
+                        style="
+                          font-size: 20px;
+                          display: flex;
+                          margin-top: -15px;
+                          margin-bottom: 15px;
+                        "
+                      >
+                        Anexar Certidão de Casamento
+                      </h1>
+                      <label for="avatar"
+                        >Escolha um arquivo para anexar:</label
+                      >
+                      <div style="height: 10px; width: 100%"></div>
+                      <input
+                        type="file"
+                        id="avatar"
+                        name="avatar"
+                        accept=".png, .jpg, .jpeg"
+                        ngControl="inputFile"
+                        (change)="anexoCasamentoInput($event.target.files)"
+                      />
+
+                      <button
+                        style="
+                          display: flex;
+                          position: absolute;
+                          right: 20px;
+                          bottom: 20px;
+                        "
+                        class="btn btn-primary"
+                        id="fecharAnexo3"
+                        [disabled]="dependente.anexo_doc_casamento == null"
+                      >
+                        Anexar Arquivo
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--  -->
+            </div>
             <div class="form-row">
               <div class="col-md-2 mb-2">
                 <label for="validationCustom01"
@@ -567,7 +557,7 @@
                 </select>
               </div>
 
-              <div class="col-md-2 mb-2">
+              <!-- <div class="col-md-2 mb-2">
                 <label for="validationCustom04">Status Sistema</label>
                 <input
                   readonly="true"
@@ -575,7 +565,7 @@
                   class="form-control"
                   placeholder="OK"
                 />
-              </div>
+              </div> -->
 
               <div
                 *ngIf="dependente.declaracao_saude == 'Sim'"
