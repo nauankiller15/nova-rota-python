@@ -23,6 +23,8 @@ export class NovoTitularComponent implements OnInit {
         // BOTÃO DE REGRA DE CONSULTA
         $('#consultarCPFTit').click(function () {
           $('#appearCadTit').fadeIn(200);
+          $('.consultaCPF').fadeOut(200);
+
         });
     
     

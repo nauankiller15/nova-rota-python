@@ -48,6 +48,7 @@ export class NovoDependenteComponent implements OnInit {
     // BOTÃO DE REGRA DE CONSULTA
     $('#consultarCPFdep').click(function () {
       $('#appearCadDep').fadeIn(200);
+      $('.consultaCPF').fadeOut(200);
     });
 
     // TELA DE ANEXO ESTADO CIVIL
